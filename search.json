@@ -1393,6 +1393,13 @@
     "text": "Cleaning up after yourslef\n\nrm(objectname) will remove the objects you created\nrm(list=ls()) will remove all the objects your created\nYou can remove packages, sometimes, with detach(package:packageyouwanttoremove)\n\nThis can be iffy for a variety of reasons\nSome packages automatically load another package or depend on another.\n\nHowever, restarting your R session is generally best practice because it will do both"
   },
   {
+    "objectID": "slides/Getting-Started-in-R.html#this-is-just-a-test-slide",
+    "href": "slides/Getting-Started-in-R.html#this-is-just-a-test-slide",
+    "title": "Getting Started in R",
+    "section": "This is just a test slide",
+    "text": "This is just a test slide"
+  },
+  {
     "objectID": "slides/data-cleaning.html#packages-you-will-need",
     "href": "slides/data-cleaning.html#packages-you-will-need",
     "title": "Data Cleaning in R",
