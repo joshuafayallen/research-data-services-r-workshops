@@ -70,6 +70,8 @@ pop_df %>%
 
 R is a vastly popular language in the datascience industry. While it is less popular than sequel or Python it is still one of the most heavily demanded language from private industry. R is also becoming wildly popular in econ and political science because not only is it free but it is a great skill to have given the difficulties of the academic job market. I am political scientist so I will mostly making these references. The Rstudio team in particular has worked really hard on adding support for Python, Julia, and java. 
 
+
+
 :::
 
 
@@ -91,7 +93,9 @@ R is a vastly popular language in the datascience industry. While it is less pop
 
 - Supports all types of statistical methods and data collection 
 
-
+:::{.notes}
+Much of this workshops materials are based on materials people publicly share as long as they get the proper acknowledment. Again thank you Grant.
+:::
 
 
 
@@ -1234,5 +1238,3 @@ hist(penguins$bill_length_mm,
   - Some packages automatically load another package or depend on another.
 
 - However, restarting your `R` session is generally best practice because it will do both 
-
-## This is just a test slide

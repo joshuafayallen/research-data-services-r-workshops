@@ -22,7 +22,7 @@ The recording for this workshop is posted on the [RDS website just click on the 
 
 ## Resources Used 
 
-Grant McDermot's excellent [Data Science for Economists](https://github.com/uo-ec607/lectures)
+Grant McDermot's excellent [Data Science for Economists](https://github.com/uo-ec607/lectures) course especially the [R Language Basics](https://raw.githack.com/uo-ec607/lectures/master/04-rlang/04-rlang.html#1) lecture that much of the content and structure of this first workshop is based around.
 
 [R Cookbook, 2nd Edition](https://rc2e.com/) by J.D. Long & Paul Teetor
 
