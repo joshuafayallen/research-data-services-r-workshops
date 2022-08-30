@@ -1033,7 +1033,7 @@
     "href": "slides/Getting-Started-in-R.html#why-r-and-rstudiocont",
     "title": "Getting Started in R",
     "section": "Why R and RStudio?(cont)",
-    "text": "Why R and RStudio?(cont)\nData science reasons\n\nAlongside Python, R has become the de facto language for data science.\n\nSee: The Impressive Growth of R, The Popularity of Data Science Software\n\nOpen-source (free!) with a global user-base spanning academia and industry.\n\nPersonal Benefits\n\nThe community is insanely nice\n\nEspecially compared to Python and Stata\n\nA great “first” language to learn\n\nSource: Google Data Analytics Professional Certificate\n\nSupports all types of statistical methods and data collection"
+    "text": "Why R and RStudio?(cont)\nData science reasons\n\nAlongside Python, R has become the de facto language for data science.\n\nSee: The Impressive Growth of R, The Popularity of Data Science Software\n\nOpen-source (free!) with a global user-base spanning academia and industry.\n\nPersonal Benefits\n\nThe community is insanely nice\n\nEspecially compared to Python and Stata\n\nA great “first” language to learn\n\nSource: Google Data Analytics Professional Certificate\n\nSupports all types of statistical methods and data collection\n\n\nMuch of this workshops materials are based on materials people publicly share as long as they get the proper acknowledment. Again thank you Grant."
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#r-rstudio-whats-the-difference",
@@ -1391,13 +1391,6 @@
     "title": "Getting Started in R",
     "section": "Cleaning up after yourslef",
     "text": "Cleaning up after yourslef\n\nrm(objectname) will remove the objects you created\nrm(list=ls()) will remove all the objects your created\nYou can remove packages, sometimes, with detach(package:packageyouwanttoremove)\n\nThis can be iffy for a variety of reasons\nSome packages automatically load another package or depend on another.\n\nHowever, restarting your R session is generally best practice because it will do both"
-  },
-  {
-    "objectID": "slides/Getting-Started-in-R.html#this-is-just-a-test-slide",
-    "href": "slides/Getting-Started-in-R.html#this-is-just-a-test-slide",
-    "title": "Getting Started in R",
-    "section": "This is just a test slide",
-    "text": "This is just a test slide"
   },
   {
     "objectID": "slides/data-cleaning.html#packages-you-will-need",
@@ -2419,7 +2412,7 @@
     "href": "index.html",
     "title": "Georgia State Research Data Services R Workshop",
     "section": "",
-    "text": "::: column-screen-inset-right\n\n\n\n\n\n\n\n\n\nDate\nLocation & Time\nTitle\nMaterials\n\n\n\n\nSeptember 7\nOnline: 11:00 - 1:00 pm\nGetting Started in R\n1\n\n\nSeptember 21\nOnline: 11:00-1:00 pm\nTidyverse and Manipulating Data\n2\n\n\nSeptember 30\nOnline: 11:00-1:00 pm\nData Visualization and Mapping\n3\n\n\nOctober 7\nOnline: 11:00-1:00 pm\nStatistical Modelling\n4\n\n\nOctober 20\nClassroom 2, Library North 2 12:00-2:00pm\nGetting Started in R\n1\n\n\nOctober 27\nClassroom 2, Library North 2 12:00-2:00pm\nTidyverse and Manipulating Data\n2\n\n\nNovember 3\nClassroom 2, Library North 2 12:00-2:00pm\nData Visualization and Mapping\n3\n\n\nNovember 10\nClassroom 2, Library North 2 12:00-2:00pm\nStatistical Modelling\n4"
+    "text": "Date\nLocation & Time\nTitle\nMaterials\n\n\n\n\nSeptember 7\nOnline: 11:00 - 1:00 pm\nGetting Started in R\n1\n\n\nSeptember 21\nOnline: 11:00-1:00 pm\nTidyverse and Manipulating Data\n2\n\n\nSeptember 30\nOnline: 11:00-1:00 pm\nData Visualization and Mapping\n3\n\n\nOctober 7\nOnline: 11:00-1:00 pm\nStatistical Modelling\n4\n\n\nOctober 20\nClassroom 2, Library North 2 12:00-2:00pm\nGetting Started in R\n1\n\n\nOctober 27\nClassroom 2, Library North 2 12:00-2:00pm\nTidyverse and Manipulating Data\n2\n\n\nNovember 3\nClassroom 2, Library North 2 12:00-2:00pm\nData Visualization and Mapping\n3\n\n\nNovember 10\nClassroom 2, Library North 2 12:00-2:00pm\nStatistical Modelling\n4"
   },
   {
     "objectID": "course-syllabus.html",
@@ -2797,7 +2790,7 @@
     "href": "weeks/week-1.html#resources-used",
     "title": "Week 1",
     "section": "Resources Used",
-    "text": "Resources Used\nGrant McDermot’s excellent Data Science for Economists\nR Cookbook, 2nd Edition by J.D. Long & Paul Teetor\nFast Lane to Learning R by Norm Matloff\nPalmer Penguins by Allison Horst, Alison Hill, and Kristen Gorman"
+    "text": "Resources Used\nGrant McDermot’s excellent Data Science for Economists course especially the R Language Basics lecture that much of the content and structure of this first workshop is based around.\nR Cookbook, 2nd Edition by J.D. Long & Paul Teetor\nFast Lane to Learning R by Norm Matloff\nPalmer Penguins by Allison Horst, Alison Hill, and Kristen Gorman"
   },
   {
     "objectID": "course-overview.html",
