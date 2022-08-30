@@ -426,18 +426,21 @@ R comes with  standard set of boolean operators these are the common ones that y
 
 - `R` like most other programming languages will evaluate our logical operators(`==`, `>`, etc) before our booleans(`|`, `&`, etc).
 
+
 ```{r unexpected-results, echo = TRUE}
 1 > 0.5 & 2
 ```
 
 
 
-What's happening here is that R is evaluating two separate "logical" statements: 
+- What's happening here is that R is evaluating two separate "logical" statements: 
  - `1 > 0.5`, which is is obviously TRUE.
  - `2`, which is TRUE(!) because R is "helpfully" converting it to `as.logical(2)`.
  
 
 - It is way safer to make explicit what you are doing.
+
+
 ```{r echo = TRUE}
 1 > 0.5 & 1 > 2
 ```
