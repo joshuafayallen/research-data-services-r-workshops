@@ -5,7 +5,7 @@ website:
   page-navigation: true
   title: "Research Data Services R Workshops at Georgia State University"
   description: "Homepage Research Data Services R Workshops"
-  site-url: "https://joshuafayallen.github.io/research-data-services-r-workshops/"
+  site-url: "https://joshuafayallen.github.io/website/"
 
   repo-url: https://github.com/joshuafayallen/research-data-services-r-workshops
   repo-actions: [edit, issue]
