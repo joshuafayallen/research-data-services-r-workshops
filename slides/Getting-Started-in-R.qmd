@@ -6,6 +6,7 @@ date: "`r  Sys.Date()`"
 format: 
  revealjs:
    theme: ["allen.scss"]
+   code-overflow: wrap
    
 ---
 
@@ -1274,9 +1275,11 @@ hist(penguins$bill_length_mm,
 
 ## Getting Good at R
 
+<center>
+
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code</p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/589068687669243905?ref_src=twsrc%5Etfw">April 17, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
+</center>
 :::{.notes}
 
 you are going to run into lots of error messages and it is going to be really frustrating. Warning messages and errors are something we all run into. Trust me I have been close to needing a new computer more than few times. Part of getting good at R is just figuring out what the hell 
