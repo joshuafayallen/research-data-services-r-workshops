@@ -50,13 +50,13 @@ research-data-services-r-workshops/"
       - section: "Workshop Materials"
         contents:
           - href: weeks/week-1.qmd
-            text: "Week 1"
+            text: "Workshop 1- Getting Started in R"
           - href: weeks/week-2.qmd
-            text: "Week 2"
+            text: "Tidyverse and Manipulating Data"
           - href: weeks/week-3.qmd
-            text: "Week 3"
+            text: "Data  Visualization and Mapping"
           - href: weeks/week-4.qmd
-            text: "Week 4"
+            text: "Statistical Modeling in R"
 
 
 format:
