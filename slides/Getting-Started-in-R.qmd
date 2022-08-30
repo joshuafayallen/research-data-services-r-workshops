@@ -216,6 +216,33 @@ knitr::include_graphics("figs/projects-jenny-bryan.png")
 
 ```
 
+
+
+## How To Make Your Life Easier 
+
+
+:::columns
+:::column 
+
+### Working Directory for My Laptop
+```
+"/Users/josh/Dropbox/Research-Data-Services-Workshops/research-data-services-r-workshops" 
+
+```
+
+::::
+
+:::column
+
+### Working Directory of My Office Computer
+```
+"/Volumes/6TB Raid 10/Dropbox/Research-Data-Services-Workshops/research-data-services-r-workshops"
+
+```
+:::
+:::
+
+
 :::{.notes}
 While setting your working directory manually is fine it is a lot more fragile. If you collaborate with people now or in the future they are going to have to manually set the working directory on their computer. Each time.
 
@@ -474,7 +501,6 @@ To see whether an object is contained within (i.e. matches one of) a list of ite
 - While this is boring it opens up lots 
 
 
-
 - We may need to set up a group of tests to do something to data.
 
 
@@ -491,135 +517,7 @@ Later in the semester we can modify in place but that is running before we are w
 R as a calculator and evaluating whether 1 is greater than 2 gets very tiring like as soon as you start doing it and is hardly ever that practical. 
 :::
 
-
-## Assignment 
-
-- The most popular assigment operator in R is `<-` which is just `<` followed by `-`
-  - read aloud as "gets"
-
-```{r echo = TRUE}
-a <- 2 + 2
-
-a * 2
-
-```
-
-- You can also use `->` but this is far less common and makes me uncomfortable 
-
-```{r echo = TRUE}
- a^2 -> b
-```
-
-
-:::{.notes}
-
-Assignment might be a foregin concept to you if you have no coding experience or making the transition from excel or stata. Basically if you go through and copy and paste all this stuff into an R script it will run but we will not be able to use this. 
-
-So using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets 2 + 2 this lets us reuse it later whether we want to perform additional maths or use it for later
-:::
-
-
-
-## Assignment(cont)
-
-:::incremental
-
-- Using `=` as an assignment operator also works and is the one I tend to use 
-  - Note: `=` is also used to evaluate arguments *within* functions
-  
-  
-```{r echo = TRUE}
-b = b * 2
-
-d = b/3
-```
-
-
-- Tbh this is a matter of taste really. 
-
-- Just keep it consistent..
-
-
-- Just keep it consistent..or become ungovernable and use all three in one script.
-  - I am not responsible for you getting yelled at on Stackoverflow if you do this.
-:::
-::: aside
-More discussion [here](https://github.com/Robinlovelace/geocompr/issues/319##issuecomment-427376764) and [here](https://www.separatinghyperplanes.com/2018/02/why-you-should-use-and-never.html)
-:::
-:::{.notes}
-
-To be honest R purists are one of the last hold outs of using the gets operator essentially back in the main frame computer days there was a physical key that would do this for you. R is actually really really old so there are some quirks to it that bug lots of people. We are not going to get into it any further in this workshop but if you have prior experience in an object oriented language R will be a bit peculiar at times. Like in somne cases position of the argument does not matter indentation does not matter which will really throw you off if you are coming from python or vice versa 
-
-:::
-
-
-## Working with Objects 
-
-- Lets run a simple regression using e
-
-```{r echo = TRUE}
-
-e = data.frame(x = 1:2,
-               y = 1:2)
-```
-
-
-```{r error = TRUE, echo = TRUE}
-lm(y~x)
-```
-
-
-
-
-
-
-
-## Global Environment(cont)
-:::incremental
-```{r echo=FALSE, error=TRUE}
-lm(y~x)
-```
-
-- Gives us a hint out about what went wrong
-
-![](figs/environment.png)
-
-- Meaning R is going to look in the environment for the object you give it 
-
-:::
-
-:::{.notes}
-If we look at the global environment Y does not exist as an object but lots of other stuff does that is not. 
-
-Because x and y live within e we need to tell that they belong to e so to fix it we would need to tell lm where y and x 
-
-:::
-
-
-## Fixing Our Issue 
-:::incremental 
-
-- To fix this we need to feed `e` to the data argument
-  - 
-
-```{r echo = TRUE}
-lm(y~x, data = e)
-```
-
-
-
-
-
-:::{.notes}
-In R one of the biggest things is that being explicit about what name to use is how we do things. If you are not you are gonna get error messages at best.There are lots of ways 
-
-
-:::
-
-
-
-
-## Everything is an Object
+# Everything is an Object
 
 
 
@@ -725,7 +623,7 @@ The best practice is to use concise descriptive names
 
 When loading in data typically I do `raw_my_dataset_name` and after data all of my  cleaning I do `clean_my_dataset_name`
 
-Objects must start with a letter. But can contain letters, numbers, `_`, or `.`
+- Objects must start with a letter. But can contain letters, numbers, `_`, or `.`
   - snake_case_like_this_is_what_I_use
   - somePeopleUseCamelCase
   - some_People.are_Do_not.like_Convention
@@ -736,6 +634,137 @@ Objects must start with a letter. But can contain letters, numbers, `_`, or `.`
 ::: aside
 Example and Discussion provided in [R for Data Sciency](https://r4ds.had.co.nz/workflow-basics.html?q=snake##whats-in-a-name) by Hadley Wickham
 :::
+
+
+
+
+## Assignment 
+
+- The most popular assigment operator in R is `<-` which is just `<` followed by `-`
+  - read aloud as "gets"
+
+```{r echo = TRUE}
+a <- 2 + 2
+
+a * 2
+
+```
+
+- You can also use `->` but this is far less common and makes me uncomfortable 
+
+```{r echo = TRUE}
+ a^2 -> b
+```
+
+
+:::{.notes}
+
+Assignment might be a foregin concept to you if you have no coding experience or making the transition from excel or stata. Basically if you go through and copy and paste all this stuff into an R script it will run but we will not be able to use this. 
+
+So using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets 2 + 2 this lets us reuse it later whether we want to perform additional maths or use it for later
+:::
+
+
+
+## Assignment(cont)
+
+:::incremental
+
+- Using `=` as an assignment operator also works and is the one I tend to use 
+  - Note: `=` is also used to evaluate arguments *within* functions
+  
+  
+```{r echo = TRUE}
+b = b * 2
+
+d = b/3
+```
+
+
+- Tbh this is a matter of taste really. 
+  - R added `=` in the 2000's to make it easier for people coming from other object oriented programming languages
+
+- Just keep it consistent..
+
+
+- Just keep it consistent..or become ungovernable and use all three in one script.
+  - I am not responsible for you getting yelled at on Stackoverflow if you do this.
+:::
+::: aside
+More discussion [here](https://github.com/Robinlovelace/geocompr/issues/319##issuecomment-427376764) and [here](https://www.separatinghyperplanes.com/2018/02/why-you-should-use-and-never.html)
+:::
+:::{.notes}
+
+To be honest R purists are one of the last hold outs of using the gets operator essentially back in the main frame computer days there was a physical key that would do this for you. R is actually really really old so there are some quirks to it that bug lots of people. We are not going to get into it any further in this workshop but if you have prior experience in an object oriented language R will be a bit peculiar at times. Like in somne cases position of the argument does not matter indentation does not matter which will really throw you off if you are coming from python or vice versa 
+
+:::
+
+
+## Working with Objects 
+
+- Lets run a simple regression using e
+
+```{r echo = TRUE}
+
+e = data.frame(x = 1:22,
+               y = 20:41)
+```
+
+
+```{r error = TRUE, echo = TRUE}
+mean(y)
+```
+
+
+
+
+
+
+
+## Global Environment(cont)
+:::incremental
+```{r echo=FALSE, error=TRUE}
+mean(y)
+```
+
+- Gives us a hint out about what went wrong
+
+![](figs/environment.png)
+
+- Meaning R is going to look in the environment for the object you give it 
+
+:::
+
+:::{.notes}
+If we look at the global environment Y does not exist as an object but lots of other stuff does that is not. 
+
+Because x and y live within e we need to tell that they belong to e so to fix it we would need to tell lm where y and x 
+
+:::
+
+
+## Fixing Our Issue 
+:::incremental 
+
+- To fix this we need to feed `e` to the data argument
+  - Do do this we need to index e 
+
+```{r echo = TRUE}
+mean(e$y)
+```
+
+
+:::
+
+
+:::{.notes}
+In R one of the biggest things is that being explicit about what name to use is how we do things. If you are not you are gonna get error messages at best.There are lots of ways 
+
+
+:::
+
+
+
 
 
 
@@ -1241,3 +1270,15 @@ hist(penguins$bill_length_mm,
   - Some packages automatically load another package or depend on another.
 
 - However, restarting your `R` session is generally best practice because it will do both 
+
+
+## Getting Good at R
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code</p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/589068687669243905?ref_src=twsrc%5Etfw">April 17, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+:::{.notes}
+
+you are going to run into lots of error messages and it is going to be really frustrating. Warning messages and errors are something we all run into. Trust me I have been close to needing a new computer more than few times. Part of getting good at R is just figuring out what the hell 
+
+:::

@@ -2,4 +2,6 @@
 title: "Research Data Services R Workshop"
 ---
 
-Hi welcome to our website. Hopefully you will find some really helpful resources for learning R. This website was made with in R as well as all the slides.
+<iframe src="https://giphy.com/embed/XD9o33QG9BoMis7iM4" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/brooklynninenine-nbc-brooklyn-nine-b99-XD9o33QG9BoMis7iM4">via GIPHY</a></p>
+
+Here you will find the materials produced for the Research Data Services R workshops. The website and workshop slides were made using [quarto](https://quarto.org/) which is an awesome tool which we will 🤞🏽 have a workshop on some time in the future. The content of the workshop are a mashup of lots of resources that helped me learn R in particular and I will highlight on each workshops page. I strongly reccomend you check them out!

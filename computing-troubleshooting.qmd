@@ -1,19 +1,53 @@
 ---
-title: "Computing troubleshooting"
+title: "Troubleshooting Errors and Warnings"
 ---
 
-If you're having difficulty launching an RStudio session from your reserved container, go to [status.oit.duke.edu](https://status.oit.duke.edu/) and scroll down to **Teaching and Learning Tools**.
-Under this heading you'll find an entry called *Container Manager (CMGR Coursework Containers)*.
+We frequently run into error messages and warnings in these workshops! No need to fret this happens to the best `R` users all the time. It may be helpful to go over them quickly. 
 
--   If the status shows something other than `Operational`, this means there is a known incident with the containers.
-    Check back later to see if it's been resolved.
-    If there's a deadline coming up soon, post on the course forum to let us know that there's an issue.
-    We can look into how quickly it might get resolved and decide on what to do about the deadline accordingly.
-    Note: We don't anticipate this to happen regularly, the systems are Operational a huge majority of the time!
 
--   If the status shows `Operational`, this means the system is expected to be working.
-    Check your internet connection, if need be, restart your computer to ensure a fresh new connection.
-    If your issue persists, post on the course forum with details on what you've tried and the errors you see (including verbatim errors and/or screenshots).
+- **Errors**: These are things that will legitmately not make your code run whether these are misspelled object names, missing commas, unmatched parenthesis, etc...
 
--   Either way you can also fill out the form [here](https://duke.qualtrics.com/jfe/form/SV_6s3DOsiCIzNya9w), which will notify our the R TA for the department as well as our undergraduate coordinator.
-    They'll be able to help diagnose the issue.
+- **Warnings**: These just mean your code will run but there are some caveats attached like `ggplot` dropping missing observations or missing values are introduced by coercing to a vector to a numeric type.^[Both examples are derived from [Statistical Inference via Data Science: A ModernDive into R and the Tidyverse](https://moderndive.com/1-getting-started.html#messages)]
+
+
+# Common Errors^[These are the ones I tend to run into and the coverage and advice is from [Nick Huntington-Klein's post](https://nickch-k.github.io/DataCommSlides/Lecture_04_Common_R_Problems.html#file-does-not-exist-or-no-such-file-or-directory)]
+
+## File  does not exist, or No such file or directory
+
+This generally means one of two things. You misspelled the filename or you forgot to tell R where to look. To fix it you should check a few things 
+
+1. Check to make sure that the name of the file is spelled correctly
+2. Check to make sure that your working directory is set correctly
+    - If the file is living in a folder in the working directory specify that folder with the correct slash
+    - This is probably the most common ones
+3. If the file is open in Excel close it. Sometimes Excel will hold things hostage so that could be your issue.
+
+
+## Could Not find function "functionineedtouse"
+
+This is just R saying that it does not know what you are trying to do to the object because it can't figure what the function is.
+
+1. Is the function spelled correctly(my most common mistake)
+2. If so did you run library(packagewithfunctionname)
+3. Do you need to install the package that function is living in?
+
+
+## Object Not found 
+
+If you get this error than this is R telling you that you are trying to reference an object that does not exist.
+
+1. Make sure the object name is spelled right
+2. Make sure that you have in fact assigned the said object
+    - Did you do something with all the neccessary R code, but forgot to assign it before running the code in question?
+
+
+## Column Does Not Exist
+
+If you get his error than this means you are trying to reference a column that does not exist.
+
+1. Is the name of the variable spelled correctly?
+    - This can also include white space which requires you to use `Name of Var`
+2. Make sure you are referencing the right object
+    - i.e. Did you create a new variable and assign it to a different object?
+3. When referencing the column did you drop it along the way?
+
