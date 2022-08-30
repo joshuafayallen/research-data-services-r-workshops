@@ -1,1 +1,1 @@
-Sitemap: https://joshuafayallen.github.io/research-data-services-r-workshops/sitemap.xml
+Sitemap: https://joshuafayallen.github.io/ research-data-services-r-workshops/sitemap.xml
