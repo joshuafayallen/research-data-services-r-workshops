@@ -1138,7 +1138,7 @@
     "href": "slides/Getting-Started-in-R.html#logicals-booleans-and-precedence",
     "title": "Getting Started in R",
     "section": "Logicals, Booleans, and Precedence",
-    "text": "Logicals, Booleans, and Precedence\n\n\nR like most other programming languages will evaluate our logical operators(==, >, etc) before our booleans(|, &, etc).\n\n\n1 > 0.5 & 2\n\n[1] TRUE\n\n\nWhat’s happening here is that R is evaluating two separate “logical” statements: - 1 > 0.5, which is is obviously TRUE. - 2, which is TRUE(!) because R is “helpfully” converting it to as.logical(2).\n\nIt is way safer to make explicit what you are doing.\n\n\n1 > 0.5 & 1 > 2\n\n[1] FALSE\n\n\n\n\nComputer operations have a pemdas of their own so when you are milling about in R it is important to remember how you set up your tests"
+    "text": "Logicals, Booleans, and Precedence\n\n\nR like most other programming languages will evaluate our logical operators(==, >, etc) before our booleans(|, &, etc).\n\n\n1 > 0.5 & 2\n\n[1] TRUE\n\n\n\nWhat’s happening here is that R is evaluating two separate “logical” statements:\n1 > 0.5, which is is obviously TRUE.\n2, which is TRUE(!) because R is “helpfully” converting it to as.logical(2).\nIt is way safer to make explicit what you are doing.\n\n\n1 > 0.5 & 1 > 2\n\n[1] FALSE\n\n\n\n\nComputer operations have a pemdas of their own so when you are milling about in R it is important to remember how you set up your tests"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#other-useful-tricks",
