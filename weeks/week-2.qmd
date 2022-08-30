@@ -1,38 +1,23 @@
 ---
 title: "Week 2"
-subtitle: "Simple linear regression"
+subtitle: "Data Cleaning in R"
 editor: visual
 ---
 
 ::: callout-important
--   Classes are virtual this week. Find Zoom links [here](https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/page/d5eef508-07a4-4c6d-b7bd-4614a9631562 "Sakai - Zoom meetings").
--   Due dates:
-    -   Lab 1: Fri, Jan 14, 5pm ET
-    -   AE 1: Sun, Jan 16, 11:59pm ET
+The recording for this workshop is posted on the [RDS website just click on the link to review](https://research.library.gsu.edu/dataservices/rds-workshops-recordings)
 :::
 
-## Prepare
+## Slides
 
-📖 Read Introduction to Modern Statistics, Chp 7: [Linear regression with a single predictor](https://openintro-ims.netlify.app/model-slr.html)
+🖥️ [Data Cleaning in R](/slides/data-cleaning.html)
 
-## Participate
+## Resources Used
 
-🖥️ [Lab 1 - Meet the toolkit](/slides/lab-1.html)
+[Introduction to the tidyverse + data visualization with ggplot2](https://talks.andrewheiss.com/2021-seacen/) by Andrew Heiss
 
-🖥️ [Lecture 2 - Simple linear regression](/slides/lec-2.html)
+[Lecture 5: Data cleaning & wrangling:(1) Tidyverse](https://raw.githack.com/uo-ec607/lectures/master/05-tidyverse/05-tidyverse.html#1) by Grant Mcdermot
 
-🖥️ [Lecture 3 - Model fitting in R with tidymodels](/slides/lec-3.html)
+[R for Data Science](https://r4ds.had.co.nz/index.html) by Hadley Wickham & Garrett Grolemund
 
-## Practice
-
-📋 [Application Exercise 1 - Bike rentals in DC](/ae/ae-1-dcbikeshare.html) *(Post-class note: complete only Part 1 - Daily counts and temperature)*
-
-## Perform
-
-⌨️ [Lab 1 - Meet the toolkit](/labs/lab-1.html "Lab instructions")
-
-<br><br>
-
-::: {style="font-size: 0.875em;"}
-Back to [course schedule](/ "Course schedule") ⏎
-:::
+[Tidyexplain](https://github.com/gadenbuie/tidyexplain#left-join) by Garrick Aden-Buie, Tyler Grant Smith, Lukas Wallrich, and Kelsey Gonzalez

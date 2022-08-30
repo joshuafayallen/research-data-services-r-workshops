@@ -1,0 +1,2548 @@
+---
+title: "Getting Started in ggplot"
+institute: "Department of Political Science at Georgia State University"
+author: "Josh Allen"
+date: "2022-08-29"
+format: 
+ revealjs:
+   theme: ["allen.scss"]
+---
+
+```{r setup, include = F, warnings = FALSE}
+pacman::p_load("tidyverse", "palmerpenguins", "AllenMisc","datasauRus", "patchwork","gapminder","flair", "knitr", "kableExtra", "ggridges", "sf", install = FALSE)
+
+knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
+                      message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
+                      fig.align = "center")
+
+
+
+
+
+df = datasauRus::datasaurus_dozen
+
+gapminder = gapminder::gapminder |> 
+  filter(continent != "Oceania")
+
+penguins = palmerpenguins::penguins |> drop_na()
+
+sysfonts::font_add_google("Homemade Apple", "Homemade Apple")
+showtext::showtext_auto()
+
+coastline <- read_sf("data/ME-GIS/Coastline2.shp")
+contours <- read_sf("data/ME-GIS/Contours_18.shp")
+rivers <- read_sf("data/ME-GIS/Rivers.shp")
+lakes <- read_sf("data/ME-GIS/Lakes.shp")
+forests <- read_sf("data/ME-GIS/Forests.shp")
+mountains <- read_sf("data/ME-GIS/Mountains_Anno.shp")
+placenames <- read_sf("data/ME-GIS/Combined_Placenames.shp")
+cities = read_sf("data/ME-GIS/Cities.shp")
+roads = read_sf("data/ME-GIS/Roads.shp")
+towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
+#### If you are reading this in the .R file or .Rmd file
+#### then this is just me loading in the data and packages
+#### Behind the scenes
+####  turnouff scientific notation
+options(scipen=10000)
+```
+
+
+## Why visualize your data?
+
+```{r mean-x, eco = TRUE}
+
+mean(df$x)
+
+
+```
+
+```{r sd-x, echo = TRUE}
+sd(df$x)
+```
+
+```{r mean-y, echo = TRUE}
+mean(df$y)
+```
+
+
+
+```{r sd-y, echo = TRUE}
+sd(df$y)
+```
+
+
+```{r corr-these-vars, echo = TRUE}
+cor(df$x, df$y)
+```
+
+
+
+:::{.notes}
+
+
+
+Lets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren't correlated
+
+:::
+
+
+## The Dino Strikes
+
+
+```{r dino-plot, echo = FALSE}
+ggplot(data = filter(df,!dataset %in% c("bullseye", "dots", "v_lines", "high_lines", "wide_lines", "h_lines", "away")), aes(x = x, y = y)) +
+  geom_point() +
+  theme_allen_minimal() +
+  facet_wrap(vars(dataset))
+```
+:::{.notes}
+I filtered out some of the data sets just for display purposes but critically if we don't plot our data we may miss patterns that are not recognizable to us when we are taking descriptive statistics. They are also great tools for model diagnostics. A quick  look at our residuals and fitted values is a great indicator whether something is up we use distance plots to look at whether our results are being driven by outliers 
+
+:::
+
+
+
+## Why `ggplot2`?
+
+::: {.callout-note}
+
+The transferable skills from ggplot2 are not the idiosyncrasies of plotting syntax, but a powerful way of thinking about visualization, as a way of mapping between variables and the visual properties of geometric objects that you can perceive. `r tufte::quote_footer("- Hadley Wickham")`
+
+:::
+
+
+
+
+
+## Why `ggplot2`?
+:::incremental 
+
+- You have probably heard of it but why use it?
+
+
+
+- Once we understand the "grammar" making figures becomes a lot easier
+  - Conveying information becomes easier
+  - Lets you show off your clean, or not so clean, data
+  - A coherent structure of doing things
+
+
+
+- Flexibility
+  - Tons ways to customize appearance
+  - Lots of functions
+
+
+
+- Makes you lazier
+  - Doesn't require you to remember each input from a drop down menu
+  - Defaults to universally usable formats
+  - Replaces itself automatically in your directory 
+
+:::
+
+:::{.notes}
+ggplot2 is probably one of the most well known and event among many of the staunchest base r users well loved an well used libraries in the R ecosystem.
+
+ggplot2 predates most of the tidyverse and the gg part refers to the grammar of graphics, more on that later. Much like writing a sentence there is a proper grammar to it. Once we understand the rules we can construct lots of different "sentences".
+
+I think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things. 
+
+:::
+
+
+
+## Getting started
+:::columns
+:::column
+### One way to install
+
+```{r tidyverse-install, echo = TRUE, eval = FALSE}
+install.packages("tidyverse")
+```
+
+
+### Another way to install
+
+```{r ggplot-install, echo = TRUE, eval=FALSE}
+
+install.packages("ggplot2")
+
+
+```
+
+### Another way to install
+
+
+```{r  pacaman-install, eval=FALSE, echo =TRUE}
+install.packages("pacman")
+pacman::p_load("ggplot2")
+```
+
+:::
+
+
+:::column
+### The data we will use in the first part
+```{r show-data, eval=FALSE, echo = TRUE }
+
+install.packages(c("gapminder", "palmerpenguins"))
+
+library(gapminder)
+library(palmerpenguins)
+
+
+gapminder = gapminder
+
+penguins = penguins
+
+```
+
+:::
+:::
+
+
+:::{.notes}
+
+As with many things in R there are a ton of ways to install ggplot2. If you did not attend the intro to the tidyverse session. The tidyverse is a wrapper term for a ton of packages with very similar logics. 
+
+
+:::
+
+
+## The Grammar of Graphics 
+
+
+
+
+## Grammar 
+
+:::columns
+:::column
+"Good grammar is just the first step of creating a good sentence"
+
+
+- How is the data related to the figure on the right
+
+
+:::
+
+
+:::column
+
+
+```{r penguin-blank, echo = FALSE}
+
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) + geom_point(size = 3) + 
+  theme_void() + theme(legend.position = "none")
+
+```
+
+
+:::
+:::
+
+
+## Building the Plot 
+
+:::columns
+:::column
+
+### Body Weight of Penguins and Bill Length
+- ***Penguins***
+
+- ***Species***
+
+- ***Island***
+
+
+:::
+
+:::column
+
+```{r penguin-add-legend, echo = FALSE}
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) + geom_point(size = 3) + 
+  theme_void()
+```
+
+
+:::
+:::
+
+
+
+
+
+
+
+## Building the Plot 
+:::columns
+:::column
+
+### Body Weight of Penguins and Bill Length
+- ***Penguins***
+
+- ***Species***
+
+- ***Island***
+
+
+:::
+
+:::column
+
+```{r penguin-add-labs, echo = FALSE}
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) + theme_void() + geom_point(size = 3) + labs(x = "Bill Length(mm)", y = "Body Mass(g)")
+```
+
+:::
+:::
+
+
+
+
+
+
+
+
+## Building the plot
+
+:::columns
+:::column
+
+### Body Weight of Penguins and Bill Length
+- ***Penguins***
+
+- ***Species***
+
+- ***Island***
+
+:::
+
+
+
+:::column
+
+```{r penguin-full, echo=FALSE}
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) +
+  geom_point(size = 3) +
+  labs(x = "Bill Length(mm)", y = "Body Mass(g)", title = "The Relationship Between Bill Length and Body Weight",
+       subtitle = "By Island and Penguin Species") +
+theme_minimal() +
+  guides(color = guide_legend(title = "Island"), shape = guide_legend("Species"))  
+```
+
+
+:::
+:::
+
+
+
+## So how did we go from?  
+:::columns
+:::column
+
+### This
+
+```{r blank-plot-example-this, echo = FALSE }
+
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) + geom_point(size = 3) + 
+  theme_void() + theme(legend.position = "none")
+```
+
+:::
+
+:::column
+
+### to this
+
+```{r full-plot-example-this, echo=FALSE}
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) +
+  geom_point(size = 3) +
+  labs(x = "Bill Length(mm)", y = "Body Mass(g)", title = "The Relationship Between Bill Length and Body Weight",
+       subtitle = "By Island and Penguin Species") +
+theme_minimal() +
+  guides(color = guide_legend(title = "Island"), shape = guide_legend("Species")) 
+```
+
+:::
+:::
+
+## The Grammar 
+
+<table>
+  <tr>
+    <th class="cell-left">Data</th>
+    <th class="cell-left"><code class="remark-inline-code">aes()</code></th>
+    <th class="cell-left"><code class="remark-inline-code">geom</code></th>
+  </tr>
+  <tr>
+    <td class="cell-left">Bill Length(mm)</td>
+    <td class="cell-left"><code class="remark-inline-code">x</code></td>
+    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
+  </tr>
+  <tr>
+    <td class="cell-left">Body Weight(g)&emsp;</td>
+    <td class="cell-left"><code class="remark-inline-code">y</code></td>
+    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
+  </tr>
+  <tr>
+    <td class="cell-left">Island</td>
+    <td class="cell-left"><code class="remark-inline-code">color</code></td>
+    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
+  </tr>
+  <tr>
+    <td class="cell-left">Penguin Species</td>
+    <td class="cell-left"><code class="remark-inline-code">size</code>&emsp;</td>
+    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
+  </tr>
+  <tr>
+    <td class="cell-left">Penguin Species</td>
+    <td class="cell-left"><code class="remark-inline-code">shape</code>&emsp;</td>
+    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
+  </tr>
+</table>
+
+:::{.notes}
+This is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes
+
+:::
+
+
+
+
+## Where do they go?
+
+
+```{r your-penguin-code, echo = TRUE}
+#| code-line-numbers: "|1|2|3|4|5"
+
+ggplot(data = penguins) +
+         geom_point(mapping =  aes(
+         x = bill_length_mm, 
+         y = body_mass_g,
+         shape = species, 
+         color = island, 
+         size = species),
+         size = 3)
+```
+
+
+
+
+
+
+
+
+## What does this mean in practice? 
+
+- **Data** you are going to visualize
+
+- **Geom**etric objects that appear on your plot
+
+- **Aes**ethic mappings from data to visual component
+
+- **Stat**istics transform data on the way to visualization
+
+- **Coord**inates organize location of the geometric objects
+
+- **Scale**s define the range of the values for aesthics
+
+- **Facet**s groups into subplots
+
+:::{.notes}
+Once we see the structure we can start to be able to build our "sentences" to make our plots In a second we will see how to work with stuff and how to start doing things. 
+
+:::
+
+
+
+
+# Making Plots
+
+
+
+
+
+
+
+
+## The data 
+
+
+```{r dataset-gapminder-show, echo = FALSE }
+DT::datatable(gapminder)
+
+```
+
+
+:::{.notes}
+today we will be using the gapminder dataset.  It contains historical (1952-2007) data on various indicators, such as life expectancy and GDP, for countries worldwide.
+:::
+
+
+
+
+
+
+
+
+
+
+## Here is your shell script
+
+```{r skeleton-participants, eval = FALSE, echo = TRUE}
+## be sure you have done 
+## install.packages("gapminder")
+## library(gapminder)
+gapminder = gapminder
+
+ggplot(gapminder) +
+  geom_point(mapping = aes(x = gdpPercap, y = lifeExp))
+
+```
+
+:::{.notes}
+To help you get your hands dirty I will give y'all a shell script to work with. Press o on your keyboard to navigate to the past slides to help yourself out if you get lost 
+:::
+
+
+
+
+## Activity 
+
+
+- Add color, size, alpha, and shape aesthetics to your graph.
+
+
+- Be bold be brave! Experiment!
+
+
+- What happens when you add more than one aesthetic? 
+
+
+
+```{r timer-for-them, echo = FALSE}
+
+countdown::countdown(minutes = 5)
+```
+
+
+
+
+
+
+
+
+
+
+## How would you make this plot?
+
+```{r gapminder-blue, echo = FALSE}
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(color = "blue")
+
+
+```
+
+:::{.notes}
+all we are doing is making each point blue. Should be simple enough. If you are following along please add color = blue where you think it should go!
+
+:::
+
+
+
+
+
+##  
+
+:::columns
+:::column
+
+
+```{r use-color-aes-example, eval = FALSE}
+
+
+ggplot(gapminder) +
+  geom_point(aes(x = gdpPercap, y = lifeExp), color = "blue") 
+
+
+
+```
+
+
+:::
+
+:::column
+
+```{r gapminder-color-aes-example, echo = FALSE}
+
+ggplot(gapminder) +
+  geom_point(aes(x = gdpPercap, y = lifeExp), color = "blue") 
+
+```
+
+
+:::
+:::
+
+:::{.notes}
+ggplot will take the color argument inside aes and outside aes. If we specify color inside aes than it will color things by a column in the dataset. If you specify color outside of aes ggplot will make everything that color 
+
+:::
+
+
+
+## 
+
+:::columns
+:::column
+```{r gapminder-blue-correct, eval=FALSE, echo = TRUE}
+
+ggplot(gapminder ) + 
+  geom_point(aes(x = gdpPercap, y = lifeExp),
+             color = "blue")
+
+
+```
+
+:::
+
+:::column
+
+
+```{r gapminder-blue-correct-show, echo = FALSE}
+
+ggplot(gapminder ) + 
+  geom_point(aes(x = gdpPercap, y = lifeExp),
+             color = "blue")
+
+
+```
+
+
+:::
+:::
+
+
+
+## 
+
+
+:::columns
+:::column
+
+```{r gapminder-blue-wrong-example, eval=FALSE, echo = TRUE}
+
+ggplot(gapminder ) + 
+  geom_point(aes(x = gdpPercap, y = lifeExp,
+                 color = "blue"))
+
+
+```
+
+
+:::
+
+:::column
+
+```{r gapminder-blue-correct-example, echo = FALSE}
+
+ggplot(gapminder ) + 
+  geom_point(aes(x = gdpPercap, y = lifeExp, color = "blue"))
+
+
+```
+
+:::
+:::
+
+:::{.notes}
+Remember when we do things in aes R will look for a column in our dataset. Importantly R will just looks for things it can do given the scope of the function. So if we put blue into the aes portion of it will plot it. But it will get confused because blue is not a column in our data set. 
+
+:::
+
+## Same geom different stuff
+
+:::columns
+:::column
+
+
+```{r geom-point-gap, echo=FALSE}
+ggplot(gapminder ) + 
+  geom_point(aes(x = gdpPercap, y = lifeExp),
+             color = "blue")
+
+```
+
+
+:::
+
+:::column
+
+```{r geom-smooth-gap, echo=FALSE}
+ggplot(gapminder) + 
+  geom_smooth(aes(x = gdpPercap, y = lifeExp),
+             color = "blue")
+
+```
+
+:::
+:::
+
+:::{.notes}
+there we can show the same relationship between two variables in a ton of different ways. there are a ton of geoms that we can use to visualize our data. 
+
+:::
+
+
+## Just The Ones with `library(ggplo2)`
+
+```{r ggplot2-geom-names, echo=FALSE}
+## geom_
+old_width = options(width = 80)
+lsf.str("package:ggplot2") %>% grep("^geom_", ., value = TRUE)
+options(width = old_width$width)
+```
+:::{.notes}
+There are many more that we can use too. There are tons of different kinds of plots that we can find for our specific plotting needs that people have written for R I have like an unhealthy obsession with ggridges
+:::
+
+
+##
+
+<center>
+
+<iframe src="https://giphy.com/embed/mCClSS6xbi8us" width="480" height="298" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/jeff-goldblum-jurassic-park-jurassicparkedit-mCClSS6xbi8us">via GIPHY</a></p>
+
+:::{.notes}
+It's not that certain geoms should never be used with certain kinds its that sometimes it doesnt make a whole lot of sense or we aren't getting the most out of our data visualizations. If it takes the arguments it will plot it.
+:::
+
+
+</center>
+
+## Example(sort of)
+
+:::columns
+:::column
+
+```{r dotplot-gapminder, echo=FALSE}
+
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_point()
+
+
+```
+:::
+
+:::column
+
+
+```{r dotplot-penguins, echo=FALSE} 
+
+
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_point()
+
+```
+:::
+:::
+
+
+
+
+
+:::{.notes}
+Both times we see that we that ggplot will take the arguments and plot them but we arent really getting a lot of useful information. Boxplots would provide a much provide more info
+
+
+:::
+
+
+## Your Turn
+
+:::columns 
+:::column
+
+```{r dotplot-gapminder-ref-excercise, echo=FALSE}
+
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_point()
+
+
+```
+:::
+
+:::column
+
+
+```{r}
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot()
+```
+
+:::
+:::
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 2)
+```
+
+
+:::{.notes}
+take the graph on the left and change it to the plot on the right. use the ggplot cheatsheet.
+
+:::
+
+
+##
+
+:::columns
+:::column
+
+```{r eval = FALSE, echo = TRUE}
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot()
+```
+
+:::
+
+:::column
+
+```{r echo = FALSE}
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot()
+```
+
+
+:::
+:::
+
+
+
+
+
+
+## Your Turn Again
+#### Hint do not supply a Y value
+
+```{r echo=FALSE, out.width= "80%"}
+
+ggplot(gapminder, aes(x = lifeExp)) +
+  geom_histogram()
+
+```
+
+```{r echo = FALSE}
+
+
+countdown::countdown(minutes = 2)
+
+```
+
+:::{.notes}
+Lets make a histogram of lifeExp. In this case we only need to supply one variable to aes. Take exp and look at the distribution through a histogram 
+:::
+
+
+
+
+##  
+
+:::columns
+:::column
+```{r eval=FALSE, echo = TRUE}
+
+ggplot(gapminder, aes(x = lifeExp)) +
+  geom_histogram()
+
+```
+:::
+
+
+:::column
+
+```{r echo=FALSE}
+
+ggplot(gapminder, aes(x = lifeExp)) +
+  geom_histogram()
+
+```
+
+
+:::
+:::
+
+
+
+## Your Turn
+#### Make This Density Plot filled by continent
+
+```{r echo=FALSE, out.width= "80%"}
+
+
+ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
+  geom_density()
+```
+
+```{r echo=FALSE}
+
+countdown::countdown(minutes = 2)
+
+```
+
+:::{.notes}
+Again do not supply a Y column
+:::
+
+
+## 
+
+:::columns
+:::column
+
+```{r eval = FALSE, echo = TRUE}
+
+ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
+  geom_density(alpha = 0.75)
+
+```
+
+:::
+
+:::column
+```{r echo = FALSE}
+
+ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
+  geom_density(alpha = 0.75)
+
+```
+
+:::
+:::
+
+
+
+
+## Complex graph!
+
+
+```{r reference-plot, echo=FALSE}
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, group = continent)) +
+  geom_point() +
+  geom_smooth() 
+
+```
+
+
+
+
+
+
+## Local 
+ 
+:::columns
+:::column
+
+```{r local, eval=FALSE, echo = TRUE}
+#|  code-line-numbers: "|1|2|5"
+ggplot(gapminder) +
+  geom_point(aes(x = gdpPercap,
+                 y = lifeExp, 
+                 color = continent)) + 
+  geom_smooth(aes(x = gdpPercap, 
+                  y = lifeExp, 
+                  color = continent, 
+                  group = continent)) 
+```
+
+:::
+:::column
+
+```{r local-out, echo=FALSE}
+ggplot(gapminder) +
+  geom_point(aes(x = gdpPercap, y = lifeExp,
+                 color = continent)) + ##<<
+  geom_smooth(aes(x = gdpPercap, y = lifeExp,
+                             color = continent, 
+                  group = continent)) ##<< 
+```
+
+
+
+:::
+:::
+
+
+
+
+
+## Global 
+
+::: columns
+:::column
+```{r gapminder-global, eval=FALSE, echo = TRUE}
+#| code-line-numbers: "|1|2|3|4"
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp, 
+                      color = continent, 
+                      group = continent))  + 
+  geom_point() +
+  geom_smooth() 
+
+```
+:::
+
+
+:::column
+
+
+```{r gapminder-global-out, echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap,##<<
+                      y = lifeExp, ##<<
+                      color = continent, ##<<
+                      group = continent))  + ##<<
+  geom_point() +
+  geom_smooth() 
+```
+
+:::
+:::
+
+
+
+:::{.notes}
+So we have mostly been working inside the individual geoms. However most people do not do this because it can start to get inconvenient quickly. If we work inside each individual geom than the other geom will not know what is going on and ggplot will get confused. 
+
+Instead if you pass off our argument to the first layer
+
+:::
+
+
+
+
+
+
+
+
+## Building Plots
+#### Starting with Data and aesthics 
+
+:::columns
+:::column
+```{r eval=FALSE, echo = TRUE}
+ggplot(gapminder, aes(x = gdpPercap,
+ y = lifeExp))
+```
+
+:::
+
+:::column
+```{r echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent))
+```
+
+
+:::
+:::
+
+:::{.notes}
+So far we have only walked through geoms and aesthics but we need other layers to make graphs that make sense. And are presentable to professional audiences 
+
+:::
+
+
+
+
+
+##  Add `geom_point`
+:::columns
+:::column
+```{r eval=FALSE, echo = TRUE}
+
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point()
+  
+```
+
+
+:::
+
+:::column
+```{r echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point()
+```
+
+:::
+:::
+
+
+
+
+##  Add `geom_smooth`
+
+::: columns
+:::column
+```{r eval=FALSE, echo = TRUE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth()
+```
+
+:::
+
+
+:::column
+```{r echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() 
+```
+
+
+:::
+
+:::
+
+
+
+
+
+## Adjust scales with `scale_x_log10`
+
+::: columns 
+:::column
+```{r eval=FALSE, echo = TRUE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10()
+```
+
+
+:::
+
+:::column
+```{r echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10()
+```
+
+:::
+:::
+
+
+
+
+
+## Add axis labels and title with `labs`
+
+::: columns
+:::column
+```{r eval=FALSE, echo = TRUE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap", y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy")
+```
+
+:::
+
+:::column
+```{r echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy")
+```
+
+:::
+:::
+
+
+
+
+
+## Add viridis color scale
+
+:::columns
+:::column
+```{r eval=FALSE, echo = TRUE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d()
+```
+
+:::
+
+:::column
+```{r echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d()
+```
+
+:::
+:::
+
+
+
+
+
+
+
+
+## Add theme
+
+::: columns
+:::column
+
+```{r eval=FALSE, echo = TRUE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d() +
+  theme_bw()
+```
+
+
+:::
+
+:::column
+```{r echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d() +
+  theme_bw()
+```
+
+:::
+:::
+
+
+
+
+
+
+
+
+## Facet by Continent
+:::: {.columns}
+
+::: {.column width="45%"}
+
+```{r eval=FALSE, echo = TRUE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d() +
+  theme_bw() +
+  facet_wrap(vars(continent))
+```
+
+
+:::
+
+::: {.column width="55%"}
+```{r echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap", y = "Life Expectanty", title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d() +
+  theme_bw() + 
+  facet_wrap(vars(continent))
+```
+
+:::
+::::
+
+## Change Theme
+
+::::{.columns}
+::: {.column width="45%"}
+```{r eval=FALSE, echo = TRUE}
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d() +
+  theme_bw() +
+  facet_wrap(vars(continent)) +
+  theme(legend.position = "none")
+```
+
+
+:::
+
+::: {.column width="55%"}
+```{r echo=FALSE}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap", y = "Life Expectanty", title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d() +
+  theme_bw() + 
+  facet_wrap(vars(continent)) +
+  theme(legend.position = "none")
+```
+
+
+:::
+:::
+
+
+## A Grammar We Can Use
+
+
+Map wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log.
+
+
+
+```{r echo = TRUE }
+#| code-fold: true
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      size = pop,
+                      color = continent)) +
+  geom_point() +
+  labs(x = "Income", y = "Life Expectancy") +
+  scale_x_log10(labels = scales::dollar) +
+  theme_bw() +
+  guides(size = guide_legend(reverse = TRUE, title = "Continent"), color =   guide_legend(title = "Population"))
+```
+
+
+
+
+
+
+
+## Scales
+
+<table>
+  <tr>
+    <th class="cell-left">Example layer</th>
+    <th class="cell-left">What it does</th>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_x_continuous()</code></td>
+    <td class="cell-left">Make the x-axis continuous</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_x_continuous(breaks = 1:5)&ensp;</code></td>
+    <td class="cell-left">Manually specify axis ticks</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_x_log10()</code></td>
+    <td class="cell-left">Log the x-axis</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_color_gradient()</code></td>
+    <td class="cell-left">Use a gradient</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_fill_viridis_d()</code></td>
+    <td class="cell-left">Fill with discrete viridis colors</td>
+  </tr>
+</table>
+
+
+:::{.notes}
+Often time we need to or want to adjust the scales that one or more of the axis are on or we pass off color arguments to 
+:::
+
+
+
+
+
+## Scales in Action
+
+::::{.columns}
+::: {.column width="45%"}
+
+### `scale_x_log_10`
+```{r echo = FALSE}
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
+                      color = continent)) +
+  geom_point() +
+  labs(x = "Income", y = "Life Expectancy") +
+  scale_x_log10(labels = scales::dollar) +
+  theme_bw()
+
+```
+
+:::
+
+::: {.column width="45%"}
+### `scale_color_viridis_d`
+
+
+```{r echo = FALSE}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
+                      color = continent)) +
+  geom_point() +
+  labs(x = "Income", y = "Life Expectancy") +
+  scale_x_log10(labels = scales::dollar) +
+  scale_color_viridis_d() +
+  theme_bw()
+
+```
+
+
+:::
+::::
+
+
+
+
+## Coordinates
+
+
+::::{.columns}
+::: {.column width="45%"}
+
+scale_x_continuous(limits = c(0, 30000))
+
+```{r echo=FALSE}
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() +
+  scale_x_continuous(limits = c(0, 30000)) +
+  theme_bw()
+  
+
+
+```
+
+
+:::
+
+
+::: {.column width="45%"}
+
+
+### `coord_flip`
+
+```{r echo = FALSE}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() +
+  scale_x_continuous(limits = c(0, 30000)) +
+  coord_flip() +
+  theme_bw()
+```
+
+
+:::
+::::
+
+
+:::{.notes}
+In some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don't want to go back and redo it
+
+:::
+
+
+
+
+## Your Turn 
+### Make this density plot of bill_length_mm filled by species. Use the viridis fill scale.
+
+
+```{r echo = FALSE, out.width= "80%"}
+
+ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
+  geom_density( alpha = 0.75) +
+  theme_bw() +
+  scale_fill_viridis_d(option = "magma")
+
+```
+
+```{r}
+countdown::countdown(minutes = 4)
+```
+
+
+:::{.notes}
+look at the help file for scale_fill_viridis and play around with the options 
+
+:::
+
+
+## Change Viridis Optioons
+
+:::columns
+:::column
+
+```{r eval = FALSE, echo = TRUE}
+
+ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
+  geom_density( alpha = 0.75) +
+  theme_bw() +
+  scale_fill_viridis_d(option = "magma")
+
+```
+
+
+:::
+
+:::column
+
+```{r echo = FALSE}
+
+ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
+  geom_density( alpha = 0.75) +
+  theme_bw() +
+  scale_fill_viridis_d(option = "magma")
+
+```
+
+:::
+:::
+
+
+
+
+
+## Facets
+
+<table>
+  <tr>
+    <th class="cell-left">Example layer</th>
+    <th class="cell-left">What it does</th>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">facet_wrap(vars(continent))</code></td>
+    <td class="cell-left">Plot for each continent</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">facet_wrap(vars(continent, year))</code>&emsp;</td>
+    <td class="cell-left">Plot for each continent/year</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">facet_wrap(..., ncol = 1)</code></td>
+    <td class="cell-left">Put all facets in one column</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">facet_wrap(..., nrow = 1)</code></td>
+    <td class="cell-left">Put all facets in one row</td>
+  </tr>
+</table>
+
+
+
+
+
+
+## Facets
+
+::::{.columns}
+::: {.column width="45%"}
+
+### facet_wrap(vars(continent))
+```{r echo=FALSE}
+
+ggplot(gapminder, aes(x = gdpPercap,
+                      y = lifeExp,
+                      size = pop)) +
+  geom_point() +
+  theme_bw() +
+  scale_x_log10() +
+  facet_wrap(vars(continent))
+  
+
+
+
+```
+
+:::
+
+
+::: {.column width="45%"}
+
+### facet_wrap(vars(continent, year))
+
+```{r echo=FALSE}
+
+ggplot(data = filter(gapminder, year %in% c(2002, 2007)),
+       aes(x = gdpPercap,
+           y = lifeExp,
+           size = pop)) +
+  geom_point() +
+  theme_bw() +
+  scale_x_log10() +
+  facet_wrap(vars(continent, year))
+  
+
+
+
+```
+
+:::
+::::
+
+
+
+## Labels
+
+<table>
+  <tr>
+    <th class="cell-left">Example layer</th>
+    <th class="cell-left">What it does</th>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">labs(title = "Neat title")</code></td>
+    <td class="cell-left">Title</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">labs(caption = "Something")</td>
+    <td class="cell-left">Caption</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">labs(y = "Something")</td>
+    <td class="cell-left">y-axis</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">labs(size = "Population")</code></td>
+    <td class="cell-left">Title of size legend</td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+##
+
+:::columns
+:::column
+
+
+```{r eval = FALSE, echo = TRUE}
+ggplot(gapminder, 
+       aes(x = gdpPercap, y = lifeExp, 
+           color = continent, size = pop)) +
+  geom_point() +
+  scale_x_log10() +
+  labs(title = "Health and wealth grow together",
+       subtitle = "Data from 2007",
+       x = "Wealth (GDP per capita)",
+       y = "Health (life expectancy)",
+       color = "Continent",
+       size = "Population",
+       caption = "Source: The Gapminder Project")
+```
+
+
+:::
+
+
+:::column
+
+
+```{r echo = FALSE}
+ggplot(gapminder, 
+       aes(x = gdpPercap, y = lifeExp, 
+           color = continent, size = pop)) +
+  geom_point() +
+  scale_x_log10() +
+  labs(title = "Health and wealth grow together",
+       subtitle = "Data from 1952 to 2007",
+       x = "Wealth (GDP per capita)",
+       y = "Health (life expectancy)",
+       color = "Continent",
+       size = "Population",
+       caption = "Source: The Gapminder Project") +
+  theme_bw()
+```
+
+
+:::
+:::
+
+
+## Themes 
+
+```{r echo = FALSE, out.width="70%"}
+
+knitr::include_graphics("figs/hadley_theme_grey.png")
+
+```
+
+
+:::{.notes}
+theme change the default look of the plot and really start to make ggplots look great. The writter of ggplot set the default to theme grey. And tweets out frequently in defense of the default theme. However by in large most people tend to hate the default theme and use one of the other theme or a modified theme. 
+
+
+:::
+
+##
+
+```{r echo=FALSE}
+old_width = options(width = 80)
+lsf.str("package:ggplot2") %>% grep("^theme_", ., value = TRUE)
+options(width = old_width$width)
+```
+
+:::{.notes}
+For now just ignore theme_update, theme_replace, theme_get, and theme test. If you are curious just look at the help documentation. In this presentation I have used, outside of theme_gray, theme_bw, and theme_void but there are so many more
+:::
+
+
+
+##
+
+::::{.columns}
+::: {.column width="45%"}
+
+### `theme_dark`
+
+
+```{r theme-dark, echo = FALSE}
+
+ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+  geom_point() +
+  theme_dark()
+
+```
+
+:::
+
+
+
+::: {.column width="45%"}
+
+### `theme_minimal`
+
+```{r theme-minimal, echo=FALSE}
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
+  geom_point() +
+  theme_minimal()
+```
+
+:::
+::::
+
+
+
+
+
+## ggthemes and other packages
+
+::::{.columns}
+::: {.column width="45%"}
+### ggthemes::theme_wsj()
+```{r echo=FALSE}
+
+library(ggthemes)
+ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+  geom_point() +
+  theme_wsj()
+
+```
+
+:::
+
+
+::: {.column width="45%"}
+
+### bbplot::bbc_style()
+
+```{r bbc-plots, echo = FALSE}
+
+##devtools::install_github('bbc/bbplot')
+
+library(bbplot)
+
+ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+  labs(x = "Bill Depth(mm)", y = "Mass(g)") +
+  geom_point() +
+  bbc_style()
+
+
+
+```
+
+
+:::
+::::
+
+
+:::{.notes}
+you can also install user written packages or hrbrthemes and see a smattering of themes that let you make pretty slick looking figures withou to much work 
+
+:::
+
+
+
+## Truly incredible ones 
+
+::::{.columns}
+::: {.column width="45%"}
+### ggpomological<br>theme_pomological_fancy()</br>
+```{r pomological, echo=FALSE}
+## devtools::install_github("gadenbuie/ggpomological")
+library(ggpomological)
+
+
+
+ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+  geom_point() +
+ theme_pomological_fancy()
+
+```
+:::
+
+
+
+
+::: {.column width="45%"}
+
+### tvthemes::theme_avatar()
+```{r tv-themes, echo= FALSE}
+##devtools::install_github("Ryo-N7/tvthemes")
+
+library(tvthemes)
+
+ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  scale_color_avatar() +
+  theme_avatar()
+
+
+```
+:::
+::::
+
+
+
+
+## `theme()`
+
+### Theme lets you modify a ton of things in ggplot
+
+:::columns
+:::column
+```{r eval = FALSE, echo = TRUE }
+theme_allen_bw() + #### theme I wrote
+theme(legend.position = c(0.87, 0.25), #### Just puts legend inside plot
+      plot.title = element_text(face = "bold"),
+      panel.grid = element_blank(),
+      axis.title.y = element_text(face = "italic"))
+```
+
+:::
+
+
+
+:::column
+
+
+```{r echo = FALSE}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
+                      color = continent)) +
+  geom_point() +
+  labs(x = "Income", y = "Life Expectancy", color = "Population", size = "Continent") +
+  guides(size = guide_legend(reverse = TRUE)) +
+  scale_x_log10(labels = scales::dollar) +
+  theme_allen_bw() +
+  theme(legend.position = c(0.87, 0.25),
+      plot.title = element_text(face = "bold"),
+      panel.grid = element_blank(),
+      axis.title.y = element_text(face = "italic")) 
+  
+```
+
+:::
+:::
+
+
+
+## Saving your work 
+
+```{r eval = FALSE, echo = TRUE}
+your_plot_here = ggplot(data, aes(x = blah, y = blah))
+```
+```{r eval=FALSE, echo = TRUE}
+
+ggsave("name-of-your-file.pdf",your_plot_here)
+
+```
+
+
+
+```{r eval=FALSE, echo = TRUE}
+ggsave("name-of-your-file.pngs",your_plot_here)
+```
+
+
+
+
+
+
+
+
+# Making Maps
+
+
+
+
+
+
+## New Packages
+
+```{r eval=FALSE, echo = TRUE}
+install.packages(c("sf", "tidygeocoder"))
+devtools::install_github("ropenscilabs/rnaturalearth")
+library(rnaturalearth)
+library(sf)
+
+```
+
+- If you are on a Mac please go to the [r-spatial-website](https://r-spatial.github.io/sf/) if you run into problems
+
+- The workhorse for this particlar section will be `sf`
+
+:::aside
+
+There are some other packages like geom_map and ggpmap. They still work but sf(simple features) is really great and has a ton of support and resources. 
+See [this book](https://geocompr.robinlovelace.net/)
+:::
+
+
+## Mapping in R 
+
+- R and ggplot can get you pretty far 
+
+- The stuff from these workshops broadly apply 
+  - including your dplyr verbs
+
+- Lots of your needs to make *static* maps can be met
+
+- Depending on what you are doing you may have to wait a bit
+
+
+
+
+##
+
+```{r echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/andrewheiss/datavizs21.classes.andrewheiss.com/main/static/slides/img/12/streams-lakes-bw-100-w-01.jpg")
+```
+
+
+
+
+
+
+## Shape Files 
+
+
+```{r echo= FALSE}
+pacman::p_load("sf", "countrycode", 
+               "scico", "MetBrewer", "WDI", "vdemdata")
+
+vdem_raw = vdemdata::vdem 
+
+vdem_cleanish = vdem_raw %>% 
+  select(v2x_regime, country_name, country_text_id, year) %>% 
+  filter(year == "2018") %>% 
+  mutate(ISO_A3 = countrycode(country_name, origin = "country.name",
+                              destination = "iso3c"),
+         regime_type = case_when(v2x_regime == 0 ~ "Full Autocracy",
+                                 v2x_regime == 1 ~ "Electoral Autocracy",
+                                 v2x_regime == 2 ~ "Electoral Democracy",
+                                 v2x_regime == 3 ~ "Liberal Democracy"),
+         regime_type = as.factor(regime_type)) %>% 
+  arrange(ISO_A3)
+
+
+
+
+
+world_map  = read_sf("data/ne_110m_admin_0_countries.shp")
+
+world_map_fixed = world_map %>% 
+  mutate(ISO_A3 = case_when(
+    ## If the country name is Norway or France, redo the ISO3 code
+    ADMIN == "Norway" ~ "NOR",
+    ADMIN == "France" ~ "FRA",
+    ## Otherwise use the existing ISO3 code
+    TRUE ~ ISO_A3)) %>% 
+    filter(ISO_A3 != "ATA") 
+
+
+
+plot_data_world = left_join(world_map_fixed, vdem_cleanish, by = "ISO_A3")  |> 
+  filter(!is.na(regime_type))
+
+
+
+plot_data_world$regime_type = factor(plot_data_world$regime_type,
+                                     levels = c("Full Autocracy",
+                                                "Electoral Autocracy",
+                                                "Electoral Democracy",
+                                                 "Liberal Democracy"))
+
+
+
+regime_map = ggplot() + 
+  geom_sf(data = plot_data_world, aes(fill = regime_type),
+          color = "#CDCDCD", size = 0.1) +
+   coord_sf(crs = st_crs("ESRI:54030")) +
+    scale_fill_scico_d(palette = "vik", direction = -1, na.value = "grey80") +
+   labs(fill = "Regime Types",
+        caption = "Data are derived from the Varities of Democracy Project") +
+   theme_void(base_family = "Roboto Condensed") +
+   theme(legend.position = "top",
+         legend.text = element_text(size = 8),
+         plot.caption = element_text(hjust = 0.8))
+ 
+
+```
+
+```{r echo=FALSE}
+
+world_map |> 
+  select(4,geometry) 
+
+
+```
+
+:::{.notes}
+When you download a shapefile you will get lots and lots of stuff. Lots of the shapefiles that you encounter in the wild are maintained by governments so keep those in the working directory. I will get to how to read in shape files in a minute. But when you read them into R the only thing that changes from your usual dataframe, tibble, data.table etc is that you will get a column in your dataset called geometry. This is just a list of things that delineate boundaries. for smaller countries like Fiji the number of boundaries are going to be smaller than say larger countries by area. It doesnt make sense to us but it makes sense to R 
+:::
+
+
+## Reading Shape files using `sf`
+
+- Works broadly the same way as using `read_csv` 
+
+
+```{r eval=FALSE, echo = TRUE}
+world_map = read_sf("data/ne_110m_admin_0_countries.shp")
+```
+
+- You can also use dplyr to get what you want
+  
+```{r eval = FALSE, echo = TRUE}
+#| code-fold: true
+pacman::p_load("sf", "countrycode", 
+               "scico", "MetBrewer", "WDI", "vdemdata")
+
+vdem_raw = vdemdata::vdem 
+
+vdem_cleanish = vdem_raw %>% 
+  select(v2x_regime, country_name, country_text_id, year) %>% 
+  filter(year == "2018") %>% 
+  mutate(ISO_A3 = countrycode(country_name, origin = "country.name",
+                              destination = "iso3c"),
+         regime_type = case_when(v2x_regime == 0 ~ "Full Autocracy",
+                                 v2x_regime == 1 ~ "Electoral Autocracy",
+                                 v2x_regime == 2 ~ "Electoral Democracy",
+                                 v2x_regime == 3 ~ "Liberal Democracy"),
+         regime_type = as.factor(regime_type)) %>% 
+  arrange(ISO_A3)
+
+
+
+
+
+world_map  = read_sf("data/ne_110m_admin_0_countries.shp")
+
+world_map_fixed = world_map %>% 
+  mutate(ISO_A3 = case_when(
+    ## If the country name is Norway or France, redo the ISO3 code
+    ADMIN == "Norway" ~ "NOR",
+    ADMIN == "France" ~ "FRA",
+    ## Otherwise use the existing ISO3 code
+    TRUE ~ ISO_A3)) %>% 
+    filter(ISO_A3 != "ATA") 
+
+
+
+plot_data_world = left_join(world_map_fixed, vdem_cleanish, by = "ISO_A3")  |> 
+  filter(!is.na(regime_type))
+
+
+
+plot_data_world$regime_type = factor(plot_data_world$regime_type,
+                                     levels = c("Full Autocracy",
+                                                "Electoral Autocracy",
+                                                "Electoral Democracy",
+                                                 "Liberal Democracy"))
+
+
+
+ world_map_plot = ggplot() + 
+  geom_sf(data = plot_data_world, aes(fill = regime_type),
+          color = "##CDCDCD", size = 0.1) +
+   coord_sf(crs = st_crs("ESRI:54030")) +
+    scale_fill_scico_d(palette = "vik", direction = -1, na.value = "grey80") +
+   labs(fill = "Regime Types",
+        caption = "Data are derived from the Varities of Democracy Project") +
+   theme_void(base_family = "Roboto Condensed") +
+   theme(legend.position = "top",
+         legend.text = element_text(size = 8),
+         plot.caption = element_text(hjust = 0.8))
+```
+
+
+
+```{r echo = FALSE}
+regime_map 
+```
+
+
+
+
+
+
+
+## Making Maps in ggplot
+
+
+
+```{r basic-map, eval=FALSE, echo = TRUE}
+## devtools::install_github("ropenscilabs/rnaturalearth")
+library(rnaturalearth)
+
+world_map_ne = ne_states(returnclass = "sf")
+
+ggplot() +
+  geom_sf(data = world_map_ne)
+```
+
+
+
+```{r basic-map-out, echo=FALSE, cache=TRUE}
+library(rnaturalearth)
+
+world_map_ne = ne_states(returnclass = "sf")
+
+ggplot() +
+  geom_sf(data = world_map_ne)
+
+```
+
+
+:::{.notes}
+as you can see nothing really fundamentally changes when you are making maps in ggplot. It is no different fundamentally than making a scatter plot or any other kind of plot here we are just feeding data to geom_sf 
+
+:::
+
+## Changing the Projections
+::: columns
+:::column
+
+```{r gall-peters-projection,  eval=FALSE}
+ggplot() +
+  geom_sf(data = world_map_ne) + 
+  coord_sf(crs = "+proj=cea +lon_0=0 +lat_ts=45") +
+  labs(title = "Gall-Peters Projection")
+```
+
+:::
+
+:::column
+
+```{r gall-peters-projection-out, echo=FALSE, cache=TRUE}
+ggplot() +
+  geom_sf(data = world_map_ne) + 
+  coord_sf(crs = "+proj=cea +lon_0=0 +lat_ts=45") +
+  labs(title = "Gall-Peters Projection")
+```
+
+:::
+:::
+
+:::{.notes}
+You can really easily change the projections you want. Here we are just feeding it a different projections If you ever watched the west wing you may recognize this particular projection
+
+:::
+
+## Mapping Middle Earth
+
+```{r echo = TRUE }
+#| code-fold: TRUE
+coastline = read_sf("data/ME-GIS/Coastline2.shp")
+contours = read_sf("data/ME-GIS/Contours_18.shp")
+rivers = read_sf("data/ME-GIS/Rivers.shp")
+lakes = read_sf("data/ME-GIS/Lakes.shp")
+forests = read_sf("data/ME-GIS/Forests.shp")
+mountains = read_sf("data/ME-GIS/Mountains_Anno.shp")
+placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
+cities = read_sf("data/ME-GIS/Cities.shp")
+roads = read_sf("data/ME-GIS/Roads.shp")
+towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
+places <- placenames %>% 
+  filter(NAME %in% c("Hobbiton",
+                     "Rivendell",
+                     "Edoras",
+                     "Minas Tirith"))
+
+mordor = placenames[placenames$NAME == "Mordor",]
+
+mountains_to_label = mountains[mountains$name == "Erebor The Lonely Mountain",]
+
+ggplot() +
+  geom_sf(data = contours,
+          size = 0.15,
+          color = "grey90") +
+  geom_sf(data = coastline,
+          size = 0.25,
+          color = "grey50") +
+  geom_sf(data = rivers,
+          size = 0.2,
+          color = "#0776e0",
+          alpha = 0.5) +
+  geom_sf(data = lakes,
+          size = 0.2,
+          color = "#0776e0",
+          fill = "#0776e0") +
+  geom_sf(data = forests,
+          size = 0,
+          fill = "#035711",
+          alpha = 0.5) +
+  geom_sf(data = mountains, size = 0.25) +
+  geom_sf(data = places) +
+  geom_sf_label(data = places,
+                aes(label = NAME),
+                nudge_y = 80000) +
+  geom_sf_label(data = mountains_to_label,
+                aes(label = name),
+                nudge_y = 80000) +
+  geom_sf_label(data = mordor,
+                aes(label = NAME),
+                nudge_y = 9000) +
+  theme_void() +
+  theme(plot.background = element_rect(fill = "#fffce3"))
+```
+
+
+:::{.notes}
+As you can see this does not look fundamentally all that different from the rest of our ggplot code. We are just coloring and sizing ssutff depening on what we want. We can add annotations 
+:::
+
+
+## Working Without Shape Files(kind of)
+
+- As is the case sometimes we do not have a shape file
+
+
+- Don't worry `sf` has you covered 
+
+- You just need to feed it the right things
+
+
+
+
+## Making a Bespoke Shapefile 
+
+- You can either feed it latitude and longitudes 
+
+- Or you can feed it addresses
+
+- You will need to geocode them
+
+- Most free ones have rate limits
+  - So be mindful of the size of your data
+
+
+
+
+
+
+
+
+## Making a Bespoke Shapefile(cont)
+
+
+```{r eval=FALSE, echo = TRUE}
+ga_cities = tribble( 
+  ~city, ~lat, ~long,
+  "Atlanta", 33.748955, -84.388099,
+  "Athens", 33.950794, -83.358884,
+  "Savannah", 32.113192, -81.089350
+)
+
+
+ga_cities_geometry = ga_cities |>  
+  st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326"))
+ga_cities_geometry
+
+```
+
+
+```{r echo=FALSE}
+ga_cities = tribble( 
+  ~city, ~lat, ~long,
+  "Atlanta", 33.748955, -84.388099,
+  "Athens", 33.950794, -83.358884,
+  "Savannah", 32.113192, -81.089350
+)
+
+
+ ga_cities |> 
+  st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326")) |> 
+  knitr::kable(format = "html") 
+   
+   
+```
+
+
+
+
+
+
+
+
+:::aside
+examples derived from Andrew Heiss
+:::
+
+
+
+
+## Making a Artesianal Shapefile(cont)
+
+```{r, eval=FALSE, echo = TRUE}
+library(tidygeocoder)
+
+breweries_I_visit = tribble(
+  ~name, ~address,
+  "Russian River Brewing", "725 4th St, Santa Rosa, CA 95404",
+  "Orpheus Brewing", "1440 Dutch Valley Pl NE, Atlanta, GA 30324",
+  "Three Tavens", "121 New St, Decatur, GA 30030",
+  "HenHouse Brewing Company", "322 Bellevue Ave, Santa Rosa, CA 95407"
+)
+
+breweries_geocode = breweries_I_visit |> 
+  geocode(address,  cascade_order = c("osm", "arcgis")) ## backup if one service fails 
+
+add_geom = breweries_geocode |> 
+  st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326"))
+```
+
+
+
+```{r echo=FALSE, cache=TRUE}
+library(tidygeocoder)
+breweries_I_visit = tribble(
+  ~name, ~address,
+  "Russian River Brewing", "725 4th St, Santa Rosa, CA 95404",
+  "Orpheus Brewing", "1440 Dutch Valley Pl NE, Atlanta, GA 30324",
+  "Three Tavens", "121 New St, Decatur, GA 30030",
+  "HenHouse Brewing Company", "322 Bellevue Ave, Santa Rosa, CA 95407"
+)
+
+
+breweries_geocode = breweries_I_visit |> 
+  geocode(address,  cascade_order = c("osm", "arcgis"))
+
+breweries_geocode |> 
+  st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326")) |> 
+  knitr::kable(format = "html")
+```
+
+
+
+
+
+
+
+## Mapping Atlanta
+
+- Combining what we have learned we can easily map Atlanta 
+
+- Using the osmdata package by Open Street Maps we can do lots of things
+
+- You can also save lots of money on gifts
+
+- Trust me 
+
+
+
+
+
+## Mapping Atlanta 
+
+- We can grab a host of various things we would want for a good map
+
+- And add points of interest 
+
+- I will just geocode some bars that pols grad students have drank at or have had to host events at.
+
+```{r cache=TRUE, echo = TRUE}
+#| code-fold: true
+library(osmdata)
+
+big_streets = getbb("Atlanta United States") %>% 
+  opq() %>% 
+  add_osm_feature(key = "highway", 
+                  value = c("motorway", "primary", "motorway_link", "primary_link")) %>%
+  osmdata_sf()
+
+med_streets = getbb("Atlanta United States") %>%
+  opq() %>%
+  add_osm_feature(key = "highway", 
+                  value = c("secondary", "tertiary", "secondary_link", "tertiary_link")) %>%
+  osmdata_sf()
+
+
+small_streets = getbb("Atlanta United States") %>%
+  opq()%>%
+  add_osm_feature(key = "highway", 
+                  value = c("residential", "living_street",
+                            "unclassified",
+                            "service", "footway"
+                  )) %>%
+  osmdata_sf()
+
+
+  railway = getbb("Atlanta United States")%>%
+  opq()%>%
+  add_osm_feature(key = "railway", value= "rail") %>%
+  osmdata_sf()
+
+bars = tribble(
+  ~name, ~address,
+  "Hattie B's", "299 Moreland Ave NE, Atlanta, GA 30307",
+  "Side Bar", "79 Poplar St NW, Atlanta, GA 30303",
+  "Manny's", "602 North Highland Avenue Northeast, Atlanta, GA 30307",
+  "The Porter", "1156 Euclid Ave NE, Atlanta, GA 30307",
+  "Anatolia's", "Peachtree St, Atlanta, GA 30303",
+  "Agave", "242 Boulevard SE, Atlanta, GA 30312",
+  "Fetch", "520 Daniel St SE, Atlanta, GA 30312",
+  "Recess", "99-V, Krog St NE, Atlanta, GA 30307",
+  "Der Biergarten", "300 Marietta St NW, Atlanta, GA 30313",
+  "The Highlander", "931 Monroe Dr NE, Atlanta, GA 30308" ,
+  "Wrecking Bar", "292 Moreland Ave NE, Atlanta, GA 30307"
+)
+
+bars_geocode = bars %>% 
+  geocode(address, method = "osm")
+
+add_geom = bars_geocode %>% 
+  st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326"))
+
+  
+```
+
+
+
+
+
+
+## Which Produces
+
+```{r atlanta-map, echo=TRUE, message=FALSE, warning=FALSE}
+#| code-fold: true
+ggplot() +
+  geom_sf(data = railway$osm_lines,
+          inherit.aes = FALSE,
+          color = "black",
+          size = .2,
+          linetype="dotdash",
+          alpha = .5) +
+  geom_sf(data = med_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "black",
+          size = .3,
+          alpha = .5) +
+  geom_sf(data = small_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "#666666",
+          size = .2,
+          alpha = .3) +
+  geom_sf(data = big_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "black",
+          size = .5,
+          alpha = .6) +
+  geom_sf(data = add_geom, aes(color = name),
+          color = "#0039A6") +
+  coord_sf(ylim = c(33.64, 33.89), 
+           xlim = c (-84.56, -84.30), expand = FALSE) +
+  theme_void(base_family = "Roboto Condensed", base_size = 20) +
+  theme(plot.subtitle = element_text(size = 10, hjust = 0.5, 
+                                     margin = margin(2, 0, 5, 0)),
+        plot.title = element_text(face="bold", hjust=.5),
+        plot.caption = element_text(size = 8, face = "bold")) + 
+   labs(title = "Atlanta", subtitle = "33.7490°N/84.3880°W")
+```
+
+
+
+
+

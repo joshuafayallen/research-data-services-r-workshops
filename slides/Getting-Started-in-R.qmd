@@ -1,0 +1,1238 @@
+---
+title: "Getting Started in R"
+author: "Josh Allen"
+institute: "Department of Political Science at Georgia State University"
+date: "`r  Sys.Date()`"
+format: 
+ revealjs:
+   theme: ["allen.scss"]
+   
+---
+
+
+```{r setup, include = F, warnings = FALSE}
+
+## install.packages("pacman")
+pacman::p_load("ggplot2", "AllenMisc", "magrittr","dplyr", "flair", install = FALSE)
+
+penguins = palmerpenguins::penguins
+
+knitr::opts_chunk$set(
+	fig.align = "center",
+	fig.asp = 0.5,
+	fig.path = "figs/",
+	fig.retina = 3,
+	message = FALSE,
+	warning = FALSE,
+	out.width = "100%"
+)
+
+
+
+
+```
+
+
+## Why R and RStudio?
+
+```{r grants-plot, echo = FALSE}
+pop_df = 
+  data.frame(
+  lang = c("SQL", "Python", "R", "SAS", "Matlab", "SPSS", "Stata"),
+  n_jobs = c(107130, 66976, 48772, 25644, 11464, 3717, 1624),
+  free = c(T, T, T, F, F, F, F)
+  )
+# Plot it
+pop_df %>% 
+  mutate(lang = lang %>% factor(ordered = T)) %>%
+  ggplot(aes(x = lang, y = n_jobs, fill = free)) +
+  geom_col() +
+  geom_hline(yintercept = 0) +
+  aes(x = reorder(lang, -n_jobs), fill = reorder(free, -free)) +
+  scale_y_continuous(label = scales::comma) +
+  labs(
+    title = "Comparing statistical languages",
+    subtitle = "Number of job postings on Indeed.com, 2019/01/06",
+    y = "Number of Jobs",
+    x = "Statistical Language",
+    caption = "Figure idea and data from Grant Mcdermot"
+    ) +
+  scale_fill_manual(
+    "Free?",
+    labels = c("True", "False"),
+    values = c("#67322e", "#122c43")
+    ) + 
+  theme_allen_minimal(has_subtitle = TRUE)
+```
+
+
+:::{.notes}
+
+R is a vastly popular language in the datascience industry. While it is less popular than sequel or Python it is still one of the most heavily demanded language from private industry. R is also becoming wildly popular in econ and political science because not only is it free but it is a great skill to have given the difficulties of the academic job market. I am political scientist so I will mostly making these references. The Rstudio team in particular has worked really hard on adding support for Python, Julia, and java. 
+
+:::
+
+
+## Why R and RStudio?(cont)
+
+ Data science reasons 
+
+- Alongside Python, R has become the *de facto* language for data science.
+  - See: [*The Impressive Growth of R*](https://stackoverflow.blog/2017/10/10/impressive-growth-r/), [*The Popularity of Data Science Software*](http://r4stats.com/articles/popularity/)
+
+- Open-source (free!) with a global user-base spanning academia and industry.
+
+### Personal Benefits
+- The community is insanely nice
+  - Especially compared to Python and Stata
+  
+- A great "first" language to learn
+  - Source: [Google Data Analytics Professional Certificate](https://www.coursera.org/professional-certificates/google-data-analytics?irclickid=T1LQYH0NXxyNUwfyCLUQjRO9UkD3oW1kE3Q4100&irgwc=1&utm_medium=partners&utm_source=impact&utm_campaign=2946137&utm_content=b2c##faq)
+
+- Supports all types of statistical methods and data collection 
+
+
+
+
+
+## R? Rstudio? Whats the Difference?
+
+- R is a statistical programming language
+- RStudio is a convenient interface for R (an Integrated Developer Environment, IDE)
+- At its simplest:
+    - R is like a car’s engine
+    - RStudio is like a car’s dashboard
+
+```{r echo = FALSE}
+knitr::include_graphics("pics/engine-dashboard.png")
+```
+
+
+:::{.notes}
+The most common way that we interact with R is through  Rstudio you can technically run R by just opening R and typing in code. But most people do not do this. Rstudio has lots of handy features that help you. Much like a car. If we didnt have the dashboard but still had the engine and some wheels and a steering we could drive the car if needed. However a car with a dashboard lets us figure out what the car is doing more easily 
+:::
+
+
+
+
+## I Have Downloaded Rstudio Now What? 
+
+
+```{r script-new, echo=FALSE, out.width="60%", fig.alt="Opening an R script through drop down on the top left or command shift n on mac"}
+
+knitr::include_graphics("figs/script-new.png")
+
+```
+
+
+
+:::{.notes}
+
+Hopefully You Have downloaded the Approriate Version of R and Rstudio for your Operating system. Now we need to know where we can start putting stuff. And it should look something like you can just start typing code into the console window if you want. But for the most part that is a bad idea. Because you will not be able to remember what you have done and more importantly you are going to have to redo it all each time. 
+
+
+Best Practices are for you to work in an R script file. Later on in the semster we will hopefully have a workshop on getting started in Rmarkdown but for now just click on r script file if you are follwing along.
+:::
+
+
+
+
+
+## Setting Your Working Directory
+
+- Your working directory is where all your files live
+
+- You may know where they are... 
+
+- But R does not
+
+- If you want to use any data that does not come with a package you are going to need to tell R where it lives
+
+
+
+
+
+## Cats and Boxes
+
+
+
+```{r echo = FALSE, out.width= "30%"}
+
+knitr::include_graphics("figs/cats-boxes.png")
+
+```
+
+- You can put a box inside a box
+
+- You can put a cat inside a box
+
+- You can put a cat inside a box inside of a box
+
+- You cannot put a box inside a cat
+
+- You cannot put cat in a cat
+
+
+
+:::{.notes}
+How working directories work is that they are comprised of files and folders. You need to let R know what file is in what folder. The last thing in the setting working directory call is a file usually. The cat analogy is helpful to think of how we find stuff in your computer. We can think of the boxes as folders and the cats as files.
+
+:::
+
+
+
+## Setting Your Working Directory(cont)
+:::columns
+:::column
+### Seeing What Working Directory You are Using 
+```{r echo=TRUE}
+
+getwd()## The working directory where all the materials for the workshops live
+
+```
+:::
+
+:::column
+
+### Setting Your Working Directory
+
+```{r, eval=FALSE, echo = TRUE }
+setwd("your/working/directory/here") ## sets the working directory on mac
+setwd("your\working\directory\here") ## sets the working directory on windows
+```
+
+:::
+:::
+
+## How To Make Your Life Easier 
+
+```{r echo=FALSE, fig.cap= "source: Jenny Bryan", out.width= "50%"}
+
+knitr::include_graphics("figs/projects-jenny-bryan.png")
+
+```
+
+:::{.notes}
+While setting your working directory manually is fine it is a lot more fragile. If you collaborate with people now or in the future they are going to have to manually set the working directory on their computer. Each time.
+
+R projects are great because they will just set the working directory to wherever the project is living. The additional benefit is that it will restart R. Which is good because R will just keep lots of packages loaded in the background. This can cause what are called namespace conflicts. This used to be really bad with plyr and dplyr but plyr has since been retired. Truly problematic namespace conflicts are not something that I have experienced but they do happen. Fresh R sessions are the easiest way to avoid them
+:::
+
+
+
+## Objects
+
+- Everything is an object
+
+- Everything has a name 
+
+- You do stuff with functions 
+
+- Packages(i.e. libraries) are homes to pre-written functions.
+  - You can also write your own functions and in some cases should.
+
+
+
+
+:::{.notes}
+Before we start R is an object oriented programming we work with objects. Objects are what we work with in R they can be various classes. The class of an object sets out strict limitations on what R can do with those objects but just as importantly it tells R what it can't do with those objects. While sometimes it is frustrating because sometimes you just want to do a thing it helps you protect your from yourself. 
+
+Everything that exists in R is an object because they are data which can be manipulated. And (almost) everything that happens is a function call, which is an evaluation of this object which gives you another object
+:::
+
+
+## Install and loading packages
+
+- **Console or Script**  `install.packages("package-i-need-to-install")`
+  - In the case of multiple packages you can do `install.packages(c("Packages", "I", "don't","have"))`
+
+- **RStudio** Click the "Packages" tab in the bottom-right window pane. Then click "Install" and search for these two packages.
+
+![](pics/install.gif)
+
+::: aside 
+Gif source: [](https://grantmcdermott.com/)
+:::
+
+:::{.notes}
+Credit for the Gif goes to Grant Mcdermott. As we will learn there are lots of ways to do one thing in R and the packages that are loaded when you open up R have lots of important things that you will use to just do some simple analysis or if you want to build your own functions.
+:::
+
+
+## Install and load(cont.)
+
+ Once the packages are installed we need load them into our `R` session with the  `library()` function 
+ 
+ 
+```{r eval= FALSE, echo = TRUE}
+library(Package)
+library(I)
+library(JustInstalled)
+```
+ 
+Notice too that you don't need quotes around the package names any more. 
+
+:::{.notes}
+Reason: R now recognises these packages as defined objects with given names. ("Everything in R is an object and everything has a name.")
+:::
+
+
+
+
+
+## `R` Some Basics
+
+
+
+
+
+## Basic Maths
+
+- R is equipped with lots of mathematical operations 
+
+```{r basic-math, echo = TRUE}
+2+2 ## addition
+4-2
+600*100 ##multiplication
+100/10 ##division
+10*10/(3^4*2)-2 ## Pemdas 
+log(100)
+sqrt(100)
+
+```
+
+
+
+:::{.notes}
+The most common hazing ritual when learning R and object oriented programming is using R as calculator. Since we most often use it for advanced statistical analysis it should be able to handle lots things we can throw at it 
+
+:::
+
+
+
+
+## Basic Maths
+
+R is also equipped with modulo operations (integer division and remainders), matrix algebra, etc
+
+```{r echo = TRUE}
+100 %/% 60 # How many whole hours in 100 minutes?
+100 %% 60 # How many minutes are left over?
+```
+
+```{r echo = TRUE}
+a = matrix(c(1,3,5,7), ncol=2, nrow=2)
+
+b = matrix(c(2,4,6,8), ncol=2, nrow=2)
+
+ c_mat <- matrix(c(1,2,4,7), ncol = 3, nrow =2)
+
+a %*% b # Matrix multiplication
+
+t(c_mat) # transpose a matrix
+
+```
+
+
+
+:::{.notes}
+There are lots of other useful mathematical operations we can use in R to make our lives a lot easier or if you are in the postion of having to hand calculate them either because your professor is making you or you want to make sure your new cool estimator is available for other people to use you can do that. In this case we are doing this by "hand". 
+:::
+
+
+## Logical Statements & Booleans
+
+
+<table>
+  <tr>
+    <th class="cell-center">Test</th>
+    <th class="cell-left">Meaning</th>
+    <th class="cell-center">Test</th>
+    <th class="cell-left">Meaning</th>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x < y</code></td>
+    <td class="cell-left">Less than</td>
+    <td class="cell-center"><code class="remark-inline-code">x %in% y</code></td>
+    <td class="cell-left">In (group membership)</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x > y</code></td>
+    <td class="cell-left">Greater than</td>
+    <td class="cell-center"><code class="remark-inline-code">is.na(x)</code></td>
+    <td class="cell-left">Is missing</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">==</code></td>
+    <td class="cell-left">Equal to</td>
+    <td class="cell-center"><code class="remark-inline-code">!is.na(x)</code></td>
+    <td class="cell-left">Is not missing</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x <= y</code></td>
+    <td class="cell-left">Less than or equal to</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x >= y</code></td>
+    <td class="cell-left">Greater than or equal to</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x != y</code></td>
+    <td class="cell-left">Not equal to</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x | y</code></td>
+    <td class="cell-left">Or </td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x & y</code></td>
+    <td class="cell-left">And</td>
+  </tr>
+</table>
+
+
+
+
+:::{.notes}
+R comes with  standard set of boolean operators these are the common ones that you will use or run into in the wild. Note that to say something equals something because in R = is used in 2 different ways either as passing arguments off to a function or for assignment.
+:::
+
+
+
+## Booleans and Logicals in Action
+
+
+```{r echo = TRUE}
+1>2 
+1<2
+1 == 2
+1 < 2 | 3 > 4 ## only one test needs to true to return true
+1 < 2 & 3>4 ## both tests must be true to return true
+
+```
+
+
+
+
+
+
+
+## Logicals, Booleans, and Precedence
+:::incremental
+
+- `R` like most other programming languages will evaluate our logical operators(`==`, `>`, etc) before our booleans(`|`, `&`, etc).
+
+```{r unexpected-results, echo = TRUE}
+1 > 0.5 & 2
+```
+
+
+
+What's happening here is that R is evaluating two separate "logical" statements: 
+ - `1 > 0.5`, which is is obviously TRUE.
+ - `2`, which is TRUE(!) because R is "helpfully" converting it to `as.logical(2)`.
+ 
+
+- It is way safer to make explicit what you are doing.
+```{r echo = TRUE}
+1 > 0.5 & 1 > 2
+```
+
+:::
+
+:::{.notes}
+Computer operations have a pemdas of their own so when you are milling about in R it is important to remember how you set up your tests 
+:::
+
+
+
+
+## Other Useful Tricks
+ Value matching using `%in%`
+
+
+To see whether an object is contained within (i.e. matches one of) a list of items, use `%in%`.
+```{r echo = TRUE}
+4 %in% 1:10
+4 %in% 5:10
+```
+
+
+
+
+## Cool Now What?
+
+:::incremental
+
+- While this is boring it opens up lots 
+
+
+
+- We may need to set up a group of tests to do something to data.
+
+
+- We may need all this math stuff to create new variables
+
+- However we need to ***Assign them*** to reuse them later in functions.
+  - Including datasets 
+:::
+
+::: aside
+Later in the semester we can modify in place but that is running before we are walking
+:::
+:::{.notes}
+R as a calculator and evaluating whether 1 is greater than 2 gets very tiring like as soon as you start doing it and is hardly ever that practical. 
+:::
+
+
+## Assignment 
+
+- The most popular assigment operator in R is `<-` which is just `<` followed by `-`
+  - read aloud as "gets"
+
+```{r echo = TRUE}
+a <- 2 + 2
+
+a * 2
+
+```
+
+- You can also use `->` but this is far less common and makes me uncomfortable 
+
+```{r echo = TRUE}
+ a^2 -> b
+```
+
+
+:::{.notes}
+
+Assignment might be a foregin concept to you if you have no coding experience or making the transition from excel or stata. Basically if you go through and copy and paste all this stuff into an R script it will run but we will not be able to use this. 
+
+So using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets 2 + 2 this lets us reuse it later whether we want to perform additional maths or use it for later
+:::
+
+
+
+## Assignment(cont)
+
+:::incremental
+
+- Using `=` as an assignment operator also works and is the one I tend to use 
+  - Note: `=` is also used to evaluate arguments *within* functions
+  
+  
+```{r echo = TRUE}
+b = b * 2
+
+d = b/3
+```
+
+
+- Tbh this is a matter of taste really. 
+
+- Just keep it consistent..
+
+
+- Just keep it consistent..or become ungovernable and use all three in one script.
+  - I am not responsible for you getting yelled at on Stackoverflow if you do this.
+:::
+::: aside
+More discussion [here](https://github.com/Robinlovelace/geocompr/issues/319##issuecomment-427376764) and [here](https://www.separatinghyperplanes.com/2018/02/why-you-should-use-and-never.html)
+:::
+:::{.notes}
+
+To be honest R purists are one of the last hold outs of using the gets operator essentially back in the main frame computer days there was a physical key that would do this for you. R is actually really really old so there are some quirks to it that bug lots of people. We are not going to get into it any further in this workshop but if you have prior experience in an object oriented language R will be a bit peculiar at times. Like in somne cases position of the argument does not matter indentation does not matter which will really throw you off if you are coming from python or vice versa 
+
+:::
+
+
+## Working with Objects 
+
+- Lets run a simple regression using e
+
+```{r echo = TRUE}
+
+e = data.frame(x = 1:2,
+               y = 1:2)
+```
+
+
+```{r error = TRUE, echo = TRUE}
+lm(y~x)
+```
+
+
+
+
+
+
+
+## Global Environment(cont)
+:::incremental
+```{r echo=FALSE, error=TRUE}
+lm(y~x)
+```
+
+- Gives us a hint out about what went wrong
+
+![](figs/environment.png)
+
+- Meaning R is going to look in the environment for the object you give it 
+
+:::
+
+:::{.notes}
+If we look at the global environment Y does not exist as an object but lots of other stuff does that is not. 
+
+Because x and y live within e we need to tell that they belong to e so to fix it we would need to tell lm where y and x 
+
+:::
+
+
+## Fixing Our Issue 
+:::incremental 
+
+- To fix this we need to feed `e` to the data argument
+  - 
+
+```{r echo = TRUE}
+lm(y~x, data = e)
+```
+
+
+
+
+
+:::{.notes}
+In R one of the biggest things is that being explicit about what name to use is how we do things. If you are not you are gonna get error messages at best.There are lots of ways 
+
+
+:::
+
+
+
+
+## Everything is an Object
+
+
+
+
+## What are Objects?
+
+- Objects are what we work with in `R`
+
+
+```{r echo = FALSE}
+old_width = options(width = 80)
+
+lsf.str("package:base") %>%  grep("^is.", ., value = TRUE)
+```
+
+
+
+:::{.notes}
+Using a bit of R we can see all the different logical tests that tests the class of objects in R. Here you can see that there are lots 
+
+:::
+
+
+
+## The Usual Suspects
+
+- vectors
+- matrices
+- data frames
+- dates
+- lists
+- functions
+
+```{r echo = TRUE}
+f = cbind(a,b) ## this will just create a matrix 
+class(f)## lets us check the class of something 
+g = as.data.frame(f) ## converts to a different class
+str(g) ## shows some info about the structure of the object
+typeof(g) ## shows how r is storing the object object
+```
+
+
+:::{.notes}
+
+These are the ones that tend to come up most regularly used. You can also coerce once class to another. Using as will just force something to be a different class.
+
+Why type of returns list: data.frame and data.table are both collections (lists) of items (vectors, if you will), each item of the same length (ie each column is an item in the list, internally to R anyway). This is why unlike in a matrix, columns can have different classes.
+:::
+
+
+## A Quick Aside on Naming Stuff
+ Things we can never name stuff
+
+The reason we can't use any of these are because they are reserved for R
+
+```
+if 
+else 
+while 
+function 
+for
+TRUE 
+FALSE 
+NULL 
+Inf 
+NaN 
+NA 
+```
+
+::: aside
+[There are more see this website for a more complete list](http://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
+
+:::
+
+:::{.notes}
+If you have noticed every object in our little session has a name. But we should be careful about what we name our stuff. We can technically name our objects just about anything except these because they are reserved for R 
+
+:::
+
+## A Quick Aside on Naming Stuff(cont)
+ Semi-reserved words 
+
+
+
+For simple things like assigning `c = 4 ` and then doing `d = c(1,2,3,4)` R will be able to distinguish between assign c the value of 4 and the `c` that calls `concatenate` which is way more important in R.
+
+However it is generally a good idea, *unless you know what you are doing*, to avoid naming things that are functions in `R` because `R` will get confused.
+
+
+
+
+:::{.notes}
+You will get an error usually that says that Object of type ‘closure’ is not subsettable. This is just R saying wow I am like super confused. Like I have these two things named the same thing R will in the best case give up. It got super stressed and just quit. Other times it will just use the one that was set last. So just avoid doing this for now.
+:::
+
+
+
+
+
+## How and What to Name Objects 
+
+The best practice is to use concise descriptive names
+
+When loading in data typically I do `raw_my_dataset_name` and after data all of my  cleaning I do `clean_my_dataset_name`
+
+Objects must start with a letter. But can contain letters, numbers, `_`, or `.`
+  - snake_case_like_this_is_what_I_use
+  - somePeopleUseCamelCase
+  - some_People.are_Do_not.like_Convention
+     
+    
+ 
+
+::: aside
+Example and Discussion provided in [R for Data Sciency](https://r4ds.had.co.nz/workflow-basics.html?q=snake##whats-in-a-name) by Hadley Wickham
+:::
+
+
+
+
+
+
+
+
+# Working with Objects in R 
+
+
+
+
+
+## The Data We are Working With
+
+```{r echo=FALSE, out.width="70%", fig.cap="artwork by @allison_horst"}
+knitr::include_graphics("https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/02_data-visualization/slides/img/lter_penguins.png")
+```
+:::{.notes}
+Today we are going to be using data from the Palmer Penguins R package. This is data that documents various measurement of penguin species from Palmer station. There are a few arguments we can use but I will show you first how to import the penguin data
+
+:::
+
+
+
+## Importing Data
+- You have the option of pointing and clicking via import dataset
+
+- I would recommend importing data via code
+  - You don't have to remember what you named the object when writing the first script
+  - Saves you time 
+  - All the cool kids do it.
+
+```{r eval=FALSE, echo = TRUE }
+penguins = read.csv("data/penguins.csv")
+```
+
+:::{.notes}
+Remember to work and reuse stuff in R we need to assign it to an object. So first we need to make sure our working directory is set to the correct one. In my case I am keeping the penguins in a data folder
+
+
+:::
+
+
+## Your Turn
+
+- read in the data included to the website using `read.csv`
+  - What happens when you do not assign the dataset?
+  
+- assign the `penguins` dataset to an object named penguins
+
+- use `View`, `head`, and `tail` to inspect the dataset
+
+- using `install.packages()` install ggplot2
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 4, play_sound = TRUE)
+```
+
+
+
+
+
+
+
+## Our Data
+
+```{r echo= FALSE}
+
+
+head(penguins) |> 
+  knitr::kable(format = "html")
+
+```
+
+
+:::{.notes}
+Using the magical penguin data we will leave you here with some sort of actionable stuff
+
+:::
+
+
+## Indexing  `[]`
+
+- We can use `[]` to index objects. 
+
+- There are two slots we can use *rows* and *columns* in the brackets if we are using a dataframe like this. 
+ - `object_name[rows, columns]`
+ - We can also subset our data by column position using `:` or `c(column 1, column 2)`
+
+:::columns
+:::column
+```{r eval= FALSE, echo = TRUE}
+penguins[1,1]
+
+```
+
+```{r echo=FALSE}
+penguins[1,1] |> 
+  knitr::kable(format = "html")
+```
+
+:::
+
+:::column
+
+```{r eval=FALSE, echo = TRUE}
+penguins[1,1:2]
+```
+
+```{r echo=FALSE}
+penguins[1,1:2] |> 
+  knitr::kable(format = "html")
+```
+
+:::
+:::
+
+
+
+:::{.notes}
+knowing how to index stuff is important because often times we neeed to tell R what to get. Which is pretty critical especially if we want to use all the flexibility of R. I use lists a lot to report coefficients from a regression or to automatically update my syllabus when things change.
+
+:::
+
+
+
+## Indexing  `[]` (cont)
+
+
+- Lists are super flexible because they can hold lots of different kinds of stuff
+  - When you estimate an OLS model it returns a list.
+
+- We can tell R what element of a list using a combo of `[]` and `[[]]`
+
+
+```{r echo = TRUE}
+my_list = list(a = 1:4, b = "Hello World", c = data.frame(x = 1:3, y = 4:6))
+
+```
+
+```{r echo = TRUE}
+my_list[[1]][2] ## get the first item in the list and the second element of that item
+my_list[[2]]
+my_list[[3]][1]
+
+```
+
+
+
+
+## `[]` vs `[[]]`
+
+
+
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("https://raw.githubusercontent.com/rstudio-education/hopr/master/images/hopr_0403.png")
+```
+
+:::{.notes}
+the difference still trips me up so  I think of this picture. The single set of the brackets simply selects one train car while double brackets opens the train car 
+
+:::
+
+## Negative Indexing
+
+- We can also exclude various elements using `-` and/or tests that showed you earlier
+
+
+```{r eval=FALSE, echo = TRUE}
+penguins[,-1]
+```
+
+```{r echo=FALSE}
+penguins[,-1] |> 
+  head(6) |> 
+  knitr::kable(format = "html")
+```
+
+
+
+
+
+
+## Negative Indexing(cont)
+
+- We can use the same things in negative indexing to omit stuff
+
+:::columns
+:::column
+```{r eval=FALSE, echo = TRUE}
+
+penguins[,-(1:4)]
+
+```
+
+```{r echo=FALSE}
+penguins[,-(1:4)] |> 
+  head(6) |> 
+  knitr::kable(format = "html")
+```
+
+:::
+
+:::column
+
+```{r eval=FALSE, echo = TRUE}
+
+penguins[,-c(2,3,5,8)]
+
+```
+
+
+```{r echo=FALSE}
+penguins[,-c(2,3,5,8)] |> 
+  head(6) |> 
+  knitr::kable(format = "html")
+```
+
+
+:::
+:::
+
+
+
+
+## Subsetting By Tests
+
+```{r eval=FALSE, echo = TRUE}
+penguins[penguins["sex"] == "female", c("species", "sex")]
+
+```
+
+```{r echo=FALSE }
+penguins[penguins["sex"] == "female", c("species", "sex")] |> 
+  head(10) |> 
+  knitr::kable(format = "html")
+```
+
+
+
+
+
+
+## `$` Indexing 
+
+A really useful way of indexing in `R` is referencing stuff by name rather than position. 
+  - The way we do this is throught the `$`
+  
+```{r echo = TRUE}
+my_list$a
+
+my_list$b
+
+my_list$c
+
+```
+
+
+
+
+
+
+
+## Indexing(cont)
+
+```{r echo = TRUE}
+my_list$c[2] ## these are just returning the same thing 
+my_list$c$y
+```
+
+:::{.notes}
+You can also use brackets to pick which element of the thing you want to figure out is. These are all important to know or be aware of all the ways you can find something you need. And like a lot of things in R there are tons of ways to get the same task done. The right way is what returns the right answer for you is the solution. Worry about speeding things up later.
+
+:::
+
+
+
+
+
+## `$` in action
+
+This will just subset things
+```{r eval = FALSE, echo = TRUE}
+penguins[penguins$species == "Gentoo", c("species", "island", "bill_length_mm")] 
+```
+
+```{r echo= FALSE}
+penguins[penguins$species == "Gentoo", c("species", "island", "bill_length_mm")] |> 
+  head(10) |> 
+  knitr::kable(format = "html")
+```
+
+
+
+## `$` in action(cont)
+
+```{r echo = TRUE}
+summary(penguins)
+```
+
+
+
+```{r echo = TRUE}
+
+mean(penguins$bill_depth_mm)
+
+
+```
+
+
+uh oh what happened? 
+
+
+:::{.notes}
+Okay so now that we have found different ways to index things lets get some summary statistics for our penguins dataframe. We can use column indexing but in our case it will make our lives easier if we use the dollar sign
+
+
+:::
+
+## Finding Help
+
+- Asking for help in R is easy the most common ways are `help(thingineedhelpwith)` and `?thingineedhelpwith`
+
+
+```{r echo = TRUE}
+?mean
+```
+
+- `?thingineedhelpwith` is probably the most common because it requires less typing.
+
+:::{.notes}
+
+Notice how R returns NA as the mean. R is generally pretty conservative and will be cautious when you try to get the mean for bill depth it returns NA because there are a few NA values in the column. We will talk about various solutions to getting rid of NA's in data cleaning in a future workshop but for now we may just want to find the mean of our column. Mean and many functions have a way to do this inside them 
+
+:::
+
+## Fixing our issue
+:::incremental
+- If you noticed in the help documentation there was an argument I did not use `na.rm`
+
+- This will simply remove all the NA's giving which will let us calculate the mean
+  - summary does this by default
+
+- *Good* documentation fluctuates wildly because it is an open source language
+
+
+- If in doubt 
+
+```{r echo=FALSE, out.width= "25%"}
+knitr::include_graphics("pics/stackoverflow.png")
+```
+
+
+:::
+
+
+
+
+
+
+## Your Turn
+
+- Find the minimum value of `bill_length_mm`
+
+- Find the maximum value of `body_mass_g`
+
+- Subset the penguins data any way you want using `[]` or `$`
+
+- Assign each of them to an object
+
+- Create a vector of anything you want and find the second thing in that vector using `[]`
+
+- Do the same thing using `$`
+
+```{r echo = FALSE}
+countdown::countdown(minutes = 5, play_sound = FALSE)
+```
+
+
+
+
+
+
+## Some additional useful stuff
+
+- If you think back to when I had you use head and tail `R` told you what the class of each variable
+  - If you forgot just run `head(penguins)` in your R script
+
+- You will notice that `species` and `island` are a factor class so your measures of central tendency are not going to be all that informative. 
+
+- Fortunately `R` comes with some handy functions to use 
+
+- `table` counts each factor level 
+
+- `tapply` will let you group stuff by a factor and get some useful balance statistics 
+
+
+
+
+
+## Table 
+
+```{r echo = TRUE}
+table(penguins$species)
+
+```
+
+```{r echo = TRUE}
+table(penguins$sex)
+
+anyNA(penguins$sex)
+```
+
+:::{.notes}
+table is handy but in some cases it does not give us all the information we need in some cases we might have missing values and table will just ignore them 
+:::
+
+
+
+## tapply and calculating descriptive statistics by groups  
+
+```{r echo = TRUE}
+tapply(penguins$species,penguins$island, table)
+
+```
+
+
+```{r echo = TRUE}
+tapply(penguins$bill_depth_mm, penguins$species, mean, na.rm = TRUE)
+```
+
+
+:::{.notes}
+We may want to see where our penguin friends live so we can use tapply which is a handy trick. There will be some convincing you need to do with to make drop the missing values in tapply. I fought with it on the plane so trust me.
+
+:::
+
+
+## Plotting
+:::columns
+:::column
+```{r base-r-scatter, eval=FALSE, echo = TRUE}
+plot(penguins$bill_length_mm,
+     penguins$body_mass_g,
+     xlab = "Bill Length(mm)",
+     ylab = "Body Mass(g)")
+
+```
+:::
+
+:::column
+
+```{r base-r-scatter-out, echo=FALSE}
+plot(penguins$bill_length_mm, penguins$body_mass_g,
+     xlab = "Bill Length(mm)",
+     ylab = "Body Mass(g)")
+```
+
+:::
+:::
+
+
+
+
+
+
+## Plotting(cont)
+:::columns
+:::column
+```{r base-r-hist, eval=FALSE, echo = TRUE}
+hist(penguins$bill_length_mm,
+ xlim = c(30, 60))
+
+```
+:::
+
+
+:::column
+
+```{r base-r-hist-out, echo=FALSE}
+hist(penguins$bill_length_mm,
+ xlim = c(30, 60))
+```
+
+
+:::
+:::
+
+
+
+
+
+## Cleaning up after yourslef
+
+- `rm(objectname)` will remove the objects you created 
+
+- `rm(list=ls())` will remove all the objects your created
+
+- You can remove packages, sometimes, with `detach(package:packageyouwanttoremove)`
+  - This can be iffy for a variety of reasons
+  - Some packages automatically load another package or depend on another.
+
+- However, restarting your `R` session is generally best practice because it will do both 
+
+

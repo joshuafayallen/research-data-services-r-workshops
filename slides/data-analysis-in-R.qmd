@@ -1,0 +1,1562 @@
+---
+title: "Data Analysis in R"
+institute: "Department of Political Science at Georgia State University"
+author: "Josh Allen"
+date: "2022-08-29"
+format: 
+ revealjs:
+   theme: ["allen.scss"]
+---
+
+
+
+```{r setup, include = F, warnings = FALSE}
+
+pacman::p_load("AllenMisc","sandwich", "lmtest", "marginaleffects","emmeans", "modelsummary", "broom", "tidyverse", "palmerpenguins", "fixest", "nullabor")
+
+knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
+                      message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
+                      fig.align = "center", echo = TRUE)
+
+
+
+penguins = palmerpenguins::penguins 
+
+
+
+```
+
+
+## Packages You Will Need 
+
+
+```{r eval=FALSE}
+
+pacman::p_load("sandwich", "lmtest", "marginaleffects", "emmeans", "modelsummary", "broom",
+               "caret", "tidyverse", "fixest", "kableExtra", "nullabor")
+set.seed(1994)
+
+penguins = palmerpenguins::penguins 
+
+```
+
+- Note you will see some version of `theme_allen` used 
+  - This is just set a set of modifications based on [Kyle Butt's](https://github.com/kylebutts/templates/tree/master/ggplot_theme) personal theme, mainly the fonts
+  - If you really like it I can include the underlying file in an email.
+
+
+:::{.notes}
+Note this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximumlikelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not. 
+
+I also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis 
+:::
+
+
+
+
+
+
+
+# Exploratory Data Analysis in R 
+
+
+
+
+
+## Describing Variables 
+
+- This depends on what kind of variable it is i.e. continuous, categorical etc
+
+- It also depends on what story you need to tell
+  - Is this confounder a big deal?
+  - Do we see anticipation of treatment?
+  - Are there any outliers?
+  - etc?
+  
+- Remember R is just a toolbox. 
+
+
+
+:::{.notes}
+Exploratory data analysis is the first step of any data analysis pipeline. You need to understand your data in order to understand how to handle things. What does the distribution look like of your outcome variable. If you are like me and ended up taking a lot of causal inference classes and or read a lot of causal inference papers lots of the first parts of papers are just presenting EDA results to convince the reader that the assumptions are met. 
+
+Today we will be asking what is the relationship between bill length and body mass
+
+hopefully that seems like a sensible research question. If not well the goal is just to show you how to generate descriptive statistics in R 
+:::
+
+
+## First Cut
+
+
+```{r base-summary}
+summary(penguins) 
+
+```
+
+
+
+
+:::{.notes}
+If we just want like the quickest and dirtiest look at all the variables in our data we can use summary. Functionally this works because palmerpenguins is a small toy dataset. Thankfully for me we can access the raw data that the penguins dataset is based on. This is just the penguins raw function in the palmer penguins packagte. 
+:::
+
+
+
+## Summary with a bigger data frame 
+
+```{r}
+penguins_bigger = palmerpenguins::penguins_raw
+
+summary(penguins_bigger)
+
+```
+
+:::{.notes}
+As you can see you can that if you like a somewhat big data frame it can get a little unruly quickly because it is going to spit out a description for every column in your data set. If you want a single variable than you can just the dollar sign to index by name. We can also get each measure we want individually  
+:::
+
+
+
+## Getting Some Descriptive Statistics 
+### The Mean
+:::columns
+:::column
+### Base 
+
+```{r}
+mean(penguins$bill_depth_mm, na.rm = TRUE)
+```
+
+:::
+
+:::column
+### Tidyverse
+
+```{r}
+summarise(penguins,
+          avg_body_mass = mean(body_mass_g,
+                                 na.rm = TRUE))
+```
+
+:::
+:::
+
+
+
+
+## Quartiles
+
+:::columns 
+:::column
+### Base 
+
+```{r}
+quantile(penguins$bill_depth_mm,
+         na.rm = TRUE,
+         probs = c(.25, .50, .75))
+```
+
+:::
+
+:::column
+### Tidyverse
+```{r}
+penguins |> 
+  summarise(quartile_length = quantile(bill_length_mm,
+                                    na.rm = TRUE,
+                                    probs = c(.25,
+                                              .50,
+                                              .75)))
+```
+
+
+:::
+:::
+
+
+
+## T-tests
+
+::::{.columns}
+:::{.column width="45%"}
+### Base R 
+```{r eval=FALSE}
+penguins_t_test = na.omit(penguins) 
+
+penguins_t_test$gentoo = ifelse(penguins_t_test$species == "Gentoo", TRUE, FALSE)
+
+t.test(flipper_length_mm ~ gentoo, data = penguins_t_test) 
+```
+
+```{r echo = FALSE}
+penguins_t_test = na.omit(penguins) 
+
+penguins_t_test$gentoo = ifelse(penguins_t_test$species == "Gentoo", TRUE, FALSE)
+
+t.test(flipper_length_mm ~ gentoo, data = penguins_t_test) 
+```
+
+:::
+
+:::{.column width="45%"}
+
+### Tidyverse 
+
+```{r eval=FALSE}
+penguins_t_test = penguins |> 
+  drop_na() |> 
+  mutate(gentoo = ifelse(species == "Gentoo",
+                         TRUE,
+                         FALSE))
+
+
+
+t.test(flipper_length_mm ~ gentoo, data = penguins_t_test) 
+```
+
+
+```{r echo = FALSE}
+penguins_t_test = penguins |> 
+  drop_na() |> 
+  mutate(gentoo = ifelse(species == "Gentoo",
+                         TRUE,
+                         FALSE))
+
+
+
+t.test(flipper_length_mm ~ gentoo, data = penguins_t_test) 
+```
+
+
+:::
+::::
+
+
+
+
+## Correlations 
+:::columns
+:::column
+### Base 
+
+```{r eval=FALSE}
+
+penguins_df = penguins[,c(3:6)]  |> ## lets you do it by column position
+  na.omit() 
+
+cor(penguins_df)
+
+## this lets you do it by class
+ penguins[, sapply(penguins, is.numeric)]  |> 
+  na.omit() |>
+   cor()
+
+```
+
+
+```{r echo=FALSE}
+penguins_df = penguins[, c(3:4)] |> 
+  na.omit()
+  
+
+cor(penguins_df) |> 
+  knitr::kable(format = "html")
+
+```
+
+
+:::
+
+:::column
+### Tidyverse 
+```{r eval=FALSE}
+
+penguins_df = penguins |> 
+  drop_na() |> 
+  select(where(is.numeric), -year, - body_mass_g) #### Just cutting out year for presentation 
+
+cor(penguins_df)
+
+```
+
+
+```{r echo=FALSE}
+penguins_df = penguins |> 
+  drop_na() |> 
+  select(contains("bill")) 
+
+cor(penguins_df) |> 
+  knitr::kable(format = "html")
+```
+
+:::
+:::
+
+
+
+## It is Also Important to plot your data! 
+
+
+```{r dino-plot-include, echo=FALSE}
+
+
+knitr::include_graphics("figs/dino-plot-1.png")
+
+```
+
+
+:::{.notes}
+Remember numbers hide lots of things from our ggplot workshop I showed this figure. These all have roughly the same mean and standard deviation 
+:::
+
+
+
+## Some Basic Graphs 
+
+:::columns
+::: column
+```{r penguins-bill-length-scatter, eval=FALSE}
+ggplot(penguins, aes(x = bill_length_mm ,
+                     y = body_mass_g,
+                     color = species,
+                     group = species)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "Bill Length(milimeters)",
+       y = "Body mass(grams)") +
+  guides(color = guide_legend(title = "Species",
+                              override.aes = list(fill = NA))) +
+  theme_allen_bw()
+```
+:::
+
+
+:::column 
+```{r  echo=FALSE}
+ggplot(penguins, aes(x = bill_length_mm ,
+                     y = body_mass_g,
+                     color = species,
+                     group = species)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "Bill Length(milimeters)",
+       y = "Body mass(grams)") +
+  guides(color = guide_legend(title = "Species",
+                              override.aes = list(fill = NA))) +
+  theme_allen_bw()
+```
+:::
+:::
+
+
+
+## Some Basic Graphs Cont
+
+:::columns
+::: column
+```{r bill-depth-scatter, eval=FALSE}
+
+ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(color = species), method = "lm") +
+  geom_smooth(method = "lm") + 
+  labs(x = "Bill Length(milimeters)", y = "Body mass(grams)") +
+  guides(color = guide_legend(title = "Species",
+                              override.aes = list(fill = NA))) +
+  theme_allen_bw()
+
+```
+:::
+
+:::column
+
+
+```{r bill-depth-out, echo=FALSE}
+ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(color = species), method = "lm") +
+  geom_smooth(method = "lm") + 
+  labs(x = "Bill Length(milimeters)", y = "Body mass(grams)") +
+  guides(color = guide_legend(title = "Species",
+                              override.aes = list(fill = NA))) +
+  theme_allen_bw()
+```
+
+
+:::
+:::
+
+
+
+## Distributions 
+
+:::columns 
+:::column 
+```{r flipper-hist, eval=FALSE}
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(alpha = 0.6) +
+  labs(x = "Flipper Length(milimeters)") +
+  guides(fill = guide_legend(title = "Species")) +
+  theme_allen_minimal()
+```
+:::
+
+:::column
+
+
+```{r flipper-hist-out, echo=FALSE}
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(alpha = 0.6) +
+  labs(x = "Flipper Length(milimeters)") +
+  guides(fill = guide_legend(title = "Species")) +
+  theme_allen_minimal()
+```
+
+:::
+:::
+
+
+
+
+## Distributions(cont)
+
+:::columns 
+:::column
+```{r body-mas-density, eval=FALSE}
+## you can turn off scientific notion using option(scipen = 999)
+
+ggplot(penguins, aes(x = body_mass_g, fill = species)) +
+  geom_density(alpha = 0.7) +
+  labs(x = "Body Mass(grams)") +
+  guides(fill = guide_legend(title = "Species")) +
+  theme_allen_minimal()
+
+
+```
+
+:::
+
+:::column
+
+
+```{r body-mas-density-out,  echo=FALSE}
+
+ggplot(penguins, aes(x = body_mass_g, fill = species)) +
+  geom_density(alpha = 0.7) +
+  labs(x = "Body Mass(grams)") +
+  guides(fill = guide_legend(title = "Species")) +
+  theme_allen_minimal()
+
+```
+
+:::
+:::
+
+
+
+
+## User Written Extensions
+
+
+:::: {.columns}
+
+::: {.column width="35%"}
+```{r gg-halves-example, eval = FALSE}
+
+
+library(gghalves)
+
+ggplot(penguins, aes(x = species, y = bill_depth_mm, fill = species)) +
+  geom_boxplot(
+    width = .2, fill = "white",
+    size = 1.5, outlier.shape = NA
+  ) +
+  ggdist::stat_halfeye(
+    adjust = .33,
+    width = .67, 
+    color = NA,
+    position = position_nudge(x = .15)
+  ) +
+  gghalves::geom_half_point(
+    side = "l", 
+    range_scale = .3, 
+    alpha = .25, size = 1
+  ) +
+  MetBrewer::scale_fill_met_d(name = "Veronese") +
+  labs(x = NULL, fill = "Species", y = "Bill Depth(milimeters)") +
+  coord_flip() +
+  theme_allen_bw()
+```
+
+:::
+
+::: {.column width="65%"}
+
+
+```{r echo = FALSE}
+library(gghalves)
+
+ggplot(penguins, aes(x = species, y = bill_depth_mm, fill = species)) +
+  geom_boxplot(
+    width = .2, fill = "white",
+    size = 1.5, outlier.shape = NA
+  ) +
+  ggdist::stat_halfeye(
+    adjust = .33,
+    width = .67, 
+    color = NA,
+    position = position_nudge(x = .15)
+  ) +
+  gghalves::geom_half_point(
+    side = "l", 
+    range_scale = .3, 
+    alpha = .25, size = 1
+  ) +
+  MetBrewer::scale_fill_met_d(name = "Veronese") +
+  labs(x = NULL, fill = "Species", y = "Bill Depth(milimeters)") +
+  coord_flip() +
+  theme_allen_bw()
+```
+
+
+:::
+::::
+
+:::{.aside}
+Code and example are from Cédric Scherer's [Beyond the Bar plot talk](https://twitter.com/CedScherer/status/1438836874630545412)
+:::
+
+
+## Generating Table 1
+
+```{r}
+penguins = as.data.frame(penguins)
+
+
+datasummary(All(penguins) ~ Mean + SD + Max + Min + Median + Histogram,
+            data = penguins, output = "html",
+            title = "Descriptive Statistics") 
+  
+
+```
+
+
+
+
+
+
+
+## Generating a Balance Table 
+
+
+```{r out.width="90%"}
+datasummary_balance(~gentoo,
+                    data = penguins_t_test)
+```
+
+
+
+
+
+
+
+
+
+
+## Linear Regression in R 
+
+
+
+
+
+## Some Basics
+
+- For `lm` and other models we use this general form
+
+```
+model_one = estimator(outcome ~ iv1 + iv2 + ..., data = df)
+
+```
+
+- If you want to include all the variables in your data set than you can do that with `.`
+
+```
+model_one = estimator(outcome ~ ., data = df)
+
+```
+
+- Remember R can hold lots of datasets so we have to be explicit with where the data is coming from
+  - note that we have several different datasets named `penguins_blah`
+  - making sure you have kept track of the using dataset is important
+
+
+
+
+
+
+
+
+## Univariate Regression 
+
+```{r}
+peng_naive = lm(body_mass_g ~ bill_length_mm, data = penguins)
+
+peng_naive
+```
+
+:::{.notes}
+notice that the output is fairly sparse but in the environment you have a list object in the environment. R creates these as lists because there are tons of things of various classes. So to grab them you can use broom or you can index them.
+:::
+
+
+
+
+
+## 
+
+```{r}
+peng_naive = lm(body_mass_g ~ bill_length_mm, data = penguins)
+
+summary(peng_naive)
+```
+
+:::{.notes}
+This is probably what you are used to seeing if you are coming over from another language 
+:::
+
+
+
+
+## Multiple Regression 
+
+
+```{r}
+peng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species, data = penguins)
+
+summary(peng_adjust)
+
+```
+
+
+
+
+
+
+
+## Getting Diagnostic Statistics 
+
+:::columns
+:::column
+```{r echo=FALSE}
+
+peng_sans_miss_base = penguins |> drop_na()
+
+peng_sans_miss_tidy = penguins |> drop_na()
+```
+
+
+### Base R
+```{r}
+
+peng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species,
+                 data = peng_sans_miss_base)
+## remember you need to open the train car door or it will return a listy thing
+peng_sans_miss_base$.fitted_vals_brack = peng_adjust[[5]] 
+
+peng_sans_miss_base$.fitted_vals_dollar = peng_adjust$fitted.values
+
+peng_sans_miss_base$.predicted_vals = predict(peng_adjust, interval = "prediction")
+
+peng_sans_miss_base$.residuals_vals = peng_adjust$residuals
+
+peng_sans_miss_base$.studentized_resids = rstudent(peng_adjust)
+
+peng_sans_miss_base$.cooks_distance = cooks.distance(peng_adjust)
+
+```
+:::
+
+:::column
+### Tidyverse 
+
+```{r }
+peng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species,
+                 data = peng_sans_miss_tidy) 
+peng_diag_tidy = augment(peng_adjust,
+                         data = peng_sans_miss_tidy)
+```
+
+
+:::
+:::
+
+
+:::{.aside}
+I just dropped the missing values to make my life easier
+:::
+
+:::{.notes}
+As good data analysts we should always check that our assumptions are met. One really good test is to just plot our fitted values against our residuals. So lets go ahead and grab them. In base you just index them via the dollar sign or brackets. In the tidyverse can get them via broom augment. They will be returned with the name of the thing you want starting with a dot. 
+
+The reason is that the team behind broom did not want to override existing stuff
+:::
+
+
+## Plotting 
+
+:::columns 
+:::column
+### Base 
+```{r}
+plot(peng_sans_miss_base$.fitted_vals_dollar,
+     peng_sans_miss_base$.residuals_vals,
+     col = peng_sans_miss_base$species)
+abline(lm(peng_sans_miss_base$.residuals_vals ~ peng_sans_miss_base$.fitted_vals_dollar))
+```
+:::
+
+
+:::column
+### Tidyverse 
+```{r}
+ggplot(peng_diag_tidy, aes(x = .fitted,
+                           y = .resid)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(method = "lm") +
+  theme_allen_bw()
+```
+
+:::
+:::
+
+
+
+
+## Checking for Normality 
+
+:::columns
+:::column
+### Base
+
+```{r}
+hist(peng_sans_miss_base$.residuals_vals)
+```
+:::
+
+
+:::column
+### Tidyverse 
+```{r}
+ggplot(peng_diag_tidy, aes(x = .resid)) +
+  geom_histogram(binwidth = 100) +
+  theme_allen_bw()
+```
+
+:::
+:::
+
+## Base R diagnostic plots 
+
+```{r}
+par(mfrow = c(2, 2))
+plot(peng_adjust)
+```
+
+
+
+## User Extensions 
+
+:::columns
+:::column
+```{r eval=FALSE}
+set.seed(1994)  ## Shuffle these the same way every time
+
+shuffled_residuals = lineup(null_lm(body_mass_g ~ bill_length_mm + flipper_length_mm + species,
+                                     method = "rotate"),
+                             true = peng_diag_tidy,
+                             n = 9)
+#### decrypt("CLg7 X161 sO bJws6sJO vv")
+
+ggplot(shuffled_residuals, aes(x = .fitted, y = .resid)) +
+  geom_point() +
+  facet_wrap(vars(.sample))
+```
+:::
+
+:::column
+
+
+```{r echo=FALSE}
+set.seed(1994)  ## Shuffle these the same way every time
+
+shuffled_residuals = lineup(null_lm(body_mass_g ~ bill_length_mm + flipper_length_mm + species,
+                                     method = "rotate"),
+                             true = peng_diag_tidy,
+                             n = 9)
+#### decrypt("CLg7 X161 sO bJws6sJO vZ")
+
+ggplot(shuffled_residuals, aes(x = .fitted,
+ y = .resid)) +
+  geom_point() +
+  facet_wrap(vars(.sample))
+
+```
+
+:::
+:::
+
+:::{.notes}
+This is kind of a cool way to see if you can find your residuals in the plot. If one sticks out that is a bad sign that you havent dealt with some issues 
+:::
+
+
+
+## Tests 
+
+```{r}
+decrypt("CLg7 X161 sO bJws6sJO vv")
+```
+```{r eval= FALSE}
+bptest(peng_adjust)
+```
+
+```{r echo=FALSE}
+bptest(peng_adjust) |> ## Breush Pagan test for hetroskedasticity
+  tidy() |> 
+  knitr::kable(format = "html")## 
+```
+
+
+```{r eval=FALSE}
+bgtest(peng_adjust)
+```
+
+```{r echo=FALSE}
+bgtest(peng_adjust) |> ## Breusch-Godfrey test for autocorrelation
+  tidy() |> 
+  knitr::kable(format = "html")
+```
+
+:::{.notes}
+null for Breusch Pagan there is no hetrosckedasticity 
+
+fail to reject 
+
+Null for Breusch Godfrey is there is no serial correlation of order up to 1
+
+Okay it looks like something we have violated some of our assumptions 
+:::
+
+
+## Fixing Our Standard Errors
+
+- We can do this "on the fly" in R 
+
+- There are ways to do this in the model formula with various packages 
+  - But it is better to do this ["on the fly"](https://grantmcdermott.com/better-way-adjust-SEs/)
+
+
+
+
+
+## Adjusting Our Standard Errors for Real This time 
+
+```{r}
+coeftest(peng_adjust, vcov= vcovHC)
+```
+
+:::{.notes}
+
+Using sandwhich we can adjust our standard errors like this 
+:::
+
+
+## A Whole Host of Standard Errors 
+
+```{r}
+vc <- list(
+  "Standard"              = vcov(peng_adjust),
+  "Sandwich (basic)"      = sandwich(peng_adjust),
+  "Clustered"             = vcovCL(peng_adjust, cluster = ~ species),
+  "Clustered (two-way)"   = vcovCL(peng_adjust, cluster = ~ species + year),
+  "HC3"                   = vcovHC(peng_adjust),
+  "Andrews' kernel HAC"   = kernHAC(peng_adjust),
+  "Newey-West"            = NeweyWest(peng_adjust),
+  "Bootstrap"             = vcovBS(peng_adjust),
+  "Bootstrap (clustered)" = vcovBS(peng_adjust, cluster = ~ species)
+)
+
+adjusted_models = lapply(vc, function(x) coeftest(peng_adjust, vcov = x))
+
+
+```
+
+
+:::{.notes}
+We can feed a huge list of standard errors fairly quickly it this took virtually no time. Instead of going back and adjusting a huge set of models as would be the case in other softwares where you specify standard error fixes in the model here you can simply specify it once and forget it.
+
+:::
+
+## What does it look like
+
+```{r echo=FALSE}
+
+modelplot(adjusted_models, coef_omit = c("flipper_length_mm|species|Interc")) +
+  coord_flip()
+```
+
+
+
+## Making Table 2 
+
+- Model Summary is my favorite table making package
+  - if you run `modelsummary::supported_models()` you will see it fits most needs
+  - alternatively if you don't want to read the list and fit your model than do `modelsummary::get_estimates(model_I_fitted)` it will tell if the output is supported
+
+- Supports a variety of formats including word
+  
+
+```{r eval= FALSE}
+se_info = tibble(term = "Standard errors","iid", "robust", "bootstrap", "stata", "clustered by sex")
+modelsummary(peng_adjust,
+             stars = TRUE,
+             coef_omit = "(Intercept)|flipper_length_mm|.*species",
+             add_rows = se_info,
+             vcov =  list("iid", "robust", "bootstrap", "stata", cluster = ~ sex ),
+             gof_map = c("nobs", "r.squared"))
+```
+
+- As you can see it also lets you adjust your standard errors 
+  - You can supply it one kind of standard error
+  - Or a List like I did
+
+
+
+
+
+
+
+
+## The Results 
+
+```{r echo=FALSE}
+se_info = tibble(term = "Standard errors","iid", "robust", "bootstrap", "stata", "clustered by sex")
+modelsummary(peng_adjust,
+             stars = TRUE,
+             coef_omit = "(Intercept)|flipper_length_mm|.*species",
+             add_rows = se_info,
+             vcov =  list("iid", "robust", "bootstrap", "stata", cluster = ~ sex ),
+             gof_map = c("nobs", "r.squared"))
+```
+
+
+
+
+
+## Interactions 
+
+- To include a multiplicative term we can use `*`, `:` or `/` 
+
+- The constitutive terms will appear automatically 
+
+- In the case of `/` it returns the marginal effect 
+  - As well as the correct standard errors and pvalues 
+
+:::{.notes}
+The nice part about R is that you can include interactions in a few different ways. One thing is that R will include the constuitive terms for you. The slash will sort of trick R into including the full marginal effects for you. 
+:::
+
+
+```{r}
+pengs_interact_stand = lm(body_mass_g ~ bill_length_mm * sex + species + flipper_length_mm,
+                           data = peng_sans_miss_tidy)
+
+summary(pengs_interact_stand)
+```
+
+
+
+
+
+## Full Marginal Effects way 
+
+```{r}
+pengs_interact_marg = lm(body_mass_g ~ bill_length_mm / sex + flipper_length_mm + species, data = peng_sans_miss_tidy)
+
+summary(pengs_interact_marg)
+```
+
+
+
+
+
+
+## Tables with multiple models 
+
+```{r}
+modelsummary(list(peng_naive, peng_adjust, pengs_interact_marg),
+             stars = TRUE,
+             gof_omit = ".*", ## omitting all goodness of fit for space
+             coef_map = c("bill_length_mm" = "Bill Lenth(mm)",
+                          "flipper_length_mm" = "Flipper Lenth(mm)",
+                          "bill_length_mm x sexmale" = "Bill Length(mm) x Male Penguin"),
+             vcov = "robust",
+             note = "Robust Standard errors in Parenthsis")
+
+```
+
+
+
+
+
+
+
+
+## Fixed Effects
+
+::::{.columns}
+:::{.column width="45%"}
+```{r}
+library(microbenchmark)
+trade  = fixest::trade
+microbenchmark(
+euros_fe = feols(Euros ~ log(dist_km) | Origin + Destination + Product + Year, data = trade), times = 5)
+```
+:::
+
+:::{.column width="45%"}
+
+```{r}
+microbenchmark(
+euro_stand = lm(Euros ~ log(dist_km) + factor(Origin) + factor(Destination) + factor(Product) + factor(Year), data = trade), times = 5)
+```
+
+:::
+::::
+
+:::{.notes}
+There are more than a few ways to get a fixed effects regression in R my prefered way is using fixest. Because a species and island fixed effect would be a bit ridicoulous we can use star wars to demonstrate our point a bit
+
+To sort of get on with the rest of the workshop I will not spend to much time on this. 
+
+::::
+
+
+
+## Fixed Effects
+
+::::{.columns}
+:::{.column width="45%"}
+
+```{r}
+microbenchmark(
+euros_fe = feols(Euros ~ log(dist_km) | Origin + Destination + Product + Year, data = trade), times = 5)
+```
+
+:::
+
+
+
+:::{.column width="45%"}
+
+```{r}
+library(plm) 
+## fixed effects option is model = "within"
+microbenchmark(
+ euros_lfe = plm(Euros ~ log(dist_km) +  Origin + Destination + Product + Year
+                 , data = trade,
+                 model = "within"),
+                  times = 5)
+
+```
+
+:::
+::::
+
+
+:::{.notes}
+PLM has lots of other useful models like if you want a random effects model than you can use plm but in terms of fixed effects it is still slower 
+
+:::
+
+## Generating Predictions 
+
+:::columns 
+:::column
+```{r}
+set.seed(1994)
+
+penguins = mutate(penguins, id = row_number())
+
+peng_train = penguins |> 
+  drop_na() |> 
+  sample_frac(0.7)
+
+peng_train$data_set = "Train"
+
+
+penguins_training_model = lm(body_mass_g ~ bill_length_mm, data = peng_train)
+
+peng_predict_train = augment(penguins_training_model,
+                           interval = "prediction",
+                           newdata = peng_train) |> 
+  select(contains("."), everything())
+
+```
+:::
+
+:::column
+
+```{r}
+peng_test = anti_join(penguins, peng_train, by = "id")
+
+peng_test$data_set = "Test"
+
+penguins_test_model = lm(body_mass_g ~ bill_length_mm , data = peng_test)
+
+
+peng_predict_test = augment(penguins_test_model,
+                           interval = "prediction",
+                           newdata = peng_test) |> 
+  select(contains("."), everything())
+
+```
+
+:::
+:::
+
+
+## 
+
+:::columns
+:::column
+```{r eval=FALSE}
+
+all_together = rbind(peng_predict_train, peng_predict_test)
+
+ggplot(all_together, aes(x = bill_length_mm,
+                         y = body_mass_g,
+                         color = data_set,
+                         fill = data_set)) +
+  geom_point(alpha = 0.7) +
+  geom_line(aes(y = .fitted)) +
+  geom_ribbon(aes(ymin = .lower,
+                  ymax = .upper),
+              alpha = 0.3,
+              col = NA) +
+  scale_color_discrete(name = "Training sample?",
+                       aesthetics = c("color", "fill")) +
+  theme_allen_bw()
+```
+:::
+
+:::column
+
+```{r echo=FALSE}
+all_together = rbind(peng_predict_train, peng_predict_test)
+
+ggplot(all_together, aes(x = bill_length_mm, y = body_mass_g, color = data_set, fill = data_set)) +
+  geom_point(alpha = 0.7) +
+  geom_line(aes(y = .fitted)) +
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.3, col = NA) +
+   scale_color_discrete(name = "Training sample?",
+                       aesthetics = c("color", "fill")) +
+  theme_allen_bw()
+```
+
+
+:::
+:::
+
+
+
+## ~~Maximum Likelihood Estimation~~ <br> Machine Learning </br>
+
+- R comes with a whole host of maximum likelihood estimators(MLE)
+  - As well as user written packages 
+  
+- You will also probably want to load `marginaleffects` to get marginal effects of your model
+
+- `emmeans` is also a solid package for getting marginal effects
+
+- Note: They do differ on what they can do and how they generate marginal effects
+  - Andrew Heiss has a nice summary of this [at the bottom of this blog post](https://www.andrewheiss.com/blog/2022/05/20/marginalia/##tldr-overall-summary-of-all-these-marginal-effects-approaches)
+
+
+
+
+
+## The data we are using 
+
+```{r}
+penguins_glm = penguins |> 
+  drop_na() |> 
+  mutate(big_penguin = ifelse(body_mass_g > median(body_mass_g), 1,0),
+         big_penguin_logic = ifelse(body_mass_g > median(body_mass_g), TRUE, FALSE),
+         female = ifelse(sex == "female", TRUE, FALSE))
+
+
+```
+
+
+
+
+
+
+
+## Lets See What this looks like 
+
+:::columns
+:::column
+```{r eval=FALSE}
+ggplot(penguins_glm, aes(x = bill_length_mm,
+                         y = big_penguin)) +
+  geom_point() +
+  geom_smooth(method = "glm",
+              method.args = list(family = binomial(link = "logit"))) +
+  theme_allen_bw()
+```
+
+:::
+
+
+:::column
+
+
+```{r echo=FALSE}
+ggplot(penguins_glm, aes(x = bill_length_mm, y = big_penguin)) +
+  geom_point() +
+  geom_smooth(method = "glm", method.args = list(family = binomial(link = "logit"))) +
+  theme_allen_bw()
+```
+
+
+:::
+:::
+
+
+
+
+## Our Model 
+```{r}
+base_model = glm(big_penguin ~ bill_length_mm + flipper_length_mm + species + female,
+                 data = penguins_glm,
+                 family = binomial(link = "logit"))
+
+summary(base_model)
+```
+
+
+
+
+
+
+
+## Average Marginal Effects
+:::: {.columns}
+
+::: {.column width="35%"}
+```{r eval=FALSE}
+avg_marginal_effect = base_model |> 
+  marginaleffects()  |> 
+  tidy()
+
+ggplot(data = filter(avg_marginal_effect, !term == "species"),
+       aes(x = estimate,
+           y = term)) +
+  geom_pointrange(aes(xmin = conf.low,
+                      xmax = conf.high)) +
+  geom_vline(xintercept = 0) +
+  theme_allen_minimal()
+
+
+```
+:::
+
+::: {.column width="65"}
+
+
+```{r echo=FALSE}
+avg_marginal_effect = base_model |> 
+  marginaleffects()  |> 
+  tidy()
+
+ggplot(data = filter(avg_marginal_effect,
+ !term == "species"),
+       aes(x = estimate,
+           y = term)) +
+  geom_pointrange(aes(xmin = conf.low,
+                      xmax = conf.high)) +
+  geom_vline(xintercept = 0) +
+  theme_allen_minimal()
+
+
+```
+
+:::
+::::
+
+
+
+## User Specified Values
+
+:::columns
+:::column
+```{r eval=FALSE}
+
+predictions_emmeans = base_model |> 
+ emmeans(~ bill_length_mm + species, var = "bill_length_mm",
+                   at = list(bill_length_mm = seq(0, 60,1)),
+                   regrid = "response") |> 
+  as_tibble()
+colors_plot = c("##f0be3d", "##931e18", "##247d3f")
+
+ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) +
+  geom_line() + 
+  labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
+       color = NULL) +
+  theme(legend.position = "bottom") +
+  theme_allen_minimal() +
+  scale_color_manual(values = colors_plot)
+  
+
+
+
+
+```
+:::
+
+:::column
+```{r eval=FALSE}
+p  = plot_cap(base_model, condition = c("bill_length_mm", "species"), conf_level = 0.01) ## can be saved and changed with ggplot options 
+
+p + 
+  labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
+       color = NULL, fill = NULL,
+       caption = "By Default plot_cap plots confidence intervals \nso you have you make them really small") +
+  theme(legend.position = "bottom") +
+  theme_allen_minimal() +
+  scale_color_manual(values = colors_plot)
+```
+:::
+:::
+
+
+
+
+
+## Results
+
+::::{.columns}
+:::{.column width="45%"}
+```{r echo=FALSE}
+
+predictions_emmeans = base_model |> 
+  emmeans(~ bill_length_mm + species, var = "bill_length_mm",
+                   at = list(bill_length_mm = seq(0, 60)),
+                   regrid = "response") |> 
+  as_tibble()
+colors_plot = c("#f0be3d", "#931e18", "#247d3f")
+
+ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) +
+  geom_line() + 
+  labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
+       color = NULL) +
+  theme(legend.position = "bottom") +
+  theme_allen_minimal() +
+  scale_color_manual(values = colors_plot)
+  
+
+
+
+
+```
+:::
+
+:::{.column width="45%"}
+```{r echo=FALSE}
+p  = plot_cap(base_model, condition = c("bill_length_mm", "species"), conf_level = 0.01) ## can be saved and changed with ggplot options 
+
+p + 
+  labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
+       color = NULL, fill = NULL,
+       caption = "By Default plot_cap plots confidence intervals \nso you have you make them really small") +
+  theme(legend.position = "bottom") +
+  theme_allen_minimal() +
+  scale_color_manual(values = colors_plot)
+```
+:::
+::::
+
+
+
+
+
+
+
+##  Machine Learning
+
+
+## Packages You Will Need 
+
+
+```{r}
+library(tidymodels)
+library(caret)
+library(MASS)
+library(mlbench)
+library(e1071)
+library(parallel) # Allows for parallel processing 
+library(doParallel) # extremely useful for models that take a longtime
+
+
+```
+
+
+
+- Note caret and tidymodels have some namespace conflicts. 
+    - I personally would prefer to load one or the other 
+    - This is just a commitment to show you how to do things two ways
+
+## Creating Training and Test Sets 
+
+
+:::columns 
+:::column 
+### Caret 
+```{r}
+
+# Preprocess data  
+peng =  penguins |> drop_na()
+
+peng_caret = as.data.frame(peng)  
+
+
+train_index_caret = caret::createDataPartition(peng_caret$species, p = 0.7, list = FALSE, times = 1)
+
+train_caret = peng_caret[train_index_caret,]
+
+test_caret = peng_caret[-train_index_caret,]
+
+```
+
+
+:::
+
+
+:::column
+
+### Tidymodels 
+
+```{r}
+
+peng_models =  rsample::initial_split(peng, prop = 0.7)
+
+peng_tidy_train = rsample::training(peng_models)
+
+peng_tidy_test = rsample::testing(peng_models)
+
+
+```
+
+:::
+:::
+
+
+
+## Create Bootstraps 
+
+
+:::columns
+:::column 
+
+### Caret 
+
+- I just choose mean. Do what makes sense for your goals 
+
+```{r}
+library(boot)
+
+peng_caret_boots = trainControl(method = "boot", number = 25, classProbs = TRUE)
+
+```
+
+
+:::
+:::column 
+
+```{r}
+peng_boots = bootstraps(peng_tidy_train)
+```
+
+:::
+:::
+
+
+##  Fit a Random Forest and Plot ROC 
+
+
+:::columns 
+:::column 
+###  Caret 
+
+```{r}
+library(pROC)
+rf_caret = train(sex ~ .,
+                 data = train_caret,
+                 method = "ranger",
+                 trControl = peng_caret_boots,
+                 metric = "ROC",
+                 verbose = FALSE)
+
+# confusionMatrix(predict(rf_caret, train)) this is how you extract predictions with caret
+
+
+
+# confusionMatrix(predict(rf_caret, train)) 
+
+
+# roc(test$species, )
+
+```
+
+:::
+
+::: column
+
+### Tidymodels 
+
+
+```{r}
+#| code-fold: true
+rf_spec = rand_forest() |> 
+  set_mode("classification") |> 
+  set_engine("ranger")
+
+penguin_wf = workflow() |> 
+  add_formula(sex ~ .)
+
+
+rf_peng = penguin_wf |> 
+  add_model(rf_spec) |> 
+  fit_resamples(resample = peng_boots,
+                control = control_resamples(save_pred = TRUE))
+
+
+
+
+rf_peng |> 
+  collect_predictions()  |> 
+  group_by(id) |> 
+  roc_curve(sex, .pred_female) |> 
+  ggplot(aes(1 - specificity, sensitivity, color = id)) +
+  geom_abline(lty = 2, color = "gray80", size = 1.5) +
+  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +
+  coord_equal()
+```
+
+
+:::
+:::
+

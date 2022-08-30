@@ -1,46 +1,22 @@
 ---
 title: "Week 4"
-subtitle: "TBA"
+subtitle: "Data Analysis in R"
 editor: visual
 ---
 
 ::: callout-important
--   If you can't be in class for the lectures, you can watch the live stream or watch the recording later on [Panopto](https://duke.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22d6c1d58a-cb6d-4732-9d4b-ae0c011bf767%22).
--   Due dates:
-    -   HW 1: Fri, Jan 28, 5pm ET
-    -   Lab 1: Fri, Jan 28, 5pm ET
+The recording for this workshop is posted on the [RDS website just click on the link to review](https://research.library.gsu.edu/dataservices/rds-workshops-recordings)
 :::
 
-## Prepare
+## Slides 
 
-📖 Read Introduction to Modern Statistics, Sec 24.4: [Mathematical model for testing the slope](https://openintro-ims.netlify.app/inf-model-slr.html#mathslope)
+🖥️ [Data Analysis in R](/slides/data-analysis-in-R.html)
 
-📖 Read Introduction to Modern Statistics, Sec 24.5: [Mathematical model, interval for the slope](https://openintro-ims.netlify.app/inf-model-slr.html#mathematical-model-interval-for-the-slope)
+## Resources Used 
 
-📖 Read Introduction to Modern Statistics, Sec 24.6: [Checking model conditions](https://openintro-ims.netlify.app/inf-model-slr.html#tech-cond-linmod)
+[This blog post](https://juliasilge.com/blog/palmer-penguins/) by Julia Silge on tidymodels was extremely helpful
 
-📖 Read Introduction to Modern Statistics, Sec 24.7: [Chapter review](https://openintro-ims.netlify.app/inf-model-slr.html#chp24-review)
+[Adjusting your standard errors on the fly](https://grantmcdermott.com/better-way-adjust-SEs/), [this blog post](https://grantmcdermott.com/interaction-effects/) and the [prediction portion](https://raw.githack.com/uo-ec607/lectures/master/08-regression/08-regression.html) of this lecture by Grant McDermott was invaluble.
 
-## Participate
 
-🖥️ [Lab 2 - College scorecard](/slides/lab-1.html)
-
-🖥️ [Lecture 6 - SLR: Mathematical models for inference](/slides/lec-6.html)
-
-🖥️ [Lecture 7 - SLR: Model diagnostics](/slides/lec-7.html)
-
-## Practice
-
-📋 [Application Exercise 3 - Checking model conditions](/ae/ae-3-duke-forest.html)
-
-## Perform
-
-⌨️ [Lab 2 - College scorecard](/labs/lab-2.html "Lab instructions")
-
-✍️ [HW 1 - In-person voting trends](/hw/hw-1.html)
-
-<br><br>
-
-::: {style="font-size: 0.875em;"}
-Back to [course schedule](/ "Course schedule") ⏎
-:::
+For the marginal effects portion of the workshop much of the code is based on [this blog post](https://www.andrewheiss.com/blog/2022/05/20/marginalia/) by Andrew Heiss.

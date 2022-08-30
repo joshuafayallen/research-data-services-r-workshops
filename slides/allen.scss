@@ -1,0 +1,93 @@
+// Include theme-specific fonts
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital@0;1&display=swap');
+
+/*-- scss:defaults --*/
+// Override theme settings (see ../template/settings.scss)
+// Base settings for all themes that can optionally be
+// overridden by the super-theme
+
+// Background of the presentation
+$backgroundColor: #fcfbf9;
+
+// Primary/body text
+$mainFont: 'Jost', sans-serif;
+$mainFontSize: 30px;
+$mainColor: #333;
+
+// Vertical spacing between blocks of text
+$blockMargin: 20px;
+
+// Headings
+$headingMargin: 0 0 $blockMargin 0;
+$headingFont: 'Abhaya Libre', Impact, sans-serif;
+$headingColor: #9b332b;
+$headingLineHeight: 1.2;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingTextShadow: none;
+$headingFontWeight: normal;
+$heading1TextShadow: $headingTextShadow;
+
+$heading1Size: 3.00em;
+$heading2Size: 2.11em;
+$heading3Size: 1.55em;
+$heading4Size: 1.00em;
+
+$codeFont: monospace;
+
+$code-block-font-size: 0.55em !default;
+
+// Links and actions
+$linkColor: #437597;
+$linkColorHover: darken( $linkColor, 20% );
+
+// Text selection
+$selectionBackgroundColor: #f7c267;
+$selectionColor: rgb(0, 0, 0);
+
+// start using css here
+#title-slide > h1 {
+  color: #591c19;
+  text-align: center;
+  padding-top: 60px;
+  text-shadow: none;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+#title-slide .author {
+  color: #262d42;
+  text-align: center;
+  text-shadow: none;
+  padding-bottom: 60px;
+  margin-top: 0px;
+}
+
+#title-slide > h2 .author {
+  color: #262d42;
+  text-align: center;
+  text-shadow: none;
+  padding-bottom: 60px;
+  margin-top: 0px;
+}
+
+#title-slide > h3 .date {
+  color: #262d42;
+  text-align: center;
+  text-shadow: none;
+  padding-bottom: 60px;
+  margin-top: 0px;
+}
+
+
+  .reveal .slides > section > section {
+    text-align:left;
+  }
+
+  .code_block {
+   height: 200px;
+   width: 300px;
+   border:1px;
+   border-style:solid;
+ }

@@ -1,0 +1,876 @@
+---
+title: "Data Cleaning in R"
+subtitle: "With the Tidyverse"
+institute: "Department of Political Science at Georgia State University"
+author: "Josh Allen"
+date: "2022-08-29"
+format: 
+ revealjs:
+   theme: ["allen.scss"]
+---
+
+```{r setup, echo = FALSE}
+
+pacman::p_load("palmerpenguins", "flair", "knitr", "kableExtra", 
+               "AllenMisc")
+
+penguins = penguins
+
+data1 <- data.frame(ID = 1:2,                      ## Create first example data frame
+                    X1 = c("a1", "a2"),
+                    stringsAsFactors = FALSE)
+data2 <- data.frame(ID = 2:3,                      ## Create second example data frame
+                    X2 = c("b1", "b2"),
+                    stringsAsFactors = FALSE)
+
+starwars = dplyr::starwars
+
+
+
+```
+
+## Packages You Will Need
+
+```{r eval=FALSE, echo =TRUE}
+install.packages("pacman")
+
+pacman::p_load("palmerpenguins", "knitr", "kableExtra", "tidyverse", install = TRUE)
+
+data("starwars")
+
+penguins = penguins
+
+```
+
+# Cleaning Data in the Tidyverse
+
+::: callout
+Like families, tidy datasets are all alike but every messy dataset is messy in its own way. `r tufte::quote_footer("Hadley Wickham")`
+:::
+
+## What is tidy data?
+
+-   Every variable is a column
+
+-   Every row is an observation
+
+-   Each type of observational unit forms a table.
+
+-   Most of the time this looks like what is known as "long data"
+
+## Pros of the Tidyverse
+
+::: incremental
+One of the most furious debates in R is base R versus tidyverse. I will not go into great detail about them because many people who are better at R than me have
+
+-   Similar syntax and philosophy which makes it more intuitive to learn
+
+-   Extremely nice community
+
+-   The core syntax of `dplyr` provides a nice front end for many other big data tools i.e. SQL
+
+-   Generally pretty intuitive and easy to figure out what past you has done.
+
+-   However:
+
+-   do not avoid some base R solutions
+
+-   Base R is more stable so it limits the fragility of your code
+
+-   A mix of base R and the tidyverse never hurt nobody
+:::
+
+## 
+
+```{r echo = TRUE}
+tidyverse::tidyverse_packages()
+```
+
+::: notes
+These are the packages that are considered a part of the tidyerse. The ones that are loaded when you do library tidyverse are ggplot tibble tidyr readr purr dplyr stringr and forcats. Magrittr is also loaded. But if you want anything else like rvest and broom
+:::
+
+## What is loaded
+
+```{r echo = TRUE}
+library(tidyverse)
+```
+
+-   However you can load in specific packages. There is something called the tinyverse that loads in `ggplot2` and `data.table`
+
+::: notes
+The tidyverse is pretty verbose because it loads a lot of things and in the case of lag and filter actually makes its lag and filter function the one that R uses.
+:::
+
+## Namespace Conflicts
+
+-   Since R is open source you can name your functions just about anything
+
+    -   this results in lots of packages having similarly named functions
+
+-   `Dplyr` is just warning us that if we use `filter` or `lag` it will use `dplyr`'s version of the function
+
+-   Whenever `R` runs into a namespace conflict it will default to the last package that was loaded
+
+-   It is generally best practice to load the `tidyverse` last
+
+-   You can also use `packagename::function you want to use` to get around it.
+
+    -   This is called a namespace call
+    -   explicitly tells R which function you are using
+
+## Dplyr
+
+<center>
+
+<figure><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/dplyr.png" title="Dplyr" alt="Dplyr" width="20%"/></figure>
+
+</center>
+
+## The Big 5 Dplyr Verbs
+
++------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Extract rows with `filter()`       | ![filter](https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/filter.png "filter"){alt="filter"}             |
++------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Extract columns with `select()`    | ![select](https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/select.png "select"){alt="select"}             |
++------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arrange/sort rows with `arrange()` | ![arrange](https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/arrange.png "arrange"){alt="arrange"}         |
++------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Make new columns with `mutate()`   | ![mutate](https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/mutate.png "mutate"){alt="mutate"}             |
++------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Make group summaries with\         | ![summarize](https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/summarize.png "summarize"){alt="summarize"} |
+| `group_by() %>% summarize()`       |                                                                                                                                                            |
++------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Piping
+
+-   The pipe is wildly convenient and makes your code much easier to debug
+
+-   It is a lot more intuitive than huge nested calls not only to read but to write
+
+-   It is how most people do things in the tidyverse
+
+::: notes
+Rather than starting with nested parenthesis we will start with piping. because it affords us a ton of advantages
+:::
+
+## Magrittr Piping
+
+-   The tidyverse has its own pipe `%>%` and used to be the only game in town.
+    -   `%>%` is just `%` followed by `>` followed by `%`
+-   A pipe takes whats on the left hand side of the pipe and evaluates it as the *first* argument on the right hand side
+
+::: columns
+::: {.column width="45%"}
+```{r  echo = TRUE}
+## These do the same thing
+summarise(group_by(filter(penguins,species == "Adelie"),
+ island), mean(body_mass_g, na.rm = TRUE))
+
+
+```
+:::
+
+::: {.column width="45%"}
+```{r echo = TRUE}
+penguins %>%  
+filter(species == "Adelie") %>% 
+group_by(island) %>% 
+summarise(mean(body_mass_g, na.rm = TRUE))
+```
+:::
+:::
+
+::: callout
+Example provided by [Grant McDermot](https://github.com/uo-ec607/lectures)
+:::
+
+## Magrittr Piping(cont)
+
+-   When you pipe stuff it is easier to think of the pipe as saying and then
+
+-   If we use an example from your morning routine we can start to figure it our
+
+```{=html}
+<!-- -->
+```
+    me %>%
+    wake_up(time = "8.00am") %>%
+    get_out_of_bed(side = "correct") %>%
+    get_dressed(pants = "TRUE", shirt = "TRUE") %>% 
+    leave_house(car = TRUE, bike = FALSE, MARTA = FALSE) %>%
+    am_late(traffic = TRUE)
+
+::: aside
+Example derived from [Andrew Heiss](https://twitter.com/andrewheiss/status/1359583543509348356?lang=en)
+:::
+
+## Base R Pipe
+
+-   The pipe caught on and the team behind `R` added a native pipe \|\>
+
+    -   this is just `|` followed by `>`
+
+-   If you are have a version of R that is older than `4.2.0` it should come with the native pipe
+
+-   The base versus magrittr pipe differ slightly and it is worth knowing some of the differences
+
+-   The base R pipe is pretty flexible and supports some cool computer sciency stuff for more [check out this page](https://stat.ethz.ch/R-manual/R-devel/library/base/html/pipeOp.html)
+
+    -   I tend to use the base R pipe
+
+::: notes
+If you are on a mac the keyboard shortcut is command shift m
+:::
+
+## filter()
+
+### Subsetting By Rows
+
+## What Kind of Tests Can I Do?
+
++----------+--------------------------+-------------+-----------------------+
+| Test     | Meaning                  | Test        | Meaning               |
++==========+==========================+=============+=======================+
+| `x < y`  | Less than                | `x %in% y`  | In (group membership) |
++----------+--------------------------+-------------+-----------------------+
+| `x > y`  | Greater than             | `is.na(x)`  | Is missing            |
++----------+--------------------------+-------------+-----------------------+
+| `==`     | Equal to                 | `!is.na(x)` | Is not missing        |
++----------+--------------------------+-------------+-----------------------+
+| `x <= y` | Less than or equal to    |             |                       |
++----------+--------------------------+-------------+-----------------------+
+| `x >= y` | Greater than or equal to |             |                       |
++----------+--------------------------+-------------+-----------------------+
+| `x != y` | Not equal to             |             |                       |
++----------+--------------------------+-------------+-----------------------+
+
+## filter()
+
+::: columns
+::: column
+```{r eval=FALSE, echo = TRUE}
+penguins |> 
+  filter(species == "Adelie",
+         body_mass_g < 6200,
+         bill_length_mm < 59.6)
+```
+:::
+
+::: column
+```{r echo= FALSE }
+penguins |> 
+  select(species, body_mass_g, bill_length_mm) |> 
+  filter(species == "Adelie",
+         body_mass_g < 6200,
+         bill_length_mm < 59.6) |>
+  mutate(body_mass_g = as.character(body_mass_g),
+         bill_length_mm = as.character(bill_length_mm)) |> 
+  head(6) |> 
+  bind_rows(tibble(species = "…", body_mass_g = "…", bill_length_mm = "…")) |> 
+   knitr::kable(format = "html")
+```
+:::
+:::
+
+## filter()
+
+-   regular expressions also work and can be pretty handy.
+
+::: columns
+::: column
+```{r  eval=FALSE, echo = TRUE}
+
+starwars |> 
+  filter(grepl("Skywalker", name)|
+           grepl("Palp", name) |
+           grepl("Obi", name))
+
+```
+:::
+
+::: column
+```{r echo = FALSE}
+starwars |> 
+  select(name, height, mass, homeworld) |> 
+  filter(grepl("Skywalker", name) | grepl("Palp", name) | grepl("Obi", name)) |> 
+  mutate(height = as.character(height),
+         mass = as.character(mass)) |> 
+  head(6) |> 
+  bind_rows(tibble(name = "...", height = "...", mass = "...", homeworld = "...")) |> 
+  knitr::kable(format = "html")
+```
+:::
+:::
+
+## filter()
+
+You can also supply a list to filter to subset your data
+
+::: columns
+::: column
+```{r eval=FALSE, echo = TRUE}
+starwars |> 
+  filter(homeworld %in% c("Naboo", "Tatooine")
+         & !grepl(c("ars"),name))
+
+
+```
+:::
+
+::: column
+```{r echo=FALSE}
+starwars |> 
+  select(name, homeworld) |> 
+  filter(homeworld %in% c("Naboo", "Tatooine") & !grepl(c("ars"),name)) |> 
+    head(6) |> 
+    bind_rows(tibble(name = "...", homeworld =  "...")) |> 
+    knitr::kable(format = "html")
+```
+:::
+:::
+
+::: notes
+Using lists instead of big long conditional statements will honestly make your life so much easier,
+:::
+
+## filter()
+
+One of the most common uses is to find and remove missing values or not in a list.
+
+```{r eval = FALSE, echo = TRUE }
+
+penguins |> 
+  filter(is.na(sex))
+
+starwars |> 
+  filter(is.na(birth_year))
+```
+
+## Your Turn
+
+-   Using the sample code from the last slide filter out the NA values. Hint use !
+
+-   Using either the star wars or penguins data use `%in%` to get a set of home worlds or islands
+
+-   Subset the penguin data where body mass is less than `4202` and not on the Dream Island.
+
+## Select()
+
+### Subsetting by Columns
+
+## Select()
+
+For various reasons we may want to just keep a few columns.
+
+-   For this task we use our friend select
+
+-   You can feed it one column or a range of columns with `:`
+
+-   You can also leave columns out using `-`
+
+::: columns
+::: column
+```{r eval = FALSE, echo = TRUE}
+penguins |> 
+  select(species,
+         island:bill_depth_mm,
+         -bill_length_mm)
+```
+:::
+
+::: column
+```{r echo=FALSE}
+penguins |> 
+  select(species, island:bill_depth_mm, -bill_length_mm) |> 
+  mutate(bill_depth_mm = as.character(bill_depth_mm)) |> 
+  head(6) |> 
+  bind_rows(tibble(species = "...", island = "...", bill_depth_mm = "...")) |> 
+  knitr::kable(format = "html")
+```
+:::
+:::
+
+## Helpful Helpers
+
+-   Dplyr comes really useful functions that help you when there are common patterns in your variable names
+
+-   the syntax usually goes `select(contains("pattern"))`, `select(starts_with("pattern"))`, or `select(ends_with("pattern"))`
+
+::: columns
+::: column
+```{r eval=FALSE, echo = TRUE}
+
+starwars |> 
+  select(name,
+   ends_with("color"),
+    homeworld)
+
+```
+:::
+
+::: column
+```{r echo = FALSE}
+
+starwars |> 
+  select(name, ends_with("color"), homeworld) |> 
+  head(6) |> 
+  bind_rows(tibble(name = "...", hair_color = "...", skin_color = "...",
+                   eye_color = "...", homeworld = "...")) |> 
+  knitr::kable(format = "html")
+
+
+```
+:::
+:::
+
+## Mutate
+
+### Making New Variables
+
+## Mutate
+
+-   Mutate creates new columns in your dataset
+
+-   You can use logical and boolean operators as well as various mathematical transformations
+
+::: columns
+::: column
+```{r eval=FALSE, echo = TRUE}
+penguins |> 
+  filter(!is.na(sex)) |> 
+  select(species, sex) |> 
+  mutate(female = ifelse(sex == "female", TRUE, FALSE))
+```
+:::
+
+::: column
+```{r echo= FALSE}
+
+penguins |> 
+  filter(!is.na(sex)) |> 
+  select(species, sex) |> 
+  mutate(female = ifelse(sex == "female", TRUE, FALSE),
+         female = as.character(female)) |> 
+  head(6) |> 
+  bind_rows(tibble(species = "...", sex =  "...", female = "...")) |> 
+  knitr::kable(format = "html")
+
+
+```
+:::
+:::
+
+## Mutate()
+
+-   Mutate is order aware so you don't have to use a new `mutate` for each new variable you want to create
+
+::: columns
+::: column
+```{r eval = FALSE, echo = TRUE}
+ penguins |> 
+  filter(!is.na(bill_length_mm) & species == "Gentoo") |> 
+  mutate(long_bill = bill_length_mm * 2,
+         long_bill_logical =
+           ifelse(long_bill >= 100
+                  & long_bill <= 119.20,
+                  "Long",
+                  "Short")) |> 
+  select(species, bill_length_mm, long_bill, long_bill_logical)
+
+```
+:::
+
+::: column
+```{r echo= FALSE}
+ penguins |> 
+  filter(!is.na(bill_length_mm) & species == "Gentoo") |> 
+  mutate(long_bill = bill_length_mm * 2,
+         long_bill_logical = ifelse(long_bill >= 100 & long_bill <= 119.20, "Long", "Short"),
+         bill_length_mm = as.character(bill_length_mm),
+         long_bill = as.character(long_bill),
+         long_bill_logical = as.character(long_bill_logical)) |> 
+  select(species, bill_length_mm, long_bill, long_bill_logical) |> 
+  head(6) |> 
+  bind_rows(tibble(species = "...", bill_length_mm = "...", long_bill = "...", long_bill_logical = "..." )) |> knitr::kable(format = "html")
+  
+```
+:::
+:::
+
+## Group_by() and Summarize()
+
+## group_by()
+
+::: incremental
+-   `group_by()` simply puts rows into groups based on values of a column
+
+-   Not necessarily the most useful function because nothing really happens when called by itself
+
+```{r  echo = TRUE}
+penguins |>
+  group_by(species) 
+```
+
+-   Unless you combine it with `summarize()`
+:::
+
+::: aside
+You may see me use `summarise` this is the same thing as `summarize`.
+:::
+
+## 
+
+```{r eval = FALSE, echo = TRUE}
+
+penguins |> 
+  group_by(species) |> 
+  summarize(total_penguins = n())
+
+```
+
+```{r echo=FALSE}
+
+penguins |> 
+  group_by(species) |> 
+  summarize(total_penguins = n()) |> 
+  mutate(total_penguins = as.character(total_penguins)) |> 
+  knitr::kable(format = "html")
+
+```
+
+## 
+
+::: columns
+::: column
+```{r eval= FALSE, echo = TRUE}
+penguins |> 
+  group_by(species) |> 
+  summarise(mean_bill_length = mean(bill_length_mm, na.rm = TRUE))
+```
+:::
+
+::: column
+```{r echo = FALSE}
+penguins |> 
+  group_by(species) |> 
+  summarise(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |> 
+  mutate(mean_bill_length = as.character(mean_bill_length)) |> 
+  knitr::kable(format = "html")
+
+```
+:::
+:::
+
+## Your Turn
+
+-   Calculate the minimum, maximum, and median for each species of penguin
+
+-   what happens if you remove `group_by()`?
+
+-   Do the same for the star wars data
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 3, sound = TRUE)
+```
+
+## Other useful dplyr stuff
+
+### Mostly joins
+
+## Joins
+
+-   Often times we need to get data from another dataset
+
+-   In `Dplyr` we use join operations
+
+    -   What each of the below joins are doing are elaborated more in [R for Data Science](https://r4ds.hadley.nz/joins.html)
+
+-   `inner_join(df1, df2)`
+
+-   `left_join(df1, df2)`
+
+-   `right_join(df1, df2)`
+
+-   `full_join(df1, df2)`
+
+-   `semi_join(df1, df2)`
+
+-   `anti_join(df1, df2)`
+
+## Joins
+
+-   The basic syntax for each join is the same `_join(df1, df2, by = "var I want to join on)`
+
+-   The `by` argument can take a list of variables or you can just let dplyr guess(bad idea)
+
+-   Each join does something different and some are more cautious than others
+
+-   I tend to use `left_join` the most and is handy when you are trying to fill in gaps in panel data
+
+::: columns
+::: column
+```{r eval=FALSE, echo = TRUE}
+data1 = data.frame(ID = 1:2,                      ## Create first example data frame
+                    X1 = c("a1", "a2"),
+                    stringsAsFactors = FALSE)
+```
+
+```{r echo= FALSE}
+data1 |> 
+  knitr::kable(format = "html")
+```
+:::
+
+::: column
+```{r eval=FALSE, echo = TRUE}
+data2 = data.frame(ID = 2:3,                      ## Create second example data frame
+                    X2 = c("b1", "b2"),
+                    stringsAsFactors = FALSE)
+```
+
+```{r echo=FALSE}
+
+data2 |> knitr::kable(format = "html")
+
+```
+:::
+:::
+
+## left_join()
+
+```{r eval=FALSE, echo = TRUE}
+left_join(data1, data2, by = "ID")
+```
+
+```{r echo=FALSE}
+left_join(data1, data2, by = "ID") |> knitr::kable(format = "html")
+```
+
+## Using "Real" Data
+
+```{r echo=FALSE}
+national_data <- tribble(
+  ~state, ~year, ~unemployment, ~inflation, ~population,
+  "GA",   2018,  5,             2,          100,
+  "GA",   2019,  5.3,           1.8,        200,
+  "GA",   2020,  5.2,           2.5,        300,
+  "NC",   2018,  6.1,           1.8,        350,
+  "NC",   2019,  5.9,           1.6,        375,
+  "NC",   2020,  5.3,           1.8,        400,
+  "CO",   2018,  4.7,           2.7,        200,
+  "CO",   2019,  4.4,           2.6,        300,
+  "CO",   2020,  5.1,           2.5,        400
+)
+
+national_libraries <- tribble(
+  ~state, ~year, ~libraries, ~schools,
+  "CO",   2018,  230,        470,
+  "CO",   2019,  240,        440,
+  "CO",   2020,  270,        510,
+  "NC",   2018,  200,        610,
+  "NC",   2019,  210,        590,
+  "NC",   2020,  220,        530,
+)
+
+national_data_2019 <- national_data %>% 
+  filter(year == 2019) %>% select(-year)
+
+national_libraries_2019 <- national_libraries %>% 
+  filter(year == 2019) %>% select(-year)
+
+state_regions <- tribble(
+  ~region, ~state,
+  "Northeast", c("CT", "ME", "MA", "NH", "RI", "VT", "NJ", "NY", "PA"),
+  "Midwest", c("IL", "IN", "MI", "OH", "WI", "IA", "KS", "MN", "MO", "NE", "ND", "SD"),
+  "South", c("DE", "FL", "GA", "MD", "NC", "SC", "VA", "DC", "WV", "AL", "KY", "MS", "TN", "AR", "LA", "OK", "TX"),
+  "West", c("AZ", "CO", "ID", "MT", "NV", "NM", "UT", "WY", "AK", "CA", "HI", "OR", "WA")
+) %>% unnest(state) %>% 
+  arrange(state)
+
+
+
+```
+
+::: columns
+::: column
+```{r eval=FALSE, echo = TRUE}
+national_data
+```
+
+```{r echo=FALSE}
+national_data |> 
+  knitr::kable(format = "html")
+```
+:::
+
+::: column
+```{r eval=FALSE, echo = TRUE}
+national_libraries
+```
+
+```{r echo=FALSE}
+national_libraries |> 
+  knitr::kable(format = "html")
+```
+:::
+:::
+
+## Joins(cont)
+
+```{r eval=FALSE, echo = TRUE}
+national_combined = left_join(national_data, national_libraries, 
+                                    by = c("state", "year")) 
+
+national_combined
+```
+
+```{r echo=FALSE}
+
+national_data |> 
+  left_join(national_libraries, by = c("state", "year")) |> 
+  knitr::kable(format = "html")
+
+
+```
+
+## Combined Data
+
+```{r eval=FALSE, echo = TRUE}
+national_combined = national_data |> 
+  left_join(national_libraries, by = c("state", "year"))
+
+
+national_combined
+```
+
+```{r echo=FALSE}
+national_data |> 
+  left_join(national_libraries, by = c("state", "year")) |> 
+  knitr::kable(format = "html")
+```
+
+## Joins continued
+
+::: columns
+::: column
+```{r echo=FALSE}
+
+national_data |> 
+  knitr::kable(format = "html")
+
+```
+:::
+
+::: column
+```{r echo=FALSE}
+national_libraries = national_libraries |> 
+  rename(statename = state)
+
+national_libraries |> knitr::kable(format = "html")
+
+```
+:::
+:::
+
+## Joins(cont)
+
+```{r eval=FALSE, echo = TRUE}
+national_data |> 
+  left_join(national_libraries, by = c("state" = "statename", "year"))
+
+
+```
+
+```{r echo=FALSE}
+national_data |> 
+  left_join(national_libraries, by = c("state" = "statename", "year")) |> 
+  knitr::kable(format = "html")
+```
+
+## Tidyr
+
+<center>
+
+<figure><img src="https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/tidyr.png" title="Tidyr" alt="tidyverse" width="20%"/></figure>
+
+</center>
+
+## Reshaphing Data
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/tidyr-pivoting.gif)
+
+## What does this look like in practice?
+
+```{r echo=FALSE}
+
+data("relig_income")
+
+relig_income |>
+ knitr::kable(format = "html")
+
+```
+
+::: notes
+Lets take a look at some wide data here we are looking at billboard top hits. I have truncated it a bit to fit on the slide but weeks goes to week 47. Instead of having each week be an individual column we want it to be in a tidy format where week is one column and the values from all those columns are in the week column we create
+:::
+
+## Making Data Longer
+
+```{r eval= FALSE, echo = TRUE}
+relig_income |> 
+  pivot_longer(!religion, names_to = "income", values_to = "count" )
+
+
+```
+
+```{r echo=FALSE}
+
+relig_income |> 
+  pivot_longer(!religion, names_to = "income", values_to = "count" ) |> 
+  head(10) |> 
+  knitr::kable(format = "html")
+
+
+```
+
+## More Complex Example
+
+```{r eval=FALSE, echo = TRUE}
+
+data("billboard")
+
+```
+
+```{r echo=FALSE}
+data("billboard")
+billboard |> 
+  select(1:8) |> 
+  knitr:: kable(format = "html")
+
+```
+
+## Using Your Helpers
+
+```{r eval=FALSE, echo = TRUE}
+billboard |> 
+  pivot_longer(
+    cols = starts_with("wk"), ##<<
+    names_to = "week",
+    names_prefix = "wk",
+    values_to = "rank",
+    values_drop_na = TRUE
+  )
+```
+
+```{r echo=FALSE}
+billboard |> 
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    names_prefix = "wk",
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) |> 
+  knitr::kable(format = "html")
+```
