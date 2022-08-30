@@ -1390,7 +1390,7 @@
     "href": "slides/Getting-Started-in-R.html#getting-good-at-r",
     "title": "Getting Started in R",
     "section": "Getting Good at R",
-    "text": "Getting Good at R\n\n\nThe only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code\n\n— Hadley Wickham (@hadleywickham) April 17, 2015\n\n\n\nyou are going to run into lots of error messages and it is going to be really frustrating. Warning messages and errors are something we all run into. Trust me I have been close to needing a new computer more than few times. Part of getting good at R is just figuring out what the hell"
+    "text": "Getting Good at R\n\n\n\nThe only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code\n\n— Hadley Wickham (@hadleywickham) April 17, 2015\n\n\n\n\nyou are going to run into lots of error messages and it is going to be really frustrating. Warning messages and errors are something we all run into. Trust me I have been close to needing a new computer more than few times. Part of getting good at R is just figuring out what the hell"
   },
   {
     "objectID": "slides/data-cleaning.html#packages-you-will-need",
