@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.163">
+<meta name="generator" content="quarto-1.1.165">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Research Data Services R Workshops at Georgia State University - Computing troubleshooting</title>
+<title>Research Data Services R Workshops at Georgia State University - Troubleshooting Errors and Warnings</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Computing troubleshooting</h1>
+      <h1 class="quarto-secondary-nav-title">Troubleshooting Errors and Warnings</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -169,14 +169,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#common-errors" id="toc-common-errors" class="nav-link active" data-scroll-target="#common-errors">Common Errors</a>
+  <ul class="collapse">
+  <li><a href="#file-does-not-exist-or-no-such-file-or-directory" id="toc-file-does-not-exist-or-no-such-file-or-directory" class="nav-link" data-scroll-target="#file-does-not-exist-or-no-such-file-or-directory">File does not exist, or No such file or directory</a></li>
+  <li><a href="#could-not-find-function-functionineedtouse" id="toc-could-not-find-function-functionineedtouse" class="nav-link" data-scroll-target="#could-not-find-function-functionineedtouse">Could Not find function “functionineedtouse”</a></li>
+  <li><a href="#object-not-found" id="toc-object-not-found" class="nav-link" data-scroll-target="#object-not-found">Object Not found</a></li>
+  <li><a href="#column-does-not-exist" id="toc-column-does-not-exist" class="nav-link" data-scroll-target="#column-does-not-exist">Column Does Not Exist</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/joshuafayallen/research-data-services-r-workshops/edit/main/computing-troubleshooting.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/joshuafayallen/research-data-services-r-workshops/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Computing troubleshooting</h1>
+<h1 class="title d-none d-lg-block">Troubleshooting Errors and Warnings</h1>
 </div>
 
 
@@ -190,16 +202,73 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>If you’re having difficulty launching an RStudio session from your reserved container, go to <a href="https://status.oit.duke.edu/">status.oit.duke.edu</a> and scroll down to <strong>Teaching and Learning Tools</strong>. Under this heading you’ll find an entry called <em>Container Manager (CMGR Coursework Containers)</em>.</p>
+<p>We frequently run into error messages and warnings in these workshops! No need to fret this happens to the best <code>R</code> users all the time. It may be helpful to go over them quickly.</p>
 <ul>
-<li><p>If the status shows something other than <code>Operational</code>, this means there is a known incident with the containers. Check back later to see if it’s been resolved. If there’s a deadline coming up soon, post on the course forum to let us know that there’s an issue. We can look into how quickly it might get resolved and decide on what to do about the deadline accordingly. Note: We don’t anticipate this to happen regularly, the systems are Operational a huge majority of the time!</p></li>
-<li><p>If the status shows <code>Operational</code>, this means the system is expected to be working. Check your internet connection, if need be, restart your computer to ensure a fresh new connection. If your issue persists, post on the course forum with details on what you’ve tried and the errors you see (including verbatim errors and/or screenshots).</p></li>
-<li><p>Either way you can also fill out the form <a href="https://duke.qualtrics.com/jfe/form/SV_6s3DOsiCIzNya9w">here</a>, which will notify our the R TA for the department as well as our undergraduate coordinator. They’ll be able to help diagnose the issue.</p></li>
+<li><p><strong>Errors</strong>: These are things that will legitmately not make your code run whether these are misspelled object names, missing commas, unmatched parenthesis, etc…</p></li>
+<li><p><strong>Warnings</strong>: These just mean your code will run but there are some caveats attached like <code>ggplot</code> dropping missing observations or missing values are introduced by coercing to a vector to a numeric type.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
 </ul>
+<section id="common-errors" class="level1">
+<h1>Common Errors<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h1>
+<section id="file-does-not-exist-or-no-such-file-or-directory" class="level2">
+<h2 class="anchored" data-anchor-id="file-does-not-exist-or-no-such-file-or-directory">File does not exist, or No such file or directory</h2>
+<p>This generally means one of two things. You misspelled the filename or you forgot to tell R where to look. To fix it you should check a few things</p>
+<ol type="1">
+<li>Check to make sure that the name of the file is spelled correctly</li>
+<li>Check to make sure that your working directory is set correctly
+<ul>
+<li>If the file is living in a folder in the working directory specify that folder with the correct slash</li>
+<li>This is probably the most common ones</li>
+</ul></li>
+<li>If the file is open in Excel close it. Sometimes Excel will hold things hostage so that could be your issue.</li>
+</ol>
+</section>
+<section id="could-not-find-function-functionineedtouse" class="level2">
+<h2 class="anchored" data-anchor-id="could-not-find-function-functionineedtouse">Could Not find function “functionineedtouse”</h2>
+<p>This is just R saying that it does not know what you are trying to do to the object because it can’t figure what the function is.</p>
+<ol type="1">
+<li>Is the function spelled correctly(my most common mistake)</li>
+<li>If so did you run library(packagewithfunctionname)</li>
+<li>Do you need to install the package that function is living in?</li>
+</ol>
+</section>
+<section id="object-not-found" class="level2">
+<h2 class="anchored" data-anchor-id="object-not-found">Object Not found</h2>
+<p>If you get this error than this is R telling you that you are trying to reference an object that does not exist.</p>
+<ol type="1">
+<li>Make sure the object name is spelled right</li>
+<li>Make sure that you have in fact assigned the said object
+<ul>
+<li>Did you do something with all the neccessary R code, but forgot to assign it before running the code in question?</li>
+</ul></li>
+</ol>
+</section>
+<section id="column-does-not-exist" class="level2">
+<h2 class="anchored" data-anchor-id="column-does-not-exist">Column Does Not Exist</h2>
+<p>If you get his error than this means you are trying to reference a column that does not exist.</p>
+<ol type="1">
+<li>Is the name of the variable spelled correctly?
+<ul>
+<li>This can also include white space which requires you to use <code>Name of Var</code></li>
+</ul></li>
+<li>Make sure you are referencing the right object
+<ul>
+<li>i.e.&nbsp;Did you create a new variable and assign it to a different object?</li>
+</ul></li>
+<li>When referencing the column did you drop it along the way?</li>
+</ol>
 
 
+</section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Both examples are derived from <a href="https://moderndive.com/1-getting-started.html#messages">Statistical Inference via Data Science: A ModernDive into R and the Tidyverse</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>These are the ones I tend to run into and the coverage and advice is from <a href="https://nickch-k.github.io/DataCommSlides/Lecture_04_Common_R_Problems.html#file-does-not-exist-or-no-such-file-or-directory">Nick Huntington-Klein’s post</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
