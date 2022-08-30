@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs
+  
 
 website:
   page-navigation: true
@@ -12,10 +12,10 @@ research-data-services-r-workshops/"
   repo-url: https://github.com/joshuafayallen/research-data-services-r-workshops
   repo-actions: [edit, issue]
 
-  opengraph: true
-  twitter-card:
-    creator: "@minebocek"
-    image: "https://raw.githubusercontent.com/joshuafayallen/research-data-services-r-workshops/main/images/avatar.png"
+ # opengraph: true
+ # twitter-card:
+ #   creator: "@minebocek"
+ #   image: "https://raw.githubusercontent.com/joshuafayallen/research-data-services-r-workshops/main/images/avatar.png"
 
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
@@ -24,7 +24,7 @@ research-data-services-r-workshops/"
 
   sidebar:
     background: "#97CAEB"
-    logo: "https://raw.githubusercontent.com/joshuafayallen/research-data-services-r-workshops/main/images/avatar.png"
+    logo: "images/avatar.png"
     pinned: true
     align: center
     tools:
