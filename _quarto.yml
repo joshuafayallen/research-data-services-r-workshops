@@ -15,7 +15,7 @@ research-data-services-r-workshops/"
   opengraph: true
   twitter-card:
     creator: "@minebocek"
-    image: "images/avatar.png"
+    image: "https://raw.githubusercontent.com/joshuafayallen/research-data-services-r-workshops/main/images/avatar.png"
 
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
@@ -24,7 +24,7 @@ research-data-services-r-workshops/"
 
   sidebar:
     background: "#97CAEB"
-    logo: "images/avatar.png"
+    logo: "https://raw.githubusercontent.com/joshuafayallen/research-data-services-r-workshops/main/images/avatar.png"
     pinned: true
     align: center
     tools:
