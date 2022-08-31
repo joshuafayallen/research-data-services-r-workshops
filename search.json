@@ -151,7 +151,7 @@
     "href": "slides/ggplot-presentation.html#why-ggplot2",
     "title": "Getting Started in ggplot",
     "section": "Why ggplot2?",
-    "text": "Why ggplot2?\n::: {.callout-note}\nThe transferable skills from ggplot2 are not the idiosyncrasies of plotting syntax, but a powerful way of thinking about visualization, as a way of mapping between variables and the visual properties of geometric objects that you can perceive.\n\n\nHadley Wickham\n\n\n:::"
+    "text": "Why ggplot2?\n\n\n\nThe transferable skills from ggplot2 are not the idiosyncrasies of plotting syntax, but a powerful way of thinking about visualization, as a way of mapping between variables and the visual properties of geometric objects that you can perceive.\n\nHadley Wickham"
   },
   {
     "objectID": "slides/ggplot-presentation.html#why-ggplot2-1",
