@@ -962,8 +962,8 @@ national_data |>
 ```{r echo=FALSE}
 national_data |> 
   left_join(national_libraries, by = c("state" = "statename", "year")) |> 
-  knitr::kable(format = "html") |> 
-  head(5)
+  head(5) |>
+  knitr::kable(format = "html") 
 ```
 
 ## Tidyr
