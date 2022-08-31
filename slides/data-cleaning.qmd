@@ -456,6 +456,7 @@ summarise(group_by(filter(penguins,species == "Adelie"),
 
 ::: {.column width="45%"}
 ```{r echo = TRUE}
+#| code-line-numbers: "|1|2|3|4"
 penguins %>%  
 filter(species == "Adelie") %>% 
 group_by(island) %>% 
@@ -465,7 +466,7 @@ summarise(mean(body_mass_g, na.rm = TRUE))
 :::
 
 ::: callout
-Example provided by [Grant McDermot](https://github.com/uo-ec607/lectures)
+This example an adaptation provided by [Grant McDermot](https://github.com/uo-ec607/lectures)
 :::
 
 ## Magrittr Piping(cont)
@@ -517,7 +518,9 @@ If you are on a mac the keyboard shortcut is command shift m
 
 -   Mutate creates new columns in your dataset
 
--   You can use logical and boolean operators as well as various mathematical transformations
+-   You can use logical and boolean operators 
+
+- Here we are just creating an indicator with a logical test
 
 ::: columns
 ::: column
@@ -546,8 +549,87 @@ penguins |>
 :::
 :::
 
+## Logical Tests 
+
+- There are various ways to do this in mutate but they all follow the same logic
+
+:::columns
+:::column
+
+```{r eval = FALSE, echo = TRUE}
+#| code-line-numbers: "|1|2|3"
+ifelse(test,
+       Value_if_True,
+       Value_if_False)
 
 
+
+```
+
+:::
+:::column 
+
+
+- Test is a logical test `sex == "female"`, `species == "Wookie"`, etc
+
+- Value_if_True what does it do if the test returns true
+
+- Value_if_FALSE what does it do if the test returns false
+
+:::
+:::
+
+
+## Mutate
+
+::::{.columns}
+:::{.column width="45%"}
+
+### Regular ifelse
+
+```{r echo = TRUE}
+#| code-line-numbers: "|2|3|4|5"
+penguins |>
+mutate(big_penguin = ifelse(
+  body_mass_g >= 47500,
+ "Dats a big penguin",
+  "SMOL penguin")) |>
+select(big_penguin) |>
+ head(6)
+```
+:::
+
+:::{.column width="45%"}
+
+### Fancy ifelse
+
+```{r echo = TRUE}
+#| code-line-numbers: "|1|6|14|15|16"
+
+jedi = c("Luke Skywalker",
+ "Yoda", "Obi-Wan Kenobi",
+  "Rey", 
+  "Mace Windu")
+
+sith = c("Palpatine",
+ "Darth Maul",
+  "Dooku",
+   "Darth Vader")
+
+starwars |>
+filter(name %in% jedi |
+ name %in% sith) |>
+mutate(what_are_they = case_when(
+  name %in% jedi ~ "Hero",
+  name %in% sith ~ "Evil Dooer")) |>
+      select(name, what_are_they) |>
+      head(5)
+
+
+```
+
+:::
+::::
 
 
 ## Mutate()
@@ -579,7 +661,7 @@ penguins |>
          bill_length_mm = as.character(bill_length_mm),
          long_bill = as.character(long_bill),
          long_bill_logical = as.character(long_bill_logical)) |> 
-  select(species, bill_length_mm, long_bill, long_bill_logical) |> 
+  select(bill_length_mm, long_bill, long_bill_logical) |> 
   head(6) |> 
   bind_rows(tibble(species = "...", bill_length_mm = "...", long_bill = "...", long_bill_logical = "..." )) |> knitr::kable(format = "html")
   
@@ -831,7 +913,6 @@ national_data |>
 national_combined = national_data |> 
   left_join(national_libraries, by = c("state", "year"))
 
-
 national_combined
 ```
 
@@ -841,7 +922,7 @@ national_data |>
   knitr::kable(format = "html")
 ```
 
-## Joins continued
+## What if our Columns Have Different Names?
 
 ::: columns
 ::: column
@@ -864,19 +945,25 @@ national_libraries |> knitr::kable(format = "html")
 :::
 :::
 
-## Joins(cont)
+## Renaming Columns 
+
+- Renaming stuff in dplyr is easy
+
+- we use the same syntax as `dplyr::rename()`
+
+- `renanme(newvarname = oldvarname)`
 
 ```{r eval=FALSE, echo = TRUE}
+#| code-line-numbers: "|2"
 national_data |> 
   left_join(national_libraries, by = c("state" = "statename", "year"))
-
-
 ```
 
 ```{r echo=FALSE}
 national_data |> 
   left_join(national_libraries, by = c("state" = "statename", "year")) |> 
-  knitr::kable(format = "html")
+  knitr::kable(format = "html") |> 
+  head(5)
 ```
 
 ## Tidyr
