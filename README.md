@@ -1,15 +1,15 @@
-# Website for STA 210 at Duke University (Spring 2022)
+# Website for GSU Data Services Workshops 
 
-🔗 https://sta210-s22.github.io/website/
+🔗 https://joshuafayallen.github.io/research-data-services-r-workshops/
 
 ## Colors
 
 - website background: #D9E3E4
-- headings: #5B888C
+- headings: #97CAEB
 
 ## Attribution
 
-Much of the content is based on [STA 210 - Fall 2021](https://github.com/sta210-fa21/) by Dr. Maria Tackett.
+Much of the content is based on [](https://github.com/uo-ec607/lectures) by Dr. Grant McDermott and [](https://datavizs21.classes.andrewheiss.com/) and/or [(https://talks.andrewheiss.com/2021-seacen/01-tidyverse.html)] by Dr. Andrew Heiss. The website template are modifications to [](https://sta210-s22.github.io/website/) by [Dr. Mine Çetinkaya-Rundel](https://sta210-s22.github.io/website/course-team.html) 
 
 <hr> 
 
