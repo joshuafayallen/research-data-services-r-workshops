@@ -97,17 +97,16 @@ ggplot(data = filter(df,!dataset %in% c("bullseye", "dots", "v_lines", "high_lin
 ```
 :::{.notes}
 I filtered out some of the data sets just for display purposes but critically if we don't plot our data we may miss patterns that are not recognizable to us when we are taking descriptive statistics. They are also great tools for model diagnostics. A quick  look at our residuals and fitted values is a great indicator whether something is up we use distance plots to look at whether our results are being driven by outliers 
-
 :::
 
 
 
 ## Why `ggplot2`?
 
-::: {.callout-note}
+:::{.callout-note appearance="minimal"}
+The transferable skills from ggplot2 are not the idiosyncrasies of plotting syntax, but a powerful way of thinking about visualization, as a way of mapping between variables and the visual properties of geometric objects that you can perceive.
 
-The transferable skills from ggplot2 are not the idiosyncrasies of plotting syntax, but a powerful way of thinking about visualization, as a way of mapping between variables and the visual properties of geometric objects that you can perceive. `r tufte::quote_footer("- Hadley Wickham")`
-
+- Hadley Wickham
 :::
 
 
@@ -2234,7 +2233,7 @@ You can really easily change the projections you want. Here we are just feeding 
 ## Mapping Middle Earth
 
 ```{r echo = TRUE }
-#| code-fold: TRUE
+#| code-fold: true 
 coastline = read_sf("data/ME-GIS/Coastline2.shp")
 contours = read_sf("data/ME-GIS/Contours_18.shp")
 rivers = read_sf("data/ME-GIS/Rivers.shp")
