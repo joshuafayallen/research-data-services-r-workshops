@@ -353,15 +353,15 @@ R is also equipped with modulo operations (integer division and remainders), mat
 ```
 
 ```{r echo = TRUE}
-a = matrix(c(1,3,5,7), ncol=2, nrow=2)
+m <- matrix(1:8, nrow=2)
+n <- matrix(8:15, nrow=4)
 
-b = matrix(c(2,4,6,8), ncol=2, nrow=2)
+mat <- matrix(1:15, ncol = 5)
 
- c_mat <- matrix(c(1,2,4,7), ncol = 3, nrow =2)
+m %*% n # Matrix multiplication
 
-a %*% b # Matrix multiplication
-
-t(c_mat) # transpose a matrix
+mat 
+t(mat) # transpose a matrix
 
 ```
 
