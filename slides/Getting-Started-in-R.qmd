@@ -251,6 +251,12 @@ R projects are great because they will just set the working directory to whereve
 :::
 
 
+## R Projects 
+
+```{r}
+knitr::include_graphics("figs/r-projects-menu.png")
+```
+
 
 ## Objects
 
