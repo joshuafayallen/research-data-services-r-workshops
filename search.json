@@ -1078,6 +1078,13 @@
     "text": "How To Make Your Life Easier\n\n\nWorking Directory for My Laptop\n\"/Users/josh/Dropbox/Research-Data-Services-Workshops/research-data-services-r-workshops\" \n\n\nWorking Directory of My Office Computer\n\"/Volumes/6TB Raid 10/Dropbox/Research-Data-Services-Workshops/research-data-services-r-workshops\"\n\n\n\n\nWhile setting your working directory manually is fine it is a lot more fragile. If you collaborate with people now or in the future they are going to have to manually set the working directory on their computer. Each time.\nR projects are great because they will just set the working directory to wherever the project is living. The additional benefit is that it will restart R. Which is good because R will just keep lots of packages loaded in the background. This can cause what are called namespace conflicts. This used to be really bad with plyr and dplyr but plyr has since been retired. Truly problematic namespace conflicts are not something that I have experienced but they do happen. Fresh R sessions are the easiest way to avoid them"
   },
   {
+    "objectID": "slides/Getting-Started-in-R.html#r-projects",
+    "href": "slides/Getting-Started-in-R.html#r-projects",
+    "title": "Getting Started in R",
+    "section": "R Projects",
+    "text": "R Projects"
+  },
+  {
     "objectID": "slides/Getting-Started-in-R.html#objects",
     "href": "slides/Getting-Started-in-R.html#objects",
     "title": "Getting Started in R",
