@@ -34,7 +34,7 @@ knitr::opts_chunk$set(
 ```
 
 
-## Why R Use R?
+## Why Use R?
 
 ```{r grants-plot, echo = FALSE}
 pop_df = 
