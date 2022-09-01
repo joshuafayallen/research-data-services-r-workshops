@@ -1155,6 +1155,34 @@
     "text": "Cool Now What?\n\n\nWhile this is boring it opens up lots\nWe may need to set up a group of tests to do something to data.\nWe may need all this math stuff to create new variables\nHowever we need to Assign them to reuse them later in functions.\n\nIncluding datasets\n\n\n\n\n\nR as a calculator and evaluating whether 1 is greater than 2 gets very tiring like as soon as you start doing it and is hardly ever that practical.\n\n\nLater in the semester we can modify in place but that is running before we are walking"
   },
   {
+    "objectID": "slides/Getting-Started-in-R.html#assignment",
+    "href": "slides/Getting-Started-in-R.html#assignment",
+    "title": "Getting Started in R",
+    "section": "Assignment",
+    "text": "Assignment\n\nThe most popular assigment operator in R is <- which is just < followed by -\n\nread aloud as “gets”\n\n\n\na <- 2 + 2\n\na * 2\n\n[1] 8\n\n\n\nYou can also use -> but this is far less common and makes me uncomfortable\n\n\n a^2 -> b\n\n\nAssignment might be a foregin concept to you if you have no coding experience or making the transition from excel or stata. Basically if you go through and copy and paste all this stuff into an R script it will run but we will not be able to use this.\nSo using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets 2 + 2 this lets us reuse it later whether we want to perform additional maths or use it for later"
+  },
+  {
+    "objectID": "slides/Getting-Started-in-R.html#assignmentcont",
+    "href": "slides/Getting-Started-in-R.html#assignmentcont",
+    "title": "Getting Started in R",
+    "section": "Assignment(cont)",
+    "text": "Assignment(cont)\n\n\nUsing = as an assignment operator also works and is the one I tend to use\n\nNote: = is also used to evaluate arguments within functions\n\n\n\nb = b * 2\n\nd = b/3\n\n\nTbh this is a matter of taste really.\n\nR added = in the 2000’s to make it easier for people coming from other object oriented programming languages\n\nJust keep it consistent..\nJust keep it consistent..or become ungovernable and use all three in one script.\n\nI am not responsible for you getting yelled at on Stackoverflow if you do this.\n\n\n\n\n\nTo be honest R purists are one of the last hold outs of using the gets operator essentially back in the main frame computer days there was a physical key that would do this for you. R is actually really really old so there are some quirks to it that bug lots of people. We are not going to get into it any further in this workshop but if you have prior experience in an object oriented language R will be a bit peculiar at times. Like in somne cases position of the argument does not matter indentation does not matter which will really throw you off if you are coming from python or vice versa\n\n\nMore discussion here and here"
+  },
+  {
+    "objectID": "slides/Getting-Started-in-R.html#global-environmentcont",
+    "href": "slides/Getting-Started-in-R.html#global-environmentcont",
+    "title": "Getting Started in R",
+    "section": "Global Environment(cont)",
+    "text": "Global Environment(cont)\n\n\n\nError in mean(y): object 'y' not found\n\n\n\nGives us a hint out about what went wrong\n\n\n\nMeaning R is going to look in the environment for the object you give it\n\n\n\nIf we look at the global environment Y does not exist as an object but lots of other stuff does that is not.\nBecause x and y live within e we need to tell that they belong to e so to fix it we would need to tell lm where y and x"
+  },
+  {
+    "objectID": "slides/Getting-Started-in-R.html#fixing-our-issue",
+    "href": "slides/Getting-Started-in-R.html#fixing-our-issue",
+    "title": "Getting Started in R",
+    "section": "Fixing Our Issue",
+    "text": "Fixing Our Issue\n\n\nTo fix this we need to feed e to the data argument\n\nDo do this we need to index e\n\n\n\nmean(e$y)\n\n[1] 30.5\n\n\n\n\nIn R one of the biggest things is that being explicit about what name to use is how we do things. If you are not you are gonna get error messages at best.There are lots of ways"
+  },
+  {
     "objectID": "slides/Getting-Started-in-R.html#what-are-objects",
     "href": "slides/Getting-Started-in-R.html#what-are-objects",
     "title": "Getting Started in R",
@@ -1166,7 +1194,7 @@
     "href": "slides/Getting-Started-in-R.html#the-usual-suspects",
     "title": "Getting Started in R",
     "section": "The Usual Suspects",
-    "text": "The Usual Suspects\n\nvectors\nmatrices\ndata frames\ndates\nlists\nfunctions\n\n\nf = cbind(a,b) ## this will just create a matrix \nclass(f)## lets us check the class of something \n\n[1] \"matrix\" \"array\" \n\ng = as.data.frame(f) ## converts to a different class\nstr(g) ## shows some info about the structure of the object\n\n'data.frame':   2 obs. of  4 variables:\n $ V1: num  1 3\n $ V2: num  5 7\n $ V3: num  2 4\n $ V4: num  6 8\n\ntypeof(g) ## shows how r is storing the object object\n\n[1] \"list\"\n\n\n\nThese are the ones that tend to come up most regularly used. You can also coerce once class to another. Using as will just force something to be a different class.\nWhy type of returns list: data.frame and data.table are both collections (lists) of items (vectors, if you will), each item of the same length (ie each column is an item in the list, internally to R anyway). This is why unlike in a matrix, columns can have different classes."
+    "text": "The Usual Suspects\n\nvectors\nmatrices\ndata frames\ndates\nlists\nfunctions\n\n\nf = cbind(a,b) ## this will just create a matrix \nclass(f)## lets us check the class of something \n\n[1] \"matrix\" \"array\" \n\ng = as.data.frame(f) ## converts to a different class\nstr(g) ## shows some info about the structure of the object\n\n'data.frame':   1 obs. of  2 variables:\n $ a: num 4\n $ b: num 32\n\ntypeof(g) ## shows how r is storing the object object\n\n[1] \"list\"\n\n\n\nThese are the ones that tend to come up most regularly used. You can also coerce once class to another. Using as will just force something to be a different class.\nWhy type of returns list: data.frame and data.table are both collections (lists) of items (vectors, if you will), each item of the same length (ie each column is an item in the list, internally to R anyway). This is why unlike in a matrix, columns can have different classes."
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#a-quick-aside-on-naming-stuff",
@@ -1188,41 +1216,6 @@
     "title": "Getting Started in R",
     "section": "How and What to Name Objects",
     "text": "How and What to Name Objects\nThe best practice is to use concise descriptive names\nWhen loading in data typically I do raw_my_dataset_name and after data all of my cleaning I do clean_my_dataset_name\n\nObjects must start with a letter. But can contain letters, numbers, _, or .\n\nsnake_case_like_this_is_what_I_use\nsomePeopleUseCamelCase\nsome_People.are_Do_not.like_Convention\n\n\n\n\nExample and Discussion provided in R for Data Sciency by Hadley Wickham"
-  },
-  {
-    "objectID": "slides/Getting-Started-in-R.html#assignment",
-    "href": "slides/Getting-Started-in-R.html#assignment",
-    "title": "Getting Started in R",
-    "section": "Assignment",
-    "text": "Assignment\n\nThe most popular assigment operator in R is <- which is just < followed by -\n\nread aloud as “gets”\n\n\n\na <- 2 + 2\n\na * 2\n\n[1] 8\n\n\n\nYou can also use -> but this is far less common and makes me uncomfortable\n\n\n a^2 -> b\n\n\nAssignment might be a foregin concept to you if you have no coding experience or making the transition from excel or stata. Basically if you go through and copy and paste all this stuff into an R script it will run but we will not be able to use this.\nSo using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets 2 + 2 this lets us reuse it later whether we want to perform additional maths or use it for later"
-  },
-  {
-    "objectID": "slides/Getting-Started-in-R.html#assignmentcont",
-    "href": "slides/Getting-Started-in-R.html#assignmentcont",
-    "title": "Getting Started in R",
-    "section": "Assignment(cont)",
-    "text": "Assignment(cont)\n\n\nUsing = as an assignment operator also works and is the one I tend to use\n\nNote: = is also used to evaluate arguments within functions\n\n\n\nb = b * 2\n\nd = b/3\n\n\nTbh this is a matter of taste really.\n\nR added = in the 2000’s to make it easier for people coming from other object oriented programming languages\n\nJust keep it consistent..\nJust keep it consistent..or become ungovernable and use all three in one script.\n\nI am not responsible for you getting yelled at on Stackoverflow if you do this.\n\n\n\n\n\nTo be honest R purists are one of the last hold outs of using the gets operator essentially back in the main frame computer days there was a physical key that would do this for you. R is actually really really old so there are some quirks to it that bug lots of people. We are not going to get into it any further in this workshop but if you have prior experience in an object oriented language R will be a bit peculiar at times. Like in somne cases position of the argument does not matter indentation does not matter which will really throw you off if you are coming from python or vice versa\n\n\nMore discussion here and here"
-  },
-  {
-    "objectID": "slides/Getting-Started-in-R.html#working-with-objects",
-    "href": "slides/Getting-Started-in-R.html#working-with-objects",
-    "title": "Getting Started in R",
-    "section": "Working with Objects",
-    "text": "Working with Objects\n\nLets run a simple regression using e\n\n\ne = data.frame(x = 1:22,\n               y = 20:41)\n\n\nmean(y)\n\nError in mean(y): object 'y' not found"
-  },
-  {
-    "objectID": "slides/Getting-Started-in-R.html#global-environmentcont",
-    "href": "slides/Getting-Started-in-R.html#global-environmentcont",
-    "title": "Getting Started in R",
-    "section": "Global Environment(cont)",
-    "text": "Global Environment(cont)\n\n\n\nError in mean(y): object 'y' not found\n\n\n\nGives us a hint out about what went wrong\n\n\n\nMeaning R is going to look in the environment for the object you give it\n\n\n\nIf we look at the global environment Y does not exist as an object but lots of other stuff does that is not.\nBecause x and y live within e we need to tell that they belong to e so to fix it we would need to tell lm where y and x"
-  },
-  {
-    "objectID": "slides/Getting-Started-in-R.html#fixing-our-issue",
-    "href": "slides/Getting-Started-in-R.html#fixing-our-issue",
-    "title": "Getting Started in R",
-    "section": "Fixing Our Issue",
-    "text": "Fixing Our Issue\n\n\nTo fix this we need to feed e to the data argument\n\nDo do this we need to index e\n\n\n\nmean(e$y)\n\n[1] 30.5\n\n\n\n\nIn R one of the biggest things is that being explicit about what name to use is how we do things. If you are not you are gonna get error messages at best.There are lots of ways"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#the-data-we-are-working-with",
