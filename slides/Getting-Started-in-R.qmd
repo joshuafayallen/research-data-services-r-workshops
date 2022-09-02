@@ -183,7 +183,9 @@ knitr::include_graphics("figs/cats-boxes.png")
 How working directories work is that they are comprised of files and folders. You need to let R know what file is in what folder.  You can also put a cat in a box, but you must never try to put a box in a cat. Boxes are like folders/directories, cats are like files. This sort of represents the hierarchy of this all. Folders come first than the last thing is the file itself 
 
 
-We are basically just telling R where things live. Kind of like how we put a strange address into the gps. We are telling it exactly where things live and what house number they are 
+We are basically just telling R where things live. Kind of like how we put a strange address into the gps. We are telling it exactly where things live and what house number they are.
+
+When we organize our files into HW 1 or manuscript whatever name what we are doing is creating a new neighborhood on our computer. R will default to places it knows. Most commonly where it lives. In order to do something as simple as loading our dataset in R needs directions to this neighborhood
 
 
 :::
