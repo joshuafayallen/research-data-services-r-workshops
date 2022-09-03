@@ -341,7 +341,7 @@ Once we define what those things are and how they relate to each other R will fi
 ![](pics/install.gif)
 
 ::: aside 
-Gif source: [](https://grantmcdermott.com/)
+Gif source: ![](https://grantmcdermott.com/)
 :::
 
 :::{.notes}
@@ -594,6 +594,8 @@ a <- 2 + 2
 
 a * 2
 
+h <- "harry potter" # note that text needs to be wrapped in quotes 
+
 ```
 
 - You can also use `->` but this is far less common and makes me uncomfortable 
@@ -648,7 +650,7 @@ To be honest R purists are one of the last hold outs of using the gets operator 
 
 # Working with Objects 
 
-- Lets run a simple regression using e
+- Lets just take the mean of a data frame 
 
 ```{r echo = TRUE}
 
@@ -677,7 +679,7 @@ mean(y)
 
 ![](figs/environment.png)
 
-- Meaning R is going to look in the environment for the object you give it 
+
 
 :::
 
