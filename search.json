@@ -1362,7 +1362,7 @@
     "href": "slides/Getting-Started-in-R.html#table",
     "title": "Getting Started in R",
     "section": "Table",
-    "text": "Table\n\ntable(penguins$species)\n\n\n   Adelie Chinstrap    Gentoo \n      152        68       124 \n\n\n\ntable(penguins$sex)\n\n\nfemale   male \n   165    168 \n\nanyNA(penguins$sex)\n\n[1] TRUE\n\n\n\ntable is handy but in some cases it does not give us all the information we need in some cases we might have missing values and table will just ignore them"
+    "text": "Table\n\ntable(penguins$sex)\n\n\nfemale   male \n   165    168 \n\n\n\ntable(penguins$sex, useNA = \"ifany\")\n\n\nfemale   male   <NA> \n   165    168     11 \n\n\n\ntable is handy but in some cases it does not give us all the information we need in some cases we might have missing values and table will just ignore them"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#tapply-and-calculating-descriptive-statistics-by-groups",
