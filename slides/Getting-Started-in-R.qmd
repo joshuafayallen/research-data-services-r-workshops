@@ -952,11 +952,18 @@ penguins[1,1] |>
 
 ```{r eval=FALSE, echo = TRUE}
 penguins[1,1:2]
+
+penguins[1,c(1,4)]
 ```
 
 ```{r echo=FALSE}
 penguins[1,1:2] |> 
   knitr::kable(format = "html")
+
+
+penguins[1,c(1,4)]  |> 
+  knitr::kable(format = "html")
+
 ```
 
 :::
@@ -986,8 +993,8 @@ my_list = list(a = 1:4, b = "Hello World", c = data.frame(x = 1:3, y = 4:6))
 ```
 
 ```{r echo = TRUE}
-my_list[[1]][2] ## get the first item in the list and the second element of that item
-my_list[[2]]
+my_list[1][2] ## get the first item in the list and the second element of that item
+my_list[2]
 my_list[[3]][1]
 
 ```
