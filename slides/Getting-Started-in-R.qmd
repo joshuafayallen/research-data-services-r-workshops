@@ -698,7 +698,7 @@ Because x and y live within e we need to tell that they belong to e so to fix it
 :::incremental 
 
 - To fix this we need to feed `e` to the data argument
-  - Do do this we need to index e 
+  - To do this we need to index e 
 
 ```{r echo = TRUE}
 mean(e$y)
