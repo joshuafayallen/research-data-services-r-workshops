@@ -44,7 +44,7 @@ pop_df =
   free = c(T, T, T, F, F, F, F)
   )
 # Plot it
-pop_df %>% 
+pop_df |>
   mutate(lang = lang %>% factor(ordered = T)) %>%
   ggplot(aes(x = lang, y = n_jobs, fill = free)) +
   geom_col() +
@@ -69,8 +69,16 @@ pop_df %>%
 
 :::{.notes}
 
-R is a vastly popular language in the datascience industry. While it is less popular than sequel or Python it is still one of the most heavily demanded language from private industry. R is also becoming wildly popular in econ and political science because not only is it free but it is a great skill to have given the difficulties of the academic job market. I am political scientist so I will mostly making these references. The Rstudio team in particular has worked really hard on adding support for Python, Julia, and java. 
+Part of this first portion is just a sales pitch. 
 
+R is a vastly popular language in the datascience industry. While it is less popular than sequel or Python it is still one of the most heavily demanded language from private industry. 
+
+This sort of makes sense once we dig into what they are used for and who uses them. Sequel stands for structured query language. You have probably heard of big data before. Think of the amount of data you generate from what ever apps you use. Think about your use every minute. Now think about the N of people in this workshop. Now think about all the people at Georgia State. The amount of data being generated in a few minutes. The max storage of excel file 1,048,576 rows by 16,384 columns. We could all pretty quickly overwhelm a single excel file. Enter SQL you can store large data bases in SQL and just as importanly that is how you get that data. 
+
+
+Python is a general purpose programming language it is used for data analysis as well but it has applications in everything from web development to game development. Dropbox is basically just a ton of python code. Lots of people who grow up to be data scientists come from a CS background where you are introduced to python pretty early. 
+
+However, if you simply add up the propietary softwares there are fewer industry available jobs for you or you students compartively. 
 
 
 :::
@@ -95,6 +103,12 @@ R is a vastly popular language in the datascience industry. While it is less pop
 - Supports all types of statistical methods and data collection 
 
 :::{.notes}
+
+In the data science industry R has enjoyed similar growth rates to python in popularity. R is kind of quirky compartively to python for a whole host of computer sciency reasons and just path dependency. Whatever the case there is no denying that both are hugely in demand skills not just in Silicon Valley but at places that produce data analysis or data visualization
+
+R is also becoming wildly popular in econ and political science because not only is it free but it is a great skill to have given the difficulties of the academic job market. I am political scientist so I will mostly making these references. The Rstudio team in particular has worked really hard on adding support for Python, Julia, and java. 
+
+
 Much of this workshops materials are based on materials people publicly share as long as they get the proper acknowledment. Again thank you Grant.
 :::
 
@@ -114,7 +128,10 @@ knitr::include_graphics("pics/engine-dashboard.png")
 
 
 :::{.notes}
-The most common way that we interact with R is through  Rstudio you can technically run R by just opening R and typing in code. But most people do not do this. Rstudio has lots of handy features that help you. Much like a car. If we didnt have the dashboard but still had the engine and some wheels and a steering we could drive the car if needed. However a car with a dashboard lets us figure out what the car is doing more easily 
+The most common way that we interact with R is through  Rstudio you can technically run R by just opening R and typing in code. But most people do not do this. It is not especially friendly to work in there is no syntax highlighting no code completetion. There isnt even really an option to add keyboard shortcuts. It is kind of like a nascar can go real fast but it is not a comfortable drive. 
+
+
+Rstudio has lots of handy features that help you. Much like a car. If we didnt have the dashboard but still had the engine and some wheels and a steering we could drive the car if needed. However a car with a dashboard lets us figure out what the car is doing more easily 
 :::
 
 
@@ -133,10 +150,15 @@ knitr::include_graphics("figs/script-new.png")
 
 :::{.notes}
 
+
+
 Hopefully You Have downloaded the Approriate Version of R and Rstudio for your Operating system. Now we need to know where we can start putting stuff. And it should look something like you can just start typing code into the console window if you want. But for the most part that is a bad idea. Because you will not be able to remember what you have done and more importantly you are going to have to redo it all each time. 
 
 
-Best Practices are for you to work in an R script file. Later on in the semster we will hopefully have a workshop on getting started in Rmarkdown but for now just click on r script file if you are follwing along.
+Best Practices are for you to work in an R script file. Later on in the semster we will hopefully have a workshop on getting started in Rmarkdown but for now just click on r script file if you are following along.
+
+If you download the script for you will see lots of lots of # 
+these let you comment your code. That way you can let yourself or a reader know what you did.
 :::
 
 
@@ -233,6 +255,12 @@ knitr::include_graphics("figs/projects-jenny-bryan.png")
 
 ```
 
+:::{.notes}
+
+While setting your working directory manually is fine it is a lot more fragile. If you collaborate with people now or in the future they are going to have to manually set the working directory on their computer. It is not neccessarily reproducible or practical for a variety of reasons. 
+
+
+:::
 
 
 ## How To Make Your Life Easier 
@@ -261,7 +289,9 @@ knitr::include_graphics("figs/projects-jenny-bryan.png")
 
 
 :::{.notes}
-While setting your working directory manually is fine it is a lot more fragile. If you collaborate with people now or in the future they are going to have to manually set the working directory on their computer. Each time.
+
+Often times collaborating with our selves is the first step. So these are two different working dirrectories I have. I could likely hack my way around it. However many of your colleagues that you work with do not have a similar set up. It is best to work in R projects.
+
 
 R projects are great because they will just set the working directory to wherever the project is living. The additional benefit is that it will restart R. Which is good because R will just keep lots of packages loaded in the background. This can cause what are called namespace conflicts. This used to be really bad with plyr and dplyr but plyr has since been retired. Truly problematic namespace conflicts are not something that I have experienced but they do happen. Fresh R sessions are the easiest way to avoid them
 :::
@@ -325,7 +355,8 @@ Credit for the Gif goes to Grant Mcdermott. As we will learn there are lots of w
  
  
 ```{r eval= FALSE, echo = TRUE}
-library(Package)
+# We talk to ourselves using #
+library(Package) 
 library(I)
 library(JustInstalled)
 ```
@@ -352,7 +383,7 @@ Reason: R now recognises these packages as defined objects with given names. ("E
 
 ```{r basic-math, echo = TRUE}
 2+2 ## addition
-4-2
+4-2 ## subtaction
 600*100 ##multiplication
 100/10 ##division
 10*10/(3^4*2)-2 ## Pemdas 
@@ -381,8 +412,8 @@ R is also equipped with modulo operations (integer division and remainders), mat
 ```
 
 ```{r echo = TRUE}
-m <- matrix(1:8, nrow=2)
-n <- matrix(8:15, nrow=4)
+m <- matrix(1:8, nrow=2) # Don't worry about the <- for now 
+n <- matrix(8:15, nrow=4) # this is just me creating matrices 
 
 mat <- matrix(1:15, ncol = 5)
 
@@ -539,9 +570,7 @@ To see whether an object is contained within (i.e. matches one of) a list of ite
   - Including datasets 
 :::
 
-::: aside
-Later in the semester we can modify in place but that is running before we are walking
-:::
+
 :::{.notes}
 R as a calculator and evaluating whether 1 is greater than 2 gets very tiring like as soon as you start doing it and is hardly ever that practical. 
 :::
@@ -1304,6 +1333,8 @@ hist(penguins$bill_length_mm,
 
 
 ## Getting Good at R
+
+
 
 <center>
 
