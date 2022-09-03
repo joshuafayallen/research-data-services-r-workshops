@@ -1341,7 +1341,7 @@
     "href": "slides/Getting-Started-in-R.html#fixing-our-issue-1",
     "title": "Getting Started in R",
     "section": "Fixing our issue",
-    "text": "Fixing our issue\n\n\nIf you noticed in the help documentation there was an argument I did not use na.rm\nThis will simply remove all the NA’s giving which will let us calculate the mean\n\nsummary does this by default\n\nGood documentation fluctuates wildly because it is an open source language\nIf in doubt"
+    "text": "Fixing our issue\n\n\nmean(penguins$bill_depth_mm, na.rm =TRUE)\n\n[1] 17.15117\n\n\n\nGood documentation fluctuates wildly because it is an open source language\nIf in doubt"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#your-turn-1",
