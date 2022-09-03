@@ -1095,9 +1095,8 @@ billboard |>
 
 ## Using Your Helpers
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache = TRUE}
 #| code-line-numbers: "|3|5"
-#| code-fold: true
 billboard |> 
   pivot_longer(
     cols = starts_with("wk"), 
@@ -1106,6 +1105,6 @@ billboard |>
     values_to = "rank",
     values_drop_na = TRUE
   ) |>
-  head(6)
+  head(4)
 ```
 
