@@ -1754,7 +1754,7 @@
     "href": "slides/data-cleaning.html#using-your-helpers",
     "title": "Data Cleaning in R",
     "section": "Using Your Helpers",
-    "text": "Using Your Helpers\n\n\nCode\nbillboard |> \n  pivot_longer(\n    cols = starts_with(\"wk\"), \n    names_to = \"week\",\n    names_prefix = \"wk\",\n    values_to = \"rank\",\n    values_drop_na = TRUE\n  ) |>\n  head(6)\n\n\n\n\n\n\n\n\nartist\n\n\ntrack\n\n\ndate.entered\n\n\nweek\n\n\nrank\n\n\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n1\n\n\n87\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n2\n\n\n82\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n3\n\n\n72\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n4\n\n\n77\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n5\n\n\n87\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n6\n\n\n94"
+    "text": "Using Your Helpers\n\nbillboard |> \n  pivot_longer(\n    cols = starts_with(\"wk\"), \n    names_to = \"week\",\n    names_prefix = \"wk\",\n    values_to = \"rank\",\n    values_drop_na = TRUE\n  ) |>\n  head(4)\n\n\n\n\n\n\n\nartist\n\n\ntrack\n\n\ndate.entered\n\n\nweek\n\n\nrank\n\n\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n1\n\n\n87\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n2\n\n\n82\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n3\n\n\n72\n\n\n\n\n2 Pac\n\n\nBaby Don’t Cry (Keep…\n\n\n2000-02-26\n\n\n4\n\n\n77"
   },
   {
     "objectID": "ae/ae-7-exam-2-review.html",
