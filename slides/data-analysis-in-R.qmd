@@ -1015,70 +1015,32 @@ modelsummary(list(peng_naive, peng_adjust, pengs_interact_marg),
 
 ## Fixed Effects
 
-::::{.columns}
-:::{.column width="45%"}
-```{r}
-library(microbenchmark)
+
+```{r eval = FALSE}
+library(plm)
+
 trade  = fixest::trade
-microbenchmark(
-euros_fe = feols(Euros ~ log(dist_km) | Origin + Destination + Product + Year, data = trade), times = 5)
-```
-:::
 
-:::{.column width="45%"}
+euros_feols = feols(Euros ~ log(dist_km) | Origin + Destination + Product + Year, data = trade),
 
-```{r}
-microbenchmark(
-euro_stand = lm(Euros ~ log(dist_km) + factor(Origin) + factor(Destination) + factor(Product) + factor(Year), data = trade), times = 5)
+euro_stand = lm(Euros ~ log(dist_km) + factor(Origin) + factor(Destination) + factor(Product) + factor(Year), data = trade),
+
+
+euros_plm = plm(Euros ~ log(dist_km) +  Origin + Destination + Product + Year
+                 , data = trade, model = "within")
 ```
 
-:::
-::::
 
 :::{.notes}
 There are more than a few ways to get a fixed effects regression in R my prefered way is using fixest. Because a species and island fixed effect would be a bit ridicoulous we can use star wars to demonstrate our point a bit
 
-To sort of get on with the rest of the workshop I will not spend to much time on this. 
+To sort of get on with the rest of the workshop I will not spend to much time on this.  But it is stupid fast and lets you do a whole lot.
+It does not have random effects tho. PLM is really useful for lots of other common panel estimators. But fixest is still the winner when it comes to]
+fixed effects models.
 
 ::::
 
 
-
-## Fixed Effects
-
-::::{.columns}
-:::{.column width="45%"}
-
-```{r}
-microbenchmark(
-euros_fe = feols(Euros ~ log(dist_km) | Origin + Destination + Product + Year, data = trade), times = 5)
-```
-
-:::
-
-
-
-:::{.column width="45%"}
-
-```{r}
-library(plm) 
-## fixed effects option is model = "within"
-microbenchmark(
- euros_lfe = plm(Euros ~ log(dist_km) +  Origin + Destination + Product + Year
-                 , data = trade,
-                 model = "within"),
-                  times = 5)
-
-```
-
-:::
-::::
-
-
-:::{.notes}
-PLM has lots of other useful models like if you want a random effects model than you can use plm but in terms of fixed effects it is still slower 
-
-:::
 
 ## Generating Predictions 
 
