@@ -855,11 +855,24 @@ Today we are going to be using data from the Palmer Penguins R package. This is 
 - You have the option of pointing and clicking via import dataset
 
 - I would recommend importing data via code
-  - You don't have to remember what you named the object when writing the first script
-  - Saves you time 
-  - All the cool kids do it.
+  - You don't have to remember what you named the object originally
+  - Saves future you time 
 
-```{r eval=FALSE, echo = TRUE }
+- This is a common error you will get  
+
+```{r echo = TRUE, error = TRUE}
+
+penguins = read.csv("peguins.csv")
+penguins = read.csv("penguins.csv")
+```
+
+- This happens most often when 
+  - the file name is spelled wrong 
+  - the file is in a subdirectory or your working directory is not set correctly
+
+### Fixing the error
+
+```{r echo = TRUE}
 penguins = read.csv("data/penguins.csv")
 ```
 
