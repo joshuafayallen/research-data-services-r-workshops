@@ -1271,7 +1271,7 @@
     "href": "slides/Getting-Started-in-R.html#indexing-cont",
     "title": "Getting Started in R",
     "section": "Indexing [] (cont)",
-    "text": "Indexing [] (cont)\n\nLists are super flexible because they can hold lots of different kinds of stuff\n\nWhen you estimate an OLS model it returns a list.\n\nWe can tell R what element of a list using a combo of [] and [[]]\n\n\nmy_list = list(a = 1:4, b = \"Hello World\", c = data.frame(x = 1:3, y = 4:6))\n\n\nmy_list[1][2] ## get the first item in the list and the second element of that item\n\n$<NA>\nNULL\n\nmy_list[2]\n\n$b\n[1] \"Hello World\"\n\nmy_list[[3]][1]\n\n\n\n\n\nx\n\n\n\n\n1\n\n\n2\n\n\n3"
+    "text": "Indexing [] (cont)\n\nLists are super flexible because they can hold lots of different kinds of stuff\n\nWhen you estimate an OLS model it returns a list.\n\nWe can tell R what element of a list using a combo of [] and [[]]\n\n\nmy_list = list(a = 1:4, b = \"Hello World\", c = data.frame(x = 1:3, y = 4:6))\n\n\nmy_list[[1]][2] ## get the first item in the list and the second element of that item\n\n[1] 2\n\nmy_list[2]\n\n$b\n[1] \"Hello World\"\n\nmy_list[[3]][1]\n\n\n\n\n\nx\n\n\n\n\n1\n\n\n2\n\n\n3"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#vs",
