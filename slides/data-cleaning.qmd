@@ -35,13 +35,55 @@ starwars = dplyr::starwars
 ```{r eval=FALSE, echo =TRUE}
 install.packages("pacman")
 
-pacman::p_load("palmerpenguins", "knitr", "kableExtra", "tidyverse", install = TRUE)
+pacman::p_load("palmerpenguins","tidyverse", install = TRUE)
 
 data("starwars")
 
 penguins = penguins
 
+## Or 
+starwars = read_csv("data/starwars")
+penguins = read_csv("data/penguins")
+
 ```
+
+
+##  Where We Are
+
+- In our last workshop we covered 
+
+- Assignment
+
+- Indexing 
+
+- Generating Descriptive Statistics 
+
+- A Bit of Graphing
+
+- Today we will cover:
+
+- The Tidyverse (minus ggplot2)
+
+## Expanding What We Know(slightly)
+
+- Using what we know we can easily create new variables 
+
+```{r echo = TRUE}
+
+penguins$range_bill_depth = max(penguins$bill_depth_mm,
+ na.rm = TRUE) - min(penguins$bill_depth_mm, na.rm = TRUE)
+
+penguins$big_penguin = ifelse(penguins$body_mass_g > median(penguins$body_mass_g, na.rm = TRUE),
+ TRUE, FALSE)
+
+penguins[penguins["species"] == "Chinstrap",c(1,9:10)] # We can also subset our data 
+
+
+
+
+```
+
+
 
 # Cleaning Data in the Tidyverse
 
@@ -189,6 +231,8 @@ The tidyverse is pretty verbose because it loads a lot of things and in the case
 
 ::: column
 ```{r echo= FALSE }
+penguins = palmerpenguins::penguins # Just starting with a frest object
+
 penguins |> 
   select(species, body_mass_g, bill_length_mm) |> 
   filter(species == "Adelie",
@@ -405,20 +449,21 @@ verb(.data, ...)
 ### Filter
 
 ```{r echo = TRUE}
-filter(penguins, species == "Gentoo")
+filter(.data = penguins, species == "Gentoo")
 ```
 
 ### Select 
 
 ```{r echo = TRUE}
-select(penguins, species)
+select(.data = penguins, species)
 ```
 
 ### Mutate 
 
 ```{r echo = TRUE}
-mutate(penguins, bill_length_mm = bill_length_mm^2) # I am just doing it so you can see it 
+mutate(.data = penguins, bill_length_mm = bill_length_mm^2)
 ```
+
 
 :::
 
