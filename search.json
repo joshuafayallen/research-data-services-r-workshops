@@ -1194,7 +1194,7 @@
     "href": "slides/Getting-Started-in-R.html#fixing-our-issue",
     "title": "Getting Started in R",
     "section": "Fixing Our Issue",
-    "text": "Fixing Our Issue\n\n\nTo fix this we need to feed e to the data argument\n\nDo do this we need to index e\n\n\n\nmean(e$y)\n\n[1] 30.5\n\n\n\n\nIn R one of the biggest things is that being explicit about what name to use is how we do things. If you are not you are gonna get error messages at best.There are lots of ways"
+    "text": "Fixing Our Issue\n\n\nTo fix this we need to feed e to the data argument\n\nTo do this we need to index e\n\n\n\nmean(e$y)\n\n[1] 30.5\n\n\n\n\nIn R one of the biggest things is that being explicit about what name to use is how we do things. If you are not you are gonna get error messages at best.There are lots of ways"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#what-are-objects",
