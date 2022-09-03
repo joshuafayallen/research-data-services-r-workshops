@@ -1182,6 +1182,8 @@ Okay so now that we have found different ways to index things lets get some summ
 
 - `?thingineedhelpwith` is probably the most common because it requires less typing.
 
+
+
 :::{.notes}
 
 Notice how R returns NA as the mean. R is generally pretty conservative and will be cautious when you try to get the mean for bill depth it returns NA because there are a few NA values in the column. We will talk about various solutions to getting rid of NA's in data cleaning in a future workshop but for now we may just want to find the mean of our column. Mean and many functions have a way to do this inside them 
@@ -1190,10 +1192,12 @@ Notice how R returns NA as the mean. R is generally pretty conservative and will
 
 ## Fixing our issue
 :::incremental
-- If you noticed in the help documentation there was an argument I did not use `na.rm`
 
-- This will simply remove all the NA's giving which will let us calculate the mean
-  - summary does this by default
+
+```{r echo = TRUE}
+mean(penguins$bill_depth_mm, na.rm =TRUE)
+
+```
 
 - *Good* documentation fluctuates wildly because it is an open source language
 
