@@ -1313,7 +1313,7 @@
     "href": "slides/Getting-Started-in-R.html#indexingcont",
     "title": "Getting Started in R",
     "section": "Indexing(cont)",
-    "text": "Indexing(cont)\n\nmy_list$c[2] ## these are just returning the same thing \n\n\n\n\n\ny\n\n\n\n\n4\n\n\n5\n\n\n6\n\n\n\n\n\nmy_list$c$y\n\n[1] 4 5 6\n\n\n\nYou can also use brackets to pick which element of the thing you want to figure out is. These are all important to know or be aware of all the ways you can find something you need. And like a lot of things in R there are tons of ways to get the same task done. The right way is what returns the right answer for you is the solution. Worry about speeding things up later."
+    "text": "Indexing(cont)\n\nmy_list[[3]][[2]] ## these are just returning the same thing \n\n[1] 4 5 6\n\nmy_list$c$y\n\n[1] 4 5 6\n\n\n\nYou can also use brackets to pick which element of the thing you want to figure out is. These are all important to know or be aware of all the ways you can find something you need. And like a lot of things in R there are tons of ways to get the same task done. The right way is what returns the right answer for you is the solution. Worry about speeding things up later."
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#in-action",

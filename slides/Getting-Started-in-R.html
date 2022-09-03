@@ -1449,7 +1449,7 @@ NA </code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_8887a7e9" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_1508edb7" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -2036,30 +2036,11 @@ NULL</code></pre>
 <section id="indexingcont" class="slide level2">
 <h2>Indexing(cont)</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>my_list<span class="sc">$</span>c[<span class="dv">2</span>] <span class="do">## these are just returning the same thing </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="kable-table">
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;">y</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">6</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>my_list[[<span class="dv">3</span>]][[<span class="dv">2</span>]] <span class="do">## these are just returning the same thing </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 5 6</code></pre>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a>my_list<span class="sc">$</span>c<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a>my_list<span class="sc">$</span>c<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4 5 6</code></pre>
 </div>
@@ -2082,7 +2063,7 @@ NULL</code></pre>
 <h2><code>$</code> in action</h2>
 <p>This will just subset things</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1"></a>penguins[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Gentoo"</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"bill_length_mm"</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a>penguins[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Gentoo"</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"bill_length_mm"</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -2166,7 +2147,7 @@ NULL</code></pre>
 <section id="in-actioncont" class="slide level2">
 <h2><code>$</code> in action(cont)</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a><span class="fu">summary</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a><span class="fu">summary</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   species             island          bill_length_mm  bill_depth_mm  
  Length:344         Length:344         Min.   :32.10   Min.   :13.10  
@@ -2187,7 +2168,7 @@ NULL</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1"></a><span class="fu">mean</span>(penguins<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a><span class="fu">mean</span>(penguins<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
@@ -2213,7 +2194,7 @@ NULL</code></pre>
 <li>Asking for help in R is easy the most common ways are <code>help(thingineedhelpwith)</code> and <code>?thingineedhelpwith</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>?thingineedhelpwith</code> is probably the most common because it requires less typing.</li>
@@ -2267,7 +2248,7 @@ NULL</code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_2448dc89" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_d755120a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -2290,7 +2271,7 @@ NULL</code></pre>
 <section id="table" class="slide level2">
 <h2>Table</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    Adelie Chinstrap    Gentoo 
@@ -2298,13 +2279,13 @@ NULL</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 female   male 
    165    168 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1"></a><span class="fu">anyNA</span>(penguins<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1"></a><span class="fu">anyNA</span>(penguins<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -2326,7 +2307,7 @@ female   male
 <section id="tapply-and-calculating-descriptive-statistics-by-groups" class="slide level2">
 <h2>tapply and calculating descriptive statistics by groups</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1"></a><span class="fu">tapply</span>(penguins<span class="sc">$</span>species,penguins<span class="sc">$</span>island, table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1"></a><span class="fu">tapply</span>(penguins<span class="sc">$</span>species,penguins<span class="sc">$</span>island, table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$Biscoe
 
@@ -2345,7 +2326,7 @@ Adelie
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1"></a><span class="fu">tapply</span>(penguins<span class="sc">$</span>bill_depth_mm, penguins<span class="sc">$</span>species, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a><span class="fu">tapply</span>(penguins<span class="sc">$</span>bill_depth_mm, penguins<span class="sc">$</span>species, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Adelie Chinstrap    Gentoo 
  18.34636  18.42059  14.98211 </code></pre>
@@ -2370,10 +2351,10 @@ Adelie
 <div class="columns">
 <div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1"></a><span class="fu">plot</span>(penguins<span class="sc">$</span>bill_length_mm,</span>
-<span id="cb111-2"><a href="#cb111-2"></a>     penguins<span class="sc">$</span>body_mass_g,</span>
-<span id="cb111-3"><a href="#cb111-3"></a>     <span class="at">xlab =</span> <span class="st">"Bill Length(mm)"</span>,</span>
-<span id="cb111-4"><a href="#cb111-4"></a>     <span class="at">ylab =</span> <span class="st">"Body Mass(g)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a><span class="fu">plot</span>(penguins<span class="sc">$</span>bill_length_mm,</span>
+<span id="cb112-2"><a href="#cb112-2"></a>     penguins<span class="sc">$</span>body_mass_g,</span>
+<span id="cb112-3"><a href="#cb112-3"></a>     <span class="at">xlab =</span> <span class="st">"Bill Length(mm)"</span>,</span>
+<span id="cb112-4"><a href="#cb112-4"></a>     <span class="at">ylab =</span> <span class="st">"Body Mass(g)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
@@ -2393,8 +2374,8 @@ Adelie
 <div class="columns">
 <div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm,</span>
-<span id="cb112-2"><a href="#cb112-2"></a> <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">60</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1"></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm,</span>
+<span id="cb113-2"><a href="#cb113-2"></a> <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">60</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
