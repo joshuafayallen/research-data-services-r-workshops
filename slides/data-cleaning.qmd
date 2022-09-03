@@ -28,6 +28,8 @@ starwars = dplyr::starwars
 
 
 
+
+
 ```
 
 ## Packages You Will Need
@@ -37,9 +39,6 @@ install.packages("pacman")
 
 pacman::p_load("palmerpenguins","tidyverse", install = TRUE)
 
-data("starwars")
-
-penguins = penguins
 
 ## Or 
 starwars = read_csv("data/starwars")
@@ -320,11 +319,15 @@ One of the most common uses is to find and remove missing values or not in a lis
 
 ## Your Turn
 
--   Using the sample code from the last slide filter out the NA values. Hint use !
+-   Using the sample code from the last slide filter out the NA values. Hint use `!`
 
 -   Using either the star wars or penguins data use `%in%` to get a set of home worlds or islands
 
 -   Subset the penguin data where body mass is less than `4202` and not on the Dream Island.
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 3, sound = TRUE)
+```
 
 ## Select()
 
@@ -714,6 +717,21 @@ mutate(what_are_they = case_when(
 :::
 :::
 
+
+## Your Turn 
+
+- Write code to 
+
+- Add a column in your dataset that is TRUE if a penguin is an Adelie penguin
+
+- Add a column in the `starwars` dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if it is not
+
+- Add a column in your dataset for logged body_mass_g (hint: use `log()`)
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 3, sound = TRUE)
+```
+
 ## Group_by() and Summarize()
 
 ## group_by()
@@ -779,11 +797,13 @@ penguins |>
 
 ## Your Turn
 
--   Calculate the minimum, maximum, and median for each species of penguin
+-   Calculate the minimum, maximum, and median `body_mass_g` for each species of penguin
 
--   what happens if you remove `group_by()`?
+-   What happens if you remove `group_by()`?
 
--   Do the same for the star wars data
+-  Calculate the number of distinct penguin species per island
+
+
 
 ```{r echo=FALSE}
 countdown::countdown(minutes = 3, sound = TRUE)
