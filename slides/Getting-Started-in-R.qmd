@@ -1271,6 +1271,7 @@ table(penguins$sex, useNA = "ifany")
 ```
 
 :::{.notes}
+
 table is handy but in some cases it does not give us all the information we need in some cases we might have missing values and table will just ignore them 
 :::
 

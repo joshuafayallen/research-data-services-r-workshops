@@ -1606,8 +1606,7 @@ ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
 ::::{.columns}
 ::: {.column width="45%"}
 
-### facet_wrap(vars(continent))
-```{r echo=FALSE}
+```{r echo=TRUE}
 
 ggplot(gapminder, aes(x = gdpPercap,
                       y = lifeExp,
@@ -1627,9 +1626,9 @@ ggplot(gapminder, aes(x = gdpPercap,
 
 ::: {.column width="45%"}
 
-### facet_wrap(vars(continent, year))
 
-```{r echo=FALSE}
+
+```{r echo = TRUE}
 
 ggplot(data = filter(gapminder, year %in% c(2002, 2007)),
        aes(x = gdpPercap,
@@ -1681,7 +1680,7 @@ ggplot(data = filter(gapminder, year %in% c(2002, 2007)),
 
 
 
-##
+## Labels with labs 
 
 :::columns
 :::column
@@ -1689,8 +1688,10 @@ ggplot(data = filter(gapminder, year %in% c(2002, 2007)),
 
 ```{r eval = FALSE, echo = TRUE}
 ggplot(gapminder, 
-       aes(x = gdpPercap, y = lifeExp, 
-           color = continent, size = pop)) +
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
   geom_point() +
   scale_x_log10() +
   labs(title = "Health and wealth grow together",
@@ -1711,8 +1712,10 @@ ggplot(gapminder,
 
 ```{r echo = FALSE}
 ggplot(gapminder, 
-       aes(x = gdpPercap, y = lifeExp, 
-           color = continent, size = pop)) +
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
   geom_point() +
   scale_x_log10() +
   labs(title = "Health and wealth grow together",
@@ -1725,205 +1728,166 @@ ggplot(gapminder,
   theme_bw()
 ```
 
-
 :::
 :::
 
 
-## Themes 
-
-```{r echo = FALSE, out.width="70%"}
-
-knitr::include_graphics("figs/hadley_theme_grey.png")
-
-```
-
-
-:::{.notes}
-theme change the default look of the plot and really start to make ggplots look great. The writter of ggplot set the default to theme grey. And tweets out frequently in defense of the default theme. However by in large most people tend to hate the default theme and use one of the other theme or a modified theme. 
-
-
-:::
-
-##
-
-```{r echo=FALSE}
-old_width = options(width = 80)
-lsf.str("package:ggplot2") %>% grep("^theme_", ., value = TRUE)
-options(width = old_width$width)
-```
-
-:::{.notes}
-For now just ignore theme_update, theme_replace, theme_get, and theme test. If you are curious just look at the help documentation. In this presentation I have used, outside of theme_gray, theme_bw, and theme_void but there are so many more
-:::
-
-
-
-##
+## Changing the Default Theme 
 
 ::::{.columns}
 ::: {.column width="45%"}
 
-### `theme_dark`
+### theme_minimal
 
+```{r}
 
-```{r theme-dark, echo = FALSE}
-
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+ggplot(gapminder, 
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
   geom_point() +
-  theme_dark()
-
+  scale_x_log10() +
+  labs(title = "Health and wealth grow together",
+       subtitle = "Data from 1952 to 2007",
+       x = "Wealth (GDP per capita)",
+       y = "Health (life expectancy)",
+       color = "Continent",
+       size = "Population",
+       caption = "Source: The Gapminder Project") +
+       theme_minimal()
 ```
+
 
 :::
 
 
-
 ::: {.column width="45%"}
 
-### `theme_minimal`
+### theme_dark
+```{r}
 
-```{r theme-minimal, echo=FALSE}
-ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
+ggplot(gapminder, 
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
   geom_point() +
-  theme_minimal()
+  scale_x_log10() +
+  labs(title = "Health and wealth grow together",
+       subtitle = "Data from 1952 to 2007",
+       x = "Wealth (GDP per capita)",
+       y = "Health (life expectancy)",
+       color = "Continent",
+       size = "Population",
+       caption = "Source: The Gapminder Project") +
+       theme_dark()
 ```
 
 :::
 ::::
 
+## Common User Written Packages 
 
-
-
-
-## ggthemes and other packages
 
 ::::{.columns}
 ::: {.column width="45%"}
-### ggthemes::theme_wsj()
-```{r echo=FALSE}
+
+### hrbrthemes
+
+
+```{r}
+library(hrbrthemes)
+ggplot(gapminder, 
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
+  geom_point() +
+  scale_x_log10() +
+  labs(title = "hrbr theme_ipsum") +
+  theme_ipsum()
+
+```
+
+:::
+
+::: {.column width="45%"}
+
+### ggthemes 
+```{r}
 
 library(ggthemes)
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+
+ggplot(gapminder, 
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
   geom_point() +
+  labs(title = "theme_wsj") +
+  scale_x_log10() +
   theme_wsj()
 
 ```
 
 :::
+::::
+
+## ggplot in the wild 
+
+- Often organizations will write their own theme
+  - Check out the [BBC's](https://bbc.github.io/rcookbook/)
 
 
-::: {.column width="45%"}
-
-### bbplot::bbc_style()
-
-```{r bbc-plots, echo = FALSE}
+```{r }
 
 ##devtools::install_github('bbc/bbplot')
-
 library(bbplot)
-
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
-  labs(x = "Bill Depth(mm)", y = "Mass(g)") +
+library(ggalt)
+library(patchwork)
+p =  ggplot(gapminder, aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
   geom_point() +
+  labs("BBC Theme") +
   bbc_style()
 
+dumbell_df = gapminder |>
+ filter(year == 1967 | year == 2007) |>
+  select(country, year, lifeExp) |>
+  pivot_wider(names_from = "year", values_from = "lifeExp") |>
+   mutate(gap = `2007` - `1967`) |>
+  arrange(desc(gap)) |>
+  head(10)
 
+d = ggplot(dumbell_df, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + 
+  geom_dumbbell(colour = "#dddddd",
+                size = 3,
+                colour_x = "#FAAB18",
+                colour_xend = "#1380A1") +
+  bbc_style() + 
+  labs(title="We're living longer")
 
+p + d
 ```
 
 
-:::
-::::
+## The theme argument 
+
+- Has lots and lots of options(94 to be exact)
+
+- You can change basically anything you could think of in a plot
+  - My ggplot theme is basically just a some tweaks to theme arguments
 
 
-:::{.notes}
-you can also install user written packages or hrbrthemes and see a smattering of themes that let you make pretty slick looking figures withou to much work 
-
-:::
-
-
-
-## Truly incredible ones 
-
-::::{.columns}
-::: {.column width="45%"}
-### ggpomological<br>theme_pomological_fancy()</br>
-```{r pomological, echo=FALSE}
-## devtools::install_github("gadenbuie/ggpomological")
-library(ggpomological)
-
-
-
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point() +
- theme_pomological_fancy()
-
-```
-:::
-
-
-
-
-::: {.column width="45%"}
-
-### tvthemes::theme_avatar()
-```{r tv-themes, echo= FALSE}
-##devtools::install_github("Ryo-N7/tvthemes")
-
-library(tvthemes)
-
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g, color = species)) +
-  geom_point() +
-  scale_color_avatar() +
-  theme_avatar()
-
-
-```
-:::
-::::
-
-
-
-
-## `theme()`
-
-### Theme lets you modify a ton of things in ggplot
-
-:::columns
-:::column
-```{r eval = FALSE, echo = TRUE }
-theme_allen_bw() + #### theme I wrote
-theme(legend.position = c(0.87, 0.25), #### Just puts legend inside plot
+```{r eval = FALSE, echo = TRUE}
+theme_bw() + 
+theme(legend.position = "bottom",
       plot.title = element_text(face = "bold"),
-      panel.grid = element_blank(),
       axis.title.y = element_text(face = "italic"))
 ```
-
-:::
-
-
-
-:::column
-
-
-```{r echo = FALSE}
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
-                      color = continent)) +
-  geom_point() +
-  labs(x = "Income", y = "Life Expectancy", color = "Population", size = "Continent") +
-  guides(size = guide_legend(reverse = TRUE)) +
-  scale_x_log10(labels = scales::dollar) +
-  theme_allen_bw() +
-  theme(legend.position = c(0.87, 0.25),
-      plot.title = element_text(face = "bold"),
-      panel.grid = element_blank(),
-      axis.title.y = element_text(face = "italic")) 
-  
-```
-
-:::
-:::
 
 
 
@@ -1943,8 +1907,6 @@ ggsave("name-of-your-file.pdf",your_plot_here)
 ```{r eval=FALSE, echo = TRUE}
 ggsave("name-of-your-file.pngs",your_plot_here)
 ```
-
-
 
 
 
@@ -1974,7 +1936,7 @@ library(sf)
 
 :::aside
 
-There are some other packages like geom_map and ggpmap. They still work but sf(simple features) is really great and has a ton of support and resources. 
+There are some other packages like geom_map and ggmap. They still work but sf(simple features) is really great and has a ton of support and resources. 
 See [this book](https://geocompr.robinlovelace.net/)
 :::
 
@@ -1993,7 +1955,7 @@ See [this book](https://geocompr.robinlovelace.net/)
 
 
 
-##
+## Map Made By Kieran Healy 
 
 ```{r echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/andrewheiss/datavizs21.classes.andrewheiss.com/main/static/slides/img/12/streams-lakes-bw-100-w-01.jpg")
@@ -2166,10 +2128,7 @@ regime_map
 
 
 
-
-
 ## Making Maps in ggplot
-
 
 
 ```{r basic-map, eval=FALSE, echo = TRUE}
