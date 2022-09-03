@@ -1015,6 +1015,13 @@
     "text": "Fit a Random Forest and Plot ROC\n\n\nCaret\n\nlibrary(pROC)\nrf_caret = train(sex ~ .,\n                 data = train_caret,\n                 method = \"ranger\",\n                 trControl = peng_caret_boots,\n                 metric = \"ROC\",\n                 verbose = FALSE)\n\n# confusionMatrix(predict(rf_caret, train)) this is how you extract predictions with caret\n\n\n\n# confusionMatrix(predict(rf_caret, train)) \n\n\n# roc(test$species, )\n\n\nTidymodels\n\n\nCode\nrf_spec = rand_forest() |> \n  set_mode(\"classification\") |> \n  set_engine(\"ranger\")\n\npenguin_wf = workflow() |> \n  add_formula(sex ~ .)\n\n\nrf_peng = penguin_wf |> \n  add_model(rf_spec) |> \n  fit_resamples(resample = peng_boots,\n                control = control_resamples(save_pred = TRUE))\n\n\n\n\nrf_peng |> \n  collect_predictions()  |> \n  group_by(id) |> \n  roc_curve(sex, .pred_female) |> \n  ggplot(aes(1 - specificity, sensitivity, color = id)) +\n  geom_abline(lty = 2, color = \"gray80\", size = 1.5) +\n  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +\n  coord_equal()"
   },
   {
+    "objectID": "slides/ammends to get ready badges .html",
+    "href": "slides/ammends to get ready badges .html",
+    "title": "Amended Test Questions",
+    "section": "",
+    "text": "penguins <- read.csv(\"pengins.csv\")\n\nWarning in file(file, \"rt\"): cannot open file 'pengins.csv': No such file or\ndirectory\n\n\nError in file(file, \"rt\"): cannot open the connection\n\npenguins <-  read.csv(\"penguins.csv\")\n\nWarning in file(file, \"rt\"): cannot open file 'penguins.csv': No such file or\ndirectory\n\n\nError in file(file, \"rt\"): cannot open the connection\n\n\n\nFile name is misspelled\nThe working directory is not set properly i.e. (data is in a folder named dat)\nfile extension not supplied"
+  },
+  {
     "objectID": "slides/Getting-Started-in-R.html#why-use-r",
     "href": "slides/Getting-Started-in-R.html#why-use-r",
     "title": "Getting Started in R",
@@ -1166,7 +1173,7 @@
     "href": "slides/Getting-Started-in-R.html#assignment",
     "title": "Getting Started in R",
     "section": "Assignment",
-    "text": "Assignment\n\nThe most popular assigment operator in R is <- which is just < followed by -\n\nread aloud as “gets”\n\n\n\na <- 2 + 2\n\na * 2\n\n[1] 8\n\n\n\nYou can also use -> but this is far less common and makes me uncomfortable\n\n\n a^2 -> b\n\n\nAssignment might be a foregin concept to you if you have no coding experience or making the transition from excel or stata. Basically if you go through and copy and paste all this stuff into an R script it will run but we will not be able to use this.\nSo using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets 2 + 2 this lets us reuse it later whether we want to perform additional maths or use it for later"
+    "text": "Assignment\n\nThe most popular assigment operator in R is <- which is just < followed by -\n\nread aloud as “gets”\n\n\n\na <- 2 + 2\n\na * 2\n\n[1] 8\n\nh <- \"harry potter\" # note that text needs to be wrapped in quotes \n\n\nYou can also use -> but this is far less common and makes me uncomfortable\n\n\n a^2 -> b\n\n\nAssignment might be a foregin concept to you if you have no coding experience or making the transition from excel or stata. Basically if you go through and copy and paste all this stuff into an R script it will run but we will not be able to use this.\nSo using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets 2 + 2 this lets us reuse it later whether we want to perform additional maths or use it for later"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#assignmentcont",
@@ -1180,7 +1187,7 @@
     "href": "slides/Getting-Started-in-R.html#global-environmentcont",
     "title": "Getting Started in R",
     "section": "Global Environment(cont)",
-    "text": "Global Environment(cont)\n\n\n\nError in mean(y): object 'y' not found\n\n\n\nGives us a hint out about what went wrong\n\n\n\nMeaning R is going to look in the environment for the object you give it\n\n\n\nIf we look at the global environment Y does not exist as an object but lots of other stuff does that is not.\nBecause x and y live within e we need to tell that they belong to e so to fix it we would need to tell lm where y and x"
+    "text": "Global Environment(cont)\n\n\n\nError in mean(y): object 'y' not found\n\n\n\nGives us a hint out about what went wrong\n\n\n\n\n\n\nIf we look at the global environment Y does not exist as an object but lots of other stuff does that is not.\nBecause x and y live within e we need to tell that they belong to e so to fix it we would need to tell lm where y and x"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#fixing-our-issue",
