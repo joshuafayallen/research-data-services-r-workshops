@@ -1118,7 +1118,7 @@ my_list$c
 ## Indexing(cont)
 
 ```{r echo = TRUE}
-my_list$c[2] ## these are just returning the same thing 
+my_list[[3]][[2]] ## these are just returning the same thing 
 my_list$c$y
 ```
 
