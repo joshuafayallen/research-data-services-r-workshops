@@ -411,13 +411,10 @@
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"palmerpenguins"</span>,<span class="st">"tidyverse"</span>, <span class="at">install =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">data</span>(<span class="st">"starwars"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>penguins <span class="ot">=</span> penguins</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="do">## Or </span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>starwars <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/starwars"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>penguins <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="do">## Or </span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>starwars <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/starwars"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8"></a>penguins <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="where-we-are" class="slide level2">
@@ -1659,10 +1656,18 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <section id="your-turn" class="slide level2">
 <h2>Your Turn</h2>
 <ul>
-<li><p>Using the sample code from the last slide filter out the NA values. Hint use !</p></li>
+<li><p>Using the sample code from the last slide filter out the NA values. Hint use <code>!</code></p></li>
 <li><p>Using either the star wars or penguins data use <code>%in%</code> to get a set of home worlds or islands</p></li>
 <li><p>Subset the penguin data where body mass is less than <code>4202</code> and not on the Dream Island.</p></li>
 </ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_5bb64052" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
 </section>
 <section id="select" class="slide level2">
 <h2>Select()</h2>
@@ -16381,6 +16386,23 @@ Evil Dooer
 </div>
 </div>
 </section>
+<section id="your-turn-1" class="slide level2">
+<h2>Your Turn</h2>
+<ul>
+<li><p>Write code to</p></li>
+<li><p>Add a column in your dataset that is TRUE if a penguin is an Adelie penguin</p></li>
+<li><p>Add a column in the <code>starwars</code> dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if it is not</p></li>
+<li><p>Add a column in your dataset for logged body_mass_g (hint: use <code>log()</code>)</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_5c0d6599" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
 <section id="group_by-and-summarize" class="slide level2">
 <h2>Group_by() and Summarize()</h2>
 </section>
@@ -16647,16 +16669,16 @@ female
 </div>
 </div>
 </section>
-<section id="your-turn-1" class="slide level2">
+<section id="your-turn-2" class="slide level2">
 <h2>Your Turn</h2>
 <ul>
-<li><p>Calculate the minimum, maximum, and median for each species of penguin</p></li>
-<li><p>what happens if you remove <code>group_by()</code>?</p></li>
-<li><p>Do the same for the star wars data</p></li>
+<li><p>Calculate the minimum, maximum, and median <code>body_mass_g</code> for each species of penguin</p></li>
+<li><p>What happens if you remove <code>group_by()</code>?</p></li>
+<li><p>Calculate the number of distinct penguin species per island</p></li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_cf0d30be" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_50f75f87" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>

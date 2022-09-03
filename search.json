@@ -1397,7 +1397,7 @@
     "href": "slides/data-cleaning.html#packages-you-will-need",
     "title": "Data Cleaning in R",
     "section": "Packages You Will Need",
-    "text": "Packages You Will Need\n\ninstall.packages(\"pacman\")\n\npacman::p_load(\"palmerpenguins\",\"tidyverse\", install = TRUE)\n\ndata(\"starwars\")\n\npenguins = penguins\n\n## Or \nstarwars = read_csv(\"data/starwars\")\npenguins = read_csv(\"data/penguins\")"
+    "text": "Packages You Will Need\n\ninstall.packages(\"pacman\")\n\npacman::p_load(\"palmerpenguins\",\"tidyverse\", install = TRUE)\n\n\n## Or \nstarwars = read_csv(\"data/starwars\")\npenguins = read_csv(\"data/penguins\")"
   },
   {
     "objectID": "slides/data-cleaning.html#where-we-are",
@@ -1502,7 +1502,7 @@
     "href": "slides/data-cleaning.html#your-turn",
     "title": "Data Cleaning in R",
     "section": "Your Turn",
-    "text": "Your Turn\n\nUsing the sample code from the last slide filter out the NA values. Hint use !\nUsing either the star wars or penguins data use %in% to get a set of home worlds or islands\nSubset the penguin data where body mass is less than 4202 and not on the Dream Island."
+    "text": "Your Turn\n\nUsing the sample code from the last slide filter out the NA values. Hint use !\nUsing either the star wars or penguins data use %in% to get a set of home worlds or islands\nSubset the penguin data where body mass is less than 4202 and not on the Dream Island.\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "slides/data-cleaning.html#select",
@@ -1610,6 +1610,13 @@
     "text": "Mutate()\n\nMutate is order aware so you don’t have to use a new mutate for each new variable you want to create\n\n\n\n\n penguins |> \n  filter(!is.na(bill_length_mm) & species == \"Gentoo\") |> \n  mutate(long_bill = bill_length_mm * 2,\n         long_bill_logical =\n           ifelse(long_bill >= 100\n                  & long_bill <= 119.20,\n                  \"Long\",\n                  \"Short\")) |> \n  select(species, bill_length_mm, long_bill, long_bill_logical)\n\n\n\n\n\n\n \n  \n    bill_length_mm \n    long_bill \n    long_bill_logical \n    species \n  \n \n\n  \n    46.1 \n    92.2 \n    Short \n    NA \n  \n  \n    50 \n    100 \n    Long \n    NA \n  \n  \n    48.7 \n    97.4 \n    Short \n    NA \n  \n  \n    50 \n    100 \n    Long \n    NA \n  \n  \n    47.6 \n    95.2 \n    Short \n    NA \n  \n  \n    46.5 \n    93 \n    Short \n    NA \n  \n  \n    ... \n    ... \n    ... \n    ..."
   },
   {
+    "objectID": "slides/data-cleaning.html#your-turn-1",
+    "href": "slides/data-cleaning.html#your-turn-1",
+    "title": "Data Cleaning in R",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nWrite code to\nAdd a column in your dataset that is TRUE if a penguin is an Adelie penguin\nAdd a column in the starwars dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if it is not\nAdd a column in your dataset for logged body_mass_g (hint: use log())\n\n\n\n\n−+\n03:00"
+  },
+  {
     "objectID": "slides/data-cleaning.html#group_by-and-summarize",
     "href": "slides/data-cleaning.html#group_by-and-summarize",
     "title": "Data Cleaning in R",
@@ -1638,11 +1645,11 @@
     "text": "penguins |> \n  group_by(species) |> \n  summarise(mean_bill_length = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n \n  \n    species \n    mean_bill_length \n  \n \n\n  \n    Adelie \n    38.7913907284768 \n  \n  \n    Chinstrap \n    48.8338235294118 \n  \n  \n    Gentoo \n    47.5048780487805"
   },
   {
-    "objectID": "slides/data-cleaning.html#your-turn-1",
-    "href": "slides/data-cleaning.html#your-turn-1",
+    "objectID": "slides/data-cleaning.html#your-turn-2",
+    "href": "slides/data-cleaning.html#your-turn-2",
     "title": "Data Cleaning in R",
     "section": "Your Turn",
-    "text": "Your Turn\n\nCalculate the minimum, maximum, and median for each species of penguin\nwhat happens if you remove group_by()?\nDo the same for the star wars data\n\n\n\n\n−+\n03:00"
+    "text": "Your Turn\n\nCalculate the minimum, maximum, and median body_mass_g for each species of penguin\nWhat happens if you remove group_by()?\nCalculate the number of distinct penguin species per island\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "slides/data-cleaning.html#other-useful-dplyr-stuff",
