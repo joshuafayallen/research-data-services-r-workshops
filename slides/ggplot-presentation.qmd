@@ -47,6 +47,25 @@ options(scipen=10000)
 ```
 
 
+## Packages We Will Need For Today 
+
+```{r show-data, eval=FALSE, echo = TRUE }
+
+install.packages(c("gapminder", "palmerpenguins"))
+
+library(gapminder)
+library(palmerpenguins)
+library(tidyverse) # ggplot will automatically be loaded in. 
+# library(ggplot2) also works 
+
+gapminder = gapminder
+
+penguins = penguins
+
+```
+
+
+
 ## Why visualize your data?
 
 ```{r mean-x, eco = TRUE}
@@ -151,54 +170,7 @@ I think an important theme so to say is that once we start to understand R it be
 
 
 
-## Getting started
-:::columns
-:::column
-### One way to install
 
-```{r tidyverse-install, echo = TRUE, eval = FALSE}
-install.packages("tidyverse")
-```
-
-
-### Another way to install
-
-```{r ggplot-install, echo = TRUE, eval=FALSE}
-
-install.packages("ggplot2")
-
-
-```
-
-### Another way to install
-
-
-```{r  pacaman-install, eval=FALSE, echo =TRUE}
-install.packages("pacman")
-pacman::p_load("ggplot2")
-```
-
-:::
-
-
-:::column
-### The data we will use in the first part
-```{r show-data, eval=FALSE, echo = TRUE }
-
-install.packages(c("gapminder", "palmerpenguins"))
-
-library(gapminder)
-library(palmerpenguins)
-
-
-gapminder = gapminder
-
-penguins = penguins
-
-```
-
-:::
-:::
 
 
 :::{.notes}

@@ -12,7 +12,8 @@ format:
 
 ```{r setup, include = F, warnings = FALSE}
 
-pacman::p_load("AllenMisc","sandwich", "lmtest", "marginaleffects","emmeans", "modelsummary", "broom", "tidyverse", "palmerpenguins", "fixest", "nullabor")
+pacman::p_load("AllenMisc","sandwich", "lmtest", "marginaleffects","emmeans",
+ "modelsummary", "broom", "tidyverse", "palmerpenguins", "fixest", "nullabor", "ggfortify", "plm")
 
 knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
                       message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
@@ -31,9 +32,9 @@ penguins = palmerpenguins::penguins
 
 
 ```{r eval=FALSE}
-
+install.packages("pacman")
 pacman::p_load("sandwich", "lmtest", "marginaleffects", "emmeans", "modelsummary", "broom",
-               "caret", "tidyverse", "fixest", "kableExtra", "nullabor")
+               "caret", "tidyverse", "fixest", "kableExtra", "nullabor", "plm", "ggfortify", install = TRUE)
 set.seed(1994)
 
 penguins = palmerpenguins::penguins 
@@ -765,6 +766,15 @@ plot(peng_adjust)
 
 
 
+## ggplot2 extension for same thing 
+
+```{r}
+
+autoplot(peng_adjust)
+
+```
+
+
 ## User Extensions 
 
 :::columns
@@ -1021,13 +1031,13 @@ library(plm)
 
 trade  = fixest::trade
 
-euros_feols = feols(Euros ~ log(dist_km) | Origin + Destination + Product + Year, data = trade),
+penguins_feols = feols(body_mass_g ~  bill_length_mm + flipper_length_mm | species + island, data =  peng_sans_miss_tidy)
 
-euro_stand = lm(Euros ~ log(dist_km) + factor(Origin) + factor(Destination) + factor(Product) + factor(Year), data = trade),
+peng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + island , data = peng_sans_miss_tidy),
 
 
-euros_plm = plm(Euros ~ log(dist_km) +  Origin + Destination + Product + Year
-                 , data = trade, model = "within")
+peng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm + species + island
+                 , data = peng_sans_miss_tidy, model = "within")
 ```
 
 
