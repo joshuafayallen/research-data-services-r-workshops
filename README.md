@@ -14,7 +14,7 @@
 
 ## Attribution
 
-Much of the content is based on by Dr. Grant McDermott and and/or \[(https://talks.andrewheiss.com/2021-seacen/01-tidyverse.html)\] by Dr. Andrew Heiss. The website template are modifications to by [Dr. Mine Çetinkaya-Rundel](https://sta210-s22.github.io/website/course-team.html)
+Much of the content is based on [https://github.com/uo-ec607/lectures](https://github.com/uo-ec607/lectures)  by Dr. Grant McDermott and and/or [https://talks.andrewheiss.com/2021-seacen/01-tidyverse.html](https://talks.andrewheiss.com/2021-seacen/01-tidyverse.html) by Dr. Andrew Heiss. The website template are modifications to by [Dr. Mine Çetinkaya-Rundel](https://sta210-s22.github.io/website/course-team.html)
 
 <hr>
 
