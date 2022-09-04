@@ -133,18 +133,25 @@
     "text": "Grading (50 pts)\n\n\n\nPart\nPoints\n\n\n\n\nPart 1 - Conceptual (on Sakai)\n10\n\n\nPart 2 - Applied (on Gradescope)\n40\n\n\nTotal\n50"
   },
   {
+    "objectID": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
+    "href": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
+    "title": "Getting Started in ggplot",
+    "section": "Packages We Will Need For Today",
+    "text": "Packages We Will Need For Today\n\ninstall.packages(c(\"gapminder\", \"palmerpenguins\"))\n\nlibrary(gapminder)\nlibrary(palmerpenguins)\nlibrary(tidyverse) # ggplot will automatically be loaded in. \n# library(ggplot2) also works \n\ngapminder = gapminder\n\npenguins = penguins"
+  },
+  {
     "objectID": "slides/ggplot-presentation.html#why-visualize-your-data",
     "href": "slides/ggplot-presentation.html#why-visualize-your-data",
     "title": "Getting Started in ggplot",
     "section": "Why visualize your data?",
-    "text": "Why visualize your data?\n\n\n[1] 54.2657\n\n\n\nsd(df$x)\n\n[1] 16.713\n\n\n\nmean(df$y)\n\n[1] 47.8351\n\n\n\nsd(df$y)\n\n[1] 26.84777\n\n\n\ncor(df$x, df$y)\n\n[1] -0.06601891\n\n\n\nLets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren’t correlated"
+    "text": "Why visualize your data?\n\n\n[1] 54.2657\n\n\n\nsd(df$x)\n\n[1] 16.713\n\n\n\nmean(df$y)\n\n[1] 47.8351\n\n\n\nsd(df$y)\n\n[1] 26.84777\n\n\n\ncor(df$x, df$y)\n\n[1] -0.06601891\n\n\n\nLets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren’t correlated."
   },
   {
     "objectID": "slides/ggplot-presentation.html#the-dino-strikes",
     "href": "slides/ggplot-presentation.html#the-dino-strikes",
     "title": "Getting Started in ggplot",
     "section": "The Dino Strikes",
-    "text": "The Dino Strikes\n\n\nI filtered out some of the data sets just for display purposes but critically if we don’t plot our data we may miss patterns that are not recognizable to us when we are taking descriptive statistics. They are also great tools for model diagnostics. A quick look at our residuals and fitted values is a great indicator whether something is up we use distance plots to look at whether our results are being driven by outliers"
+    "text": "The Dino Strikes\n\n\nI filtered out some of the data sets just for display purposes but critically if we don’t plot our data we may miss patterns that are not recognizable to us when we are taking descriptive statistics. They are also great tools for model diagnostics. A quick look at our residuals and fitted values is a great indicator whether something is up we use distance plots to look at whether our results are being driven by outliers."
   },
   {
     "objectID": "slides/ggplot-presentation.html#why-ggplot2",
@@ -158,14 +165,7 @@
     "href": "slides/ggplot-presentation.html#why-ggplot2-1",
     "title": "Getting Started in ggplot",
     "section": "Why ggplot2?",
-    "text": "Why ggplot2?\n\n\nYou have probably heard of it but why use it?\nOnce we understand the “grammar” making figures becomes a lot easier\n\nConveying information becomes easier\nLets you show off your clean, or not so clean, data\nA coherent structure of doing things\n\nFlexibility\n\nTons ways to customize appearance\nLots of functions\n\nMakes you lazier\n\nDoesn’t require you to remember each input from a drop down menu\nDefaults to universally usable formats\nReplaces itself automatically in your directory\n\n\n\n\nggplot2 is probably one of the most well known and event among many of the staunchest base r users well loved an well used libraries in the R ecosystem.\nggplot2 predates most of the tidyverse and the gg part refers to the grammar of graphics, more on that later. Much like writing a sentence there is a proper grammar to it. Once we understand the rules we can construct lots of different “sentences”.\nI think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things."
-  },
-  {
-    "objectID": "slides/ggplot-presentation.html#getting-started",
-    "href": "slides/ggplot-presentation.html#getting-started",
-    "title": "Getting Started in ggplot",
-    "section": "Getting started",
-    "text": "Getting started\n\n\nOne way to install\n\ninstall.packages(\"tidyverse\")\n\nAnother way to install\n\ninstall.packages(\"ggplot2\")\n\nAnother way to install\n\ninstall.packages(\"pacman\")\npacman::p_load(\"ggplot2\")\n\n\nThe data we will use in the first part\n\ninstall.packages(c(\"gapminder\", \"palmerpenguins\"))\n\nlibrary(gapminder)\nlibrary(palmerpenguins)\n\n\ngapminder = gapminder\n\npenguins = penguins\n\n\n\n\nAs with many things in R there are a ton of ways to install ggplot2. If you did not attend the intro to the tidyverse session. The tidyverse is a wrapper term for a ton of packages with very similar logics."
+    "text": "Why ggplot2?\n\n\nYou have probably heard of it but why use it?\nOnce we understand the “grammar” making figures becomes a lot easier\n\nConveying information becomes easier\nLets you show off your clean, or not so clean, data\nA coherent structure of doing things\n\nFlexibility\n\nTons ways to customize appearance\nLots of functions\n\nMakes you lazier\n\nDoesn’t require you to remember each input from a drop down menu\nDefaults to universally usable formats\nReplaces itself automatically in your directory\n\n\n\n\nggplot2 is probably one of the most well known and event among many of the staunchest base r users well loved an well used libraries in the R ecosystem.\nggplot2 predates most of the tidyverse and the gg part refers to the grammar of graphics, more on that later. Much like writing a sentence there is a proper grammar to it. Once we understand the rules we can construct lots of different “sentences”.\nI think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things or working with propietary formats. If you need to you\n\n\nAs with many things in R there are a ton of ways to install ggplot2. If you did not attend the intro to the tidyverse session. The tidyverse is a wrapper term for a ton of packages with very similar logics."
   },
   {
     "objectID": "slides/ggplot-presentation.html#the-grammar-of-graphics",
@@ -487,7 +487,7 @@
     "href": "slides/ggplot-presentation.html#facets-1",
     "title": "Getting Started in ggplot",
     "section": "Facets",
-    "text": "Facets\n\n\nfacet_wrap(vars(continent))\n\n\n\n\n\n\n\n\n\n\nfacet_wrap(vars(continent, year))"
+    "text": "Facets\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      size = pop)) +\n  geom_point() +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent))\n\n\n\n\n\n\n\n\n\n\nggplot(data = filter(gapminder, year %in% c(2002, 2007)),\n       aes(x = gdpPercap,\n           y = lifeExp,\n           size = pop)) +\n  geom_point() +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent, year))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#labels",
@@ -497,53 +497,39 @@
     "text": "Labels\n\n\n\n\nExample layer\n\n\nWhat it does\n\n\n\n\nlabs(title = “Neat title”)\n\n\nTitle\n\n\n\n\nlabs(caption = “Something”)\n\n\nCaption\n\n\n\n\nlabs(y = “Something”)\n\n\ny-axis\n\n\n\n\nlabs(size = “Population”)\n\n\nTitle of size legend"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#section-7",
-    "href": "slides/ggplot-presentation.html#section-7",
+    "objectID": "slides/ggplot-presentation.html#labels-with-labs",
+    "href": "slides/ggplot-presentation.html#labels-with-labs",
     "title": "Getting Started in ggplot",
-    "section": "",
-    "text": "ggplot(gapminder, \n       aes(x = gdpPercap, y = lifeExp, \n           color = continent, size = pop)) +\n  geom_point() +\n  scale_x_log10() +\n  labs(title = \"Health and wealth grow together\",\n       subtitle = \"Data from 2007\",\n       x = \"Wealth (GDP per capita)\",\n       y = \"Health (life expectancy)\",\n       color = \"Continent\",\n       size = \"Population\",\n       caption = \"Source: The Gapminder Project\")"
+    "section": "Labels with labs",
+    "text": "Labels with labs\n\n\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  scale_x_log10() +\n  labs(title = \"Health and wealth grow together\",\n       subtitle = \"Data from 2007\",\n       x = \"Wealth (GDP per capita)\",\n       y = \"Health (life expectancy)\",\n       color = \"Continent\",\n       size = \"Population\",\n       caption = \"Source: The Gapminder Project\")"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#themes",
-    "href": "slides/ggplot-presentation.html#themes",
+    "objectID": "slides/ggplot-presentation.html#changing-the-default-theme",
+    "href": "slides/ggplot-presentation.html#changing-the-default-theme",
     "title": "Getting Started in ggplot",
-    "section": "Themes",
-    "text": "Themes\n\n\ntheme change the default look of the plot and really start to make ggplots look great. The writter of ggplot set the default to theme grey. And tweets out frequently in defense of the default theme. However by in large most people tend to hate the default theme and use one of the other theme or a modified theme."
+    "section": "Changing the Default Theme",
+    "text": "Changing the Default Theme\n\n\ntheme_minimal\n\n\n\n\n\n\n\n\n\n\ntheme_dark"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#section-8",
-    "href": "slides/ggplot-presentation.html#section-8",
+    "objectID": "slides/ggplot-presentation.html#common-user-written-packages",
+    "href": "slides/ggplot-presentation.html#common-user-written-packages",
     "title": "Getting Started in ggplot",
-    "section": "",
-    "text": "[1] \"theme_bw\"       \"theme_classic\"  \"theme_dark\"     \"theme_get\"     \n [5] \"theme_gray\"     \"theme_grey\"     \"theme_light\"    \"theme_linedraw\"\n [9] \"theme_minimal\"  \"theme_replace\"  \"theme_set\"      \"theme_test\"    \n[13] \"theme_update\"   \"theme_void\"    \n\n\n\nFor now just ignore theme_update, theme_replace, theme_get, and theme test. If you are curious just look at the help documentation. In this presentation I have used, outside of theme_gray, theme_bw, and theme_void but there are so many more"
+    "section": "Common User Written Packages",
+    "text": "Common User Written Packages\n\n\nhrbrthemes\n\n\n\n\n\n\n\n\n\n\nggthemes"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#section-9",
-    "href": "slides/ggplot-presentation.html#section-9",
+    "objectID": "slides/ggplot-presentation.html#ggplot-in-the-wild",
+    "href": "slides/ggplot-presentation.html#ggplot-in-the-wild",
     "title": "Getting Started in ggplot",
-    "section": "",
-    "text": "theme_dark\n\n\n\n\n\n\n\n\n\n\ntheme_minimal"
+    "section": "ggplot in the wild",
+    "text": "ggplot in the wild\n\nOften organizations will write their own theme\n\nCheck out the BBC’s"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#ggthemes-and-other-packages",
-    "href": "slides/ggplot-presentation.html#ggthemes-and-other-packages",
+    "objectID": "slides/ggplot-presentation.html#the-theme-argument",
+    "href": "slides/ggplot-presentation.html#the-theme-argument",
     "title": "Getting Started in ggplot",
-    "section": "ggthemes and other packages",
-    "text": "ggthemes and other packages\n\n\nggthemes::theme_wsj()\n\n\n\n\n\n\n\n\n\n\nbbplot::bbc_style()\n\n\n\n\n\n\n\n\n\n\n\n\nyou can also install user written packages or hrbrthemes and see a smattering of themes that let you make pretty slick looking figures withou to much work"
-  },
-  {
-    "objectID": "slides/ggplot-presentation.html#truly-incredible-ones",
-    "href": "slides/ggplot-presentation.html#truly-incredible-ones",
-    "title": "Getting Started in ggplot",
-    "section": "Truly incredible ones",
-    "text": "Truly incredible ones\n\n\nggpomologicaltheme_pomological_fancy()\n\n\n\n\n\n\n\n\n\n\ntvthemes::theme_avatar()"
-  },
-  {
-    "objectID": "slides/ggplot-presentation.html#theme",
-    "href": "slides/ggplot-presentation.html#theme",
-    "title": "Getting Started in ggplot",
-    "section": "theme()",
-    "text": "theme()\nTheme lets you modify a ton of things in ggplot\n\n\n\ntheme_allen_bw() + #### theme I wrote\ntheme(legend.position = c(0.87, 0.25), #### Just puts legend inside plot\n      plot.title = element_text(face = \"bold\"),\n      panel.grid = element_blank(),\n      axis.title.y = element_text(face = \"italic\"))"
+    "section": "The theme argument",
+    "text": "The theme argument\n\nHas lots and lots of options(94 to be exact)\nYou can change basically anything you could think of in a plot\n\nMy ggplot theme is basically just a some tweaks to theme arguments\n\n\n\ntheme_bw() + \ntheme(legend.position = \"bottom\",\n      plot.title = element_text(face = \"bold\"),\n      axis.title.y = element_text(face = \"italic\"))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#saving-your-work",
@@ -557,7 +543,7 @@
     "href": "slides/ggplot-presentation.html#new-packages",
     "title": "Getting Started in ggplot",
     "section": "New Packages",
-    "text": "New Packages\n\ninstall.packages(c(\"sf\", \"tidygeocoder\"))\ndevtools::install_github(\"ropenscilabs/rnaturalearth\")\nlibrary(rnaturalearth)\nlibrary(sf)\n\n\nIf you are on a Mac please go to the r-spatial-website if you run into problems\nThe workhorse for this particlar section will be sf\n\n\n\nThere are some other packages like geom_map and ggpmap. They still work but sf(simple features) is really great and has a ton of support and resources. See this book"
+    "text": "New Packages\n\ninstall.packages(c(\"sf\", \"tidygeocoder\"))\ndevtools::install_github(\"ropenscilabs/rnaturalearth\")\nlibrary(rnaturalearth)\nlibrary(sf)\n\n\nIf you are on a Mac please go to the r-spatial-website if you run into problems\nThe workhorse for this particlar section will be sf\n\n\n\nThere are some other packages like geom_map and ggmap. They still work but sf(simple features) is really great and has a ton of support and resources. See this book"
   },
   {
     "objectID": "slides/ggplot-presentation.html#mapping-in-r",
@@ -565,6 +551,13 @@
     "title": "Getting Started in ggplot",
     "section": "Mapping in R",
     "text": "Mapping in R\n\nR and ggplot can get you pretty far\nThe stuff from these workshops broadly apply\n\nincluding your dplyr verbs\n\nLots of your needs to make static maps can be met\nDepending on what you are doing you may have to wait a bit"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#map-made-by-kieran-healy",
+    "href": "slides/ggplot-presentation.html#map-made-by-kieran-healy",
+    "title": "Getting Started in ggplot",
+    "section": "Map Made By Kieran Healy",
+    "text": "Map Made By Kieran Healy"
   },
   {
     "objectID": "slides/ggplot-presentation.html#shape-files",
@@ -655,7 +648,7 @@
     "href": "slides/data-analysis-in-R.html#packages-you-will-need",
     "title": "Data Analysis in R",
     "section": "Packages You Will Need",
-    "text": "Packages You Will Need\n\npacman::p_load(\"sandwich\", \"lmtest\", \"marginaleffects\", \"emmeans\", \"modelsummary\", \"broom\",\n               \"caret\", \"tidyverse\", \"fixest\", \"kableExtra\", \"nullabor\")\nset.seed(1994)\n\npenguins = palmerpenguins::penguins \n\n\nNote you will see some version of theme_allen used\n\nThis is just set a set of modifications based on Kyle Butt’s personal theme, mainly the fonts\nIf you really like it I can include the underlying file in an email.\n\n\n\nNote this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximumlikelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not.\nI also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis"
+    "text": "Packages You Will Need\n\ninstall.packages(\"pacman\")\npacman::p_load(\"sandwich\", \"lmtest\", \"marginaleffects\", \"emmeans\", \"modelsummary\", \"broom\",\n               \"caret\", \"tidyverse\", \"fixest\", \"kableExtra\", \"nullabor\", \"plm\", \"ggfortify\", install = TRUE)\nset.seed(1994)\n\npenguins = palmerpenguins::penguins \n\n\nNote you will see some version of theme_allen used\n\nThis is just set a set of modifications based on Kyle Butt’s personal theme, mainly the fonts\nIf you really like it I can include the underlying file in an email.\n\n\n\nNote this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximumlikelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not.\nI also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#describing-variables",
@@ -763,13 +756,6 @@
     "text": "Generating a Balance Table\n\ndatasummary_balance(~gentoo,\n                    data = penguins_t_test)\n\n\n\n \n\n\nFALSE (N=214)\nTRUE (N=119)\n\n\n  \n      \n       \n    Mean \n    Std. Dev. \n    Mean \n    Std. Dev. \n    Diff. in Means \n    Std. Error \n  \n \n\n  \n    bill_length_mm \n     \n    42.0 \n    5.5 \n    47.6 \n    3.1 \n    5.6 \n    0.5 \n  \n  \n    bill_depth_mm \n     \n    18.4 \n    1.2 \n    15.0 \n    1.0 \n    -3.4 \n    0.1 \n  \n  \n    flipper_length_mm \n     \n    191.9 \n    7.2 \n    217.2 \n    6.6 \n    25.3 \n    0.8 \n  \n  \n    body_mass_g \n     \n    3714.7 \n    435.7 \n    5092.4 \n    501.5 \n    1377.7 \n    54.8 \n  \n  \n    year \n     \n    2008.0 \n    0.8 \n    2008.1 \n    0.8 \n    0.0 \n    0.1 \n  \n  \n     \n     \n    N \n    Pct. \n    N \n    Pct. \n     \n     \n  \n  \n    species \n    Adelie \n    146 \n    68.2 \n    0 \n    0.0 \n     \n     \n  \n  \n     \n    Chinstrap \n    68 \n    31.8 \n    0 \n    0.0 \n     \n     \n  \n  \n     \n    Gentoo \n    0 \n    0.0 \n    119 \n    100.0 \n     \n     \n  \n  \n    island \n    Biscoe \n    44 \n    20.6 \n    119 \n    100.0 \n     \n     \n  \n  \n     \n    Dream \n    123 \n    57.5 \n    0 \n    0.0 \n     \n     \n  \n  \n     \n    Torgersen \n    47 \n    22.0 \n    0 \n    0.0 \n     \n     \n  \n  \n    sex \n    female \n    107 \n    50.0 \n    58 \n    48.7 \n     \n     \n  \n  \n     \n    male \n    107 \n    50.0 \n    61 \n    51.3"
   },
   {
-    "objectID": "slides/data-analysis-in-R.html#linear-regression-in-r",
-    "href": "slides/data-analysis-in-R.html#linear-regression-in-r",
-    "title": "Data Analysis in R",
-    "section": "Linear Regression in R",
-    "text": "Linear Regression in R"
-  },
-  {
     "objectID": "slides/data-analysis-in-R.html#some-basics",
     "href": "slides/data-analysis-in-R.html#some-basics",
     "title": "Data Analysis in R",
@@ -824,6 +810,13 @@
     "title": "Data Analysis in R",
     "section": "Base R diagnostic plots",
     "text": "Base R diagnostic plots\n\npar(mfrow = c(2, 2))\nplot(peng_adjust)"
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#ggplot2-extension-for-same-thing",
+    "href": "slides/data-analysis-in-R.html#ggplot2-extension-for-same-thing",
+    "title": "Data Analysis in R",
+    "section": "ggplot2 extension for same thing",
+    "text": "ggplot2 extension for same thing\n\nautoplot(peng_adjust)"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#user-extensions",
@@ -907,14 +900,7 @@
     "href": "slides/data-analysis-in-R.html#fixed-effects",
     "title": "Data Analysis in R",
     "section": "Fixed Effects",
-    "text": "Fixed Effects\n\n\n\nlibrary(microbenchmark)\ntrade  = fixest::trade\nmicrobenchmark(\neuros_fe = feols(Euros ~ log(dist_km) | Origin + Destination + Product + Year, data = trade), times = 5)\n\n\n\n\n\n\n\nexpr\n\n\ntime\n\n\n\n\n\n\neuros_fe\n\n\n25190113\n\n\n\n\neuros_fe\n\n\n16759324\n\n\n\n\neuros_fe\n\n\n16763096\n\n\n\n\neuros_fe\n\n\n16573717\n\n\n\n\neuros_fe\n\n\n16522795\n\n\n\n\n\n\n\n\n\n\nmicrobenchmark(\neuro_stand = lm(Euros ~ log(dist_km) + factor(Origin) + factor(Destination) + factor(Product) + factor(Year), data = trade), times = 5)\n\n\n\n\n\n\n\nexpr\n\n\ntime\n\n\n\n\n\n\neuro_stand\n\n\n129246883\n\n\n\n\neuro_stand\n\n\n132629014\n\n\n\n\neuro_stand\n\n\n132921385\n\n\n\n\neuro_stand\n\n\n269766101\n\n\n\n\neuro_stand\n\n\n133734538\n\n\n\n\n\n\n\n\n\n\n\nThere are more than a few ways to get a fixed effects regression in R my prefered way is using fixest. Because a species and island fixed effect would be a bit ridicoulous we can use star wars to demonstrate our point a bit\nTo sort of get on with the rest of the workshop I will not spend to much time on this."
-  },
-  {
-    "objectID": "slides/data-analysis-in-R.html#fixed-effects-1",
-    "href": "slides/data-analysis-in-R.html#fixed-effects-1",
-    "title": "Data Analysis in R",
-    "section": "Fixed Effects",
-    "text": "Fixed Effects\n\n\n\nmicrobenchmark(\neuros_fe = feols(Euros ~ log(dist_km) | Origin + Destination + Product + Year, data = trade), times = 5)\n\n\n\n\n\n\n\nexpr\n\n\ntime\n\n\n\n\n\n\neuros_fe\n\n\n17228282\n\n\n\n\neuros_fe\n\n\n16772813\n\n\n\n\neuros_fe\n\n\n16658669\n\n\n\n\neuros_fe\n\n\n16639809\n\n\n\n\neuros_fe\n\n\n16589748\n\n\n\n\n\n\n\n\n\n\nlibrary(plm) \n## fixed effects option is model = \"within\"\nmicrobenchmark(\n euros_lfe = plm(Euros ~ log(dist_km) +  Origin + Destination + Product + Year\n                 , data = trade,\n                 model = \"within\"),\n                  times = 5)\n\n\n\n\n\n\n\nexpr\n\n\ntime\n\n\n\n\n\n\neuros_lfe\n\n\n115122875\n\n\n\n\neuros_lfe\n\n\n109623463\n\n\n\n\neuros_lfe\n\n\n256540075\n\n\n\n\neuros_lfe\n\n\n104449960\n\n\n\n\neuros_lfe\n\n\n245386845\n\n\n\n\n\n\n\n\n\n\n\nPLM has lots of other useful models like if you want a random effects model than you can use plm but in terms of fixed effects it is still slower"
+    "text": "Fixed Effects\n\nlibrary(plm)\n\ntrade  = fixest::trade\n\npenguins_feols = feols(body_mass_g ~  bill_length_mm + flipper_length_mm | species + island, data =  peng_sans_miss_tidy)\n\npeng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + island , data = peng_sans_miss_tidy),\n\n\npeng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm + species + island\n                 , data = peng_sans_miss_tidy, model = \"within\")\n\n\nThere are more than a few ways to get a fixed effects regression in R my prefered way is using fixest. Because a species and island fixed effect would be a bit ridicoulous we can use star wars to demonstrate our point a bit\nTo sort of get on with the rest of the workshop I will not spend to much time on this. But it is stupid fast and lets you do a whole lot. It does not have random effects tho. PLM is really useful for lots of other common panel estimators. But fixest is still the winner when it comes to] fixed effects models."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-predictions",
@@ -1013,13 +999,6 @@
     "title": "Data Analysis in R",
     "section": "Fit a Random Forest and Plot ROC",
     "text": "Fit a Random Forest and Plot ROC\n\n\nCaret\n\nlibrary(pROC)\nrf_caret = train(sex ~ .,\n                 data = train_caret,\n                 method = \"ranger\",\n                 trControl = peng_caret_boots,\n                 metric = \"ROC\",\n                 verbose = FALSE)\n\n# confusionMatrix(predict(rf_caret, train)) this is how you extract predictions with caret\n\n\n\n# confusionMatrix(predict(rf_caret, train)) \n\n\n# roc(test$species, )\n\n\nTidymodels\n\n\nCode\nrf_spec = rand_forest() |> \n  set_mode(\"classification\") |> \n  set_engine(\"ranger\")\n\npenguin_wf = workflow() |> \n  add_formula(sex ~ .)\n\n\nrf_peng = penguin_wf |> \n  add_model(rf_spec) |> \n  fit_resamples(resample = peng_boots,\n                control = control_resamples(save_pred = TRUE))\n\n\n\n\nrf_peng |> \n  collect_predictions()  |> \n  group_by(id) |> \n  roc_curve(sex, .pred_female) |> \n  ggplot(aes(1 - specificity, sensitivity, color = id)) +\n  geom_abline(lty = 2, color = \"gray80\", size = 1.5) +\n  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +\n  coord_equal()"
-  },
-  {
-    "objectID": "slides/ammends to get ready badges .html",
-    "href": "slides/ammends to get ready badges .html",
-    "title": "Amended Test Questions",
-    "section": "",
-    "text": "penguins <- read.csv(\"pengins.csv\")\n\nWarning in file(file, \"rt\"): cannot open file 'pengins.csv': No such file or\ndirectory\n\n\nError in file(file, \"rt\"): cannot open the connection\n\npenguins <-  read.csv(\"penguins.csv\")\n\nWarning in file(file, \"rt\"): cannot open file 'penguins.csv': No such file or\ndirectory\n\n\nError in file(file, \"rt\"): cannot open the connection\n\n\n\nFile name is misspelled\nThe working directory is not set properly i.e. (data is in a folder named dat)\nfile extension not supplied"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#why-use-r",
