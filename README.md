@@ -1,6 +1,7 @@
 # Website for GSU Data Services Workshops
-
-![](images/avatar.png){fig-align="center"}
+<center>
+![](images/avatar.png)
+</center>
 
 🔗 https://joshuafayallen.github.io/research-data-services-r-workshops/
 
