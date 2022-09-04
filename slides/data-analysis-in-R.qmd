@@ -20,7 +20,6 @@ knitr::opts_chunk$set(fig.path="figs/", warning=FALSE,
                       fig.align = "center", echo = TRUE)
 
 
-
 penguins = palmerpenguins::penguins 
 
 
@@ -237,6 +236,7 @@ t.test(flipper_length_mm ~ gentoo, data = penguins_t_test)
 
 
 ## Correlations 
+
 :::columns
 :::column
 ### Base 
@@ -565,7 +565,7 @@ datasummary_balance(~gentoo,
 
 
 
-## Linear Regression in R 
+# Linear Regression in R 
 
 
 

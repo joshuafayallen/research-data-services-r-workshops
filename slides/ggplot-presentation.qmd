@@ -100,7 +100,7 @@ cor(df$x, df$y)
 
 
 
-Lets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren't correlated
+Lets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren't correlated. 
 
 :::
 
@@ -115,7 +115,7 @@ ggplot(data = filter(df,!dataset %in% c("bullseye", "dots", "v_lines", "high_lin
   facet_wrap(vars(dataset))
 ```
 :::{.notes}
-I filtered out some of the data sets just for display purposes but critically if we don't plot our data we may miss patterns that are not recognizable to us when we are taking descriptive statistics. They are also great tools for model diagnostics. A quick  look at our residuals and fitted values is a great indicator whether something is up we use distance plots to look at whether our results are being driven by outliers 
+I filtered out some of the data sets just for display purposes but critically if we don't plot our data we may miss patterns that are not recognizable to us when we are taking descriptive statistics. They are also great tools for model diagnostics. A quick  look at our residuals and fitted values is a great indicator whether something is up we use distance plots to look at whether our results are being driven by outliers. 
 :::
 
 
@@ -164,7 +164,7 @@ ggplot2 is probably one of the most well known and event among many of the staun
 
 ggplot2 predates most of the tidyverse and the gg part refers to the grammar of graphics, more on that later. Much like writing a sentence there is a proper grammar to it. Once we understand the rules we can construct lots of different "sentences".
 
-I think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things. 
+I think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things or working with propietary formats. If you need to you 
 
 :::
 
