@@ -639,10 +639,10 @@ ifelse(test,
 #| code-line-numbers: "|2|3|4|5"
 penguins |>
 mutate(big_penguin = ifelse(
-  body_mass_g >= 47500,
+  body_mass_g >= 4750,
  "Dats a big penguin",
   "SMOL penguin")) |>
-select(big_penguin) |>
+select(body_mass_g, big_penguin) |>
  head(6)
 ```
 :::
