@@ -1375,3 +1375,15 @@ hist(penguins$bill_length_mm,
 you are going to run into lots of error messages and it is going to be really frustrating. Warning messages and errors are something we all run into. Trust me I have been close to needing a new computer more than few times. Part of getting good at R is just figuring out what the hell 
 
 :::
+
+
+# Tell Us How We Did 
+
+[https://gsu.qualtrics.com/jfe/form/SV_9nucJR3soZ9lkqO](https://gsu.qualtrics.com/jfe/form/SV_9nucJR3soZ9lkqO)
+
+
+# 
+
+
+<iframe src="https://giphy.com/embed/KctrWMQ7u9D2du0YmD" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/latenightseth-lol-seth-meyers-lnsm-KctrWMQ7u9D2du0YmD">via GIPHY</a></p>
+
