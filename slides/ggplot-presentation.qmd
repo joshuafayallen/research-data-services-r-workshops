@@ -1337,7 +1337,7 @@ Map wealth to the x-axis, health to the y-axis, add points, color by continent, 
 
 
 
-```{r grammar-ggplot-example-show echo = TRUE }
+```{r grammar-ggplot-example-show, echo = TRUE }
 #| code-fold: true
 ggplot(gapminder, aes(x = gdpPercap,
                       y = lifeExp,
@@ -1931,7 +1931,7 @@ See [this book](https://geocompr.robinlovelace.net/)
 
 ## Map Made By Kieran Healy 
 
-```{r kieran-map echo=FALSE}
+```{r kieran-map, echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/andrewheiss/datavizs21.classes.andrewheiss.com/main/static/slides/img/12/streams-lakes-bw-100-w-01.jpg")
 ```
 
