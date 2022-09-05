@@ -1384,6 +1384,8 @@ you are going to run into lots of error messages and it is going to be really fr
 
 # 
 
+<center>
 
 <iframe src="https://giphy.com/embed/KctrWMQ7u9D2du0YmD" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/latenightseth-lol-seth-meyers-lnsm-KctrWMQ7u9D2du0YmD">via GIPHY</a></p>
 
+</center>
