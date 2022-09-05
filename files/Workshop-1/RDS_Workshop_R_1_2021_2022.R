@@ -208,7 +208,7 @@ USJudgeRatings
 # your computer.  It might look something like this...
 # (note: forward slashes "/" are used to delineate folders)
 
-read.csv("C:/Users/tokyo5/downloads/males.csv")
+# read.csv("C:/Users/tokyo5/downloads/males.csv")
 
 
 # OPTION 3: Import the data from the "working directory"

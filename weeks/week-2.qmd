@@ -12,6 +12,11 @@ The recording for this workshop is posted on the [RDS website just click on the 
 
 🖥️ [Data Cleaning in R](/slides/data-cleaning.html)
 
+
+## Practice 
+
+📋 [Practice Materials]
+
 ## Resources Used
 
 [Introduction to the tidyverse + data visualization with ggplot2](https://talks.andrewheiss.com/2021-seacen/) by Andrew Heiss
