@@ -12,10 +12,9 @@ The recording for this workshop is posted on the [RDS website just click on the 
 
 🖥️ [Data Cleaning in R](/slides/data-cleaning.html)
 
+## Practice
 
-## Practice 
-
-📋 [Practice Materials]
+📋 [Practice Materials](files/Workshop-2.zip)
 
 ## Resources Used
 
