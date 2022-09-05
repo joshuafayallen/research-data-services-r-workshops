@@ -1400,7 +1400,7 @@ Often time we need to or want to adjust the scales that one or more of the axis 
 ::: {.column width="45%"}
 
 ### `scale_x_log_10`
-```{r echo = FALSE}
+```{r echo = TRUE}
 
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
                       color = continent)) +
@@ -1417,7 +1417,7 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
 ### `scale_color_viridis_d`
 
 
-```{r echo = FALSE}
+```{r echo = TRUE}
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
                       color = continent)) +
   geom_point() +
@@ -1441,9 +1441,9 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
 ::::{.columns}
 ::: {.column width="45%"}
 
-scale_x_continuous(limits = c(0, 30000))
+### `scale_x_continuous`
 
-```{r echo=FALSE}
+```{r echo=TRUE}
 
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
   geom_point() +
@@ -1463,7 +1463,7 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
 
 ### `coord_flip`
 
-```{r echo = FALSE}
+```{r echo = TRUE}
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
   geom_point() +
   scale_x_continuous(limits = c(0, 30000)) +
@@ -2135,7 +2135,7 @@ as you can see nothing really fundamentally changes when you are making maps in 
 ::: columns
 :::column
 
-```{r gall-peters-projection,  eval=FALSE}
+```{r gall-peters-projection,  eval=FALSE, echo = TRUE}
 ggplot() +
   geom_sf(data = world_map_ne) + 
   coord_sf(crs = "+proj=cea +lon_0=0 +lat_ts=45") +
