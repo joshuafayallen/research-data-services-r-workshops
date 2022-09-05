@@ -1662,7 +1662,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_1bca6b5c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_af15c371" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -16166,10 +16166,10 @@ am_late(traffic = TRUE)</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21" data-code-line-numbers="|2|3|4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="fu">mutate</span>(<span class="at">big_penguin =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb21-3"><a href="#cb21-3"></a>  body_mass_g <span class="sc">&gt;=</span> <span class="dv">47500</span>,</span>
+<span id="cb21-3"><a href="#cb21-3"></a>  body_mass_g <span class="sc">&gt;=</span> <span class="dv">4750</span>,</span>
 <span id="cb21-4"><a href="#cb21-4"></a> <span class="st">"Dats a big penguin"</span>,</span>
 <span id="cb21-5"><a href="#cb21-5"></a>  <span class="st">"SMOL penguin"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="fu">select</span>(big_penguin) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="fu">select</span>(body_mass_g, big_penguin) <span class="sc">|&gt;</span></span>
 <span id="cb21-7"><a href="#cb21-7"></a> <span class="fu">head</span>(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
@@ -16177,6 +16177,9 @@ am_late(traffic = TRUE)</code></pre>
 <table>
 <thead>
 <tr>
+<th style="text-align:right;">
+body_mass_g
+</th>
 <th style="text-align:left;">
 big_penguin
 </th>
@@ -16184,31 +16187,49 @@ big_penguin
 </thead>
 <tbody>
 <tr>
+<td style="text-align:right;">
+3750
+</td>
 <td style="text-align:left;">
 SMOL penguin
 </td>
 </tr>
 <tr>
+<td style="text-align:right;">
+3800
+</td>
 <td style="text-align:left;">
 SMOL penguin
 </td>
 </tr>
 <tr>
+<td style="text-align:right;">
+3250
+</td>
 <td style="text-align:left;">
 SMOL penguin
 </td>
 </tr>
 <tr>
+<td style="text-align:right;">
+NA
+</td>
 <td style="text-align:left;">
 NA
 </td>
 </tr>
 <tr>
+<td style="text-align:right;">
+3450
+</td>
 <td style="text-align:left;">
 SMOL penguin
 </td>
 </tr>
 <tr>
+<td style="text-align:right;">
+3650
+</td>
 <td style="text-align:left;">
 SMOL penguin
 </td>
@@ -16396,7 +16417,7 @@ Evil Dooer
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_b67bd59d" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_93d5e366" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -16678,7 +16699,7 @@ female
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_36e1097d" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_8eb3caee" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
