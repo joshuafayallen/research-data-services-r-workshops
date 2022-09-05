@@ -15,9 +15,7 @@ The recording for this workshop is posted on the [RDS website just click on the 
 
 ## Practice 
 
-📋[Script](/files/workshop-01-practice-script.R)
-
-📋[Data](/files/penguins.csv)
+📋[Materials To Practice With](/files/Workshop-1.zip)
 
 
 ## Resources Used 
