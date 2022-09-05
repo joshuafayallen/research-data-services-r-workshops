@@ -427,18 +427,18 @@
     "text": "Facet by Continent\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent))"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#change-theme",
-    "href": "slides/ggplot-presentation.html#change-theme",
+    "objectID": "slides/ggplot-presentation.html#change-theme-options",
+    "href": "slides/ggplot-presentation.html#change-theme-options",
     "title": "Getting Started in ggplot",
-    "section": "Change Theme",
-    "text": "Change Theme\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent)) +\n  theme(legend.position = \"none\")"
+    "section": "Change Theme Options",
+    "text": "Change Theme Options\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent)) +\n  theme(legend.position = \"none\")"
   },
   {
     "objectID": "slides/ggplot-presentation.html#a-grammar-we-can-use",
     "href": "slides/ggplot-presentation.html#a-grammar-we-can-use",
     "title": "Getting Started in ggplot",
     "section": "A Grammar We Can Use",
-    "text": "A Grammar We Can Use\nMap wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log.\n\n\nCode\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw() +\n  guides(size = guide_legend(reverse = TRUE, title = \"Continent\"), color =   guide_legend(title = \"Population\"))"
+    "text": "A Grammar We Can Use\nMap wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.\n\n\nCode\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_allen_bw() +\n  guides(size = guide_legend(reverse = TRUE, title = \"Continent\"), color =   guide_legend(title = \"Population\"))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#scales",
@@ -515,14 +515,14 @@
     "href": "slides/ggplot-presentation.html#common-user-written-packages",
     "title": "Getting Started in ggplot",
     "section": "Common User Written Packages",
-    "text": "Common User Written Packages\n\n\nhrbrthemes\n\n\n\n\n\n\n\n\n\n\nggthemes"
+    "text": "Common User Written Packages\n\n\nhrbrthemes\n\n\nCode\nlibrary(hrbrthemes)\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  scale_x_log10() +\n  labs(title = \"hrbr theme_ipsum\") +\n  theme_ipsum()\n\n\n\n\n\n\n\n\n\n\nggthemes\n\n\nCode\nlibrary(ggthemes)\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  labs(title = \"theme_wsj\") +\n  scale_x_log10() +\n  theme_wsj()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#ggplot-in-the-wild",
     "href": "slides/ggplot-presentation.html#ggplot-in-the-wild",
     "title": "Getting Started in ggplot",
     "section": "ggplot in the wild",
-    "text": "ggplot in the wild\n\nOften organizations will write their own theme\n\nCheck out the BBC’s"
+    "text": "ggplot in the wild\n\nOften organizations will write their own theme\n\nCheck out the BBC’s\n\n\n\n\nCode\n##devtools::install_github('bbc/bbplot')\nlibrary(bbplot)\nlibrary(ggalt)\nlibrary(patchwork)\np =  ggplot(gapminder, aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  labs(\"BBC Theme\") +\n  bbc_style()\n\ndumbell_df = gapminder |>\n filter(year == 1967 | year == 2007) |>\n  select(country, year, lifeExp) |>\n  pivot_wider(names_from = \"year\", values_from = \"lifeExp\") |>\n   mutate(gap = `2007` - `1967`) |>\n  arrange(desc(gap)) |>\n  head(10)\n\nd = ggplot(dumbell_df, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + \n  geom_dumbbell(colour = \"#dddddd\",\n                size = 3,\n                colour_x = \"#FAAB18\",\n                colour_xend = \"#1380A1\") +\n  bbc_style() + \n  labs(title=\"We're living longer\")\n\np + d"
   },
   {
     "objectID": "slides/ggplot-presentation.html#the-theme-argument",
@@ -2660,6 +2660,20 @@
     "text": "Slides\n🖥️ Mapping and Data Visualization"
   },
   {
+    "objectID": "weeks/week-3.html#practice",
+    "href": "weeks/week-3.html#practice",
+    "title": "Week 3",
+    "section": "Practice",
+    "text": "Practice"
+  },
+  {
+    "objectID": "weeks/week-3.html#resources-used",
+    "href": "weeks/week-3.html#resources-used",
+    "title": "Week 3",
+    "section": "Resources Used",
+    "text": "Resources Used\nData Visualization PMAP 8921 by Andrew Heiss\nPretty street maps in R with the osmdata package and ggplot by Josh McCrain\nA ggplot2 Tutorial For Beautiful Plotting in R by Cédric Scherer\nA Gentle Guide to the Grammar of Graphics with ggplot2 by Garrick Aden-Buie"
+  },
+  {
     "objectID": "weeks/week-2.html",
     "href": "weeks/week-2.html",
     "title": "Week 2",
@@ -2672,6 +2686,13 @@
     "title": "Week 2",
     "section": "Slides",
     "text": "Slides\n🖥️ Data Cleaning in R"
+  },
+  {
+    "objectID": "weeks/week-2.html#practice",
+    "href": "weeks/week-2.html#practice",
+    "title": "Week 2",
+    "section": "Practice",
+    "text": "Practice\n📋 [Practice Materials]"
   },
   {
     "objectID": "weeks/week-2.html#resources-used",
