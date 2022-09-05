@@ -452,14 +452,14 @@
     "href": "slides/ggplot-presentation.html#scales-in-action",
     "title": "Getting Started in ggplot",
     "section": "Scales in Action",
-    "text": "Scales in Action\n\n\nscale_x_log_10\n\n\n\n\n\n\n\n\n\n\nscale_color_viridis_d"
+    "text": "Scales in Action\n\n\nscale_x_log_10\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\nscale_color_viridis_d\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  scale_color_viridis_d() +\n  theme_bw()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#coordinates",
     "href": "slides/ggplot-presentation.html#coordinates",
     "title": "Getting Started in ggplot",
     "section": "Coordinates",
-    "text": "Coordinates\n\n\nscale_x_continuous(limits = c(0, 30000))\n\n\n\n\n\n\n\n\n\n\ncoord_flip\n\n\n\n\n\n\n\n\n\n\n\n\nIn some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don’t want to go back and redo it"
+    "text": "Coordinates\n\n\nscale_x_continuous\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() +\n  scale_x_continuous(limits = c(0, 30000)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\ncoord_flip\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() +\n  scale_x_continuous(limits = c(0, 30000)) +\n  coord_flip() +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\nIn some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don’t want to go back and redo it"
   },
   {
     "objectID": "slides/ggplot-presentation.html#your-turn-2",
@@ -585,7 +585,7 @@
     "href": "slides/ggplot-presentation.html#changing-the-projections",
     "title": "Getting Started in ggplot",
     "section": "Changing the Projections",
-    "text": "Changing the Projections\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYou can really easily change the projections you want. Here we are just feeding it a different projections If you ever watched the west wing you may recognize this particular projection"
+    "text": "Changing the Projections\n\n\n\nggplot() +\n  geom_sf(data = world_map_ne) + \n  coord_sf(crs = \"+proj=cea +lon_0=0 +lat_ts=45\") +\n  labs(title = \"Gall-Peters Projection\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYou can really easily change the projections you want. Here we are just feeding it a different projections If you ever watched the west wing you may recognize this particular projection"
   },
   {
     "objectID": "slides/ggplot-presentation.html#mapping-middle-earth",
