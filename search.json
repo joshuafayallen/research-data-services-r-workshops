@@ -1001,6 +1001,27 @@
     "text": "Fit a Random Forest and Plot ROC\n\n\nCaret\n\nlibrary(pROC)\nrf_caret = train(sex ~ .,\n                 data = train_caret,\n                 method = \"ranger\",\n                 trControl = peng_caret_boots,\n                 metric = \"ROC\",\n                 verbose = FALSE)\n\n# confusionMatrix(predict(rf_caret, train)) this is how you extract predictions with caret\n\n\n\n# confusionMatrix(predict(rf_caret, train)) \n\n\n# roc(test$species, )\n\n\nTidymodels\n\n\nCode\nrf_spec = rand_forest() |> \n  set_mode(\"classification\") |> \n  set_engine(\"ranger\")\n\npenguin_wf = workflow() |> \n  add_formula(sex ~ .)\n\n\nrf_peng = penguin_wf |> \n  add_model(rf_spec) |> \n  fit_resamples(resample = peng_boots,\n                control = control_resamples(save_pred = TRUE))\n\n\n\n\nrf_peng |> \n  collect_predictions()  |> \n  group_by(id) |> \n  roc_curve(sex, .pred_female) |> \n  ggplot(aes(1 - specificity, sensitivity, color = id)) +\n  geom_abline(lty = 2, color = \"gray80\", size = 1.5) +\n  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +\n  coord_equal()"
   },
   {
+    "objectID": "slides/Getting-Started-in-R.html#our-team",
+    "href": "slides/Getting-Started-in-R.html#our-team",
+    "title": "Getting Started in R",
+    "section": "Our Team",
+    "text": "Our Team"
+  },
+  {
+    "objectID": "slides/Getting-Started-in-R.html#get-ready-badges",
+    "href": "slides/Getting-Started-in-R.html#get-ready-badges",
+    "title": "Getting Started in R",
+    "section": "Get Ready Badges",
+    "text": "Get Ready Badges"
+  },
+  {
+    "objectID": "slides/Getting-Started-in-R.html#how-to-get-the-badges",
+    "href": "slides/Getting-Started-in-R.html#how-to-get-the-badges",
+    "title": "Getting Started in R",
+    "section": "How To Get the Badges",
+    "text": "How To Get the Badges"
+  },
+  {
     "objectID": "slides/Getting-Started-in-R.html#why-use-r",
     "href": "slides/Getting-Started-in-R.html#why-use-r",
     "title": "Getting Started in R",
