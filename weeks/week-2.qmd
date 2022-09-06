@@ -14,7 +14,7 @@ The recording for this workshop is posted on the [RDS website just click on the 
 
 ## Practice
 
-📋 [Practice Materials](files/Workshop-2.zip)
+📋 [Practice Materials](/files/Workshop-2.zip)
 
 ## Resources Used
 
