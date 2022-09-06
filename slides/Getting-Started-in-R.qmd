@@ -539,16 +539,19 @@ R comes with  standard set of boolean operators these are the common ones that y
 
 
 ## Logicals, Booleans, and Precedence
-:::incremental
-
+:::{.incremental}
 - `R` like most other programming languages will evaluate our logical operators(`==`, `>`, etc) before our booleans(`|`, `&`, etc).
 
+:::
 
+. . .
 ```{r unexpected-results, echo = TRUE}
 1 > 0.5 & 2
 ```
 
+. . .
 
+:::{.incremental}
 
 - What's happening here is that R is evaluating two separate "logical" statements: 
  - `1 > 0.5`, which is is obviously TRUE.
@@ -558,13 +561,12 @@ R comes with  standard set of boolean operators these are the common ones that y
 - It is way safer to make explicit what you are doing.
 - If your code is doing something weird it might just be because of precedence issues 
   - See [R Cookbook 2.11](https://rc2e.com/somebasics)
-
-
+:::
+. . . 
 ```{r echo = TRUE}
 1 > 0.5 & 1 > 2
 ```
 
-:::
 
 :::{.notes}
 Computer operations have a pemdas of their own so when you are milling about in R it is important to remember how you set up your tests 
@@ -648,11 +650,14 @@ So using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets
 
 ## Assignment(cont)
 
-:::incremental
+:::{.incremental}
 
 - Using `=` as an assignment operator also works and is the one I tend to use 
   - Note: `=` is also used to evaluate arguments *within* functions
-  
+
+:::
+
+ . . .  
   
 ```{r echo = TRUE}
 b = b * 2
@@ -660,7 +665,7 @@ b = b * 2
 d = b/3
 ```
 
-
+:::incremental
 - Tbh this is a matter of taste really. 
   - R added `=` in the 2000's to make it easier for people coming from other object oriented programming languages
 
@@ -733,15 +738,17 @@ Because x and y live within e we need to tell that they belong to e so to fix it
 ## Fixing Our Issue 
 :::incremental 
 
-- To fix this we need to feed `e` to the data argument
-  - To do this we need to index e 
+- To do this we need to index e to get to y
+:::
+
+. . . 
 
 ```{r echo = TRUE}
 mean(e$y)
 ```
 
 
-:::
+
 
 
 :::{.notes}
@@ -926,8 +933,7 @@ Remember to work and reuse stuff in R we need to assign it to an object. So firs
 
 ## Your Turn
 
-- Create an object any will do
-  - 
+- Create an object with what ever you want in it
 
 - read in the data included to the website using `read.csv`
   - What happens when you do not assign the dataset?
@@ -1034,7 +1040,7 @@ my_list = list(a = 1:4, b = "Hello World", c = data.frame(x = 1:3, y = 4:6))
 ```{r echo = TRUE}
 my_list[[1]][2] ## get the first item in the list and the second element of that item
 my_list[2]
-my_list[[3]][1]
+my_list[[3]][[1]]
 
 ```
 
@@ -1076,7 +1082,7 @@ penguins[,-1] |>
 
 ## Negative Indexing(cont)
 
-- We can use the same things in negative indexing to omit stuff
+- We can use `-` or `:` as well to subset stuff
 
 :::columns
 :::column
@@ -1151,7 +1157,10 @@ my_list$c
 
 
 
+:::{.notes}
+The dollar sign is really helpful if you just want to pick out one thing. Brackets are flexible because you are bascially just returning a smaller list. Double brackets or the dollar sign return a list of length one so it is not as flexible 
 
+:::
 
 
 ## Indexing(cont)
@@ -1162,7 +1171,7 @@ my_list$c$y
 ```
 
 :::{.notes}
-You can also use brackets to pick which element of the thing you want to figure out is. These are all important to know or be aware of all the ways you can find something you need. And like a lot of things in R there are tons of ways to get the same task done. The right way is what returns the right answer for you is the solution. Worry about speeding things up later.
+You can also use brackets to pick which element of the thing you want to figure out is. These are all important to know or be aware of all the ways you can find something you need. And like a lot of things in R there are tons of ways to get the same task done. The right way is what returns the right answer for you is the solution. Worry about speeding things up later. If you just remove one set of brackets from two it will return the element in a slightly different format 
 
 :::
 
@@ -1230,19 +1239,23 @@ Notice how R returns NA as the mean. R is generally pretty conservative and will
 :::
 
 ## Fixing our issue
-:::incremental
 
 
+. . .
 ```{r echo = TRUE}
 mean(penguins$bill_depth_mm, na.rm =TRUE)
 
 ```
 
+:::incremental
+
 - *Good* documentation fluctuates wildly because it is an open source language
 
 
 - If in doubt 
+:::
 
+. . .
 ```{r echo=FALSE, out.width= "25%"}
 knitr::include_graphics("pics/stackoverflow.png")
 ```
@@ -1265,9 +1278,9 @@ knitr::include_graphics("pics/stackoverflow.png")
 
 - Assign each of them to an object
 
-- Create a vector of anything you want and find the second thing in that vector using `[]`
+- Create a vector from 1:10 index that vector using `[]` to return 2 and 4 
+  
 
-- Do the same thing using `$`
 
 ```{r echo = FALSE}
 countdown::countdown(minutes = 5, play_sound = FALSE)
@@ -1276,12 +1289,11 @@ countdown::countdown(minutes = 5, play_sound = FALSE)
 
 
 
-
-
 ## Some additional useful stuff
 
-- You will notice that `species` and `island` are a factor class so your measures of central tendency are not going to be all that informative. 
-  - If you want to check do `class(penguins$species)`
+- Sometimes we want summary statistics per group 
+  - What kind of penguins live where
+  - Are their any interesting patterns by group etc
 
 - Fortunately `R` comes with some handy functions to use 
 
@@ -1384,9 +1396,7 @@ hist(penguins$bill_length_mm,
 :::
 
 
-## Making New Things 
-
-
+## Making New Things {.scrollable}
 
 - To foreshadow our next workshop often we need to do things with our data
   - Like deal with all those pesky missing values
@@ -1401,6 +1411,8 @@ hist(penguins$bill_length_mm,
 penguins$range_body_mass = max(penguins$body_mass_g, na.rm = TRUE) - min(penguins$body_mass_g, na.rm = TRUE)
 
 penguins$chinstrap[penguins$species == "Adelie" | penguins$species == "Gentoo"] <- "Not Chinstrap"
+
+penguins[is.na(penguins)] <- 0
 
 penguins$chinstrap[penguins$species == "Chinstrap"] <- "Chinstrap"
 
