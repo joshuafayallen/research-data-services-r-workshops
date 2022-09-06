@@ -1229,7 +1229,7 @@
     "href": "slides/Getting-Started-in-R.html#your-turn",
     "title": "Getting Started in R",
     "section": "Your Turn",
-    "text": "Your Turn\n\nread in the data included to the website using read.csv\n\nWhat happens when you do not assign the dataset?\n\nassign the penguins dataset to an object named penguins\nuse View, head, and tail to inspect the dataset\nusing install.packages() install ggplot2\n\n\n\n\n−+\n04:00"
+    "text": "Your Turn\n\nCreate an object any will do\nread in the data included to the website using read.csv\n\nWhat happens when you do not assign the dataset?\n\nassign the penguins dataset to an object named penguins\nuse View, head, and tail to inspect the dataset\nusing install.packages() install ggplot2\n\n\n\n\n−+\n04:00"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#our-data",
