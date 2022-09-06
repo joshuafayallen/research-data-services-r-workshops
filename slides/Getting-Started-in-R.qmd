@@ -31,6 +31,30 @@ knitr::opts_chunk$set(
 
 ```
 
+# Research Data Services 
+
+
+## Our Team 
+
+```{r}
+knitr::include_graphics("figs/rds-team-members.png")
+```
+
+
+## Get Ready Badges
+
+
+```{r}
+knitr::include_graphics("figs/get-ready-badges.png")
+```
+
+
+## How To Get the Badges
+
+```{r}
+knitr::include_graphics("figs/how-to-badge.png")
+```
+
 
 ## Why Use R?
 
