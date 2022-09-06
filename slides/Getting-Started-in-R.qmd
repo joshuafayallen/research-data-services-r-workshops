@@ -66,6 +66,8 @@ knitr::include_graphics("figs/how-to-badge.png")
 ```
 
 
+# The Workshop
+
 ## Why Use R?
 
 ```{r grants-plot, echo = FALSE}
@@ -138,10 +140,16 @@ However, if you simply add up the propietary softwares there are fewer industry 
 
 In the data science industry R has enjoyed similar growth rates to python in popularity. R is kind of quirky compartively to python for a whole host of computer sciency reasons and just path dependency. Whatever the case there is no denying that both are hugely in demand skills not just in Silicon Valley but at places that produce data analysis or data visualization
 
+
+
+
 R is also becoming wildly popular in econ and political science because not only is it free but it is a great skill to have given the difficulties of the academic job market. I am political scientist so I will mostly making these references. The Rstudio team in particular has worked really hard on adding support for Python, Julia, and java. 
 
 
 Much of this workshops materials are based on materials people publicly share as long as they get the proper acknowledment. Again thank you Grant.
+
+
+
 :::
 
 
