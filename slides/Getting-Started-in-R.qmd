@@ -1239,10 +1239,8 @@ countdown::countdown(minutes = 5, play_sound = FALSE)
 
 ## Some additional useful stuff
 
-- If you think back to when I had you use head and tail `R` told you what the class of each variable
-  - If you forgot just run `head(penguins)` in your R script
-
 - You will notice that `species` and `island` are a factor class so your measures of central tendency are not going to be all that informative. 
+  - If you want to check do `class(penguins$species)`
 
 - Fortunately `R` comes with some handy functions to use 
 
@@ -1270,7 +1268,7 @@ table(penguins$sex, useNA = "ifany")
 
 :::{.notes}
 
-table is handy but in some cases it does not give us all the information we need in some cases we might have missing values and table will just ignore them 
+table is handy but in some cases it does not give us all the information we need in some cases we might have missing values and table will just ignore them. You just need to supply it with useNA much like how we supplied na.rm  
 :::
 
 
@@ -1345,6 +1343,28 @@ hist(penguins$bill_length_mm,
 :::
 
 
+## Making New Things 
+
+
+
+- To foreshadow our next workshop often we need to do things with our data
+  - Like deal with all those pesky missing values
+  - Create new variables
+  - subset our data(kind of like we have been doing)
+  - recode our variables
+
+- To add new variables we can use what we know 
+
+
+```{r echo = TRUE}
+penguins$range_body_mass = max(penguins$body_mass_g, na.rm = TRUE) - min(penguins$body_mass_g, na.rm = TRUE)
+
+penguins$chinstrap[penguins$species == "Adelie" | penguins$species == "Gentoo"] <- "Not Chinstrap"
+
+penguins$chinstrap[penguins$species == "Chinstrap"] <- "Chinstrap"
+
+penguins[,c(1,9:10)]
+```
 
 
 
