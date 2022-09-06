@@ -1012,7 +1012,7 @@
     "href": "slides/Getting-Started-in-R.html#get-ready-badges",
     "title": "Getting Started in R",
     "section": "Get Ready Badges",
-    "text": "Get Ready Badges"
+    "text": "Get Ready Badges\n\n\nhttps://research.library.gsu.edu/dataservices/data-ready\nThese are awesome to share on social media i.e. linkedin which is a good signal"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#how-to-get-the-badges",
@@ -1103,7 +1103,7 @@
     "href": "slides/Getting-Started-in-R.html#install-and-loading-packages",
     "title": "Getting Started in R",
     "section": "Install and loading packages",
-    "text": "Install and loading packages\n\nConsole or Script install.packages(\"package-i-need-to-install\")\n\nIn the case of multiple packages you can do install.packages(c(\"Packages\", \"I\", \"don't\",\"have\"))\n\nRStudio Click the “Packages” tab in the bottom-right window pane. Then click “Install” and search for these two packages.\n\n\n\n\nCredit for the Gif goes to Grant Mcdermott. As we will learn there are lots of ways to do one thing in R and the packages that are loaded when you open up R have lots of important things that you will use to just do some simple analysis or if you want to build your own functions.\n\n\nGif source:"
+    "text": "Install and loading packages\n\nConsole or Script install.packages(\"package-i-need-to-install\")\n\nIn the case of multiple packages you can do install.packages(c(\"Packages\", \"I\", \"don't\",\"have\"))\n\nRStudio Click the “Packages” tab in the bottom-right window pane. Then click “Install” and search for these two packages.\n\n\n\nCredit for the Gif goes to Grant Mcdermott. As we will learn there are lots of ways to do one thing in R and the packages that are loaded when you open up R have lots of important things that you will use to just do some simple analysis or if you want to build your own functions."
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#install-and-loadcont.",
@@ -1152,7 +1152,7 @@
     "href": "slides/Getting-Started-in-R.html#logicals-booleans-and-precedence",
     "title": "Getting Started in R",
     "section": "Logicals, Booleans, and Precedence",
-    "text": "Logicals, Booleans, and Precedence\n\n\nR like most other programming languages will evaluate our logical operators(==, >, etc) before our booleans(|, &, etc).\n\n\n1 > 0.5 & 2\n\n[1] TRUE\n\n\n\nWhat’s happening here is that R is evaluating two separate “logical” statements:\n1 > 0.5, which is is obviously TRUE.\n2, which is TRUE(!) because R is “helpfully” converting it to as.logical(2).\nIt is way safer to make explicit what you are doing.\n\n\n1 > 0.5 & 1 > 2\n\n[1] FALSE\n\n\n\n\nComputer operations have a pemdas of their own so when you are milling about in R it is important to remember how you set up your tests"
+    "text": "Logicals, Booleans, and Precedence\n\n\nR like most other programming languages will evaluate our logical operators(==, >, etc) before our booleans(|, &, etc).\n\n\n1 > 0.5 & 2\n\n[1] TRUE\n\n\n\nWhat’s happening here is that R is evaluating two separate “logical” statements:\n1 > 0.5, which is is obviously TRUE.\n2, which is TRUE(!) because R is “helpfully” converting it to as.logical(2).\nIt is way safer to make explicit what you are doing.\nIf your code is doing something weird it might just be because of precedence issues\n\nSee R Cookbook 2.11\n\n\n\n1 > 0.5 & 1 > 2\n\n[1] FALSE\n\n\n\n\nComputer operations have a pemdas of their own so when you are milling about in R it is important to remember how you set up your tests"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#other-useful-tricks",
