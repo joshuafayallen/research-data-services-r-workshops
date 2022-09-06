@@ -49,6 +49,16 @@ knitr::include_graphics("figs/get-ready-badges.png")
 ```
 
 
+:::{.notes}
+
+
+https://research.library.gsu.edu/dataservices/data-ready
+
+These are awesome to share on social media i.e. linkedin which is a good signal
+
+
+:::
+
 ## How To Get the Badges
 
 ```{r}
@@ -362,9 +372,7 @@ Once we define what those things are and how they relate to each other R will fi
 
 ![](pics/install.gif)
 
-::: aside 
-Gif source: ![](https://grantmcdermott.com/)
-:::
+
 
 :::{.notes}
 Credit for the Gif goes to Grant Mcdermott. As we will learn there are lots of ways to do one thing in R and the packages that are loaded when you open up R have lots of important things that you will use to just do some simple analysis or if you want to build your own functions.
@@ -548,6 +556,8 @@ R comes with  standard set of boolean operators these are the common ones that y
  
 
 - It is way safer to make explicit what you are doing.
+- If your code is doing something weird it might just be because of precedence issues 
+  - See [R Cookbook 2.11](https://rc2e.com/somebasics)
 
 
 ```{r echo = TRUE}
