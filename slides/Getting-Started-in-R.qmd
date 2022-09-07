@@ -498,7 +498,7 @@ There are lots of other useful mathematical operations we can use in R to make o
     <td class="cell-center"><code class="remark-inline-code">x < y</code></td>
     <td class="cell-left">Less than</td>
     <td class="cell-center"><code class="remark-inline-code">x %in% y</code></td>
-    <td class="cell-left">In (group membership)</td>
+    <td class="cell-left">In set </td>
   </tr>
   <tr>
     <td class="cell-center"><code class="remark-inline-code">x > y</code></td>
