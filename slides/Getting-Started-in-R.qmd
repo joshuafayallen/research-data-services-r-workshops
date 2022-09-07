@@ -368,9 +368,15 @@ knitr::include_graphics("figs/r-projects-menu.png")
 
 
 :::{.notes}
+
+ Everything that exists in R is an object in the sense that it is a kind of data structure that can be manipulated. I think this is better understood with functions and expression
+
+
 Before we start R is an object oriented programming(sort of)  What this means is just how we are defining what things we have and how they relate to each other. A dog has various things associated with it. They are four legged have a good sense of smell, a member of the canine family, they eat a certain set of food. 
 
-Once we define what those things are and how they relate to each other R will figure out what class it is. What is this object to it. Once it figures this out this sets out strict limitations on what R can do with those objects but just as importantly it tells R what it can't do with those objects. Think of like a set of tricks or in CS speak methods to do things. There are things we can do with dogs or to dogs that are acceptable. This differs from cats. Cats and dogs have similar attributes but they are different. These are kind of like classes 
+Once we define what those things are and how they relate to each other R will figure out what class it is.
+
+ What is this object to it. Once it figures this out this sets out strict limitations on what R can do with those objects but just as importantly it tells R what it can't do with those objects. Think of like a set of tricks or in CS speak methods to do things. There are things we can do with dogs or to dogs that are acceptable. This differs from cats. Cats and dogs have similar attributes but they are different classes. 
 
  While sometimes it is frustrating because sometimes you just want to do a thing it helps you protect you from yourself. 
 
