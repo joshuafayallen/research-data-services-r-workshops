@@ -1054,7 +1054,7 @@
     "href": "slides/Getting-Started-in-R.html#setting-your-working-directory",
     "title": "Getting Started in R",
     "section": "Setting Your Working Directory",
-    "text": "Setting Your Working Directory\n\nYour working directory is where all your files live\nYou may know where they are…\nBut R does not\nIf you want to use any data that does not come with a package you are going to need to tell R where it lives"
+    "text": "Setting Your Working Directory\n\n\nYour working directory is where all your files live\nYou may know where your files are…\nBut R does not\nIf you want to use any data that does not come with a package you are going to need to tell R where it lives"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#cats-and-boxes",
