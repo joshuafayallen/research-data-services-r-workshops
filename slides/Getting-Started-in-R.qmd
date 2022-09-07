@@ -148,6 +148,8 @@ R is also becoming wildly popular in econ and political science because not only
 
 Much of this workshops materials are based on materials people publicly share as long as they get the proper acknowledment. Again thank you Grant.
 
+Lots of data is readily available in R. Census API, Twitter API. If you are into sports you can grab a ton of data to compute those fancy metrics you are into. I know there is also data on Rupaul's drag race you can download.
+
 
 
 :::
