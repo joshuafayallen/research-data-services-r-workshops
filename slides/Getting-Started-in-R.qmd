@@ -952,7 +952,13 @@ penguins = read.csv("data/penguins.csv")
 ```
 
 :::{.notes}
+
+
+
 Remember to work and reuse stuff in R we need to assign it to an object. So first we need to make sure our working directory is set to the correct one. In my case I am keeping the penguins in a data folder
+
+
+
 
 
 :::
@@ -1044,7 +1050,13 @@ penguins[1,c(1,4)]  |>
 
 
 :::{.notes}
-knowing how to index stuff is important because often times we neeed to tell R what to get. Which is pretty critical especially if we want to use all the flexibility of R. I use lists a lot to report coefficients from a regression or to automatically update my syllabus when things change.
+knowing how to index stuff is important because often times we neeed to tell R what to get. Which is pretty critical especially if we want to use all the flexibility of R. You will need to be able to work with values of your dataset and you need to be able to navigate the software. The drop down menus for R kind of stop here so now you are in more coding territory.
+
+One thing to keep in mind is that in R indexing starts at 1. So if you want to get the first element of a vector you use 1. Whereas in other languages indexing starts at zero. What does that mean substantivly. Well to get the first element of a vector in another language you would use zero. 
+
+I use lists a lot to report coefficients from a regression or to automatically update my syllabus when things change.
+
+
 
 :::
 
