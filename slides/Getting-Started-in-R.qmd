@@ -209,15 +209,17 @@ these let you comment your code. That way you can let yourself or a reader know 
 
 ## Setting Your Working Directory
 
+:::incremental
+
 - Your working directory is where all your files live
 
-- You may know where they are... 
+- You may know where your files are... 
 
 - But R does not
 
 - If you want to use any data that does not come with a package you are going to need to tell R where it lives
 
-
+:::
 
 
 
