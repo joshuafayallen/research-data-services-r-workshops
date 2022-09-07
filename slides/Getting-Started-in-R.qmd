@@ -528,6 +528,12 @@ There are lots of other useful mathematical operations we can use in R to make o
 
 :::{.notes}
 R comes with  standard set of boolean operators these are the common ones that you will use or run into in the wild. Note that to say something equals something because in R = is used in 2 different ways either as passing arguments off to a function or for assignment.
+
+Logical expressions, like comparison expressions, return a true (1) or false (0) value when processed
+
+
+Booleans are basically just paired comparisions. 
+
 :::
 
 
@@ -654,6 +660,10 @@ h <- "harry potter" # note that text needs to be wrapped in quotes
 :::{.notes}
 
 Assignment might be a foregin concept to you if you have no coding experience or making the transition from excel or stata. Basically if you go through and copy and paste all this stuff into an R script it will run but we will not be able to use this. 
+
+Gets is just less than followed by a dash
+
+
 
 So using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets 2 + 2 this lets us reuse it later whether we want to perform additional maths or use it for later
 :::
