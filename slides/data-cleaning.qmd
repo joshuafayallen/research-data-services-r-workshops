@@ -102,8 +102,11 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 
 ## Pros of the Tidyverse
 
+- One of the most furious debates in R is base R versus tidyverse. 
+
+### The Pros
 ::: incremental
-One of the most furious debates in R is base R versus tidyverse. I will not go into great detail about them because many people who are better at R than me have
+
 
 -   Similar syntax and philosophy which makes it more intuitive to learn
 
@@ -607,7 +610,7 @@ Example derived from [Andrew Heiss](https://twitter.com/andrewheiss/status/13595
 
     -   this is just `|` followed by `>`
 
--   If you are have a version of R that is older than `4.2.0` it should come with the native pipe
+-   If you are have a version of R that is `4.2.0`>= it should come with the native pipe
 
 -   The base versus magrittr pipe differ slightly and it is worth knowing some of the differences
 
@@ -796,7 +799,7 @@ mutate(what_are_they = case_when(
 countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
-## Group_by() and Summarize()
+# Group_by() and Summarize()
 
 ## group_by()
 
@@ -805,11 +808,18 @@ countdown::countdown(minutes = 3, sound = TRUE)
 
 -   Not necessarily the most useful function because nothing really happens when called by itself
 
+:::
+
+. . . 
+
+
 ```{r  echo = TRUE}
 penguins |> 
   group_by(species) |>
   head(5)
 ```
+
+:::incremental
 
 -   Unless you combine it with `summarize()`
   - Note: you will see summarise as well in people's code because the creator and maintainer is from New Zealand
@@ -1172,3 +1182,27 @@ billboard |>
   head(4)
 ```
 
+# Various Other Helpful Tidyverse Things 
+
+
+
+
+
+## Unite and Seperate 
+
+- Unite: combine mulitple columns into one column
+- Seperate: Split one column into many 
+
+```{r}
+
+ f1_data = read_csv("data/f1_data.csv") |>
+ select(forename, surname, dob)
+
+f1_data |>
+unite(name, c(forename, surname), sep = " ") |>
+separate(dob, c("year", "month", "day"))
+
+
+
+
+```
