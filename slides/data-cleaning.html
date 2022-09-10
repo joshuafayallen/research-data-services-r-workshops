@@ -1287,6 +1287,17 @@ Hadley Wickham
 <h2>What is loaded</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+✔ tibble  3.1.8     ✔ dplyr   1.0.9
+✔ tidyr   1.2.0     ✔ stringr 1.4.1
+✔ readr   2.1.2     ✔ forcats 0.5.2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()     masks stats::filter()
+✖ dplyr::group_rows() masks kableExtra::group_rows()
+✖ dplyr::lag()        masks stats::lag()</code></pre>
+</div>
 </div>
 <ul>
 <li>However you can load in specific packages. There is something called the tinyverse that loads in <code>ggplot2</code> and <code>data.table</code></li>
@@ -1332,7 +1343,7 @@ Hadley Wickham
 </center>
 </section>
 <section id="the-big-5-dplyr-verbs" class="slide level2">
-<h2>The Big 5 Dplyr Verbs</h2>
+<h2>The Big 5 Dplyr verbs</h2>
 
 <table>
 <tbody><tr>
@@ -1340,7 +1351,7 @@ Hadley Wickham
 Extract rows with <code>filter()</code>
 </td>
 <td>
-<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/filter.png" alt="filter" title="filter" height="80px">
+<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/filter.png" alt="filter" title="filter" height="60px">
 </td>
 </tr>
 <tr>
@@ -1348,7 +1359,7 @@ Extract rows with <code>filter()</code>
 Extract columns with <code>select()</code>
 </td>
 <td>
-<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/select.png" alt="select" title="select" height="80px">
+<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/select.png" alt="select" title="select" height="60px">
 </td>
 </tr>
 <tr>
@@ -1356,7 +1367,7 @@ Extract columns with <code>select()</code>
 Arrange/sort rows with <code>arrange()</code>
 </td>
 <td>
-<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/arrange.png" alt="arrange" title="arrange" height="80px">
+<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/arrange.png" alt="arrange" title="arrange" height="60px">
 </td>
 </tr>
 <tr>
@@ -1364,7 +1375,7 @@ Arrange/sort rows with <code>arrange()</code>
 Make new columns with <code>mutate()</code>
 </td>
 <td>
-<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/mutate.png" alt="mutate" title="mutate" height="80px">
+<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/mutate.png" alt="mutate" title="mutate" height="60px">
 </td>
 </tr>
 <tr>
@@ -1372,7 +1383,7 @@ Make new columns with <code>mutate()</code>
 Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </td>
 <td>
-<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/summarize.png" alt="summarize" title="summarize" height="80px">
+<img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/summarize.png" alt="summarize" title="summarize" height="60px">
 </td>
 </tr>
 
@@ -1444,9 +1455,10 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>  <span class="fu">filter</span>(penguins, species <span class="sc">==</span> <span class="st">"Adelie"</span>,</span>
-<span id="cb6-2"><a href="#cb6-2"></a>         body_mass_g <span class="sc">&lt;</span> <span class="dv">6200</span>,</span>
-<span id="cb6-3"><a href="#cb6-3"></a>         bill_length_mm <span class="sc">&lt;</span> <span class="fl">59.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>  <span class="fu">filter</span>(penguins,</span>
+<span id="cb7-2"><a href="#cb7-2"></a>         species <span class="sc">==</span> <span class="st">"Adelie"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3"></a>         body_mass_g <span class="sc">&lt;</span> <span class="dv">6200</span>,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>         bill_length_mm <span class="sc">&lt;</span> <span class="fl">59.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -1503,6 +1515,19 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>The basics of filter are that you need to feed it a set of tests. Most often what you use filter for is to subset data based on a series of tests that make sense for your data. In this case I just took the quantiles for both variables. You can string together a set of tests in filter.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="filter-2" class="slide level2">
 <h2>filter()</h2>
@@ -1512,9 +1537,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>  <span class="fu">filter</span>(starwars, <span class="fu">grepl</span>(<span class="st">"Skywalker"</span>, name)<span class="sc">|</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>           <span class="fu">grepl</span>(<span class="st">"Palp"</span>, name) <span class="sc">|</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>           <span class="fu">grepl</span>(<span class="st">"Obi"</span>, name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>  <span class="fu">filter</span>(starwars, <span class="fu">grepl</span>(<span class="st">"Skywalker"</span>, name)<span class="sc">|</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>           <span class="fu">grepl</span>(<span class="st">"Palp"</span>, name) <span class="sc">|</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>           <span class="fu">grepl</span>(<span class="st">"Obi"</span>, name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -1573,15 +1598,30 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>I will say that regular expressions are notoriously difficult to work with. I choose the simplest one to use. Here we are feeding filter a really simple regular expression</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="filter-3" class="slide level2">
+<section id="filter-3" class="slide level2 scrollable">
 <h2>filter()</h2>
 <p>You can also supply a list to filter to subset your data</p>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>  <span class="fu">filter</span>(starwars, homeworld <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Naboo"</span>, <span class="st">"Tatooine"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>         <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="fu">c</span>(<span class="st">"ars"</span>),name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>  <span class="fu">filter</span>(starwars, homeworld <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Naboo"</span>,</span>
+<span id="cb9-2"><a href="#cb9-2"></a>   <span class="st">"Tatooine"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="st">"Coruscant"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>         <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="fu">c</span>(<span class="st">"ars"</span>),name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -1620,6 +1660,18 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
    <td style="text-align:left;"> Tatooine </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> Anakin Skywalker </td>
+   <td style="text-align:left;"> Tatooine </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Palpatine </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Finis Valorum </td>
+   <td style="text-align:left;"> Coruscant </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> ... </td>
    <td style="text-align:left;"> ... </td>
   </tr>
@@ -1631,7 +1683,98 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 </div>
 <aside class="notes">
-<p>Using lists instead of big long conditional statements will honestly make your life so much easier,</p>
+<p>Using lists instead of big long conditional statements will honestly make your life so much easier. Where you use set membership in filter is in place of lots of or tests. So in this case we are feeding</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="filter-mistakes-we-all-make" class="slide level2">
+<h2>filter() mistakes we all make</h2>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">filter</span>(penguins, <span class="at">species =</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `filter()`:
+! We detected a named input.
+ℹ This usually means that you've used `=` instead of `==`.
+ℹ Did you mean `species == "Gentoo"`?</code></pre>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">filter</span>(starwars, homeworld <span class="sc">==</span> <span class="st">"Nabo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+height
+</th>
+<th style="text-align:right;">
+mass
+</th>
+<th style="text-align:left;">
+hair_color
+</th>
+<th style="text-align:left;">
+skin_color
+</th>
+<th style="text-align:left;">
+eye_color
+</th>
+<th style="text-align:right;">
+birth_year
+</th>
+<th style="text-align:left;">
+sex
+</th>
+<th style="text-align:left;">
+gender
+</th>
+<th style="text-align:left;">
+homeworld
+</th>
+<th style="text-align:left;">
+species
+</th>
+<th style="text-align:left;">
+films
+</th>
+<th style="text-align:left;">
+vehicles
+</th>
+<th style="text-align:left;">
+starships
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>We are likely to encounter some sets of errors. Luckily Dplyr has finally built in a friendly error message with when your tests are misspecified. The equals one is one that we all make. Which will just now throw an error. What your are likely to encounter is that you have done a test and your object is now blank. It will return your something back to you but it is blank. All this means is that something is wrong in one of your tests. R will evaluate the test but something in your test does not exist in your data. So it evaluates your test correctly but what you supplied it is not in the data so R does it but there is nothing there for it to return true</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1648,21 +1791,34 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <h2>filter()</h2>
 <p>One of the most common uses is to find and remove missing values or not in a list.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>  <span class="fu">filter</span>(penguins, <span class="fu">is.na</span>(sex))</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">filter</span>(starwar, <span class="fu">is.na</span>(birth_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>  <span class="fu">filter</span>(penguins, <span class="fu">is.na</span>(sex))</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">filter</span>(starwar, <span class="fu">is.na</span>(birth_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<aside class="notes">
+<p>Here I am just asking filter to return all the values in the data that are missing</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="your-turn" class="slide level2">
 <h2>Your Turn</h2>
 <ul>
 <li><p>Using the sample code from the last slide filter out the NA values. Hint use <code>!</code></p></li>
-<li><p>Using either the star wars or penguins data use <code>%in%</code> to get a set of home worlds or islands</p></li>
+<li><p>Using either the <code>starwars</code> or penguins data use <code>%in%</code> to get a set of homeworlds or islands</p></li>
 <li><p>Subset the penguin data where body mass is less than <code>4202</code> and not on the Dream Island.</p></li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_af15c371" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_b66f6ea9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1684,9 +1840,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a> <span class="fu">select</span>(penguins, species,</span>
-<span id="cb10-2"><a href="#cb10-2"></a>         island<span class="sc">:</span>bill_depth_mm,</span>
-<span id="cb10-3"><a href="#cb10-3"></a>         <span class="sc">-</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a> <span class="fu">select</span>(penguins, species,</span>
+<span id="cb14-2"><a href="#cb14-2"></a>         island<span class="sc">:</span>bill_depth_mm,</span>
+<span id="cb14-3"><a href="#cb14-3"></a>         <span class="sc">-</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -1748,14 +1904,17 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <h2>Helpful Helpers</h2>
 <ul>
 <li><p>Dplyr comes really useful functions that help you when there are common patterns in your variable names</p></li>
-<li><p>the syntax usually goes <code>select(contains("pattern"))</code>, <code>select(starts_with("pattern"))</code>, or <code>select(ends_with("pattern"))</code></p></li>
+<li><p>the syntax usually goes</p></li>
+<li><p><code>select(contains("pattern"))</code></p></li>
+<li><p><code>select(starts_with("pattern"))</code></p></li>
+<li><p><code>select(ends_with("pattern"))</code></p></li>
 </ul>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>  <span class="fu">select</span>(starwars, name,</span>
-<span id="cb11-2"><a href="#cb11-2"></a>   <span class="fu">ends_with</span>(<span class="st">"color"</span>),</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    homeworld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>  <span class="fu">select</span>(starwars, name,   <span class="sc">-</span>eye_color,</span>
+<span id="cb15-2"><a href="#cb15-2"></a>   <span class="fu">ends_with</span>(<span class="st">"color"</span>) </span>
+<span id="cb15-3"><a href="#cb15-3"></a>    homeworld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -1777,42 +1936,28 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
    <td style="text-align:left;"> blond </td>
    <td style="text-align:left;"> fair </td>
    <td style="text-align:left;"> blue </td>
-   <td style="text-align:left;"> Tatooine </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> C-3PO </td>
    <td style="text-align:left;"> NA </td>
    <td style="text-align:left;"> gold </td>
    <td style="text-align:left;"> yellow </td>
-   <td style="text-align:left;"> Tatooine </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> R2-D2 </td>
    <td style="text-align:left;"> NA </td>
    <td style="text-align:left;"> white, blue </td>
    <td style="text-align:left;"> red </td>
-   <td style="text-align:left;"> Naboo </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Darth Vader </td>
    <td style="text-align:left;"> none </td>
    <td style="text-align:left;"> white </td>
    <td style="text-align:left;"> yellow </td>
-   <td style="text-align:left;"> Tatooine </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Leia Organa </td>
-   <td style="text-align:left;"> brown </td>
-   <td style="text-align:left;"> light </td>
-   <td style="text-align:left;"> brown </td>
-   <td style="text-align:left;"> Alderaan </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Owen Lars </td>
-   <td style="text-align:left;"> brown, grey </td>
-   <td style="text-align:left;"> light </td>
-   <td style="text-align:left;"> blue </td>
-   <td style="text-align:left;"> Tatooine </td>
+   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> ... </td>
@@ -1856,7 +2001,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">verb</span>(.data, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">verb</span>(.data, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <ul>
@@ -1878,7 +2023,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">filter</span>(<span class="at">.data =</span> penguins, species <span class="sc">==</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">filter</span>(<span class="at">.data =</span> penguins, species <span class="sc">==</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 
@@ -5145,7 +5290,7 @@ male
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">select</span>(<span class="at">.data =</span> penguins, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">select</span>(<span class="at">.data =</span> penguins, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 
@@ -6887,7 +7032,7 @@ Chinstrap
 </div>
 <div id="tabset-1-3">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">mutate</span>(<span class="at">.data =</span> penguins, <span class="at">bill_length_mm =</span> bill_length_mm<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">mutate</span>(<span class="at">.data =</span> penguins, <span class="at">bill_length_mm =</span> bill_length_mm<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 
@@ -15908,9 +16053,9 @@ female
 <div class="columns">
 <div class="column" style="width:45%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="do">## These do the same thing</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(penguins,species <span class="sc">==</span> <span class="st">"Adelie"</span>),</span>
-<span id="cb16-3"><a href="#cb16-3"></a> island), <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="do">## These do the same thing</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(penguins,species <span class="sc">==</span> <span class="st">"Adelie"</span>),</span>
+<span id="cb20-3"><a href="#cb20-3"></a> island), <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 
@@ -15958,10 +16103,10 @@ Torgersen
 </div>
 </div><div class="column" style="width:45%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="|1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>penguins <span class="sc">%&gt;%</span>  </span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">group_by</span>(island) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="fu">summarise</span>(<span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="|1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>penguins <span class="sc">%&gt;%</span>  </span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">group_by</span>(island) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="fu">summarise</span>(<span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 
@@ -16076,10 +16221,10 @@ am_late(traffic = TRUE)</code></pre>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span> </span>
-<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">select</span>(species, sex) <span class="sc">|&gt;</span> </span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">mutate</span>(<span class="at">female =</span> <span class="fu">ifelse</span>(sex <span class="sc">==</span> <span class="st">"female"</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">select</span>(species, sex) <span class="sc">|&gt;</span> </span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">mutate</span>(<span class="at">female =</span> <span class="fu">ifelse</span>(sex <span class="sc">==</span> <span class="st">"female"</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -16145,9 +16290,9 @@ am_late(traffic = TRUE)</code></pre>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="|1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ifelse</span>(test,</span>
-<span id="cb20-2"><a href="#cb20-2"></a>       Value_if_True,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>       Value_if_False)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ifelse</span>(test,</span>
+<span id="cb24-2"><a href="#cb24-2"></a>       Value_if_True,</span>
+<span id="cb24-3"><a href="#cb24-3"></a>       Value_if_False)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <ul>
@@ -16164,13 +16309,13 @@ am_late(traffic = TRUE)</code></pre>
 <div class="column" style="width:45%;">
 <h3 id="regular-ifelse">Regular ifelse</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="|2|3|4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">mutate</span>(<span class="at">big_penguin =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb21-3"><a href="#cb21-3"></a>  body_mass_g <span class="sc">&gt;=</span> <span class="dv">4750</span>,</span>
-<span id="cb21-4"><a href="#cb21-4"></a> <span class="st">"Dats a big penguin"</span>,</span>
-<span id="cb21-5"><a href="#cb21-5"></a>  <span class="st">"SMOL penguin"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="fu">select</span>(body_mass_g, big_penguin) <span class="sc">|&gt;</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a> <span class="fu">head</span>(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|2|3|4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">mutate</span>(<span class="at">big_penguin =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb25-3"><a href="#cb25-3"></a>  body_mass_g <span class="sc">&gt;=</span> <span class="dv">4750</span>,</span>
+<span id="cb25-4"><a href="#cb25-4"></a> <span class="st">"Dats a big penguin"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5"></a>  <span class="st">"SMOL penguin"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="fu">select</span>(body_mass_g, big_penguin) <span class="sc">|&gt;</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a> <span class="fu">head</span>(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 
@@ -16243,24 +16388,24 @@ SMOL penguin
 </div><div class="column" style="width:45%;">
 <h3 id="fancy-ifelse">Fancy ifelse</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="|1|6|14|15|16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>jedi <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Luke Skywalker"</span>,</span>
-<span id="cb22-2"><a href="#cb22-2"></a> <span class="st">"Yoda"</span>, <span class="st">"Obi-Wan Kenobi"</span>,</span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="st">"Rey"</span>, </span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="st">"Mace Windu"</span>)</span>
-<span id="cb22-5"><a href="#cb22-5"></a></span>
-<span id="cb22-6"><a href="#cb22-6"></a>sith <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Palpatine"</span>,</span>
-<span id="cb22-7"><a href="#cb22-7"></a> <span class="st">"Darth Maul"</span>,</span>
-<span id="cb22-8"><a href="#cb22-8"></a>  <span class="st">"Dooku"</span>,</span>
-<span id="cb22-9"><a href="#cb22-9"></a>   <span class="st">"Darth Vader"</span>)</span>
-<span id="cb22-10"><a href="#cb22-10"></a></span>
-<span id="cb22-11"><a href="#cb22-11"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="fu">filter</span>(name <span class="sc">%in%</span> jedi <span class="sc">|</span></span>
-<span id="cb22-13"><a href="#cb22-13"></a> name <span class="sc">%in%</span> sith) <span class="sc">|&gt;</span></span>
-<span id="cb22-14"><a href="#cb22-14"></a><span class="fu">mutate</span>(<span class="at">what_are_they =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-15"><a href="#cb22-15"></a>  name <span class="sc">%in%</span> jedi <span class="sc">~</span> <span class="st">"Hero"</span>,</span>
-<span id="cb22-16"><a href="#cb22-16"></a>  name <span class="sc">%in%</span> sith <span class="sc">~</span> <span class="st">"Evil Dooer"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb22-17"><a href="#cb22-17"></a>      <span class="fu">select</span>(name, what_are_they) <span class="sc">|&gt;</span></span>
-<span id="cb22-18"><a href="#cb22-18"></a>      <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|1|6|14|15|16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>jedi <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Luke Skywalker"</span>,</span>
+<span id="cb26-2"><a href="#cb26-2"></a> <span class="st">"Yoda"</span>, <span class="st">"Obi-Wan Kenobi"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="st">"Rey"</span>, </span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="st">"Mace Windu"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5"></a></span>
+<span id="cb26-6"><a href="#cb26-6"></a>sith <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Palpatine"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7"></a> <span class="st">"Darth Maul"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8"></a>  <span class="st">"Dooku"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9"></a>   <span class="st">"Darth Vader"</span>)</span>
+<span id="cb26-10"><a href="#cb26-10"></a></span>
+<span id="cb26-11"><a href="#cb26-11"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb26-12"><a href="#cb26-12"></a><span class="fu">filter</span>(name <span class="sc">%in%</span> jedi <span class="sc">|</span></span>
+<span id="cb26-13"><a href="#cb26-13"></a> name <span class="sc">%in%</span> sith) <span class="sc">|&gt;</span></span>
+<span id="cb26-14"><a href="#cb26-14"></a><span class="fu">mutate</span>(<span class="at">what_are_they =</span> <span class="fu">case_when</span>(</span>
+<span id="cb26-15"><a href="#cb26-15"></a>  name <span class="sc">%in%</span> jedi <span class="sc">~</span> <span class="st">"Hero"</span>,</span>
+<span id="cb26-16"><a href="#cb26-16"></a>  name <span class="sc">%in%</span> sith <span class="sc">~</span> <span class="st">"Evil Dooer"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-17"><a href="#cb26-17"></a>      <span class="fu">select</span>(name, what_are_they) <span class="sc">|&gt;</span></span>
+<span id="cb26-18"><a href="#cb26-18"></a>      <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 
@@ -16333,15 +16478,15 @@ Evil Dooer
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm) <span class="sc">&amp;</span> species <span class="sc">==</span> <span class="st">"Gentoo"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">mutate</span>(<span class="at">long_bill =</span> bill_length_mm <span class="sc">*</span> <span class="dv">2</span>,</span>
-<span id="cb23-4"><a href="#cb23-4"></a>         <span class="at">long_bill_logical =</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>           <span class="fu">ifelse</span>(long_bill <span class="sc">&gt;=</span> <span class="dv">100</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a>                  <span class="sc">&amp;</span> long_bill <span class="sc">&lt;=</span> <span class="fl">119.20</span>,</span>
-<span id="cb23-7"><a href="#cb23-7"></a>                  <span class="st">"Long"</span>,</span>
-<span id="cb23-8"><a href="#cb23-8"></a>                  <span class="st">"Short"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb23-9"><a href="#cb23-9"></a>  <span class="fu">select</span>(species, bill_length_mm, long_bill, long_bill_logical)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm) <span class="sc">&amp;</span> species <span class="sc">==</span> <span class="st">"Gentoo"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">mutate</span>(<span class="at">long_bill =</span> bill_length_mm <span class="sc">*</span> <span class="dv">2</span>,</span>
+<span id="cb27-4"><a href="#cb27-4"></a>         <span class="at">long_bill_logical =</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>           <span class="fu">ifelse</span>(long_bill <span class="sc">&gt;=</span> <span class="dv">100</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>                  <span class="sc">&amp;</span> long_bill <span class="sc">&lt;=</span> <span class="fl">119.20</span>,</span>
+<span id="cb27-7"><a href="#cb27-7"></a>                  <span class="st">"Long"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8"></a>                  <span class="st">"Short"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb27-9"><a href="#cb27-9"></a>  <span class="fu">select</span>(species, bill_length_mm, long_bill, long_bill_logical)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -16417,7 +16562,7 @@ Evil Dooer
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_93d5e366" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_e3e6238f" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -16435,9 +16580,9 @@ Evil Dooer
 <li class="fragment"><p>Not necessarily the most useful function because nothing really happens when called by itself</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 
@@ -16616,9 +16761,9 @@ female
 <section id="section-1" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">summarize</span>(<span class="at">total_penguins =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">summarize</span>(<span class="at">total_penguins =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -16654,9 +16799,9 @@ female
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -16699,7 +16844,7 @@ female
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_8eb3caee" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_f506edd9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -16737,9 +16882,9 @@ female
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>data1 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,                      <span class="do">## Create first example data frame</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>                    <span class="at">X1 =</span> <span class="fu">c</span>(<span class="st">"a1"</span>, <span class="st">"a2"</span>),</span>
-<span id="cb27-3"><a href="#cb27-3"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>data1 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,                      <span class="do">## Create first example data frame</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>                    <span class="at">X1 =</span> <span class="fu">c</span>(<span class="st">"a1"</span>, <span class="st">"a2"</span>),</span>
+<span id="cb31-3"><a href="#cb31-3"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -16767,9 +16912,9 @@ female
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>data2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>,                      <span class="do">## Create second example data frame</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>                    <span class="at">X2 =</span> <span class="fu">c</span>(<span class="st">"b1"</span>, <span class="st">"b2"</span>),</span>
-<span id="cb28-3"><a href="#cb28-3"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>data2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>,                      <span class="do">## Create second example data frame</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>                    <span class="at">X2 =</span> <span class="fu">c</span>(<span class="st">"b1"</span>, <span class="st">"b2"</span>),</span>
+<span id="cb32-3"><a href="#cb32-3"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -16801,7 +16946,7 @@ female
 <section id="left_join" class="slide level2">
 <h2>left_join()</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">left_join</span>(data1, data2, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">left_join</span>(data1, data2, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -16839,7 +16984,7 @@ female
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>national_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>national_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -16925,7 +17070,7 @@ female
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>national_libraries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>national_libraries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -16987,10 +17132,10 @@ female
 <section id="joinscont" class="slide level2">
 <h2>Joins(cont)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>national_combined <span class="ot">=</span> <span class="fu">left_join</span>(national_data, national_libraries, </span>
-<span id="cb32-2"><a href="#cb32-2"></a>                                    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>)) </span>
-<span id="cb32-3"><a href="#cb32-3"></a></span>
-<span id="cb32-4"><a href="#cb32-4"></a>national_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>national_combined <span class="ot">=</span> <span class="fu">left_join</span>(national_data, national_libraries, </span>
+<span id="cb36-2"><a href="#cb36-2"></a>                                    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>)) </span>
+<span id="cb36-3"><a href="#cb36-3"></a></span>
+<span id="cb36-4"><a href="#cb36-4"></a>national_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -17098,10 +17243,10 @@ female
 <section id="combined-data" class="slide level2">
 <h2>Combined Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="|1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>national_combined <span class="ot">=</span> national_data <span class="sc">|&gt;</span> </span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">left_join</span>(national_libraries, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>))</span>
-<span id="cb33-3"><a href="#cb33-3"></a></span>
-<span id="cb33-4"><a href="#cb33-4"></a>national_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37" data-code-line-numbers="|1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>national_combined <span class="ot">=</span> national_data <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">left_join</span>(national_libraries, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>))</span>
+<span id="cb37-3"><a href="#cb37-3"></a></span>
+<span id="cb37-4"><a href="#cb37-4"></a>national_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -17358,8 +17503,8 @@ female
 <li><p><code>renanme(newvarname = oldvarname)</code></p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>national_data <span class="sc">|&gt;</span> </span>
-<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">left_join</span>(national_libraries, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"statename"</span>, <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>national_data <span class="sc">|&gt;</span> </span>
+<span id="cb38-2"><a href="#cb38-2"></a>  <span class="fu">left_join</span>(national_libraries, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"statename"</span>, <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -17718,8 +17863,8 @@ female
 <section id="making-data-longer" class="slide level2">
 <h2>Making Data Longer</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>relig_income <span class="sc">|&gt;</span> </span>
-<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>relig_income <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a href="#cb39-2"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -17792,7 +17937,7 @@ female
 <section id="more-complex-example" class="slide level2">
 <h2>More Complex Example</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">data</span>(<span class="st">"billboard"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">data</span>(<span class="st">"billboard"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -20989,16 +21134,16 @@ female
 </section>
 <section id="using-your-helpers" class="slide level2">
 <h2>Using Your Helpers</h2>
-<div class="cell" data-hash="data-cleaning_cache/revealjs/unnamed-chunk-61_3855c27e2f3131361412ef4cb3924be2">
-<div class="sourceCode cell-code" id="cb37" data-code-line-numbers="|3|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>billboard <span class="sc">|&gt;</span> </span>
-<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb37-3"><a href="#cb37-3"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), </span>
-<span id="cb37-4"><a href="#cb37-4"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
-<span id="cb37-5"><a href="#cb37-5"></a>    <span class="at">names_prefix =</span> <span class="st">"wk"</span>,</span>
-<span id="cb37-6"><a href="#cb37-6"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
-<span id="cb37-7"><a href="#cb37-7"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb37-8"><a href="#cb37-8"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb37-9"><a href="#cb37-9"></a>  <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="data-cleaning_cache/revealjs/unnamed-chunk-63_5c68329a6218b27ee04bf5cdfb7420b2">
+<div class="sourceCode cell-code" id="cb41" data-code-line-numbers="|3|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>billboard <span class="sc">|&gt;</span> </span>
+<span id="cb41-2"><a href="#cb41-2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb41-3"><a href="#cb41-3"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), </span>
+<span id="cb41-4"><a href="#cb41-4"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
+<span id="cb41-5"><a href="#cb41-5"></a>    <span class="at">names_prefix =</span> <span class="st">"wk"</span>,</span>
+<span id="cb41-6"><a href="#cb41-6"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
+<span id="cb41-7"><a href="#cb41-7"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb41-8"><a href="#cb41-8"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>  <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 

@@ -438,7 +438,7 @@
     "href": "slides/ggplot-presentation.html#a-grammar-we-can-use",
     "title": "Getting Started in ggplot",
     "section": "A Grammar We Can Use",
-    "text": "A Grammar We Can Use\nMap wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.\n\n\nCode\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_allen_bw() +\n  guides(size = guide_legend(reverse = TRUE, title = \"Continent\"), color =   guide_legend(title = \"Population\"))"
+    "text": "A Grammar We Can Use\nMap wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.\n\n\nCode\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_allen_bw() +\n  guides(size = guide_legend(reverse = TRUE, title = \"Population\"), color =   guide_legend(title = \"Continent\"))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#scales",
@@ -452,14 +452,14 @@
     "href": "slides/ggplot-presentation.html#scales-in-action",
     "title": "Getting Started in ggplot",
     "section": "Scales in Action",
-    "text": "Scales in Action\n\n\nscale_x_log_10\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\nscale_color_viridis_d\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  scale_color_viridis_d() +\n  theme_bw()"
+    "text": "Scales in Action\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw()\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  scale_color_viridis_d() +\n  theme_bw()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#coordinates",
     "href": "slides/ggplot-presentation.html#coordinates",
     "title": "Getting Started in ggplot",
     "section": "Coordinates",
-    "text": "Coordinates\n\n\nscale_x_continuous\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() +\n  scale_x_continuous(limits = c(0, 30000)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\ncoord_flip\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() +\n  scale_x_continuous(limits = c(0, 30000)) +\n  coord_flip() +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\nIn some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don’t want to go back and redo it"
+    "text": "Coordinates\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() +\n  scale_x_continuous(limits = c(0, 30000)) +\n  theme_bw()\n  \nggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() +\n  scale_x_continuous(limits = c(0, 30000)) +\n  coord_flip() +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don’t want to go back and redo it"
   },
   {
     "objectID": "slides/ggplot-presentation.html#your-turn-2",
@@ -487,7 +487,7 @@
     "href": "slides/ggplot-presentation.html#facets-1",
     "title": "Getting Started in ggplot",
     "section": "Facets",
-    "text": "Facets\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      size = pop)) +\n  geom_point() +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent))\n\n\n\n\n\n\n\n\n\n\nggplot(data = filter(gapminder, year %in% c(2002, 2007)),\n       aes(x = gdpPercap,\n           y = lifeExp,\n           size = pop)) +\n  geom_point() +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent, year))"
+    "text": "Facets\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop)) +\n  geom_point() +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent)) # you can add more combos of vars here\n  \nggplot(data = filter(gapminder, year %in% c(1987,1997,2002, 2007)),\n       aes(x = gdpPercap,\n           y = lifeExp,\n           size = pop)) +\n  geom_point() +\n  theme_bw() +\n  scale_x_log10() +\n  facet_grid(vars(year))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#labels",
@@ -515,14 +515,14 @@
     "href": "slides/ggplot-presentation.html#common-user-written-packages",
     "title": "Getting Started in ggplot",
     "section": "Common User Written Packages",
-    "text": "Common User Written Packages\n\n\nhrbrthemes\n\n\nCode\nlibrary(hrbrthemes)\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  scale_x_log10() +\n  labs(title = \"hrbr theme_ipsum\") +\n  theme_ipsum()\n\n\n\n\n\n\n\n\n\n\nggthemes\n\n\nCode\nlibrary(ggthemes)\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  labs(title = \"theme_wsj\") +\n  scale_x_log10() +\n  theme_wsj()"
+    "text": "Common User Written Packages\n\n\nhrbrthemes\n\n\nCode\n# install.packages(\"hrbrthemes\")\nlibrary(hrbrthemes)\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  scale_x_log10() +\n  labs(title = \"hrbr theme_ipsum\") +\n  theme_ipsum()\n\n\n\n\n\n\n\n\n\n\nggthemes\n\n\nCode\nlibrary(ggthemes)\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  labs(title = \"theme_wsj\") +\n  scale_x_log10() +\n  theme_wsj()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#ggplot-in-the-wild",
     "href": "slides/ggplot-presentation.html#ggplot-in-the-wild",
     "title": "Getting Started in ggplot",
     "section": "ggplot in the wild",
-    "text": "ggplot in the wild\n\nOften organizations will write their own theme\n\nCheck out the BBC’s\n\n\n\n\nCode\n##devtools::install_github('bbc/bbplot')\nlibrary(bbplot)\nlibrary(ggalt)\nlibrary(patchwork)\np =  ggplot(gapminder, aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  labs(\"BBC Theme\") +\n  bbc_style()\n\ndumbell_df = gapminder |>\n filter(year == 1967 | year == 2007) |>\n  select(country, year, lifeExp) |>\n  pivot_wider(names_from = \"year\", values_from = \"lifeExp\") |>\n   mutate(gap = `2007` - `1967`) |>\n  arrange(desc(gap)) |>\n  head(10)\n\nd = ggplot(dumbell_df, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + \n  geom_dumbbell(colour = \"#dddddd\",\n                size = 3,\n                colour_x = \"#FAAB18\",\n                colour_xend = \"#1380A1\") +\n  bbc_style() + \n  labs(title=\"We're living longer\")\n\np + d"
+    "text": "ggplot in the wild\n\nOften organizations will write their own theme\n\nCheck out the BBC’s\n\n\n\n##devtools::install_github('bbc/bbplot')\nlibrary(bbplot)\n ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +\n  geom_point() +\n  scale_color_manual(values = c(\"#FAAB18\", \"#1380A1\",\"#990000\", \"#588300\")) +\n  scale_x_log10() +\n  bbc_style()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#the-theme-argument",
@@ -585,7 +585,7 @@
     "href": "slides/ggplot-presentation.html#changing-the-projections",
     "title": "Getting Started in ggplot",
     "section": "Changing the Projections",
-    "text": "Changing the Projections\n\n\n\nggplot() +\n  geom_sf(data = world_map_ne) + \n  coord_sf(crs = \"+proj=cea +lon_0=0 +lat_ts=45\") +\n  labs(title = \"Gall-Peters Projection\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYou can really easily change the projections you want. Here we are just feeding it a different projections If you ever watched the west wing you may recognize this particular projection"
+    "text": "Changing the Projections\n\nggplot() +\n  geom_sf(data = world_map_ne) + \n  coord_sf(crs = \"+proj=cea +lon_0=0 +lat_ts=45\") +\n  labs(title = \"Gall-Peters Projection\") +\n  theme_void()\n\n\n\nYou can really easily change the projections you want. Here we are just feeding it a different projections If you ever watched the west wing you may recognize this particular projection"
   },
   {
     "objectID": "slides/ggplot-presentation.html#mapping-middle-earth",
@@ -616,11 +616,11 @@
     "text": "Making a Bespoke Shapefile(cont)\n\nga_cities = tribble( \n  ~city, ~lat, ~long,\n  \"Atlanta\", 33.748955, -84.388099,\n  \"Athens\", 33.950794, -83.358884,\n  \"Savannah\", 32.113192, -81.089350\n)\n\n\nga_cities_geometry = ga_cities |>  \n  st_as_sf(coords = c(\"long\", \"lat\"), crs = st_crs(\"EPSG:4326\"))\nga_cities_geometry\n\n\n\n\n\n \n  \n    city \n    geometry \n  \n \n\n  \n    Atlanta \n    POINT (-84.3881 33.74896) \n  \n  \n    Athens \n    POINT (-83.35888 33.95079) \n  \n  \n    Savannah \n    POINT (-81.08935 32.11319) \n  \n\n\n\n\n\n\n\nexamples derived from Andrew Heiss"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#making-a-artesianal-shapefilecont",
-    "href": "slides/ggplot-presentation.html#making-a-artesianal-shapefilecont",
+    "objectID": "slides/ggplot-presentation.html#making-a-bespoke-shapefilecont-1",
+    "href": "slides/ggplot-presentation.html#making-a-bespoke-shapefilecont-1",
     "title": "Getting Started in ggplot",
-    "section": "Making a Artesianal Shapefile(cont)",
-    "text": "Making a Artesianal Shapefile(cont)\n\nlibrary(tidygeocoder)\n\nbreweries_I_visit = tribble(\n  ~name, ~address,\n  \"Russian River Brewing\", \"725 4th St, Santa Rosa, CA 95404\",\n  \"Orpheus Brewing\", \"1440 Dutch Valley Pl NE, Atlanta, GA 30324\",\n  \"Three Tavens\", \"121 New St, Decatur, GA 30030\",\n  \"HenHouse Brewing Company\", \"322 Bellevue Ave, Santa Rosa, CA 95407\"\n)\n\nbreweries_geocode = breweries_I_visit |> \n  geocode(address,  cascade_order = c(\"osm\", \"arcgis\")) ## backup if one service fails \n\nadd_geom = breweries_geocode |> \n  st_as_sf(coords = c(\"long\", \"lat\"), crs = st_crs(\"EPSG:4326\"))\n\n\n\n\n\n \n  \n    name \n    address \n    geometry \n  \n \n\n  \n    Russian River Brewing \n    725 4th St, Santa Rosa, CA 95404 \n    POINT (-122.7117 38.4418) \n  \n  \n    Orpheus Brewing \n    1440 Dutch Valley Pl NE, Atlanta, GA 30324 \n    POINT (-84.36874 33.79355) \n  \n  \n    Three Tavens \n    121 New St, Decatur, GA 30030 \n    POINT (-84.28488 33.77306) \n  \n  \n    HenHouse Brewing Company \n    322 Bellevue Ave, Santa Rosa, CA 95407 \n    POINT (-122.7255 38.40122)"
+    "section": "Making a Bespoke Shapefile(cont)",
+    "text": "Making a Bespoke Shapefile(cont)\n\nlibrary(tidygeocoder)\n\nbreweries_I_visit = tribble(\n  ~name, ~address,\n  \"Russian River Brewing\", \"725 4th St, Santa Rosa, CA 95404\",\n  \"Orpheus Brewing\", \"1440 Dutch Valley Pl NE, Atlanta, GA 30324\",\n  \"Three Tavens\", \"121 New St, Decatur, GA 30030\",\n  \"HenHouse Brewing Company\", \"322 Bellevue Ave, Santa Rosa, CA 95407\"\n)\n\nbreweries_geocode = breweries_I_visit |> \n  geocode(address,  cascade_order = c(\"osm\", \"arcgis\")) ## backup if one service fails \n\nadd_geom = breweries_geocode |> \n  st_as_sf(coords = c(\"long\", \"lat\"), crs = st_crs(\"EPSG:4326\"))\n\n\n\n\n\n \n  \n    name \n    address \n    geometry \n  \n \n\n  \n    Russian River Brewing \n    725 4th St, Santa Rosa, CA 95404 \n    POINT (-122.7117 38.4418) \n  \n  \n    Orpheus Brewing \n    1440 Dutch Valley Pl NE, Atlanta, GA 30324 \n    POINT (-84.36874 33.79355) \n  \n  \n    Three Tavens \n    121 New St, Decatur, GA 30030 \n    POINT (-84.28488 33.77306) \n  \n  \n    HenHouse Brewing Company \n    322 Bellevue Ave, Santa Rosa, CA 95407 \n    POINT (-122.7255 38.40122)"
   },
   {
     "objectID": "slides/ggplot-presentation.html#mapping-atlanta",
@@ -1453,7 +1453,7 @@
     "href": "slides/data-cleaning.html#what-is-loaded",
     "title": "Data Cleaning in R",
     "section": "What is loaded",
-    "text": "What is loaded\n\nlibrary(tidyverse)\n\n\nHowever you can load in specific packages. There is something called the tinyverse that loads in ggplot2 and data.table\n\n\nThe tidyverse is pretty verbose because it loads a lot of things and in the case of lag and filter actually makes its lag and filter function the one that R uses."
+    "text": "What is loaded\n\nlibrary(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.3.6     ✔ purrr   0.3.4\n✔ tibble  3.1.8     ✔ dplyr   1.0.9\n✔ tidyr   1.2.0     ✔ stringr 1.4.1\n✔ readr   2.1.2     ✔ forcats 0.5.2\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter()     masks stats::filter()\n✖ dplyr::group_rows() masks kableExtra::group_rows()\n✖ dplyr::lag()        masks stats::lag()\n\n\n\nHowever you can load in specific packages. There is something called the tinyverse that loads in ggplot2 and data.table\n\n\nThe tidyverse is pretty verbose because it loads a lot of things and in the case of lag and filter actually makes its lag and filter function the one that R uses."
   },
   {
     "objectID": "slides/data-cleaning.html#namespace-conflicts",
@@ -1466,8 +1466,8 @@
     "objectID": "slides/data-cleaning.html#the-big-5-dplyr-verbs",
     "href": "slides/data-cleaning.html#the-big-5-dplyr-verbs",
     "title": "Data Cleaning in R",
-    "section": "The Big 5 Dplyr Verbs",
-    "text": "The Big 5 Dplyr Verbs\n\n\n\n\nExtract rows with filter()\n\n\n\n\n\n\n\nExtract columns with select()\n\n\n\n\n\n\n\nArrange/sort rows with arrange()\n\n\n\n\n\n\n\nMake new columns with mutate()\n\n\n\n\n\n\n\nMake group summaries withgroup_by() %>% summarize()"
+    "section": "The Big 5 Dplyr verbs",
+    "text": "The Big 5 Dplyr verbs\n\n\n\n\nExtract rows with filter()\n\n\n\n\n\n\n\nExtract columns with select()\n\n\n\n\n\n\n\nArrange/sort rows with arrange()\n\n\n\n\n\n\n\nMake new columns with mutate()\n\n\n\n\n\n\n\nMake group summaries withgroup_by() %>% summarize()"
   },
   {
     "objectID": "slides/data-cleaning.html#filter",
@@ -1488,35 +1488,42 @@
     "href": "slides/data-cleaning.html#filter-1",
     "title": "Data Cleaning in R",
     "section": "filter()",
-    "text": "filter()\n\n\n\n  filter(penguins, species == \"Adelie\",\n         body_mass_g < 6200,\n         bill_length_mm < 59.6)\n\n\n\n\n\n\n \n  \n    species \n    body_mass_g \n    bill_length_mm \n  \n \n\n  \n    Adelie \n    3750 \n    39.1 \n  \n  \n    Adelie \n    3800 \n    39.5 \n  \n  \n    Adelie \n    3250 \n    40.3 \n  \n  \n    Adelie \n    3450 \n    36.7 \n  \n  \n    Adelie \n    3650 \n    39.3 \n  \n  \n    Adelie \n    3625 \n    38.9 \n  \n  \n    … \n    … \n    …"
+    "text": "filter()\n\n\n\n  filter(penguins,\n         species == \"Adelie\",\n         body_mass_g < 6200,\n         bill_length_mm < 59.6)\n\n\n\n\n\n\n \n  \n    species \n    body_mass_g \n    bill_length_mm \n  \n \n\n  \n    Adelie \n    3750 \n    39.1 \n  \n  \n    Adelie \n    3800 \n    39.5 \n  \n  \n    Adelie \n    3250 \n    40.3 \n  \n  \n    Adelie \n    3450 \n    36.7 \n  \n  \n    Adelie \n    3650 \n    39.3 \n  \n  \n    Adelie \n    3625 \n    38.9 \n  \n  \n    … \n    … \n    … \n  \n\n\n\n\n\n\n\n\nThe basics of filter are that you need to feed it a set of tests. Most often what you use filter for is to subset data based on a series of tests that make sense for your data. In this case I just took the quantiles for both variables. You can string together a set of tests in filter."
   },
   {
     "objectID": "slides/data-cleaning.html#filter-2",
     "href": "slides/data-cleaning.html#filter-2",
     "title": "Data Cleaning in R",
     "section": "filter()",
-    "text": "filter()\n\nregular expressions also work and can be pretty handy.\n\n\n\n\n  filter(starwars, grepl(\"Skywalker\", name)|\n           grepl(\"Palp\", name) |\n           grepl(\"Obi\", name))\n\n\n\n\n\n\n \n  \n    name \n    height \n    mass \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    172 \n    77 \n    Tatooine \n  \n  \n    Obi-Wan Kenobi \n    182 \n    77 \n    Stewjon \n  \n  \n    Anakin Skywalker \n    188 \n    84 \n    Tatooine \n  \n  \n    Palpatine \n    170 \n    75 \n    Naboo \n  \n  \n    Shmi Skywalker \n    163 \n    NA \n    Tatooine \n  \n  \n    ... \n    ... \n    ... \n    ..."
+    "text": "filter()\n\nregular expressions also work and can be pretty handy.\n\n\n\n\n  filter(starwars, grepl(\"Skywalker\", name)| \n           grepl(\"Palp\", name) |\n           grepl(\"Obi\", name))\n\n\n\n\n\n\n \n  \n    name \n    height \n    mass \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    172 \n    77 \n    Tatooine \n  \n  \n    Obi-Wan Kenobi \n    182 \n    77 \n    Stewjon \n  \n  \n    Anakin Skywalker \n    188 \n    84 \n    Tatooine \n  \n  \n    Palpatine \n    170 \n    75 \n    Naboo \n  \n  \n    Shmi Skywalker \n    163 \n    NA \n    Tatooine \n  \n  \n    ... \n    ... \n    ... \n    ... \n  \n\n\n\n\n\n\n\n\nI will say that regular expressions are notoriously difficult to work with. I choose the simplest one to use. Here we are feeding filter a really simple regular expression"
   },
   {
     "objectID": "slides/data-cleaning.html#filter-3",
     "href": "slides/data-cleaning.html#filter-3",
     "title": "Data Cleaning in R",
     "section": "filter()",
-    "text": "filter()\nYou can also supply a list to filter to subset your data\n\n\n\n  filter(starwars, homeworld %in% c(\"Naboo\", \"Tatooine\")\n         & !grepl(c(\"ars\"),name))\n\n\n\n\n\n\n \n  \n    name \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    Tatooine \n  \n  \n    C-3PO \n    Tatooine \n  \n  \n    R2-D2 \n    Naboo \n  \n  \n    Darth Vader \n    Tatooine \n  \n  \n    R5-D4 \n    Tatooine \n  \n  \n    Biggs Darklighter \n    Tatooine \n  \n  \n    ... \n    ... \n  \n\n\n\n\n\n\n\n\nUsing lists instead of big long conditional statements will honestly make your life so much easier,"
+    "text": "filter()\nYou can also supply a list to filter to subset your data\n\n\n\n  filter(starwars, homeworld %in% c(\"Naboo\",\n   \"Tatooine\",\n    \"Coruscant\")\n         & !grepl(c(\"ars\"),name))\n\n\n\n\n\n\n \n  \n    name \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    Tatooine \n  \n  \n    C-3PO \n    Tatooine \n  \n  \n    R2-D2 \n    Naboo \n  \n  \n    Darth Vader \n    Tatooine \n  \n  \n    R5-D4 \n    Tatooine \n  \n  \n    Biggs Darklighter \n    Tatooine \n  \n  \n    Anakin Skywalker \n    Tatooine \n  \n  \n    Palpatine \n    Naboo \n  \n  \n    Finis Valorum \n    Coruscant \n  \n  \n    ... \n    ... \n  \n\n\n\n\n\n\n\n\nUsing lists instead of big long conditional statements will honestly make your life so much easier. Where you use set membership in filter is in place of lots of or tests. So in this case we are feeding"
+  },
+  {
+    "objectID": "slides/data-cleaning.html#filter-mistakes-we-all-make",
+    "href": "slides/data-cleaning.html#filter-mistakes-we-all-make",
+    "title": "Data Cleaning in R",
+    "section": "filter() mistakes we all make",
+    "text": "filter() mistakes we all make\n\n\n\nfilter(penguins, species = \"Gentoo\")\n\nError in `filter()`:\n! We detected a named input.\nℹ This usually means that you've used `=` instead of `==`.\nℹ Did you mean `species == \"Gentoo\"`?\n\n\n\n\nfilter(starwars, homeworld == \"Nabo\")\n\n\n\n\n\n\n\nname\n\n\nheight\n\n\nmass\n\n\nhair_color\n\n\nskin_color\n\n\neye_color\n\n\nbirth_year\n\n\nsex\n\n\ngender\n\n\nhomeworld\n\n\nspecies\n\n\nfilms\n\n\nvehicles\n\n\nstarships\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe are likely to encounter some sets of errors. Luckily Dplyr has finally built in a friendly error message with when your tests are misspecified. The equals one is one that we all make. Which will just now throw an error. What your are likely to encounter is that you have done a test and your object is now blank. It will return your something back to you but it is blank. All this means is that something is wrong in one of your tests. R will evaluate the test but something in your test does not exist in your data. So it evaluates your test correctly but what you supplied it is not in the data so R does it but there is nothing there for it to return true"
   },
   {
     "objectID": "slides/data-cleaning.html#filter-4",
     "href": "slides/data-cleaning.html#filter-4",
     "title": "Data Cleaning in R",
     "section": "filter()",
-    "text": "filter()\nOne of the most common uses is to find and remove missing values or not in a list.\n\n  filter(penguins, is.na(sex))\n\n  filter(starwar, is.na(birth_year))"
+    "text": "filter()\nOne of the most common uses is to find and remove missing values or not in a list.\n\n  filter(penguins, is.na(sex))\n\n  filter(starwar, is.na(birth_year))\n\n\nHere I am just asking filter to return all the values in the data that are missing"
   },
   {
     "objectID": "slides/data-cleaning.html#your-turn",
     "href": "slides/data-cleaning.html#your-turn",
     "title": "Data Cleaning in R",
     "section": "Your Turn",
-    "text": "Your Turn\n\nUsing the sample code from the last slide filter out the NA values. Hint use !\nUsing either the star wars or penguins data use %in% to get a set of home worlds or islands\nSubset the penguin data where body mass is less than 4202 and not on the Dream Island.\n\n\n\n\n−+\n03:00"
+    "text": "Your Turn\n\nUsing the sample code from the last slide filter out the NA values. Hint use !\nUsing either the starwars or penguins data use %in% to get a set of homeworlds or islands\nSubset the penguin data where body mass is less than 4202 and not on the Dream Island.\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "slides/data-cleaning.html#select",
@@ -1537,7 +1544,7 @@
     "href": "slides/data-cleaning.html#helpful-helpers",
     "title": "Data Cleaning in R",
     "section": "Helpful Helpers",
-    "text": "Helpful Helpers\n\nDplyr comes really useful functions that help you when there are common patterns in your variable names\nthe syntax usually goes select(contains(\"pattern\")), select(starts_with(\"pattern\")), or select(ends_with(\"pattern\"))\n\n\n\n\n  select(starwars, name,\n   ends_with(\"color\"),\n    homeworld)\n\n\n\n\n\n\n \n  \n    name \n    hair_color \n    skin_color \n    eye_color \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    blond \n    fair \n    blue \n    Tatooine \n  \n  \n    C-3PO \n    NA \n    gold \n    yellow \n    Tatooine \n  \n  \n    R2-D2 \n    NA \n    white, blue \n    red \n    Naboo \n  \n  \n    Darth Vader \n    none \n    white \n    yellow \n    Tatooine \n  \n  \n    Leia Organa \n    brown \n    light \n    brown \n    Alderaan \n  \n  \n    Owen Lars \n    brown, grey \n    light \n    blue \n    Tatooine \n  \n  \n    ... \n    ... \n    ... \n    ... \n    ..."
+    "text": "Helpful Helpers\n\nDplyr comes really useful functions that help you when there are common patterns in your variable names\nthe syntax usually goes\nselect(contains(\"pattern\"))\nselect(starts_with(\"pattern\"))\nselect(ends_with(\"pattern\"))\n\n\n\n\n  select(starwars, name,   -eye_color,\n   ends_with(\"color\") \n    homeworld)\n\n\n\n\n\n\n \n  \n    name \n    hair_color \n    skin_color \n    eye_color \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    blond \n    fair \n    blue \n    NA \n  \n  \n    C-3PO \n    NA \n    gold \n    yellow \n    NA \n  \n  \n    R2-D2 \n    NA \n    white, blue \n    red \n    NA \n  \n  \n    Darth Vader \n    none \n    white \n    yellow \n    NA \n  \n  \n    ... \n    ... \n    ... \n    ... \n    ..."
   },
   {
     "objectID": "slides/data-cleaning.html#data-cleaning",
