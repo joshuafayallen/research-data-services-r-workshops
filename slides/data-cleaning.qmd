@@ -1182,9 +1182,6 @@ billboard |>
   head(4)
 ```
 
-# Various Other Helpful Tidyverse Things 
-
-
 
 
 
