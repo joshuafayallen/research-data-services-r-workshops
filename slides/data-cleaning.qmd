@@ -41,8 +41,8 @@ pacman::p_load("palmerpenguins","tidyverse", install = TRUE)
 
 
 ## Or 
-starwars = read_csv("data/starwars")
-penguins = read_csv("data/penguins")
+starwars = read_csv("data/starwars.csv")
+penguins = read_csv("data/penguins.csv")
 
 ```
 
@@ -57,30 +57,13 @@ penguins = read_csv("data/penguins")
 
 - Generating Descriptive Statistics 
 
+- Some data cleaning(subsetting, generating new variables)
+
 - A Bit of Graphing
 
-- Today we will cover:
+### Today we will cover:
 
 - The Tidyverse (minus ggplot2)
-
-## Expanding What We Know(slightly)
-
-- Using what we know we can easily create new variables 
-
-```{r echo = TRUE}
-
-penguins$range_bill_depth = max(penguins$bill_depth_mm,
- na.rm = TRUE) - min(penguins$bill_depth_mm, na.rm = TRUE)
-
-penguins$big_penguin = ifelse(penguins$body_mass_g > median(penguins$body_mass_g, na.rm = TRUE),
- TRUE, FALSE)
-
-penguins[penguins["species"] == "Chinstrap",c(1,9:10)] # We can also subset our data 
-
-
-
-
-```
 
 
 
@@ -100,11 +83,12 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 
 -   Most of the time this looks like what is known as "long data"
 
-## Pros of the Tidyverse
+## The Tidyverse
 
 - One of the most furious debates in R is base R versus tidyverse. 
+  - `data.table` vs `dplyr` is also a debate you sometimes see
 
-### The Pros
+### The Pros of the Tidyverse
 ::: incremental
 
 
@@ -141,7 +125,7 @@ These are the packages that are considered a part of the tidyerse. The ones that
 library(tidyverse)
 ```
 
--   However you can load in specific packages. There is something called the tinyverse that loads in `ggplot2` and `data.table`
+
 
 ::: {.notes}
 The tidyverse is pretty verbose because it loads a lot of things and in the case of lag and filter actually makes its lag and filter function the one that R uses.
@@ -1184,22 +1168,32 @@ billboard |>
 
 
 
+## Separate 
 
-## Unite and Seperate 
+- Sometimes we need one variable to be two variables 
+- Enter Separate 
 
-- Unite: combine mulitple columns into one column
-- Seperate: Split one column into many 
 
-```{r}
 
- f1_data = read_csv("data/f1_data.csv") |>
- select(forename, surname, dob)
+```{r echo = TRUE}
+#| code-line-numbers: "|7"
+library(lubridate) # for working with dates 
+athlete_data =   tibble(forename = c("Lewis", "Tom", "Michael", "Joshua"),
+                      surname = c("Hamilton", "Brady", "Jordan", "Allen"),
+                      dob = ymd(c("1985-01-07", "1977-08-03","1963-02-17", "1996-05-21")))
 
-f1_data |>
-unite(name, c(forename, surname), sep = " ") |>
+athlete_data |>
 separate(dob, c("year", "month", "day"))
 
+```
 
+## Unite 
 
+- Other times we need to combine multiple columns to be one column
+- enter unite 
 
+```{r echo = TRUE}
+#| code-line-numbers: "|2"
+athlete_data |>
+unite(name, c("forename", "surname"), sep = " ")
 ```
