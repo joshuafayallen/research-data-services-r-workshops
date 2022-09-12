@@ -1,0 +1,418 @@
+---
+title: "Data Cleaning in R"
+subtitle: "With data.table"
+institute: "Department of Political Science at Georgia State University"
+author: "Josh Allen"
+date: "2022-08-29"
+format: 
+ revealjs:
+   theme: ["allen.scss"]
+   code-overflow: wrap
+---
+
+
+```{r setup, echo = FALSE}
+
+pacman::p_load("palmerpenguins", "flair", "knitr", "kableExtra", "dplyr", "data.table",
+               "AllenMisc")
+
+penguins = penguins
+
+data1 <- data.frame(ID = 1:2,                      ## Create first example data frame
+                    X1 = c("a1", "a2"),
+                    stringsAsFactors = FALSE)
+data2 <- data.frame(ID = 2:3,                      ## Create second example data frame
+                    X2 = c("b1", "b2"),
+                    stringsAsFactors = FALSE)
+
+starwars = dplyr::starwars
+
+
+
+
+
+```
+
+
+## Packages You Will Need
+
+```{r eval=FALSE, echo =TRUE}
+install.packages("pacman")
+
+pacman::p_load("palmerpenguins","data.table", install = TRUE)
+
+
+data("penguins")
+
+data("starwars", package = "dplyr" )
+## Or 
+starwars = read_csv("data/starwars.csv")
+penguins = read_csv("data/penguins.csv")
+
+
+## Or 
+starwars = fread("data/starwars.csv")
+penguins = fread("data/penguins.csv")
+
+```
+
+
+## data.table pros 
+
+
+- more concise(as we will see)
+
+- less dependencies
+
+- faster(as our data gets bigger)
+
+## A comparison of tasks 
+
+
+```{r eval = FALSE, echo = TRUE}
+#| code-line-numbers: "|3|4|5|10|11|12"
+## tidyverse 
+penguins |>
+filter(species == "Chinstrap") |>
+group_by(island) |>
+summarise(mean_weight = mean(body_mass_g, na.rm = TRUE))
+
+## data.table
+penguins_dt = as.data.table(penguins)
+
+penguins_dt[species == "Chinstrap",
+ mean(body_mass_g, na.rm = TRUE),
+  by = island]
+
+
+```
+
+
+```{r}
+#| output-location: column
+#| layout-ncol: 2
+
+
+penguins |>
+filter(species == "Chinstrap") |>
+group_by(island) |>
+summarise(mean_weight = mean(body_mass_g, na.rm = TRUE))
+
+## data.table
+
+penguins_dt = as.data.table(penguins)
+
+penguins_dt[species == "Chinstrap", mean(body_mass_g, na.rm = TRUE), by = island]
+
+```
+
+
+
+
+## A Statement from Josh
+
+- I really wanted to learn data.table which is the motivation for this slide show
+
+- This is my attempt to do it 
+
+- Both packages are awesome 
+
+- I have zero stakes in either direction
+
+- Both suit different data cleaning tasks well
+
+- Their are compelling reasons to favor one over the other 
+
+
+- If one is more intuitive to you that is great use the one you feel more comfortable with
+
+- Knowing both is awesome 
+  - I don't promote evangelism of one over the other 
+
+
+## What is the difference? 
+ 
+:::incremental 
+
+- Both work with an "enhanced" version of a data.frame 
+  - For dplyr this is called a tibble
+  - For data.table this is called a data.table 
+
+- The main difference(from what I understand) is that data.table tries to **modify by reference** as much as possible 
+
+- What does that mean?
+
+- Think about about what the pipe.
+
+- new_object <- object |> dplyr_verb(thing we want to do) |> dplyr_verb(next thing we want to do)
+
+- This relies on a Copy-on-modify approach
+
+1. **Copy-on-modify**: Creates a copy of your data. Implies extra computational overhead(slower)
+2. **Modify-in-place**: Avoids creating copies and simply cahnges the data where it sits in memory(faster)
+:::
+
+## The Common Syntax of data.table 
+
+. . .
+
+:::columns
+:::column 
+
+
+DT[<span style='color: #591c19;'>i</span>, <span style='color: #b64f32;'>j</span>, <span style='color: #262d42;'>by</span>]
+
+
+:::
+
+
+:::column
+
+- <span style='color: #591c19;'>i</span> = The rows you want to work with 
+
+- <span style='color: #b64f32;'>j</span> = The columns you want to work with 
+
+- <span style='color: #262d42;'>by</span> = a grouping variable 
+
+:::
+:::
+
+. . .
+
+### The Dplyr equivalents 
+
+:::incremental
+
+- <span style='color: #591c19;'>filter;slice;arrange</span>
+
+-  <span style='color: #b64f32;'>select, mutate, summarise</span>
+
+- <span style='color: #262d42;'>group_by</span>
+
+
+:::
+
+
+# Subsetting By Row with `i`
+
+
+
+## Using tests 
+
+
+```{r echo = TRUE, eval = FALSE}
+penguins_dt[species %in% c("Chinstrap","Gentoo") | body_mass_g <= 4050]
+```
+
+```{r}
+penguins_dt[species %in% c("Chinstrap","Gentoo") | body_mass_g <= 4050, .(species, body_mass_g)][] |>
+head(5)
+```
+
+
+## Using regular expressions 
+
+
+```{r echo = TRUE, eval = FALSE}
+starwars_dt = as.data.table(starwars)
+
+starwars_dt[grepl("Skywalker", name)]
+
+```
+
+```{r}
+
+starwars_dt = as.data.table(starwars)
+
+starwars_dt[grepl("Skywalker", name), .(name)][]
+
+```
+
+
+
+## Finding Missing Data 
+
+
+```{r eval = FALSE, echo = TRUE}
+penguins_dt[is.na(sex)][]
+```
+
+```{r}
+penguins_dt[is.na(sex), .(species,sex)][]
+```
+
+
+## Finiding Non-missing Data 
+
+```{r eval = FALSE, echo = TRUE}
+penguins_dt[!is.na(sex)][]
+```
+
+```{r}
+penguins_dt[!is.na(sex), .(species,sex)][]
+```
+
+
+# Selecting Columns with `j`
+
+
+## The basics 
+
+
+- Like Dplyr we can use column postion or name 
+
+. . . 
+```{r echo = TRUE, eval = FALSE}
+penguins_dt[, 1:3]
+```
+
+```{r}
+penguins_dt[, 1:3] |> head(2)
+```
+
+. . .
+```{r eval = FALSE, echo = TRUE}
+penguins_dt[, c("body_mass_g", "species")]
+```
+
+```{r}
+penguins_dt[, c("body_mass_g", "species")] |> head(2)
+```
+
+
+## Excluding Using `-`
+
+
+```{r eval = FALSE, echo = TRUE}
+penguins_dt[,-c(1:3)]
+
+```
+
+```{r}
+penguins_dt[,-c(1:3)] |> head(3)
+```
+
+
+```{r echo = TRUE, eval = FALSE}
+penguins_dt[,-c("body_mass_g","species")]
+```
+
+
+```{r}
+penguins_dt[,-c("body_mass_g","species")] |> head(2)
+```
+
+
+## `.` in data.table
+
+- The `.` serves as a shorthand for `c` and list
+
+- So we can put `.` in the `j` postition letting us use less characters 
+
+
+```{r echo = TRUE, eval = FALSE}
+penguins_dt[, .(body_mass_g, island)]
+```
+
+
+
+```{r}
+penguins_dt[, .(body_mass_g, island)] |> head(2)
+```
+
+
+```{r echo = TRUE, eval = FALSE}
+penguins_dt[, .(body_mass_g, island)]
+```
+
+
+
+## Regular Expressions
+
+We can still use regular expressions 
+  - They just look a little different 
+
+```{r echo = TRUE, eval = FALSE}
+starwars_dt[, .SD , .SDcols = patterns("color")][] 
+```
+
+. . .
+```{r}
+starwars_dt[, .SD , .SDcols = patterns("color")] |> head(5)
+```
+
+
+
+## Regular Expressions(cont)
+
+- What is going on with `.SD` is that data.table needs a place holder
+
+- .SD stands for `S`ubset of `D`ata.table
+
+If we tried to do this: 
+
+
+```{r echo = TRUE, eval = FALSE}
+starwars_dt[, .SDcols = patterns("color")]
+```
+
+
+It would return 
+
+. . . 
+
+```{r warning = TRUE}
+starwars_dt[, .SDcols = patterns("color")]
+```
+
+
+
+## Creating New Variables 
+
+One Cool thing about data.table is that you do not need to reassign the object once you modify it
+
+This creates a new variable 
+
+```{r echo = TRUE}
+penguins_dt[, body_mass_g_sq := body_mass_g^2]
+```
+
+
+This will just square body_mass_g in place 
+
+
+```{r eval = FALSE}
+penguins_dt[, body_mass_g := body_mass_g^2]
+```
+
+You will not see these changes unless you ask to show you 
+
+
+```{r eval = FALSE, echo = TRUE}
+starwars_dt[,mass := mass^2][]
+```
+
+```{r}
+starwars_dt[,mass := mass^2] |> head(3)
+```
+
+## Multiple Operations 
+
+- As we saw with dplyr we can do this 
+```{r echo = TRUE}
+
+penguins |>
+mutate(square_mass = body_mass_g^2,
+       big_penguin = ifelse(square_mass >= median(square_mass, na.rm = TRUE) , TRUE, FALSE)) |>
+       select(species, square_mass, big_penguin) |>
+       head(5)
+
+
+```
+
+- It would be nice if we can do this with data.table!
+
+
+## Multiple operations 
+
+- Good news. We can! [But there are some caveats]{.fragment}

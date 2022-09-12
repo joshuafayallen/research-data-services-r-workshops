@@ -320,7 +320,7 @@ While setting your working directory manually is fine it is a lot more fragile. 
 
 ### Working Directory for My Laptop
 ```
-"/Users/josh/Dropbox/Research-Data-Services-Workshops/research-data-services-r-workshops" 
+"/Users/josh/Dropbox/Research-Data-Services-Workshops/research-data-services-r-workshops/slides" 
 
 ```
 
@@ -330,7 +330,7 @@ While setting your working directory manually is fine it is a lot more fragile. 
 
 ### Working Directory of My Office Computer
 ```
-"/Volumes/6TB Raid 10/Dropbox/Research-Data-Services-Workshops/research-data-services-r-workshops"
+"/Volumes/6TB Raid 10/Dropbox/Research-Data-Services-Workshops/research-data-services-r-workshops/slides"
 
 ```
 :::
