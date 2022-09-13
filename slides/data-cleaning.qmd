@@ -44,8 +44,8 @@ pacman::p_load("palmerpenguins","tidyverse", install = TRUE)
 
 
 ## Or 
-starwars = read_csv("data/starwars")
-penguins = read_csv("data/penguins")
+starwars = read_csv("data/starwars.csv")
+penguins = read_csv("data/penguins.csv")
 
 ```
 
@@ -60,30 +60,13 @@ penguins = read_csv("data/penguins")
 
 - Generating Descriptive Statistics 
 
+- Some data cleaning(subsetting, generating new variables)
+
 - A Bit of Graphing
 
-- Today we will cover:
+### Today we will cover:
 
 - The Tidyverse (minus ggplot2)
-
-## Expanding What We Know(slightly)
-
-- Using what we know we can easily create new variables 
-
-```{r echo = TRUE}
-
-penguins$range_bill_depth = max(penguins$bill_depth_mm,
- na.rm = TRUE) - min(penguins$bill_depth_mm, na.rm = TRUE)
-
-penguins$big_penguin = ifelse(penguins$body_mass_g > median(penguins$body_mass_g, na.rm = TRUE),
- TRUE, FALSE)
-
-penguins[penguins["species"] == "Chinstrap",c(1,9:10)] # We can also subset our data 
-
-
-
-
-```
 
 
 
@@ -103,10 +86,14 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 
 -   Most of the time this looks like what is known as "long data"
 
-## Pros of the Tidyverse
+## The Tidyverse
 
+- One of the most furious debates in R is base R versus tidyverse. 
+  - `data.table` vs `dplyr` is also a debate you sometimes see
+
+### The Pros of the Tidyverse
 ::: incremental
-One of the most furious debates in R is base R versus tidyverse. I will not go into great detail about them because many people who are better at R than me have
+
 
 -   Similar syntax and philosophy which makes it more intuitive to learn
 
@@ -141,7 +128,7 @@ These are the packages that are considered a part of the tidyerse. The ones that
 library(tidyverse)
 ```
 
--   However you can load in specific packages. There is something called the tinyverse that loads in `ggplot2` and `data.table`
+
 
 ::: {.notes}
 The tidyverse is pretty verbose because it loads a lot of things and in the case of lag and filter actually makes its lag and filter function the one that R uses.
@@ -608,7 +595,7 @@ Example derived from [Andrew Heiss](https://twitter.com/andrewheiss/status/13595
 
     -   this is just `|` followed by `>`
 
--   If you are have a version of R that is older than `4.2.0` it should come with the native pipe
+-   If you are have a version of R that is `4.2.0`>= it should come with the native pipe
 
 -   The base versus magrittr pipe differ slightly and it is worth knowing some of the differences
 
@@ -795,7 +782,11 @@ mutate(what_are_they = case_when(
 countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
+<<<<<<< HEAD
 # Group_by() and Summarize() {background-color="`r clrs[6]`" .white}
+=======
+# Group_by() and Summarize()
+>>>>>>> main
 
 ## group_by()
 
@@ -804,11 +795,18 @@ countdown::countdown(minutes = 3, sound = TRUE)
 
 -   Not necessarily the most useful function because nothing really happens when called by itself
 
+:::
+
+. . . 
+
+
 ```{r  echo = TRUE}
 penguins |> 
   group_by(species) |>
   head(5)
 ```
+
+:::incremental
 
 -   Unless you combine it with `summarize()`
   - Note: you will see summarise as well in people's code because the creator and maintainer is from New Zealand
@@ -1171,33 +1169,7 @@ billboard |>
   head(4)
 ```
 
-## Separate 
 
-- Sometimes we need one variable to be two variables 
-- Enter Separate 
-
-
-
-```{r echo = TRUE}
-#| code-line-numbers: "|7"
-library(lubridate) # for working with dates 
-athlete_data =   tibble(forename = c("Lewis", "Tom", "Michael", "Joshua"),
-                      surname = c("Hamilton", "Brady", "Jordan", "Allen"),
-                      dob = ymd(c("1985-01-07", "1977-08-03","1963-02-17", "1996-05-21")))
-athlete_data |>
-separate(dob, c("year", "month", "day"))
-```
-
-## Unite 
-
-- Other times we need to combine multiple columns to be one column
-- enter unite 
-
-```{r echo = TRUE}
-#| code-line-numbers: "|2"
-athlete_data |>
-unite(name, c("forename", "surname"), sep = " ")
-```
 
 
 # Getting up and Running Using helpers  {background-color="`r clrs[6]`" .white}
