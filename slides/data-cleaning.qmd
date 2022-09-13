@@ -15,6 +15,9 @@ format:
 pacman::p_load("palmerpenguins", "flair", "knitr", "kableExtra", 
                "AllenMisc")
 
+clrs <- MetBrewer::met.brewer(name = "Demuth")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+
 penguins = penguins
 
 data1 <- data.frame(ID = 1:2,                      ## Create first example data frame
@@ -84,7 +87,7 @@ penguins[penguins["species"] == "Chinstrap",c(1,9:10)] # We can also subset our 
 
 
 
-# Cleaning Data in the Tidyverse
+# Cleaning Data in the Tidyverse {background-color="`r clrs[6]`" .white}
 
 ::: {.callout}
 Like families, tidy datasets are all alike but every messy dataset is messy in its own way. `r tufte::quote_footer("Hadley Wickham")`
@@ -134,7 +137,7 @@ These are the packages that are considered a part of the tidyerse. The ones that
 
 ## What is loaded
 
-```{r echo = TRUE}
+```{r echo = TRUE, message = TRUE, warning = TRUE}
 library(tidyverse)
 ```
 
@@ -142,6 +145,7 @@ library(tidyverse)
 
 ::: {.notes}
 The tidyverse is pretty verbose because it loads a lot of things and in the case of lag and filter actually makes its lag and filter function the one that R uses.
+
 :::
 
 ## Namespace Conflicts
@@ -161,7 +165,7 @@ The tidyverse is pretty verbose because it loads a lot of things and in the case
     -   This is called a namespace call
     -   explicitly tells R which function you are using
 
-# Dplyr
+# Dplyr {background-color="`r clrs[6]`" .white}
 
 <center>
 
@@ -169,34 +173,34 @@ The tidyverse is pretty verbose because it loads a lot of things and in the case
 
 </center>
 
-## The Big 5 Dplyr Verbs
+## The Big 5 Dplyr verbs
 
 <table>
   <tr>
     <td>Extract rows with <code>filter()</code></td>
-    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/filter.png" alt="filter" title="filter" height="80px"></td>
+    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/filter.png" alt="filter" title="filter" height="60px"></td>
   </tr>
   <tr>
     <td>Extract columns with <code>select()</code></td>
-    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/select.png" alt="select" title="select" height="80px"></td>
+    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/select.png" alt="select" title="select" height="60px"></td>
   </tr>
   <tr>
     <td>Arrange/sort rows with <code>arrange()</code></td>
-    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/arrange.png" alt="arrange" title="arrange" height="80px"></td>
+    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/arrange.png" alt="arrange" title="arrange" height="60px"></td>
   </tr>
   <tr>
     <td>Make new columns with <code>mutate()</code></td>
-    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/mutate.png" alt="mutate" title="mutate" height="80px"></td>
+    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/mutate.png" alt="mutate" title="mutate" height="60px"></td>
   </tr>
   <tr>
     <td>Make group summaries with<br><code>group_by() %>% summarize()</code></td>
-    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/summarize.png" alt="summarize" title="summarize" height="80px"></td>
+    <td><img src="https://raw.githubusercontent.com/andrewheiss/2021-seacen/main/01_welcome-tidyverse/slides/img/01/summarize.png" alt="summarize" title="summarize" height="60px"></td>
   </tr>
 </table>
 
-## filter()
+# filter() {background-color="`r clrs[6]`" .white}
 
-### Subsetting By Rows
+Subsetting by Rows
 
 ## What Kind of Tests Can I Do?
 
@@ -221,8 +225,9 @@ The tidyverse is pretty verbose because it loads a lot of things and in the case
 ::: columns
 ::: column
 ```{r eval=FALSE, echo = TRUE}
-
-  filter(penguins, species == "Adelie",
+#| code-line-numbers: "|1|2|3|4"
+  filter(penguins,
+         species == "Adelie",
          body_mass_g < 6200,
          bill_length_mm < 59.6)
 ```
@@ -246,6 +251,13 @@ penguins |>
 :::
 :::
 
+
+:::{.notes}
+
+The basics of filter are that you need to feed it a set of tests. Most often what you use filter for is to subset data based on a series of tests that make sense for your data. In this case I just took the quantiles for both variables. You can string together a set of tests in filter. 
+
+:::
+
 ## filter()
 
 -   regular expressions also work and can be pretty handy.
@@ -254,7 +266,7 @@ penguins |>
 ::: column
 ```{r  eval=FALSE, echo = TRUE}
  
-  filter(starwars, grepl("Skywalker", name)|
+  filter(starwars, grepl("Skywalker", name)| 
            grepl("Palp", name) |
            grepl("Obi", name))
 
@@ -275,7 +287,14 @@ starwars |>
 :::
 :::
 
-## filter()
+:::{.notes}
+
+I will say that regular expressions are notoriously difficult to work with. I choose the simplest one to use. Here we are feeding filter a really simple regular expression 
+
+:::
+
+
+## filter() {.scrollable}
 
 You can also supply a list to filter to subset your data
 
@@ -283,7 +302,9 @@ You can also supply a list to filter to subset your data
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 
-  filter(starwars, homeworld %in% c("Naboo", "Tatooine")
+  filter(starwars, homeworld %in% c("Naboo",
+   "Tatooine",
+    "Coruscant")
          & !grepl(c("ars"),name))
 
 
@@ -294,8 +315,8 @@ You can also supply a list to filter to subset your data
 ```{r echo=FALSE}
 starwars |> 
   select(name, homeworld) |> 
-  filter(homeworld %in% c("Naboo", "Tatooine") & !grepl(c("ars"),name)) |> 
-    head(6) |> 
+  filter(homeworld %in% c("Naboo", "Tatooine", "Coruscant") & !grepl(c("ars"),name)) |>
+    head(9) |> 
     bind_rows(tibble(name = "...", homeworld =  "...")) |> 
     knitr::kable(format = "html")
 ```
@@ -303,7 +324,43 @@ starwars |>
 :::
 
 :::{.notes}
-Using lists instead of big long conditional statements will honestly make your life so much easier,
+Using lists instead of big long conditional statements will honestly make your life so much easier. Where you use set membership in filter is in place of lots of or tests. So in this case we are feeding 
+:::
+
+
+## filter() mistakes we all make 
+
+:::columns 
+
+:::column
+
+```{r echo = TRUE, error = TRUE}
+
+filter(penguins, species = "Gentoo")
+
+```
+
+
+:::
+
+
+:::column
+
+```{r echo = TRUE}
+
+
+filter(starwars, homeworld == "Nabo")
+
+```
+
+
+:::
+:::
+
+:::{.notes}
+
+We are likely to encounter some sets of errors. Luckily Dplyr has finally built in a friendly error message with when your tests are misspecified. The equals one is one that we all make. Which will just now throw an error. What your are likely to encounter is that you have done a test and your object is now blank. It will return your something back to you but it is blank. All this means is that something is wrong in one of your tests. R will evaluate the test but something in your test does not exist in your data. So it evaluates your test correctly but what you supplied it is not in the data so R does it but there is nothing there for it to return true
+
 :::
 
 ## filter()
@@ -317,11 +374,18 @@ One of the most common uses is to find and remove missing values or not in a lis
   filter(starwar, is.na(birth_year))
 ```
 
+:::{.notes}
+
+Here I am just asking filter to return all the values in the data that are missing 
+
+:::
+
+
 ## Your Turn
 
 -   Using the sample code from the last slide filter out the NA values. Hint use `!`
 
--   Using either the star wars or penguins data use `%in%` to get a set of home worlds or islands
+-   Using either the `starwars` or penguins data use `%in%` to get a set of homeworlds or islands
 
 -   Subset the penguin data where body mass is less than `4202` and not on the Dream Island.
 
@@ -329,9 +393,7 @@ One of the most common uses is to find and remove missing values or not in a lis
 countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
-## Select()
-
-### Subsetting by Columns
+# Select() {background-color="`r clrs[6]`" .white}
 
 ## Select()
 
@@ -368,14 +430,17 @@ penguins |>
 
 -   Dplyr comes really useful functions that help you when there are common patterns in your variable names
 
--   the syntax usually goes `select(contains("pattern"))`, `select(starts_with("pattern"))`, or `select(ends_with("pattern"))`
+-   the syntax usually goes 
+  - `select(contains("pattern"))`
+  - `select(starts_with("pattern"))`
+  - `select(ends_with("pattern"))`
 
 ::: columns
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 
-  select(starwars, name,
-   ends_with("color"),
+  select(starwars, name,   -eye_color,
+   ends_with("color") 
     homeworld)
 
 ```
@@ -385,8 +450,8 @@ penguins |>
 ```{r echo = FALSE}
 
 starwars |> 
-  select(name, ends_with("color"), homeworld) |> 
-  head(6) |> 
+  select(name,  -eye_color, ends_with("color")) |> 
+  head(4) |> 
   bind_rows(tibble(name = "...", hair_color = "...", skin_color = "...",
                    eye_color = "...", homeworld = "...")) |> 
   knitr::kable(format = "html")
@@ -396,7 +461,7 @@ starwars |>
 :::
 :::
 
-# Doing More Than One Thing at a Time
+# Doing More Than One Thing at a Time {background-color="`r clrs[6]`" .white}
 
 ## Data Cleaning
 
@@ -558,9 +623,7 @@ If you are on a mac the keyboard shortcut is command shift m
 
 
 
-## Mutate
-
-### Making New Variables
+# Mutate {background-color="`r clrs[6]`" .white}
 
 ## Mutate
 
@@ -732,7 +795,7 @@ mutate(what_are_they = case_when(
 countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
-## Group_by() and Summarize()
+# Group_by() and Summarize() {background-color="`r clrs[6]`" .white}
 
 ## group_by()
 
@@ -1031,7 +1094,7 @@ national_data |>
   knitr::kable(format = "html") 
 ```
 
-## Tidyr
+# Tidyr {background-color="`r clrs[6]`" .white}
 
 <center>
 
@@ -1108,3 +1171,45 @@ billboard |>
   head(4)
 ```
 
+## Separate 
+
+- Sometimes we need one variable to be two variables 
+- Enter Separate 
+
+
+
+```{r echo = TRUE}
+#| code-line-numbers: "|7"
+library(lubridate) # for working with dates 
+athlete_data =   tibble(forename = c("Lewis", "Tom", "Michael", "Joshua"),
+                      surname = c("Hamilton", "Brady", "Jordan", "Allen"),
+                      dob = ymd(c("1985-01-07", "1977-08-03","1963-02-17", "1996-05-21")))
+athlete_data |>
+separate(dob, c("year", "month", "day"))
+```
+
+## Unite 
+
+- Other times we need to combine multiple columns to be one column
+- enter unite 
+
+```{r echo = TRUE}
+#| code-line-numbers: "|2"
+athlete_data |>
+unite(name, c("forename", "surname"), sep = " ")
+```
+
+
+# Getting up and Running Using helpers  {background-color="`r clrs[6]`" .white}
+
+
+## Generating Summary statistics 
+
+```{r echo = TRUE}
+penguins |> 
+select(-year) |>
+group_by(species) |>
+summarise(across(where(is.numeric), c(Mean = mean, Min = min, Max = max), na.rm = TRUE), .names = "{.cols}_{.fn}")
+
+
+```
