@@ -1733,7 +1733,7 @@
     "href": "slides/data-cleaning.html#your-turn-1",
     "title": "Data Cleaning in R",
     "section": "Your Turn",
-    "text": "Your Turn\n\nWrite code to\nAdd a column in your dataset that is TRUE if a penguin is an Adelie penguin\nAdd a column in the starwars dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if it is not\nAdd a column in your dataset for logged body_mass_g (hint: use log())\n\n\n\n\n−+\n03:00\n\n\n\n<<<<<<< HEAD # Group_by() and Summarize() {background-color=“#b9b9b8” .white} ======= # Group_by() and Summarize() >>>>>>> main"
+    "text": "Your Turn\n\nWrite code to\nAdd a column in your dataset that is TRUE if a penguin is an Adelie penguin\nAdd a column in the starwars dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if it is not\nAdd a column in your dataset for logged body_mass_g (hint: use log())\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "slides/data-cleaning.html#group_by",
