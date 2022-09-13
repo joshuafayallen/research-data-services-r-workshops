@@ -782,11 +782,7 @@ mutate(what_are_they = case_when(
 countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
-<<<<<<< HEAD
 # Group_by() and Summarize() {background-color="`r clrs[6]`" .white}
-=======
-# Group_by() and Summarize()
->>>>>>> main
 
 ## group_by()
 
