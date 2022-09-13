@@ -1169,7 +1169,33 @@ billboard |>
   head(4)
 ```
 
+## Separate 
 
+- Sometimes we need one variable to be two variables 
+- Enter Separate 
+
+
+
+```{r echo = TRUE}
+#| code-line-numbers: "|7"
+library(lubridate) # for working with dates 
+athlete_data =   tibble(forename = c("Lewis", "Tom", "Michael", "Joshua"),
+                      surname = c("Hamilton", "Brady", "Jordan", "Allen"),
+                      dob = ymd(c("1985-01-07", "1977-08-03","1963-02-17", "1996-05-21")))
+athlete_data |>
+separate(dob, c("year", "month", "day"))
+```
+
+## Unite 
+
+- Other times we need to combine multiple columns to be one column
+- enter unite 
+
+```{r echo = TRUE}
+#| code-line-numbers: "|2"
+athlete_data |>
+unite(name, c("forename", "surname"), sep = " ")
+```
 
 
 # Getting up and Running Using helpers  {background-color="`r clrs[6]`" .white}
