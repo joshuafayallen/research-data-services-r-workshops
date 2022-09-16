@@ -928,7 +928,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_c278ac76" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_0a057a43" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -937,11 +937,11 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </section>
 <section id="select" class="slide level2">
 <h2>Select()</h2>
-<p>For various reasons we may want to just keep a few columns.</p>
 <ul>
-<li><p>For this task we use our friend select</p></li>
-<li><p>You can feed it one column or a range of columns with <code>:</code></p></li>
-<li><p>You can also leave columns out using <code>-</code></p></li>
+<li>In some cases we just need a few columns</li>
+<li>We use <code>select</code> to grab those columns</li>
+<li>You can feed it one column or a range of columns with <code>:</code></li>
+<li>You can also leave columns out using <code>-</code></li>
 </ul>
 <div class="columns">
 <div class="column">
@@ -1006,7 +1006,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 </div>
 <aside class="notes">
-<p>Select is a lot more intuitive because with some exceptions you just supply a set of column names you want or do want</p>
+<p>Select is a lot more intuitive because with some exceptions you just supply a set of column names you want or do want. Select has a whole set of really awesome helper function that help you subset your data easier. I have included those at the end. Just so you are aware of them.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1498,7 +1498,7 @@ am_late(traffic = TRUE)</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_d36dd08b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_9e941e8e" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1630,7 +1630,7 @@ am_late(traffic = TRUE)</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_02533078" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_3eca5b86" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -6204,10 +6204,12 @@ am_late(traffic = TRUE)</code></pre>
 <section id="generating-summary-statistics" class="slide level2">
 <h2>Generating Summary statistics</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb55" data-code-line-numbers="|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb55-2"><a href="#cb55-2"></a><span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">|&gt;</span></span>
 <span id="cb55-3"><a href="#cb55-3"></a><span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb55-4"><a href="#cb55-4"></a><span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="fu">c</span>(<span class="at">Mean =</span> mean, <span class="at">Min =</span> min, <span class="at">Max =</span> max), <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.names =</span> <span class="st">"{.cols}_{.fn}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb55-4"><a href="#cb55-4"></a><span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric),</span>
+<span id="cb55-5"><a href="#cb55-5"></a> <span class="fu">c</span>(<span class="at">Mean =</span> mean, <span class="at">Min =</span> min, <span class="at">Max =</span> max), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb55-6"><a href="#cb55-6"></a>  <span class="at">.names =</span> <span class="st">"{.cols}_{.fn}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 14
   species   bill_lengt…¹ bill_…² bill_…³ bill_…⁴ bill_…⁵ bill_…⁶ flipp…⁷ flipp…⁸
