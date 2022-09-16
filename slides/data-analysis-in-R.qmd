@@ -13,11 +13,20 @@ format:
 ```{r setup, include = F, warnings = FALSE}
 
 
-library(pacman)
 
-p_load("AllenMisc","sandwich", "lmtest", "marginaleffects","emmeans",
-               "modelsummary", "broom", "tidyverse", "palmerpenguins", "fixest", "nullabor", "ggfortify", "plm")
-
+library(AllenMisc)
+library(sandwich)
+library(lmtest)
+library(marginaleffects)
+library(emmeans)
+library(modelsummary)
+library(broom)
+library(palmerpenguins)
+library(fixest)
+library(nullabor)
+library(ggfortify)
+library(plm)
+library(tidyverse)
 
 knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
                       message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
