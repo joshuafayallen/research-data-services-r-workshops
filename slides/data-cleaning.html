@@ -751,12 +751,14 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </section>
 <section id="filter-2" class="slide level2 scrollable">
 <h2>filter()</h2>
-<p>You can also supply a list to filter to subset your data</p>
+<p>set membership works really here too!</p>
 <div class="columns">
 <div class="column">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>  <span class="fu">filter</span>(starwars,</span>
-<span id="cb7-2"><a href="#cb7-2"></a>  homeworld <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Naboo"</span>,<span class="st">"Tatooine"</span>,<span class="st">"Coruscant"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>  homeworld <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Naboo"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3"></a>                  <span class="st">"Tatooine"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>                  <span class="st">"Coruscant"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -917,7 +919,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
           display:block!important;
       }</style></aside>
 </section>
-<section id="your-turn" class="slide level2">
+<section id="your-turn" class="slide level2" data-background-color="#FFECE9">
 <h2>Your Turn</h2>
 <ul>
 <li><p>Using the sample code from the last slide filter out the NA values. Hint use <code>!</code></p></li>
@@ -926,19 +928,14 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_ac62860c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_c278ac76" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="select" class="title-slide slide level1 white center" data-background-color="#b64f32">
-<h1>Select()</h1>
-
 </section>
-<section id="select-1" class="slide level2">
+<section id="select" class="slide level2">
 <h2>Select()</h2>
 <p>For various reasons we may want to just keep a few columns.</p>
 <ul>
@@ -950,7 +947,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="column">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a> <span class="fu">select</span>(penguins, species,</span>
-<span id="cb12-2"><a href="#cb12-2"></a>         island<span class="sc">:</span>bill_depth_mm,</span>
+<span id="cb12-2"><a href="#cb12-2"></a>        island<span class="sc">:</span>bill_depth_mm,</span>
 <span id="cb12-3"><a href="#cb12-3"></a>         <span class="sc">-</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
@@ -1008,6 +1005,19 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>Select is a lot more intuitive because with some exceptions you just supply a set of column names you want or do want</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="doing-more-than-one-thing-at-a-time" class="title-slide slide level1 white center" data-background-color="#b64f32">
@@ -1478,7 +1488,7 @@ am_late(traffic = TRUE)</code></pre>
 </div>
 </div>
 </section>
-<section id="your-turn-1" class="slide level2">
+<section id="your-turn-1" class="slide level2" data-background-color="#FFECE9">
 <h2>Your Turn</h2>
 <ul>
 <li><p>Write code to</p></li>
@@ -1488,7 +1498,7 @@ am_late(traffic = TRUE)</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_6705865d" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_d36dd08b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1611,7 +1621,7 @@ am_late(traffic = TRUE)</code></pre>
 </div>
 </div>
 </section>
-<section id="your-turn-2" class="slide level2">
+<section id="your-turn-2" class="slide level2" data-background-color="#FFECE9">
 <h2>Your Turn</h2>
 <ul>
 <li><p>Calculate the minimum, maximum, and median <code>body_mass_g</code> for each species of penguin</p></li>
@@ -1620,7 +1630,7 @@ am_late(traffic = TRUE)</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_4f5da6a4" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_02533078" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
