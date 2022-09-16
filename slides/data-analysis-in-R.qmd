@@ -31,6 +31,7 @@ penguins = palmerpenguins::penguins
 
 ```{r eval=FALSE}
 install.packages("pacman")
+
 pacman::p_load("sandwich", "lmtest", "marginaleffects", "emmeans", "modelsummary", "broom",
                "caret", "tidyverse", "fixest", "kableExtra", "nullabor", "plm", "ggfortify", install = TRUE)
 set.seed(1994)
