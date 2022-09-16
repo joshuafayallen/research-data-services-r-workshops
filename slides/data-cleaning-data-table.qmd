@@ -70,7 +70,7 @@ penguins = fread("data/penguins.csv")
 
 
 ```{r eval = FALSE, echo = TRUE}
-#| code-line-numbers: "|3|4|5|10|11|12"
+#| code-line-numbers: "|3|10|4|12|5|11"
 ## tidyverse 
 penguins |>
 filter(species == "Chinstrap") |>
@@ -253,7 +253,7 @@ penguins_dt[!is.na(sex), .(species,sex)][]
 ```
 
 
-# Selecting Columns with `j`
+# Doing Stuff with `j`
 
 
 ## The basics 
@@ -416,3 +416,119 @@ mutate(square_mass = body_mass_g^2,
 ## Multiple operations 
 
 - Good news. We can! [But there are some caveats]{.fragment}
+
+- We can do this by chaining [] together
+
+- Or using the magrittr pipe
+
+- We cannot do this by doing lots of stuff in our J column
+
+## Multiple Operations with `[]` 
+
+
+
+```{r echo = TRUE, eval = FALSE}
+
+penguins_dt[, square_mass := body_mass_g^2][, big_peng := ifelse(square_mass >= median(square_mass, na.rm = TRUE) , TRUE, FALSE)]
+
+
+```
+
+
+```{r}
+penguins_dt[, square_mass := body_mass_g^2][, big_peng := ifelse(square_mass >= median(square_mass, na.rm = TRUE) , TRUE, FALSE)] |> head(5)
+```
+
+
+## Multiple Operations with the pipe
+
+
+```{r echo = TRUE, eval = FALSE }
+
+penguins_dt[, square_mass := body_mass_g^2] %>%
+.[, big_peng := ifelse(square_mass >= median(square_mass, na.rm = TRUE) , TRUE, FALSE)]
+
+```
+
+
+```{r}
+penguins_dt[, square_mass := body_mass_g^2] %>%
+.[, big_peng := ifelse(square_mass >= median(square_mass, na.rm = TRUE) , TRUE, FALSE)] |> head(6)
+```
+
+
+# By slot
+
+
+
+## Our last slot is `by`
+
+- This works broadly the same as our group_by argument 
+
+
+```{r echo  = TRUE, eval = FALSE}
+penguins_dt[, mean(bill_length_mm, na.rm = TRUE), by = species]
+```
+
+
+```{r}
+penguins_dt[, mean(bill_length_mm, na.rm = TRUE), by = species] |>
+knitr::kable(format = "html")
+```
+
+
+
+## Summarising across multiple columns 
+
+- In dplyr this is a bit more intuitive 
+
+
+
+```{r echo = TRUE, eval = FALSE}
+
+penguins |>
+group_by(species) |>
+summarise(across(where(is.numeric),
+ c(Mean = mean, Min = min, Max = max ),
+  na.rm = TRUE,
+ .names = "{.col}_{.fn}"))
+
+```
+
+```{r}
+
+penguins |>
+group_by(species) |>
+summarise(across(where(is.numeric),
+ c(Mean = mean, Min = min, Max = max ),
+  na.rm = TRUE,
+ .names = "{.col}_{.fn}")) |> knitr::kable(format = "html")
+
+```
+
+## Summarising Multiple Columns 
+
+
+
+```{r echo = TRUE, eval = FALSE}
+penguins_dt = as.data.table(penguins)
+
+summary_fun = function(x) list(Mean = mean(x, na.rm = TRUE),
+             Min = min(x, na.rm = TRUE),
+              Max = max(x, na.rm = TRUE))
+
+penguins_dt[, lapply(.SD, summary_fun), .SDcols = is.numeric, by = species]
+
+
+```
+
+
+
+```{r}
+penguins_dt = as.data.table(penguins)
+
+summary_fun = function(x)list(Mean = mean(x, na.rm = TRUE), Min = min(x, na.rm = TRUE), Max = max(x, na.rm = TRUE))
+
+penguins_dt[, lapply(.SD, summary_fun), .SDcols = is.numeric, by = species] |>
+knitr::kable(format = "html")
+```

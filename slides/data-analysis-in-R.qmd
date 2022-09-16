@@ -23,7 +23,6 @@ knitr::opts_chunk$set(fig.path="figs/", warning=FALSE,
 penguins = palmerpenguins::penguins 
 
 
-
 ```
 
 
@@ -168,6 +167,9 @@ penguins |>
                                     probs = c(.25,
                                               .50,
                                               .75)))
+
+summ
+
 ```
 
 
@@ -388,7 +390,10 @@ ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
 :::
 :::
 
+:::{.notes}
+Notice that when we plot by subgroup we see evidence of simpson's pardox
 
+:::
 
 ## Distributions 
 
@@ -636,6 +641,9 @@ This is probably what you are used to seeing if you are coming over from another
 peng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species, data = penguins)
 
 summary(peng_adjust)
+
+
+
 
 ```
 

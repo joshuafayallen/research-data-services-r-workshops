@@ -12,8 +12,10 @@ format:
 
 ```{r setup, echo = FALSE}
 
-pacman::p_load("palmerpenguins", "flair", "knitr", "kableExtra", 
+pacman::p_load("palmerpenguins", 
                "AllenMisc")
+
+
 
 clrs <- MetBrewer::met.brewer(name = "Demuth")
 clrs_lt <- colorspace::lighten(clrs, 0.9)
@@ -70,7 +72,7 @@ penguins = read_csv("data/penguins.csv")
 
 
 
-# Cleaning Data in the Tidyverse {background-color="`r clrs[6]`" .white}
+# Cleaning Data in the Tidyverse {background-color="`r clrs[3]`" .white}
 
 ::: {.callout}
 Like families, tidy datasets are all alike but every messy dataset is messy in its own way. `r tufte::quote_footer("Hadley Wickham")`
@@ -116,6 +118,7 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 
 ```{r echo = TRUE}
 tidyverse::tidyverse_packages()
+
 ```
 
 ::: {.notes}
@@ -152,7 +155,7 @@ The tidyverse is pretty verbose because it loads a lot of things and in the case
     -   This is called a namespace call
     -   explicitly tells R which function you are using
 
-# Dplyr {background-color="`r clrs[6]`" .white}
+# Dplyr {background-color="`r clrs[3]`" .white}
 
 <center>
 
@@ -185,7 +188,7 @@ The tidyverse is pretty verbose because it loads a lot of things and in the case
   </tr>
 </table>
 
-# filter() {background-color="`r clrs[6]`" .white}
+# filter() {background-color="`r clrs[3]`" .white}
 
 Subsetting by Rows
 
@@ -245,40 +248,7 @@ The basics of filter are that you need to feed it a set of tests. Most often wha
 
 :::
 
-## filter()
 
--   regular expressions also work and can be pretty handy.
-
-::: columns
-::: column
-```{r  eval=FALSE, echo = TRUE}
- 
-  filter(starwars, grepl("Skywalker", name)| 
-           grepl("Palp", name) |
-           grepl("Obi", name))
-
-```
-:::
-
-::: column
-```{r echo = FALSE}
-starwars |> 
-  select(name, height, mass, homeworld) |> 
-  filter(grepl("Skywalker", name) | grepl("Palp", name) | grepl("Obi", name)) |> 
-  mutate(height = as.character(height),
-         mass = as.character(mass)) |> 
-  head(6) |> 
-  bind_rows(tibble(name = "...", height = "...", mass = "...", homeworld = "...")) |> 
-  knitr::kable(format = "html")
-```
-:::
-:::
-
-:::{.notes}
-
-I will say that regular expressions are notoriously difficult to work with. I choose the simplest one to use. Here we are feeding filter a really simple regular expression 
-
-:::
 
 
 ## filter() {.scrollable}
@@ -289,10 +259,8 @@ You can also supply a list to filter to subset your data
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 
-  filter(starwars, homeworld %in% c("Naboo",
-   "Tatooine",
-    "Coruscant")
-         & !grepl(c("ars"),name))
+  filter(starwars,
+  homeworld %in% c("Naboo","Tatooine","Coruscant"))
 
 
 ```
@@ -302,7 +270,7 @@ You can also supply a list to filter to subset your data
 ```{r echo=FALSE}
 starwars |> 
   select(name, homeworld) |> 
-  filter(homeworld %in% c("Naboo", "Tatooine", "Coruscant") & !grepl(c("ars"),name)) |>
+  filter(homeworld %in% c("Naboo", "Tatooine", "Coruscant")) |>
     head(9) |> 
     bind_rows(tibble(name = "...", homeworld =  "...")) |> 
     knitr::kable(format = "html")
@@ -333,12 +301,17 @@ filter(penguins, species = "Gentoo")
 
 :::column
 
-```{r echo = TRUE}
+```{r echo = TRUE, eval = FALSE}
 
 
 filter(starwars, homeworld == "Nabo")
 
 ```
+
+```{r}
+filter(starwars, homeworld == "Nabo") |> knitr::kable(format = "html")
+```
+
 
 
 :::
@@ -380,7 +353,7 @@ Here I am just asking filter to return all the values in the data that are missi
 countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
-# Select() {background-color="`r clrs[6]`" .white}
+# Select() {background-color="`r clrs[3]`" .white}
 
 ## Select()
 
@@ -413,42 +386,9 @@ penguins |>
 :::
 :::
 
-## Helpful Helpers
-
--   Dplyr comes really useful functions that help you when there are common patterns in your variable names
-
--   the syntax usually goes 
-  - `select(contains("pattern"))`
-  - `select(starts_with("pattern"))`
-  - `select(ends_with("pattern"))`
-
-::: columns
-::: column
-```{r eval=FALSE, echo = TRUE}
-
-  select(starwars, name,   -eye_color,
-   ends_with("color") 
-    homeworld)
-
-```
-:::
-
-::: column
-```{r echo = FALSE}
-
-starwars |> 
-  select(name,  -eye_color, ends_with("color")) |> 
-  head(4) |> 
-  bind_rows(tibble(name = "...", hair_color = "...", skin_color = "...",
-                   eye_color = "...", homeworld = "...")) |> 
-  knitr::kable(format = "html")
 
 
-```
-:::
-:::
-
-# Doing More Than One Thing at a Time {background-color="`r clrs[6]`" .white}
+# Doing More Than One Thing at a Time {background-color="`r clrs[3]`" .white}
 
 ## Data Cleaning
 
@@ -591,7 +531,7 @@ Example derived from [Andrew Heiss](https://twitter.com/andrewheiss/status/13595
 
 ## Base R Pipe
 
--   The pipe caught on and the team behind `R` added a native pipe \|\>
+-   The pipe caught on and the team behind `R` added a native pipe `|>`
 
     -   this is just `|` followed by `>`
 
@@ -610,7 +550,7 @@ If you are on a mac the keyboard shortcut is command shift m
 
 
 
-# Mutate {background-color="`r clrs[6]`" .white}
+# Mutate {background-color="`r clrs[3]`" .white}
 
 ## Mutate
 
@@ -782,7 +722,7 @@ mutate(what_are_they = case_when(
 countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
-# Group_by() and Summarize() {background-color="`r clrs[6]`" .white}
+# Group_by() and Summarize() {background-color="`r clrs[3]`" .white}
 
 ## group_by()
 
@@ -1088,7 +1028,7 @@ national_data |>
   knitr::kable(format = "html") 
 ```
 
-# Tidyr {background-color="`r clrs[6]`" .white}
+# Tidyr {background-color="`r clrs[3]`" .white}
 
 <center>
 
@@ -1194,7 +1134,110 @@ unite(name, c("forename", "surname"), sep = " ")
 ```
 
 
-# Getting up and Running Using helpers  {background-color="`r clrs[6]`" .white}
+# Getting up and Running Using helpers  {background-color="`r clrs[3]`" .white}
+
+
+
+## Helpful Helpers
+
+-   Dplyr comes really useful functions that help you when there are common patterns in your variable names
+
+-   the syntax usually goes 
+  - `select(contains("pattern"))`
+  - `select(starts_with("pattern"))`
+  - `select(ends_with("pattern"))`
+
+::: columns
+::: column
+```{r eval=FALSE, echo = TRUE}
+
+  select(starwars, name,   -eye_color,
+   ends_with("color") 
+    homeworld)
+
+```
+:::
+
+::: column
+```{r echo = FALSE}
+
+starwars |> 
+  select(name,  -eye_color, ends_with("color")) |> 
+  head(4) |> 
+  bind_rows(tibble(name = "...", hair_color = "...", skin_color = "...",
+                   eye_color = "...", homeworld = "...")) |> 
+  knitr::kable(format = "html")
+
+
+```
+:::
+:::
+
+## Another Helper Example 
+
+:::columns
+:::column
+```{r eval = FALSE, echo = TRUE}
+penguins |>
+select(starts_with("bill"))
+```
+
+:::
+
+:::column
+
+```{r}
+penguins |>
+select(starts_with("bill")) |>
+head(5) |>
+knitr::kable(format = "html")
+
+```
+:::
+:::
+
+## filter() with regular expressions
+
+-   regular expressions also work and can be pretty handy.
+
+::: columns
+::: column
+```{r eval=FALSE, echo = TRUE}
+# base R regex
+filter(starwars, grepl("Skywalker", name)|  # base r version
+           grepl("Palp", name) |
+           grepl("Obi", name))
+# tidyverse regex
+filter(starwars, str_detect(name, "Skywalker") | 
+         str_detect(name, "Palp") |
+        str_detect(name, "Obi"))
+
+```
+:::
+
+::: column
+```{r echo = FALSE}
+starwars |> 
+  select(name, height, mass, homeworld) |> 
+  filter(grepl("Skywalker", name) | grepl("Palp", name) | grepl("Obi", name)) |> 
+  mutate(height = as.character(height),
+         mass = as.character(mass)) |> 
+  head(6) |> 
+  bind_rows(tibble(name = "...", height = "...", mass = "...", homeworld = "...")) |> 
+  knitr::kable(format = "html")
+```
+:::
+:::
+
+:::{.notes}
+
+I will say that regular expressions are notoriously difficult to work with. I choose the simplest one to use. Here we are feeding filter a really simple regular expression 
+
+:::
+
+
+
+## 
 
 
 ## Generating Summary statistics 
