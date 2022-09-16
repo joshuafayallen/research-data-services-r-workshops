@@ -13,8 +13,10 @@ format:
 
 ```{r setup, echo = FALSE}
 
-pacman::p_load("palmerpenguins", "flair", "knitr", "kableExtra", "dplyr", "data.table",
-               "AllenMisc")
+
+library(palmerpenguins)
+library(data.table)
+library(dplyr)            
 
 penguins = penguins
 
