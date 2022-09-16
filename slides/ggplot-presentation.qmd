@@ -9,7 +9,20 @@ format:
 ---
 
 ```{r setup, include = F, warnings = FALSE}
-pacman::p_load("tidyverse", "palmerpenguins", "AllenMisc","datasauRus", "patchwork","gapminder","flair", "knitr", "kableExtra", "ggridges", "sf", install = FALSE)
+
+
+library(tidyverse)
+library(palmerpenguins)
+library(datasauRus)
+library(gapminder)
+library(AllenMisc)
+library(sf)
+library(ggridges)
+library(scico)
+library(MetBrewer)
+library(WDI)
+library(vdemdata)
+library(countrycode)
 
 knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
                       message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
@@ -1922,8 +1935,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/andrewheiss/datavizs2
 
 
 ```{r cleaning-dem-data, echo= FALSE}
-pacman::p_load("sf", "countrycode", 
-               "scico", "MetBrewer", "WDI", "vdemdata")
+
 
 vdem_raw = vdemdata::vdem 
 

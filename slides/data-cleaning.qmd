@@ -12,9 +12,8 @@ format:
 
 ```{r setup, echo = FALSE}
 
-pacman::p_load("palmerpenguins", 
-               "AllenMisc")
 
+library(palmerpenguins)
 
 
 clrs <- MetBrewer::met.brewer(name = "Demuth")
