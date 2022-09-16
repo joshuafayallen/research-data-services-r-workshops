@@ -11,7 +11,7 @@ format:
 
 
 ```{r setup, include = F, warnings = FALSE}
-
+install.packages("pacman")
 pacman::p_load("AllenMisc","sandwich", "lmtest", "marginaleffects","emmeans",
                "modelsummary", "broom", "tidyverse", "palmerpenguins", "fixest", "nullabor", "ggfortify", "plm")
 
