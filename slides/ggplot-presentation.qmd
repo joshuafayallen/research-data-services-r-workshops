@@ -2334,25 +2334,24 @@ breweries_geocode |>
 
 ## Mapping Atlanta
 
+:::incremental
+
 - Combining what we have learned we can easily map Atlanta 
 
 - Using the osmdata package by Open Street Maps we can do lots of things
 
-- You can also save lots of money on gifts
-
-- Trust me 
-
-
-
-
-
-## Mapping Atlanta 
+- You can also save lots of money on gifts [trust me]{.fragment}
 
 - We can grab a host of various things we would want for a good map
 
 - And add points of interest 
 
 - I will just geocode some bars that pols grad students have drank at or have had to host events at.
+
+:::
+
+## Mapping Atlanta 
+
 
 ```{r cache=TRUE, echo = TRUE}
 #| code-fold: true

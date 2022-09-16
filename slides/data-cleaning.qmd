@@ -356,14 +356,11 @@ countdown::countdown(minutes = 3, sound = TRUE)
 
 
 ## Select()
-
-For various reasons we may want to just keep a few columns.
-
--   For this task we use our friend select
-
+- In some cases we just need a few columns 
+- We use `select` to grab those columns
 -   You can feed it one column or a range of columns with `:`
-
 -   You can also leave columns out using `-`
+
 
 ::: columns
 ::: column
@@ -373,7 +370,6 @@ For various reasons we may want to just keep a few columns.
          -bill_length_mm)
 ```
 :::
-
 
 
 ::: column
@@ -390,7 +386,7 @@ penguins |>
 
 
 :::{.notes}
-Select is a lot more intuitive because with some exceptions you just supply a set of column names you want or do want 
+Select is a lot more intuitive because with some exceptions you just supply a set of column names you want or do want. Select has a whole set of really awesome helper function that help you subset your data easier. I have included those at the end. Just so you are aware of them.
 
 :::
 
@@ -1247,10 +1243,13 @@ I will say that regular expressions are notoriously difficult to work with. I ch
 ## Generating Summary statistics 
 
 ```{r echo = TRUE}
+#| code-line-numbers: "|4|5|6"
 penguins |> 
 select(-year) |>
 group_by(species) |>
-summarise(across(where(is.numeric), c(Mean = mean, Min = min, Max = max), na.rm = TRUE), .names = "{.cols}_{.fn}")
+summarise(across(where(is.numeric),
+ c(Mean = mean, Min = min, Max = max), na.rm = TRUE),
+  .names = "{.cols}_{.fn}")
 
 
 ```
