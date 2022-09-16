@@ -11,9 +11,13 @@ format:
 
 
 ```{r setup, include = F, warnings = FALSE}
-install.packages("pacman")
-pacman::p_load("AllenMisc","sandwich", "lmtest", "marginaleffects","emmeans",
+
+
+library(pacman)
+
+p_load("AllenMisc","sandwich", "lmtest", "marginaleffects","emmeans",
                "modelsummary", "broom", "tidyverse", "palmerpenguins", "fixest", "nullabor", "ggfortify", "plm")
+
 
 knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
                       message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
