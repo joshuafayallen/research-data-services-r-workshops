@@ -253,14 +253,16 @@ The basics of filter are that you need to feed it a set of tests. Most often wha
 
 ## filter() {.scrollable}
 
-You can also supply a list to filter to subset your data
+set membership works really here too!
 
 ::: columns
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 
   filter(starwars,
-  homeworld %in% c("Naboo","Tatooine","Coruscant"))
+  homeworld %in% c("Naboo",
+                  "Tatooine",
+                  "Coruscant"))
 
 
 ```
@@ -341,7 +343,7 @@ Here I am just asking filter to return all the values in the data that are missi
 :::
 
 
-## Your Turn
+## Your Turn {background-color="`r clrs_lt[3]`"}
 
 -   Using the sample code from the last slide filter out the NA values. Hint use `!`
 
@@ -353,7 +355,6 @@ Here I am just asking filter to return all the values in the data that are missi
 countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
-# Select() {background-color="`r clrs[3]`" .white}
 
 ## Select()
 
@@ -369,10 +370,12 @@ For various reasons we may want to just keep a few columns.
 ::: column
 ```{r eval = FALSE, echo = TRUE}
  select(penguins, species,
-         island:bill_depth_mm,
+        island:bill_depth_mm,
          -bill_length_mm)
 ```
 :::
+
+
 
 ::: column
 ```{r echo=FALSE}
@@ -387,6 +390,10 @@ penguins |>
 :::
 
 
+:::{.notes}
+Select is a lot more intuitive because with some exceptions you just supply a set of column names you want or do want 
+
+:::
 
 # Doing More Than One Thing at a Time {background-color="`r clrs[3]`" .white}
 
@@ -708,7 +715,7 @@ mutate(what_are_they = case_when(
 :::
 
 
-## Your Turn 
+## Your Turn  {background-color="`r clrs_lt[3]`"}
 
 - Write code to 
 
@@ -792,7 +799,7 @@ penguins |>
 :::
 :::
 
-## Your Turn
+## Your Turn {background-color="`r clrs_lt[3]`"}
 
 -   Calculate the minimum, maximum, and median `body_mass_g` for each species of penguin
 
