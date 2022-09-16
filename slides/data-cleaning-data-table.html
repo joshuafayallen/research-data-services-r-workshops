@@ -7,7 +7,7 @@
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.189">
+  <meta name="generator" content="quarto-1.1.251">
 
   <meta name="author" content="Josh Allen">
   <meta name="dcterms.date" content="2022-08-29">
@@ -434,7 +434,7 @@
 <section id="a-comparison-of-tasks" class="slide level2">
 <h2>A comparison of tasks</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="|3|4|5|10|11|12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="do">## tidyverse </span></span>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="|3|10|4|12|5|11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="do">## tidyverse </span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Chinstrap"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="fu">group_by</span>(island) <span class="sc">|&gt;</span></span>
@@ -449,61 +449,15 @@
 </div>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-island
-</th>
-<th style="text-align:right;">
-mean_weight
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Dream
-</td>
-<td style="text-align:right;">
-3733.088
-</td>
-</tr>
-</tbody>
-
-</table>
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<pre><code># A tibble: 1 × 2
+  island mean_weight
+  &lt;fct&gt;        &lt;dbl&gt;
+1 Dream        3733.</code></pre>
 </div>
-</div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-island
-</th>
-<th style="text-align:right;">
-V1
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Dream
-</td>
-<td style="text-align:right;">
-3733.088
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<pre><code>   island       V1
+1:  Dream 3733.088</code></pre>
 </div>
 </div>
 </div>
@@ -579,2924 +533,82 @@ Dream
 <section id="using-tests" class="slide level2">
 <h2>Using tests</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>penguins_dt[species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>) <span class="sc">|</span> body_mass_g <span class="sc">&lt;=</span> <span class="dv">4050</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>penguins_dt[species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>) <span class="sc">|</span> body_mass_g <span class="sc">&lt;=</span> <span class="dv">4050</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-species
-</th>
-<th style="text-align:right;">
-body_mass_g
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-3750
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-3800
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-3250
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-3450
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-3650
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   species body_mass_g
+1:  Adelie        3750
+2:  Adelie        3800
+3:  Adelie        3250
+4:  Adelie        3450
+5:  Adelie        3650</code></pre>
 </div>
 </div>
 </section>
 <section id="using-regular-expressions" class="slide level2">
 <h2>Using regular expressions</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>starwars_dt <span class="ot">=</span> <span class="fu">as.data.table</span>(starwars)</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>starwars_dt[<span class="fu">grepl</span>(<span class="st">"Skywalker"</span>, name)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>starwars_dt <span class="ot">=</span> <span class="fu">as.data.table</span>(starwars)</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>starwars_dt[<span class="fu">grepl</span>(<span class="st">"Skywalker"</span>, name)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-name
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Luke Skywalker
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Anakin Skywalker
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Shmi Skywalker
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               name
+1:   Luke Skywalker
+2: Anakin Skywalker
+3:   Shmi Skywalker</code></pre>
 </div>
 </div>
 </section>
 <section id="finding-missing-data" class="slide level2">
 <h2>Finding Missing Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>penguins_dt[<span class="fu">is.na</span>(sex)][]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>penguins_dt[<span class="fu">is.na</span>(sex)][]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-species
-</th>
-<th style="text-align:left;">
-sex
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    species  sex
+ 1:  Adelie &lt;NA&gt;
+ 2:  Adelie &lt;NA&gt;
+ 3:  Adelie &lt;NA&gt;
+ 4:  Adelie &lt;NA&gt;
+ 5:  Adelie &lt;NA&gt;
+ 6:  Adelie &lt;NA&gt;
+ 7:  Gentoo &lt;NA&gt;
+ 8:  Gentoo &lt;NA&gt;
+ 9:  Gentoo &lt;NA&gt;
+10:  Gentoo &lt;NA&gt;
+11:  Gentoo &lt;NA&gt;</code></pre>
 </div>
 </div>
 </section>
 <section id="finiding-non-missing-data" class="slide level2">
 <h2>Finiding Non-missing Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>penguins_dt[<span class="sc">!</span><span class="fu">is.na</span>(sex)][]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>penguins_dt[<span class="sc">!</span><span class="fu">is.na</span>(sex)][]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-species
-</th>
-<th style="text-align:left;">
-sex
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-male
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:left;">
-female
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       species    sex
+  1:    Adelie   male
+  2:    Adelie female
+  3:    Adelie female
+  4:    Adelie female
+  5:    Adelie   male
+ ---                 
+329: Chinstrap   male
+330: Chinstrap female
+331: Chinstrap   male
+332: Chinstrap   male
+333: Chinstrap female</code></pre>
 </div>
 </div>
 </section></section>
 <section>
-<section id="selecting-columns-with-j" class="title-slide slide level1 center">
-<h1>Selecting Columns with <code>j</code></h1>
+<section id="doing-stuff-with-j" class="title-slide slide level1 center">
+<h1>Doing Stuff with <code>j</code></h1>
 
 </section>
 <section id="the-basics" class="slide level2">
@@ -3506,96 +618,25 @@ female
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>penguins_dt[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>penguins_dt[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-species
-</th>
-<th style="text-align:left;">
-island
-</th>
-<th style="text-align:right;">
-bill_length_mm
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-Torgersen
-</td>
-<td style="text-align:right;">
-39.1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:left;">
-Torgersen
-</td>
-<td style="text-align:right;">
-39.5
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   species    island bill_length_mm
+1:  Adelie Torgersen           39.1
+2:  Adelie Torgersen           39.5</code></pre>
 </div>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>penguins_dt[, <span class="fu">c</span>(<span class="st">"body_mass_g"</span>, <span class="st">"species"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>penguins_dt[, <span class="fu">c</span>(<span class="st">"body_mass_g"</span>, <span class="st">"species"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:right;">
-body_mass_g
-</th>
-<th style="text-align:left;">
-species
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-3750
-</td>
-<td style="text-align:left;">
-Adelie
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-3800
-</td>
-<td style="text-align:left;">
-Adelie
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   body_mass_g species
+1:        3750  Adelie
+2:        3800  Adelie</code></pre>
 </div>
 </div>
 </div>
@@ -3603,165 +644,24 @@ Adelie
 <section id="excluding-using--" class="slide level2">
 <h2>Excluding Using <code>-</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>penguins_dt[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>penguins_dt[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:right;">
-bill_depth_mm
-</th>
-<th style="text-align:right;">
-flipper_length_mm
-</th>
-<th style="text-align:right;">
-body_mass_g
-</th>
-<th style="text-align:left;">
-sex
-</th>
-<th style="text-align:right;">
-year
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-181
-</td>
-<td style="text-align:right;">
-3750
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:right;">
-2007
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-17.4
-</td>
-<td style="text-align:right;">
-186
-</td>
-<td style="text-align:right;">
-3800
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:right;">
-2007
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-18.0
-</td>
-<td style="text-align:right;">
-195
-</td>
-<td style="text-align:right;">
-3250
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:right;">
-2007
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   bill_depth_mm flipper_length_mm body_mass_g    sex year
+1:          18.7               181        3750   male 2007
+2:          17.4               186        3800 female 2007
+3:          18.0               195        3250 female 2007</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>penguins_dt[,<span class="sc">-</span><span class="fu">c</span>(<span class="st">"body_mass_g"</span>,<span class="st">"species"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>penguins_dt[,<span class="sc">-</span><span class="fu">c</span>(<span class="st">"body_mass_g"</span>,<span class="st">"species"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-island
-</th>
-<th style="text-align:right;">
-bill_length_mm
-</th>
-<th style="text-align:right;">
-bill_depth_mm
-</th>
-<th style="text-align:right;">
-flipper_length_mm
-</th>
-<th style="text-align:left;">
-sex
-</th>
-<th style="text-align:right;">
-year
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Torgersen
-</td>
-<td style="text-align:right;">
-39.1
-</td>
-<td style="text-align:right;">
-18.7
-</td>
-<td style="text-align:right;">
-181
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:right;">
-2007
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Torgersen
-</td>
-<td style="text-align:right;">
-39.5
-</td>
-<td style="text-align:right;">
-17.4
-</td>
-<td style="text-align:right;">
-186
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:right;">
-2007
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      island bill_length_mm bill_depth_mm flipper_length_mm    sex year
+1: Torgersen           39.1          18.7               181   male 2007
+2: Torgersen           39.5          17.4               186 female 2007</code></pre>
 </div>
 </div>
 </section>
@@ -3772,135 +672,34 @@ female
 <li><p>So we can put <code>.</code> in the <code>j</code> postition letting us use less characters</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>penguins_dt[, .(body_mass_g, island)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>penguins_dt[, .(body_mass_g, island)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:right;">
-body_mass_g
-</th>
-<th style="text-align:left;">
-island
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-3750
-</td>
-<td style="text-align:left;">
-Torgersen
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-3800
-</td>
-<td style="text-align:left;">
-Torgersen
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   body_mass_g    island
+1:        3750 Torgersen
+2:        3800 Torgersen</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>penguins_dt[, .(body_mass_g, island)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>penguins_dt[, .(body_mass_g, island)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="regular-expressions" class="slide level2">
 <h2>Regular Expressions</h2>
 <p>We can still use regular expressions - They just look a little different</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>starwars_dt[, .SD , .SDcols <span class="ot">=</span> <span class="fu">patterns</span>(<span class="st">"color"</span>)][] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>starwars_dt[, .SD , .SDcols <span class="ot">=</span> <span class="fu">patterns</span>(<span class="st">"color"</span>)][] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-hair_color
-</th>
-<th style="text-align:left;">
-skin_color
-</th>
-<th style="text-align:left;">
-eye_color
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-blond
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-gold
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-white, blue
-</td>
-<td style="text-align:left;">
-red
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-white
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-brown
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   hair_color  skin_color eye_color
+1:      blond        fair      blue
+2:       &lt;NA&gt;        gold    yellow
+3:       &lt;NA&gt; white, blue       red
+4:       none       white    yellow
+5:      brown       light     brown</code></pre>
 </div>
 </div>
 </div>
@@ -3913,7 +712,7 @@ brown
 </ul>
 <p>If we tried to do this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>starwars_dt[, .SDcols <span class="ot">=</span> <span class="fu">patterns</span>(<span class="st">"color"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>starwars_dt[, .SDcols <span class="ot">=</span> <span class="fu">patterns</span>(<span class="st">"color"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It would return</p>
 <div class="fragment">
@@ -3923,3746 +722,541 @@ brown
 are both missing so ignoring the other arguments. This warning will be upgraded
 to error in future.</code></pre>
 </div>
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-name
-</th>
-<th style="text-align:right;">
-height
-</th>
-<th style="text-align:right;">
-mass
-</th>
-<th style="text-align:left;">
-hair_color
-</th>
-<th style="text-align:left;">
-skin_color
-</th>
-<th style="text-align:left;">
-eye_color
-</th>
-<th style="text-align:right;">
-birth_year
-</th>
-<th style="text-align:left;">
-sex
-</th>
-<th style="text-align:left;">
-gender
-</th>
-<th style="text-align:left;">
-homeworld
-</th>
-<th style="text-align:left;">
-species
-</th>
-<th style="text-align:left;">
-films
-</th>
-<th style="text-align:left;">
-vehicles
-</th>
-<th style="text-align:left;">
-starships
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Luke Skywalker
-</td>
-<td style="text-align:right;">
-172
-</td>
-<td style="text-align:right;">
-77.0
-</td>
-<td style="text-align:left;">
-blond
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-19.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens
-</td>
-<td style="text-align:left;">
-Snowspeeder , Imperial Speeder Bike
-</td>
-<td style="text-align:left;">
-X-wing , Imperial shuttle
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-C-3PO
-</td>
-<td style="text-align:right;">
-167
-</td>
-<td style="text-align:right;">
-75.0
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-gold
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-112.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Droid
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2-D2
-</td>
-<td style="text-align:right;">
-96
-</td>
-<td style="text-align:right;">
-32.0
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-white, blue
-</td>
-<td style="text-align:left;">
-red
-</td>
-<td style="text-align:right;">
-33.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Droid
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Darth Vader
-</td>
-<td style="text-align:right;">
-202
-</td>
-<td style="text-align:right;">
-136.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-white
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-41.9
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-TIE Advanced x1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Leia Organa
-</td>
-<td style="text-align:right;">
-150
-</td>
-<td style="text-align:right;">
-49.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-19.0
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Alderaan
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens
-</td>
-<td style="text-align:left;">
-Imperial Speeder Bike
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Owen Lars
-</td>
-<td style="text-align:right;">
-178
-</td>
-<td style="text-align:right;">
-120.0
-</td>
-<td style="text-align:left;">
-brown, grey
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-52.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones, Revenge of the Sith , A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Beru Whitesun lars
-</td>
-<td style="text-align:right;">
-165
-</td>
-<td style="text-align:right;">
-75.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-47.0
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones, Revenge of the Sith , A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R5-D4
-</td>
-<td style="text-align:right;">
-97
-</td>
-<td style="text-align:right;">
-32.0
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-white, red
-</td>
-<td style="text-align:left;">
-red
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Droid
-</td>
-<td style="text-align:left;">
-A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Biggs Darklighter
-</td>
-<td style="text-align:right;">
-183
-</td>
-<td style="text-align:right;">
-84.0
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-24.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-X-wing
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Obi-Wan Kenobi
-</td>
-<td style="text-align:right;">
-182
-</td>
-<td style="text-align:right;">
-77.0
-</td>
-<td style="text-align:left;">
-auburn, white
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue-gray
-</td>
-<td style="text-align:right;">
-57.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Stewjon
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope
-</td>
-<td style="text-align:left;">
-Tribubble bongo
-</td>
-<td style="text-align:left;">
-Jedi starfighter , Trade Federation cruiser, Naboo star skiff , Jedi Interceptor , Belbullab-22 starfighter
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Anakin Skywalker
-</td>
-<td style="text-align:right;">
-188
-</td>
-<td style="text-align:right;">
-84.0
-</td>
-<td style="text-align:left;">
-blond
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-41.9
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-Zephyr-G swoop bike, XJ-6 airspeeder
-</td>
-<td style="text-align:left;">
-Trade Federation cruiser, Jedi Interceptor , Naboo fighter
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Wilhuff Tarkin
-</td>
-<td style="text-align:right;">
-180
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-auburn, grey
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-64.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Eriadu
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Revenge of the Sith, A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chewbacca
-</td>
-<td style="text-align:right;">
-228
-</td>
-<td style="text-align:right;">
-112.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-unknown
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-200.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Kashyyyk
-</td>
-<td style="text-align:left;">
-Wookiee
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens
-</td>
-<td style="text-align:left;">
-AT-ST
-</td>
-<td style="text-align:left;">
-Millennium Falcon, Imperial shuttle
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Han Solo
-</td>
-<td style="text-align:right;">
-180
-</td>
-<td style="text-align:right;">
-80.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-29.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Corellia
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Return of the Jedi , A New Hope , The Force Awakens
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Millennium Falcon, Imperial shuttle
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Greedo
-</td>
-<td style="text-align:right;">
-173
-</td>
-<td style="text-align:right;">
-74.0
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-44.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Rodia
-</td>
-<td style="text-align:left;">
-Rodian
-</td>
-<td style="text-align:left;">
-A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Jabba Desilijic Tiure
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-1358.0
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-green-tan, brown
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:right;">
-600.0
-</td>
-<td style="text-align:left;">
-hermaphroditic
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Nal Hutta
-</td>
-<td style="text-align:left;">
-Hutt
-</td>
-<td style="text-align:left;">
-The Phantom Menace, Return of the Jedi, A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Wedge Antilles
-</td>
-<td style="text-align:right;">
-170
-</td>
-<td style="text-align:right;">
-77.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-hazel
-</td>
-<td style="text-align:right;">
-21.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Corellia
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Return of the Jedi , A New Hope
-</td>
-<td style="text-align:left;">
-Snowspeeder
-</td>
-<td style="text-align:left;">
-X-wing
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Jek Tono Porkins
-</td>
-<td style="text-align:right;">
-180
-</td>
-<td style="text-align:right;">
-110.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Bestine IV
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-X-wing
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Yoda
-</td>
-<td style="text-align:right;">
-66
-</td>
-<td style="text-align:right;">
-17.0
-</td>
-<td style="text-align:left;">
-white
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-896.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Yoda’s species
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Palpatine
-</td>
-<td style="text-align:right;">
-170
-</td>
-<td style="text-align:right;">
-75.0
-</td>
-<td style="text-align:left;">
-grey
-</td>
-<td style="text-align:left;">
-pale
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-82.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Boba Fett
-</td>
-<td style="text-align:right;">
-183
-</td>
-<td style="text-align:right;">
-78.2
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-31.5
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Kamino
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Attack of the Clones , Return of the Jedi
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Slave 1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-IG-88
-</td>
-<td style="text-align:right;">
-200
-</td>
-<td style="text-align:right;">
-140.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-metal
-</td>
-<td style="text-align:left;">
-red
-</td>
-<td style="text-align:right;">
-15.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Droid
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Bossk
-</td>
-<td style="text-align:right;">
-190
-</td>
-<td style="text-align:right;">
-113.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-red
-</td>
-<td style="text-align:right;">
-53.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Trandosha
-</td>
-<td style="text-align:left;">
-Trandoshan
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Lando Calrissian
-</td>
-<td style="text-align:right;">
-177
-</td>
-<td style="text-align:right;">
-79.0
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-dark
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-31.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Socorro
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Return of the Jedi
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Millennium Falcon
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Lobot
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-79.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-37.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Bespin
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Ackbar
-</td>
-<td style="text-align:right;">
-180
-</td>
-<td style="text-align:right;">
-83.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-brown mottle
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:right;">
-41.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Mon Cala
-</td>
-<td style="text-align:left;">
-Mon Calamari
-</td>
-<td style="text-align:left;">
-Return of the Jedi, The Force Awakens
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mon Mothma
-</td>
-<td style="text-align:right;">
-150
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-auburn
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-48.0
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Chandrila
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Return of the Jedi
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Arvel Crynyd
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Return of the Jedi
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-A-wing
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Wicket Systri Warrick
-</td>
-<td style="text-align:right;">
-88
-</td>
-<td style="text-align:right;">
-20.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-8.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Endor
-</td>
-<td style="text-align:left;">
-Ewok
-</td>
-<td style="text-align:left;">
-Return of the Jedi
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Nien Nunb
-</td>
-<td style="text-align:right;">
-160
-</td>
-<td style="text-align:right;">
-68.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-grey
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Sullust
-</td>
-<td style="text-align:left;">
-Sullustan
-</td>
-<td style="text-align:left;">
-Return of the Jedi
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Millennium Falcon
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Qui-Gon Jinn
-</td>
-<td style="text-align:right;">
-193
-</td>
-<td style="text-align:right;">
-89.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-92.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-Tribubble bongo
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Nute Gunray
-</td>
-<td style="text-align:right;">
-191
-</td>
-<td style="text-align:right;">
-90.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-mottled green
-</td>
-<td style="text-align:left;">
-red
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Cato Neimoidia
-</td>
-<td style="text-align:left;">
-Neimodian
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Finis Valorum
-</td>
-<td style="text-align:right;">
-170
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-blond
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-91.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Coruscant
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Jar Jar Binks
-</td>
-<td style="text-align:right;">
-196
-</td>
-<td style="text-align:right;">
-66.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:right;">
-52.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Gungan
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Roos Tarpals
-</td>
-<td style="text-align:right;">
-224
-</td>
-<td style="text-align:right;">
-82.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-grey
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Gungan
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Rugor Nass
-</td>
-<td style="text-align:right;">
-206
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Gungan
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Ric Olié
-</td>
-<td style="text-align:right;">
-183
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Naboo Royal Starship
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Watto
-</td>
-<td style="text-align:right;">
-137
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-blue, grey
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Toydaria
-</td>
-<td style="text-align:left;">
-Toydarian
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Sebulba
-</td>
-<td style="text-align:right;">
-112
-</td>
-<td style="text-align:right;">
-40.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-grey, red
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Malastare
-</td>
-<td style="text-align:left;">
-Dug
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Quarsh Panaka
-</td>
-<td style="text-align:right;">
-183
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-dark
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-62.0
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Shmi Skywalker
-</td>
-<td style="text-align:right;">
-163
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-72.0
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Darth Maul
-</td>
-<td style="text-align:right;">
-175
-</td>
-<td style="text-align:right;">
-80.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-red
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-54.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Dathomir
-</td>
-<td style="text-align:left;">
-Zabrak
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-Sith speeder
-</td>
-<td style="text-align:left;">
-Scimitar
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Bib Fortuna
-</td>
-<td style="text-align:right;">
-180
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-pale
-</td>
-<td style="text-align:left;">
-pink
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Ryloth
-</td>
-<td style="text-align:left;">
-Twi’lek
-</td>
-<td style="text-align:left;">
-Return of the Jedi
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Ayla Secura
-</td>
-<td style="text-align:right;">
-178
-</td>
-<td style="text-align:right;">
-55.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:left;">
-hazel
-</td>
-<td style="text-align:right;">
-48.0
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Ryloth
-</td>
-<td style="text-align:left;">
-Twi’lek
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Dud Bolt
-</td>
-<td style="text-align:right;">
-94
-</td>
-<td style="text-align:right;">
-45.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-blue, grey
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Vulpter
-</td>
-<td style="text-align:left;">
-Vulptereen
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gasgano
-</td>
-<td style="text-align:right;">
-122
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-white, blue
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Troiken
-</td>
-<td style="text-align:left;">
-Xexto
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Ben Quadinaros
-</td>
-<td style="text-align:right;">
-163
-</td>
-<td style="text-align:right;">
-65.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-grey, green, yellow
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tund
-</td>
-<td style="text-align:left;">
-Toong
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mace Windu
-</td>
-<td style="text-align:right;">
-188
-</td>
-<td style="text-align:right;">
-84.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-dark
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-72.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Haruun Kal
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Ki-Adi-Mundi
-</td>
-<td style="text-align:right;">
-198
-</td>
-<td style="text-align:right;">
-82.0
-</td>
-<td style="text-align:left;">
-white
-</td>
-<td style="text-align:left;">
-pale
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-92.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Cerea
-</td>
-<td style="text-align:left;">
-Cerean
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Kit Fisto
-</td>
-<td style="text-align:right;">
-196
-</td>
-<td style="text-align:right;">
-87.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Glee Anselm
-</td>
-<td style="text-align:left;">
-Nautolan
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Eeth Koth
-</td>
-<td style="text-align:right;">
-171
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Iridonia
-</td>
-<td style="text-align:left;">
-Zabrak
-</td>
-<td style="text-align:left;">
-The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adi Gallia
-</td>
-<td style="text-align:right;">
-184
-</td>
-<td style="text-align:right;">
-50.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-dark
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Coruscant
-</td>
-<td style="text-align:left;">
-Tholothian
-</td>
-<td style="text-align:left;">
-The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Saesee Tiin
-</td>
-<td style="text-align:right;">
-188
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-pale
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Iktotch
-</td>
-<td style="text-align:left;">
-Iktotchi
-</td>
-<td style="text-align:left;">
-The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Yarael Poof
-</td>
-<td style="text-align:right;">
-264
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-white
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Quermia
-</td>
-<td style="text-align:left;">
-Quermian
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Plo Koon
-</td>
-<td style="text-align:right;">
-188
-</td>
-<td style="text-align:right;">
-80.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-orange
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-22.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Dorin
-</td>
-<td style="text-align:left;">
-Kel Dor
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Jedi starfighter
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Mas Amedda
-</td>
-<td style="text-align:right;">
-196
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Champala
-</td>
-<td style="text-align:left;">
-Chagrian
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Gregar Typho
-</td>
-<td style="text-align:right;">
-185
-</td>
-<td style="text-align:right;">
-85.0
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-dark
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Naboo fighter
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Cordé
-</td>
-<td style="text-align:right;">
-157
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Cliegg Lars
-</td>
-<td style="text-align:right;">
-183
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-82.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Poggle the Lesser
-</td>
-<td style="text-align:right;">
-183
-</td>
-<td style="text-align:right;">
-80.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-green
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Geonosis
-</td>
-<td style="text-align:left;">
-Geonosian
-</td>
-<td style="text-align:left;">
-Attack of the Clones, Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Luminara Unduli
-</td>
-<td style="text-align:right;">
-170
-</td>
-<td style="text-align:right;">
-56.2
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-58.0
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Mirial
-</td>
-<td style="text-align:left;">
-Mirialan
-</td>
-<td style="text-align:left;">
-Attack of the Clones, Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Barriss Offee
-</td>
-<td style="text-align:right;">
-166
-</td>
-<td style="text-align:right;">
-50.0
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-40.0
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Mirial
-</td>
-<td style="text-align:left;">
-Mirialan
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Dormé
-</td>
-<td style="text-align:right;">
-165
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Dooku
-</td>
-<td style="text-align:right;">
-193
-</td>
-<td style="text-align:right;">
-80.0
-</td>
-<td style="text-align:left;">
-white
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-102.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Serenno
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones, Revenge of the Sith
-</td>
-<td style="text-align:left;">
-Flitknot speeder
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Bail Prestor Organa
-</td>
-<td style="text-align:right;">
-191
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-tan
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-67.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Alderaan
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones, Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Jango Fett
-</td>
-<td style="text-align:right;">
-183
-</td>
-<td style="text-align:right;">
-79.0
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-tan
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-66.0
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Concord Dawn
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Zam Wesell
-</td>
-<td style="text-align:right;">
-168
-</td>
-<td style="text-align:right;">
-55.0
-</td>
-<td style="text-align:left;">
-blonde
-</td>
-<td style="text-align:left;">
-fair, green, yellow
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Zolan
-</td>
-<td style="text-align:left;">
-Clawdite
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-Koro-2 Exodrive airspeeder
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Dexter Jettster
-</td>
-<td style="text-align:right;">
-198
-</td>
-<td style="text-align:right;">
-102.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Ojom
-</td>
-<td style="text-align:left;">
-Besalisk
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Lama Su
-</td>
-<td style="text-align:right;">
-229
-</td>
-<td style="text-align:right;">
-88.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-grey
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Kamino
-</td>
-<td style="text-align:left;">
-Kaminoan
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Taun We
-</td>
-<td style="text-align:right;">
-213
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-grey
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Kamino
-</td>
-<td style="text-align:left;">
-Kaminoan
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Jocasta Nu
-</td>
-<td style="text-align:right;">
-167
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-white
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Coruscant
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Ratts Tyerell
-</td>
-<td style="text-align:right;">
-79
-</td>
-<td style="text-align:right;">
-15.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-grey, blue
-</td>
-<td style="text-align:left;">
-unknown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Aleen Minor
-</td>
-<td style="text-align:left;">
-Aleena
-</td>
-<td style="text-align:left;">
-The Phantom Menace
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R4-P17
-</td>
-<td style="text-align:right;">
-96
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-silver, red
-</td>
-<td style="text-align:left;">
-red, blue
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Droid
-</td>
-<td style="text-align:left;">
-Attack of the Clones, Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Wat Tambor
-</td>
-<td style="text-align:right;">
-193
-</td>
-<td style="text-align:right;">
-48.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-green, grey
-</td>
-<td style="text-align:left;">
-unknown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Skako
-</td>
-<td style="text-align:left;">
-Skakoan
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-San Hill
-</td>
-<td style="text-align:right;">
-191
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-grey
-</td>
-<td style="text-align:left;">
-gold
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Muunilinst
-</td>
-<td style="text-align:left;">
-Muun
-</td>
-<td style="text-align:left;">
-Attack of the Clones
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Shaak Ti
-</td>
-<td style="text-align:right;">
-178
-</td>
-<td style="text-align:right;">
-57.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-red, blue, white
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Shili
-</td>
-<td style="text-align:left;">
-Togruta
-</td>
-<td style="text-align:left;">
-Attack of the Clones, Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Grievous
-</td>
-<td style="text-align:right;">
-216
-</td>
-<td style="text-align:right;">
-159.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-brown, white
-</td>
-<td style="text-align:left;">
-green, yellow
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Kalee
-</td>
-<td style="text-align:left;">
-Kaleesh
-</td>
-<td style="text-align:left;">
-Revenge of the Sith
-</td>
-<td style="text-align:left;">
-Tsmeu-6 personal wheel bike
-</td>
-<td style="text-align:left;">
-Belbullab-22 starfighter
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Tarfful
-</td>
-<td style="text-align:right;">
-234
-</td>
-<td style="text-align:right;">
-136.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Kashyyyk
-</td>
-<td style="text-align:left;">
-Wookiee
-</td>
-<td style="text-align:left;">
-Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Raymus Antilles
-</td>
-<td style="text-align:right;">
-188
-</td>
-<td style="text-align:right;">
-79.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Alderaan
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Revenge of the Sith, A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Sly Moore
-</td>
-<td style="text-align:right;">
-178
-</td>
-<td style="text-align:right;">
-48.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-pale
-</td>
-<td style="text-align:left;">
-white
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Umbara
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Attack of the Clones, Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Tion Medon
-</td>
-<td style="text-align:right;">
-206
-</td>
-<td style="text-align:right;">
-80.0
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-grey
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Utapau
-</td>
-<td style="text-align:left;">
-Pau’an
-</td>
-<td style="text-align:left;">
-Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Finn
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:left;">
-dark
-</td>
-<td style="text-align:left;">
-dark
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Force Awakens
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Rey
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-hazel
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Force Awakens
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Poe Dameron
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Force Awakens
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-T-70 X-wing fighter
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BB8
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-black
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Droid
-</td>
-<td style="text-align:left;">
-The Force Awakens
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Captain Phasma
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-unknown
-</td>
-<td style="text-align:left;">
-unknown
-</td>
-<td style="text-align:left;">
-unknown
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-The Force Awakens
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Padmé Amidala
-</td>
-<td style="text-align:right;">
-165
-</td>
-<td style="text-align:right;">
-45.0
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:left;">
-light
-</td>
-<td style="text-align:left;">
-brown
-</td>
-<td style="text-align:right;">
-46.0
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:left;">
-feminine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-Attack of the Clones, The Phantom Menace , Revenge of the Sith
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-H-type Nubian yacht, Naboo star skiff , Naboo fighter
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     name height   mass    hair_color          skin_color
+ 1:        Luke Skywalker    172   77.0         blond                fair
+ 2:                 C-3PO    167   75.0          &lt;NA&gt;                gold
+ 3:                 R2-D2     96   32.0          &lt;NA&gt;         white, blue
+ 4:           Darth Vader    202  136.0          none               white
+ 5:           Leia Organa    150   49.0         brown               light
+ 6:             Owen Lars    178  120.0   brown, grey               light
+ 7:    Beru Whitesun lars    165   75.0         brown               light
+ 8:                 R5-D4     97   32.0          &lt;NA&gt;          white, red
+ 9:     Biggs Darklighter    183   84.0         black               light
+10:        Obi-Wan Kenobi    182   77.0 auburn, white                fair
+11:      Anakin Skywalker    188   84.0         blond                fair
+12:        Wilhuff Tarkin    180     NA  auburn, grey                fair
+13:             Chewbacca    228  112.0         brown             unknown
+14:              Han Solo    180   80.0         brown                fair
+15:                Greedo    173   74.0          &lt;NA&gt;               green
+16: Jabba Desilijic Tiure    175 1358.0          &lt;NA&gt;    green-tan, brown
+17:        Wedge Antilles    170   77.0         brown                fair
+18:      Jek Tono Porkins    180  110.0         brown                fair
+19:                  Yoda     66   17.0         white               green
+20:             Palpatine    170   75.0          grey                pale
+21:             Boba Fett    183   78.2         black                fair
+22:                 IG-88    200  140.0          none               metal
+23:                 Bossk    190  113.0          none               green
+24:      Lando Calrissian    177   79.0         black                dark
+25:                 Lobot    175   79.0          none               light
+26:                Ackbar    180   83.0          none        brown mottle
+27:            Mon Mothma    150     NA        auburn                fair
+28:          Arvel Crynyd     NA     NA         brown                fair
+29: Wicket Systri Warrick     88   20.0         brown               brown
+30:             Nien Nunb    160   68.0          none                grey
+31:          Qui-Gon Jinn    193   89.0         brown                fair
+32:           Nute Gunray    191   90.0          none       mottled green
+33:         Finis Valorum    170     NA         blond                fair
+34:         Jar Jar Binks    196   66.0          none              orange
+35:          Roos Tarpals    224   82.0          none                grey
+36:            Rugor Nass    206     NA          none               green
+37:              Ric Olié    183     NA         brown                fair
+38:                 Watto    137     NA         black          blue, grey
+39:               Sebulba    112   40.0          none           grey, red
+40:         Quarsh Panaka    183     NA         black                dark
+41:        Shmi Skywalker    163     NA         black                fair
+42:            Darth Maul    175   80.0          none                 red
+43:           Bib Fortuna    180     NA          none                pale
+44:           Ayla Secura    178   55.0          none                blue
+45:              Dud Bolt     94   45.0          none          blue, grey
+46:               Gasgano    122     NA          none         white, blue
+47:        Ben Quadinaros    163   65.0          none grey, green, yellow
+48:            Mace Windu    188   84.0          none                dark
+49:          Ki-Adi-Mundi    198   82.0         white                pale
+50:             Kit Fisto    196   87.0          none               green
+51:             Eeth Koth    171     NA         black               brown
+52:            Adi Gallia    184   50.0          none                dark
+53:           Saesee Tiin    188     NA          none                pale
+54:           Yarael Poof    264     NA          none               white
+55:              Plo Koon    188   80.0          none              orange
+56:            Mas Amedda    196     NA          none                blue
+57:          Gregar Typho    185   85.0         black                dark
+58:                 Cordé    157     NA         brown               light
+59:           Cliegg Lars    183     NA         brown                fair
+60:     Poggle the Lesser    183   80.0          none               green
+61:       Luminara Unduli    170   56.2         black              yellow
+62:         Barriss Offee    166   50.0         black              yellow
+63:                 Dormé    165     NA         brown               light
+64:                 Dooku    193   80.0         white                fair
+65:   Bail Prestor Organa    191     NA         black                 tan
+66:            Jango Fett    183   79.0         black                 tan
+67:            Zam Wesell    168   55.0        blonde fair, green, yellow
+68:       Dexter Jettster    198  102.0          none               brown
+69:               Lama Su    229   88.0          none                grey
+70:               Taun We    213     NA          none                grey
+71:            Jocasta Nu    167     NA         white                fair
+72:         Ratts Tyerell     79   15.0          none          grey, blue
+73:                R4-P17     96     NA          none         silver, red
+74:            Wat Tambor    193   48.0          none         green, grey
+75:              San Hill    191     NA          none                grey
+76:              Shaak Ti    178   57.0          none    red, blue, white
+77:              Grievous    216  159.0          none        brown, white
+78:               Tarfful    234  136.0         brown               brown
+79:       Raymus Antilles    188   79.0         brown               light
+80:             Sly Moore    178   48.0          none                pale
+81:            Tion Medon    206   80.0          none                grey
+82:                  Finn     NA     NA         black                dark
+83:                   Rey     NA     NA         brown               light
+84:           Poe Dameron     NA     NA         brown               light
+85:                   BB8     NA     NA          none                none
+86:        Captain Phasma     NA     NA       unknown             unknown
+87:         Padmé Amidala    165   45.0         brown               light
+                     name height   mass    hair_color          skin_color
+        eye_color birth_year            sex    gender      homeworld
+ 1:          blue       19.0           male masculine       Tatooine
+ 2:        yellow      112.0           none masculine       Tatooine
+ 3:           red       33.0           none masculine          Naboo
+ 4:        yellow       41.9           male masculine       Tatooine
+ 5:         brown       19.0         female  feminine       Alderaan
+ 6:          blue       52.0           male masculine       Tatooine
+ 7:          blue       47.0         female  feminine       Tatooine
+ 8:           red         NA           none masculine       Tatooine
+ 9:         brown       24.0           male masculine       Tatooine
+10:     blue-gray       57.0           male masculine        Stewjon
+11:          blue       41.9           male masculine       Tatooine
+12:          blue       64.0           male masculine         Eriadu
+13:          blue      200.0           male masculine       Kashyyyk
+14:         brown       29.0           male masculine       Corellia
+15:         black       44.0           male masculine          Rodia
+16:        orange      600.0 hermaphroditic masculine      Nal Hutta
+17:         hazel       21.0           male masculine       Corellia
+18:          blue         NA           male masculine     Bestine IV
+19:         brown      896.0           male masculine           &lt;NA&gt;
+20:        yellow       82.0           male masculine          Naboo
+21:         brown       31.5           male masculine         Kamino
+22:           red       15.0           none masculine           &lt;NA&gt;
+23:           red       53.0           male masculine      Trandosha
+24:         brown       31.0           male masculine        Socorro
+25:          blue       37.0           male masculine         Bespin
+26:        orange       41.0           male masculine       Mon Cala
+27:          blue       48.0         female  feminine      Chandrila
+28:         brown         NA           male masculine           &lt;NA&gt;
+29:         brown        8.0           male masculine          Endor
+30:         black         NA           male masculine        Sullust
+31:          blue       92.0           male masculine           &lt;NA&gt;
+32:           red         NA           male masculine Cato Neimoidia
+33:          blue       91.0           male masculine      Coruscant
+34:        orange       52.0           male masculine          Naboo
+35:        orange         NA           male masculine          Naboo
+36:        orange         NA           male masculine          Naboo
+37:          blue         NA           &lt;NA&gt;      &lt;NA&gt;          Naboo
+38:        yellow         NA           male masculine       Toydaria
+39:        orange         NA           male masculine      Malastare
+40:         brown       62.0           &lt;NA&gt;      &lt;NA&gt;          Naboo
+41:         brown       72.0         female  feminine       Tatooine
+42:        yellow       54.0           male masculine       Dathomir
+43:          pink         NA           male masculine         Ryloth
+44:         hazel       48.0         female  feminine         Ryloth
+45:        yellow         NA           male masculine        Vulpter
+46:         black         NA           male masculine        Troiken
+47:        orange         NA           male masculine           Tund
+48:         brown       72.0           male masculine     Haruun Kal
+49:        yellow       92.0           male masculine          Cerea
+50:         black         NA           male masculine    Glee Anselm
+51:         brown         NA           male masculine       Iridonia
+52:          blue         NA         female  feminine      Coruscant
+53:        orange         NA           male masculine        Iktotch
+54:        yellow         NA           male masculine        Quermia
+55:         black       22.0           male masculine          Dorin
+56:          blue         NA           male masculine       Champala
+57:         brown         NA           male masculine          Naboo
+58:         brown         NA         female  feminine          Naboo
+59:          blue       82.0           male masculine       Tatooine
+60:        yellow         NA           male masculine       Geonosis
+61:          blue       58.0         female  feminine         Mirial
+62:          blue       40.0         female  feminine         Mirial
+63:         brown         NA         female  feminine          Naboo
+64:         brown      102.0           male masculine        Serenno
+65:         brown       67.0           male masculine       Alderaan
+66:         brown       66.0           male masculine   Concord Dawn
+67:        yellow         NA         female  feminine          Zolan
+68:        yellow         NA           male masculine           Ojom
+69:         black         NA           male masculine         Kamino
+70:         black         NA         female  feminine         Kamino
+71:          blue         NA         female  feminine      Coruscant
+72:       unknown         NA           male masculine    Aleen Minor
+73:     red, blue         NA           none  feminine           &lt;NA&gt;
+74:       unknown         NA           male masculine          Skako
+75:          gold         NA           male masculine     Muunilinst
+76:         black         NA         female  feminine          Shili
+77: green, yellow         NA           male masculine          Kalee
+78:          blue         NA           male masculine       Kashyyyk
+79:         brown         NA           male masculine       Alderaan
+80:         white         NA           &lt;NA&gt;      &lt;NA&gt;         Umbara
+81:         black         NA           male masculine         Utapau
+82:          dark         NA           male masculine           &lt;NA&gt;
+83:         hazel         NA         female  feminine           &lt;NA&gt;
+84:         brown         NA           male masculine           &lt;NA&gt;
+85:         black         NA           none masculine           &lt;NA&gt;
+86:       unknown         NA           &lt;NA&gt;      &lt;NA&gt;           &lt;NA&gt;
+87:         brown       46.0         female  feminine          Naboo
+        eye_color birth_year            sex    gender      homeworld
+           species
+ 1:          Human
+ 2:          Droid
+ 3:          Droid
+ 4:          Human
+ 5:          Human
+ 6:          Human
+ 7:          Human
+ 8:          Droid
+ 9:          Human
+10:          Human
+11:          Human
+12:          Human
+13:        Wookiee
+14:          Human
+15:         Rodian
+16:           Hutt
+17:          Human
+18:          Human
+19: Yoda's species
+20:          Human
+21:          Human
+22:          Droid
+23:     Trandoshan
+24:          Human
+25:          Human
+26:   Mon Calamari
+27:          Human
+28:          Human
+29:           Ewok
+30:      Sullustan
+31:          Human
+32:      Neimodian
+33:          Human
+34:         Gungan
+35:         Gungan
+36:         Gungan
+37:           &lt;NA&gt;
+38:      Toydarian
+39:            Dug
+40:           &lt;NA&gt;
+41:          Human
+42:         Zabrak
+43:        Twi'lek
+44:        Twi'lek
+45:     Vulptereen
+46:          Xexto
+47:          Toong
+48:          Human
+49:         Cerean
+50:       Nautolan
+51:         Zabrak
+52:     Tholothian
+53:       Iktotchi
+54:       Quermian
+55:        Kel Dor
+56:       Chagrian
+57:          Human
+58:          Human
+59:          Human
+60:      Geonosian
+61:       Mirialan
+62:       Mirialan
+63:          Human
+64:          Human
+65:          Human
+66:          Human
+67:       Clawdite
+68:       Besalisk
+69:       Kaminoan
+70:       Kaminoan
+71:          Human
+72:         Aleena
+73:          Droid
+74:        Skakoan
+75:           Muun
+76:        Togruta
+77:        Kaleesh
+78:        Wookiee
+79:          Human
+80:           &lt;NA&gt;
+81:         Pau'an
+82:          Human
+83:          Human
+84:          Human
+85:          Droid
+86:           &lt;NA&gt;
+87:          Human
+           species
+                                                                                                                    films
+ 1:                           The Empire Strikes Back,Revenge of the Sith,Return of the Jedi,A New Hope,The Force Awakens
+ 2:     The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi,A New Hope
+ 3: The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi,A New Hope,...
+ 4:                                             The Empire Strikes Back,Revenge of the Sith,Return of the Jedi,A New Hope
+ 5:                           The Empire Strikes Back,Revenge of the Sith,Return of the Jedi,A New Hope,The Force Awakens
+ 6:                                                                   Attack of the Clones,Revenge of the Sith,A New Hope
+ 7:                                                                   Attack of the Clones,Revenge of the Sith,A New Hope
+ 8:                                                                                                            A New Hope
+ 9:                                                                                                            A New Hope
+10:     The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi,A New Hope
+11:                                                           Attack of the Clones,The Phantom Menace,Revenge of the Sith
+12:                                                                                        Revenge of the Sith,A New Hope
+13:                           The Empire Strikes Back,Revenge of the Sith,Return of the Jedi,A New Hope,The Force Awakens
+14:                                               The Empire Strikes Back,Return of the Jedi,A New Hope,The Force Awakens
+15:                                                                                                            A New Hope
+16:                                                                      The Phantom Menace,Return of the Jedi,A New Hope
+17:                                                                 The Empire Strikes Back,Return of the Jedi,A New Hope
+18:                                                                                                            A New Hope
+19:                The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi
+20:                The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi
+21:                                                       The Empire Strikes Back,Attack of the Clones,Return of the Jedi
+22:                                                                                               The Empire Strikes Back
+23:                                                                                               The Empire Strikes Back
+24:                                                                            The Empire Strikes Back,Return of the Jedi
+25:                                                                                               The Empire Strikes Back
+26:                                                                                  Return of the Jedi,The Force Awakens
+27:                                                                                                    Return of the Jedi
+28:                                                                                                    Return of the Jedi
+29:                                                                                                    Return of the Jedi
+30:                                                                                                    Return of the Jedi
+31:                                                                                                    The Phantom Menace
+32:                                                           Attack of the Clones,The Phantom Menace,Revenge of the Sith
+33:                                                                                                    The Phantom Menace
+34:                                                                               Attack of the Clones,The Phantom Menace
+35:                                                                                                    The Phantom Menace
+36:                                                                                                    The Phantom Menace
+37:                                                                                                    The Phantom Menace
+38:                                                                               Attack of the Clones,The Phantom Menace
+39:                                                                                                    The Phantom Menace
+40:                                                                                                    The Phantom Menace
+41:                                                                               Attack of the Clones,The Phantom Menace
+42:                                                                                                    The Phantom Menace
+43:                                                                                                    Return of the Jedi
+44:                                                           Attack of the Clones,The Phantom Menace,Revenge of the Sith
+45:                                                                                                    The Phantom Menace
+46:                                                                                                    The Phantom Menace
+47:                                                                                                    The Phantom Menace
+48:                                                           Attack of the Clones,The Phantom Menace,Revenge of the Sith
+49:                                                           Attack of the Clones,The Phantom Menace,Revenge of the Sith
+50:                                                           Attack of the Clones,The Phantom Menace,Revenge of the Sith
+51:                                                                                The Phantom Menace,Revenge of the Sith
+52:                                                                                The Phantom Menace,Revenge of the Sith
+53:                                                                                The Phantom Menace,Revenge of the Sith
+54:                                                                                                    The Phantom Menace
+55:                                                           Attack of the Clones,The Phantom Menace,Revenge of the Sith
+56:                                                                               Attack of the Clones,The Phantom Menace
+57:                                                                                                  Attack of the Clones
+58:                                                                                                  Attack of the Clones
+59:                                                                                                  Attack of the Clones
+60:                                                                              Attack of the Clones,Revenge of the Sith
+61:                                                                              Attack of the Clones,Revenge of the Sith
+62:                                                                                                  Attack of the Clones
+63:                                                                                                  Attack of the Clones
+64:                                                                              Attack of the Clones,Revenge of the Sith
+65:                                                                              Attack of the Clones,Revenge of the Sith
+66:                                                                                                  Attack of the Clones
+67:                                                                                                  Attack of the Clones
+68:                                                                                                  Attack of the Clones
+69:                                                                                                  Attack of the Clones
+70:                                                                                                  Attack of the Clones
+71:                                                                                                  Attack of the Clones
+72:                                                                                                    The Phantom Menace
+73:                                                                              Attack of the Clones,Revenge of the Sith
+74:                                                                                                  Attack of the Clones
+75:                                                                                                  Attack of the Clones
+76:                                                                              Attack of the Clones,Revenge of the Sith
+77:                                                                                                   Revenge of the Sith
+78:                                                                                                   Revenge of the Sith
+79:                                                                                        Revenge of the Sith,A New Hope
+80:                                                                              Attack of the Clones,Revenge of the Sith
+81:                                                                                                   Revenge of the Sith
+82:                                                                                                     The Force Awakens
+83:                                                                                                     The Force Awakens
+84:                                                                                                     The Force Awakens
+85:                                                                                                     The Force Awakens
+86:                                                                                                     The Force Awakens
+87:                                                           Attack of the Clones,The Phantom Menace,Revenge of the Sith
+                                                                                                                    films
+                               vehicles
+ 1:   Snowspeeder,Imperial Speeder Bike
+ 2:                                    
+ 3:                                    
+ 4:                                    
+ 5:               Imperial Speeder Bike
+ 6:                                    
+ 7:                                    
+ 8:                                    
+ 9:                                    
+10:                     Tribubble bongo
+11: Zephyr-G swoop bike,XJ-6 airspeeder
+12:                                    
+13:                               AT-ST
+14:                                    
+15:                                    
+16:                                    
+17:                         Snowspeeder
+18:                                    
+19:                                    
+20:                                    
+21:                                    
+22:                                    
+23:                                    
+24:                                    
+25:                                    
+26:                                    
+27:                                    
+28:                                    
+29:                                    
+30:                                    
+31:                     Tribubble bongo
+32:                                    
+33:                                    
+34:                                    
+35:                                    
+36:                                    
+37:                                    
+38:                                    
+39:                                    
+40:                                    
+41:                                    
+42:                        Sith speeder
+43:                                    
+44:                                    
+45:                                    
+46:                                    
+47:                                    
+48:                                    
+49:                                    
+50:                                    
+51:                                    
+52:                                    
+53:                                    
+54:                                    
+55:                                    
+56:                                    
+57:                                    
+58:                                    
+59:                                    
+60:                                    
+61:                                    
+62:                                    
+63:                                    
+64:                    Flitknot speeder
+65:                                    
+66:                                    
+67:          Koro-2 Exodrive airspeeder
+68:                                    
+69:                                    
+70:                                    
+71:                                    
+72:                                    
+73:                                    
+74:                                    
+75:                                    
+76:                                    
+77:         Tsmeu-6 personal wheel bike
+78:                                    
+79:                                    
+80:                                    
+81:                                    
+82:                                    
+83:                                    
+84:                                    
+85:                                    
+86:                                    
+87:                                    
+                               vehicles
+                                                                                               starships
+ 1:                                                                              X-wing,Imperial shuttle
+ 2:                                                                                                     
+ 3:                                                                                                     
+ 4:                                                                                      TIE Advanced x1
+ 5:                                                                                                     
+ 6:                                                                                                     
+ 7:                                                                                                     
+ 8:                                                                                                     
+ 9:                                                                                               X-wing
+10: Jedi starfighter,Trade Federation cruiser,Naboo star skiff,Jedi Interceptor,Belbullab-22 starfighter
+11:                                              Trade Federation cruiser,Jedi Interceptor,Naboo fighter
+12:                                                                                                     
+13:                                                                   Millennium Falcon,Imperial shuttle
+14:                                                                   Millennium Falcon,Imperial shuttle
+15:                                                                                                     
+16:                                                                                                     
+17:                                                                                               X-wing
+18:                                                                                               X-wing
+19:                                                                                                     
+20:                                                                                                     
+21:                                                                                              Slave 1
+22:                                                                                                     
+23:                                                                                                     
+24:                                                                                    Millennium Falcon
+25:                                                                                                     
+26:                                                                                                     
+27:                                                                                                     
+28:                                                                                               A-wing
+29:                                                                                                     
+30:                                                                                    Millennium Falcon
+31:                                                                                                     
+32:                                                                                                     
+33:                                                                                                     
+34:                                                                                                     
+35:                                                                                                     
+36:                                                                                                     
+37:                                                                                 Naboo Royal Starship
+38:                                                                                                     
+39:                                                                                                     
+40:                                                                                                     
+41:                                                                                                     
+42:                                                                                             Scimitar
+43:                                                                                                     
+44:                                                                                                     
+45:                                                                                                     
+46:                                                                                                     
+47:                                                                                                     
+48:                                                                                                     
+49:                                                                                                     
+50:                                                                                                     
+51:                                                                                                     
+52:                                                                                                     
+53:                                                                                                     
+54:                                                                                                     
+55:                                                                                     Jedi starfighter
+56:                                                                                                     
+57:                                                                                        Naboo fighter
+58:                                                                                                     
+59:                                                                                                     
+60:                                                                                                     
+61:                                                                                                     
+62:                                                                                                     
+63:                                                                                                     
+64:                                                                                                     
+65:                                                                                                     
+66:                                                                                                     
+67:                                                                                                     
+68:                                                                                                     
+69:                                                                                                     
+70:                                                                                                     
+71:                                                                                                     
+72:                                                                                                     
+73:                                                                                                     
+74:                                                                                                     
+75:                                                                                                     
+76:                                                                                                     
+77:                                                                             Belbullab-22 starfighter
+78:                                                                                                     
+79:                                                                                                     
+80:                                                                                                     
+81:                                                                                                     
+82:                                                                                                     
+83:                                                                                                     
+84:                                                                                  T-70 X-wing fighter
+85:                                                                                                     
+86:                                                                                                     
+87:                                                   H-type Nubian yacht,Naboo star skiff,Naboo fighter
+                                                                                               starships</code></pre>
 </div>
 </div>
 </div>
@@ -7672,7 +1266,7 @@ H-type Nubian yacht, Naboo star skiff , Naboo fighter
 <p>One Cool thing about data.table is that you do not need to reassign the object once you modify it</p>
 <p>This creates a new variable</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>penguins_dt[, body_mass_g_sq <span class="sc">:</span><span class="er">=</span> body_mass_g<span class="sc">^</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>penguins_dt[, body_mass_g_sq <span class="sc">:</span><span class="er">=</span> body_mass_g<span class="sc">^</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This will just square body_mass_g in place</p>
 <div class="cell">
@@ -7680,192 +1274,26 @@ H-type Nubian yacht, Naboo star skiff , Naboo fighter
 </div>
 <p>You will not see these changes unless you ask to show you</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>starwars_dt[,mass <span class="sc">:</span><span class="er">=</span> mass<span class="sc">^</span><span class="dv">2</span>][]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>starwars_dt[,mass <span class="sc">:</span><span class="er">=</span> mass<span class="sc">^</span><span class="dv">2</span>][]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-name
-</th>
-<th style="text-align:right;">
-height
-</th>
-<th style="text-align:right;">
-mass
-</th>
-<th style="text-align:left;">
-hair_color
-</th>
-<th style="text-align:left;">
-skin_color
-</th>
-<th style="text-align:left;">
-eye_color
-</th>
-<th style="text-align:right;">
-birth_year
-</th>
-<th style="text-align:left;">
-sex
-</th>
-<th style="text-align:left;">
-gender
-</th>
-<th style="text-align:left;">
-homeworld
-</th>
-<th style="text-align:left;">
-species
-</th>
-<th style="text-align:left;">
-films
-</th>
-<th style="text-align:left;">
-vehicles
-</th>
-<th style="text-align:left;">
-starships
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Luke Skywalker
-</td>
-<td style="text-align:right;">
-172
-</td>
-<td style="text-align:right;">
-5929
-</td>
-<td style="text-align:left;">
-blond
-</td>
-<td style="text-align:left;">
-fair
-</td>
-<td style="text-align:left;">
-blue
-</td>
-<td style="text-align:right;">
-19
-</td>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Human
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens
-</td>
-<td style="text-align:left;">
-Snowspeeder , Imperial Speeder Bike
-</td>
-<td style="text-align:left;">
-X-wing , Imperial shuttle
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-C-3PO
-</td>
-<td style="text-align:right;">
-167
-</td>
-<td style="text-align:right;">
-5625
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-gold
-</td>
-<td style="text-align:left;">
-yellow
-</td>
-<td style="text-align:right;">
-112
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Tatooine
-</td>
-<td style="text-align:left;">
-Droid
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2-D2
-</td>
-<td style="text-align:right;">
-96
-</td>
-<td style="text-align:right;">
-1024
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-white, blue
-</td>
-<td style="text-align:left;">
-red
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:left;">
-none
-</td>
-<td style="text-align:left;">
-masculine
-</td>
-<td style="text-align:left;">
-Naboo
-</td>
-<td style="text-align:left;">
-Droid
-</td>
-<td style="text-align:left;">
-The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             name height mass hair_color  skin_color eye_color birth_year  sex
+1: Luke Skywalker    172 5929      blond        fair      blue         19 male
+2:          C-3PO    167 5625       &lt;NA&gt;        gold    yellow        112 none
+3:          R2-D2     96 1024       &lt;NA&gt; white, blue       red         33 none
+      gender homeworld species
+1: masculine  Tatooine   Human
+2: masculine  Tatooine   Droid
+3: masculine     Naboo   Droid
+                                                                                                                   films
+1:                           The Empire Strikes Back,Revenge of the Sith,Return of the Jedi,A New Hope,The Force Awakens
+2:     The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi,A New Hope
+3: The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi,A New Hope,...
+                            vehicles               starships
+1: Snowspeeder,Imperial Speeder Bike X-wing,Imperial shuttle
+2:                                                          
+3:                                                          </code></pre>
 </div>
 </div>
 </section>
@@ -7875,88 +1303,20 @@ The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of 
 <li>As we saw with dplyr we can do this</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">mutate</span>(<span class="at">square_mass =</span> body_mass_g<span class="sc">^</span><span class="dv">2</span>,</span>
-<span id="cb18-3"><a href="#cb18-3"></a>       <span class="at">big_penguin =</span> <span class="fu">ifelse</span>(square_mass <span class="sc">&gt;=</span> <span class="fu">median</span>(square_mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) , <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>       <span class="fu">select</span>(species, square_mass, big_penguin) <span class="sc">|&gt;</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>       <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="kable-table">
-
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-species
-</th>
-<th style="text-align:right;">
-square_mass
-</th>
-<th style="text-align:left;">
-big_penguin
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-14062500
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-14440000
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-10562500
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:right;">
-11902500
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-</tr>
-</tbody>
-
-</table>
-</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">mutate</span>(<span class="at">square_mass =</span> body_mass_g<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb32-3"><a href="#cb32-3"></a>       <span class="at">big_penguin =</span> <span class="fu">ifelse</span>(square_mass <span class="sc">&gt;=</span> <span class="fu">median</span>(square_mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) , <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>       <span class="fu">select</span>(species, square_mass, big_penguin) <span class="sc">|&gt;</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>       <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  species square_mass big_penguin
+  &lt;fct&gt;         &lt;dbl&gt; &lt;lgl&gt;      
+1 Adelie     14062500 FALSE      
+2 Adelie     14440000 FALSE      
+3 Adelie     10562500 FALSE      
+4 Adelie           NA NA         
+5 Adelie     11902500 FALSE      </code></pre>
 </div>
 </div>
 <ul>
@@ -7966,8 +1326,302 @@ FALSE
 <section id="multiple-operations-1" class="slide level2">
 <h2>Multiple operations</h2>
 <ul>
-<li>Good news. We can! <span class="fragment">But there are some caveats</span></li>
+<li><p>Good news. We can! <span class="fragment">But there are some caveats</span></p></li>
+<li><p>We can do this by chaining [] together</p></li>
+<li><p>Or using the magrittr pipe</p></li>
+<li><p>We cannot do this by doing lots of stuff in our J column</p></li>
 </ul>
+</section>
+<section id="multiple-operations-with" class="slide level2">
+<h2>Multiple Operations with <code>[]</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>penguins_dt[, square_mass <span class="sc">:</span><span class="er">=</span> body_mass_g<span class="sc">^</span><span class="dv">2</span>][, big_peng <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(square_mass <span class="sc">&gt;=</span> <span class="fu">median</span>(square_mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) , <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+1:  Adelie Torgersen           39.1          18.7               181        3750
+2:  Adelie Torgersen           39.5          17.4               186        3800
+3:  Adelie Torgersen           40.3          18.0               195        3250
+4:  Adelie Torgersen             NA            NA                NA          NA
+5:  Adelie Torgersen           36.7          19.3               193        3450
+      sex year body_mass_g_sq square_mass big_peng
+1:   male 2007       14062500    14062500    FALSE
+2: female 2007       14440000    14440000    FALSE
+3: female 2007       10562500    10562500    FALSE
+4:   &lt;NA&gt; 2007             NA          NA       NA
+5: female 2007       11902500    11902500    FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="multiple-operations-with-the-pipe" class="slide level2">
+<h2>Multiple Operations with the pipe</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>penguins_dt[, square_mass <span class="sc">:</span><span class="er">=</span> body_mass_g<span class="sc">^</span><span class="dv">2</span>] <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>.[, big_peng <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(square_mass <span class="sc">&gt;=</span> <span class="fu">median</span>(square_mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) , <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+1:  Adelie Torgersen           39.1          18.7               181        3750
+2:  Adelie Torgersen           39.5          17.4               186        3800
+3:  Adelie Torgersen           40.3          18.0               195        3250
+4:  Adelie Torgersen             NA            NA                NA          NA
+5:  Adelie Torgersen           36.7          19.3               193        3450
+6:  Adelie Torgersen           39.3          20.6               190        3650
+      sex year body_mass_g_sq square_mass big_peng
+1:   male 2007       14062500    14062500    FALSE
+2: female 2007       14440000    14440000    FALSE
+3: female 2007       10562500    10562500    FALSE
+4:   &lt;NA&gt; 2007             NA          NA       NA
+5: female 2007       11902500    11902500    FALSE
+6:   male 2007       13322500    13322500    FALSE</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="by-slot" class="title-slide slide level1 center">
+<h1>By slot</h1>
+
+</section>
+<section id="our-last-slot-is-by" class="slide level2">
+<h2>Our last slot is <code>by</code></h2>
+<ul>
+<li>This works broadly the same as our group_by argument</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>penguins_dt[, <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), by <span class="ot">=</span> species]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> species </th>
+   <th style="text-align:right;"> V1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Adelie </td>
+   <td style="text-align:right;"> 38.79139 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:right;"> 47.50488 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chinstrap </td>
+   <td style="text-align:right;"> 48.83382 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="summarising-across-multiple-columns" class="slide level2">
+<h2>Summarising across multiple columns</h2>
+<ul>
+<li>In dplyr this is a bit more intuitive</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric),</span>
+<span id="cb39-4"><a href="#cb39-4"></a> <span class="fu">c</span>(<span class="at">Mean =</span> mean, <span class="at">Min =</span> min, <span class="at">Max =</span> max ),</span>
+<span id="cb39-5"><a href="#cb39-5"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb39-6"><a href="#cb39-6"></a> <span class="at">.names =</span> <span class="st">"{.col}_{.fn}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> species </th>
+   <th style="text-align:right;"> bill_length_mm_Mean </th>
+   <th style="text-align:right;"> bill_length_mm_Min </th>
+   <th style="text-align:right;"> bill_length_mm_Max </th>
+   <th style="text-align:right;"> bill_depth_mm_Mean </th>
+   <th style="text-align:right;"> bill_depth_mm_Min </th>
+   <th style="text-align:right;"> bill_depth_mm_Max </th>
+   <th style="text-align:right;"> flipper_length_mm_Mean </th>
+   <th style="text-align:right;"> flipper_length_mm_Min </th>
+   <th style="text-align:right;"> flipper_length_mm_Max </th>
+   <th style="text-align:right;"> body_mass_g_Mean </th>
+   <th style="text-align:right;"> body_mass_g_Min </th>
+   <th style="text-align:right;"> body_mass_g_Max </th>
+   <th style="text-align:right;"> year_Mean </th>
+   <th style="text-align:right;"> year_Min </th>
+   <th style="text-align:right;"> year_Max </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Adelie </td>
+   <td style="text-align:right;"> 38.79139 </td>
+   <td style="text-align:right;"> 32.1 </td>
+   <td style="text-align:right;"> 46.0 </td>
+   <td style="text-align:right;"> 18.34636 </td>
+   <td style="text-align:right;"> 15.5 </td>
+   <td style="text-align:right;"> 21.5 </td>
+   <td style="text-align:right;"> 189.9536 </td>
+   <td style="text-align:right;"> 172 </td>
+   <td style="text-align:right;"> 210 </td>
+   <td style="text-align:right;"> 3700.662 </td>
+   <td style="text-align:right;"> 2850 </td>
+   <td style="text-align:right;"> 4775 </td>
+   <td style="text-align:right;"> 2008.013 </td>
+   <td style="text-align:right;"> 2007 </td>
+   <td style="text-align:right;"> 2009 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chinstrap </td>
+   <td style="text-align:right;"> 48.83382 </td>
+   <td style="text-align:right;"> 40.9 </td>
+   <td style="text-align:right;"> 58.0 </td>
+   <td style="text-align:right;"> 18.42059 </td>
+   <td style="text-align:right;"> 16.4 </td>
+   <td style="text-align:right;"> 20.8 </td>
+   <td style="text-align:right;"> 195.8235 </td>
+   <td style="text-align:right;"> 178 </td>
+   <td style="text-align:right;"> 212 </td>
+   <td style="text-align:right;"> 3733.088 </td>
+   <td style="text-align:right;"> 2700 </td>
+   <td style="text-align:right;"> 4800 </td>
+   <td style="text-align:right;"> 2007.971 </td>
+   <td style="text-align:right;"> 2007 </td>
+   <td style="text-align:right;"> 2009 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:right;"> 47.50488 </td>
+   <td style="text-align:right;"> 40.9 </td>
+   <td style="text-align:right;"> 59.6 </td>
+   <td style="text-align:right;"> 14.98211 </td>
+   <td style="text-align:right;"> 13.1 </td>
+   <td style="text-align:right;"> 17.3 </td>
+   <td style="text-align:right;"> 217.1870 </td>
+   <td style="text-align:right;"> 203 </td>
+   <td style="text-align:right;"> 231 </td>
+   <td style="text-align:right;"> 5076.016 </td>
+   <td style="text-align:right;"> 3950 </td>
+   <td style="text-align:right;"> 6300 </td>
+   <td style="text-align:right;"> 2008.081 </td>
+   <td style="text-align:right;"> 2007 </td>
+   <td style="text-align:right;"> 2009 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="summarising-multiple-columns" class="slide level2">
+<h2>Summarising Multiple Columns</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>penguins_dt <span class="ot">=</span> <span class="fu">as.data.table</span>(penguins)</span>
+<span id="cb40-2"><a href="#cb40-2"></a></span>
+<span id="cb40-3"><a href="#cb40-3"></a>summary_fun <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">list</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-4"><a href="#cb40-4"></a>             <span class="at">Min =</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-5"><a href="#cb40-5"></a>              <span class="at">Max =</span> <span class="fu">max</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb40-6"><a href="#cb40-6"></a></span>
+<span id="cb40-7"><a href="#cb40-7"></a>penguins_dt[, <span class="fu">lapply</span>(.SD, summary_fun), .SDcols <span class="ot">=</span> is.numeric, by <span class="ot">=</span> species]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> species </th>
+   <th style="text-align:left;"> bill_length_mm </th>
+   <th style="text-align:left;"> bill_depth_mm </th>
+   <th style="text-align:left;"> flipper_length_mm </th>
+   <th style="text-align:left;"> body_mass_g </th>
+   <th style="text-align:left;"> year </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Adelie </td>
+   <td style="text-align:left;"> 38.79139 </td>
+   <td style="text-align:left;"> 18.34636 </td>
+   <td style="text-align:left;"> 189.9536 </td>
+   <td style="text-align:left;"> 3700.662 </td>
+   <td style="text-align:left;"> 2008.013 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Adelie </td>
+   <td style="text-align:left;"> 32.1 </td>
+   <td style="text-align:left;"> 15.5 </td>
+   <td style="text-align:left;"> 172 </td>
+   <td style="text-align:left;"> 2850 </td>
+   <td style="text-align:left;"> 2007 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Adelie </td>
+   <td style="text-align:left;"> 46 </td>
+   <td style="text-align:left;"> 21.5 </td>
+   <td style="text-align:left;"> 210 </td>
+   <td style="text-align:left;"> 4775 </td>
+   <td style="text-align:left;"> 2009 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:left;"> 47.50488 </td>
+   <td style="text-align:left;"> 14.98211 </td>
+   <td style="text-align:left;"> 217.187 </td>
+   <td style="text-align:left;"> 5076.016 </td>
+   <td style="text-align:left;"> 2008.081 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:left;"> 40.9 </td>
+   <td style="text-align:left;"> 13.1 </td>
+   <td style="text-align:left;"> 203 </td>
+   <td style="text-align:left;"> 3950 </td>
+   <td style="text-align:left;"> 2007 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:left;"> 59.6 </td>
+   <td style="text-align:left;"> 17.3 </td>
+   <td style="text-align:left;"> 231 </td>
+   <td style="text-align:left;"> 6300 </td>
+   <td style="text-align:left;"> 2009 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chinstrap </td>
+   <td style="text-align:left;"> 48.83382 </td>
+   <td style="text-align:left;"> 18.42059 </td>
+   <td style="text-align:left;"> 195.8235 </td>
+   <td style="text-align:left;"> 3733.088 </td>
+   <td style="text-align:left;"> 2007.971 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chinstrap </td>
+   <td style="text-align:left;"> 40.9 </td>
+   <td style="text-align:left;"> 16.4 </td>
+   <td style="text-align:left;"> 178 </td>
+   <td style="text-align:left;"> 2700 </td>
+   <td style="text-align:left;"> 2007 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chinstrap </td>
+   <td style="text-align:left;"> 58 </td>
+   <td style="text-align:left;"> 20.8 </td>
+   <td style="text-align:left;"> 212 </td>
+   <td style="text-align:left;"> 4800 </td>
+   <td style="text-align:left;"> 2009 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
 
 <div class="footer footer-default">
 
