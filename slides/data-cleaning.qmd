@@ -90,7 +90,7 @@ The entire tidyverse paradigm is sort of centered around this idea and how to ma
 
 :::
 
-## The Tidyverse
+## The Tidyverse(pros)
 
 :::incremental
 
