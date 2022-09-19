@@ -28,7 +28,8 @@ knitr::opts_chunk$set(fig.path="figs/", warning=FALSE,
                       message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
                       fig.align = "center")
 
-
+clrs <- MetBrewer::met.brewer(name = "Demuth")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
 
 
 df = datasauRus::datasaurus_dozen
@@ -44,16 +45,16 @@ showtext::showtext_auto()
 sysfonts::font_add_google("Roboto Condensed", "Roboto Condensed")
 showtext::showtext_auto()
 
-coastline <- read_sf("data/ME-GIS/Coastline2.shp")
-contours <- read_sf("data/ME-GIS/Contours_18.shp")
-rivers <- read_sf("data/ME-GIS/Rivers.shp")
-lakes <- read_sf("data/ME-GIS/Lakes.shp")
-forests <- read_sf("data/ME-GIS/Forests.shp")
-mountains <- read_sf("data/ME-GIS/Mountains_Anno.shp")
-placenames <- read_sf("data/ME-GIS/Combined_Placenames.shp")
+coastline = read_sf("data/ME-GIS/Coastline2.shp")
+contours = read_sf("data/ME-GIS/Contours_18.shp")
+rivers = read_sf("data/ME-GIS/Rivers.shp")
+lakes = read_sf("data/ME-GIS/Lakes.shp")
+forests = read_sf("data/ME-GIS/Forests.shp")
+mountains = read_sf("data/ME-GIS/Mountains_Anno.shp")
+placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
 cities = read_sf("data/ME-GIS/Cities.shp")
 roads = read_sf("data/ME-GIS/Roads.shp")
-towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
+towers_keeps = read_sf("data/ME-GIS/Towers_and_Keeps.shp")
 
 options(scipen=10000)
 ```
@@ -121,6 +122,7 @@ Lets take a quick look at the data that I have loaded in. They look pretty simil
 
 
 ```{r dino-plot, echo = FALSE}
+#| fig-alt: "This plot shows the importance of visualizing data. Each dataset visualized have relatively the same mean and standard deviations. However they have very different visual patterns. The first figure is a circle, the second figure is a dinosaur, the second figure is 6 lines decreasing on the Y axis, the next figure is 6 lines increasing on the y axis, the next figure creates a star, and the last figure creates an X. These figures were all made from data that appear to have the same mean and standard deviation both measures just vary at the margins"
 ggplot(data = filter(df,!dataset %in% c("bullseye", "dots", "v_lines", "high_lines", "wide_lines", "h_lines", "away")), aes(x = x, y = y)) +
   geom_point() +
   theme_allen_minimal() +
@@ -193,7 +195,7 @@ As with many things in R there are a ton of ways to install ggplot2. If you did 
 :::
 
 
-## The Grammar of Graphics 
+# The Grammar of Graphics {background-color="`r clrs[3]`" .white}
 
 
 
@@ -215,7 +217,7 @@ As with many things in R there are a ton of ways to install ggplot2. If you did 
 
 
 ```{r penguin-blank, echo = FALSE}
-
+#| fig-alt: "Here is just a scatter plot with various shapes and sizes. We will fill in the rest as the slides go on"
 ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) + geom_point(size = 3) + 
   theme_void() + theme(legend.position = "none")
 
@@ -231,7 +233,8 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 :::columns
 :::column
 
-### Body Weight of Penguins and Bill Length
+*Body Weight of Penguins and Bill Length*
+
 - ***Penguins***
 
 - ***Species***
@@ -244,7 +247,8 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 :::column
 
 ```{r penguin-add-legend, echo = FALSE}
-ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) + geom_point(size = 3) + 
+#| fig-alt: "On the right hand side is the legend that denotes what each color and shape represent. Red represents the island Biscoe, Green Represents the island Dream. Light Blue represents the Torgersen Island. The circles represent the Adelie penguins, the triangles represent the Chinstrap penguins, and the squares represent the Gentoo penguins"
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) + geom_point(size = 3) + 
   theme_void()
 ```
 
@@ -262,7 +266,8 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 :::columns
 :::column
 
-### Body Weight of Penguins and Bill Length
+*Body Weight of Penguins and Bill Length*
+
 - ***Penguins***
 
 - ***Species***
@@ -275,7 +280,8 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 :::column
 
 ```{r penguin-add-labs, echo = FALSE}
-ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) + theme_void() + geom_point(size = 3) + labs(x = "Bill Length(mm)", y = "Body Mass(g)")
+#| fig-alt: "On the right hand side is the legend that denotes what each color and shape represent. Red represents the island Biscoe, Green Represents the island Dream. Light Blue represents the Torgersen Island. The circles represent the Adelie penguins, the triangles represent the Chinstrap penguins, and the squares represent the Gentoo penguins. The x axis represents bill length in milimeters and the y axis represents body mass in grams "
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) + theme_void() + geom_point(size = 3) + labs(x = "Bill Length(mm)", y = "Body Mass(g)")
 ```
 
 :::
@@ -288,12 +294,13 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 
 
 
-## Building the plot
+## Building the Plot
 
 :::columns
 :::column
 
-### Body Weight of Penguins and Bill Length
+*Body Weight of Penguins and Bill Length*
+
 - ***Penguins***
 
 - ***Species***
@@ -307,7 +314,8 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 :::column
 
 ```{r penguin-full, echo=FALSE}
-ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) +
+#| fig-alt: "On the right hand side is the legend that denotes what each color and shape represent. Red represents the island Biscoe, Green Represents the island Dream. Light Blue represents the Torgersen Island. The circles represent the Adelie penguins, the triangles represent the Chinstrap penguins, and the squares represent the Gentoo penguins. The x axis represents bill length in milimeters and the y axis represents body mass in grams. Here I just added a title that says the 'The relationshiop between bill length and body weight' with a subtitle that says 'by isalnd and penguin species' "
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) +
   geom_point(size = 3) +
   labs(x = "Bill Length(mm)", y = "Body Mass(g)", title = "The Relationship Between Bill Length and Body Weight",
        subtitle = "By Island and Penguin Species") +
@@ -321,26 +329,32 @@ theme_minimal() +
 
 
 
-## So how did we go from?  
-:::columns
-:::column
+## So How Did We go From?  
+
+::::{.columns .fragment fragment-index=1}
+
+
+:::{.column width="50%"}
 
 ### This
 
 ```{r blank-plot-example-this, echo = FALSE }
-
+#| fig-alt: "This is the template that I started with with just points and colors"
 ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) + geom_point(size = 3) + 
   theme_void() + theme(legend.position = "none")
 ```
 
 :::
 
-:::column
 
-### to this
+
+:::{.column width="50%"}
+
+### To This
 
 ```{r full-plot-example-this, echo=FALSE}
-ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) +
+
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) +
   geom_point(size = 3) +
   labs(x = "Bill Length(mm)", y = "Body Mass(g)", title = "The Relationship Between Bill Length and Body Weight",
        subtitle = "By Island and Penguin Species") +
@@ -349,7 +363,7 @@ theme_minimal() +
 ```
 
 :::
-:::
+::::
 
 ## The Grammar 
 
@@ -376,18 +390,13 @@ theme_minimal() +
   </tr>
   <tr>
     <td class="cell-left">Penguin Species</td>
-    <td class="cell-left"><code class="remark-inline-code">size</code>&emsp;</td>
-    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
-  </tr>
-  <tr>
-    <td class="cell-left">Penguin Species</td>
     <td class="cell-left"><code class="remark-inline-code">shape</code>&emsp;</td>
     <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
   </tr>
 </table>
 
 :::{.notes}
-This is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes
+This is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do 
 
 :::
 
@@ -400,8 +409,8 @@ This is what it looks like when we start to think of the plot. Each of these are
 ```{r your-penguin-code, echo = TRUE}
 #| code-line-numbers: "|1|2|3|4|5"
 
-ggplot(data = penguins) +
-         geom_point(mapping =  aes(
+ggplot() +
+         geom_point(data = penguins,mapping =  aes(
          x = bill_length_mm, 
          y = body_mass_g,
          shape = species, 
@@ -441,7 +450,7 @@ Once we see the structure we can start to be able to build our "sentences" to ma
 
 
 
-# Making Plots
+# Making Plots {background-color="`r clrs[3]`" .white}
 
 
 
@@ -480,8 +489,8 @@ today we will be using the gapminder dataset.  It contains historical (1952-2007
 ## library(gapminder)
 gapminder = gapminder
 
-ggplot(gapminder) +
-  geom_point(mapping = aes(x = gdpPercap, y = lifeExp))
+ggplot() +
+  geom_point(data = gapminder,mapping = aes(x = gdpPercap, y = lifeExp))
 
 ```
 
@@ -582,10 +591,12 @@ ggplot will take the color argument inside aes and outside aes. If we specify co
 :::columns
 :::column
 ```{r gapminder-blue-correct, eval=FALSE, echo = TRUE}
-
-ggplot(gapminder ) + 
-  geom_point(aes(x = gdpPercap, y = lifeExp),
-             color = "blue")
+#| code-line-numbers: "|5"
+ggplot() + 
+  geom_point(data = gapminder,
+   aes(x = gdpPercap,
+    y = lifeExp),
+    color = "blue")
 
 
 ```
@@ -617,10 +628,12 @@ ggplot(gapminder ) +
 :::column
 
 ```{r gapminder-blue-wrong-example, eval=FALSE, echo = TRUE}
-
-ggplot(gapminder ) + 
-  geom_point(aes(x = gdpPercap, y = lifeExp,
-                 color = "blue"))
+#| code-line-numbers: "|5"
+ggplot() + 
+  geom_point(data = gapminder,
+    aes(x = gdpPercap,
+     y = lifeExp,
+     color = "blue"))
 
 
 ```
@@ -680,7 +693,7 @@ there we can show the same relationship between two variables in a ton of differ
 :::
 
 
-## Just The Ones with `library(ggplo2)`
+## What Comes With ggplot
 
 ```{r ggplot2-geom-names, echo=FALSE}
 ## geom_
@@ -1878,7 +1891,7 @@ ggsave("name-of-your-file.pngs",your_plot_here)
 
 
 
-# Making Maps
+# Making Maps {background-color="`r clrs[3]`" .white}
 
 
 

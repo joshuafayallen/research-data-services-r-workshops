@@ -32,19 +32,16 @@ starwars = dplyr::starwars
 
 
 
-
-
 ```
 
 ## Packages You Will Need
 
 ```{r eval=FALSE, echo =TRUE}
-install.packages("pacman")
-
-pacman::p_load("palmerpenguins","tidyverse", install = TRUE)
 
 
-## Or 
+install.packages(c("tidyverse", "palmerpenguins"), dependencies = TRUE)
+
+
 starwars = read_csv("data/starwars.csv")
 penguins = read_csv("data/penguins.csv")
 
@@ -87,18 +84,14 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 
 -   Most of the time this looks like what is known as "long data"
 
+:::{.notes}
+The entire tidyverse paradigm is sort of centered around this idea and how to make manipulating data a lot less painful. 
+
+:::
+
 ## The Tidyverse
 
-- One of the most furious debates in R is base R versus tidyverse. 
-  - `data.table` vs `dplyr` is also a debate you sometimes see
-
-### The Pros of the Tidyverse
-::: incremental
-
-
 -   Similar syntax and philosophy which makes it more intuitive to learn
-
--   Extremely nice community
 
 -   The core syntax of `dplyr` provides a nice front end for many other big data tools i.e. SQL
 
@@ -113,6 +106,18 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 -   A mix of base R and the tidyverse never hurt nobody
 :::
 
+
+:::{.notes}
+The entire tidyverse paradigm is sort of centered around this idea and how to make manipulating data a lot less painful. 
+
+What this means in practice is that the packages in the tidyverse has a very similar syntax which makes working with each package and function relatively painless
+
+If you are intersted in learning SQL lots of the stuff that we learn today translate nicely over to SQL. So much so that there is a package called dbplyr which will actually translate your dplyr code to sql code!
+
+
+There is a massive debate between tidyverse vs data.table and base r versus the tidyverse. Both sides have their merit but generally the debate gets a bit heated. Each have their place in your workflow! Don't esque one solution for another if it gets the job done right! The tidyverse is great it helped me learn R a lot quicker. But it has its issues and in some cases is not the correct tool for the job. Thats why I included a data.table workshop slide. 
+:::
+
 ## 
 
 ```{r echo = TRUE}
@@ -121,7 +126,9 @@ tidyverse::tidyverse_packages()
 ```
 
 ::: {.notes}
-These are the packages that are considered a part of the tidyerse. The ones that are loaded when you do library tidyverse are ggplot tibble tidyr readr purr dplyr stringr and forcats. Magrittr is also loaded. But if you want anything else like rvest and broom
+These are the packages that are considered a part of the tidyerse. The ones that are loaded when you do library tidyverse are ggplot tibble tidyr readr purr dplyr stringr and forcats. Magrittr is also loaded.
+
+ 
 :::
 
 ## What is loaded
@@ -134,6 +141,17 @@ library(tidyverse)
 
 ::: {.notes}
 The tidyverse is pretty verbose because it loads a lot of things and in the case of lag and filter actually makes its lag and filter function the one that R uses.
+
+dplyr: is a grammar of data manipulation
+tidyr: helps us make data long or short and make stuff. 
+forcats: helps us work with factors
+stringr: helps us work with strings
+purr: is basically just there to help you with iterating operations 
+tibble: adds an additional class to R called a tibble that creates a special tibble thing 
+readr: reads in data however if you get data in some non-standard format than you need to use haven which will let you read in stata dta files, sas data files and SPSS .sav files.  
+
+
+
 
 :::
 
@@ -187,6 +205,78 @@ The tidyverse is pretty verbose because it loads a lot of things and in the case
   </tr>
 </table>
 
+:::{.notes}
+Dplyr tries to be really human readable so we refer to each function as verbs. I will
+
+
+:::
+
+## How A Dplyr Verb Works 
+:::columns 
+:::column
+```{r echo = TRUE, eval = FALSE}
+
+verb(.data, ...)
+
+
+```
+
+:::
+
+:::column
+
+- All dplyr stuff works along these lines
+
+- `verb` is one of the Dplyr verbs 
+
+- `.data` is the dataset you want to manipulate
+  - this is true for the rest of the tidyverse 
+
+- `...` is just a set of things that the verb does. 
+
+:::
+:::
+
+
+
+
+
+## Select()
+
+::: columns
+::: column
+```{r eval = FALSE, echo = TRUE}
+ select(.data = penguins, species)
+```
+:::
+
+
+::: column
+```{r echo=FALSE}
+penguins |> 
+  select(species) |> 
+  head(6) |> 
+  bind_rows(tibble(species = "...")) |> 
+  knitr::kable(format = "html")
+```
+:::
+:::
+
+
+:::{.callout}
+You can give select a range of columns with `firstcolumn:thirdcolumn` or omit stuff using `-columnwedontwant` 
+
+:::
+
+:::{.notes}
+
+I will only partially cover select because it is a pretty intuitive verb. Just give it the name of our columns. But see that the first argument we feed our verb is data and in this case the thing that verb does is just select the colunn name we want. 
+
+Throughout the presentation you can copy and paste the code and run it yourself. You are probably going to get some different stuff than me. Thats because behind the scene you will see lots and lots of select calls just make sure everything fits on the screen! If you want to recreate the output your self all you would do is feed it the column names on the screen!
+
+:::
+
+
 # filter() {background-color="`r clrs[3]`" .white}
 
 Subsetting by Rows
@@ -215,7 +305,7 @@ Subsetting by Rows
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 #| code-line-numbers: "|1|2|3|4"
-  filter(penguins,
+  filter(.data = penguins,
          species == "Adelie",
          body_mass_g < 6200,
          bill_length_mm < 59.6)
@@ -245,9 +335,40 @@ penguins |>
 
 The basics of filter are that you need to feed it a set of tests. Most often what you use filter for is to subset data based on a series of tests that make sense for your data. In this case I just took the quantiles for both variables. You can string together a set of tests in filter. 
 
+
+Notice that we can pass different operations with a comma. We could also plausibly use our & to only return a dataset as long as we have data that meets those tests 
+
 :::
 
+## Chaining together multiple things 
 
+- To get a subset of homeworld we chain together multiple `|`
+together
+
+:::columns
+:::column
+
+```{r eval = FALSE, echo = TRUE}
+filter(starwars, homeworld == "Naboo" |
+                 homeworld == "Coruscant" |
+                 homeworld == "Tatooine")
+```
+
+:::
+
+:::column
+```{r }
+filter(starwars, homeworld == "Naboo" |
+                 homeworld == "Coruscant" |
+                 homeworld == "Tatooine") |>
+                 select(name, homeworld) |>
+                  head(6) |>
+                 bind_rows(tibble(name = "...", homeworld =  "...")) |> 
+    knitr::kable(format = "html")
+```
+
+:::
+:::
 
 
 ## filter() {.scrollable}
@@ -262,7 +383,6 @@ set membership works really here too!
   homeworld %in% c("Naboo",
                   "Tatooine",
                   "Coruscant"))
-
 
 ```
 :::
@@ -282,6 +402,8 @@ starwars |>
 :::{.notes}
 Using lists instead of big long conditional statements will honestly make your life so much easier. Where you use set membership in filter is in place of lots of or tests. So in this case we are feeding 
 :::
+
+
 
 
 ## filter() mistakes we all make 
@@ -320,7 +442,11 @@ filter(starwars, homeworld == "Nabo") |> knitr::kable(format = "html")
 
 :::{.notes}
 
-We are likely to encounter some sets of errors. Luckily Dplyr has finally built in a friendly error message with when your tests are misspecified. The equals one is one that we all make. Which will just now throw an error. What your are likely to encounter is that you have done a test and your object is now blank. It will return your something back to you but it is blank. All this means is that something is wrong in one of your tests. R will evaluate the test but something in your test does not exist in your data. So it evaluates your test correctly but what you supplied it is not in the data so R does it but there is nothing there for it to return true
+We are likely to encounter some sets of errors. Luckily Dplyr has finally built in a friendly error message with when your tests are misspecified. The equals one is one that we all make. Which will just now throw an error. 
+
+What your are likely to encounter is that you have done a test and your object is now blank. It will return your something back to you but it is blank. All this means is that something is wrong in one of your tests. R will evaluate the test. If something meets the test than it will just return those results 
+
+In this case nothing in our data is named Nabo with one o so it is just returning the results of the test back to us. 
 
 :::
 
@@ -337,7 +463,7 @@ One of the most common uses is to find and remove missing values or not in a lis
 
 :::{.notes}
 
-Here I am just asking filter to return all the values in the data that are missing 
+Here I am just asking filter to return all the values in the data that are missing. 
 
 :::
 
@@ -345,6 +471,8 @@ Here I am just asking filter to return all the values in the data that are missi
 ## Your Turn {background-color="`r clrs_lt[3]`"}
 
 -   Using the sample code from the last slide filter out the NA values. Hint use `!`
+
+- Return a data dataset that only has data for `Dream` 
 
 -   Using either the `starwars` or penguins data use `%in%` to get a set of homeworlds or islands
 
@@ -355,38 +483,12 @@ countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
 
-## Select()
-- In some cases we just need a few columns 
-- We use `select` to grab those columns
--   You can feed it one column or a range of columns with `:`
--   You can also leave columns out using `-`
-
-
-::: columns
-::: column
-```{r eval = FALSE, echo = TRUE}
- select(penguins, species,
-        island:bill_depth_mm,
-         -bill_length_mm)
-```
-:::
-
-
-::: column
-```{r echo=FALSE}
-penguins |> 
-  select(species, island:bill_depth_mm, -bill_length_mm) |> 
-  mutate(bill_depth_mm = as.character(bill_depth_mm)) |> 
-  head(6) |> 
-  bind_rows(tibble(species = "...", island = "...", bill_depth_mm = "...")) |> 
-  knitr::kable(format = "html")
-```
-:::
-:::
 
 
 :::{.notes}
-Select is a lot more intuitive because with some exceptions you just supply a set of column names you want or do want. Select has a whole set of really awesome helper function that help you subset your data easier. I have included those at the end. Just so you are aware of them.
+
+
+
 
 :::
 
@@ -412,31 +514,6 @@ Select is a lot more intuitive because with some exceptions you just supply a se
 :::
 
 
-## How A Dplyr Verb Works 
-:::columns 
-:::column
-```{r echo = TRUE, eval = FALSE}
-
-verb(.data, ...)
-
-
-```
-
-:::
-
-:::column
-
-- All dplyr stuff works along these lines
-
-- `verb` is one of the Dplyr verbs 
-
-- `.data` is the dataset you want to manipulate
-  - this is true for the rest of the tidyverse 
-
-- `...` is just a set of things that the verb does. 
-
-:::
-:::
 
 
 ## A Demonstration {.scrollable}
@@ -520,7 +597,7 @@ This example an adaptation provided by [Grant McDermot](https://github.com/uo-ec
 ```{=html}
 <!-- -->
 ```
-    me %>%
+    I %>%
     wake_up(time = "8.00am") %>%
     get_out_of_bed(side = "correct") %>%
     get_dressed(pants = "TRUE", shirt = "TRUE") %>% 
@@ -716,7 +793,7 @@ mutate(what_are_they = case_when(
 
 - Add a column in your dataset that is TRUE if a penguin is an Adelie penguin
 
-- Add a column in the `starwars` dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if it is not
+- Add a column in the `starwars` dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if the character is not from there/
 
 - Add a column in your dataset for logged body_mass_g (hint: use `log()`)
 
@@ -1076,36 +1153,6 @@ relig_income |>
 
 ```
 
-## More Complex Example
-
-```{r eval=FALSE, echo = TRUE}
-
-data("billboard")
-
-```
-
-```{r echo=FALSE}
-data("billboard")
-billboard |> 
-  select(1:8) |> 
-  knitr:: kable(format = "html")
-
-```
-
-## Using Your Helpers
-
-```{r, echo = TRUE, cache = TRUE}
-#| code-line-numbers: "|3|5"
-billboard |> 
-  pivot_longer(
-    cols = starts_with("wk"), 
-    names_to = "week",
-    names_prefix = "wk",
-    values_to = "rank",
-    values_drop_na = TRUE
-  ) |>
-  head(4)
-```
 
 ## Separate 
 
@@ -1142,7 +1189,7 @@ unite(name, c("forename", "surname"), sep = " ")
 
 ## Helpful Helpers
 
--   Dplyr comes really useful functions that help you when there are common patterns in your variable names
+-   Dplyr comes with really useful functions that help you when there are common patterns in your variable names
 
 -   the syntax usually goes 
   - `select(contains("pattern"))`
@@ -1153,7 +1200,7 @@ unite(name, c("forename", "surname"), sep = " ")
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 
-  select(starwars, name,   -eye_color,
+  select(starwars, name, -eye_color,
    ends_with("color") 
     homeworld)
 
@@ -1253,3 +1300,37 @@ summarise(across(where(is.numeric),
 
 
 ```
+
+
+
+## Pivoting With LOTS of columns
+
+```{r eval=FALSE, echo = TRUE}
+
+data("billboard")
+
+```
+
+```{r echo=FALSE}
+data("billboard")
+billboard |> 
+  select(1:8) |> 
+  knitr:: kable(format = "html")
+
+```
+
+## Using Your Helpers
+
+```{r, echo = TRUE, cache = TRUE}
+#| code-line-numbers: "|3|5"
+billboard |> 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week",
+    names_prefix = "wk",
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) |>
+  head(4)
+```
+
