@@ -92,6 +92,8 @@ The entire tidyverse paradigm is sort of centered around this idea and how to ma
 
 ## The Tidyverse
 
+:::incremental
+
 -   Similar syntax and philosophy which makes it more intuitive to learn
 
 -   The core syntax of `dplyr` provides a nice front end for many other big data tools i.e. SQL
@@ -106,7 +108,6 @@ The entire tidyverse paradigm is sort of centered around this idea and how to ma
 
 -   A mix of base R and the tidyverse never hurt nobody
 :::
-
 
 :::{.notes}
 The entire tidyverse paradigm is sort of centered around this idea and how to make manipulating data a lot less painful. 
