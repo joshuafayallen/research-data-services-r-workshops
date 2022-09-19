@@ -39,9 +39,7 @@ starwars = dplyr::starwars
 
 ```{r eval=FALSE, echo =TRUE}
 
-
 install.packages(c("tidyverse", "palmerpenguins"), dependencies = TRUE)
-
 
 starwars = read_csv("data/starwars.csv")
 penguins = read_csv("data/penguins.csv")
