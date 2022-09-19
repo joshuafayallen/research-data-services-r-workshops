@@ -1565,7 +1565,7 @@
     "href": "slides/data-cleaning.html#packages-you-will-need",
     "title": "Data Cleaning in R",
     "section": "Packages You Will Need",
-    "text": "Packages You Will Need\n\ninstall.packages(c(\"tidyverse\", \"palmerpenguins\"), dependencies = TRUE)\n\n\nstarwars = read_csv(\"data/starwars.csv\")\npenguins = read_csv(\"data/penguins.csv\")"
+    "text": "Packages You Will Need\n\ninstall.packages(c(\"tidyverse\", \"palmerpenguins\"), dependencies = TRUE)\n\nstarwars = read_csv(\"data/starwars.csv\")\npenguins = read_csv(\"data/penguins.csv\")"
   },
   {
     "objectID": "slides/data-cleaning.html#where-we-are",
