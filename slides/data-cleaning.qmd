@@ -14,10 +14,11 @@ format:
 
 
 library(palmerpenguins)
+library(MetBrewer)
+library(colorspace)
 
-
-clrs <- MetBrewer::met.brewer(name = "Demuth")
-clrs_lt <- colorspace::lighten(clrs, 0.9)
+clrs <- met.brewer(name = "Demuth")
+clrs_lt <- lighten(clrs, 0.9)
 
 penguins = penguins
 

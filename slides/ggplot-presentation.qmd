@@ -23,13 +23,14 @@ library(MetBrewer)
 library(WDI)
 library(vdemdata)
 library(countrycode)
+library(colorspace)
 
 knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
                       message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
                       fig.align = "center")
 
-clrs <- MetBrewer::met.brewer(name = "Demuth")
-clrs_lt <- colorspace::lighten(clrs, 0.9)
+clrs <- met.brewer(name = "Demuth")
+clrs_lt <- lighten(clrs, 0.9)
 
 
 df = datasauRus::datasaurus_dozen
