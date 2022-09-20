@@ -662,7 +662,7 @@ You can put just about anything in this true false column generally thought true
 
 - Add a column in the `starwars` dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if the character is not from there
 
-- Add a column in your dataset for logged body_mass_g (hint: use `log()`)
+- Add a column in your dataset that squares the body mass (hint: use `^`)
 
 ```{r echo=FALSE}
 countdown::countdown(minutes = 3, sound = TRUE)
@@ -675,14 +675,14 @@ countdown::countdown(minutes = 3, sound = TRUE)
 
 :::{.incremental}
 
-- This is something that will occupy the vast majority of your time
-
-- It requires lots of intermediary steps
+- Often requires lots of intermediary steps
   - replacing missing values
   - subsetting data
   - creating new variables
 
-- If things start going wrong it may be hard for you to read huge nested function calls
+- We would ideally like to do this without assigning a new object each time
+
+- If things start going it may be difficult to spot where it went wrong
 
 - Enter `dplyr` [and the pipe]{.fragment}
 
@@ -764,23 +764,24 @@ Rather than starting with nested parenthesis we will start with piping. because 
 
 :::: (.columns}
 ::: {.column width="45%"}
-```{r  echo = TRUE}
+```{r  echo = TRUE, eval = FALSE}
 ## These do the same thing
-summarise(group_by(filter(penguins,sex == "female"),
- species), mean(body_mass_g, na.rm = TRUE))
+ filter(mutate(penguins,
+  female = ifelse(sex == "female",
+    TRUE, FALSE)),
+     species == "Adelie")
 
 
 ```
 :::
 
 ::: {.column width="45%"}
-```{r echo = TRUE}
+```{r echo = TRUE, eval = FALSE}
 #| code-line-numbers: "|2|3|4|5"
 # these do the same thing
 penguins %>%  
-filter(sex == "female") %>% 
-group_by(species) %>% 
-summarise(mean(body_mass_g, na.rm = TRUE))
+filter(species == "Adelie") %>% 
+mutate(female = ifelse(sex == "female", TRUE, FALSE))
 ```
 :::
 ::::
