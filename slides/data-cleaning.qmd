@@ -471,12 +471,187 @@ countdown::countdown(minutes = 3, sound = TRUE)
 
 
 
-:::{.notes}
+# Mutate {background-color="`r clrs[3]`" .white}
+
+## Mutate
 
 
 
+::: columns
+::: column
+```{r eval=FALSE, echo = TRUE}
+ 
+ mutate(penguins, log_bill_length = round(log(bill_length_mm)
+        , digits = 2))
+```
+:::
+
+::: column
+```{r echo= FALSE}
+
+penguins |> 
+  filter(!is.na(bill_length_mm)) |> 
+  select(species, bill_length_mm) |> 
+  mutate(log_bill_length = round(log(bill_length_mm), digits = 2),
+         log_bill_length = as.character(log_bill_length),
+         bill_length_mm = as.character(bill_length_mm)) |> 
+           head(6) |> 
+  bind_rows(tibble(species = "...", log_bill_length =  "...", bill_length_mm = "...")) |> 
+  knitr::kable(format = "html")
+
+
+```
+:::
+:::
+
+## Logical Tests 
+
+- There are various ways to do this in mutate but they all follow the same logic
+
+:::columns
+:::column
+
+```{r eval = FALSE, echo = TRUE}
+#| code-line-numbers: "|1|2|3"
+ifelse(test,
+       Value_if_True,
+       Value_if_False)
+
+
+
+```
 
 :::
+:::column 
+
+
+- Test is a logical test `sex == "female"`, `species == "Wookie"`, etc
+
+- Value_if_True what does it do if the test returns true
+
+- Value_if_FALSE what does it do if the test returns false
+
+:::
+:::
+
+
+## Mutate
+
+::::{.columns}
+:::{.column width="45%"}
+
+### Regular ifelse
+
+```{r eval = FALSE, echo = TRUE}
+#| code-line-numbers: "|2|3|4"
+mutate(penguins,
+  big_penguin = ifelse(
+  body_mass_g >= 4750, "Dats a big penguin", "SMOL penguin"))
+```
+
+
+```{r}
+
+penguins |>
+mutate(big_penguin = ifelse(
+  body_mass_g >= 4750,
+ "Dats a big penguin",
+  "SMOL penguin")) |>
+select(body_mass_g, big_penguin) |>
+ head(6)
+```
+:::
+
+:::{.column width="45%"}
+
+### Fancy ifelse
+
+```{r eval = FALSE, echo = TRUE}
+#| code-line-numbers: "|1|6|14|15|16|17"
+
+jedi = c("Luke Skywalker",
+ "Yoda", "Obi-Wan Kenobi",
+  "Rey", 
+  "Mace Windu")
+
+sith = c("Palpatine",
+ "Darth Maul",
+  "Dooku",
+   "Darth Vader")
+
+hero_villains <- filter(starwars, name %in% jedi |
+ name %in% sith)  
+ 
+mutate(hero_villains,
+  what_are_they = case_when(
+  name %in% jedi ~ "Hero",
+  name %in% sith ~ "Evil Dooer")) 
+```
+
+
+```{r }
+
+jedi = c("Luke Skywalker",
+ "Yoda", "Obi-Wan Kenobi",
+  "Rey", 
+  "Mace Windu")
+
+sith = c("Palpatine",
+ "Darth Maul",
+  "Dooku",
+   "Darth Vader")
+
+starwars |>
+filter(name %in% jedi |
+ name %in% sith) |>
+mutate(what_are_they = case_when(
+  name %in% jedi ~ "Hero",
+  name %in% sith ~ "Evil Dooer")) |>
+      select(name, what_are_they) |>
+      head(5)
+
+
+```
+
+:::
+::::
+
+
+## Mutate()
+
+-   Mutate is order aware so you don't have to use a new `mutate` for each new variable you want to create
+
+::: columns
+::: column
+```{r eval = FALSE, echo = TRUE}
+  
+  mutate(penguins, long_bill = bill_length_mm * 2,
+         long_bill_logical =
+           ifelse(long_bill >= 100
+                  & long_bill <= 119.20,
+                  "Long",
+                  "Short")) 
+
+```
+:::
+
+::: column
+```{r echo= FALSE}
+ penguins |> 
+  filter(!is.na(bill_length_mm) & species == "Gentoo") |> 
+  mutate(long_bill = bill_length_mm * 2,
+         long_bill_logical = ifelse(long_bill >= 100 & long_bill <= 119.20, "Long", "Short"),
+         bill_length_mm = as.character(bill_length_mm),
+         long_bill = as.character(long_bill),
+         long_bill_logical = as.character(long_bill_logical)) |> 
+  select(bill_length_mm, long_bill, long_bill_logical) |> 
+  head(6) |> 
+  bind_rows(tibble(species = "...", bill_length_mm = "...", long_bill = "...", long_bill_logical = "..." )) |> knitr::kable(format = "html")
+  
+```
+:::
+:::
+
 
 # Doing More Than One Thing at a Time {background-color="`r clrs[3]`" .white}
 
@@ -644,161 +819,6 @@ If you are on a mac the keyboard shortcut is command shift m
 
 
 
-
-# Mutate {background-color="`r clrs[3]`" .white}
-
-## Mutate
-
-
-
-::: columns
-::: column
-```{r eval=FALSE, echo = TRUE}
-penguins |> 
- filter(!is.na(bill_length_mm)) |> 
- select(species, bill_length_mm) |> 
- mutate(log_bill_length = round(log(bill_length_mm)
-        , digits = 2))
-```
-:::
-
-::: column
-```{r echo= FALSE}
-
-penguins |> 
-  filter(!is.na(bill_length_mm)) |> 
-  select(species, bill_length_mm) |> 
-  mutate(log_bill_length = round(log(bill_length_mm), digits = 2),
-         log_bill_length = as.character(log_bill_length),
-         bill_length_mm = as.character(bill_length_mm)) |> 
-           head(6) |> 
-  bind_rows(tibble(species = "...", log_bill_length =  "...", bill_length_mm = "...")) |> 
-  knitr::kable(format = "html")
-
-
-```
-:::
-:::
-
-## Logical Tests 
-
-- There are various ways to do this in mutate but they all follow the same logic
-
-:::columns
-:::column
-
-```{r eval = FALSE, echo = TRUE}
-#| code-line-numbers: "|1|2|3"
-ifelse(test,
-       Value_if_True,
-       Value_if_False)
-
-
-
-```
-
-:::
-:::column 
-
-
-- Test is a logical test `sex == "female"`, `species == "Wookie"`, etc
-
-- Value_if_True what does it do if the test returns true
-
-- Value_if_FALSE what does it do if the test returns false
-
-:::
-:::
-
-
-## Mutate
-
-::::{.columns}
-:::{.column width="45%"}
-
-### Regular ifelse
-
-```{r echo = TRUE}
-#| code-line-numbers: "|2|3|4|5"
-penguins |>
-mutate(big_penguin = ifelse(
-  body_mass_g >= 4750,
- "Dats a big penguin",
-  "SMOL penguin")) |>
-select(body_mass_g, big_penguin) |>
- head(6)
-```
-:::
-
-:::{.column width="45%"}
-
-### Fancy ifelse
-
-```{r echo = TRUE}
-#| code-line-numbers: "|1|6|14|15|16"
-
-jedi = c("Luke Skywalker",
- "Yoda", "Obi-Wan Kenobi",
-  "Rey", 
-  "Mace Windu")
-
-sith = c("Palpatine",
- "Darth Maul",
-  "Dooku",
-   "Darth Vader")
-
-starwars |>
-filter(name %in% jedi |
- name %in% sith) |>
-mutate(what_are_they = case_when(
-  name %in% jedi ~ "Hero",
-  name %in% sith ~ "Evil Dooer")) |>
-      select(name, what_are_they) |>
-      head(5)
-
-
-```
-
-:::
-::::
-
-
-## Mutate()
-
--   Mutate is order aware so you don't have to use a new `mutate` for each new variable you want to create
-
-::: columns
-::: column
-```{r eval = FALSE, echo = TRUE}
- penguins |> 
-  filter(!is.na(bill_length_mm) & species == "Gentoo") |> 
-  mutate(long_bill = bill_length_mm * 2,
-         long_bill_logical =
-           ifelse(long_bill >= 100
-                  & long_bill <= 119.20,
-                  "Long",
-                  "Short")) |> 
-  select(species, bill_length_mm, long_bill, long_bill_logical)
-
-```
-:::
-
-::: column
-```{r echo= FALSE}
- penguins |> 
-  filter(!is.na(bill_length_mm) & species == "Gentoo") |> 
-  mutate(long_bill = bill_length_mm * 2,
-         long_bill_logical = ifelse(long_bill >= 100 & long_bill <= 119.20, "Long", "Short"),
-         bill_length_mm = as.character(bill_length_mm),
-         long_bill = as.character(long_bill),
-         long_bill_logical = as.character(long_bill_logical)) |> 
-  select(bill_length_mm, long_bill, long_bill_logical) |> 
-  head(6) |> 
-  bind_rows(tibble(species = "...", bill_length_mm = "...", long_bill = "...", long_bill_logical = "..." )) |> knitr::kable(format = "html")
-  
-```
-:::
-:::
 
 
 ## Your Turn  {background-color="`r clrs_lt[3]`"}
