@@ -1677,7 +1677,7 @@
     "href": "slides/data-cleaning.html#mutate-4",
     "title": "Data Cleaning in R",
     "section": "Mutate()",
-    "text": "Mutate()\n\nMutate is order aware so you don’t have to use a new mutate for each new variable you want to create\n\n\n\n\n  mutate(penguins, long_bill = bill_length_mm * 2,\n         long_bill_logical =\n           ifelse(long_bill >= 100\n                  & long_bill <= 119.20,\n                  \"Long\",\n                  \"Short\")) \n\n\n\n\n\n\n \n  \n    bill_length_mm \n    long_bill \n    long_bill_logical \n    species \n  \n \n\n  \n    46.1 \n    92.2 \n    Short \n    NA \n  \n  \n    50 \n    100 \n    Long \n    NA \n  \n  \n    48.7 \n    97.4 \n    Short \n    NA \n  \n  \n    50 \n    100 \n    Long \n    NA \n  \n  \n    47.6 \n    95.2 \n    Short \n    NA \n  \n  \n    46.5 \n    93 \n    Short \n    NA \n  \n  \n    ... \n    ... \n    ... \n    ..."
+    "text": "Mutate()\n\nMutate is order aware so you don’t have to use a new mutate for each new variable you want to create\n\n\n\n\n  mutate(penguins, long_bill = bill_length_mm * 2,\n         long_bill_logical =\n           ifelse(long_bill >= 100\n                  & long_bill <= 119.20,\n                  TRUE,\n                  FALSE)) \n\n\n\n\n\n\n \n  \n    bill_length_mm \n    long_bill \n    long_bill_logical \n    species \n  \n \n\n  \n    46.1 \n    92.2 \n    FALSE \n    NA \n  \n  \n    50 \n    100 \n    TRUE \n    NA \n  \n  \n    48.7 \n    97.4 \n    FALSE \n    NA \n  \n  \n    50 \n    100 \n    TRUE \n    NA \n  \n  \n    47.6 \n    95.2 \n    FALSE \n    NA \n  \n  \n    46.5 \n    93 \n    FALSE \n    NA \n  \n  \n    ... \n    ... \n    ... \n    ..."
   },
   {
     "objectID": "slides/data-cleaning.html#your-turn-1",
