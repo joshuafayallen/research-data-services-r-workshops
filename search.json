@@ -1645,6 +1645,41 @@
     "text": "Your Turn\n\nTry removing the missing values from bill_length_mm hint: use ! and is.na.\nReturn a data dataset that only has data for the Dream island\nUsing either the starwars or penguins data use %in% to get a set of homeworlds or islands\nSubset the penguin data where body mass is less than 4202 and not on the Dream Island.\n\n\n\n\n−+\n03:00"
   },
   {
+    "objectID": "slides/data-cleaning.html#mutate-1",
+    "href": "slides/data-cleaning.html#mutate-1",
+    "title": "Data Cleaning in R",
+    "section": "Mutate",
+    "text": "Mutate\n\n\n\n mutate(penguins, log_bill_length = round(log(bill_length_mm)\n        , digits = 2))\n\n\n\n\n\n\n \n  \n    species \n    bill_length_mm \n    log_bill_length \n  \n \n\n  \n    Adelie \n    39.1 \n    3.67 \n  \n  \n    Adelie \n    39.5 \n    3.68 \n  \n  \n    Adelie \n    40.3 \n    3.7 \n  \n  \n    Adelie \n    36.7 \n    3.6 \n  \n  \n    Adelie \n    39.3 \n    3.67 \n  \n  \n    Adelie \n    38.9 \n    3.66 \n  \n  \n    ... \n    ... \n    ..."
+  },
+  {
+    "objectID": "slides/data-cleaning.html#logical-tests",
+    "href": "slides/data-cleaning.html#logical-tests",
+    "title": "Data Cleaning in R",
+    "section": "Logical Tests",
+    "text": "Logical Tests\n\nThere are various ways to do this in mutate but they all follow the same logic\n\n\n\n\nifelse(test,\n       Value_if_True,\n       Value_if_False)\n\n\n\nTest is a logical test sex == \"female\", species == \"Wookie\", etc\nValue_if_True what does it do if the test returns true\nValue_if_FALSE what does it do if the test returns false"
+  },
+  {
+    "objectID": "slides/data-cleaning.html#mutate-2",
+    "href": "slides/data-cleaning.html#mutate-2",
+    "title": "Data Cleaning in R",
+    "section": "Mutate",
+    "text": "Mutate\n\n\nRegular ifelse\n\nmutate(penguins,\n  big_penguin = ifelse(\n  body_mass_g >= 4750, \"Dats a big penguin\", \"SMOL penguin\"))\n\n\n\n# A tibble: 6 × 2\n  body_mass_g big_penguin \n        <int> <chr>       \n1        3750 SMOL penguin\n2        3800 SMOL penguin\n3        3250 SMOL penguin\n4          NA <NA>        \n5        3450 SMOL penguin\n6        3650 SMOL penguin\n\n\n\nFancy ifelse\n\njedi = c(\"Luke Skywalker\",\n \"Yoda\", \"Obi-Wan Kenobi\",\n  \"Rey\", \n  \"Mace Windu\")\n\nsith = c(\"Palpatine\",\n \"Darth Maul\",\n  \"Dooku\",\n   \"Darth Vader\")\n\nhero_villains <- filter(starwars, name %in% jedi |\n name %in% sith)  \n \nmutate(hero_villains,\n  what_are_they = case_when(\n  name %in% jedi ~ \"Hero\",\n  name %in% sith ~ \"Evil Dooer\")) \n\n\n\n# A tibble: 5 × 2\n  name           what_are_they\n  <chr>          <chr>        \n1 Luke Skywalker Hero         \n2 Darth Vader    Evil Dooer   \n3 Obi-Wan Kenobi Hero         \n4 Yoda           Hero         \n5 Palpatine      Evil Dooer"
+  },
+  {
+    "objectID": "slides/data-cleaning.html#mutate-3",
+    "href": "slides/data-cleaning.html#mutate-3",
+    "title": "Data Cleaning in R",
+    "section": "Mutate()",
+    "text": "Mutate()\n\nMutate is order aware so you don’t have to use a new mutate for each new variable you want to create\n\n\n\n\n  mutate(penguins, long_bill = bill_length_mm * 2,\n         long_bill_logical =\n           ifelse(long_bill >= 100\n                  & long_bill <= 119.20,\n                  \"Long\",\n                  \"Short\")) \n\n\n\n\n\n\n \n  \n    bill_length_mm \n    long_bill \n    long_bill_logical \n    species \n  \n \n\n  \n    46.1 \n    92.2 \n    Short \n    NA \n  \n  \n    50 \n    100 \n    Long \n    NA \n  \n  \n    48.7 \n    97.4 \n    Short \n    NA \n  \n  \n    50 \n    100 \n    Long \n    NA \n  \n  \n    47.6 \n    95.2 \n    Short \n    NA \n  \n  \n    46.5 \n    93 \n    Short \n    NA \n  \n  \n    ... \n    ... \n    ... \n    ..."
+  },
+  {
+    "objectID": "slides/data-cleaning.html#your-turn-1",
+    "href": "slides/data-cleaning.html#your-turn-1",
+    "title": "Data Cleaning in R",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nWrite code to\nAdd a column in your dataset that is TRUE if a penguin is an Adelie penguin\nAdd a column in the starwars dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if the character is not from there\nAdd a column in your dataset for logged body_mass_g (hint: use log())\n\n\n\n\n−+\n03:00"
+  },
+  {
     "objectID": "slides/data-cleaning.html#data-cleaning",
     "href": "slides/data-cleaning.html#data-cleaning",
     "title": "Data Cleaning in R",
@@ -1692,41 +1727,6 @@
     "title": "Data Cleaning in R",
     "section": "Base R Pipe",
     "text": "Base R Pipe\n\nThe pipe caught on and the team behind R added a native pipe |>\n\nthis is just | followed by >\n\nIf you are have a version of R that is 4.2.0>= it should come with the native pipe\nThe base versus magrittr pipe differ slightly and it is worth knowing some of the differences\nThe base R pipe is pretty flexible and supports some cool computer sciency stuff for more check out this page\n\nI tend to use the base R pipe\nThe differences between the two pipes are outlined in this post\n\n\n\nIf you are on a mac the keyboard shortcut is command shift m"
-  },
-  {
-    "objectID": "slides/data-cleaning.html#mutate-2",
-    "href": "slides/data-cleaning.html#mutate-2",
-    "title": "Data Cleaning in R",
-    "section": "Mutate",
-    "text": "Mutate\n\n\n\npenguins |> \n filter(!is.na(bill_length_mm)) |> \n select(species, bill_length_mm) |> \n mutate(log_bill_length = round(log(bill_length_mm)\n        , digits = 2))\n\n\n\n\n\n\n \n  \n    species \n    bill_length_mm \n    log_bill_length \n  \n \n\n  \n    Adelie \n    39.1 \n    3.67 \n  \n  \n    Adelie \n    39.5 \n    3.68 \n  \n  \n    Adelie \n    40.3 \n    3.7 \n  \n  \n    Adelie \n    36.7 \n    3.6 \n  \n  \n    Adelie \n    39.3 \n    3.67 \n  \n  \n    Adelie \n    38.9 \n    3.66 \n  \n  \n    ... \n    ... \n    ..."
-  },
-  {
-    "objectID": "slides/data-cleaning.html#logical-tests",
-    "href": "slides/data-cleaning.html#logical-tests",
-    "title": "Data Cleaning in R",
-    "section": "Logical Tests",
-    "text": "Logical Tests\n\nThere are various ways to do this in mutate but they all follow the same logic\n\n\n\n\nifelse(test,\n       Value_if_True,\n       Value_if_False)\n\n\n\nTest is a logical test sex == \"female\", species == \"Wookie\", etc\nValue_if_True what does it do if the test returns true\nValue_if_FALSE what does it do if the test returns false"
-  },
-  {
-    "objectID": "slides/data-cleaning.html#mutate-3",
-    "href": "slides/data-cleaning.html#mutate-3",
-    "title": "Data Cleaning in R",
-    "section": "Mutate",
-    "text": "Mutate\n\n\nRegular ifelse\n\npenguins |>\nmutate(big_penguin = ifelse(\n  body_mass_g >= 4750,\n \"Dats a big penguin\",\n  \"SMOL penguin\")) |>\nselect(body_mass_g, big_penguin) |>\n head(6)\n\n# A tibble: 6 × 2\n  body_mass_g big_penguin \n        <int> <chr>       \n1        3750 SMOL penguin\n2        3800 SMOL penguin\n3        3250 SMOL penguin\n4          NA <NA>        \n5        3450 SMOL penguin\n6        3650 SMOL penguin\n\n\n\nFancy ifelse\n\njedi = c(\"Luke Skywalker\",\n \"Yoda\", \"Obi-Wan Kenobi\",\n  \"Rey\", \n  \"Mace Windu\")\n\nsith = c(\"Palpatine\",\n \"Darth Maul\",\n  \"Dooku\",\n   \"Darth Vader\")\n\nstarwars |>\nfilter(name %in% jedi |\n name %in% sith) |>\nmutate(what_are_they = case_when(\n  name %in% jedi ~ \"Hero\",\n  name %in% sith ~ \"Evil Dooer\")) |>\n      select(name, what_are_they) |>\n      head(5)\n\n# A tibble: 5 × 2\n  name           what_are_they\n  <chr>          <chr>        \n1 Luke Skywalker Hero         \n2 Darth Vader    Evil Dooer   \n3 Obi-Wan Kenobi Hero         \n4 Yoda           Hero         \n5 Palpatine      Evil Dooer"
-  },
-  {
-    "objectID": "slides/data-cleaning.html#mutate-4",
-    "href": "slides/data-cleaning.html#mutate-4",
-    "title": "Data Cleaning in R",
-    "section": "Mutate()",
-    "text": "Mutate()\n\nMutate is order aware so you don’t have to use a new mutate for each new variable you want to create\n\n\n\n\n penguins |> \n  filter(!is.na(bill_length_mm) & species == \"Gentoo\") |> \n  mutate(long_bill = bill_length_mm * 2,\n         long_bill_logical =\n           ifelse(long_bill >= 100\n                  & long_bill <= 119.20,\n                  \"Long\",\n                  \"Short\")) |> \n  select(species, bill_length_mm, long_bill, long_bill_logical)\n\n\n\n\n\n\n \n  \n    bill_length_mm \n    long_bill \n    long_bill_logical \n    species \n  \n \n\n  \n    46.1 \n    92.2 \n    Short \n    NA \n  \n  \n    50 \n    100 \n    Long \n    NA \n  \n  \n    48.7 \n    97.4 \n    Short \n    NA \n  \n  \n    50 \n    100 \n    Long \n    NA \n  \n  \n    47.6 \n    95.2 \n    Short \n    NA \n  \n  \n    46.5 \n    93 \n    Short \n    NA \n  \n  \n    ... \n    ... \n    ... \n    ..."
-  },
-  {
-    "objectID": "slides/data-cleaning.html#your-turn-1",
-    "href": "slides/data-cleaning.html#your-turn-1",
-    "title": "Data Cleaning in R",
-    "section": "Your Turn",
-    "text": "Your Turn\n\nWrite code to\nAdd a column in your dataset that is TRUE if a penguin is an Adelie penguin\nAdd a column in the starwars dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if the character is not from there/\nAdd a column in your dataset for logged body_mass_g (hint: use log())\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "slides/data-cleaning.html#group_by",
