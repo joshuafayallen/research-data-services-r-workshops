@@ -86,6 +86,7 @@ tidyverse::tidyverse_packages()
 ::: {.notes}
 These are the packages that are considered a part of the tidyerse. These offer a whole host of awesome capabilities. These all work off of the same philosophy so once you get the hang of one the rest will make more sense.
 
+
  
 :::
 
@@ -138,7 +139,7 @@ readr: reads in data however if you get data in some non-standard format than yo
 
 </center>
 
-## The Big 5 Dplyr verbs
+## 
 
 <table>
   <tr>
@@ -459,7 +460,7 @@ In this case nothing in our data is named Nabo with one o so it is just returnin
 
 - Return a data dataset that only has data for the `Dream` island 
 
--   Using either the `starwars` or penguins data use `%in%` to get a set of homeworlds or islands
+-   Using either the `starwars` or `penguins` data use `%in%` to get a set of homeworlds or islands
 
 -   Subset the penguin data where body mass is less than `4202` and not on the Dream Island.
 
@@ -545,7 +546,7 @@ select(.data = penguins, species)
 ### Mutate 
 
 ```{r echo = TRUE}
-mutate(.data = penguins, bill_length_mm = bill_length_mm^2)
+mutate(.data = penguins, bill_length_mm_sq = bill_length_mm^2)
 ```
 
 
