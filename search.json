@@ -1684,14 +1684,14 @@
     "href": "slides/data-cleaning.html#your-turn-1",
     "title": "Data Cleaning in R",
     "section": "Your Turn",
-    "text": "Your Turn\n\nWrite code to\nAdd a column in your dataset that is TRUE if a penguin is an Adelie penguin\nAdd a column in the starwars dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if the character is not from there\nAdd a column in your dataset for logged body_mass_g (hint: use log())\n\n\n\n\n−+\n03:00"
+    "text": "Your Turn\n\nWrite code to\nAdd a column in your dataset that is TRUE if a penguin is an Adelie penguin\nAdd a column in the starwars dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if the character is not from there\nAdd a column in your dataset that squares the body mass (hint: use ^)\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "slides/data-cleaning.html#data-cleaning",
     "href": "slides/data-cleaning.html#data-cleaning",
     "title": "Data Cleaning in R",
     "section": "Data Cleaning",
-    "text": "Data Cleaning\n\n\nThis is something that will occupy the vast majority of your time\nIt requires lots of intermediary steps\n\nreplacing missing values\nsubsetting data\ncreating new variables\n\nIf things start going wrong it may be hard for you to read huge nested function calls\nEnter dplyr and the pipe"
+    "text": "Data Cleaning\n\n\nOften requires lots of intermediary steps\n\nreplacing missing values\nsubsetting data\ncreating new variables\n\nWe would ideally like to do this without assigning a new object each time\nIf things start going it may be difficult to spot where it went wrong\nEnter dplyr and the pipe"
   },
   {
     "objectID": "slides/data-cleaning.html#remember-how-a-dplyr-verb-works",
@@ -1719,7 +1719,7 @@
     "href": "slides/data-cleaning.html#magrittr-piping",
     "title": "Data Cleaning in R",
     "section": "Magrittr Piping",
-    "text": "Magrittr Piping\n\nThe tidyverse has its own pipe %>% and used to be the only game in town.\n\n%>% is just % followed by > followed by %\n\nYou can see the advantages of the pipe when we need to do multiple things to a dataset\n\n\n\n\n## These do the same thing\nsummarise(group_by(filter(penguins,sex == \"female\"),\n species), mean(body_mass_g, na.rm = TRUE))\n\n# A tibble: 3 × 2\n  species   `mean(body_mass_g, na.rm = TRUE)`\n  <fct>                                 <dbl>\n1 Adelie                                3369.\n2 Chinstrap                             3527.\n3 Gentoo                                4680.\n\n\n\n\n\n# these do the same thing\npenguins %>%  \nfilter(sex == \"female\") %>% \ngroup_by(species) %>% \nsummarise(mean(body_mass_g, na.rm = TRUE))\n\n# A tibble: 3 × 2\n  species   `mean(body_mass_g, na.rm = TRUE)`\n  <fct>                                 <dbl>\n1 Adelie                                3369.\n2 Chinstrap                             3527.\n3 Gentoo                                4680.\n\n\n\n\n\n\n\nThis example an adaptation provided by Grant McDermot"
+    "text": "Magrittr Piping\n\nThe tidyverse has its own pipe %>% and used to be the only game in town.\n\n%>% is just % followed by > followed by %\n\nYou can see the advantages of the pipe when we need to do multiple things to a dataset\n\n\n\n\n## These do the same thing\n filter(mutate(penguins,\n  female = ifelse(sex == \"female\",\n    TRUE, FALSE)),\n     species == \"Adelie\")\n\n\n\n\n# these do the same thing\npenguins %>%  \nfilter(species == \"Adelie\") %>% \nmutate(female = ifelse(sex == \"female\", TRUE, FALSE))\n\n\n\n\n\n\nThis example an adaptation provided by Grant McDermot"
   },
   {
     "objectID": "slides/data-cleaning.html#magrittr-pipingcont",
