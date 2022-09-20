@@ -1248,9 +1248,8 @@ unite(name, c("forename", "surname"), sep = " ")
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 
-  select(starwars, name, -eye_color,
-   ends_with("color") 
-    homeworld)
+  select(starwars, name,
+   ends_with("color"),  -eye_color)
 
 ```
 :::
@@ -1259,10 +1258,9 @@ unite(name, c("forename", "surname"), sep = " ")
 ```{r echo = FALSE}
 
 starwars |> 
-  select(name,  -eye_color, ends_with("color")) |> 
+  select(name,  ends_with("color"), -eye_color) |> 
   head(4) |> 
-  bind_rows(tibble(name = "...", hair_color = "...", skin_color = "...",
-                   eye_color = "...", homeworld = "...")) |> 
+  bind_rows(tibble(name = "...", hair_color = "...", skin_color = "...")) |> 
   knitr::kable(format = "html")
 
 
