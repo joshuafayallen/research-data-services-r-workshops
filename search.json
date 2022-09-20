@@ -1579,7 +1579,7 @@
     "href": "slides/data-cleaning.html#what-is-tidy-data",
     "title": "Data Cleaning in R",
     "section": "What is tidy data?",
-    "text": "What is tidy data?\n\nEvery variable is a column\nEvery row is an observation\nEach type of observational unit forms a table.\nMost of the time this looks like what is known as “long data”\n\n\nThe entire tidyverse paradigm is sort of centered around this idea and how to make manipulating data a lot less painful."
+    "text": "What is tidy data?\n\nEvery variable is a column\nEvery row is an observation\nEach type of observational unit forms a table.\nMost of the time this looks like what is known as “long data”\n\n\nThe entire tidyverse paradigm is sort of centered around this idea and how to make manipulating data a lot less painful. We will cover this towards the end but heuristically the idea of the tidyverse is centered around this paradimgm"
   },
   {
     "objectID": "slides/data-cleaning.html#the-tidyversepros",
@@ -1593,7 +1593,7 @@
     "href": "slides/data-cleaning.html#section",
     "title": "Data Cleaning in R",
     "section": "",
-    "text": "tidyverse::tidyverse_packages()\n\n [1] \"broom\"         \"cli\"           \"crayon\"        \"dbplyr\"       \n [5] \"dplyr\"         \"dtplyr\"        \"forcats\"       \"ggplot2\"      \n [9] \"googledrive\"   \"googlesheets4\" \"haven\"         \"hms\"          \n[13] \"httr\"          \"jsonlite\"      \"lubridate\"     \"magrittr\"     \n[17] \"modelr\"        \"pillar\"        \"purrr\"         \"readr\"        \n[21] \"readxl\"        \"reprex\"        \"rlang\"         \"rstudioapi\"   \n[25] \"rvest\"         \"stringr\"       \"tibble\"        \"tidyr\"        \n[29] \"xml2\"          \"tidyverse\"    \n\n\n\nThese are the packages that are considered a part of the tidyerse. The ones that are loaded when you do library tidyverse are ggplot tibble tidyr readr purr dplyr stringr and forcats. Magrittr is also loaded."
+    "text": "tidyverse::tidyverse_packages()\n\n [1] \"broom\"         \"cli\"           \"crayon\"        \"dbplyr\"       \n [5] \"dplyr\"         \"dtplyr\"        \"forcats\"       \"ggplot2\"      \n [9] \"googledrive\"   \"googlesheets4\" \"haven\"         \"hms\"          \n[13] \"httr\"          \"jsonlite\"      \"lubridate\"     \"magrittr\"     \n[17] \"modelr\"        \"pillar\"        \"purrr\"         \"readr\"        \n[21] \"readxl\"        \"reprex\"        \"rlang\"         \"rstudioapi\"   \n[25] \"rvest\"         \"stringr\"       \"tibble\"        \"tidyr\"        \n[29] \"xml2\"          \"tidyverse\"    \n\n\n\nThese are the packages that are considered a part of the tidyerse. These offer a whole host of awesome capabilities. These all work off of the same philosophy so once you get the hang of one the rest will make more sense."
   },
   {
     "objectID": "slides/data-cleaning.html#what-is-loaded",
@@ -1607,14 +1607,14 @@
     "href": "slides/data-cleaning.html#namespace-conflicts",
     "title": "Data Cleaning in R",
     "section": "Namespace Conflicts",
-    "text": "Namespace Conflicts\n\nSince R is open source you can name your functions just about anything\n\nthis results in lots of packages having similarly named functions\n\nDplyr is just warning us that if we use filter or lag it will use dplyr’s version of the function\nWhenever R runs into a namespace conflict it will default to the last package that was loaded\nIt is generally best practice to load the tidyverse last\nYou can also use packagename::function you want to use to get around it.\n\nThis is called a namespace call\nexplicitly tells R which function you are using"
+    "text": "Namespace Conflicts\n\nSince R is open source you can name your functions just about anything\n\nthis results in lots of packages having similarly named functions\n\nDplyr is just warning us that if we use filter or lag it will use dplyr’s version of the function\nWhenever R runs into a namespace conflict it will default to the last package that was loaded\nThat is why it is generally best practice to load the tidyverse last\nYou can also use packagename::function you want to use to get around it.\n\nThis is called a namespace call\nexplicitly tells R which function you are using"
   },
   {
     "objectID": "slides/data-cleaning.html#the-big-5-dplyr-verbs",
     "href": "slides/data-cleaning.html#the-big-5-dplyr-verbs",
     "title": "Data Cleaning in R",
     "section": "The Big 5 Dplyr verbs",
-    "text": "The Big 5 Dplyr verbs\n\n\n\n\nExtract rows with filter()\n\n\n\n\n\n\n\nExtract columns with select()\n\n\n\n\n\n\n\nArrange/sort rows with arrange()\n\n\n\n\n\n\n\nMake new columns with mutate()\n\n\n\n\n\n\n\nMake group summaries withgroup_by() %>% summarize()\n\n\n\n\n\n\n\n\nDplyr tries to be really human readable so we refer to each function as verbs. I will"
+    "text": "The Big 5 Dplyr verbs\n\n\n\n\nExtract rows with filter()\n\n\n\n\n\n\n\nExtract columns with select()\n\n\n\n\n\n\n\nArrange/sort rows with arrange()\n\n\n\n\n\n\n\nMake new columns with mutate()\n\n\n\n\n\n\n\nMake group summaries withgroup_by() %>% summarize()\n\n\n\n\n\n\n\n\nDplyr tries to be really human readable so we refer to each function as verbs. walk through table\nnote we will talk about the %>% for now do not worry about it"
   },
   {
     "objectID": "slides/data-cleaning.html#how-a-dplyr-verb-works",
@@ -1631,13 +1631,6 @@
     "text": "Select()\n\n\n\n select(.data = penguins, species)\n\n\n\n\n\n\n \n  \n    species \n  \n \n\n  \n    Adelie \n  \n  \n    Adelie \n  \n  \n    Adelie \n  \n  \n    Adelie \n  \n  \n    Adelie \n  \n  \n    Adelie \n  \n  \n    ... \n  \n\n\n\n\n\n\n\n\n\n\nYou can give select a range of columns with firstcolumn:thirdcolumn or omit stuff using -columnwedontwant\n\n\n\n\nI will only partially cover select because it is a pretty intuitive verb. Just give it the name of our columns. But see that the first argument we feed our verb is data and in this case the thing that verb does is just select the colunn name we want.\nThroughout the presentation you can copy and paste the code and run it yourself. You are probably going to get some different stuff than me. Thats because behind the scene you will see lots and lots of select calls just make sure everything fits on the screen! If you want to recreate the output your self all you would do is feed it the column names on the screen!"
   },
   {
-    "objectID": "slides/data-cleaning.html#what-kind-of-tests-can-i-do",
-    "href": "slides/data-cleaning.html#what-kind-of-tests-can-i-do",
-    "title": "Data Cleaning in R",
-    "section": "What Kind of Tests Can I Do?",
-    "text": "What Kind of Tests Can I Do?\n\n\n\n\n\n\n\n\n\nTest\nMeaning\nTest\nMeaning\n\n\n\n\nx < y\nLess than\nx %in% y\nIn (group membership)\n\n\nx > y\nGreater than\nis.na(x)\nIs missing\n\n\n==\nEqual to\n!is.na(x)\nIs not missing\n\n\nx <= y\nLess than or equal to\n\n\n\n\nx >= y\nGreater than or equal to\n\n\n\n\nx != y\nNot equal to"
-  },
-  {
     "objectID": "slides/data-cleaning.html#filter-1",
     "href": "slides/data-cleaning.html#filter-1",
     "title": "Data Cleaning in R",
@@ -1645,11 +1638,25 @@
     "text": "filter()\n\n\n\n  filter(.data = penguins,\n         species == \"Adelie\",\n         body_mass_g < 6200,\n         bill_length_mm < 59.6)\n\n\n\n\n\n\n \n  \n    species \n    body_mass_g \n    bill_length_mm \n  \n \n\n  \n    Adelie \n    3750 \n    39.1 \n  \n  \n    Adelie \n    3800 \n    39.5 \n  \n  \n    Adelie \n    3250 \n    40.3 \n  \n  \n    Adelie \n    3450 \n    36.7 \n  \n  \n    Adelie \n    3650 \n    39.3 \n  \n  \n    Adelie \n    3625 \n    38.9 \n  \n  \n    … \n    … \n    … \n  \n\n\n\n\n\n\n\n\nThe basics of filter are that you need to feed it a set of tests. Most often what you use filter for is to subset data based on a series of tests that make sense for your data. In this case I just took the quantiles for both variables. You can string together a set of tests in filter.\nNotice that we can pass different operations with a comma. We could also plausibly use our & to only return a dataset as long as we have data that meets those tests"
   },
   {
+    "objectID": "slides/data-cleaning.html#what-kind-of-tests-can-i-do",
+    "href": "slides/data-cleaning.html#what-kind-of-tests-can-i-do",
+    "title": "Data Cleaning in R",
+    "section": "What Kind of Tests Can I Do?",
+    "text": "What Kind of Tests Can I Do?\n\n\n\n\n\n\n\n\n\nTest\nMeaning\nTest\nMeaning\n\n\n\n\nx < y\nLess than\nx %in% y\nIn (group membership)\n\n\nx > y\nGreater than\nis.na(x)\nIs missing\n\n\n==\nEqual to\n!is.na(x)\nIs not missing\n\n\nx <= y\nLess than or equal to\n\n\n\n\nx >= y\nGreater than or equal to\n\n\n\n\nx != y\nNot equal to"
+  },
+  {
+    "objectID": "slides/data-cleaning.html#the-default",
+    "href": "slides/data-cleaning.html#the-default",
+    "title": "Data Cleaning in R",
+    "section": "The Default",
+    "text": "The Default\n\n\n\nfilter(starwars, homeworld == \"Naboo\",\n                 homeworld == \"Coruscant\")\n\n\n\n\n\n\n \n  \n    name \n    height \n    homeworld"
+  },
+  {
     "objectID": "slides/data-cleaning.html#chaining-together-multiple-things",
     "href": "slides/data-cleaning.html#chaining-together-multiple-things",
     "title": "Data Cleaning in R",
     "section": "Chaining together multiple things",
-    "text": "Chaining together multiple things\n\nTo get a subset of homeworld we chain together multiple | together\n\n\n\n\nfilter(starwars, homeworld == \"Naboo\" |\n                 homeworld == \"Coruscant\" |\n                 homeworld == \"Tatooine\")\n\n\n\n\n\n\n \n  \n    name \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    Tatooine \n  \n  \n    C-3PO \n    Tatooine \n  \n  \n    R2-D2 \n    Naboo \n  \n  \n    Darth Vader \n    Tatooine \n  \n  \n    Owen Lars \n    Tatooine \n  \n  \n    Beru Whitesun lars \n    Tatooine \n  \n  \n    ... \n    ..."
+    "text": "Chaining together multiple things\n\nTo get a subset of homeworld we chain together multiple | tests together\n\n\n\n\nfilter(starwars, homeworld == \"Naboo\" |\n                 homeworld == \"Coruscant\" |\n                 homeworld == \"Tatooine\")\n\n\n\n\n\n\n \n  \n    name \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    Tatooine \n  \n  \n    C-3PO \n    Tatooine \n  \n  \n    R2-D2 \n    Naboo \n  \n  \n    Darth Vader \n    Tatooine \n  \n  \n    Owen Lars \n    Tatooine \n  \n  \n    Beru Whitesun lars \n    Tatooine \n  \n  \n    ... \n    ... \n  \n\n\n\n\n\n\n\n\nIn this case we are just using lots of or tests to achieve what we want this is because filter defaults to using &"
   },
   {
     "objectID": "slides/data-cleaning.html#filter-2",
