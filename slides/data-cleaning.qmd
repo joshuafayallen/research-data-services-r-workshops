@@ -630,8 +630,8 @@ You can put just about anything in this true false column generally thought true
          long_bill_logical =
            ifelse(long_bill >= 100
                   & long_bill <= 119.20,
-                  "Long",
-                  "Short")) 
+                  TRUE,
+                  FALSE)) 
 
 ```
 :::
@@ -641,7 +641,7 @@ You can put just about anything in this true false column generally thought true
  penguins |> 
   filter(!is.na(bill_length_mm) & species == "Gentoo") |> 
   mutate(long_bill = bill_length_mm * 2,
-         long_bill_logical = ifelse(long_bill >= 100 & long_bill <= 119.20, "Long", "Short"),
+         long_bill_logical = ifelse(long_bill >= 100 & long_bill <= 119.20, TRUE, FALSE),
          bill_length_mm = as.character(bill_length_mm),
          long_bill = as.character(long_bill),
          long_bill_logical = as.character(long_bill_logical)) |> 
