@@ -13,3 +13,5 @@ dplyr
 stringr
 forcats
 lubridate
+MetBrewer
+colorspace

@@ -73,6 +73,10 @@ penguins = read_csv("data/penguins.csv")
 Like families, tidy datasets are all alike but every messy dataset is messy in its own way. `r tufte::quote_footer("Hadley Wickham")`
 :::
 
+:::{.notes}
+Unless we are truly lucky and the data gods bless us with the perfect dataset that fits our needs we will need to do things to our data to make it suitable for our use. We often need to generate treatment indicators, produce subsets of our data add data from another dataset. Each dataset is unique which prompted this famous quote from the creator of the tidyverse.
+:::
+
 ## What is tidy data?
 
 -   Every variable is a column
@@ -84,7 +88,7 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 -   Most of the time this looks like what is known as "long data"
 
 :::{.notes}
-The entire tidyverse paradigm is sort of centered around this idea and how to make manipulating data a lot less painful. 
+The entire tidyverse paradigm is sort of centered around this idea and how to make manipulating data a lot less painful. We will cover this towards the end but heuristically the idea of the tidyverse is centered around this paradimgm
 
 :::
 
@@ -126,7 +130,7 @@ tidyverse::tidyverse_packages()
 ```
 
 ::: {.notes}
-These are the packages that are considered a part of the tidyerse. The ones that are loaded when you do library tidyverse are ggplot tibble tidyr readr purr dplyr stringr and forcats. Magrittr is also loaded.
+These are the packages that are considered a part of the tidyerse. These offer a whole host of awesome capabilities. These all work off of the same philosophy so once you get the hang of one the rest will make more sense.
 
  
 :::
@@ -165,7 +169,7 @@ readr: reads in data however if you get data in some non-standard format than yo
 
 -   Whenever `R` runs into a namespace conflict it will default to the last package that was loaded
 
--   It is generally best practice to load the `tidyverse` last
+-   That is why it is generally best practice to load the `tidyverse` last
 
 -   You can also use `packagename::function you want to use` to get around it.
 
@@ -206,7 +210,9 @@ readr: reads in data however if you get data in some non-standard format than yo
 </table>
 
 :::{.notes}
-Dplyr tries to be really human readable so we refer to each function as verbs. I will
+Dplyr tries to be really human readable so we refer to each function as verbs. walk through table 
+
+note we will talk about the %>% for now do not worry about it 
 
 
 :::
@@ -281,23 +287,6 @@ Throughout the presentation you can copy and paste the code and run it yourself.
 
 Subsetting by Rows
 
-## What Kind of Tests Can I Do?
-
-+----------+--------------------------+-------------+-----------------------+
-| Test     | Meaning                  | Test        | Meaning               |
-+==========+==========================+=============+=======================+
-| `x < y`  | Less than                | `x %in% y`  | In (group membership) |
-+----------+--------------------------+-------------+-----------------------+
-| `x > y`  | Greater than             | `is.na(x)`  | Is missing            |
-+----------+--------------------------+-------------+-----------------------+
-| `==`     | Equal to                 | `!is.na(x)` | Is not missing        |
-+----------+--------------------------+-------------+-----------------------+
-| `x <= y` | Less than or equal to    |             |                       |
-+----------+--------------------------+-------------+-----------------------+
-| `x >= y` | Greater than or equal to |             |                       |
-+----------+--------------------------+-------------+-----------------------+
-| `x != y` | Not equal to             |             |                       |
-+----------+--------------------------+-------------+-----------------------+
 
 ## filter()
 
@@ -340,9 +329,57 @@ Notice that we can pass different operations with a comma. We could also plausib
 
 :::
 
+## What Kind of Tests Can I Do?
+
++----------+--------------------------+-------------+-----------------------+
+| Test     | Meaning                  | Test        | Meaning               |
++==========+==========================+=============+=======================+
+| `x < y`  | Less than                | `x %in% y`  | In (group membership) |
++----------+--------------------------+-------------+-----------------------+
+| `x > y`  | Greater than             | `is.na(x)`  | Is missing            |
++----------+--------------------------+-------------+-----------------------+
+| `==`     | Equal to                 | `!is.na(x)` | Is not missing        |
++----------+--------------------------+-------------+-----------------------+
+| `x <= y` | Less than or equal to    |             |                       |
++----------+--------------------------+-------------+-----------------------+
+| `x >= y` | Greater than or equal to |             |                       |
++----------+--------------------------+-------------+-----------------------+
+| `x != y` | Not equal to             |             |                       |
++----------+--------------------------+-------------+-----------------------+
+
+
+## The Default
+
+
+:::columns
+::: column 
+
+
+```{r eval = FALSE, echo = TRUE}
+filter(starwars, homeworld == "Naboo",
+                 homeworld == "Coruscant")
+```
+
+:::
+:::column
+
+```{r}
+filter(starwars, homeworld == "Naboo",
+                 homeworld == "Coruscant") |>
+                 select(name, height, homeworld)|>
+                 knitr::kable(format = "html")
+```
+
+:::
+:::
+
+
+
+
+
 ## Chaining together multiple things 
 
-- To get a subset of homeworld we chain together multiple `|`
+- To get a subset of homeworld we chain together multiple `|` tests
 together
 
 :::columns
@@ -369,6 +406,15 @@ filter(starwars, homeworld == "Naboo" |
 
 :::
 :::
+
+:::{.notes}
+In this case we are just using lots of or tests to achieve what we want this is because filter defaults to using &
+
+:::
+
+
+
+
 
 
 ## filter() {.scrollable}
