@@ -582,15 +582,14 @@ ifelse(test,
 ::::{.columns}
 :::{.column width="45%"}
 
-### Regular ifelse
 
 ```{r eval = FALSE, echo = TRUE}
 #| code-line-numbers: "|2|3|4"
 mutate(penguins,
   big_penguin = ifelse(
   body_mass_g >= 4750,
-   "Dats a big penguin",
-   "SMOL penguin"))
+   "TRUE",
+   "FALSE"))
 ```
 
 
