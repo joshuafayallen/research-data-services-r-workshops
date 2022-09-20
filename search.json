@@ -1824,7 +1824,7 @@
     "href": "slides/data-cleaning.html#reshaphing-data",
     "title": "Data Cleaning in R",
     "section": "Reshaphing Data",
-    "text": "Reshaphing Data"
+    "text": "Reshaphing Data\n\n\nEach variable must have its own column.\nEach observation must have its own row.\nEach value must have its own cell."
   },
   {
     "objectID": "slides/data-cleaning.html#what-does-this-look-like-in-practice",
