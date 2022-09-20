@@ -652,6 +652,20 @@ mutate(what_are_they = case_when(
 :::
 :::
 
+## Your Turn  {background-color="`r clrs_lt[3]`"}
+
+- Write code to 
+
+- Add a column in your dataset that is TRUE if a penguin is an Adelie penguin
+
+- Add a column in the `starwars` dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if the character is not from there
+
+- Add a column in your dataset for logged body_mass_g (hint: use `log()`)
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 3, sound = TRUE)
+```
+
 
 # Doing More Than One Thing at a Time {background-color="`r clrs[3]`" .white}
 
@@ -821,19 +835,6 @@ If you are on a mac the keyboard shortcut is command shift m
 
 
 
-## Your Turn  {background-color="`r clrs_lt[3]`"}
-
-- Write code to 
-
-- Add a column in your dataset that is TRUE if a penguin is an Adelie penguin
-
-- Add a column in the `starwars` dataset that says Naboo or Tatooine, and Not Naboo or Tatooine if the character is not from there/
-
-- Add a column in your dataset for logged body_mass_g (hint: use `log()`)
-
-```{r echo=FALSE}
-countdown::countdown(minutes = 3, sound = TRUE)
-```
 
 # Group_by() and Summarize() {background-color="`r clrs[3]`" .white}
 
