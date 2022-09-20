@@ -607,7 +607,9 @@ mutate(big_penguin = ifelse(
  "TRUE",
   "FALSE")) |>
 select(body_mass_g, big_penguin) |>
- head(6)
+ mutate(across(c(body_mass_g, big_penguin), ~as.character(.))) |>
+ head(5) |>
+ knitr::kable(format = "html")
 ```
 
 :::
