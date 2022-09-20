@@ -1103,7 +1103,7 @@
     "href": "slides/data-cleaning-data-table.html#creating-new-variables",
     "title": "Data Cleaning in R",
     "section": "Creating New Variables",
-    "text": "Creating New Variables\nOne Cool thing about data.table is that you do not need to reassign the object once you modify it\nThis creates a new variable\n\npenguins_dt[, body_mass_g_sq := body_mass_g^2]\n\nThis will just square body_mass_g in place\n\n\n\nYou will not see these changes unless you ask to show you\n\nstarwars_dt[,mass := mass^2][]\n\n\n\n             name height mass hair_color  skin_color eye_color birth_year  sex\n1: Luke Skywalker    172 5929      blond        fair      blue         19 male\n2:          C-3PO    167 5625       <NA>        gold    yellow        112 none\n3:          R2-D2     96 1024       <NA> white, blue       red         33 none\n      gender homeworld species\n1: masculine  Tatooine   Human\n2: masculine  Tatooine   Droid\n3: masculine     Naboo   Droid\n                                                                                                                   films\n1:                           The Empire Strikes Back,Revenge of the Sith,Return of the Jedi,A New Hope,The Force Awakens\n2:     The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi,A New Hope\n3: The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi,A New Hope,...\n                            vehicles               starships\n1: Snowspeeder,Imperial Speeder Bike X-wing,Imperial shuttle\n2:                                                          \n3:"
+    "text": "Creating New Variables\nOne Cool thing about data.table is that you do not need to reassign the object once you modify it\nThis creates a new variable\n\npenguins_dt[, body_mass_g_sq := body_mass_g^2]\n\nThis will just square body_mass_g in place\n\n\n\nYou will not see these changes unless you ask data.table to show you with an additional set of []\n\nstarwars_dt[,mass := mass^2][]\n\n\n\n             name height mass hair_color  skin_color eye_color birth_year  sex\n1: Luke Skywalker    172 5929      blond        fair      blue         19 male\n2:          C-3PO    167 5625       <NA>        gold    yellow        112 none\n3:          R2-D2     96 1024       <NA> white, blue       red         33 none\n      gender homeworld species\n1: masculine  Tatooine   Human\n2: masculine  Tatooine   Droid\n3: masculine     Naboo   Droid\n                                                                                                                   films\n1:                           The Empire Strikes Back,Revenge of the Sith,Return of the Jedi,A New Hope,The Force Awakens\n2:     The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi,A New Hope\n3: The Empire Strikes Back,Attack of the Clones,The Phantom Menace,Revenge of the Sith,Return of the Jedi,A New Hope,...\n                            vehicles               starships\n1: Snowspeeder,Imperial Speeder Bike X-wing,Imperial shuttle\n2:                                                          \n3:"
   },
   {
     "objectID": "slides/data-cleaning-data-table.html#multiple-operations",
@@ -1117,7 +1117,7 @@
     "href": "slides/data-cleaning-data-table.html#multiple-operations-1",
     "title": "Data Cleaning in R",
     "section": "Multiple operations",
-    "text": "Multiple operations\n\nGood news. We can! But there are some caveats\nWe can do this by chaining [] together\nOr using the magrittr pipe\nWe cannot do this by doing lots of stuff in our J column"
+    "text": "Multiple operations\n\n\nGood news. We can! But there are some caveats\nWe can do this by chaining [] together\nOr using the magrittr pipe\nWe cannot do this by doing lots of stuff in our J column"
   },
   {
     "objectID": "slides/data-cleaning-data-table.html#multiple-operations-with",
@@ -2874,7 +2874,7 @@
     "href": "weeks/week-2.html#slides",
     "title": "Week 2",
     "section": "Slides",
-    "text": "Slides\n🖥️ Data Cleaning in R"
+    "text": "Slides\n🖥️ Data Cleaning in R With The Tidyverse\n🖥️ Data Cleaning in R With data.table"
   },
   {
     "objectID": "weeks/week-2.html#practice",

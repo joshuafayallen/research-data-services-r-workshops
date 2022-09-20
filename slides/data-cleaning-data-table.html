@@ -1272,7 +1272,7 @@ to error in future.</code></pre>
 <div class="cell">
 
 </div>
-<p>You will not see these changes unless you ask to show you</p>
+<p>You will not see these changes unless you ask data.table to show you with an additional set of <code>[]</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>starwars_dt[,mass <span class="sc">:</span><span class="er">=</span> mass<span class="sc">^</span><span class="dv">2</span>][]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1325,12 +1325,14 @@ to error in future.</code></pre>
 </section>
 <section id="multiple-operations-1" class="slide level2">
 <h2>Multiple operations</h2>
+<div>
 <ul>
-<li><p>Good news. We can! <span class="fragment">But there are some caveats</span></p></li>
-<li><p>We can do this by chaining [] together</p></li>
-<li><p>Or using the magrittr pipe</p></li>
-<li><p>We cannot do this by doing lots of stuff in our J column</p></li>
+<li class="fragment"><p>Good news. We can! <span class="fragment">But there are some caveats</span></p></li>
+<li class="fragment"><p>We can do this by chaining [] together</p></li>
+<li class="fragment"><p>Or using the magrittr pipe</p></li>
+<li class="fragment"><p>We cannot do this by doing lots of stuff in our J column</p></li>
 </ul>
+</div>
 </section>
 <section id="multiple-operations-with" class="slide level2">
 <h2>Multiple Operations with <code>[]</code></h2>
