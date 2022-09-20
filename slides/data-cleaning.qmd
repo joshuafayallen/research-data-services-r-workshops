@@ -575,8 +575,8 @@ Rather than starting with nested parenthesis we will start with piping. because 
 ::: {.column width="45%"}
 ```{r  echo = TRUE}
 ## These do the same thing
-summarise(group_by(filter(penguins,species == "Adelie"),
- island), mean(body_mass_g, na.rm = TRUE))
+summarise(group_by(filter(penguins,sex == "female"),
+ species), mean(body_mass_g, na.rm = TRUE))
 
 
 ```
@@ -587,8 +587,8 @@ summarise(group_by(filter(penguins,species == "Adelie"),
 #| code-line-numbers: "|2|3|4|5"
 # these do the same thing
 penguins %>%  
-filter(species == "Adelie") %>% 
-group_by(island) %>% 
+filter(sex == "female") %>% 
+group_by(species) %>% 
 summarise(mean(body_mass_g, na.rm = TRUE))
 ```
 :::
