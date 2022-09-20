@@ -1747,14 +1747,14 @@
     "href": "slides/data-cleaning.html#section-1",
     "title": "Data Cleaning in R",
     "section": "",
-    "text": "penguins |> \n  group_by(species) |> \n  summarize(total_penguins = n())\n\n\n\n\n\n \n  \n    species \n    total_penguins \n  \n \n\n  \n    Adelie \n    152 \n  \n  \n    Chinstrap \n    68 \n  \n  \n    Gentoo \n    124"
+    "text": "penguins |> \n  group_by(species) |> \n  summarize(n())\n\n\n\n\n\n \n  \n    species \n    n() \n  \n \n\n  \n    Adelie \n    152 \n  \n  \n    Chinstrap \n    68 \n  \n  \n    Gentoo \n    124"
   },
   {
     "objectID": "slides/data-cleaning.html#section-2",
     "href": "slides/data-cleaning.html#section-2",
     "title": "Data Cleaning in R",
     "section": "",
-    "text": "penguins |> \n  group_by(species) |> \n  summarise(mean_bill_length = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n \n  \n    species \n    mean_bill_length \n  \n \n\n  \n    Adelie \n    38.7913907284768 \n  \n  \n    Chinstrap \n    48.8338235294118 \n  \n  \n    Gentoo \n    47.5048780487805"
+    "text": "penguins |> \n  group_by(species) |> \n  summarise(n(),\n        mean_bill_length = mean(bill_length_mm,\n                             na.rm = TRUE))\n\n\n\n\n\n\n \n  \n    species \n    mean_bill_length \n    n() \n  \n \n\n  \n    Adelie \n    38.79 \n    152 \n  \n  \n    Chinstrap \n    48.83 \n    68 \n  \n  \n    Gentoo \n    47.5 \n    124 \n  \n\n\n\n\n\n\n\n\nAs with other dplyr stuff we can chain together multiple operations with a comma. So instead of doing multiple one of these we can just add them all in one summarise call. Thankfully we can also give our variables more informative names kind of like how we use mutate."
   },
   {
     "objectID": "slides/data-cleaning.html#your-turn-2",
@@ -1873,7 +1873,7 @@
     "href": "slides/data-cleaning.html#filter-with-regular-expressions",
     "title": "Data Cleaning in R",
     "section": "filter() with regular expressions",
-    "text": "filter() with regular expressions\n\nregular expressions also work and can be pretty handy.\n\n\n\n\n# base R regex\nfilter(starwars, grepl(\"Skywalker\", name)|  # base r version\n           grepl(\"Palp\", name) |\n           grepl(\"Obi\", name))\n# tidyverse regex\nfilter(starwars, str_detect(name, \"Skywalker\") | \n         str_detect(name, \"Palp\") |\n        str_detect(name, \"Obi\"))\n\n\n\n\n\n\n \n  \n    name \n    height \n    mass \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    172 \n    77 \n    Tatooine \n  \n  \n    Obi-Wan Kenobi \n    182 \n    77 \n    Stewjon \n  \n  \n    Anakin Skywalker \n    188 \n    84 \n    Tatooine \n  \n  \n    Palpatine \n    170 \n    75 \n    Naboo \n  \n  \n    Shmi Skywalker \n    163 \n    NA \n    Tatooine \n  \n  \n    ... \n    ... \n    ... \n    ... \n  \n\n\n\n\n\n\n\n\nI will say that regular expressions are notoriously difficult to work with. I choose the simplest one to use. Here we are feeding filter a really simple regular expression"
+    "text": "filter() with regular expressions\n\nregular expressions also work and can be pretty handy.\n\n\n\n\n# base R regex\nfilter(starwars, grepl(\"Sky\", name)|  # base r version\n           grepl(\"Palp\", name) |\n           grepl(\"Obi\", name))\n# tidyverse regex\nfilter(starwars, str_detect(name, \"Sky\") | \n         str_detect(name, \"Palp\") |\n        str_detect(name, \"Obi\"))\n\n\n\n\n\n\n \n  \n    name \n    height \n    mass \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    172 \n    77 \n    Tatooine \n  \n  \n    Obi-Wan Kenobi \n    182 \n    77 \n    Stewjon \n  \n  \n    Anakin Skywalker \n    188 \n    84 \n    Tatooine \n  \n  \n    Palpatine \n    170 \n    75 \n    Naboo \n  \n  \n    Shmi Skywalker \n    163 \n    NA \n    Tatooine \n  \n  \n    ... \n    ... \n    ... \n    ... \n  \n\n\n\n\n\n\n\n\nI will say that regular expressions are notoriously difficult to work with. I choose the simplest one to use. Here we are feeding filter a really simple regular expression"
   },
   {
     "objectID": "slides/data-cleaning.html#mutate-6",

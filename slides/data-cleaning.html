@@ -1123,7 +1123,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_8f820a7a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_556d68fc" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1446,7 +1446,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_c72246e9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_493540bd" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1730,7 +1730,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">summarize</span>(<span class="at">total_penguins =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">summarize</span>(<span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1739,7 +1739,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
  <thead>
   <tr>
    <th style="text-align:left;"> species </th>
-   <th style="text-align:left;"> total_penguins </th>
+   <th style="text-align:left;"> n() </th>
   </tr>
  </thead>
 <tbody>
@@ -1768,7 +1768,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>(),</span>
+<span id="cb33-4"><a href="#cb33-4"></a>        <span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm,</span>
+<span id="cb33-5"><a href="#cb33-5"></a>                             <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -1779,20 +1781,24 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
   <tr>
    <th style="text-align:left;"> species </th>
    <th style="text-align:left;"> mean_bill_length </th>
+   <th style="text-align:left;"> n() </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> Adelie </td>
-   <td style="text-align:left;"> 38.7913907284768 </td>
+   <td style="text-align:left;"> 38.79 </td>
+   <td style="text-align:left;"> 152 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Chinstrap </td>
-   <td style="text-align:left;"> 48.8338235294118 </td>
+   <td style="text-align:left;"> 48.83 </td>
+   <td style="text-align:left;"> 68 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Gentoo </td>
-   <td style="text-align:left;"> 47.5048780487805 </td>
+   <td style="text-align:left;"> 47.5 </td>
+   <td style="text-align:left;"> 124 </td>
   </tr>
 </tbody>
 </table>
@@ -1801,6 +1807,19 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>As with other dplyr stuff we can chain together multiple operations with a comma. So instead of doing multiple one of these we can just add them all in one summarise call. Thankfully we can also give our variables more informative names kind of like how we use mutate.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="your-turn-2" class="slide level2" data-background-color="#FFECE9">
 <h2>Your Turn</h2>
@@ -1814,7 +1833,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_dd5d66f2" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_84aa3d05" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -3088,11 +3107,11 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="column">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="co"># base R regex</span></span>
-<span id="cb49-2"><a href="#cb49-2"></a><span class="fu">filter</span>(starwars, <span class="fu">grepl</span>(<span class="st">"Skywalker"</span>, name)<span class="sc">|</span>  <span class="co"># base r version</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="fu">filter</span>(starwars, <span class="fu">grepl</span>(<span class="st">"Sky"</span>, name)<span class="sc">|</span>  <span class="co"># base r version</span></span>
 <span id="cb49-3"><a href="#cb49-3"></a>           <span class="fu">grepl</span>(<span class="st">"Palp"</span>, name) <span class="sc">|</span></span>
 <span id="cb49-4"><a href="#cb49-4"></a>           <span class="fu">grepl</span>(<span class="st">"Obi"</span>, name))</span>
 <span id="cb49-5"><a href="#cb49-5"></a><span class="co"># tidyverse regex</span></span>
-<span id="cb49-6"><a href="#cb49-6"></a><span class="fu">filter</span>(starwars, <span class="fu">str_detect</span>(name, <span class="st">"Skywalker"</span>) <span class="sc">|</span> </span>
+<span id="cb49-6"><a href="#cb49-6"></a><span class="fu">filter</span>(starwars, <span class="fu">str_detect</span>(name, <span class="st">"Sky"</span>) <span class="sc">|</span> </span>
 <span id="cb49-7"><a href="#cb49-7"></a>         <span class="fu">str_detect</span>(name, <span class="st">"Palp"</span>) <span class="sc">|</span></span>
 <span id="cb49-8"><a href="#cb49-8"></a>        <span class="fu">str_detect</span>(name, <span class="st">"Obi"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
