@@ -1820,11 +1820,11 @@
     "text": "Renaming Columns\n\nRenaming stuff in dplyr is easy\nwe use the same syntax as dplyr::rename()\nrename(newvarname = oldvarname)\n\n\nnational_data |> \n  left_join(national_libraries, by = c(\"state\" = \"statename\", \"year\"))\n\n\n\n\n\n \n  \n    state \n    year \n    unemployment \n    inflation \n    population \n    libraries \n    schools \n  \n \n\n  \n    GA \n    2018 \n    5.0 \n    2.0 \n    100 \n    NA \n    NA \n  \n  \n    GA \n    2019 \n    5.3 \n    1.8 \n    200 \n    NA \n    NA \n  \n  \n    GA \n    2020 \n    5.2 \n    2.5 \n    300 \n    NA \n    NA \n  \n  \n    NC \n    2018 \n    6.1 \n    1.8 \n    350 \n    200 \n    610 \n  \n  \n    NC \n    2019 \n    5.9 \n    1.6 \n    375 \n    210 \n    590"
   },
   {
-    "objectID": "slides/data-cleaning.html#reshaphing-data",
-    "href": "slides/data-cleaning.html#reshaphing-data",
+    "objectID": "slides/data-cleaning.html#reshaping-data",
+    "href": "slides/data-cleaning.html#reshaping-data",
     "title": "Data Cleaning in R",
-    "section": "Reshaphing Data",
-    "text": "Reshaphing Data\n\n\nEach variable must have its own column.\nEach observation must have its own row.\nEach value must have its own cell."
+    "section": "Reshaping Data",
+    "text": "Reshaping Data\n\n\nEach variable must have its own column.\nEach observation must have its own row.\nEach value must have its own cell."
   },
   {
     "objectID": "slides/data-cleaning.html#what-does-this-look-like-in-practice",
