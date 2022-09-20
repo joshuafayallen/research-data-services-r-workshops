@@ -354,7 +354,7 @@ filter(starwars, homeworld == "Naboo" |
                  homeworld == "Coruscant" |
                  homeworld == "Tatooine") |>
                  select(name, homeworld) |>
-                  head(6) |>
+                  head(11) |>
                  bind_rows(tibble(name = "...", homeworld =  "...")) |> 
     knitr::kable(format = "html")
 ```
@@ -393,7 +393,7 @@ set membership works really here too!
 starwars |> 
   select(name, homeworld) |> 
   filter(homeworld %in% c("Naboo", "Tatooine", "Coruscant")) |>
-    head(9) |> 
+    head(11) |> 
     bind_rows(tibble(name = "...", homeworld =  "...")) |> 
     knitr::kable(format = "html")
 ```
