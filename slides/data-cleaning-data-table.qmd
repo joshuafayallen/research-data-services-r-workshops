@@ -387,7 +387,7 @@ This will just square body_mass_g in place
 penguins_dt[, body_mass_g := body_mass_g^2]
 ```
 
-You will not see these changes unless you ask to show you 
+You will not see these changes unless you ask data.table to show you with an additional set of `[]`
 
 
 ```{r eval = FALSE, echo = TRUE}
@@ -417,6 +417,8 @@ mutate(square_mass = body_mass_g^2,
 
 ## Multiple operations 
 
+:::incremental
+
 - Good news. We can! [But there are some caveats]{.fragment}
 
 - We can do this by chaining [] together
@@ -424,6 +426,8 @@ mutate(square_mass = body_mass_g^2,
 - Or using the magrittr pipe
 
 - We cannot do this by doing lots of stuff in our J column
+
+:::
 
 ## Multiple Operations with `[]` 
 

@@ -10,7 +10,9 @@ The recording for this workshop is posted on the [RDS website just click on the 
 
 ## Slides
 
-🖥️ [Data Cleaning in R](/slides/data-cleaning.html)
+🖥️ [Data Cleaning in R With The Tidyverse](/slides/data-cleaning.html)
+
+🖥️ [Data Cleaning in R With data.table](/slides/data-cleaning-data-table.html)
 
 ## Practice
 
