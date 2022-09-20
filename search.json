@@ -1670,7 +1670,7 @@
     "href": "slides/data-cleaning.html#mutate-3",
     "title": "Data Cleaning in R",
     "section": "Mutate",
-    "text": "Mutate\n\n\nRegular ifelse\n\nmutate(penguins,\n  big_penguin = ifelse(\n  body_mass_g >= 4750,\n   \"Dats a big penguin\",\n   \"SMOL penguin\"))\n\n\n\n\n# A tibble: 6 × 2\n  body_mass_g big_penguin\n        <int> <chr>      \n1        3750 FALSE      \n2        3800 FALSE      \n3        3250 FALSE      \n4          NA <NA>       \n5        3450 FALSE      \n6        3650 FALSE      \n\n\n\n\n\nYou can put just about anything in this true false column generally thought true or false or a 1 or a zero are standard. All the stuff that we saw with the filter tests can work in there too! So if you need a variable requires multiple tests than you can do that as well."
+    "text": "Mutate\n\n\nRegular ifelse\n\nmutate(penguins,\n  big_penguin = ifelse(\n  body_mass_g >= 4750,\n   \"Dats a big penguin\",\n   \"SMOL penguin\"))\n\n\n\n\n\n\n \n  \n    body_mass_g \n    big_penguin \n  \n \n\n  \n    3750 \n    FALSE \n  \n  \n    3800 \n    FALSE \n  \n  \n    3250 \n    FALSE \n  \n  \n    NA \n    NA \n  \n  \n    3450 \n    FALSE \n  \n\n\n\n\n\n\n\n\nYou can put just about anything in this true false column generally thought true or false or a 1 or a zero are standard. All the stuff that we saw with the filter tests can work in there too! So if you need a variable requires multiple tests than you can do that as well."
   },
   {
     "objectID": "slides/data-cleaning.html#mutate-4",

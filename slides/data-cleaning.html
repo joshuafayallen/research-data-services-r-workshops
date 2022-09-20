@@ -1123,7 +1123,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_12477b92" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_51831a88" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1307,16 +1307,39 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 </div><div class="column" style="width:45%;">
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  body_mass_g big_penguin
-        &lt;int&gt; &lt;chr&gt;      
-1        3750 FALSE      
-2        3800 FALSE      
-3        3250 FALSE      
-4          NA &lt;NA&gt;       
-5        3450 FALSE      
-6        3650 FALSE      </code></pre>
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> body_mass_g </th>
+   <th style="text-align:left;"> big_penguin </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 3750 </td>
+   <td style="text-align:left;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 3800 </td>
+   <td style="text-align:left;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 3250 </td>
+   <td style="text-align:left;"> FALSE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 3450 </td>
+   <td style="text-align:left;"> FALSE </td>
+  </tr>
+</tbody>
+</table>
+
 </div>
 </div>
 </div>
@@ -1343,12 +1366,12 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>  <span class="fu">mutate</span>(penguins, <span class="at">long_bill =</span> bill_length_mm <span class="sc">*</span> <span class="dv">2</span>,</span>
-<span id="cb20-2"><a href="#cb20-2"></a>         <span class="at">long_bill_logical =</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>           <span class="fu">ifelse</span>(long_bill <span class="sc">&gt;=</span> <span class="dv">100</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>                  <span class="sc">&amp;</span> long_bill <span class="sc">&lt;=</span> <span class="fl">119.20</span>,</span>
-<span id="cb20-5"><a href="#cb20-5"></a>                  <span class="cn">TRUE</span>,</span>
-<span id="cb20-6"><a href="#cb20-6"></a>                  <span class="cn">FALSE</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>  <span class="fu">mutate</span>(penguins, <span class="at">long_bill =</span> bill_length_mm <span class="sc">*</span> <span class="dv">2</span>,</span>
+<span id="cb19-2"><a href="#cb19-2"></a>         <span class="at">long_bill_logical =</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>           <span class="fu">ifelse</span>(long_bill <span class="sc">&gt;=</span> <span class="dv">100</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>                  <span class="sc">&amp;</span> long_bill <span class="sc">&lt;=</span> <span class="fl">119.20</span>,</span>
+<span id="cb19-5"><a href="#cb19-5"></a>                  <span class="cn">TRUE</span>,</span>
+<span id="cb19-6"><a href="#cb19-6"></a>                  <span class="cn">FALSE</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -1424,7 +1447,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_e19690cc" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_354de149" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1457,7 +1480,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">verb</span>(.data, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">verb</span>(.data, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <ul>
@@ -1479,7 +1502,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">filter</span>(<span class="at">.data =</span> penguins, species <span class="sc">==</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">filter</span>(<span class="at">.data =</span> penguins, species <span class="sc">==</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 124 × 8
    species island bill_length_mm bill_depth_mm flipper_len…¹ body_…² sex    year
@@ -1501,7 +1524,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">select</span>(<span class="at">.data =</span> penguins, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">select</span>(<span class="at">.data =</span> penguins, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 344 × 1
    species
@@ -1522,7 +1545,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 <div id="tabset-1-3">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">mutate</span>(<span class="at">.data =</span> penguins, <span class="at">bill_length_mm_sq =</span> bill_length_mm<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">mutate</span>(<span class="at">.data =</span> penguins, <span class="at">bill_length_mm_sq =</span> bill_length_mm<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 344 × 9
    species island    bill_length_mm bill_d…¹ flipp…² body_…³ sex    year bill_…⁴
@@ -1581,9 +1604,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="(.columns}">
 <div class="column" style="width:45%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="do">## These do the same thing</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(penguins,sex <span class="sc">==</span> <span class="st">"female"</span>),</span>
-<span id="cb28-3"><a href="#cb28-3"></a> species), <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="do">## These do the same thing</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(penguins,sex <span class="sc">==</span> <span class="st">"female"</span>),</span>
+<span id="cb27-3"><a href="#cb27-3"></a> species), <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   species   `mean(body_mass_g, na.rm = TRUE)`
@@ -1596,11 +1619,11 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 <div class="column" style="width:45%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|2|3|4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># these do the same thing</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>penguins <span class="sc">%&gt;%</span>  </span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-5"><a href="#cb30-5"></a><span class="fu">summarise</span>(<span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="|2|3|4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># these do the same thing</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>penguins <span class="sc">%&gt;%</span>  </span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="fu">summarise</span>(<span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   species   `mean(body_mass_g, na.rm = TRUE)`
@@ -1626,12 +1649,12 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <li>When you use the pipe it is easier to think of the pipe as saying <code>and then</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="|1|2|3|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>I <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>    <span class="fu">wake_up</span>(<span class="at">time =</span> <span class="st">"8.00am"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a>    <span class="fu">get_out_of_bed</span>(<span class="at">side =</span> <span class="st">"correct"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb32-4"><a href="#cb32-4"></a>    <span class="fu">get_dressed</span>(<span class="at">pants =</span> <span class="st">"TRUE"</span>, <span class="at">shirt =</span> <span class="st">"TRUE"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-5"><a href="#cb32-5"></a>    <span class="fu">leave_house</span>(<span class="at">car =</span> <span class="cn">TRUE</span>, <span class="at">bike =</span> <span class="cn">FALSE</span>, <span class="at">MARTA =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb32-6"><a href="#cb32-6"></a>    <span class="fu">am_late</span>(<span class="at">traffic =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="|1|2|3|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>I <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>    <span class="fu">wake_up</span>(<span class="at">time =</span> <span class="st">"8.00am"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>    <span class="fu">get_out_of_bed</span>(<span class="at">side =</span> <span class="st">"correct"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>    <span class="fu">get_dressed</span>(<span class="at">pants =</span> <span class="st">"TRUE"</span>, <span class="at">shirt =</span> <span class="st">"TRUE"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-5"><a href="#cb31-5"></a>    <span class="fu">leave_house</span>(<span class="at">car =</span> <span class="cn">TRUE</span>, <span class="at">bike =</span> <span class="cn">FALSE</span>, <span class="at">MARTA =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a>    <span class="fu">am_late</span>(<span class="at">traffic =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <aside class="notes">
@@ -1694,9 +1717,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 8
 # Groups:   species [1]
@@ -1721,9 +1744,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <section id="section-1" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
-<span id="cb35-3"><a href="#cb35-3"></a>  <span class="fu">summarize</span>(<span class="at">total_penguins =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">summarize</span>(<span class="at">total_penguins =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1759,9 +1782,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
-<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb35-3"><a href="#cb35-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -1804,7 +1827,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_8326e9cb" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_8e00f19a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1842,9 +1865,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>data1 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,                      <span class="do">## Create first example data frame</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a>                    <span class="at">X1 =</span> <span class="fu">c</span>(<span class="st">"a1"</span>, <span class="st">"a2"</span>),</span>
-<span id="cb37-3"><a href="#cb37-3"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>data1 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,                      <span class="do">## Create first example data frame</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>                    <span class="at">X1 =</span> <span class="fu">c</span>(<span class="st">"a1"</span>, <span class="st">"a2"</span>),</span>
+<span id="cb36-3"><a href="#cb36-3"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1872,9 +1895,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>data2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>,                      <span class="do">## Create second example data frame</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a>                    <span class="at">X2 =</span> <span class="fu">c</span>(<span class="st">"b1"</span>, <span class="st">"b2"</span>),</span>
-<span id="cb38-3"><a href="#cb38-3"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>data2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>,                      <span class="do">## Create second example data frame</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>                    <span class="at">X2 =</span> <span class="fu">c</span>(<span class="st">"b1"</span>, <span class="st">"b2"</span>),</span>
+<span id="cb37-3"><a href="#cb37-3"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1906,7 +1929,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <section id="left_join" class="slide level2">
 <h2>left_join()</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">left_join</span>(data1, data2, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38" data-code-line-numbers="true"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">left_join</span>(data1, data2, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1944,7 +1967,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>national_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>national_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2030,7 +2053,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>national_libraries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>national_libraries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2092,10 +2115,10 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <section id="joinscont" class="slide level2">
 <h2>Joins(cont)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>national_combined <span class="ot">=</span> <span class="fu">left_join</span>(national_data, national_libraries, </span>
-<span id="cb42-2"><a href="#cb42-2"></a>                                    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>)) </span>
-<span id="cb42-3"><a href="#cb42-3"></a></span>
-<span id="cb42-4"><a href="#cb42-4"></a>national_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>national_combined <span class="ot">=</span> <span class="fu">left_join</span>(national_data, national_libraries, </span>
+<span id="cb41-2"><a href="#cb41-2"></a>                                    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>)) </span>
+<span id="cb41-3"><a href="#cb41-3"></a></span>
+<span id="cb41-4"><a href="#cb41-4"></a>national_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2203,10 +2226,10 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <section id="combined-data" class="slide level2">
 <h2>Combined Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43" data-code-line-numbers="|1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>national_combined <span class="ot">=</span> national_data <span class="sc">|&gt;</span> </span>
-<span id="cb43-2"><a href="#cb43-2"></a>  <span class="fu">left_join</span>(national_libraries, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>))</span>
-<span id="cb43-3"><a href="#cb43-3"></a></span>
-<span id="cb43-4"><a href="#cb43-4"></a>national_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42" data-code-line-numbers="|1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>national_combined <span class="ot">=</span> national_data <span class="sc">|&gt;</span> </span>
+<span id="cb42-2"><a href="#cb42-2"></a>  <span class="fu">left_join</span>(national_libraries, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>))</span>
+<span id="cb42-3"><a href="#cb42-3"></a></span>
+<span id="cb42-4"><a href="#cb42-4"></a>national_combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2463,8 +2486,8 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <li><p><code>renanme(newvarname = oldvarname)</code></p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>national_data <span class="sc">|&gt;</span> </span>
-<span id="cb44-2"><a href="#cb44-2"></a>  <span class="fu">left_join</span>(national_libraries, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"statename"</span>, <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>national_data <span class="sc">|&gt;</span> </span>
+<span id="cb43-2"><a href="#cb43-2"></a>  <span class="fu">left_join</span>(national_libraries, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"statename"</span>, <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2824,8 +2847,8 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <section id="making-data-longer" class="slide level2">
 <h2>Making Data Longer</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>relig_income <span class="sc">|&gt;</span> </span>
-<span id="cb45-2"><a href="#cb45-2"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>relig_income <span class="sc">|&gt;</span> </span>
+<span id="cb44-2"><a href="#cb44-2"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2902,12 +2925,12 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <li>Enter Separate</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46" data-code-line-numbers="|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">library</span>(lubridate) <span class="co"># for working with dates </span></span>
-<span id="cb46-2"><a href="#cb46-2"></a>athlete_data <span class="ot">=</span>   <span class="fu">tibble</span>(<span class="at">forename =</span> <span class="fu">c</span>(<span class="st">"Lewis"</span>, <span class="st">"Tom"</span>, <span class="st">"Michael"</span>, <span class="st">"Joshua"</span>),</span>
-<span id="cb46-3"><a href="#cb46-3"></a>                      <span class="at">surname =</span> <span class="fu">c</span>(<span class="st">"Hamilton"</span>, <span class="st">"Brady"</span>, <span class="st">"Jordan"</span>, <span class="st">"Allen"</span>),</span>
-<span id="cb46-4"><a href="#cb46-4"></a>                      <span class="at">dob =</span> <span class="fu">ymd</span>(<span class="fu">c</span>(<span class="st">"1985-01-07"</span>, <span class="st">"1977-08-03"</span>,<span class="st">"1963-02-17"</span>, <span class="st">"1996-05-21"</span>)))</span>
-<span id="cb46-5"><a href="#cb46-5"></a>athlete_data <span class="sc">|&gt;</span></span>
-<span id="cb46-6"><a href="#cb46-6"></a><span class="fu">separate</span>(dob, <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45" data-code-line-numbers="|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">library</span>(lubridate) <span class="co"># for working with dates </span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>athlete_data <span class="ot">=</span>   <span class="fu">tibble</span>(<span class="at">forename =</span> <span class="fu">c</span>(<span class="st">"Lewis"</span>, <span class="st">"Tom"</span>, <span class="st">"Michael"</span>, <span class="st">"Joshua"</span>),</span>
+<span id="cb45-3"><a href="#cb45-3"></a>                      <span class="at">surname =</span> <span class="fu">c</span>(<span class="st">"Hamilton"</span>, <span class="st">"Brady"</span>, <span class="st">"Jordan"</span>, <span class="st">"Allen"</span>),</span>
+<span id="cb45-4"><a href="#cb45-4"></a>                      <span class="at">dob =</span> <span class="fu">ymd</span>(<span class="fu">c</span>(<span class="st">"1985-01-07"</span>, <span class="st">"1977-08-03"</span>,<span class="st">"1963-02-17"</span>, <span class="st">"1996-05-21"</span>)))</span>
+<span id="cb45-5"><a href="#cb45-5"></a>athlete_data <span class="sc">|&gt;</span></span>
+<span id="cb45-6"><a href="#cb45-6"></a><span class="fu">separate</span>(dob, <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
   forename surname  year  month day  
@@ -2926,8 +2949,8 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <li>enter unite</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>athlete_data <span class="sc">|&gt;</span></span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="fu">unite</span>(name, <span class="fu">c</span>(<span class="st">"forename"</span>, <span class="st">"surname"</span>), <span class="at">sep =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>athlete_data <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="fu">unite</span>(name, <span class="fu">c</span>(<span class="st">"forename"</span>, <span class="st">"surname"</span>), <span class="at">sep =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   name           dob       
@@ -2956,9 +2979,9 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>  <span class="fu">select</span>(starwars, name, <span class="sc">-</span>eye_color,</span>
-<span id="cb50-2"><a href="#cb50-2"></a>   <span class="fu">ends_with</span>(<span class="st">"color"</span>) </span>
-<span id="cb50-3"><a href="#cb50-3"></a>    homeworld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>  <span class="fu">select</span>(starwars, name, <span class="sc">-</span>eye_color,</span>
+<span id="cb49-2"><a href="#cb49-2"></a>   <span class="fu">ends_with</span>(<span class="st">"color"</span>) </span>
+<span id="cb49-3"><a href="#cb49-3"></a>    homeworld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -3023,8 +3046,8 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb51-2"><a href="#cb51-2"></a><span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"bill"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"bill"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -3074,14 +3097,14 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># base R regex</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="fu">filter</span>(starwars, <span class="fu">grepl</span>(<span class="st">"Skywalker"</span>, name)<span class="sc">|</span>  <span class="co"># base r version</span></span>
-<span id="cb52-3"><a href="#cb52-3"></a>           <span class="fu">grepl</span>(<span class="st">"Palp"</span>, name) <span class="sc">|</span></span>
-<span id="cb52-4"><a href="#cb52-4"></a>           <span class="fu">grepl</span>(<span class="st">"Obi"</span>, name))</span>
-<span id="cb52-5"><a href="#cb52-5"></a><span class="co"># tidyverse regex</span></span>
-<span id="cb52-6"><a href="#cb52-6"></a><span class="fu">filter</span>(starwars, <span class="fu">str_detect</span>(name, <span class="st">"Skywalker"</span>) <span class="sc">|</span> </span>
-<span id="cb52-7"><a href="#cb52-7"></a>         <span class="fu">str_detect</span>(name, <span class="st">"Palp"</span>) <span class="sc">|</span></span>
-<span id="cb52-8"><a href="#cb52-8"></a>        <span class="fu">str_detect</span>(name, <span class="st">"Obi"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="co"># base R regex</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="fu">filter</span>(starwars, <span class="fu">grepl</span>(<span class="st">"Skywalker"</span>, name)<span class="sc">|</span>  <span class="co"># base r version</span></span>
+<span id="cb51-3"><a href="#cb51-3"></a>           <span class="fu">grepl</span>(<span class="st">"Palp"</span>, name) <span class="sc">|</span></span>
+<span id="cb51-4"><a href="#cb51-4"></a>           <span class="fu">grepl</span>(<span class="st">"Obi"</span>, name))</span>
+<span id="cb51-5"><a href="#cb51-5"></a><span class="co"># tidyverse regex</span></span>
+<span id="cb51-6"><a href="#cb51-6"></a><span class="fu">filter</span>(starwars, <span class="fu">str_detect</span>(name, <span class="st">"Skywalker"</span>) <span class="sc">|</span> </span>
+<span id="cb51-7"><a href="#cb51-7"></a>         <span class="fu">str_detect</span>(name, <span class="st">"Palp"</span>) <span class="sc">|</span></span>
+<span id="cb51-8"><a href="#cb51-8"></a>        <span class="fu">str_detect</span>(name, <span class="st">"Obi"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
@@ -3160,11 +3183,11 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="column" style="width:45%;">
 <h3 id="regular-ifelse-1">Regular ifelse</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53" data-code-line-numbers="|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">mutate</span>(penguins,</span>
-<span id="cb53-2"><a href="#cb53-2"></a>  <span class="at">big_penguin =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb53-3"><a href="#cb53-3"></a>  body_mass_g <span class="sc">&gt;=</span> <span class="dv">4750</span>,</span>
-<span id="cb53-4"><a href="#cb53-4"></a>   <span class="st">"Dats a big penguin"</span>,</span>
-<span id="cb53-5"><a href="#cb53-5"></a>   <span class="st">"SMOL penguin"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52" data-code-line-numbers="|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">mutate</span>(penguins,</span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="at">big_penguin =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb52-3"><a href="#cb52-3"></a>  body_mass_g <span class="sc">&gt;=</span> <span class="dv">4750</span>,</span>
+<span id="cb52-4"><a href="#cb52-4"></a>   <span class="st">"Dats a big penguin"</span>,</span>
+<span id="cb52-5"><a href="#cb52-5"></a>   <span class="st">"SMOL penguin"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -3182,23 +3205,23 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </div><div class="column" style="width:45%;">
 <h3 id="fancy-ifelse">Fancy ifelse</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55" data-code-line-numbers="|1|6|14|15|16|17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>jedi <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Luke Skywalker"</span>,</span>
-<span id="cb55-2"><a href="#cb55-2"></a> <span class="st">"Yoda"</span>, <span class="st">"Obi-Wan Kenobi"</span>,</span>
-<span id="cb55-3"><a href="#cb55-3"></a>  <span class="st">"Rey"</span>, </span>
-<span id="cb55-4"><a href="#cb55-4"></a>  <span class="st">"Mace Windu"</span>)</span>
-<span id="cb55-5"><a href="#cb55-5"></a></span>
-<span id="cb55-6"><a href="#cb55-6"></a>sith <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Palpatine"</span>,</span>
-<span id="cb55-7"><a href="#cb55-7"></a> <span class="st">"Darth Maul"</span>,</span>
-<span id="cb55-8"><a href="#cb55-8"></a>  <span class="st">"Dooku"</span>,</span>
-<span id="cb55-9"><a href="#cb55-9"></a>   <span class="st">"Darth Vader"</span>)</span>
-<span id="cb55-10"><a href="#cb55-10"></a></span>
-<span id="cb55-11"><a href="#cb55-11"></a>hero_villains <span class="ot">&lt;-</span> <span class="fu">filter</span>(starwars, name <span class="sc">%in%</span> jedi <span class="sc">|</span></span>
-<span id="cb55-12"><a href="#cb55-12"></a> name <span class="sc">%in%</span> sith)  </span>
-<span id="cb55-13"><a href="#cb55-13"></a> </span>
-<span id="cb55-14"><a href="#cb55-14"></a><span class="fu">mutate</span>(hero_villains,</span>
-<span id="cb55-15"><a href="#cb55-15"></a>  <span class="at">what_are_they =</span> <span class="fu">case_when</span>(</span>
-<span id="cb55-16"><a href="#cb55-16"></a>  name <span class="sc">%in%</span> jedi <span class="sc">~</span> <span class="st">"Hero"</span>,</span>
-<span id="cb55-17"><a href="#cb55-17"></a>  name <span class="sc">%in%</span> sith <span class="sc">~</span> <span class="st">"Evil Dooer"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54" data-code-line-numbers="|1|6|14|15|16|17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>jedi <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Luke Skywalker"</span>,</span>
+<span id="cb54-2"><a href="#cb54-2"></a> <span class="st">"Yoda"</span>, <span class="st">"Obi-Wan Kenobi"</span>,</span>
+<span id="cb54-3"><a href="#cb54-3"></a>  <span class="st">"Rey"</span>, </span>
+<span id="cb54-4"><a href="#cb54-4"></a>  <span class="st">"Mace Windu"</span>)</span>
+<span id="cb54-5"><a href="#cb54-5"></a></span>
+<span id="cb54-6"><a href="#cb54-6"></a>sith <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Palpatine"</span>,</span>
+<span id="cb54-7"><a href="#cb54-7"></a> <span class="st">"Darth Maul"</span>,</span>
+<span id="cb54-8"><a href="#cb54-8"></a>  <span class="st">"Dooku"</span>,</span>
+<span id="cb54-9"><a href="#cb54-9"></a>   <span class="st">"Darth Vader"</span>)</span>
+<span id="cb54-10"><a href="#cb54-10"></a></span>
+<span id="cb54-11"><a href="#cb54-11"></a>hero_villains <span class="ot">&lt;-</span> <span class="fu">filter</span>(starwars, name <span class="sc">%in%</span> jedi <span class="sc">|</span></span>
+<span id="cb54-12"><a href="#cb54-12"></a> name <span class="sc">%in%</span> sith)  </span>
+<span id="cb54-13"><a href="#cb54-13"></a> </span>
+<span id="cb54-14"><a href="#cb54-14"></a><span class="fu">mutate</span>(hero_villains,</span>
+<span id="cb54-15"><a href="#cb54-15"></a>  <span class="at">what_are_they =</span> <span class="fu">case_when</span>(</span>
+<span id="cb54-16"><a href="#cb54-16"></a>  name <span class="sc">%in%</span> jedi <span class="sc">~</span> <span class="st">"Hero"</span>,</span>
+<span id="cb54-17"><a href="#cb54-17"></a>  name <span class="sc">%in%</span> sith <span class="sc">~</span> <span class="st">"Evil Dooer"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -3218,12 +3241,12 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <section id="generating-summary-statistics" class="slide level2">
 <h2>Generating Summary statistics</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57" data-code-line-numbers="|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb57-2"><a href="#cb57-2"></a><span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">|&gt;</span></span>
-<span id="cb57-3"><a href="#cb57-3"></a><span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb57-4"><a href="#cb57-4"></a><span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric),</span>
-<span id="cb57-5"><a href="#cb57-5"></a> <span class="fu">c</span>(<span class="at">Mean =</span> mean, <span class="at">Min =</span> min, <span class="at">Max =</span> max), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb57-6"><a href="#cb57-6"></a>  <span class="at">.names =</span> <span class="st">"{.cols}_{.fn}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56" data-code-line-numbers="|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb56-2"><a href="#cb56-2"></a><span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a href="#cb56-3"></a><span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb56-4"><a href="#cb56-4"></a><span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric),</span>
+<span id="cb56-5"><a href="#cb56-5"></a> <span class="fu">c</span>(<span class="at">Mean =</span> mean, <span class="at">Min =</span> min, <span class="at">Max =</span> max), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb56-6"><a href="#cb56-6"></a>  <span class="at">.names =</span> <span class="st">"{.cols}_{.fn}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 14
   species   bill_lengt…¹ bill_…² bill_…³ bill_…⁴ bill_…⁵ bill_…⁶ flipp…⁷ flipp…⁸
@@ -3242,7 +3265,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <section id="pivoting-with-lots-of-columns" class="slide level2">
 <h2>Pivoting With LOTS of columns</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">data</span>(<span class="st">"billboard"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">data</span>(<span class="st">"billboard"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -6440,15 +6463,15 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <section id="using-your-helpers" class="slide level2">
 <h2>Using Your Helpers</h2>
 <div class="cell" data-hash="data-cleaning_cache/revealjs/unnamed-chunk-79_4e6071be0b99d9111ab46931df2f5a34">
-<div class="sourceCode cell-code" id="cb60" data-code-line-numbers="|3|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>billboard <span class="sc">|&gt;</span> </span>
-<span id="cb60-2"><a href="#cb60-2"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb60-3"><a href="#cb60-3"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), </span>
-<span id="cb60-4"><a href="#cb60-4"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
-<span id="cb60-5"><a href="#cb60-5"></a>    <span class="at">names_prefix =</span> <span class="st">"wk"</span>,</span>
-<span id="cb60-6"><a href="#cb60-6"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
-<span id="cb60-7"><a href="#cb60-7"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb60-8"><a href="#cb60-8"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb60-9"><a href="#cb60-9"></a>  <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59" data-code-line-numbers="|3|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>billboard <span class="sc">|&gt;</span> </span>
+<span id="cb59-2"><a href="#cb59-2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb59-3"><a href="#cb59-3"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), </span>
+<span id="cb59-4"><a href="#cb59-4"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
+<span id="cb59-5"><a href="#cb59-5"></a>    <span class="at">names_prefix =</span> <span class="st">"wk"</span>,</span>
+<span id="cb59-6"><a href="#cb59-6"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
+<span id="cb59-7"><a href="#cb59-7"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb59-8"><a href="#cb59-8"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb59-9"><a href="#cb59-9"></a>  <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
   artist track                   date.entered week   rank
