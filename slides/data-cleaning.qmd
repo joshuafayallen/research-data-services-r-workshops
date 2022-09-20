@@ -377,7 +377,7 @@ filter(starwars, homeworld == "Naboo",
 
 
 
-## Chaining together multiple things 
+## What if We Want Things from the Same Column?
 
 - To get a subset of homeworld we chain together multiple `|` tests
 together
@@ -417,7 +417,7 @@ In this case we are just using lots of or tests to achieve what we want this is 
 
 
 
-## filter() {.scrollable}
+## What if We Want Things from the Same Column? {.scrollable}
 
 set membership works really here too!
 
@@ -496,29 +496,14 @@ In this case nothing in our data is named Nabo with one o so it is just returnin
 
 :::
 
-## filter()
 
-One of the most common uses is to find and remove missing values or not in a list.
-
-```{r eval = FALSE, echo = TRUE }
- 
-  filter(penguins, is.na(sex))
-
-  filter(starwar, is.na(birth_year))
-```
-
-:::{.notes}
-
-Here I am just asking filter to return all the values in the data that are missing. 
-
-:::
 
 
 ## Your Turn {background-color="`r clrs_lt[3]`"}
 
--   Using the sample code from the last slide filter out the NA values. Hint use `!`
+-  Try removing the missing values from `bill_length_mm` **hint**: use `!` and `is.na`.
 
-- Return a data dataset that only has data for `Dream` 
+- Return a data dataset that only has data for the `Dream` island 
 
 -   Using either the `starwars` or penguins data use `%in%` to get a set of homeworlds or islands
 
@@ -553,16 +538,41 @@ countdown::countdown(minutes = 3, sound = TRUE)
 
 - If things start going wrong it may be hard for you to read huge nested function calls
 
-- Enter `dplyr`
-
-- Enter `dplyr` and the pipe
+- Enter `dplyr` [and the pipe]{.fragment}
 
 :::
 
 
 
 
-## A Demonstration {.scrollable}
+## Remember How A Dplyr Verb Works 
+:::columns 
+:::column
+```{r echo = TRUE, eval = FALSE}
+
+verb(.data, ...)
+
+
+```
+
+:::
+
+:::column
+
+- All dplyr stuff works along these lines
+
+- `verb` is one of the Dplyr verbs 
+
+- `.data` is the dataset you want to manipulate
+  - this is true for the rest of the tidyverse 
+
+- `...` is just a set of things that the verb does. 
+
+:::
+:::
+
+
+## Side By Side {.scrollable}
 
 :::{.panel-tabset}
 
@@ -587,16 +597,14 @@ mutate(.data = penguins, bill_length_mm = bill_length_mm^2)
 
 :::
 
-
 ## Piping
 
--   The pipe is wildly convenient and makes your code much easier to debug
+-   A pipe takes whats on the left hand side of the pipe and evaluates it as the *first* argument on the right hand side
 
--   It is a lot more intuitive than huge nested calls not only to read but to write(for me and lots of other people)
-
--   It is how most people do things in the tidyverse
-
-
+- this leverages the common syntax effectively
+  - this is not limited to just dplyr stuff
+  
+- If you look behind the curtain of the workshop slides you will see pipes everywhere! 
 
 ::: {.notes}
 Rather than starting with nested parenthesis we will start with piping. because it affords us a ton of advantages
@@ -606,9 +614,9 @@ Rather than starting with nested parenthesis we will start with piping. because 
 
 -   The tidyverse has its own pipe `%>%` and used to be the only game in town.
     -   `%>%` is just `%` followed by `>` followed by `%`
--   A pipe takes whats on the left hand side of the pipe and evaluates it as the *first* argument on the right hand side
+- You can see the advantages of the pipe when we need to do multiple things to a dataset
 
-::: columns
+:::: (.columns}
 ::: {.column width="45%"}
 ```{r  echo = TRUE}
 ## These do the same thing
@@ -621,14 +629,15 @@ summarise(group_by(filter(penguins,species == "Adelie"),
 
 ::: {.column width="45%"}
 ```{r echo = TRUE}
-#| code-line-numbers: "|1|2|3|4"
+#| code-line-numbers: "|2|3|4|5"
+# these do the same thing
 penguins %>%  
 filter(species == "Adelie") %>% 
 group_by(island) %>% 
 summarise(mean(body_mass_g, na.rm = TRUE))
 ```
 :::
-:::
+::::
 
 ::: callout
 This example an adaptation provided by [Grant McDermot](https://github.com/uo-ec607/lectures)
@@ -636,22 +645,27 @@ This example an adaptation provided by [Grant McDermot](https://github.com/uo-ec
 
 ## Magrittr Piping(cont)
 
--   When you pipe stuff it is easier to think of the pipe as saying **and then**
+-   When you use the pipe it is easier to think of the pipe as saying `and then`
 
--   If we use an example from your morning routine we can start to figure it our
-
-```{=html}
-<!-- -->
-```
-    I %>%
+```{r eval = FALSE, echo = TRUE}
+#| code-line-numbers: "|1|2|3|4|5|6"
+I %>%
     wake_up(time = "8.00am") %>%
     get_out_of_bed(side = "correct") %>%
     get_dressed(pants = "TRUE", shirt = "TRUE") %>% 
     leave_house(car = TRUE, bike = FALSE, MARTA = FALSE) %>%
     am_late(traffic = TRUE)
+```
+
+    
 
 ::: aside
 Example derived from [Andrew Heiss](https://twitter.com/andrewheiss/status/1359583543509348356?lang=en)
+:::
+
+:::{.notes}
+The first thing in our pipe sequence is the object we are manipulating. In this case the object is me 
+
 :::
 
 ## Base R Pipe
@@ -667,6 +681,7 @@ Example derived from [Andrew Heiss](https://twitter.com/andrewheiss/status/13595
 -   The base R pipe is pretty flexible and supports some cool computer sciency stuff for more [check out this page](https://stat.ethz.ch/R-manual/R-devel/library/base/html/pipeOp.html)
 
     -   I tend to use the base R pipe
+    - The differences between the two pipes are [outlined in this post](https://stackoverflow.com/questions/67633022/what-are-the-differences-between-rs-new-native-pipe-and-the-magrittr-pipe)
 
 ::: {.notes}
 If you are on a mac the keyboard shortcut is command shift m
@@ -679,19 +694,16 @@ If you are on a mac the keyboard shortcut is command shift m
 
 ## Mutate
 
--   Mutate creates new columns in your dataset
 
--   You can use logical and boolean operators 
-
-- Here we are just creating an indicator with a logical test
 
 ::: columns
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 penguins |> 
-  filter(!is.na(sex)) |> 
-  select(species, sex) |> 
-  mutate(female = ifelse(sex == "female", TRUE, FALSE))
+ filter(!is.na(bill_length_mm)) |> 
+ select(species, bill_length_mm) |> 
+ mutate(log_bill_length = round(log(bill_length_mm)
+        , digits = 2))
 ```
 :::
 
@@ -699,12 +711,13 @@ penguins |>
 ```{r echo= FALSE}
 
 penguins |> 
-  filter(!is.na(sex)) |> 
-  select(species, sex) |> 
-  mutate(female = ifelse(sex == "female", TRUE, FALSE),
-         female = as.character(female)) |> 
-  head(6) |> 
-  bind_rows(tibble(species = "...", sex =  "...", female = "...")) |> 
+  filter(!is.na(bill_length_mm)) |> 
+  select(species, bill_length_mm) |> 
+  mutate(log_bill_length = round(log(bill_length_mm), digits = 2),
+         log_bill_length = as.character(log_bill_length),
+         bill_length_mm = as.character(bill_length_mm)) |> 
+           head(6) |> 
+  bind_rows(tibble(species = "...", log_bill_length =  "...", bill_length_mm = "...")) |> 
   knitr::kable(format = "html")
 
 
