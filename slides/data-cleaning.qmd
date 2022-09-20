@@ -872,7 +872,7 @@ penguins |>
 
 penguins |> 
   group_by(species) |> 
-  summarize(total_penguins = n())
+  summarize(n())
 
 ```
 
@@ -880,8 +880,8 @@ penguins |>
 
 penguins |> 
   group_by(species) |> 
-  summarize(total_penguins = n()) |> 
-  mutate(total_penguins = as.character(total_penguins)) |> 
+  summarize(n()) |> 
+  mutate(`n()` = as.character(`n()`)) |> 
   knitr::kable(format = "html")
 
 ```
@@ -893,7 +893,9 @@ penguins |>
 ```{r eval= FALSE, echo = TRUE}
 penguins |> 
   group_by(species) |> 
-  summarise(mean_bill_length = mean(bill_length_mm, na.rm = TRUE))
+  summarise(n(),
+        mean_bill_length = mean(bill_length_mm,
+                             na.rm = TRUE))
 ```
 :::
 
@@ -901,14 +903,21 @@ penguins |>
 ```{r echo = FALSE}
 penguins |> 
   group_by(species) |> 
-  summarise(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |> 
-  mutate(mean_bill_length = as.character(mean_bill_length)) |> 
+  summarise(mean_bill_length = round(mean(bill_length_mm, na.rm = TRUE), digits = 2),
+            n()) |> 
+  mutate(mean_bill_length = as.character(mean_bill_length),
+         `n()` = as.character(`n()`)) |> 
   knitr::kable(format = "html")
 
 ```
 :::
 :::
 
+:::{.notes}
+
+As with other dplyr stuff we can chain together multiple operations with a comma. So instead of doing multiple one of these we can just add them all in one summarise call. Thankfully we can also give our variables more informative names kind of like how we use mutate.
+
+:::
 ## Your Turn {background-color="`r clrs_lt[3]`"}
 
 -   Calculate the minimum, maximum, and median `body_mass_g` for each species of penguin
@@ -1299,11 +1308,11 @@ knitr::kable(format = "html")
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 # base R regex
-filter(starwars, grepl("Skywalker", name)|  # base r version
+filter(starwars, grepl("Sky", name)|  # base r version
            grepl("Palp", name) |
            grepl("Obi", name))
 # tidyverse regex
-filter(starwars, str_detect(name, "Skywalker") | 
+filter(starwars, str_detect(name, "Sky") | 
          str_detect(name, "Palp") |
         str_detect(name, "Obi"))
 
@@ -1314,7 +1323,7 @@ filter(starwars, str_detect(name, "Skywalker") |
 ```{r echo = FALSE}
 starwars |> 
   select(name, height, mass, homeworld) |> 
-  filter(grepl("Skywalker", name) | grepl("Palp", name) | grepl("Obi", name)) |> 
+  filter(grepl("Sky", name) | grepl("Palp", name) | grepl("Obi", name)) |> 
   mutate(height = as.character(height),
          mass = as.character(mass)) |> 
   head(6) |> 
