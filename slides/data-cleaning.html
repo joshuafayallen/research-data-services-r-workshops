@@ -1095,7 +1095,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_c77a2e8d" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_222821e3" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1266,15 +1266,15 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="column" style="width:45%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="do">## These do the same thing</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(penguins,species <span class="sc">==</span> <span class="st">"Adelie"</span>),</span>
-<span id="cb22-3"><a href="#cb22-3"></a> island), <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">filter</span>(penguins,sex <span class="sc">==</span> <span class="st">"female"</span>),</span>
+<span id="cb22-3"><a href="#cb22-3"></a> species), <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
-  island    `mean(body_mass_g, na.rm = TRUE)`
+  species   `mean(body_mass_g, na.rm = TRUE)`
   &lt;fct&gt;                                 &lt;dbl&gt;
-1 Biscoe                                3710.
-2 Dream                                 3688.
-3 Torgersen                             3706.</code></pre>
+1 Adelie                                3369.
+2 Chinstrap                             3527.
+3 Gentoo                                4680.</code></pre>
 </div>
 </div>
 </div>
@@ -1282,16 +1282,16 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|2|3|4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># these do the same thing</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a>penguins <span class="sc">%&gt;%</span>  </span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="fu">group_by</span>(island) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
 <span id="cb24-5"><a href="#cb24-5"></a><span class="fu">summarise</span>(<span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
-  island    `mean(body_mass_g, na.rm = TRUE)`
+  species   `mean(body_mass_g, na.rm = TRUE)`
   &lt;fct&gt;                                 &lt;dbl&gt;
-1 Biscoe                                3710.
-2 Dream                                 3688.
-3 Torgersen                             3706.</code></pre>
+1 Adelie                                3369.
+2 Chinstrap                             3527.
+3 Gentoo                                4680.</code></pre>
 </div>
 </div>
 </div>
@@ -1608,7 +1608,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_7b084308" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_9cb2069d" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1740,7 +1740,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_24b7216a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_8ff98126" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
