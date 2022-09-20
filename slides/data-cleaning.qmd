@@ -47,9 +47,7 @@ penguins = read_csv("data/penguins.csv")
 ```
 
 
-##  Where We Are
-
-- In our last workshop we covered 
+##  In our last workshop we covered 
 
 - Assignment
 
@@ -77,52 +75,8 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 Unless we are truly lucky and the data gods bless us with the perfect dataset that fits our needs we will need to do things to our data to make it suitable for our use. We often need to generate treatment indicators, produce subsets of our data add data from another dataset. Each dataset is unique which prompted this famous quote from the creator of the tidyverse.
 :::
 
-## What is tidy data?
 
--   Every variable is a column
-
--   Every row is an observation
-
--   Each type of observational unit forms a table.
-
--   Most of the time this looks like what is known as "long data"
-
-:::{.notes}
-The entire tidyverse paradigm is sort of centered around this idea and how to make manipulating data a lot less painful. We will cover this towards the end but heuristically the idea of the tidyverse is centered around this paradimgm
-
-:::
-
-## The Tidyverse(pros)
-
-:::incremental
-
--   Similar syntax and philosophy which makes it more intuitive to learn
-
--   The core syntax of `dplyr` provides a nice front end for many other big data tools i.e. SQL
-
--   Generally pretty intuitive and easy to figure out what past you has done.
-
--   However:
-
--   do not avoid some base R solutions
-
--   Base R is more stable so it limits the fragility of your code
-
--   A mix of base R and the tidyverse never hurt nobody
-:::
-
-:::{.notes}
-The entire tidyverse paradigm is sort of centered around this idea and how to make manipulating data a lot less painful. 
-
-What this means in practice is that the packages in the tidyverse has a very similar syntax which makes working with each package and function relatively painless
-
-If you are intersted in learning SQL lots of the stuff that we learn today translate nicely over to SQL. So much so that there is a package called dbplyr which will actually translate your dplyr code to sql code!
-
-
-There is a massive debate between tidyverse vs data.table and base r versus the tidyverse. Both sides have their merit but generally the debate gets a bit heated. Each have their place in your workflow! Don't esque one solution for another if it gets the job done right! The tidyverse is great it helped me learn R a lot quicker. But it has its issues and in some cases is not the correct tool for the job. Thats why I included a data.table workshop slide. 
-:::
-
-## 
+## What is in the Tidyverse
 
 ```{r echo = TRUE}
 tidyverse::tidyverse_packages()
