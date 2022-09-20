@@ -1153,7 +1153,7 @@ national_data |>
 
 </center>
 
-## Reshaphing Data
+## Reshaping Data
 
 ![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/tidyr-pivoting.gif)
 
