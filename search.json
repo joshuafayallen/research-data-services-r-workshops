@@ -1656,21 +1656,21 @@
     "href": "slides/data-cleaning.html#mutate-2",
     "title": "Data Cleaning in R",
     "section": "Mutate",
-    "text": "Mutate\n\n\n\nmutate(penguins,\n      bill_stuff = bill_length_mm * bill_depth_mm) \n\n\n\n\n\n\n \n  \n    bill_length_mm \n    bill_depth_mm \n    bill_stuff \n  \n \n\n  \n    39.1 \n    18.7 \n    731.17 \n  \n  \n    39.5 \n    17.4 \n    687.3 \n  \n  \n    40.3 \n    18 \n    725.4 \n  \n  \n    NA \n    NA \n    NA \n  \n  \n    36.7 \n    19.3 \n    708.31 \n  \n  \n    ... \n    ... \n    ..."
+    "text": "Mutate\n\n\n\nmutate(penguins,\n      bill_stuff = bill_length_mm / bill_depth_mm) \n\n\n\n\n\n\n \n  \n    bill_length_mm \n    bill_depth_mm \n    bill_stuff \n  \n \n\n  \n    39.1 \n    18.7 \n    2.09090909090909 \n  \n  \n    39.5 \n    17.4 \n    2.27011494252874 \n  \n  \n    40.3 \n    18 \n    2.23888888888889 \n  \n  \n    NA \n    NA \n    NA \n  \n  \n    36.7 \n    19.3 \n    1.90155440414508 \n  \n  \n    ... \n    ... \n    ... \n  \n\n\n\n\n\n\n\n\nWe can also just take the existing columns and create a variable. So in this case we can just make a column that divides things or multiplies or square roots or whatever to your column to create something that we need!"
   },
   {
     "objectID": "slides/data-cleaning.html#logical-tests",
     "href": "slides/data-cleaning.html#logical-tests",
     "title": "Data Cleaning in R",
     "section": "Logical Tests",
-    "text": "Logical Tests\n\nThere are various ways to do this in mutate but they all follow the same logic\n\n\n\n\nifelse(test,\n       Value_if_True,\n       Value_if_False)\n\n\n\nTest is a logical test sex == \"female\", species == \"Wookie\", etc\nValue_if_True what does it do if the test returns true\nValue_if_FALSE what does it do if the test returns false"
+    "text": "Logical Tests\n\nThere are various ways to do this in mutate but they all follow the same logic\n\n\n\n\nifelse(test,\n       Value_if_True,\n       Value_if_False)\n\n\n\nTest is a logical test species == \"Chinstrap\", species == \"Wookie\", etc\nValue_if_True what does it do if the test returns true\nValue_if_FALSE what does it do if the test returns false"
   },
   {
     "objectID": "slides/data-cleaning.html#mutate-3",
     "href": "slides/data-cleaning.html#mutate-3",
     "title": "Data Cleaning in R",
     "section": "Mutate",
-    "text": "Mutate\n\n\nRegular ifelse\n\nmutate(penguins,\n  big_penguin = ifelse(\n  body_mass_g >= 4750,\n   \"Dats a big penguin\",\n   \"SMOL penguin\"))\n\n\n\n# A tibble: 6 × 2\n  body_mass_g big_penguin \n        <int> <chr>       \n1        3750 SMOL penguin\n2        3800 SMOL penguin\n3        3250 SMOL penguin\n4          NA <NA>        \n5        3450 SMOL penguin\n6        3650 SMOL penguin\n\n\n\nFancy ifelse\n\njedi = c(\"Luke Skywalker\",\n \"Yoda\", \"Obi-Wan Kenobi\",\n  \"Rey\", \n  \"Mace Windu\")\n\nsith = c(\"Palpatine\",\n \"Darth Maul\",\n  \"Dooku\",\n   \"Darth Vader\")\n\nhero_villains <- filter(starwars, name %in% jedi |\n name %in% sith)  \n \nmutate(hero_villains,\n  what_are_they = case_when(\n  name %in% jedi ~ \"Hero\",\n  name %in% sith ~ \"Evil Dooer\")) \n\n\n\n# A tibble: 5 × 2\n  name           what_are_they\n  <chr>          <chr>        \n1 Luke Skywalker Hero         \n2 Darth Vader    Evil Dooer   \n3 Obi-Wan Kenobi Hero         \n4 Yoda           Hero         \n5 Palpatine      Evil Dooer"
+    "text": "Mutate\n\n\nRegular ifelse\n\nmutate(penguins,\n  big_penguin = ifelse(\n  body_mass_g >= 4750,\n   \"Dats a big penguin\",\n   \"SMOL penguin\"))\n\n\n\n\n# A tibble: 6 × 2\n  body_mass_g big_penguin\n        <int> <chr>      \n1        3750 FALSE      \n2        3800 FALSE      \n3        3250 FALSE      \n4          NA <NA>       \n5        3450 FALSE      \n6        3650 FALSE      \n\n\n\n\n\nYou can put just about anything in this true false column generally thought true or false or a 1 or a zero are standard. All the stuff that we saw with the filter tests can work in there too! So if you need a variable requires multiple tests than you can do that as well."
   },
   {
     "objectID": "slides/data-cleaning.html#mutate-4",
@@ -1881,6 +1881,13 @@
     "title": "Data Cleaning in R",
     "section": "filter() with regular expressions",
     "text": "filter() with regular expressions\n\nregular expressions also work and can be pretty handy.\n\n\n\n\n# base R regex\nfilter(starwars, grepl(\"Skywalker\", name)|  # base r version\n           grepl(\"Palp\", name) |\n           grepl(\"Obi\", name))\n# tidyverse regex\nfilter(starwars, str_detect(name, \"Skywalker\") | \n         str_detect(name, \"Palp\") |\n        str_detect(name, \"Obi\"))\n\n\n\n\n\n\n \n  \n    name \n    height \n    mass \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    172 \n    77 \n    Tatooine \n  \n  \n    Obi-Wan Kenobi \n    182 \n    77 \n    Stewjon \n  \n  \n    Anakin Skywalker \n    188 \n    84 \n    Tatooine \n  \n  \n    Palpatine \n    170 \n    75 \n    Naboo \n  \n  \n    Shmi Skywalker \n    163 \n    NA \n    Tatooine \n  \n  \n    ... \n    ... \n    ... \n    ... \n  \n\n\n\n\n\n\n\n\nI will say that regular expressions are notoriously difficult to work with. I choose the simplest one to use. Here we are feeding filter a really simple regular expression"
+  },
+  {
+    "objectID": "slides/data-cleaning.html#mutate-6",
+    "href": "slides/data-cleaning.html#mutate-6",
+    "title": "Data Cleaning in R",
+    "section": "Mutate",
+    "text": "Mutate\n\n\nRegular ifelse\n\nmutate(penguins,\n  big_penguin = ifelse(\n  body_mass_g >= 4750,\n   \"Dats a big penguin\",\n   \"SMOL penguin\"))\n\n\n\n# A tibble: 6 × 2\n  body_mass_g big_penguin \n        <int> <chr>       \n1        3750 SMOL penguin\n2        3800 SMOL penguin\n3        3250 SMOL penguin\n4          NA <NA>        \n5        3450 SMOL penguin\n6        3650 SMOL penguin\n\n\n\nFancy ifelse\n\njedi = c(\"Luke Skywalker\",\n \"Yoda\", \"Obi-Wan Kenobi\",\n  \"Rey\", \n  \"Mace Windu\")\n\nsith = c(\"Palpatine\",\n \"Darth Maul\",\n  \"Dooku\",\n   \"Darth Vader\")\n\nhero_villains <- filter(starwars, name %in% jedi |\n name %in% sith)  \n \nmutate(hero_villains,\n  what_are_they = case_when(\n  name %in% jedi ~ \"Hero\",\n  name %in% sith ~ \"Evil Dooer\")) \n\n\n\n# A tibble: 5 × 2\n  name           what_are_they\n  <chr>          <chr>        \n1 Luke Skywalker Hero         \n2 Darth Vader    Evil Dooer   \n3 Obi-Wan Kenobi Hero         \n4 Yoda           Hero         \n5 Palpatine      Evil Dooer"
   },
   {
     "objectID": "slides/data-cleaning.html#generating-summary-statistics",
