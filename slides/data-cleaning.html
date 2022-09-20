@@ -1123,7 +1123,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_51831a88" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_30640b14" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1297,13 +1297,12 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <h2>Mutate</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
-<h3 id="regular-ifelse">Regular ifelse</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18" data-code-line-numbers="|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">mutate</span>(penguins,</span>
 <span id="cb18-2"><a href="#cb18-2"></a>  <span class="at">big_penguin =</span> <span class="fu">ifelse</span>(</span>
 <span id="cb18-3"><a href="#cb18-3"></a>  body_mass_g <span class="sc">&gt;=</span> <span class="dv">4750</span>,</span>
-<span id="cb18-4"><a href="#cb18-4"></a>   <span class="st">"Dats a big penguin"</span>,</span>
-<span id="cb18-5"><a href="#cb18-5"></a>   <span class="st">"SMOL penguin"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-4"><a href="#cb18-4"></a>   <span class="st">"TRUE"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>   <span class="st">"FALSE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:45%;">
 <div class="cell">
@@ -1447,7 +1446,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_354de149" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_70a562a3" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1827,7 +1826,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_8e00f19a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_42371c78" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -3181,7 +3180,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 <h2>Mutate</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
-<h3 id="regular-ifelse-1">Regular ifelse</h3>
+<h3 id="regular-ifelse">Regular ifelse</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52" data-code-line-numbers="|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">mutate</span>(penguins,</span>
 <span id="cb52-2"><a href="#cb52-2"></a>  <span class="at">big_penguin =</span> <span class="fu">ifelse</span>(</span>
