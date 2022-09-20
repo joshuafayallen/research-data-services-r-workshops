@@ -1157,6 +1157,16 @@ national_data |>
 
 ![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/tidyr-pivoting.gif)
 
+
+:::{.notes}
+Each variable must have its own column.
+
+Each observation must have its own row.
+
+Each value must have its own cell.
+
+:::
+
 ## What does this look like in practice?
 
 ```{r echo=FALSE}
