@@ -22,8 +22,12 @@ The recording for this workshop is posted on the [RDS website just click on the 
 
 [Introduction to the tidyverse + data visualization with ggplot2](https://talks.andrewheiss.com/2021-seacen/) by Andrew Heiss
 
-[Lecture 5: Data cleaning & wrangling:(1) Tidyverse](https://raw.githack.com/uo-ec607/lectures/master/05-tidyverse/05-tidyverse.html#1) by Grant Mcdermot
+[Lecture 5: Data cleaning & wrangling:(1) Tidyverse](https://raw.githack.com/uo-ec607/lectures/master/05-tidyverse/05-tidyverse.html#1) by Grant McDermott
+
+[Lecture 5: Data cleaning & wrangling:(1) data.table](https://raw.githack.com/uo-ec607/lectures/master/05-datatable/05-datatable.html#1) by Grant McDermott
 
 [R for Data Science](https://r4ds.had.co.nz/index.html) by Hadley Wickham & Garrett Grolemund
 
 [Tidyexplain](https://github.com/gadenbuie/tidyexplain#left-join) by Garrick Aden-Buie, Tyler Grant Smith, Lukas Wallrich, and Kelsey Gonzalez
+
+[Rstudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
