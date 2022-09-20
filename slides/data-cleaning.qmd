@@ -915,7 +915,9 @@ penguins |>
 
 -   What happens if you remove `group_by()`?
 
--  Calculate the number of distinct penguin species per island
+- Calculate the number of distinct penguin species per island
+  - hint: type `n_` 
+
 
 
 
@@ -923,9 +925,7 @@ penguins |>
 countdown::countdown(minutes = 3, sound = TRUE)
 ```
 
-## Other useful dplyr stuff
-
-### Mostly joins
+# Other useful dplyr stuff {background-color="`r clrs[3]`" .white}
 
 ## Joins
 
@@ -1130,7 +1130,7 @@ national_libraries |> knitr::kable(format = "html")
 
 - we use the same syntax as `dplyr::rename()`
 
-- `renanme(newvarname = oldvarname)`
+- `rename(newvarname = oldvarname)`
 
 ```{r eval=FALSE, echo = TRUE}
 #| code-line-numbers: "|2"
