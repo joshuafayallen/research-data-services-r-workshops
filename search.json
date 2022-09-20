@@ -1859,7 +1859,7 @@
     "href": "slides/data-cleaning.html#helpful-helpers",
     "title": "Data Cleaning in R",
     "section": "Helpful Helpers",
-    "text": "Helpful Helpers\n\nDplyr comes with really useful functions that help you when there are common patterns in your variable names\nthe syntax usually goes\nselect(contains(\"pattern\"))\nselect(starts_with(\"pattern\"))\nselect(ends_with(\"pattern\"))\n\n\n\n\n  select(starwars, name, -eye_color,\n   ends_with(\"color\") \n    homeworld)\n\n\n\n\n\n\n \n  \n    name \n    hair_color \n    skin_color \n    eye_color \n    homeworld \n  \n \n\n  \n    Luke Skywalker \n    blond \n    fair \n    blue \n    NA \n  \n  \n    C-3PO \n    NA \n    gold \n    yellow \n    NA \n  \n  \n    R2-D2 \n    NA \n    white, blue \n    red \n    NA \n  \n  \n    Darth Vader \n    none \n    white \n    yellow \n    NA \n  \n  \n    ... \n    ... \n    ... \n    ... \n    ..."
+    "text": "Helpful Helpers\n\nDplyr comes with really useful functions that help you when there are common patterns in your variable names\nthe syntax usually goes\nselect(contains(\"pattern\"))\nselect(starts_with(\"pattern\"))\nselect(ends_with(\"pattern\"))\n\n\n\n\n  select(starwars, name,\n   ends_with(\"color\"),  -eye_color)\n\n\n\n\n\n\n \n  \n    name \n    hair_color \n    skin_color \n  \n \n\n  \n    Luke Skywalker \n    blond \n    fair \n  \n  \n    C-3PO \n    NA \n    gold \n  \n  \n    R2-D2 \n    NA \n    white, blue \n  \n  \n    Darth Vader \n    none \n    white \n  \n  \n    ... \n    ... \n    ..."
   },
   {
     "objectID": "slides/data-cleaning.html#another-helper-example",
