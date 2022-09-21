@@ -834,7 +834,7 @@ filter(.data = penguins, species == "Gentoo")
 ### Select 
 
 ```{r echo = TRUE}
-select(.data = penguins, species)
+select(.data = penguins, species:bill_length_mm)
 ```
 
 ### Mutate 
