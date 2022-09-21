@@ -102,6 +102,9 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 
 :::{.notes}
 Unless we are truly lucky and the data gods bless us with the perfect dataset that fits our needs we will need to do things to our data to make it suitable for our use. We often need to generate treatment indicators, produce subsets of our data add data from another dataset. Each dataset is unique which prompted this famous quote from the creator of the tidyverse.
+
+I have a also included another set of slides that cover data.table. Which is a really awesome package. 
+
 :::
 
 
@@ -117,7 +120,7 @@ penguins = read_csv("data/penguins.csv")
 ```
 
 
-## What is in the Tidyverse
+## What is in the Tidyverse?
 
 ```{r echo = TRUE}
 tidyverse::tidyverse_packages()
@@ -127,11 +130,14 @@ tidyverse::tidyverse_packages()
 ::: {.notes}
 These are the packages that are considered a part of the tidyerse. These offer a whole host of awesome capabilities. These all work off of the same philosophy so once you get the hang of one the rest will make more sense.
 
+Some of these are core tidyverse things others you have to load in seperetly like haven lubridate and broom. 
+
+
 
  
 :::
 
-## What is loaded
+## What is loaded with `library(tidyverse)`
 
 ```{r echo = TRUE, message = TRUE, warning = TRUE}
 library(tidyverse)
@@ -143,11 +149,17 @@ library(tidyverse)
 The tidyverse is pretty verbose because it loads a lot of things and in the case of lag and filter actually makes its lag and filter function the one that R uses.
 
 dplyr: is a grammar of data manipulation
+
 tidyr: helps us make data long or short and make stuff. 
+
 forcats: helps us work with factors
+
 stringr: helps us work with strings
+
 purr: is basically just there to help you with iterating operations 
+
 tibble: adds an additional class to R called a tibble that creates a special tibble thing 
+
 readr: reads in data however if you get data in some non-standard format than you need to use haven which will let you read in stata dta files, sas data files and SPSS .sav files.  
 
 
@@ -211,6 +223,19 @@ Dplyr tries to be really human readable so we refer to each function as verbs. w
 note we will talk about the %>% for now do not worry about it 
 
 
+filter() allows you to keep rows based on the values of the columns1. The first argument is the data frame. The second and subsequent arguments are the conditions that must be true to keep the row. 
+
+
+select() allows you to rapidly zoom in on a useful subset using operations based on the names of the variables. select(). Our datasets today are pretty small
+
+
+arrange() changes the order of the rows based on the value of the columns. It takes a data frame and a set of column names (or more complicated expressions) to order by
+
+
+The job of mutate() is to add new columns that are calculated from the existing columns
+
+group_by() doesn’t change the data but, if you look closely at the output, you’ll notice that it’s now “grouped by” month. This means subsequent operations will now work “by month”
+
 :::
 
 ## How A Dplyr Verb Works 
@@ -229,7 +254,7 @@ verb(.data, ...)
 
 - All dplyr stuff works along these lines
 
-- `verb` is one of the Dplyr verbs 
+- `verb` is one of the Dplyr verbs i.e `select`
 
 - `.data` is the dataset you want to manipulate
   - this is true for the rest of the tidyverse 
@@ -272,7 +297,7 @@ You can give select a range of columns with `firstcolumn:thirdcolumn` or omit st
 
 :::{.notes}
 
-I will only partially cover select because it is a pretty intuitive verb. Just give it the name of our columns. But see that the first argument we feed our verb is data and in this case the thing that verb does is just select the colunn name we want. 
+I will only partially cover select because it is a pretty intuitive verb. Just give it the name of our columns. But see that the first argument we feed our verb is data and in this case the thing that verb does is just select the column name we want. 
 
 Throughout the presentation you can copy and paste the code and run it yourself. You are probably going to get some different stuff than me. Thats because behind the scene you will see lots and lots of select calls just make sure everything fits on the screen! If you want to recreate the output your self all you would do is feed it the column names on the screen!
 
@@ -369,11 +394,43 @@ filter(starwars, homeworld == "Naboo",
 :::
 :::
 
+:::{.notes}
+Filter is going to default to an and test. That  is basically what the columns are telling it 
+:::
+
+
+## These Do The Same Thing
+
+:::columns
+:::column
+```{r eval = FALSE, echo = TRUE}
+filter(starwars, homeworld == "Naboo",
+                 mass < 84.5)
+```
+
+```{r eval = FALSE, echo = TRUE}
+filter(starwars, homeworld == "Naboo" &
+                 mass < 84.5)
+```
 
 
 
+:::
+:::column
 
-## What if We Want Things from the Same Column?
+```{r}
+filter(starwars, homeworld == "Naboo" &
+                 mass < 84.5) |>
+                 select(name, mass, homeworld)|>
+                 knitr::kable(format = "html")
+```
+
+:::
+:::
+
+
+
+## Getting Multiple Things From the Same Column
 
 - To get a subset of homeworld we chain together multiple `|` tests
 together
@@ -415,7 +472,8 @@ In this case we are just using lots of or tests to achieve what we want this is 
 
 ## What if We Want Things from the Same Column? {.scrollable}
 
-set membership works really here too!
+- Set membership works really here too! 
+  - And reduces the amount of code you are typing
 
 ::: columns
 ::: column
@@ -434,7 +492,7 @@ set membership works really here too!
 starwars |> 
   select(name, homeworld) |> 
   filter(homeworld %in% c("Naboo", "Tatooine", "Coruscant")) |>
-    head(11) |> 
+    head(10) |> 
     bind_rows(tibble(name = "...", homeworld =  "...")) |> 
     knitr::kable(format = "html")
 ```
@@ -553,7 +611,7 @@ penguins |>
 
 ```{r echo = TRUE, eval = FALSE}
 mutate(penguins,
-      bill_stuff = bill_length_mm / bill_depth_mm) 
+      bill_length_mm = bill_length_mm / bill_depth_mm) 
 ```
 
 :::
@@ -565,11 +623,11 @@ mutate(penguins,
 
 ```{r}
 penguins %>%
-mutate( bill_stuff = bill_length_mm / bill_depth_mm) |>
+mutate( bill_length_mm = bill_length_mm / bill_depth_mm) |>
       mutate(across(contains("bill"), ~as.character(.))) |>
       select(contains("bill")) |>
       head(5) |>
-      bind_rows(tibble(bill_length_mm = "...", bill_depth_mm = "...", bill_stuff = "...")) |>
+      bind_rows(tibble(bill_length_mm = "...", bill_depth_mm = "...")) |>
       knitr::kable(format = "html")
 ```
 
