@@ -114,8 +114,8 @@ I have a also included another set of slides that cover data.table. Which is a r
 
 install.packages("tidyverse")
 library(tidyverse)
-starwars = read_csv("data/starwars.csv")
-penguins = read_csv("data/penguins.csv")
+starwars = read_csv("starwars.csv")
+penguins = read_csv("penguins.csv")
 
 ```
 
