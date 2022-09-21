@@ -1540,11 +1540,25 @@
     "text": "Getting Good at R\n\n\n\nThe only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code\n\n— Hadley Wickham (@hadleywickham) April 17, 2015\n\n\n\n\nyou are going to run into lots of error messages and it is going to be really frustrating. Warning messages and errors are something we all run into. Trust me I have been close to needing a new computer more than few times. Part of getting good at R is just figuring out what the hell"
   },
   {
-    "objectID": "slides/data-cleaning.html#packages-you-will-need",
-    "href": "slides/data-cleaning.html#packages-you-will-need",
+    "objectID": "slides/data-cleaning.html#our-team",
+    "href": "slides/data-cleaning.html#our-team",
     "title": "Data Cleaning in R",
-    "section": "Packages You Will Need",
-    "text": "Packages You Will Need\n\ninstall.packages(\"tidyverse\")\nlibrary(tidyverse)\nstarwars = read_csv(\"data/starwars.csv\")\npenguins = read_csv(\"data/penguins.csv\")"
+    "section": "Our Team",
+    "text": "Our Team\n\n\nAlso, we do not have the capacity to provide pre-scheduled frequent software tutoring that is divorced from a specific assignment or software troubleshooting task at hand – in other words, we are also not generalized software tutors.\nOur one-on-one software assistance is available to help you troubleshoot specific tasks or assignments. If you are seeking generalized software help, we direct you to our live workshops and our recorded workshops to gain the foundational skills for using various analytical software. Then, when or if the time comes that you have targeted software questions or specific issues to tackle related to a course assignment or research project, please feel free to contact us for one-on-one support."
+  },
+  {
+    "objectID": "slides/data-cleaning.html#get-ready-badges",
+    "href": "slides/data-cleaning.html#get-ready-badges",
+    "title": "Data Cleaning in R",
+    "section": "Get Ready Badges",
+    "text": "Get Ready Badges\n\n\nhttps://research.library.gsu.edu/dataservices/data-ready\nThese are awesome to share on social media i.e. linkedin which is a good signal to potential employers that you know this stuff"
+  },
+  {
+    "objectID": "slides/data-cleaning.html#how-to-get-the-badges",
+    "href": "slides/data-cleaning.html#how-to-get-the-badges",
+    "title": "Data Cleaning in R",
+    "section": "How To Get the Badges",
+    "text": "How To Get the Badges"
   },
   {
     "objectID": "slides/data-cleaning.html#in-our-last-workshop-we-covered",
@@ -1552,6 +1566,13 @@
     "title": "Data Cleaning in R",
     "section": "In our last workshop we covered",
     "text": "In our last workshop we covered\n\nAssignment\nIndexing\nGenerating Descriptive Statistics\nSome data cleaning(subsetting, generating new variables)\nA Bit of Graphing\n\nToday we will cover:\n\nThe Tidyverse (minus ggplot2)"
+  },
+  {
+    "objectID": "slides/data-cleaning.html#packages-you-will-need",
+    "href": "slides/data-cleaning.html#packages-you-will-need",
+    "title": "Data Cleaning in R",
+    "section": "Packages You Will Need",
+    "text": "Packages You Will Need\n\ninstall.packages(\"tidyverse\")\nlibrary(tidyverse)\nstarwars = read_csv(\"data/starwars.csv\")\npenguins = read_csv(\"data/penguins.csv\")"
   },
   {
     "objectID": "slides/data-cleaning.html#what-is-in-the-tidyverse",
@@ -1670,7 +1691,7 @@
     "href": "slides/data-cleaning.html#mutate-3",
     "title": "Data Cleaning in R",
     "section": "Mutate",
-    "text": "Mutate\n\n\n\nmutate(penguins,\n  big_penguin = ifelse(\n  body_mass_g >= 4750,\n   \"TRUE\",\n   \"FALSE\"))\n\n\n\n\n\n\n \n  \n    body_mass_g \n    big_penguin \n  \n \n\n  \n    3750 \n    FALSE \n  \n  \n    3800 \n    FALSE \n  \n  \n    3250 \n    FALSE \n  \n  \n    NA \n    NA \n  \n  \n    3450 \n    FALSE \n  \n\n\n\n\n\n\n\n\nYou can put just about anything in this true false column generally thought true or false or a 1 or a zero are standard. All the stuff that we saw with the filter tests can work in there too! So if you need a variable requires multiple tests than you can do that as well."
+    "text": "Mutate\n\n\n\nmutate(penguins,\n  big_penguin = ifelse(\n  body_mass_g >= 4750,\n   \"TRUE\",\n   \"FALSE\"))\n\n\n\n\n\n\n \n  \n    body_mass_g \n    big_penguin \n  \n \n\n  \n    3750 \n    FALSE \n  \n  \n    3800 \n    FALSE \n  \n  \n    3250 \n    FALSE \n  \n  \n    NA \n    NA \n  \n  \n    3450 \n    FALSE \n  \n\n\n\n\n\n\n\n\nYou can put just about anything in this true false column generally thought true or false or a 1 or a zero are standard. All the stuff that we saw with the filter tests can work in there too! So if you need a variable requires multiple tests than you can do that as well.\nYou can also other functions in there as well"
   },
   {
     "objectID": "slides/data-cleaning.html#mutate-4",
