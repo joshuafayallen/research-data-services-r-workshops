@@ -137,7 +137,7 @@ Some of these are core tidyverse things others you have to load in seperetly lik
  
 :::
 
-## What is loaded with `library(tidyverse)`
+## What is loaded?
 
 ```{r echo = TRUE, message = TRUE, warning = TRUE}
 library(tidyverse)
@@ -177,12 +177,16 @@ readr: reads in data however if you get data in some non-standard format than yo
 
 -   Whenever `R` runs into a namespace conflict it will default to the last package that was loaded
 
--   That is why it is generally best practice to load the `tidyverse` last
+-   That is why it is generally best practice to load the most important package last
 
 -   You can also use `packagename::function you want to use` to get around it.
-
     -   This is called a namespace call
     -   explicitly tells R which function you are using
+
+:::{.notes}
+The actual dependency count for the tidyverse it self is pretty large so this is something you might run into and is kind of controversial. This is something to be aware of because dependencies can really be annoying to deal with. 
+
+:::
 
 # Dplyr {background-color="`r clrs[3]`" .white}
 
@@ -470,10 +474,9 @@ In this case we are just using lots of or tests to achieve what we want this is 
 
 
 
-## What if We Want Things from the Same Column? {.scrollable}
+## What if We Want Things from the Same Column? 
 
 - Set membership works really here too! 
-  - And reduces the amount of code you are typing
 
 ::: columns
 ::: column
@@ -492,7 +495,6 @@ In this case we are just using lots of or tests to achieve what we want this is 
 starwars |> 
   select(name, homeworld) |> 
   filter(homeworld %in% c("Naboo", "Tatooine", "Coruscant")) |>
-    head(10) |> 
     bind_rows(tibble(name = "...", homeworld =  "...")) |> 
     knitr::kable(format = "html")
 ```
