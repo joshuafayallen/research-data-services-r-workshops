@@ -687,7 +687,7 @@ ifelse(test,
 #| code-line-numbers: "|2|3|4"
 mutate(penguins,
   big_penguin = ifelse(
-  body_mass_g >= 4750,
+  body_mass_g >= 4750,  # median(body_mass_g) aslo works
    "TRUE",
    "FALSE"))
 ```
@@ -707,7 +707,7 @@ mutate(big_penguin = ifelse(
   "FALSE")) |>
 select(body_mass_g, big_penguin) |>
  mutate(across(c(body_mass_g, big_penguin), ~as.character(.))) |>
- head(5) |>
+ head(10) |>
  knitr::kable(format = "html")
 ```
 
