@@ -474,15 +474,13 @@ In this case we are just using lots of or tests to achieve what we want this is 
 
 
 
-## What if We Want Things from the Same Column? 
-
-- Set membership works really here too! 
+## Getting Multiple Things From the Same Column(cont)
 
 ::: columns
 ::: column
 ```{r eval=FALSE, echo = TRUE}
 
-  filter(starwars,
+ filter(starwars,
   homeworld %in% c("Naboo",
                   "Tatooine",
                   "Coruscant"))
@@ -495,6 +493,7 @@ In this case we are just using lots of or tests to achieve what we want this is 
 starwars |> 
   select(name, homeworld) |> 
   filter(homeworld %in% c("Naboo", "Tatooine", "Coruscant")) |>
+   head(11) |>
     bind_rows(tibble(name = "...", homeworld =  "...")) |> 
     knitr::kable(format = "html")
 ```
