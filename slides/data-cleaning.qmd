@@ -688,8 +688,8 @@ ifelse(test,
 mutate(penguins,
   big_penguin = ifelse(
   body_mass_g >= 4750,  # median(body_mass_g) aslo works
-   "TRUE",
-   "FALSE"))
+   TRUE,
+   FALSE))
 ```
 
 
