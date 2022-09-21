@@ -1097,15 +1097,12 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
           display:block!important;
       }</style></aside>
 </section>
-<section id="what-if-we-want-things-from-the-same-column" class="slide level2">
-<h2>What if We Want Things from the Same Column?</h2>
-<ul>
-<li>Set membership works really here too!</li>
-</ul>
+<section id="getting-multiple-things-from-the-same-columncont" class="slide level2">
+<h2>Getting Multiple Things From the Same Column(cont)</h2>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>  <span class="fu">filter</span>(starwars,</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a> <span class="fu">filter</span>(starwars,</span>
 <span id="cb13-2"><a href="#cb13-2"></a>  homeworld <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Naboo"</span>,</span>
 <span id="cb13-3"><a href="#cb13-3"></a>                  <span class="st">"Tatooine"</span>,</span>
 <span id="cb13-4"><a href="#cb13-4"></a>                  <span class="st">"Coruscant"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1165,58 +1162,6 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
   <tr>
    <td style="text-align:left;"> Finis Valorum </td>
    <td style="text-align:left;"> Coruscant </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Jar Jar Binks </td>
-   <td style="text-align:left;"> Naboo </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Roos Tarpals </td>
-   <td style="text-align:left;"> Naboo </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rugor Nass </td>
-   <td style="text-align:left;"> Naboo </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ric Olié </td>
-   <td style="text-align:left;"> Naboo </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Quarsh Panaka </td>
-   <td style="text-align:left;"> Naboo </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Shmi Skywalker </td>
-   <td style="text-align:left;"> Tatooine </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Adi Gallia </td>
-   <td style="text-align:left;"> Coruscant </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Gregar Typho </td>
-   <td style="text-align:left;"> Naboo </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cordé </td>
-   <td style="text-align:left;"> Naboo </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cliegg Lars </td>
-   <td style="text-align:left;"> Tatooine </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Dormé </td>
-   <td style="text-align:left;"> Naboo </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Jocasta Nu </td>
-   <td style="text-align:left;"> Coruscant </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Padmé Amidala </td>
-   <td style="text-align:left;"> Naboo </td>
   </tr>
   <tr>
    <td style="text-align:left;"> ... </td>
@@ -1319,7 +1264,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_fad13c78" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_60d6e757" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1636,7 +1581,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_fec0e43a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_fcaf612b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -2023,7 +1968,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_04bdd729" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_c2dae349" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
