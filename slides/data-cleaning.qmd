@@ -35,17 +35,46 @@ starwars = dplyr::starwars
 
 ```
 
-## Packages You Will Need
+# Research Data Services 
 
-```{r eval=FALSE, echo =TRUE}
 
-install.packages("tidyverse")
-library(tidyverse)
-starwars = read_csv("data/starwars.csv")
-penguins = read_csv("data/penguins.csv")
+## Our Team 
 
+```{r}
+knitr::include_graphics("figs/rds-team-members.png")
 ```
 
+:::{.notes}
+
+ Also, we do not have the capacity to provide pre-scheduled frequent software tutoring that is divorced from a specific assignment or software troubleshooting task at hand -- in other words, we are also not generalized software tutors. 
+ 
+ Our one-on-one software assistance is available to help you troubleshoot specific tasks or assignments. If you are seeking generalized software help, we direct you to our live workshops and our recorded workshops to gain the foundational skills for using various analytical software. Then, when or if the time comes that you have targeted software questions or specific issues to tackle related to a course assignment or research project, please feel free to contact us for one-on-one support. 
+:::
+
+
+## Get Ready Badges
+
+
+```{r}
+knitr::include_graphics("figs/get-ready-badges.png")
+```
+
+
+:::{.notes}
+
+
+https://research.library.gsu.edu/dataservices/data-ready
+
+These are awesome to share on social media i.e. linkedin which is a good signal
+to potential employers that you know this stuff
+
+:::
+
+## How To Get the Badges
+
+```{r}
+knitr::include_graphics("figs/how-to-badge.png")
+```
 
 ##  In our last workshop we covered 
 
@@ -74,6 +103,18 @@ Like families, tidy datasets are all alike but every messy dataset is messy in i
 :::{.notes}
 Unless we are truly lucky and the data gods bless us with the perfect dataset that fits our needs we will need to do things to our data to make it suitable for our use. We often need to generate treatment indicators, produce subsets of our data add data from another dataset. Each dataset is unique which prompted this famous quote from the creator of the tidyverse.
 :::
+
+
+## Packages You Will Need
+
+```{r eval=FALSE, echo =TRUE}
+
+install.packages("tidyverse")
+library(tidyverse)
+starwars = read_csv("data/starwars.csv")
+penguins = read_csv("data/penguins.csv")
+
+```
 
 
 ## What is in the Tidyverse
@@ -616,6 +657,9 @@ select(body_mass_g, big_penguin) |>
 
 :::{.notes}
 You can put just about anything in this true false column generally thought true or false or a 1 or a zero are standard. All the stuff that we saw with the filter tests can work in there too! So if you need a variable requires multiple tests than you can do that as well.
+
+You can also other functions in there as well 
+
 
 :::
 
@@ -1470,3 +1514,6 @@ billboard |>
   head(4)
 ```
 
+# Tell Us How We Did 
+
+[https://gsu.qualtrics.com/jfe/form/SV_9nucJR3soZ9lkqO](https://gsu.qualtrics.com/jfe/form/SV_9nucJR3soZ9lkqO)
