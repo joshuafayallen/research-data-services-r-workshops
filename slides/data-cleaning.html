@@ -530,8 +530,8 @@ Hadley Wickham
           display:block!important;
       }</style></aside>
 </section>
-<section id="what-is-loaded-with-librarytidyverse" class="slide level2">
-<h2>What is loaded with <code>library(tidyverse)</code></h2>
+<section id="what-is-loaded" class="slide level2">
+<h2>What is loaded?</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -575,13 +575,26 @@ Hadley Wickham
 </ul></li>
 <li><p><code>Dplyr</code> is just warning us that if we use <code>filter</code> or <code>lag</code> it will use <code>dplyr</code>’s version of the function</p></li>
 <li><p>Whenever <code>R</code> runs into a namespace conflict it will default to the last package that was loaded</p></li>
-<li><p>That is why it is generally best practice to load the <code>tidyverse</code> last</p></li>
+<li><p>That is why it is generally best practice to load the most important package last</p></li>
 <li><p>You can also use <code>packagename::function you want to use</code> to get around it.</p>
 <ul>
 <li>This is called a namespace call</li>
 <li>explicitly tells R which function you are using</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<p>The actual dependency count for the tidyverse it self is pretty large so this is something you might run into and is kind of controversial. This is something to be aware of because dependencies can really be annoying to deal with.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="dplyr" class="title-slide slide level1 white center" data-background-color="#b64f32">
@@ -1084,13 +1097,10 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
           display:block!important;
       }</style></aside>
 </section>
-<section id="what-if-we-want-things-from-the-same-column" class="slide level2 scrollable">
+<section id="what-if-we-want-things-from-the-same-column" class="slide level2">
 <h2>What if We Want Things from the Same Column?</h2>
 <ul>
-<li>Set membership works really here too!
-<ul>
-<li>And reduces the amount of code you are typing</li>
-</ul></li>
+<li>Set membership works really here too!</li>
 </ul>
 <div class="columns">
 <div class="column">
@@ -1150,6 +1160,62 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
   </tr>
   <tr>
    <td style="text-align:left;"> Palpatine </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Finis Valorum </td>
+   <td style="text-align:left;"> Coruscant </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jar Jar Binks </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Roos Tarpals </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Rugor Nass </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ric Olié </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Quarsh Panaka </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Shmi Skywalker </td>
+   <td style="text-align:left;"> Tatooine </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Adi Gallia </td>
+   <td style="text-align:left;"> Coruscant </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gregar Typho </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cordé </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cliegg Lars </td>
+   <td style="text-align:left;"> Tatooine </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dormé </td>
+   <td style="text-align:left;"> Naboo </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jocasta Nu </td>
+   <td style="text-align:left;"> Coruscant </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Padmé Amidala </td>
    <td style="text-align:left;"> Naboo </td>
   </tr>
   <tr>
@@ -1253,7 +1319,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_95530024" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_959dc7bf" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1570,7 +1636,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_873511d1" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_4838b454" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1957,7 +2023,7 @@ Make group summaries with<br><code>group_by() %&gt;% summarize()</code>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_eb5fd6d1" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_9ebee782" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
