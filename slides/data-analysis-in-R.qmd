@@ -405,7 +405,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
 :::
 
 :::{.notes}
-Notice that when we plot by subgroup we see evidence of simpson's pardox
+Notice that when we plot by subgroup we see evidence of simpson's pardox 
 
 :::
 
@@ -567,7 +567,7 @@ datasummary(All(penguins) ~ Mean + SD + Max + Min + Median + Histogram,
 
 
 
-## Generating a Balance Table 
+## Generating a Balance Table {.scrollable}
 
 
 ```{r out.width="90%"}
@@ -990,7 +990,7 @@ modelsummary(peng_adjust,
 
 - To include a multiplicative term we can use `*`, `:` or `/` 
 
-- The constitutive terms will appear automatically 
+- The constitutive terms will appear automatically with `*` and `/`
 
 - In the case of `/` it returns the marginal effect 
   - As well as the correct standard errors and pvalues 
@@ -1389,7 +1389,7 @@ p +
 
 
 
-##  Machine Learning
+#  Machine Learning
 
 
 ## Packages You Will Need 
@@ -1467,10 +1467,10 @@ peng_tidy_test = rsample::testing(peng_models)
 
 ### Caret 
 
-- I just choose mean. Do what makes sense for your goals 
+- I just choose bootstrap. Do what makes sense for your goals 
 
 ```{r}
-library(boot)
+
 
 peng_caret_boots = trainControl(method = "boot", number = 25, classProbs = TRUE)
 
@@ -1511,7 +1511,7 @@ rf_caret = train(sex ~ .,
 # confusionMatrix(predict(rf_caret, train)) 
 
 
-# roc(test$species, )
+# roc(test$species)
 
 ```
 
