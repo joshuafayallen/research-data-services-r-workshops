@@ -851,7 +851,7 @@
     "href": "slides/data-analysis-in-R.html#interactions",
     "title": "Data Analysis in R",
     "section": "Interactions",
-    "text": "Interactions\n\nTo include a multiplicative term we can use *, : or /\nThe constitutive terms will appear automatically\nIn the case of / it returns the marginal effect\n\nAs well as the correct standard errors and pvalues\n\n\n\nThe nice part about R is that you can include interactions in a few different ways. One thing is that R will include the constuitive terms for you. The slash will sort of trick R into including the full marginal effects for you.\n\n\npengs_interact_stand = lm(body_mass_g ~ bill_length_mm * sex + species + flipper_length_mm,\n                           data = peng_sans_miss_tidy)\n\nsummary(pengs_interact_stand)\n\n\nCall:\nlm(formula = body_mass_g ~ bill_length_mm * sex + species + flipper_length_mm, \n    data = peng_sans_miss_tidy)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-722.25 -189.89   -5.58  188.97  897.79 \n\nCoefficients:\n                        Estimate Std. Error t value Pr(>|t|)    \n(Intercept)            -1279.184    601.073  -2.128 0.034073 *  \nbill_length_mm            28.695      7.980   3.596 0.000374 ***\nsexmale                 1004.946    279.166   3.600 0.000368 ***\nspeciesChinstrap        -302.268     81.331  -3.716 0.000238 ***\nspeciesGentoo            670.469     95.795   6.999 1.47e-11 ***\nflipper_length_mm         19.052      2.954   6.449 4.06e-10 ***\nbill_length_mm:sexmale   -12.525      6.403  -1.956 0.051324 .  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 290.7 on 326 degrees of freedom\nMultiple R-squared:  0.872, Adjusted R-squared:  0.8697 \nF-statistic: 370.2 on 6 and 326 DF,  p-value: < 2.2e-16"
+    "text": "Interactions\n\nTo include a multiplicative term we can use *, : or /\nThe constitutive terms will appear automatically with * and /\nIn the case of / it returns the marginal effect\n\nAs well as the correct standard errors and pvalues\n\n\n\nThe nice part about R is that you can include interactions in a few different ways. One thing is that R will include the constuitive terms for you. The slash will sort of trick R into including the full marginal effects for you.\n\n\npengs_interact_stand = lm(body_mass_g ~ bill_length_mm * sex + species + flipper_length_mm,\n                           data = peng_sans_miss_tidy)\n\nsummary(pengs_interact_stand)\n\n\nCall:\nlm(formula = body_mass_g ~ bill_length_mm * sex + species + flipper_length_mm, \n    data = peng_sans_miss_tidy)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-722.25 -189.89   -5.58  188.97  897.79 \n\nCoefficients:\n                        Estimate Std. Error t value Pr(>|t|)    \n(Intercept)            -1279.184    601.073  -2.128 0.034073 *  \nbill_length_mm            28.695      7.980   3.596 0.000374 ***\nsexmale                 1004.946    279.166   3.600 0.000368 ***\nspeciesChinstrap        -302.268     81.331  -3.716 0.000238 ***\nspeciesGentoo            670.469     95.795   6.999 1.47e-11 ***\nflipper_length_mm         19.052      2.954   6.449 4.06e-10 ***\nbill_length_mm:sexmale   -12.525      6.403  -1.956 0.051324 .  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 290.7 on 326 degrees of freedom\nMultiple R-squared:  0.872, Adjusted R-squared:  0.8697 \nF-statistic: 370.2 on 6 and 326 DF,  p-value: < 2.2e-16"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#full-marginal-effects-way",
@@ -938,13 +938,6 @@
     "text": "Results"
   },
   {
-    "objectID": "slides/data-analysis-in-R.html#machine-learning",
-    "href": "slides/data-analysis-in-R.html#machine-learning",
-    "title": "Data Analysis in R",
-    "section": "Machine Learning",
-    "text": "Machine Learning"
-  },
-  {
     "objectID": "slides/data-analysis-in-R.html#packages-you-will-need-1",
     "href": "slides/data-analysis-in-R.html#packages-you-will-need-1",
     "title": "Data Analysis in R",
@@ -963,14 +956,14 @@
     "href": "slides/data-analysis-in-R.html#create-bootstraps",
     "title": "Data Analysis in R",
     "section": "Create Bootstraps",
-    "text": "Create Bootstraps\n\n\nCaret\n\nI just choose mean. Do what makes sense for your goals\n\n\nlibrary(boot)\n\npeng_caret_boots = trainControl(method = \"boot\", number = 25, classProbs = TRUE)\n\n\n\npeng_boots = bootstraps(peng_tidy_train)"
+    "text": "Create Bootstraps\n\n\nCaret\n\nI just choose bootstrap. Do what makes sense for your goals\n\n\npeng_caret_boots = trainControl(method = \"boot\", number = 25, classProbs = TRUE)\n\n\n\npeng_boots = bootstraps(peng_tidy_train)"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#fit-a-random-forest-and-plot-roc",
     "href": "slides/data-analysis-in-R.html#fit-a-random-forest-and-plot-roc",
     "title": "Data Analysis in R",
     "section": "Fit a Random Forest and Plot ROC",
-    "text": "Fit a Random Forest and Plot ROC\n\n\nCaret\n\nlibrary(pROC)\nrf_caret = train(sex ~ .,\n                 data = train_caret,\n                 method = \"ranger\",\n                 trControl = peng_caret_boots,\n                 metric = \"ROC\",\n                 verbose = FALSE)\n\n# confusionMatrix(predict(rf_caret, train)) this is how you extract predictions with caret\n\n\n\n# confusionMatrix(predict(rf_caret, train)) \n\n\n# roc(test$species, )\n\n\nTidymodels\n\n\nCode\nrf_spec = rand_forest() |> \n  set_mode(\"classification\") |> \n  set_engine(\"ranger\")\n\npenguin_wf = workflow() |> \n  add_formula(sex ~ .)\n\n\nrf_peng = penguin_wf |> \n  add_model(rf_spec) |> \n  fit_resamples(resample = peng_boots,\n                control = control_resamples(save_pred = TRUE))\n\n\n\n\nrf_peng |> \n  collect_predictions()  |> \n  group_by(id) |> \n  roc_curve(sex, .pred_female) |> \n  ggplot(aes(1 - specificity, sensitivity, color = id)) +\n  geom_abline(lty = 2, color = \"gray80\", size = 1.5) +\n  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +\n  coord_equal()"
+    "text": "Fit a Random Forest and Plot ROC\n\n\nCaret\n\nlibrary(pROC)\nrf_caret = train(sex ~ .,\n                 data = train_caret,\n                 method = \"ranger\",\n                 trControl = peng_caret_boots,\n                 metric = \"ROC\",\n                 verbose = FALSE)\n\n# confusionMatrix(predict(rf_caret, train)) this is how you extract predictions with caret\n\n\n\n# confusionMatrix(predict(rf_caret, train)) \n\n\n# roc(test$species)\n\n\nTidymodels\n\n\nCode\nrf_spec = rand_forest() |> \n  set_mode(\"classification\") |> \n  set_engine(\"ranger\")\n\npenguin_wf = workflow() |> \n  add_formula(sex ~ .)\n\n\nrf_peng = penguin_wf |> \n  add_model(rf_spec) |> \n  fit_resamples(resample = peng_boots,\n                control = control_resamples(save_pred = TRUE))\n\n\n\n\nrf_peng |> \n  collect_predictions()  |> \n  group_by(id) |> \n  roc_curve(sex, .pred_female) |> \n  ggplot(aes(1 - specificity, sensitivity, color = id)) +\n  geom_abline(lty = 2, color = \"gray80\", size = 1.5) +\n  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +\n  coord_equal()"
   },
   {
     "objectID": "slides/data-cleaning-data-table.html#packages-you-will-need",
