@@ -3,9 +3,21 @@ title: "Getting Started in ggplot"
 institute: "Department of Political Science at Georgia State University"
 author: "Josh Allen"
 date: "2022-08-29"
-format: 
- revealjs:
+format:
+  revealjs:
    theme: ["allen.scss"]
+editor: source
+knitr:
+  opts_chunk:
+    dev: "ragg_png"
+    retina: 1
+    dpi: 200
+execute:
+  freeze: auto
+  cache: true
+  echo: true
+  fig-width: 5
+  fig-height: 6
 ---
 
 ```{r setup, include = F, warnings = FALSE}
@@ -186,16 +198,6 @@ I think an important theme so to say is that once we start to understand R it be
 
 
 
-
-
-:::{.notes}
-
-As with many things in R there are a ton of ways to install ggplot2. If you did not attend the intro to the tidyverse session. The tidyverse is a wrapper term for a ton of packages with very similar logics. 
-
-
-:::
-
-
 # The Grammar of Graphics {background-color="`r clrs[3]`" .white}
 
 
@@ -208,7 +210,7 @@ As with many things in R there are a ton of ways to install ggplot2. If you did 
 "Good grammar is just the first step of creating a good sentence"
 
 
-- How is the data related to the figure on the right
+- How is the data related to the figure on the right?
 
 
 :::
@@ -288,10 +290,10 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 :::
 :::
 
+:::{.notes}
+There is a grammar to what is going on 
 
-
-
-
+:::
 
 
 
@@ -368,34 +370,53 @@ theme_minimal() +
 
 ## The Grammar 
 
-<table>
+<br>
+<table style='width:100%;font-size:14pt;'>
   <tr>
-    <th class="cell-left">Data</th>
-    <th class="cell-left"><code class="remark-inline-code">aes()</code></th>
-    <th class="cell-left"><code class="remark-inline-code">geom</code></th>
+    <th>Component</th>
+    <th>Function</th>
+    <th>Explanation</th>
   </tr>
   <tr>
-    <td class="cell-left">Bill Length(mm)</td>
-    <td class="cell-left"><code class="remark-inline-code">x</code></td>
-    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
+    <td><b style='color:#67676;'>Data</b></td>
+    <td><code>ggplot(data)</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td>*The raw data that you want to visualise.*</td>
   </tr>
   <tr>
-    <td class="cell-left">Body Weight(g)&emsp;</td>
-    <td class="cell-left"><code class="remark-inline-code">y</code></td>
-    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
+    <td><b style='color:#67676;'>Aesthetics&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+    <td><code>aes()</code></td>
+    <td>*Aesthetic mappings between variables and visual properties.*</td>
+  <tr>
+    <td><b style='color:#67676;'>Geometries</b></td>
+    <td><code>geom_*()</code></td>
+    <td>*The geometric shapes representing the data.*</td>
   </tr>
   <tr>
-    <td class="cell-left">Island</td>
-    <td class="cell-left"><code class="remark-inline-code">color</code></td>
-    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
+    <td><b style='color:#67676;'>Statistics</b></td>
+    <td><code>stat_*()</code></td>
+    <td>*The statistical transformations applied to the data.*</td>
   </tr>
   <tr>
-    <td class="cell-left">Penguin Species</td>
-    <td class="cell-left"><code class="remark-inline-code">shape</code>&emsp;</td>
-    <td class="cell-left"><code class="remark-inline-code">geom_point()</code></td>
+    <td><b style='color:#67676;'>Scales</b></td>
+    <td><code>scale_*()</code></td>
+    <td>*Maps between the data and the aesthetic dimensions.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Coordinate System</b></td>
+    <td><code>coord_*()</code></td>
+    <td>*Maps data into the plane of the data rectangle.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Facets</b></td>
+    <td><code>facet_*()</code></td>
+    <td>*The arrangement of the data into a grid of plots.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Visual Themes</b></td>
+    <td><code>theme()</code> and <code>theme_*()</code></td>
+    <td>*The overall visual defaults of a plot.*</td>
   </tr>
 </table>
-
 :::{.notes}
 This is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do 
 
@@ -409,15 +430,16 @@ This is what it looks like when we start to think of the plot. Each of these are
 
 ```{r your-penguin-code, echo = TRUE}
 #| code-line-numbers: "|1|2|3|4|5"
+#| output-location: column
 
 ggplot() +
-         geom_point(data = penguins,mapping =  aes(
-         x = bill_length_mm, 
-         y = body_mass_g,
-         shape = species, 
-         color = island, 
-         size = species),
-         size = 3)
+  geom_point(data = penguins,
+  mapping =  aes(
+  x = bill_length_mm, 
+  y = body_mass_g,
+  shape = species, 
+  color = island),
+  size = 3)
 ```
 
 
@@ -550,35 +572,23 @@ all we are doing is making each point blue. Should be simple enough. If you are 
 
 ##  
 
-:::columns
-:::column
 
 
-```{r use-color-aes-example, eval = FALSE}
+```{r use-color-aes-example, echo = TRUE}
+#| output-location: column
+
+ggplot() +
+  geom_point(data = gapminder,
+    aes(x = gdpPercap,
+        y = lifeExp),
+        color = "blue") 
 
 
-ggplot(gapminder) +
-  geom_point(aes(x = gdpPercap, y = lifeExp), color = "blue") 
-
-
-
-```
-
-
-:::
-
-:::column
-
-```{r gapminder-color-aes-example, echo = FALSE}
-
-ggplot(gapminder) +
-  geom_point(aes(x = gdpPercap, y = lifeExp), color = "blue") 
 
 ```
 
 
-:::
-:::
+
 
 :::{.notes}
 ggplot will take the color argument inside aes and outside aes. If we specify color inside aes than it will color things by a column in the dataset. If you specify color outside of aes ggplot will make everything that color 
@@ -589,10 +599,10 @@ ggplot will take the color argument inside aes and outside aes. If we specify co
 
 ## 
 
-:::columns
-:::column
-```{r gapminder-blue-correct, eval=FALSE, echo = TRUE}
+
+```{r gapminder-blue-correct, echo = TRUE}
 #| code-line-numbers: "|5"
+#| output-location: column
 ggplot() + 
   geom_point(data = gapminder,
    aes(x = gdpPercap,
@@ -602,65 +612,36 @@ ggplot() +
 
 ```
 
-:::
-
-:::column
 
 
-```{r gapminder-blue-correct-show, echo = FALSE}
-
-ggplot(gapminder ) + 
-  geom_point(aes(x = gdpPercap, y = lifeExp),
-             color = "blue")
-
-
-```
-
-
-:::
-:::
 
 
 
 ## 
 
 
-:::columns
-:::column
 
-```{r gapminder-blue-wrong-example, eval=FALSE, echo = TRUE}
+```{r gapminder-blue-wrong-example, echo = TRUE}
 #| code-line-numbers: "|5"
+#| output-location: column
 ggplot() + 
   geom_point(data = gapminder,
-    aes(x = gdpPercap,
-     y = lifeExp,
-     color = "blue"))
+   aes(x = gdpPercap,
+    y = lifeExp,
+    color = "blue"))
 
 
 ```
 
 
-:::
 
-:::column
-
-```{r gapminder-blue-correct-example, echo = FALSE}
-
-ggplot(gapminder ) + 
-  geom_point(aes(x = gdpPercap, y = lifeExp, color = "blue"))
-
-
-```
-
-:::
-:::
 
 :::{.notes}
 Remember when we do things in aes R will look for a column in our dataset. Importantly R will just looks for things it can do given the scope of the function. So if we put blue into the aes portion of it will plot it. But it will get confused because blue is not a column in our data set. 
 
 :::
 
-## Same geom different stuff
+## Same options different stuff
 
 :::columns
 :::column
@@ -737,13 +718,14 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
 :::column
 
 
-```{r dotplot-penguins, echo=FALSE} 
-
-
+```{r dotplot-penguings, echo = FALSE}
 ggplot(penguins, aes(x = species, y = body_mass_g)) +
   geom_point()
 
 ```
+
+
+
 :::
 :::
 
@@ -775,7 +757,7 @@ ggplot(gapminder, aes(x = continent, y = lifeExp)) +
 :::column
 
 
-```{r}
+```{r echo = FALSE}
 ggplot(gapminder, aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```
@@ -794,28 +776,20 @@ take the graph on the left and change it to the plot on the right. use the ggplo
 :::
 
 
-##
+## Answer
+ 
 
-:::columns
-:::column
 
-```{r eval = FALSE, echo = TRUE}
-ggplot(gapminder, aes(x = continent, y = lifeExp)) +
-  geom_boxplot()
-```
+```{r  echo = TRUE}
+#| output-location: column
 
-:::
-
-:::column
-
-```{r echo = FALSE}
-ggplot(gapminder, aes(x = continent, y = lifeExp)) +
-  geom_boxplot()
+ggplot() +
+  geom_boxplot(gapminder,
+   mapping = aes(x = continent, # ggplot got map so I had to add mapping
+          y = lifeExp))
 ```
 
 
-:::
-:::
 
 
 
@@ -848,29 +822,15 @@ Lets make a histogram of lifeExp. In this case we only need to supply one variab
 
 ##  
 
-:::columns
-:::column
-```{r eval=FALSE, echo = TRUE}
 
-ggplot(gapminder, aes(x = lifeExp)) +
-  geom_histogram()
-
-```
-:::
-
-
-:::column
-
-```{r echo=FALSE}
-
-ggplot(gapminder, aes(x = lifeExp)) +
-  geom_histogram()
+```{r, echo = TRUE}
+#| output-location: column
+ggplot() +
+  geom_histogram(gapminder, 
+    mapping = aes(x = lifeExp))
 
 ```
 
-
-:::
-:::
 
 
 
@@ -897,28 +857,20 @@ Again do not supply a Y column
 
 ## 
 
-:::columns
-:::column
 
-```{r eval = FALSE, echo = TRUE}
 
-ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
-  geom_density(alpha = 0.75)
+```{r echo = TRUE}
+#| output-location: column
 
-```
-
-:::
-
-:::column
-```{r echo = FALSE}
-
-ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
-  geom_density(alpha = 0.75)
+ggplot() +
+  geom_density(gapminder,
+  mapping =  aes(x = lifeExp,
+                fill = continent),
+                alpha = 0.75)
 
 ```
 
-:::
-:::
+
 
 
 
@@ -926,7 +878,7 @@ ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
 ## Complex graph!
 
 
-```{r reference-plot, echo=FALSE}
+```{r reference-plot, echo=FALSE, fig.width = 7, }
 
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, group = continent)) +
   geom_point() +
@@ -941,11 +893,9 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, group = con
 
 ## Local 
  
-:::columns
-:::column
-
-```{r local, eval=FALSE, echo = TRUE}
-#|  code-line-numbers: "|1|2|5"
+```{r local, echo = TRUE}
+#| code-line-numbers: "|1|2|5"
+#| output-location: column
 ggplot(gapminder) +
   geom_point(aes(x = gdpPercap,
                  y = lifeExp, 
@@ -956,22 +906,6 @@ ggplot(gapminder) +
                   group = continent)) 
 ```
 
-:::
-:::column
-
-```{r local-out, echo=FALSE}
-ggplot(gapminder) +
-  geom_point(aes(x = gdpPercap, y = lifeExp,
-                 color = continent)) + ##<<
-  geom_smooth(aes(x = gdpPercap, y = lifeExp,
-                             color = continent, 
-                  group = continent)) ##<< 
-```
-
-
-
-:::
-:::
 
 
 
@@ -979,35 +913,19 @@ ggplot(gapminder) +
 
 ## Global 
 
-::: columns
-:::column
-```{r gapminder-global, eval=FALSE, echo = TRUE}
+```{r gapminder-global, echo = TRUE}
 #| code-line-numbers: "|1|2|3|4"
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp, 
-                      color = continent, 
-                      group = continent))  + 
+#| output-location: column
+ggplot(gapminder,
+       aes(x = gdpPercap,
+          y = lifeExp, 
+          color = continent, 
+          group = continent))  + 
   geom_point() +
   geom_smooth() 
 
 ```
-:::
 
-
-:::column
-
-
-```{r gapminder-global-out, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap,##<<
-                      y = lifeExp, ##<<
-                      color = continent, ##<<
-                      group = continent))  + ##<<
-  geom_point() +
-  geom_smooth() 
-```
-
-:::
-:::
 
 
 
@@ -1028,23 +946,17 @@ Instead if you pass off our argument to the first layer
 ## Building Plots
 #### Starting with Data and aesthics 
 
-:::columns
-:::column
-```{r complex-plot-no-geoms-show, eval=FALSE, echo = TRUE}
-ggplot(gapminder, aes(x = gdpPercap,
- y = lifeExp))
-```
 
-:::
 
-:::column
-```{r complex-plot-no-geoms-out, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent))
+```{r complex-plot-no-geoms-show,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+ aes(x = gdpPercap,
+    y = lifeExp))
 ```
 
 
-:::
-:::
+
 
 :::{.notes}
 So far we have only walked through geoms and aesthics but we need other layers to make graphs that make sense. And are presentable to professional audiences 
@@ -1056,62 +968,49 @@ So far we have only walked through geoms and aesthics but we need other layers t
 
 
 ##  Add `geom_point`
-:::columns
-:::column
-```{r complex-plot-add-geom-point-show, eval=FALSE, echo = TRUE}
 
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
+```{r complex-plot-add-geom-point-show,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+    aes(x = gdpPercap,
+        y = lifeExp,
+        color = continent)) +
   geom_point()
   
 ```
 
 
-:::
 
-:::column
-```{r complex-plot-add-geom-point-out, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point()
-```
-
-:::
-:::
 
 
 
 
 ##  Add `geom_smooth`
 
-::: columns
-:::column
-```{r complex-plot-add-geom-smooth-show, eval=FALSE, echo = TRUE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
+
+```{r complex-plot-add-geom-smooth-show,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+    aes(x = gdpPercap,
+       y = lifeExp,
+       color = continent)) +
   geom_point() +
   geom_smooth()
 ```
 
-:::
+
+##  Add Change Transparency 
 
 
-:::column
-```{r complex-plot-add-geom-smooth-out, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
-  geom_smooth() 
+```{r complex-plot-change-alpha,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+    aes(x = gdpPercap,
+       y = lifeExp,
+       color = continent)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth()
 ```
-
-
-:::
-
-:::
 
 
 
@@ -1119,32 +1018,20 @@ ggplot(gapminder, aes(x = gdpPercap,
 
 ## Adjust scales with `scale_x_log10`
 
-::: columns 
-:::column
-```{r complex-plot-add-log-show, eval=FALSE, echo = TRUE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
+
+```{r complex-plot-add-log-show, echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+     aes(x = gdpPercap,
+         y = lifeExp,
+         color = continent)) +
+  geom_point(alpha = 0.5) +
   geom_smooth() +
   scale_x_log10()
 ```
 
 
-:::
 
-:::column
-```{r complex-plot-add-log-out, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
-  geom_smooth() +
-  scale_x_log10()
-```
-
-:::
-:::
 
 
 
@@ -1152,27 +1039,14 @@ ggplot(gapminder, aes(x = gdpPercap,
 
 ## Add axis labels and title with `labs`
 
-::: columns
-:::column
-```{r complex-plot-add-labs-out, eval=FALSE, echo = TRUE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
-  geom_smooth() +
-  scale_x_log10() +
-  labs(x = "GDP per cap", y = "Life Expectanty",
-       title = "The Effect of GDP per cap on Life Expectancy")
-```
 
-:::
-
-:::column
-```{r complex-plot-add-labs-show, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
+```{r complex-plot-add-labs-out,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+      aes(x = gdpPercap,
+          y = lifeExp,
+          color = continent)) +
+  geom_point(alpha = 0.5) +
   geom_smooth() +
   scale_x_log10() +
   labs(x = "GDP per cap",
@@ -1180,8 +1054,6 @@ ggplot(gapminder, aes(x = gdpPercap,
        title = "The Effect of GDP per cap on Life Expectancy")
 ```
 
-:::
-:::
 
 
 
@@ -1189,13 +1061,14 @@ ggplot(gapminder, aes(x = gdpPercap,
 
 ## Add viridis color scale
 
-:::columns
-:::column
-```{r complex-plot-add-viridis-show, eval=FALSE, echo = TRUE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
+
+```{r complex-plot-add-viridis-show,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+      aes(x = gdpPercap,
+          y = lifeExp,
+          color = continent)) +
+  geom_point(alpha = 0.5) +
   geom_smooth() +
   scale_x_log10() +
   labs(x = "GDP per cap",
@@ -1204,24 +1077,7 @@ ggplot(gapminder, aes(x = gdpPercap,
   scale_color_viridis_d()
 ```
 
-:::
 
-:::column
-```{r complex-plot-viridis-out, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
-  geom_smooth() +
-  scale_x_log10() +
-  labs(x = "GDP per cap",
-       y = "Life Expectanty",
-       title = "The Effect of GDP per cap on Life Expectancy") +
-  scale_color_viridis_d()
-```
-
-:::
-:::
 
 
 
@@ -1232,14 +1088,15 @@ ggplot(gapminder, aes(x = gdpPercap,
 
 ## Add theme
 
-::: columns
-:::column
 
-```{r complex-plot-add-theme-show, eval=FALSE, echo = TRUE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
+
+```{r complex-plot-add-theme-show,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+      aes(x = gdpPercap,
+         y = lifeExp,
+         color = continent)) +
+  geom_point(alpha = 0.5) +
   geom_smooth() +
   scale_x_log10() +
   labs(x = "GDP per cap",
@@ -1249,26 +1106,6 @@ ggplot(gapminder, aes(x = gdpPercap,
   theme_bw()
 ```
 
-
-:::
-
-:::column
-```{r complex-plot-add-theme-out, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
-  geom_smooth() +
-  scale_x_log10() +
-  labs(x = "GDP per cap",
-       y = "Life Expectanty",
-       title = "The Effect of GDP per cap on Life Expectancy") +
-  scale_color_viridis_d() +
-  theme_bw()
-```
-
-:::
-:::
 
 
 
@@ -1278,15 +1115,15 @@ ggplot(gapminder, aes(x = gdpPercap,
 
 
 ## Facet by Continent
-:::: {.columns}
 
-::: {.column width="45%"}
 
-```{r complex-plot-facet-show, eval=FALSE, echo = TRUE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
+```{r complex-plot-facet-show,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+      aes(x = gdpPercap,
+          y = lifeExp,
+          color = continent)) +
+  geom_point(alpha = 0.5) +
   geom_smooth() +
   scale_x_log10() +
   labs(x = "GDP per cap",
@@ -1298,32 +1135,18 @@ ggplot(gapminder, aes(x = gdpPercap,
 ```
 
 
-:::
 
-::: {.column width="55%"}
-```{r complex-plot-facet-out, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
-  geom_point() +
-  geom_smooth() +
-  scale_x_log10() +
-  labs(x = "GDP per cap", y = "Life Expectanty", title = "The Effect of GDP per cap on Life Expectancy") +
-  scale_color_viridis_d() +
-  theme_bw() + 
-  facet_wrap(vars(continent))
-```
-
-:::
-::::
 
 ## Change Theme Options
 
-::::{.columns}
-::: {.column width="45%"}
-```{r change-default-theme-option-complex-plot-show, eval=FALSE, echo = TRUE}
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      color = continent)) +
-  geom_point() +
+
+```{r change-default-theme-option-complex-plot-show, echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+  aes(x = gdpPercap,
+      y = lifeExp,
+      color = continent)) +
+  geom_point(alpha = 0.5) +
   geom_smooth() +
   scale_x_log10() +
   labs(x = "GDP per cap",
@@ -1336,24 +1159,6 @@ ggplot(gapminder, aes(x = gdpPercap,
 ```
 
 
-:::
-
-::: {.column width="55%"}
-```{r change-default-theme-option-complex-plot-out, echo=FALSE}
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
-  geom_point() +
-  geom_smooth() +
-  scale_x_log10() +
-  labs(x = "GDP per cap", y = "Life Expectanty", title = "The Effect of GDP per cap on Life Expectancy") +
-  scale_color_viridis_d() +
-  theme_bw() + 
-  facet_wrap(vars(continent)) +
-  theme(legend.position = "none")
-```
-
-
-:::
-:::
 
 
 ## A Grammar We Can Use
@@ -1364,16 +1169,20 @@ Map wealth to the x-axis, health to the y-axis, add points, color by continent, 
 
 
 ```{r grammar-ggplot-example-show, echo = TRUE }
-#| code-fold: true
-ggplot(gapminder, aes(x = gdpPercap,
-                      y = lifeExp,
-                      size = pop,
-                      color = continent)) +
-  geom_point() +
-  labs(x = "Income", y = "Life Expectancy") +
+#| output-location: column
+ggplot(gapminder,
+    aes(x = gdpPercap,
+        y = lifeExp,
+        size = pop,
+        color = continent)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Income",
+       y = "Life Expectancy") +
   scale_x_log10(labels = scales::dollar) +
   theme_allen_bw() +
-  guides(size = guide_legend(reverse = TRUE, title = "Population"), color =   guide_legend(title = "Continent"))
+  guides(size = guide_legend(reverse = TRUE,
+                title = "Population"),
+         color = guide_legend(title = "Continent"))
 ```
 
 
@@ -1423,86 +1232,62 @@ Often time we need to or want to adjust the scales that one or more of the axis 
 ## Scales in Action
 
 
-```{r show-options-for-scales, eval = FALSE, echo = TRUE}
-#| code-line-numbers: "|5|13"
-
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
-                      color = continent)) +
-  geom_point() +
-  labs(x = "Income", y = "Life Expectancy") +
+```{r show-options-for-scales,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+  aes(x = gdpPercap,
+      y = lifeExp,
+      size = pop,
+      color = continent)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Income",
+     y = "Life Expectancy") +
   scale_x_log10(labels = scales::dollar) +
   theme_bw()
 
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
-                      color = continent)) +
-  geom_point() +
-  labs(x = "Income", y = "Life Expectancy") +
-  scale_x_log10(labels = scales::dollar) +
-  scale_color_viridis_d() +
-  theme_bw()
+
 
 
 ```
 
-```{r make-plots-for-options-scales}
-#| layout-ncol: 2
-#| output-location: fragment
+# Scales in Action 
 
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
-                      color = continent)) +
-  geom_point() +
-  labs(x = "Income", y = "Life Expectancy") +
-  scale_x_log10(labels = scales::dollar) +
-  theme_bw()
-
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,
-                      color = continent)) +
-  geom_point() +
+```{r}
+#| output-location: column
+ggplot(gapminder,
+  aes(x = gdpPercap,
+      y = lifeExp,
+      size = pop,
+      color = continent)) +
+  geom_point(alpha = 0.5) +
   labs(x = "Income", y = "Life Expectancy") +
   scale_x_log10(labels = scales::dollar) +
   scale_color_viridis_d() +
   theme_bw()
-
-
 ```
 
 
-## Coordinates
 
 
-```{r scale-x-continous-example, echo=TRUE, eval = FALSE}
+## Coordinates 
+
+
+```{r scale-x-continous-example, echo=TRUE}
 #| code-line-numbers: "|3|9"
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
-  geom_point() +
+#| output-location: column
+ggplot(gapminder,
+      aes(x = gdpPercap,
+          y = lifeExp,
+          size = pop,
+          color = continent)) +
+  geom_point(alpha = 0.5) +
   scale_x_continuous(limits = c(0, 30000)) +
   theme_bw()
   
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
-  geom_point() +
-  scale_x_continuous(limits = c(0, 30000)) +
-  coord_flip() +
-  theme_bw()
 
 ```
 
-```{r coord-flip-show-option}
-#| layout-ncol: 2
-#| output-location: column-fragment
 
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
-  geom_point() +
-  scale_x_continuous(limits = c(0, 30000)) +
-  theme_bw()
-  
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
-  geom_point() +
-  scale_x_continuous(limits = c(0, 30000)) +
-  coord_flip() +
-  theme_bw()
-
-
-
-```
 
 
 
@@ -1512,6 +1297,21 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
 In some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don't want to go back and redo it
 
 :::
+
+## Coordinates
+
+```{r}
+#| output-location: column
+ggplot(gapminder,
+    aes(x = gdpPercap,
+     y = lifeExp)) +
+  geom_point(alpha = 0.5) +
+  scale_x_continuous(limits = c(0, 30000)) +
+  coord_flip() +
+  theme_bw()
+
+```
+
 
 
 
@@ -1529,7 +1329,7 @@ ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
 
 ```
 
-```{r fill-bill-length-options-timer}
+```{r fill-bill-length-options-timer, echo = FALSE}
 countdown::countdown(minutes = 4)
 ```
 
@@ -1542,12 +1342,14 @@ look at the help file for scale_fill_viridis and play around with the options
 
 ## Change Viridis Optioons
 
-:::columns
-:::column
 
-```{r changing-viridis-options-show, eval = FALSE, echo = TRUE}
 
-ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
+```{r changing-viridis-options-show,  echo = TRUE}
+#| output-location: column
+
+ggplot(penguins,
+ aes(x = bill_length_mm,
+    fill = species)) +
   geom_density( alpha = 0.75) +
   theme_bw() +
   scale_fill_viridis_d(option = "magma")
@@ -1555,21 +1357,6 @@ ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
 ```
 
 
-:::
-
-:::column
-
-```{r changing-viridis-options-out, echo = FALSE}
-
-ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
-  geom_density( alpha = 0.75) +
-  theme_bw() +
-  scale_fill_viridis_d(option = "magma")
-
-```
-
-:::
-:::
 
 
 
@@ -1608,43 +1395,37 @@ ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
 ## Facets
 
 
-```{r facet-wrap-one-col, echo=TRUE, eval = FALSE}
-#| code-line-numbers: "|5|7|14"
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop)) +
-  geom_point() +
+```{r facet-wrap-one-col, echo=TRUE}
+#| output-location: column
+ggplot(gapminder,
+  aes(x = gdpPercap,
+     y = lifeExp,
+     size = pop)) +
+  geom_point(alpha = 0.5) +
   theme_bw() +
   scale_x_log10() +
   facet_wrap(vars(continent)) # you can add more combos of vars here
   
-ggplot(data = filter(gapminder, year %in% c(1987,1997,2002, 2007)),
-       aes(x = gdpPercap,
-           y = lifeExp,
-           size = pop)) +
-  geom_point() +
-  theme_bw() +
-  scale_x_log10() +
-  facet_grid(vars(year))
+
 
 ```
 
 
+
+# Facets 
+
+
 ```{r}
-#| layout-ncol: 2
-#| output-location: column-fragment
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop)) +
-  geom_point() +
+#| output-location: column
+ggplot(data = filter(gapminder,
+ year %in% c(1987,1997,2002, 2007)),
+    aes(x = gdpPercap,
+     y = lifeExp,
+     size = pop)) +
+  geom_point(alpha = 0.5) +
   theme_bw() +
   scale_x_log10() +
-  facet_wrap(vars(continent)) # you can add more combos of vars here
-  
-ggplot(data = filter(gapminder, year %in% c(1987,1997,2002, 2007)),
-       aes(x = gdpPercap,
-           y = lifeExp,
-           size = pop)) +
-  geom_point() +
-  theme_bw() +
-  scale_x_log10() +
-  facet_grid(vars(year)) 
+  facet_grid(vars(year))
 ```
 
 
@@ -1681,17 +1462,16 @@ ggplot(data = filter(gapminder, year %in% c(1987,1997,2002, 2007)),
 
 ## Labels with labs 
 
-:::columns
-:::column
 
 
-```{r labels-example-show, eval = FALSE, echo = TRUE}
+```{r labels-example-show,  echo = TRUE}
+#| output-location: column
 ggplot(gapminder, 
        aes(x = gdpPercap,
         y = lifeExp, 
            color = continent,
             size = pop)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   scale_x_log10() +
   labs(title = "Health and wealth grow together",
        subtitle = "Data from 2007",
@@ -1703,32 +1483,7 @@ ggplot(gapminder,
 ```
 
 
-:::
 
-
-:::column
-
-
-```{r labels-example-out, echo = FALSE}
-ggplot(gapminder, 
-       aes(x = gdpPercap,
-        y = lifeExp, 
-           color = continent,
-            size = pop)) +
-  geom_point() +
-  scale_x_log10() +
-  labs(title = "Health and wealth grow together",
-       subtitle = "Data from 1952 to 2007",
-       x = "Wealth (GDP per capita)",
-       y = "Health (life expectancy)",
-       color = "Continent",
-       size = "Population",
-       caption = "Source: The Gapminder Project") +
-  theme_bw()
-```
-
-:::
-:::
 
 
 ## Changing the Default Theme 
@@ -1738,14 +1493,14 @@ ggplot(gapminder,
 
 ### theme_minimal
 
-```{r theme-minimal-theme-out}
+```{r theme-minimal-theme-out, echo = FALSE}
 
 ggplot(gapminder, 
        aes(x = gdpPercap,
         y = lifeExp, 
            color = continent,
             size = pop)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   scale_x_log10() +
   labs(title = "Health and wealth grow together",
        subtitle = "Data from 1952 to 2007",
@@ -1764,14 +1519,14 @@ ggplot(gapminder,
 ::: {.column width="45%"}
 
 ### theme_dark
-```{r theme-dark-theme-out}
+```{r theme-dark-theme-out, echo = FALSE}
 
 ggplot(gapminder, 
        aes(x = gdpPercap,
         y = lifeExp, 
            color = continent,
             size = pop)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   scale_x_log10() +
   labs(title = "Health and wealth grow together",
        subtitle = "Data from 1952 to 2007",
@@ -1786,54 +1541,7 @@ ggplot(gapminder,
 :::
 ::::
 
-## Common User Written Packages 
 
-
-::::{.columns}
-::: {.column width="45%"}
-
-### hrbrthemes
-
-
-```{r hrbr-themes, echo = TRUE}
-#| code-fold: true
-# install.packages("hrbrthemes")
-library(hrbrthemes)
-ggplot(gapminder, 
-       aes(x = gdpPercap,
-        y = lifeExp, 
-           color = continent,
-            size = pop)) +
-  geom_point() +
-  scale_x_log10() +
-  labs(title = "hrbr theme_ipsum") +
-  theme_ipsum()
-
-```
-
-:::
-
-::: {.column width="45%"}
-
-### ggthemes 
-```{r ggthemes-wsj-out, echo = TRUE}
-#| code-fold: true
-library(ggthemes)
-
-ggplot(gapminder, 
-       aes(x = gdpPercap,
-        y = lifeExp, 
-           color = continent,
-            size = pop)) +
-  geom_point() +
-  labs(title = "theme_wsj") +
-  scale_x_log10() +
-  theme_wsj()
-
-```
-
-:::
-::::
 
 ## ggplot in the wild 
 
@@ -1842,15 +1550,31 @@ ggplot(gapminder,
 
 
 ```{r bbc-plots-example, echo = TRUE}
+#| output-location: column
+#| fig-width:  6 
+#| fig-height: 8
 ##devtools::install_github('bbc/bbplot')
 library(bbplot)
- ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
-  geom_point() +
-  scale_color_manual(values = c("#FAAB18", "#1380A1","#990000", "#588300")) +
+ ggplot(gapminder,
+  aes(x = gdpPercap,
+   y = lifeExp,
+    color = continent)) +
+  geom_point(alpha = 0.6) +
+  scale_color_manual(values = 
+  c("#FAAB18",
+    "#1380A1",
+    "#990000",
+    "#588300")) +
   scale_x_log10() +
   bbc_style()
 
 ```
+
+:::{.notes}
+Lots of organizations use ggplot. What this means for you is that you can find themes that 
+
+
+:::
 
 
 ## The theme argument 
@@ -1947,71 +1671,11 @@ knitr::include_graphics("https://raw.githubusercontent.com/andrewheiss/datavizs2
 
 ## Shape Files 
 
+- To read in shape files you use `read_sf` you should see something that looks like this! 
 
-```{r cleaning-dem-data, echo= FALSE}
-
-
-vdem_raw = vdemdata::vdem 
-
-vdem_cleanish = vdem_raw %>% 
-  select(v2x_regime, country_name, country_text_id, year) %>% 
-  filter(year == "2018") %>% 
-  mutate(ISO_A3 = countrycode(country_name, origin = "country.name",
-                              destination = "iso3c"),
-         regime_type = case_when(v2x_regime == 0 ~ "Full Autocracy",
-                                 v2x_regime == 1 ~ "Electoral Autocracy",
-                                 v2x_regime == 2 ~ "Electoral Democracy",
-                                 v2x_regime == 3 ~ "Liberal Democracy"),
-         regime_type = as.factor(regime_type)) %>% 
-  arrange(ISO_A3)
-
-
-
-
-
-world_map  = read_sf("data/ne_110m_admin_0_countries.shp")
-
-world_map_fixed = world_map %>% 
-  mutate(ISO_A3 = case_when(
-    ## If the country name is Norway or France, redo the ISO3 code
-    ADMIN == "Norway" ~ "NOR",
-    ADMIN == "France" ~ "FRA",
-    ## Otherwise use the existing ISO3 code
-    TRUE ~ ISO_A3)) %>% 
-    filter(ISO_A3 != "ATA") 
-
-
-
-plot_data_world = left_join(world_map_fixed, vdem_cleanish, by = "ISO_A3")  |> 
-  filter(!is.na(regime_type))
-
-
-
-plot_data_world$regime_type = factor(plot_data_world$regime_type,
-                                     levels = c("Full Autocracy",
-                                                "Electoral Autocracy",
-                                                "Electoral Democracy",
-                                                 "Liberal Democracy"))
-
-
-
-regime_map = ggplot() + 
-  geom_sf(data = plot_data_world, aes(fill = regime_type),
-          color = "#CDCDCD", size = 0.1) +
-   coord_sf(crs = st_crs("ESRI:54030")) +
-    scale_fill_scico_d(palette = "vik", direction = -1, na.value = "grey80") +
-   labs(fill = "Regime Types",
-        caption = "Data are derived from the Varities of Democracy Project") +
-   theme_void(base_family = "Roboto Condensed") +
-   theme(legend.position = "top",
-         legend.text = element_text(size = 8),
-         plot.caption = element_text(hjust = 0.8))
- 
-
-```
 
 ```{r show-geometry,echo=FALSE}
-
+world_map  = read_sf("data/ne_110m_admin_0_countries.shp")
 world_map |> 
   select(4,geometry) 
 
@@ -2023,21 +1687,13 @@ When you download a shapefile you will get lots and lots of stuff. Lots of the s
 :::
 
 
-## Reading Shape files using `sf`
+## Working with Data
 
-- Works broadly the same way as using `read_csv` 
-
-
-```{r eval=FALSE, echo = TRUE}
-world_map = read_sf("data/ne_110m_admin_0_countries.shp")
-```
-
-- You can also use dplyr to get what you want
+- You can use dplyr to manipulate data still. 
   
-```{r eval = FALSE, echo = TRUE}
-#| code-fold: true
-pacman::p_load("sf", "countrycode", 
-               "scico", "MetBrewer", "WDI", "vdemdata")
+```{r  echo = TRUE}
+#| output-location: column
+
 
 vdem_raw = vdemdata::vdem 
 
@@ -2053,11 +1709,6 @@ vdem_cleanish = vdem_raw %>%
          regime_type = as.factor(regime_type)) %>% 
   arrange(ISO_A3)
 
-
-
-
-
-world_map  = read_sf("data/ne_110m_admin_0_countries.shp")
 
 world_map_fixed = world_map %>% 
   mutate(ISO_A3 = case_when(
@@ -2083,9 +1734,9 @@ plot_data_world$regime_type = factor(plot_data_world$regime_type,
 
 
 
- world_map_plot = ggplot() + 
+ ggplot() + 
   geom_sf(data = plot_data_world, aes(fill = regime_type),
-          color = "##CDCDCD", size = 0.1) +
+          color = "#CDCDCD", size = 0.1) +
    coord_sf(crs = st_crs("ESRI:54030")) +
     scale_fill_scico_d(palette = "vik", direction = -1, na.value = "grey80") +
    labs(fill = "Regime Types",
@@ -2098,9 +1749,6 @@ plot_data_world$regime_type = factor(plot_data_world$regime_type,
 
 
 
-```{r echo = FALSE}
-regime_map 
-```
 
 
 
@@ -2109,7 +1757,8 @@ regime_map
 ## Making Maps in ggplot
 
 
-```{r basic-map, eval=FALSE, echo = TRUE}
+```{r basic-map,  echo = TRUE}
+#| output-location: column
 ## devtools::install_github("ropenscilabs/rnaturalearth")
 library(rnaturalearth)
 
@@ -2121,15 +1770,6 @@ ggplot() +
 
 
 
-```{r basic-map-out, echo=FALSE, cache=TRUE}
-library(rnaturalearth)
-
-world_map_ne = ne_states(returnclass = "sf")
-
-ggplot() +
-  geom_sf(data = world_map_ne)
-
-```
 
 
 :::{.notes}
@@ -2141,6 +1781,7 @@ as you can see nothing really fundamentally changes when you are making maps in 
 
 
 ```{r gall-peters-projection, echo = TRUE, cache = TRUE}
+#| output-location: column
 ggplot() +
   geom_sf(data = world_map_ne) + 
   coord_sf(crs = "+proj=cea +lon_0=0 +lat_ts=45") +
@@ -2159,7 +1800,7 @@ You can really easily change the projections you want. Here we are just feeding 
 ## Mapping Middle Earth
 
 ```{r echo = TRUE }
-#| code-fold: true 
+#| output-location: column
 coastline = read_sf("data/ME-GIS/Coastline2.shp")
 contours = read_sf("data/ME-GIS/Contours_18.shp")
 rivers = read_sf("data/ME-GIS/Rivers.shp")
@@ -2313,7 +1954,7 @@ breweries_I_visit = tribble(
 )
 
 breweries_geocode = breweries_I_visit |> 
-  geocode(address,  cascade_order = c("osm", "arcgis")) ## backup if one service fails 
+  geocode(address, geocode_combine = c("osm", "arcgis")) ## backup if one service fails 
 
 add_geom = breweries_geocode |> 
   st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326"))
@@ -2333,7 +1974,7 @@ breweries_I_visit = tribble(
 
 
 breweries_geocode = breweries_I_visit |> 
-  geocode(address,  cascade_order = c("osm", "arcgis"))
+  geocode(address, method = "osm")
 
 breweries_geocode |> 
   st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326")) |> 
@@ -2431,7 +2072,7 @@ add_geom = bars_geocode %>%
 ## Which Produces
 
 ```{r atlanta-map, echo=TRUE, message=FALSE, warning=FALSE}
-#| code-fold: true
+#| output-location: column
 ggplot() +
   geom_sf(data = railway$osm_lines,
           inherit.aes = FALSE,
