@@ -18,6 +18,8 @@ The recording for this workshop is posted on the [RDS website just click on the 
 
 ## Resources Used
 
+[Graphic Design with ggplot2](https://rstudio-conf-2022.github.io/ggplot2-graphic-design/) by Cédric Scherer
+
 [Data Visualization PMAP 8921](https://datavizs21.classes.andrewheiss.com/) by Andrew Heiss
 
 [Pretty street maps in R with the osmdata package and ggplot](http://joshuamccrain.com/tutorials/maps/streets_tutorial.html) by Josh McCrain
