@@ -123,7 +123,7 @@
     "href": "slides/ggplot-presentation.html#why-visualize-your-data",
     "title": "Getting Started in ggplot",
     "section": "Why visualize your data?",
-    "text": "Why visualize your data?\n\n\n[1] 54.2657\n\n\n\nsd(df$x)\n\n[1] 16.713\n\n\n\nmean(df$y)\n\n[1] 47.8351\n\n\n\nsd(df$y)\n\n[1] 26.84777\n\n\n\ncor(df$x, df$y)\n\n[1] -0.06601891\n\n\n\nLets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren’t correlated."
+    "text": "Why visualize your data?\n\nmean(df$x)\n\n[1] 54.2657\n\n\n\nsd(df$x)\n\n[1] 16.713\n\n\n\nmean(df$y)\n\n[1] 47.8351\n\n\n\nsd(df$y)\n\n[1] 26.84777\n\n\n\ncor(df$x, df$y)\n\n[1] -0.06601891\n\n\n\nLets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren’t correlated."
   },
   {
     "objectID": "slides/ggplot-presentation.html#the-dino-strikes",
@@ -144,14 +144,14 @@
     "href": "slides/ggplot-presentation.html#why-ggplot2-1",
     "title": "Getting Started in ggplot",
     "section": "Why ggplot2?",
-    "text": "Why ggplot2?\n\n\nYou have probably heard of it but why use it?\nOnce we understand the “grammar” making figures becomes a lot easier\n\nConveying information becomes easier\nLets you show off your clean, or not so clean, data\nA coherent structure of doing things\n\nFlexibility\n\nTons ways to customize appearance\nLots of functions\n\nMakes you lazier\n\nDoesn’t require you to remember each input from a drop down menu\nDefaults to universally usable formats\nReplaces itself automatically in your directory\n\n\n\n\nggplot2 is probably one of the most well known and event among many of the staunchest base r users well loved an well used libraries in the R ecosystem.\nggplot2 predates most of the tidyverse and the gg part refers to the grammar of graphics, more on that later. Much like writing a sentence there is a proper grammar to it. Once we understand the rules we can construct lots of different “sentences”.\nI think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things or working with propietary formats. If you need to you\n\n\nAs with many things in R there are a ton of ways to install ggplot2. If you did not attend the intro to the tidyverse session. The tidyverse is a wrapper term for a ton of packages with very similar logics."
+    "text": "Why ggplot2?\n\n\nYou have probably heard of it but why use it?\nOnce we understand the “grammar” making figures becomes a lot easier\n\nConveying information becomes easier\nLets you show off your clean, or not so clean, data\nA coherent structure of doing things\n\nFlexibility\n\nTons ways to customize appearance\nLots of functions\n\nMakes you lazier\n\nDoesn’t require you to remember each input from a drop down menu\nDefaults to universally usable formats\nReplaces itself automatically in your directory\n\n\n\n\nggplot2 is probably one of the most well known and event among many of the staunchest base r users well loved an well used libraries in the R ecosystem.\nggplot2 predates most of the tidyverse and the gg part refers to the grammar of graphics, more on that later. Much like writing a sentence there is a proper grammar to it. Once we understand the rules we can construct lots of different “sentences”.\nI think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things or working with propietary formats. If you need to you"
   },
   {
     "objectID": "slides/ggplot-presentation.html#grammar",
     "href": "slides/ggplot-presentation.html#grammar",
     "title": "Getting Started in ggplot",
     "section": "Grammar",
-    "text": "Grammar\n\n\n“Good grammar is just the first step of creating a good sentence”\n\nHow is the data related to the figure on the right"
+    "text": "Grammar\n\n\n“Good grammar is just the first step of creating a good sentence”\n\nHow is the data related to the figure on the right?"
   },
   {
     "objectID": "slides/ggplot-presentation.html#building-the-plot",
@@ -165,7 +165,7 @@
     "href": "slides/ggplot-presentation.html#building-the-plot-1",
     "title": "Getting Started in ggplot",
     "section": "Building the Plot",
-    "text": "Building the Plot\n\n\nBody Weight of Penguins and Bill Length\n\nPenguins\nSpecies\nIsland"
+    "text": "Building the Plot\n\n\nBody Weight of Penguins and Bill Length\n\nPenguins\nSpecies\nIsland\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThere is a grammar to what is going on"
   },
   {
     "objectID": "slides/ggplot-presentation.html#building-the-plot-2",
@@ -186,14 +186,14 @@
     "href": "slides/ggplot-presentation.html#the-grammar",
     "title": "Getting Started in ggplot",
     "section": "The Grammar",
-    "text": "The Grammar\n\n\n\n\nData\n\n\naes()\n\n\ngeom\n\n\n\n\nBill Length(mm)\n\n\nx\n\n\ngeom_point()\n\n\n\n\nBody Weight(g) \n\n\ny\n\n\ngeom_point()\n\n\n\n\nIsland\n\n\ncolor\n\n\ngeom_point()\n\n\n\n\nPenguin Species\n\n\nshape \n\n\ngeom_point()\n\n\n\n\n\nThis is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do"
+    "text": "The Grammar\n\n\n\n\n\nComponent\n\n\nFunction\n\n\nExplanation\n\n\n\n\nData\n\n\nggplot(data)         \n\n\nThe raw data that you want to visualise.\n\n\n\n\nAesthetics          \n\n\naes()\n\n\nAesthetic mappings between variables and visual properties.\n\n\n\nGeometries\n\n\ngeom_*()\n\n\nThe geometric shapes representing the data.\n\n\n\n\nStatistics\n\n\nstat_*()\n\n\nThe statistical transformations applied to the data.\n\n\n\n\nScales\n\n\nscale_*()\n\n\nMaps between the data and the aesthetic dimensions.\n\n\n\n\nCoordinate System\n\n\ncoord_*()\n\n\nMaps data into the plane of the data rectangle.\n\n\n\n\nFacets\n\n\nfacet_*()\n\n\nThe arrangement of the data into a grid of plots.\n\n\n\n\nVisual Themes\n\n\ntheme() and theme_*()\n\n\nThe overall visual defaults of a plot.\n\n\n\n\n\nThis is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do"
   },
   {
     "objectID": "slides/ggplot-presentation.html#where-do-they-go",
     "href": "slides/ggplot-presentation.html#where-do-they-go",
     "title": "Getting Started in ggplot",
     "section": "Where do they go?",
-    "text": "Where do they go?\n\nggplot() +\n         geom_point(data = penguins,mapping =  aes(\n         x = bill_length_mm, \n         y = body_mass_g,\n         shape = species, \n         color = island, \n         size = species),\n         size = 3)"
+    "text": "Where do they go?\n\n\nggplot() +\n  geom_point(data = penguins,\n  mapping =  aes(\n  x = bill_length_mm, \n  y = body_mass_g,\n  shape = species, \n  color = island),\n  size = 3)"
   },
   {
     "objectID": "slides/ggplot-presentation.html#what-does-this-mean-in-practice",
@@ -235,7 +235,7 @@
     "href": "slides/ggplot-presentation.html#section",
     "title": "Getting Started in ggplot",
     "section": "",
-    "text": "ggplot will take the color argument inside aes and outside aes. If we specify color inside aes than it will color things by a column in the dataset. If you specify color outside of aes ggplot will make everything that color"
+    "text": "ggplot() +\n  geom_point(data = gapminder,\n    aes(x = gdpPercap,\n        y = lifeExp),\n        color = \"blue\") \n\n\n\n\n\n\n\n\n\n\n\nggplot will take the color argument inside aes and outside aes. If we specify color inside aes than it will color things by a column in the dataset. If you specify color outside of aes ggplot will make everything that color"
   },
   {
     "objectID": "slides/ggplot-presentation.html#section-1",
@@ -249,14 +249,14 @@
     "href": "slides/ggplot-presentation.html#section-2",
     "title": "Getting Started in ggplot",
     "section": "",
-    "text": "ggplot() + \n  geom_point(data = gapminder,\n    aes(x = gdpPercap,\n     y = lifeExp,\n     color = \"blue\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRemember when we do things in aes R will look for a column in our dataset. Importantly R will just looks for things it can do given the scope of the function. So if we put blue into the aes portion of it will plot it. But it will get confused because blue is not a column in our data set."
+    "text": "ggplot() + \n  geom_point(data = gapminder,\n   aes(x = gdpPercap,\n    y = lifeExp,\n    color = \"blue\"))\n\n\n\n\n\n\n\n\n\n\n\nRemember when we do things in aes R will look for a column in our dataset. Importantly R will just looks for things it can do given the scope of the function. So if we put blue into the aes portion of it will plot it. But it will get confused because blue is not a column in our data set."
   },
   {
-    "objectID": "slides/ggplot-presentation.html#same-geom-different-stuff",
-    "href": "slides/ggplot-presentation.html#same-geom-different-stuff",
+    "objectID": "slides/ggplot-presentation.html#same-options-different-stuff",
+    "href": "slides/ggplot-presentation.html#same-options-different-stuff",
     "title": "Getting Started in ggplot",
-    "section": "Same geom different stuff",
-    "text": "Same geom different stuff\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nthere we can show the same relationship between two variables in a ton of different ways. there are a ton of geoms that we can use to visualize our data."
+    "section": "Same options different stuff",
+    "text": "Same options different stuff\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nthere we can show the same relationship between two variables in a ton of different ways. there are a ton of geoms that we can use to visualize our data."
   },
   {
     "objectID": "slides/ggplot-presentation.html#what-comes-with-ggplot",
@@ -287,11 +287,11 @@
     "text": "Your Turn\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n−+\n02:00\n\n\n\n\ntake the graph on the left and change it to the plot on the right. use the ggplot cheatsheet."
   },
   {
-    "objectID": "slides/ggplot-presentation.html#section-4",
-    "href": "slides/ggplot-presentation.html#section-4",
+    "objectID": "slides/ggplot-presentation.html#answer",
+    "href": "slides/ggplot-presentation.html#answer",
     "title": "Getting Started in ggplot",
-    "section": "",
-    "text": "ggplot(gapminder, aes(x = continent, y = lifeExp)) +\n  geom_boxplot()"
+    "section": "Answer",
+    "text": "Answer\n\n\nggplot() +\n  geom_boxplot(gapminder,\n   mapping = aes(x = continent, # ggplot got map so I had to add mapping\n          y = lifeExp))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#your-turn-again",
@@ -301,11 +301,11 @@
     "text": "Your Turn Again\nHint do not supply a Y value\n\n\n\n\n−+\n02:00\n\n\n\n\nLets make a histogram of lifeExp. In this case we only need to supply one variable to aes. Take exp and look at the distribution through a histogram"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#section-5",
-    "href": "slides/ggplot-presentation.html#section-5",
+    "objectID": "slides/ggplot-presentation.html#section-4",
+    "href": "slides/ggplot-presentation.html#section-4",
     "title": "Getting Started in ggplot",
     "section": "",
-    "text": "ggplot(gapminder, aes(x = lifeExp)) +\n  geom_histogram()"
+    "text": "ggplot() +\n  geom_histogram(gapminder, \n    mapping = aes(x = lifeExp))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#your-turn-1",
@@ -315,11 +315,11 @@
     "text": "Your Turn\nMake This Density Plot filled by continent\n\n\n\n\n−+\n02:00\n\n\n\n\nAgain do not supply a Y column"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#section-6",
-    "href": "slides/ggplot-presentation.html#section-6",
+    "objectID": "slides/ggplot-presentation.html#section-5",
+    "href": "slides/ggplot-presentation.html#section-5",
     "title": "Getting Started in ggplot",
     "section": "",
-    "text": "ggplot(gapminder, aes(x = lifeExp, fill = continent)) +\n  geom_density(alpha = 0.75)"
+    "text": "ggplot() +\n  geom_density(gapminder,\n  mapping =  aes(x = lifeExp,\n                fill = continent),\n                alpha = 0.75)"
   },
   {
     "objectID": "slides/ggplot-presentation.html#complex-graph",
@@ -333,84 +333,91 @@
     "href": "slides/ggplot-presentation.html#local",
     "title": "Getting Started in ggplot",
     "section": "Local",
-    "text": "Local\n\n\n\nggplot(gapminder) +\n  geom_point(aes(x = gdpPercap,\n                 y = lifeExp, \n                 color = continent)) + \n  geom_smooth(aes(x = gdpPercap, \n                  y = lifeExp, \n                  color = continent, \n                  group = continent))"
+    "text": "Local\n\n\nggplot(gapminder) +\n  geom_point(aes(x = gdpPercap,\n                 y = lifeExp, \n                 color = continent)) + \n  geom_smooth(aes(x = gdpPercap, \n                  y = lifeExp, \n                  color = continent, \n                  group = continent))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#global",
     "href": "slides/ggplot-presentation.html#global",
     "title": "Getting Started in ggplot",
     "section": "Global",
-    "text": "Global\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp, \n                      color = continent, \n                      group = continent))  + \n  geom_point() +\n  geom_smooth() \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo we have mostly been working inside the individual geoms. However most people do not do this because it can start to get inconvenient quickly. If we work inside each individual geom than the other geom will not know what is going on and ggplot will get confused.\nInstead if you pass off our argument to the first layer"
+    "text": "Global\n\n\nggplot(gapminder,\n       aes(x = gdpPercap,\n          y = lifeExp, \n          color = continent, \n          group = continent))  + \n  geom_point() +\n  geom_smooth() \n\n\n\n\n\n\n\n\n\n\n\nSo we have mostly been working inside the individual geoms. However most people do not do this because it can start to get inconvenient quickly. If we work inside each individual geom than the other geom will not know what is going on and ggplot will get confused.\nInstead if you pass off our argument to the first layer"
   },
   {
     "objectID": "slides/ggplot-presentation.html#building-plots",
     "href": "slides/ggplot-presentation.html#building-plots",
     "title": "Getting Started in ggplot",
     "section": "Building Plots",
-    "text": "Building Plots\nStarting with Data and aesthics\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n y = lifeExp))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo far we have only walked through geoms and aesthics but we need other layers to make graphs that make sense. And are presentable to professional audiences"
+    "text": "Building Plots\nStarting with Data and aesthics\n\n\nggplot(gapminder,\n aes(x = gdpPercap,\n    y = lifeExp))\n\n\n\n\n\n\n\n\n\n\n\nSo far we have only walked through geoms and aesthics but we need other layers to make graphs that make sense. And are presentable to professional audiences"
   },
   {
     "objectID": "slides/ggplot-presentation.html#add-geom_point",
     "href": "slides/ggplot-presentation.html#add-geom_point",
     "title": "Getting Started in ggplot",
     "section": "Add geom_point",
-    "text": "Add geom_point\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point()"
+    "text": "Add geom_point\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n        y = lifeExp,\n        color = continent)) +\n  geom_point()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#add-geom_smooth",
     "href": "slides/ggplot-presentation.html#add-geom_smooth",
     "title": "Getting Started in ggplot",
     "section": "Add geom_smooth",
-    "text": "Add geom_smooth\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth()"
+    "text": "Add geom_smooth\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n       y = lifeExp,\n       color = continent)) +\n  geom_point() +\n  geom_smooth()"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#add-change-transparency",
+    "href": "slides/ggplot-presentation.html#add-change-transparency",
+    "title": "Getting Started in ggplot",
+    "section": "Add Change Transparency",
+    "text": "Add Change Transparency\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n       y = lifeExp,\n       color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#adjust-scales-with-scale_x_log10",
     "href": "slides/ggplot-presentation.html#adjust-scales-with-scale_x_log10",
     "title": "Getting Started in ggplot",
     "section": "Adjust scales with scale_x_log10",
-    "text": "Adjust scales with scale_x_log10\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth() +\n  scale_x_log10()"
+    "text": "Adjust scales with scale_x_log10\n\n\nggplot(gapminder,\n     aes(x = gdpPercap,\n         y = lifeExp,\n         color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#add-axis-labels-and-title-with-labs",
     "href": "slides/ggplot-presentation.html#add-axis-labels-and-title-with-labs",
     "title": "Getting Started in ggplot",
     "section": "Add axis labels and title with labs",
-    "text": "Add axis labels and title with labs\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\", y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\")"
+    "text": "Add axis labels and title with labs\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\")"
   },
   {
     "objectID": "slides/ggplot-presentation.html#add-viridis-color-scale",
     "href": "slides/ggplot-presentation.html#add-viridis-color-scale",
     "title": "Getting Started in ggplot",
     "section": "Add viridis color scale",
-    "text": "Add viridis color scale\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d()"
+    "text": "Add viridis color scale\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#add-theme",
     "href": "slides/ggplot-presentation.html#add-theme",
     "title": "Getting Started in ggplot",
     "section": "Add theme",
-    "text": "Add theme\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw()"
+    "text": "Add theme\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n         y = lifeExp,\n         color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#facet-by-continent",
     "href": "slides/ggplot-presentation.html#facet-by-continent",
     "title": "Getting Started in ggplot",
     "section": "Facet by Continent",
-    "text": "Facet by Continent\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent))"
+    "text": "Facet by Continent\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#change-theme-options",
     "href": "slides/ggplot-presentation.html#change-theme-options",
     "title": "Getting Started in ggplot",
     "section": "Change Theme Options",
-    "text": "Change Theme Options\n\n\n\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      color = continent)) +\n  geom_point() +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent)) +\n  theme(legend.position = \"none\")"
+    "text": "Change Theme Options\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n      y = lifeExp,\n      color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent)) +\n  theme(legend.position = \"none\")"
   },
   {
     "objectID": "slides/ggplot-presentation.html#a-grammar-we-can-use",
     "href": "slides/ggplot-presentation.html#a-grammar-we-can-use",
     "title": "Getting Started in ggplot",
     "section": "A Grammar We Can Use",
-    "text": "A Grammar We Can Use\nMap wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.\n\n\nCode\nggplot(gapminder, aes(x = gdpPercap,\n                      y = lifeExp,\n                      size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_allen_bw() +\n  guides(size = guide_legend(reverse = TRUE, title = \"Population\"), color =   guide_legend(title = \"Continent\"))"
+    "text": "A Grammar We Can Use\nMap wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n        y = lifeExp,\n        size = pop,\n        color = continent)) +\n  geom_point(alpha = 0.5) +\n  labs(x = \"Income\",\n       y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_allen_bw() +\n  guides(size = guide_legend(reverse = TRUE,\n                title = \"Population\"),\n         color = guide_legend(title = \"Continent\"))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#scales",
@@ -424,14 +431,21 @@
     "href": "slides/ggplot-presentation.html#scales-in-action",
     "title": "Getting Started in ggplot",
     "section": "Scales in Action",
-    "text": "Scales in Action\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw()\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop,\n                      color = continent)) +\n  geom_point() +\n  labs(x = \"Income\", y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  scale_color_viridis_d() +\n  theme_bw()"
+    "text": "Scales in Action\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n      y = lifeExp,\n      size = pop,\n      color = continent)) +\n  geom_point(alpha = 0.5) +\n  labs(x = \"Income\",\n     y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#coordinates",
     "href": "slides/ggplot-presentation.html#coordinates",
     "title": "Getting Started in ggplot",
     "section": "Coordinates",
-    "text": "Coordinates\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() +\n  scale_x_continuous(limits = c(0, 30000)) +\n  theme_bw()\n  \nggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +\n  geom_point() +\n  scale_x_continuous(limits = c(0, 30000)) +\n  coord_flip() +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don’t want to go back and redo it"
+    "text": "Coordinates\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          size = pop,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  scale_x_continuous(limits = c(0, 30000)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\nIn some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don’t want to go back and redo it"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#coordinates-1",
+    "href": "slides/ggplot-presentation.html#coordinates-1",
+    "title": "Getting Started in ggplot",
+    "section": "Coordinates",
+    "text": "Coordinates\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n     y = lifeExp)) +\n  geom_point(alpha = 0.5) +\n  scale_x_continuous(limits = c(0, 30000)) +\n  coord_flip() +\n  theme_bw()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#your-turn-2",
@@ -445,7 +459,7 @@
     "href": "slides/ggplot-presentation.html#change-viridis-optioons",
     "title": "Getting Started in ggplot",
     "section": "Change Viridis Optioons",
-    "text": "Change Viridis Optioons\n\n\n\nggplot(penguins, aes(x = bill_length_mm, fill = species)) +\n  geom_density( alpha = 0.75) +\n  theme_bw() +\n  scale_fill_viridis_d(option = \"magma\")"
+    "text": "Change Viridis Optioons\n\n\nggplot(penguins,\n aes(x = bill_length_mm,\n    fill = species)) +\n  geom_density( alpha = 0.75) +\n  theme_bw() +\n  scale_fill_viridis_d(option = \"magma\")"
   },
   {
     "objectID": "slides/ggplot-presentation.html#facets",
@@ -459,7 +473,7 @@
     "href": "slides/ggplot-presentation.html#facets-1",
     "title": "Getting Started in ggplot",
     "section": "Facets",
-    "text": "Facets\n\nggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop)) +\n  geom_point() +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent)) # you can add more combos of vars here\n  \nggplot(data = filter(gapminder, year %in% c(1987,1997,2002, 2007)),\n       aes(x = gdpPercap,\n           y = lifeExp,\n           size = pop)) +\n  geom_point() +\n  theme_bw() +\n  scale_x_log10() +\n  facet_grid(vars(year))"
+    "text": "Facets\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n     y = lifeExp,\n     size = pop)) +\n  geom_point(alpha = 0.5) +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent)) # you can add more combos of vars here"
   },
   {
     "objectID": "slides/ggplot-presentation.html#labels",
@@ -473,7 +487,7 @@
     "href": "slides/ggplot-presentation.html#labels-with-labs",
     "title": "Getting Started in ggplot",
     "section": "Labels with labs",
-    "text": "Labels with labs\n\n\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  scale_x_log10() +\n  labs(title = \"Health and wealth grow together\",\n       subtitle = \"Data from 2007\",\n       x = \"Wealth (GDP per capita)\",\n       y = \"Health (life expectancy)\",\n       color = \"Continent\",\n       size = \"Population\",\n       caption = \"Source: The Gapminder Project\")"
+    "text": "Labels with labs\n\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point(alpha = 0.5) +\n  scale_x_log10() +\n  labs(title = \"Health and wealth grow together\",\n       subtitle = \"Data from 2007\",\n       x = \"Wealth (GDP per capita)\",\n       y = \"Health (life expectancy)\",\n       color = \"Continent\",\n       size = \"Population\",\n       caption = \"Source: The Gapminder Project\")"
   },
   {
     "objectID": "slides/ggplot-presentation.html#changing-the-default-theme",
@@ -483,18 +497,11 @@
     "text": "Changing the Default Theme\n\n\ntheme_minimal\n\n\n\n\n\n\n\n\n\n\ntheme_dark"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#common-user-written-packages",
-    "href": "slides/ggplot-presentation.html#common-user-written-packages",
-    "title": "Getting Started in ggplot",
-    "section": "Common User Written Packages",
-    "text": "Common User Written Packages\n\n\nhrbrthemes\n\n\nCode\n# install.packages(\"hrbrthemes\")\nlibrary(hrbrthemes)\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  scale_x_log10() +\n  labs(title = \"hrbr theme_ipsum\") +\n  theme_ipsum()\n\n\n\n\n\n\n\n\n\n\nggthemes\n\n\nCode\nlibrary(ggthemes)\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point() +\n  labs(title = \"theme_wsj\") +\n  scale_x_log10() +\n  theme_wsj()"
-  },
-  {
     "objectID": "slides/ggplot-presentation.html#ggplot-in-the-wild",
     "href": "slides/ggplot-presentation.html#ggplot-in-the-wild",
     "title": "Getting Started in ggplot",
     "section": "ggplot in the wild",
-    "text": "ggplot in the wild\n\nOften organizations will write their own theme\n\nCheck out the BBC’s\n\n\n\n##devtools::install_github('bbc/bbplot')\nlibrary(bbplot)\n ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +\n  geom_point() +\n  scale_color_manual(values = c(\"#FAAB18\", \"#1380A1\",\"#990000\", \"#588300\")) +\n  scale_x_log10() +\n  bbc_style()"
+    "text": "ggplot in the wild\n\nOften organizations will write their own theme\n\nCheck out the BBC’s\n\n\n\n\n##devtools::install_github('bbc/bbplot')\nlibrary(bbplot)\n ggplot(gapminder,\n  aes(x = gdpPercap,\n   y = lifeExp,\n    color = continent)) +\n  geom_point(alpha = 0.6) +\n  scale_color_manual(values = \n  c(\"#FAAB18\",\n    \"#1380A1\",\n    \"#990000\",\n    \"#588300\")) +\n  scale_x_log10() +\n  bbc_style()\n\n\n\n\n\n\n\n\n\n\n\nLots of organizations use ggplot. What this means for you is that you can find themes that"
   },
   {
     "objectID": "slides/ggplot-presentation.html#the-theme-argument",
@@ -536,35 +543,35 @@
     "href": "slides/ggplot-presentation.html#shape-files",
     "title": "Getting Started in ggplot",
     "section": "Shape Files",
-    "text": "Shape Files\n\n\n\n\n\nSimple feature collection with 177 features and 1 field\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -180 ymin: -90 xmax: 180 ymax: 83.64513\nGeodetic CRS:  WGS 84\n# A tibble: 177 × 2\n   SOVEREIGNT                                                           geometry\n   <chr>                                                      <MULTIPOLYGON [°]>\n 1 Fiji                        (((180 -16.06713, 180 -16.55522, 179.3641 -16.80…\n 2 United Republic of Tanzania (((33.90371 -0.95, 34.07262 -1.05982, 37.69869 -…\n 3 Western Sahara              (((-8.66559 27.65643, -8.665124 27.58948, -8.684…\n 4 Canada                      (((-122.84 49, -122.9742 49.00254, -124.9102 49.…\n 5 United States of America    (((-122.84 49, -120 49, -117.0312 49, -116.0482 …\n 6 Kazakhstan                  (((87.35997 49.21498, 86.59878 48.54918, 85.7682…\n 7 Uzbekistan                  (((55.96819 41.30864, 55.92892 44.99586, 58.5031…\n 8 Papua New Guinea            (((141.0002 -2.600151, 142.7352 -3.289153, 144.5…\n 9 Indonesia                   (((141.0002 -2.600151, 141.0171 -5.859022, 141.0…\n10 Argentina                   (((-68.63401 -52.63637, -68.25 -53.1, -67.75 -53…\n# … with 167 more rows\n\n\n\nWhen you download a shapefile you will get lots and lots of stuff. Lots of the shapefiles that you encounter in the wild are maintained by governments so keep those in the working directory. I will get to how to read in shape files in a minute. But when you read them into R the only thing that changes from your usual dataframe, tibble, data.table etc is that you will get a column in your dataset called geometry. This is just a list of things that delineate boundaries. for smaller countries like Fiji the number of boundaries are going to be smaller than say larger countries by area. It doesnt make sense to us but it makes sense to R"
+    "text": "Shape Files\n\nTo read in shape files you use read_sf you should see something that looks like this!\n\n\n\nSimple feature collection with 177 features and 1 field\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -180 ymin: -90 xmax: 180 ymax: 83.64513\nGeodetic CRS:  WGS 84\n# A tibble: 177 × 2\n   SOVEREIGNT                                                           geometry\n   <chr>                                                      <MULTIPOLYGON [°]>\n 1 Fiji                        (((180 -16.06713, 180 -16.55522, 179.3641 -16.80…\n 2 United Republic of Tanzania (((33.90371 -0.95, 34.07262 -1.05982, 37.69869 -…\n 3 Western Sahara              (((-8.66559 27.65643, -8.665124 27.58948, -8.684…\n 4 Canada                      (((-122.84 49, -122.9742 49.00254, -124.9102 49.…\n 5 United States of America    (((-122.84 49, -120 49, -117.0312 49, -116.0482 …\n 6 Kazakhstan                  (((87.35997 49.21498, 86.59878 48.54918, 85.7682…\n 7 Uzbekistan                  (((55.96819 41.30864, 55.92892 44.99586, 58.5031…\n 8 Papua New Guinea            (((141.0002 -2.600151, 142.7352 -3.289153, 144.5…\n 9 Indonesia                   (((141.0002 -2.600151, 141.0171 -5.859022, 141.0…\n10 Argentina                   (((-68.63401 -52.63637, -68.25 -53.1, -67.75 -53…\n# … with 167 more rows\n\n\n\nWhen you download a shapefile you will get lots and lots of stuff. Lots of the shapefiles that you encounter in the wild are maintained by governments so keep those in the working directory. I will get to how to read in shape files in a minute. But when you read them into R the only thing that changes from your usual dataframe, tibble, data.table etc is that you will get a column in your dataset called geometry. This is just a list of things that delineate boundaries. for smaller countries like Fiji the number of boundaries are going to be smaller than say larger countries by area. It doesnt make sense to us but it makes sense to R"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#reading-shape-files-using-sf",
-    "href": "slides/ggplot-presentation.html#reading-shape-files-using-sf",
+    "objectID": "slides/ggplot-presentation.html#working-with-data",
+    "href": "slides/ggplot-presentation.html#working-with-data",
     "title": "Getting Started in ggplot",
-    "section": "Reading Shape files using sf",
-    "text": "Reading Shape files using sf\n\nWorks broadly the same way as using read_csv\n\n\nworld_map = read_sf(\"data/ne_110m_admin_0_countries.shp\")\n\n\nYou can also use dplyr to get what you want\n\n\n\nCode\npacman::p_load(\"sf\", \"countrycode\", \n               \"scico\", \"MetBrewer\", \"WDI\", \"vdemdata\")\n\nvdem_raw = vdemdata::vdem \n\nvdem_cleanish = vdem_raw %>% \n  select(v2x_regime, country_name, country_text_id, year) %>% \n  filter(year == \"2018\") %>% \n  mutate(ISO_A3 = countrycode(country_name, origin = \"country.name\",\n                              destination = \"iso3c\"),\n         regime_type = case_when(v2x_regime == 0 ~ \"Full Autocracy\",\n                                 v2x_regime == 1 ~ \"Electoral Autocracy\",\n                                 v2x_regime == 2 ~ \"Electoral Democracy\",\n                                 v2x_regime == 3 ~ \"Liberal Democracy\"),\n         regime_type = as.factor(regime_type)) %>% \n  arrange(ISO_A3)\n\n\n\n\n\nworld_map  = read_sf(\"data/ne_110m_admin_0_countries.shp\")\n\nworld_map_fixed = world_map %>% \n  mutate(ISO_A3 = case_when(\n    ## If the country name is Norway or France, redo the ISO3 code\n    ADMIN == \"Norway\" ~ \"NOR\",\n    ADMIN == \"France\" ~ \"FRA\",\n    ## Otherwise use the existing ISO3 code\n    TRUE ~ ISO_A3)) %>% \n    filter(ISO_A3 != \"ATA\") \n\n\n\nplot_data_world = left_join(world_map_fixed, vdem_cleanish, by = \"ISO_A3\")  |> \n  filter(!is.na(regime_type))\n\n\n\nplot_data_world$regime_type = factor(plot_data_world$regime_type,\n                                     levels = c(\"Full Autocracy\",\n                                                \"Electoral Autocracy\",\n                                                \"Electoral Democracy\",\n                                                 \"Liberal Democracy\"))\n\n\n\n world_map_plot = ggplot() + \n  geom_sf(data = plot_data_world, aes(fill = regime_type),\n          color = \"##CDCDCD\", size = 0.1) +\n   coord_sf(crs = st_crs(\"ESRI:54030\")) +\n    scale_fill_scico_d(palette = \"vik\", direction = -1, na.value = \"grey80\") +\n   labs(fill = \"Regime Types\",\n        caption = \"Data are derived from the Varities of Democracy Project\") +\n   theme_void(base_family = \"Roboto Condensed\") +\n   theme(legend.position = \"top\",\n         legend.text = element_text(size = 8),\n         plot.caption = element_text(hjust = 0.8))"
+    "section": "Working with Data",
+    "text": "Working with Data\n\nYou can use dplyr to manipulate data still.\n\n\n\nvdem_raw = vdemdata::vdem \n\nvdem_cleanish = vdem_raw %>% \n  select(v2x_regime, country_name, country_text_id, year) %>% \n  filter(year == \"2018\") %>% \n  mutate(ISO_A3 = countrycode(country_name, origin = \"country.name\",\n                              destination = \"iso3c\"),\n         regime_type = case_when(v2x_regime == 0 ~ \"Full Autocracy\",\n                                 v2x_regime == 1 ~ \"Electoral Autocracy\",\n                                 v2x_regime == 2 ~ \"Electoral Democracy\",\n                                 v2x_regime == 3 ~ \"Liberal Democracy\"),\n         regime_type = as.factor(regime_type)) %>% \n  arrange(ISO_A3)\n\n\nworld_map_fixed = world_map %>% \n  mutate(ISO_A3 = case_when(\n    ## If the country name is Norway or France, redo the ISO3 code\n    ADMIN == \"Norway\" ~ \"NOR\",\n    ADMIN == \"France\" ~ \"FRA\",\n    ## Otherwise use the existing ISO3 code\n    TRUE ~ ISO_A3)) %>% \n    filter(ISO_A3 != \"ATA\") \n\n\n\nplot_data_world = left_join(world_map_fixed, vdem_cleanish, by = \"ISO_A3\")  |> \n  filter(!is.na(regime_type))\n\n\n\nplot_data_world$regime_type = factor(plot_data_world$regime_type,\n                                     levels = c(\"Full Autocracy\",\n                                                \"Electoral Autocracy\",\n                                                \"Electoral Democracy\",\n                                                 \"Liberal Democracy\"))\n\n\n\n ggplot() + \n  geom_sf(data = plot_data_world, aes(fill = regime_type),\n          color = \"#CDCDCD\", size = 0.1) +\n   coord_sf(crs = st_crs(\"ESRI:54030\")) +\n    scale_fill_scico_d(palette = \"vik\", direction = -1, na.value = \"grey80\") +\n   labs(fill = \"Regime Types\",\n        caption = \"Data are derived from the Varities of Democracy Project\") +\n   theme_void(base_family = \"Roboto Condensed\") +\n   theme(legend.position = \"top\",\n         legend.text = element_text(size = 8),\n         plot.caption = element_text(hjust = 0.8))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#making-maps-in-ggplot",
     "href": "slides/ggplot-presentation.html#making-maps-in-ggplot",
     "title": "Getting Started in ggplot",
     "section": "Making Maps in ggplot",
-    "text": "Making Maps in ggplot\n\n## devtools::install_github(\"ropenscilabs/rnaturalearth\")\nlibrary(rnaturalearth)\n\nworld_map_ne = ne_states(returnclass = \"sf\")\n\nggplot() +\n  geom_sf(data = world_map_ne)\n\n\n\nas you can see nothing really fundamentally changes when you are making maps in ggplot. It is no different fundamentally than making a scatter plot or any other kind of plot here we are just feeding data to geom_sf"
+    "text": "Making Maps in ggplot\n\n\n## devtools::install_github(\"ropenscilabs/rnaturalearth\")\nlibrary(rnaturalearth)\n\nworld_map_ne = ne_states(returnclass = \"sf\")\n\nggplot() +\n  geom_sf(data = world_map_ne)\n\n\n\n\n\n\n\n\n\n\n\nas you can see nothing really fundamentally changes when you are making maps in ggplot. It is no different fundamentally than making a scatter plot or any other kind of plot here we are just feeding data to geom_sf"
   },
   {
     "objectID": "slides/ggplot-presentation.html#changing-the-projections",
     "href": "slides/ggplot-presentation.html#changing-the-projections",
     "title": "Getting Started in ggplot",
     "section": "Changing the Projections",
-    "text": "Changing the Projections\n\nggplot() +\n  geom_sf(data = world_map_ne) + \n  coord_sf(crs = \"+proj=cea +lon_0=0 +lat_ts=45\") +\n  labs(title = \"Gall-Peters Projection\") +\n  theme_void()\n\n\n\nYou can really easily change the projections you want. Here we are just feeding it a different projections If you ever watched the west wing you may recognize this particular projection"
+    "text": "Changing the Projections\n\n\nggplot() +\n  geom_sf(data = world_map_ne) + \n  coord_sf(crs = \"+proj=cea +lon_0=0 +lat_ts=45\") +\n  labs(title = \"Gall-Peters Projection\") +\n  theme_void()\n\n\n\n\n\n\n\n\n\n\n\nYou can really easily change the projections you want. Here we are just feeding it a different projections If you ever watched the west wing you may recognize this particular projection"
   },
   {
     "objectID": "slides/ggplot-presentation.html#mapping-middle-earth",
     "href": "slides/ggplot-presentation.html#mapping-middle-earth",
     "title": "Getting Started in ggplot",
     "section": "Mapping Middle Earth",
-    "text": "Mapping Middle Earth\n\n\nCode\ncoastline = read_sf(\"data/ME-GIS/Coastline2.shp\")\ncontours = read_sf(\"data/ME-GIS/Contours_18.shp\")\nrivers = read_sf(\"data/ME-GIS/Rivers.shp\")\nlakes = read_sf(\"data/ME-GIS/Lakes.shp\")\nforests = read_sf(\"data/ME-GIS/Forests.shp\")\nmountains = read_sf(\"data/ME-GIS/Mountains_Anno.shp\")\nplacenames = read_sf(\"data/ME-GIS/Combined_Placenames.shp\")\ncities = read_sf(\"data/ME-GIS/Cities.shp\")\nroads = read_sf(\"data/ME-GIS/Roads.shp\")\ntowers_keeps =  read_sf(\"data/ME-GIS/Towers_and_Keeps.shp\")\nplaces <- placenames %>% \n  filter(NAME %in% c(\"Hobbiton\",\n                     \"Rivendell\",\n                     \"Edoras\",\n                     \"Minas Tirith\"))\n\nmordor = placenames[placenames$NAME == \"Mordor\",]\n\nmountains_to_label = mountains[mountains$name == \"Erebor The Lonely Mountain\",]\n\nggplot() +\n  geom_sf(data = contours,\n          size = 0.15,\n          color = \"grey90\") +\n  geom_sf(data = coastline,\n          size = 0.25,\n          color = \"grey50\") +\n  geom_sf(data = rivers,\n          size = 0.2,\n          color = \"#0776e0\",\n          alpha = 0.5) +\n  geom_sf(data = lakes,\n          size = 0.2,\n          color = \"#0776e0\",\n          fill = \"#0776e0\") +\n  geom_sf(data = forests,\n          size = 0,\n          fill = \"#035711\",\n          alpha = 0.5) +\n  geom_sf(data = mountains, size = 0.25) +\n  geom_sf(data = places) +\n  geom_sf_label(data = places,\n                aes(label = NAME),\n                nudge_y = 80000) +\n  geom_sf_label(data = mountains_to_label,\n                aes(label = name),\n                nudge_y = 80000) +\n  geom_sf_label(data = mordor,\n                aes(label = NAME),\n                nudge_y = 9000) +\n  theme_void() +\n  theme(plot.background = element_rect(fill = \"#fffce3\"))\n\n\n\n\nAs you can see this does not look fundamentally all that different from the rest of our ggplot code. We are just coloring and sizing ssutff depening on what we want. We can add annotations"
+    "text": "Mapping Middle Earth\n\n\ncoastline = read_sf(\"data/ME-GIS/Coastline2.shp\")\ncontours = read_sf(\"data/ME-GIS/Contours_18.shp\")\nrivers = read_sf(\"data/ME-GIS/Rivers.shp\")\nlakes = read_sf(\"data/ME-GIS/Lakes.shp\")\nforests = read_sf(\"data/ME-GIS/Forests.shp\")\nmountains = read_sf(\"data/ME-GIS/Mountains_Anno.shp\")\nplacenames = read_sf(\"data/ME-GIS/Combined_Placenames.shp\")\ncities = read_sf(\"data/ME-GIS/Cities.shp\")\nroads = read_sf(\"data/ME-GIS/Roads.shp\")\ntowers_keeps =  read_sf(\"data/ME-GIS/Towers_and_Keeps.shp\")\nplaces <- placenames %>% \n  filter(NAME %in% c(\"Hobbiton\",\n                     \"Rivendell\",\n                     \"Edoras\",\n                     \"Minas Tirith\"))\n\nmordor = placenames[placenames$NAME == \"Mordor\",]\n\nmountains_to_label = mountains[mountains$name == \"Erebor The Lonely Mountain\",]\n\nggplot() +\n  geom_sf(data = contours,\n          size = 0.15,\n          color = \"grey90\") +\n  geom_sf(data = coastline,\n          size = 0.25,\n          color = \"grey50\") +\n  geom_sf(data = rivers,\n          size = 0.2,\n          color = \"#0776e0\",\n          alpha = 0.5) +\n  geom_sf(data = lakes,\n          size = 0.2,\n          color = \"#0776e0\",\n          fill = \"#0776e0\") +\n  geom_sf(data = forests,\n          size = 0,\n          fill = \"#035711\",\n          alpha = 0.5) +\n  geom_sf(data = mountains, size = 0.25) +\n  geom_sf(data = places) +\n  geom_sf_label(data = places,\n                aes(label = NAME),\n                nudge_y = 80000) +\n  geom_sf_label(data = mountains_to_label,\n                aes(label = name),\n                nudge_y = 80000) +\n  geom_sf_label(data = mordor,\n                aes(label = NAME),\n                nudge_y = 9000) +\n  theme_void() +\n  theme(plot.background = element_rect(fill = \"#fffce3\"))\n\n\n\n\n\n\n\n\n\n\n\nAs you can see this does not look fundamentally all that different from the rest of our ggplot code. We are just coloring and sizing ssutff depening on what we want. We can add annotations"
   },
   {
     "objectID": "slides/ggplot-presentation.html#working-without-shape-fileskind-of",
@@ -592,7 +599,7 @@
     "href": "slides/ggplot-presentation.html#making-a-bespoke-shapefilecont-1",
     "title": "Getting Started in ggplot",
     "section": "Making a Bespoke Shapefile(cont)",
-    "text": "Making a Bespoke Shapefile(cont)\n\nlibrary(tidygeocoder)\n\nbreweries_I_visit = tribble(\n  ~name, ~address,\n  \"Russian River Brewing\", \"725 4th St, Santa Rosa, CA 95404\",\n  \"Orpheus Brewing\", \"1440 Dutch Valley Pl NE, Atlanta, GA 30324\",\n  \"Three Tavens\", \"121 New St, Decatur, GA 30030\",\n  \"HenHouse Brewing Company\", \"322 Bellevue Ave, Santa Rosa, CA 95407\"\n)\n\nbreweries_geocode = breweries_I_visit |> \n  geocode(address,  cascade_order = c(\"osm\", \"arcgis\")) ## backup if one service fails \n\nadd_geom = breweries_geocode |> \n  st_as_sf(coords = c(\"long\", \"lat\"), crs = st_crs(\"EPSG:4326\"))\n\n\n\n\n\n \n  \n    name \n    address \n    geometry \n  \n \n\n  \n    Russian River Brewing \n    725 4th St, Santa Rosa, CA 95404 \n    POINT (-122.7117 38.4418) \n  \n  \n    Orpheus Brewing \n    1440 Dutch Valley Pl NE, Atlanta, GA 30324 \n    POINT (-84.36874 33.79355) \n  \n  \n    Three Tavens \n    121 New St, Decatur, GA 30030 \n    POINT (-84.28488 33.77306) \n  \n  \n    HenHouse Brewing Company \n    322 Bellevue Ave, Santa Rosa, CA 95407 \n    POINT (-122.7255 38.40122)"
+    "text": "Making a Bespoke Shapefile(cont)\n\nlibrary(tidygeocoder)\n\nbreweries_I_visit = tribble(\n  ~name, ~address,\n  \"Russian River Brewing\", \"725 4th St, Santa Rosa, CA 95404\",\n  \"Orpheus Brewing\", \"1440 Dutch Valley Pl NE, Atlanta, GA 30324\",\n  \"Three Tavens\", \"121 New St, Decatur, GA 30030\",\n  \"HenHouse Brewing Company\", \"322 Bellevue Ave, Santa Rosa, CA 95407\"\n)\n\nbreweries_geocode = breweries_I_visit |> \n  geocode(address, geocode_combine = c(\"osm\", \"arcgis\")) ## backup if one service fails \n\nadd_geom = breweries_geocode |> \n  st_as_sf(coords = c(\"long\", \"lat\"), crs = st_crs(\"EPSG:4326\"))\n\n\n\n\n\n \n  \n    name \n    address \n    geometry \n  \n \n\n  \n    Russian River Brewing \n    725 4th St, Santa Rosa, CA 95404 \n    POINT (-122.7117 38.4418) \n  \n  \n    Orpheus Brewing \n    1440 Dutch Valley Pl NE, Atlanta, GA 30324 \n    POINT (-84.36874 33.79355) \n  \n  \n    Three Tavens \n    121 New St, Decatur, GA 30030 \n    POINT (-84.28488 33.77306) \n  \n  \n    HenHouse Brewing Company \n    322 Bellevue Ave, Santa Rosa, CA 95407 \n    POINT (-122.7255 38.40122)"
   },
   {
     "objectID": "slides/ggplot-presentation.html#mapping-atlanta",
@@ -613,7 +620,7 @@
     "href": "slides/ggplot-presentation.html#which-produces",
     "title": "Getting Started in ggplot",
     "section": "Which Produces",
-    "text": "Which Produces\n\n\nCode\nggplot() +\n  geom_sf(data = railway$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .2,\n          linetype=\"dotdash\",\n          alpha = .5) +\n  geom_sf(data = med_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .3,\n          alpha = .5) +\n  geom_sf(data = small_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"#666666\",\n          size = .2,\n          alpha = .3) +\n  geom_sf(data = big_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .5,\n          alpha = .6) +\n  geom_sf(data = add_geom, aes(color = name),\n          color = \"#0039A6\") +\n  coord_sf(ylim = c(33.64, 33.89), \n           xlim = c (-84.56, -84.30), expand = FALSE) +\n  theme_void(base_family = \"Roboto Condensed\", base_size = 20) +\n  theme(plot.subtitle = element_text(size = 10, hjust = 0.5, \n                                     margin = margin(2, 0, 5, 0)),\n        plot.title = element_text(face=\"bold\", hjust=.5),\n        plot.caption = element_text(size = 8, face = \"bold\")) + \n   labs(title = \"Atlanta\", subtitle = \"33.7490°N/84.3880°W\")"
+    "text": "Which Produces\n\n\nggplot() +\n  geom_sf(data = railway$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .2,\n          linetype=\"dotdash\",\n          alpha = .5) +\n  geom_sf(data = med_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .3,\n          alpha = .5) +\n  geom_sf(data = small_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"#666666\",\n          size = .2,\n          alpha = .3) +\n  geom_sf(data = big_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .5,\n          alpha = .6) +\n  geom_sf(data = add_geom, aes(color = name),\n          color = \"#0039A6\") +\n  coord_sf(ylim = c(33.64, 33.89), \n           xlim = c (-84.56, -84.30), expand = FALSE) +\n  theme_void(base_family = \"Roboto Condensed\", base_size = 20) +\n  theme(plot.subtitle = element_text(size = 10, hjust = 0.5, \n                                     margin = margin(2, 0, 5, 0)),\n        plot.title = element_text(face=\"bold\", hjust=.5),\n        plot.caption = element_text(size = 8, face = \"bold\")) + \n   labs(title = \"Atlanta\", subtitle = \"33.7490°N/84.3880°W\")"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#packages-you-will-need",
