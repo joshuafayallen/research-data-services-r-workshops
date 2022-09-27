@@ -788,14 +788,14 @@
     "href": "slides/data-analysis-in-R.html#getting-some-descriptive-statistics",
     "title": "Data Analysis in R",
     "section": "Getting Some Descriptive Statistics",
-    "text": "Getting Some Descriptive Statistics\nThe Mean\n\n\nBase\n\nmean(penguins$bill_depth_mm, na.rm = TRUE)\n\n[1] 17.15117\n\n\n\nTidyverse\n\nsummarise(penguins,\n          avg_body_mass = mean(body_mass_g,\n                                 na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_body_mass\n          <dbl>\n1         4202."
+    "text": "Getting Some Descriptive Statistics\nThe Mean\n\n\nBase\n\nmean(penguins$bill_depth_mm, na.rm = TRUE)\n\n[1] 17.15117\n\n\n\nTidyverse(overkill in this application)\n\nsummarise(penguins,\n          avg_body_mass = mean(body_mass_g,\n                                 na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_body_mass\n          <dbl>\n1         4202."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#quartiles",
     "href": "slides/data-analysis-in-R.html#quartiles",
     "title": "Data Analysis in R",
     "section": "Quartiles",
-    "text": "Quartiles\n\n\nBase\n\nquantile(penguins$bill_depth_mm,\n         na.rm = TRUE,\n         probs = c(.25, .50, .75))\n\n 25%  50%  75% \n15.6 17.3 18.7 \n\n\n\nTidyverse\n\npenguins |> \n  summarise(quartile_length = quantile(bill_length_mm,\n                                    na.rm = TRUE,\n                                    probs = c(.25,\n                                              .50,\n                                              .75)))\n\n# A tibble: 3 × 1\n  quartile_length\n            <dbl>\n1            39.2\n2            44.4\n3            48.5"
+    "text": "Quartiles\n\n\nBase\n\nquantile(penguins$bill_depth_mm,\n         na.rm = TRUE,\n         probs = c(.25, .50, .75))\n\n 25%  50%  75% \n15.6 17.3 18.7 \n\n\n\nTidyverse(overkill in this instance)\n\npenguins |> \n  summarise(quartile_length = quantile(bill_length_mm,\n                                    na.rm = TRUE,\n                                    probs = c(.25,\n                                              .50,\n                                              .75)))\n\n# A tibble: 3 × 1\n  quartile_length\n            <dbl>\n1            39.2\n2            44.4\n3            48.5"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#t-tests",
@@ -844,14 +844,14 @@
     "href": "slides/data-analysis-in-R.html#distributionscont",
     "title": "Data Analysis in R",
     "section": "Distributions(cont)",
-    "text": "Distributions(cont)\n\n\n\n## you can turn off scientific notion using option(scipen = 999)\n\nggplot(penguins, aes(x = body_mass_g, fill = species)) +\n  geom_density(alpha = 0.7) +\n  labs(x = \"Body Mass(grams)\") +\n  guides(fill = guide_legend(title = \"Species\")) +\n  theme_allen_minimal()"
+    "text": "Distributions(cont)\n\n\n## you can turn off scientific notion using option(scipen = 999)\n\nggplot(penguins, aes(x = body_mass_g, fill = species)) +\n  geom_density(alpha = 0.7) +\n  labs(x = \"Body Mass(grams)\") +\n  guides(fill = guide_legend(title = \"Species\")) +\n  theme_allen_minimal()"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#user-written-extensions",
     "href": "slides/data-analysis-in-R.html#user-written-extensions",
     "title": "Data Analysis in R",
     "section": "User Written Extensions",
-    "text": "User Written Extensions\n\n\n\nlibrary(gghalves)\n\nggplot(penguins, aes(x = species, y = bill_depth_mm, fill = species)) +\n  geom_boxplot(\n    width = .2, fill = \"white\",\n    size = 1.5, outlier.shape = NA\n  ) +\n  ggdist::stat_halfeye(\n    adjust = .33,\n    width = .67, \n    color = NA,\n    position = position_nudge(x = .15)\n  ) +\n  gghalves::geom_half_point(\n    side = \"l\", \n    range_scale = .3, \n    alpha = .25, size = 1\n  ) +\n  MetBrewer::scale_fill_met_d(name = \"Veronese\") +\n  labs(x = NULL, fill = \"Species\", y = \"Bill Depth(milimeters)\") +\n  coord_flip() +\n  theme_allen_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode and example are from Cédric Scherer’s Beyond the Bar plot talk"
+    "text": "User Written Extensions\n\n\nlibrary(gghalves)\n\nggplot(penguins, aes(x = species, y = bill_depth_mm, fill = species)) +\n  geom_boxplot(\n    width = .2, fill = \"white\",\n    size = 1.5, outlier.shape = NA\n  ) +\n  ggdist::stat_halfeye(\n    adjust = .33,\n    width = .67, \n    color = NA,\n    position = position_nudge(x = .15)\n  ) +\n  gghalves::geom_half_point(\n    side = \"l\", \n    range_scale = .3, \n    alpha = .25, size = 1\n  ) +\n  MetBrewer::scale_fill_met_d(name = \"Veronese\") +\n  labs(x = NULL, fill = \"Species\", y = \"Bill Depth(milimeters)\") +\n  coord_flip() +\n  theme_allen_bw()\n\n\n\n\n\n\n\n\n\n\n\n\nCode and example are from Cédric Scherer’s Beyond the Bar plot talk"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-table-1",
@@ -998,7 +998,14 @@
     "href": "slides/data-analysis-in-R.html#full-marginal-effects-way",
     "title": "Data Analysis in R",
     "section": "Full Marginal Effects way",
-    "text": "Full Marginal Effects way\n\npengs_interact_marg = lm(body_mass_g ~ bill_length_mm / sex + flipper_length_mm + species, data = peng_sans_miss_tidy)\n\nsummary(pengs_interact_marg)\n\n\nCall:\nlm(formula = body_mass_g ~ bill_length_mm/sex + flipper_length_mm + \n    species, data = peng_sans_miss_tidy)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-733.40 -188.22  -11.83  187.92  868.75 \n\nCoefficients:\n                       Estimate Std. Error t value Pr(>|t|)    \n(Intercept)            -491.606    569.987  -0.862 0.389052    \nbill_length_mm           17.813      7.520   2.369 0.018421 *  \nflipper_length_mm        17.354      2.969   5.845 1.23e-08 ***\nspeciesChinstrap       -305.537     82.800  -3.690 0.000263 ***\nspeciesGentoo           706.682     96.992   7.286 2.41e-12 ***\nbill_length_mm:sexmale   10.252      1.002  10.235  < 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 296 on 327 degrees of freedom\nMultiple R-squared:  0.8669,    Adjusted R-squared:  0.8649 \nF-statistic: 426.1 on 5 and 327 DF,  p-value: < 2.2e-16"
+    "text": "Full Marginal Effects way\n\npengs_interact_marg = lm(body_mass_g ~ bill_length_mm / sex + flipper_length_mm + species, data = peng_sans_miss_tidy)\n\nsummary(pengs_interact_marg)\n\n\nCall:\nlm(formula = body_mass_g ~ bill_length_mm/sex + flipper_length_mm + \n    species, data = peng_sans_miss_tidy)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-733.40 -188.22  -11.83  187.92  868.75 \n\nCoefficients:\n                       Estimate Std. Error t value Pr(>|t|)    \n(Intercept)            -491.606    569.987  -0.862 0.389052    \nbill_length_mm           17.813      7.520   2.369 0.018421 *  \nflipper_length_mm        17.354      2.969   5.845 1.23e-08 ***\nspeciesChinstrap       -305.537     82.800  -3.690 0.000263 ***\nspeciesGentoo           706.682     96.992   7.286 2.41e-12 ***\nbill_length_mm:sexmale   10.252      1.002  10.235  < 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 296 on 327 degrees of freedom\nMultiple R-squared:  0.8669,    Adjusted R-squared:  0.8649 \nF-statistic: 426.1 on 5 and 327 DF,  p-value: < 2.2e-16\n\n\n\nSo this will give you the correct marginal effects but if you want the full range of values we need our marginal effects package"
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#getting-marginal-effects-for-interactions",
+    "href": "slides/data-analysis-in-R.html#getting-marginal-effects-for-interactions",
+    "title": "Data Analysis in R",
+    "section": "Getting Marginal Effects for Interactions",
+    "text": "Getting Marginal Effects for Interactions\n\n\npengs_interact_effect = lm(body_mass_g ~ bill_length_mm  + flipper_length_mm * sex + species, data = peng_sans_miss_tidy)\n\nplot_cco(\n  pengs_interact_effect,\n  effect =  \"sex\", \n  condition = \"flipper_length_mm\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\ninterflex is also good a package and implements diagnostics for violations of the assumptions underlying interaction terms and a way to interpret the effects. inters also has an interesting implementation where they use LASSO\n\n\n\n\nWe may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco and cme are essentially looking at when the factor is on or off. So in this case this is just showing the effect when penguins take on the value of male"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#tables-with-multiple-models",
@@ -1012,21 +1019,21 @@
     "href": "slides/data-analysis-in-R.html#fixed-effects",
     "title": "Data Analysis in R",
     "section": "Fixed Effects",
-    "text": "Fixed Effects\n\nlibrary(plm)\n\ntrade  = fixest::trade\n\npenguins_feols = feols(body_mass_g ~  bill_length_mm + flipper_length_mm | species + island, data =  peng_sans_miss_tidy)\n\npeng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + island , data = peng_sans_miss_tidy),\n\n\npeng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm + species + island\n                 , data = peng_sans_miss_tidy, model = \"within\")\n\n\nThere are more than a few ways to get a fixed effects regression in R my prefered way is using fixest. Because a species and island fixed effect would be a bit ridicoulous we can use star wars to demonstrate our point a bit\nTo sort of get on with the rest of the workshop I will not spend to much time on this. But it is stupid fast and lets you do a whole lot. It does not have random effects tho. PLM is really useful for lots of other common panel estimators. But fixest is still the winner when it comes to] fixed effects models."
+    "text": "Fixed Effects\n\nlibrary(plm)\n\n\npenguins_feols = feols(body_mass_g ~  bill_length_mm + flipper_length_mm | species + island, data =  peng_sans_miss_tidy)\n\npeng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + factor(island) , data = peng_sans_miss_tidy)\n\n\npeng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm  + island\n , data = peng_sans_miss_tidy,\n  index = c(\"species\"),\n   model = \"within\")\n\n\nThere are more than a few ways to get a fixed effects regression in R my prefered way is using fixest. Because a species and island fixed effect would be a bit ridicoulous we can use star wars to demonstrate our point a bit\nTo sort of get on with the rest of the workshop I will not spend to much time on this. But it is stupid fast and lets you do a whole lot. It does not have random effects tho. PLM is really useful for lots of other common panel estimators. But fixest is still the winner when it comes to] fixed effects models."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-predictions",
     "href": "slides/data-analysis-in-R.html#generating-predictions",
     "title": "Data Analysis in R",
     "section": "Generating Predictions",
-    "text": "Generating Predictions\n\n\n\nset.seed(1994)\n\npenguins = mutate(penguins, id = row_number())\n\npeng_train = penguins |> \n  drop_na() |> \n  sample_frac(0.7)\n\npeng_train$data_set = \"Train\"\n\n\npenguins_training_model = lm(body_mass_g ~ bill_length_mm, data = peng_train)\n\npeng_predict_train = augment(penguins_training_model,\n                           interval = \"prediction\",\n                           newdata = peng_train) |> \n  select(contains(\".\"), everything())\n\n\n\npeng_test = anti_join(penguins, peng_train, by = \"id\")\n\npeng_test$data_set = \"Test\"\n\npenguins_test_model = lm(body_mass_g ~ bill_length_mm , data = peng_test)\n\n\npeng_predict_test = augment(penguins_test_model,\n                           interval = \"prediction\",\n                           newdata = peng_test) |> \n  select(contains(\".\"), everything())"
+    "text": "Generating Predictions\n\nset.seed(1994)\n\npenguins_prediction = mutate(penguins, id = row_number()) |> \ndrop_na()\n\npeng_train = penguins_prediction |> \n  sample_frac(0.7)\n\npeng_test = anti_join(penguins_prediction, peng_train, by = \"id\")\n\n\npeng_test$data_set = \"Test\"\n\n\npenguins_training_model = lm(body_mass_g ~ bill_length_mm, data = peng_train)\n\npenguins_train_plot = augment(penguins_training_model, \n                      interval = \"prediction\") |>\n                      select(.fitted, .lower, .upper, body_mass_g, bill_length_mm) |>\n                      mutate(data_set = \"train\")\n\npeng_predict_train = augment(penguins_training_model,\n                           interval = \"prediction\",\n                           newdata = peng_test) |> \n  select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)"
   },
   {
-    "objectID": "slides/data-analysis-in-R.html#section-1",
-    "href": "slides/data-analysis-in-R.html#section-1",
+    "objectID": "slides/data-analysis-in-R.html#visual-inspection",
+    "href": "slides/data-analysis-in-R.html#visual-inspection",
     "title": "Data Analysis in R",
-    "section": "",
-    "text": "all_together = rbind(peng_predict_train, peng_predict_test)\n\nggplot(all_together, aes(x = bill_length_mm,\n                         y = body_mass_g,\n                         color = data_set,\n                         fill = data_set)) +\n  geom_point(alpha = 0.7) +\n  geom_line(aes(y = .fitted)) +\n  geom_ribbon(aes(ymin = .lower,\n                  ymax = .upper),\n              alpha = 0.3,\n              col = NA) +\n  scale_color_discrete(name = \"Training sample?\",\n                       aesthetics = c(\"color\", \"fill\")) +\n  theme_allen_bw()"
+    "section": "Visual Inspection",
+    "text": "Visual Inspection\n\n\nall_together = rbind(penguins_train_plot,\n                    peng_predict_train)\n\nggplot(all_together,\n  aes(x = bill_length_mm,\n    y = body_mass_g,\n   color = data_set,\n    fill = data_set)) +\n  geom_point(alpha = 0.7) +\n  geom_line(aes(y = .fitted)) +\n  geom_ribbon(aes(ymin = .lower,\n             ymax = .upper),\n               alpha = 0.3,\n               col = NA) +\n   scale_color_discrete(name = \"Training sample?\",\n                       aesthetics = c(\"color\",\n                                     \"fill\")) +\n  theme_allen_bw()"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#maximum-likelihood-estimation-machine-learning",

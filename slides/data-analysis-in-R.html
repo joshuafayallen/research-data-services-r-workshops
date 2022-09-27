@@ -578,7 +578,7 @@
 </div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse">Tidyverse</h3>
+<h3 id="tidyverseoverkill-in-this-application">Tidyverse(overkill in this application)</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">summarise</span>(penguins,</span>
 <span id="cb8-2"><a href="#cb8-2"></a>          <span class="at">avg_body_mass =</span> <span class="fu">mean</span>(body_mass_g,</span>
@@ -608,7 +608,7 @@
 </div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse-1">Tidyverse</h3>
+<h3 id="tidyverseoverkill-in-this-instance">Tidyverse(overkill in this instance)</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">summarise</span>(<span class="at">quartile_length =</span> <span class="fu">quantile</span>(bill_length_mm,</span>
@@ -656,7 +656,7 @@ mean in group FALSE  mean in group TRUE
 </div>
 </div>
 </div><div class="column" style="width:45%;">
-<h3 id="tidyverse-2">Tidyverse</h3>
+<h3 id="tidyverse">Tidyverse</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>penguins_t_test <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
 <span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
@@ -730,7 +730,7 @@ mean in group FALSE  mean in group TRUE
 </div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse-3">Tidyverse</h3>
+<h3 id="tidyverse-1">Tidyverse</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>penguins_df <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
 <span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
@@ -881,9 +881,8 @@ mean in group FALSE  mean in group TRUE
 </section>
 <section id="distributionscont" class="slide level2">
 <h2>Distributions(cont)</h2>
-<div class="columns">
+<div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="do">## you can turn off scientific notion using option(scipen = 999)</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a></span>
 <span id="cb23-3"><a href="#cb23-3"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
@@ -891,15 +890,12 @@ mean in group FALSE  mean in group TRUE
 <span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body Mass(grams)"</span>) <span class="sc">+</span></span>
 <span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Species"</span>)) <span class="sc">+</span></span>
 <span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">theme_allen_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div><div class="column">
-<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/body-mas-density-out-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/body-mas-density-1.png" style="width:100.0%"></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -907,9 +903,8 @@ mean in group FALSE  mean in group TRUE
 </section>
 <section id="user-written-extensions" class="slide level2">
 <h2>User Written Extensions</h2>
-<div class="columns">
-<div class="column" style="width:35%;">
-<div class="cell" data-layout-align="center">
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">library</span>(gghalves)</span>
 <span id="cb24-2"><a href="#cb24-2"></a></span>
 <span id="cb24-3"><a href="#cb24-3"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_depth_mm, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
@@ -932,15 +927,12 @@ mean in group FALSE  mean in group TRUE
 <span id="cb24-20"><a href="#cb24-20"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="st">"Species"</span>, <span class="at">y =</span> <span class="st">"Bill Depth(milimeters)"</span>) <span class="sc">+</span></span>
 <span id="cb24-21"><a href="#cb24-21"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
 <span id="cb24-22"><a href="#cb24-22"></a>  <span class="fu">theme_allen_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column" style="width:65%;">
-<div class="cell" data-layout-align="center">
+</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-16-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/gg-halves-example-1.png" style="width:100.0%"></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -1353,7 +1345,7 @@ F-statistic: 389.7 on 4 and 337 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb35-14"><a href="#cb35-14"></a>peng_sans_miss_base<span class="sc">$</span>.cooks_distance <span class="ot">=</span> <span class="fu">cooks.distance</span>(peng_adjust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse-4">Tidyverse</h3>
+<h3 id="tidyverse-2">Tidyverse</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>peng_adjust <span class="ot">=</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span>  bill_length_mm <span class="sc">+</span> flipper_length_mm <span class="sc">+</span> species,</span>
 <span id="cb36-2"><a href="#cb36-2"></a>                 <span class="at">data =</span> peng_sans_miss_tidy) </span>
@@ -1393,13 +1385,13 @@ F-statistic: 389.7 on 4 and 337 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-25-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-24-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse-5">Tidyverse</h3>
+<h3 id="tidyverse-3">Tidyverse</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">ggplot</span>(peng_diag_tidy, <span class="fu">aes</span>(<span class="at">x =</span> .fitted,</span>
 <span id="cb38-2"><a href="#cb38-2"></a>                           <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
@@ -1409,7 +1401,7 @@ F-statistic: 389.7 on 4 and 337 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-26-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-25-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1427,13 +1419,13 @@ F-statistic: 389.7 on 4 and 337 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-27-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-26-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse-6">Tidyverse</h3>
+<h3 id="tidyverse-4">Tidyverse</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">ggplot</span>(peng_diag_tidy, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
 <span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
@@ -1441,7 +1433,7 @@ F-statistic: 389.7 on 4 and 337 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-28-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-27-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1456,14 +1448,14 @@ F-statistic: 389.7 on 4 and 337 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb41-2"><a href="#cb41-2"></a><span class="fu">plot</span>(peng_adjust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="figs/unnamed-chunk-29-1.png" style="width:100.0%" class="r-stretch quarto-figure-center"></section>
+<img data-src="figs/unnamed-chunk-28-1.png" style="width:100.0%" class="r-stretch quarto-figure-center"></section>
 <section id="ggplot2-extension-for-same-thing" class="slide level2">
 <h2>ggplot2 extension for same thing</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">autoplot</span>(peng_adjust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="figs/unnamed-chunk-30-1.png" style="width:100.0%" class="r-stretch quarto-figure-center"></section>
+<img data-src="figs/unnamed-chunk-29-1.png" style="width:100.0%" class="r-stretch quarto-figure-center"></section>
 <section id="user-extensions" class="slide level2">
 <h2>User Extensions</h2>
 <div class="columns">
@@ -1486,7 +1478,7 @@ F-statistic: 389.7 on 4 and 337 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-32-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-31-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1662,7 +1654,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="what-does-it-look-like" class="slide level2">
 <h2>What does it look like</h2>
 
-<img data-src="figs/unnamed-chunk-40-1.png" style="width:100.0%" class="r-stretch quarto-figure-center"></section>
+<img data-src="figs/unnamed-chunk-39-1.png" style="width:100.0%" class="r-stretch quarto-figure-center"></section>
 <section id="making-table-2" class="slide level2">
 <h2>Making Table 2</h2>
 <ul>
@@ -1843,18 +1835,78 @@ Multiple R-squared:  0.8669,    Adjusted R-squared:  0.8649
 F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
+<aside class="notes">
+<p>So this will give you the correct marginal effects but if you want the full range of values we need our marginal effects package</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="getting-marginal-effects-for-interactions" class="slide level2">
+<h2>Getting Marginal Effects for Interactions</h2>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>pengs_interact_effect <span class="ot">=</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> bill_length_mm  <span class="sc">+</span> flipper_length_mm <span class="sc">*</span> sex <span class="sc">+</span> species, <span class="at">data =</span> peng_sans_miss_tidy)</span>
+<span id="cb56-2"><a href="#cb56-2"></a></span>
+<span id="cb56-3"><a href="#cb56-3"></a><span class="fu">plot_cco</span>(</span>
+<span id="cb56-4"><a href="#cb56-4"></a>  pengs_interact_effect,</span>
+<span id="cb56-5"><a href="#cb56-5"></a>  <span class="at">effect =</span>  <span class="st">"sex"</span>, </span>
+<span id="cb56-6"><a href="#cb56-6"></a>  <span class="at">condition =</span> <span class="st">"flipper_length_mm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/unnamed-chunk-44-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><a href="https://yiqingxu.org/packages/interflex/">interflex</a> is also good a package and implements diagnostics for violations of the assumptions underlying interaction terms and a way to interpret the effects. <a href="https://github.com/mattblackwell/inters">inters</a> also has an interesting implementation where they use LASSO</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>We may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco and cme are essentially looking at when the factor is on or off. So in this case this is just showing the effect when penguins take on the value of male</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="tables-with-multiple-models" class="slide level2">
 <h2>Tables with multiple models</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(peng_naive, peng_adjust, pengs_interact_marg),</span>
-<span id="cb56-2"><a href="#cb56-2"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb56-3"><a href="#cb56-3"></a>             <span class="at">gof_omit =</span> <span class="st">".*"</span>, <span class="do">## omitting all goodness of fit for space</span></span>
-<span id="cb56-4"><a href="#cb56-4"></a>             <span class="at">coef_map =</span> <span class="fu">c</span>(<span class="st">"bill_length_mm"</span> <span class="ot">=</span> <span class="st">"Bill Lenth(mm)"</span>,</span>
-<span id="cb56-5"><a href="#cb56-5"></a>                          <span class="st">"flipper_length_mm"</span> <span class="ot">=</span> <span class="st">"Flipper Lenth(mm)"</span>,</span>
-<span id="cb56-6"><a href="#cb56-6"></a>                          <span class="st">"bill_length_mm x sexmale"</span> <span class="ot">=</span> <span class="st">"Bill Length(mm) x Male Penguin"</span>),</span>
-<span id="cb56-7"><a href="#cb56-7"></a>             <span class="at">vcov =</span> <span class="st">"robust"</span>,</span>
-<span id="cb56-8"><a href="#cb56-8"></a>             <span class="at">note =</span> <span class="st">"Robust Standard errors in Parenthsis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(peng_naive, peng_adjust, pengs_interact_marg),</span>
+<span id="cb57-2"><a href="#cb57-2"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb57-3"><a href="#cb57-3"></a>             <span class="at">gof_omit =</span> <span class="st">".*"</span>, <span class="do">## omitting all goodness of fit for space</span></span>
+<span id="cb57-4"><a href="#cb57-4"></a>             <span class="at">coef_map =</span> <span class="fu">c</span>(<span class="st">"bill_length_mm"</span> <span class="ot">=</span> <span class="st">"Bill Lenth(mm)"</span>,</span>
+<span id="cb57-5"><a href="#cb57-5"></a>                          <span class="st">"flipper_length_mm"</span> <span class="ot">=</span> <span class="st">"Flipper Lenth(mm)"</span>,</span>
+<span id="cb57-6"><a href="#cb57-6"></a>                          <span class="st">"bill_length_mm x sexmale"</span> <span class="ot">=</span> <span class="st">"Bill Length(mm) x Male Penguin"</span>),</span>
+<span id="cb57-7"><a href="#cb57-7"></a>             <span class="at">vcov =</span> <span class="st">"robust"</span>,</span>
+<span id="cb57-8"><a href="#cb57-8"></a>             <span class="at">note =</span> <span class="st">"Robust Standard errors in Parenthsis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table style="NAborder-bottom: 0;border-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
@@ -1904,17 +1956,18 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="fixed-effects" class="slide level2">
 <h2>Fixed Effects</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">library</span>(plm)</span>
-<span id="cb57-2"><a href="#cb57-2"></a></span>
-<span id="cb57-3"><a href="#cb57-3"></a>trade  <span class="ot">=</span> fixest<span class="sc">::</span>trade</span>
-<span id="cb57-4"><a href="#cb57-4"></a></span>
-<span id="cb57-5"><a href="#cb57-5"></a>penguins_feols <span class="ot">=</span> <span class="fu">feols</span>(body_mass_g <span class="sc">~</span>  bill_length_mm <span class="sc">+</span> flipper_length_mm <span class="sc">|</span> species <span class="sc">+</span> island, <span class="at">data =</span>  peng_sans_miss_tidy)</span>
-<span id="cb57-6"><a href="#cb57-6"></a></span>
-<span id="cb57-7"><a href="#cb57-7"></a>peng_stand <span class="ot">=</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span>  bill_length_mm <span class="sc">+</span> flipper_length_mm <span class="sc">+</span> <span class="fu">factor</span>(species) <span class="sc">+</span> island , <span class="at">data =</span> peng_sans_miss_tidy),</span>
-<span id="cb57-8"><a href="#cb57-8"></a></span>
-<span id="cb57-9"><a href="#cb57-9"></a></span>
-<span id="cb57-10"><a href="#cb57-10"></a>peng_plm <span class="ot">=</span> <span class="fu">plm</span>(body_mass_g <span class="sc">~</span>  bill_length_mm <span class="sc">+</span> flipper_length_mm <span class="sc">+</span> species <span class="sc">+</span> island</span>
-<span id="cb57-11"><a href="#cb57-11"></a>                 , <span class="at">data =</span> peng_sans_miss_tidy, <span class="at">model =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">library</span>(plm)</span>
+<span id="cb58-2"><a href="#cb58-2"></a></span>
+<span id="cb58-3"><a href="#cb58-3"></a></span>
+<span id="cb58-4"><a href="#cb58-4"></a>penguins_feols <span class="ot">=</span> <span class="fu">feols</span>(body_mass_g <span class="sc">~</span>  bill_length_mm <span class="sc">+</span> flipper_length_mm <span class="sc">|</span> species <span class="sc">+</span> island, <span class="at">data =</span>  peng_sans_miss_tidy)</span>
+<span id="cb58-5"><a href="#cb58-5"></a></span>
+<span id="cb58-6"><a href="#cb58-6"></a>peng_stand <span class="ot">=</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span>  bill_length_mm <span class="sc">+</span> flipper_length_mm <span class="sc">+</span> <span class="fu">factor</span>(species) <span class="sc">+</span> <span class="fu">factor</span>(island) , <span class="at">data =</span> peng_sans_miss_tidy)</span>
+<span id="cb58-7"><a href="#cb58-7"></a></span>
+<span id="cb58-8"><a href="#cb58-8"></a></span>
+<span id="cb58-9"><a href="#cb58-9"></a>peng_plm <span class="ot">=</span> <span class="fu">plm</span>(body_mass_g <span class="sc">~</span>  bill_length_mm <span class="sc">+</span> flipper_length_mm  <span class="sc">+</span> island</span>
+<span id="cb58-10"><a href="#cb58-10"></a> , <span class="at">data =</span> peng_sans_miss_tidy,</span>
+<span id="cb58-11"><a href="#cb58-11"></a>  <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"species"</span>),</span>
+<span id="cb58-12"><a href="#cb58-12"></a>   <span class="at">model =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <aside class="notes">
 <p>There are more than a few ways to get a fixed effects regression in R my prefered way is using fixest. Because a species and island fixed effect would be a bit ridicoulous we can use star wars to demonstrate our point a bit</p>
@@ -1933,73 +1986,62 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="generating-predictions" class="slide level2">
 <h2>Generating Predictions</h2>
-<div class="columns">
-<div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">set.seed</span>(<span class="dv">1994</span>)</span>
-<span id="cb58-2"><a href="#cb58-2"></a></span>
-<span id="cb58-3"><a href="#cb58-3"></a>penguins <span class="ot">=</span> <span class="fu">mutate</span>(penguins, <span class="at">id =</span> <span class="fu">row_number</span>())</span>
-<span id="cb58-4"><a href="#cb58-4"></a></span>
-<span id="cb58-5"><a href="#cb58-5"></a>peng_train <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb58-6"><a href="#cb58-6"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb58-7"><a href="#cb58-7"></a>  <span class="fu">sample_frac</span>(<span class="fl">0.7</span>)</span>
-<span id="cb58-8"><a href="#cb58-8"></a></span>
-<span id="cb58-9"><a href="#cb58-9"></a>peng_train<span class="sc">$</span>data_set <span class="ot">=</span> <span class="st">"Train"</span></span>
-<span id="cb58-10"><a href="#cb58-10"></a></span>
-<span id="cb58-11"><a href="#cb58-11"></a></span>
-<span id="cb58-12"><a href="#cb58-12"></a>penguins_training_model <span class="ot">=</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> bill_length_mm, <span class="at">data =</span> peng_train)</span>
-<span id="cb58-13"><a href="#cb58-13"></a></span>
-<span id="cb58-14"><a href="#cb58-14"></a>peng_predict_train <span class="ot">=</span> <span class="fu">augment</span>(penguins_training_model,</span>
-<span id="cb58-15"><a href="#cb58-15"></a>                           <span class="at">interval =</span> <span class="st">"prediction"</span>,</span>
-<span id="cb58-16"><a href="#cb58-16"></a>                           <span class="at">newdata =</span> peng_train) <span class="sc">|&gt;</span> </span>
-<span id="cb58-17"><a href="#cb58-17"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"."</span>), <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>peng_test <span class="ot">=</span> <span class="fu">anti_join</span>(penguins, peng_train, <span class="at">by =</span> <span class="st">"id"</span>)</span>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">set.seed</span>(<span class="dv">1994</span>)</span>
 <span id="cb59-2"><a href="#cb59-2"></a></span>
-<span id="cb59-3"><a href="#cb59-3"></a>peng_test<span class="sc">$</span>data_set <span class="ot">=</span> <span class="st">"Test"</span></span>
-<span id="cb59-4"><a href="#cb59-4"></a></span>
-<span id="cb59-5"><a href="#cb59-5"></a>penguins_test_model <span class="ot">=</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> bill_length_mm , <span class="at">data =</span> peng_test)</span>
-<span id="cb59-6"><a href="#cb59-6"></a></span>
-<span id="cb59-7"><a href="#cb59-7"></a></span>
-<span id="cb59-8"><a href="#cb59-8"></a>peng_predict_test <span class="ot">=</span> <span class="fu">augment</span>(penguins_test_model,</span>
-<span id="cb59-9"><a href="#cb59-9"></a>                           <span class="at">interval =</span> <span class="st">"prediction"</span>,</span>
-<span id="cb59-10"><a href="#cb59-10"></a>                           <span class="at">newdata =</span> peng_test) <span class="sc">|&gt;</span> </span>
-<span id="cb59-11"><a href="#cb59-11"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"."</span>), <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<span id="cb59-3"><a href="#cb59-3"></a>penguins_prediction <span class="ot">=</span> <span class="fu">mutate</span>(penguins, <span class="at">id =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb59-4"><a href="#cb59-4"></a><span class="fu">drop_na</span>()</span>
+<span id="cb59-5"><a href="#cb59-5"></a></span>
+<span id="cb59-6"><a href="#cb59-6"></a>peng_train <span class="ot">=</span> penguins_prediction <span class="sc">|&gt;</span> </span>
+<span id="cb59-7"><a href="#cb59-7"></a>  <span class="fu">sample_frac</span>(<span class="fl">0.7</span>)</span>
+<span id="cb59-8"><a href="#cb59-8"></a></span>
+<span id="cb59-9"><a href="#cb59-9"></a>peng_test <span class="ot">=</span> <span class="fu">anti_join</span>(penguins_prediction, peng_train, <span class="at">by =</span> <span class="st">"id"</span>)</span>
+<span id="cb59-10"><a href="#cb59-10"></a></span>
+<span id="cb59-11"><a href="#cb59-11"></a></span>
+<span id="cb59-12"><a href="#cb59-12"></a>peng_test<span class="sc">$</span>data_set <span class="ot">=</span> <span class="st">"Test"</span></span>
+<span id="cb59-13"><a href="#cb59-13"></a></span>
+<span id="cb59-14"><a href="#cb59-14"></a></span>
+<span id="cb59-15"><a href="#cb59-15"></a>penguins_training_model <span class="ot">=</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> bill_length_mm, <span class="at">data =</span> peng_train)</span>
+<span id="cb59-16"><a href="#cb59-16"></a></span>
+<span id="cb59-17"><a href="#cb59-17"></a>penguins_train_plot <span class="ot">=</span> <span class="fu">augment</span>(penguins_training_model, </span>
+<span id="cb59-18"><a href="#cb59-18"></a>                      <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb59-19"><a href="#cb59-19"></a>                      <span class="fu">select</span>(.fitted, .lower, .upper, body_mass_g, bill_length_mm) <span class="sc">|&gt;</span></span>
+<span id="cb59-20"><a href="#cb59-20"></a>                      <span class="fu">mutate</span>(<span class="at">data_set =</span> <span class="st">"train"</span>)</span>
+<span id="cb59-21"><a href="#cb59-21"></a></span>
+<span id="cb59-22"><a href="#cb59-22"></a>peng_predict_train <span class="ot">=</span> <span class="fu">augment</span>(penguins_training_model,</span>
+<span id="cb59-23"><a href="#cb59-23"></a>                           <span class="at">interval =</span> <span class="st">"prediction"</span>,</span>
+<span id="cb59-24"><a href="#cb59-24"></a>                           <span class="at">newdata =</span> peng_test) <span class="sc">|&gt;</span> </span>
+<span id="cb59-25"><a href="#cb59-25"></a>  <span class="fu">select</span>(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<div class="columns">
+<section id="visual-inspection" class="slide level2">
+<h2>Visual Inspection</h2>
+<div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>all_together <span class="ot">=</span> <span class="fu">rbind</span>(peng_predict_train, peng_predict_test)</span>
-<span id="cb60-2"><a href="#cb60-2"></a></span>
-<span id="cb60-3"><a href="#cb60-3"></a><span class="fu">ggplot</span>(all_together, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
-<span id="cb60-4"><a href="#cb60-4"></a>                         <span class="at">y =</span> body_mass_g,</span>
-<span id="cb60-5"><a href="#cb60-5"></a>                         <span class="at">color =</span> data_set,</span>
-<span id="cb60-6"><a href="#cb60-6"></a>                         <span class="at">fill =</span> data_set)) <span class="sc">+</span></span>
-<span id="cb60-7"><a href="#cb60-7"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb60-8"><a href="#cb60-8"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
-<span id="cb60-9"><a href="#cb60-9"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> .lower,</span>
-<span id="cb60-10"><a href="#cb60-10"></a>                  <span class="at">ymax =</span> .upper),</span>
-<span id="cb60-11"><a href="#cb60-11"></a>              <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
-<span id="cb60-12"><a href="#cb60-12"></a>              <span class="at">col =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb60-13"><a href="#cb60-13"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Training sample?"</span>,</span>
-<span id="cb60-14"><a href="#cb60-14"></a>                       <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
-<span id="cb60-15"><a href="#cb60-15"></a>  <span class="fu">theme_allen_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>all_together <span class="ot">=</span> <span class="fu">rbind</span>(penguins_train_plot,</span>
+<span id="cb60-2"><a href="#cb60-2"></a>                    peng_predict_train)</span>
+<span id="cb60-3"><a href="#cb60-3"></a></span>
+<span id="cb60-4"><a href="#cb60-4"></a><span class="fu">ggplot</span>(all_together,</span>
+<span id="cb60-5"><a href="#cb60-5"></a>  <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<span id="cb60-6"><a href="#cb60-6"></a>    <span class="at">y =</span> body_mass_g,</span>
+<span id="cb60-7"><a href="#cb60-7"></a>   <span class="at">color =</span> data_set,</span>
+<span id="cb60-8"><a href="#cb60-8"></a>    <span class="at">fill =</span> data_set)) <span class="sc">+</span></span>
+<span id="cb60-9"><a href="#cb60-9"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb60-10"><a href="#cb60-10"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb60-11"><a href="#cb60-11"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> .lower,</span>
+<span id="cb60-12"><a href="#cb60-12"></a>             <span class="at">ymax =</span> .upper),</span>
+<span id="cb60-13"><a href="#cb60-13"></a>               <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb60-14"><a href="#cb60-14"></a>               <span class="at">col =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb60-15"><a href="#cb60-15"></a>   <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Training sample?"</span>,</span>
+<span id="cb60-16"><a href="#cb60-16"></a>                       <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"color"</span>,</span>
+<span id="cb60-17"><a href="#cb60-17"></a>                                     <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb60-18"><a href="#cb60-18"></a>  <span class="fu">theme_allen_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-50-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-48-1.png" style="width:100.0%"></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -2047,7 +2089,7 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-53-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-51-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2116,7 +2158,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-56-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-54-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2167,7 +2209,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-59-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-57-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2177,7 +2219,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-60-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-58-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2313,7 +2355,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-67-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-65-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
