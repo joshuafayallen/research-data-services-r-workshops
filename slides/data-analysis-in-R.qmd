@@ -144,7 +144,7 @@ mean(penguins$bill_depth_mm, na.rm = TRUE)
 :::
 
 :::column
-### Tidyverse
+### Tidyverse(overkill in this application)
 
 ```{r}
 summarise(penguins,
@@ -173,7 +173,7 @@ quantile(penguins$bill_depth_mm,
 :::
 
 :::column
-### Tidyverse
+### Tidyverse(overkill in this instance)
 ```{r}
 penguins |> 
   summarise(quartile_length = quantile(bill_length_mm,
@@ -441,9 +441,9 @@ ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
 
 ## Distributions(cont)
 
-:::columns 
-:::column
-```{r body-mas-density, eval=FALSE}
+
+```{r body-mas-density}
+#| output-location: column
 ## you can turn off scientific notion using option(scipen = 999)
 
 ggplot(penguins, aes(x = body_mass_g, fill = species)) +
@@ -455,23 +455,7 @@ ggplot(penguins, aes(x = body_mass_g, fill = species)) +
 
 ```
 
-:::
 
-:::column
-
-
-```{r body-mas-density-out,  echo=FALSE}
-
-ggplot(penguins, aes(x = body_mass_g, fill = species)) +
-  geom_density(alpha = 0.7) +
-  labs(x = "Body Mass(grams)") +
-  guides(fill = guide_legend(title = "Species")) +
-  theme_allen_minimal()
-
-```
-
-:::
-:::
 
 
 
@@ -479,11 +463,8 @@ ggplot(penguins, aes(x = body_mass_g, fill = species)) +
 ## User Written Extensions
 
 
-:::: {.columns}
-
-::: {.column width="35%"}
-```{r gg-halves-example, eval = FALSE}
-
+```{r gg-halves-example, echo = TRUE}
+#| output-location: column
 
 library(gghalves)
 
@@ -509,39 +490,7 @@ ggplot(penguins, aes(x = species, y = bill_depth_mm, fill = species)) +
   theme_allen_bw()
 ```
 
-:::
 
-::: {.column width="65%"}
-
-
-```{r echo = FALSE}
-library(gghalves)
-
-ggplot(penguins, aes(x = species, y = bill_depth_mm, fill = species)) +
-  geom_boxplot(
-    width = .2, fill = "white",
-    size = 1.5, outlier.shape = NA
-  ) +
-  ggdist::stat_halfeye(
-    adjust = .33,
-    width = .67, 
-    color = NA,
-    position = position_nudge(x = .15)
-  ) +
-  gghalves::geom_half_point(
-    side = "l", 
-    range_scale = .3, 
-    alpha = .25, size = 1
-  ) +
-  MetBrewer::scale_fill_met_d(name = "Veronese") +
-  labs(x = NULL, fill = "Species", y = "Bill Depth(milimeters)") +
-  coord_flip() +
-  theme_allen_bw()
-```
-
-
-:::
-::::
 
 :::{.aside}
 Code and example are from Cédric Scherer's [Beyond the Bar plot talk](https://twitter.com/CedScherer/status/1438836874630545412)
@@ -1019,8 +968,37 @@ pengs_interact_marg = lm(body_mass_g ~ bill_length_mm / sex + flipper_length_mm 
 summary(pengs_interact_marg)
 ```
 
+:::{.notes}
+So this will give you the correct marginal effects but if you want the full range of values we need our marginal effects package 
+
+:::
+
+## Getting Marginal Effects for Interactions 
 
 
+```{r}
+#| output-location: column
+pengs_interact_effect = lm(body_mass_g ~ bill_length_mm  + flipper_length_mm * sex + species, data = peng_sans_miss_tidy)
+
+plot_cco(
+  pengs_interact_effect,
+  effect =  "sex", 
+  condition = "flipper_length_mm")
+
+
+
+```
+
+
+:::{.callout-tip}
+[interflex](https://yiqingxu.org/packages/interflex/) is also good a package
+and implements diagnostics for violations of the assumptions underlying interaction terms and a way to interpret the effects. [inters](https://github.com/mattblackwell/inters) also has an interesting implementation where they use LASSO
+:::
+:::{.notes}
+We may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco and cme are essentially looking at when the factor is on or off. So in this case this is just showing the effect when penguins take on the value of male
+
+
+:::
 
 
 
@@ -1051,15 +1029,16 @@ modelsummary(list(peng_naive, peng_adjust, pengs_interact_marg),
 ```{r eval = FALSE}
 library(plm)
 
-trade  = fixest::trade
 
 penguins_feols = feols(body_mass_g ~  bill_length_mm + flipper_length_mm | species + island, data =  peng_sans_miss_tidy)
 
-peng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + island , data = peng_sans_miss_tidy),
+peng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + factor(island) , data = peng_sans_miss_tidy)
 
 
-peng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm + species + island
-                 , data = peng_sans_miss_tidy, model = "within")
+peng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm  + island
+ , data = peng_sans_miss_tidy,
+  index = c("species"),
+   model = "within")
 ```
 
 
@@ -1074,94 +1053,70 @@ fixed effects models.
 
 
 
+
 ## Generating Predictions 
 
-:::columns 
-:::column
+
+
 ```{r}
 set.seed(1994)
 
-penguins = mutate(penguins, id = row_number())
+penguins_prediction = mutate(penguins, id = row_number()) |> 
+drop_na()
 
-peng_train = penguins |> 
-  drop_na() |> 
+peng_train = penguins_prediction |> 
   sample_frac(0.7)
 
-peng_train$data_set = "Train"
+peng_test = anti_join(penguins_prediction, peng_train, by = "id")
+
+
+peng_test$data_set = "Test"
 
 
 penguins_training_model = lm(body_mass_g ~ bill_length_mm, data = peng_train)
 
+penguins_train_plot = augment(penguins_training_model, 
+                      interval = "prediction") |>
+                      select(.fitted, .lower, .upper, body_mass_g, bill_length_mm) |>
+                      mutate(data_set = "train")
+
 peng_predict_train = augment(penguins_training_model,
                            interval = "prediction",
-                           newdata = peng_train) |> 
-  select(contains("."), everything())
-
-```
-:::
-
-:::column
-
-```{r}
-peng_test = anti_join(penguins, peng_train, by = "id")
-
-peng_test$data_set = "Test"
-
-penguins_test_model = lm(body_mass_g ~ bill_length_mm , data = peng_test)
-
-
-peng_predict_test = augment(penguins_test_model,
-                           interval = "prediction",
                            newdata = peng_test) |> 
-  select(contains("."), everything())
+  select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)
+
+
 
 ```
 
-:::
-:::
 
 
-## 
+##  Visual Inspection
 
-:::columns
-:::column
-```{r eval=FALSE}
 
-all_together = rbind(peng_predict_train, peng_predict_test)
+```{r }
+#| output-location: column
 
-ggplot(all_together, aes(x = bill_length_mm,
-                         y = body_mass_g,
-                         color = data_set,
-                         fill = data_set)) +
+all_together = rbind(penguins_train_plot,
+                    peng_predict_train)
+
+ggplot(all_together,
+  aes(x = bill_length_mm,
+    y = body_mass_g,
+   color = data_set,
+    fill = data_set)) +
   geom_point(alpha = 0.7) +
   geom_line(aes(y = .fitted)) +
   geom_ribbon(aes(ymin = .lower,
-                  ymax = .upper),
-              alpha = 0.3,
-              col = NA) +
-  scale_color_discrete(name = "Training sample?",
-                       aesthetics = c("color", "fill")) +
-  theme_allen_bw()
-```
-:::
-
-:::column
-
-```{r echo=FALSE}
-all_together = rbind(peng_predict_train, peng_predict_test)
-
-ggplot(all_together, aes(x = bill_length_mm, y = body_mass_g, color = data_set, fill = data_set)) +
-  geom_point(alpha = 0.7) +
-  geom_line(aes(y = .fitted)) +
-  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.3, col = NA) +
+             ymax = .upper),
+               alpha = 0.3,
+               col = NA) +
    scale_color_discrete(name = "Training sample?",
-                       aesthetics = c("color", "fill")) +
+                       aesthetics = c("color",
+                                     "fill")) +
   theme_allen_bw()
 ```
 
-
-:::
-:::
 
 
 
