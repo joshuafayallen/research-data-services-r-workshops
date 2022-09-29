@@ -62,6 +62,10 @@ penguins = palmerpenguins::penguins
 Note this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximumlikelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not. 
 
 I also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis 
+
+This workshop is going to sort of through building the results section of a paper. This will generally be geared toward a social science audience. But the fundamentals are virtually the same. 
+
+
 :::
 
 
@@ -248,7 +252,10 @@ t.test(flipper_length_mm ~ gentoo, data = penguins_t_test)
 :::
 ::::
 
+:::{.notes}
+In this case we have our first example of using of the formula. To do statsy stuff in R we generally have to use the tilde. This is just a function of how R does statistical analysis. Would and equal sign make sense here sure but like we have to use equal for lots of other stuff.
 
+:::
 
 
 ## Correlations 
@@ -849,7 +856,7 @@ coeftest(peng_adjust, vcov= vcovHC)
 
 :::{.notes}
 
-Using sandwhich we can adjust our standard errors like this 
+Using sandwich we can adjust our standard errors like this 
 :::
 
 
@@ -995,7 +1002,10 @@ plot_cco(
 and implements diagnostics for violations of the assumptions underlying interaction terms and a way to interpret the effects. [inters](https://github.com/mattblackwell/inters) also has an interesting implementation where they use LASSO
 :::
 :::{.notes}
-We may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco and cme are essentially looking at when the factor is on or off. So in this case this is just showing the effect when penguins take on the value of male
+We may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco.  CCO is This function plots contrasts (y-axis) against values of predictor(s) variable(s) (x-axis and colors).
+
+
+ So in this case this is just showing the effect when penguins take on the value of male
 
 
 :::

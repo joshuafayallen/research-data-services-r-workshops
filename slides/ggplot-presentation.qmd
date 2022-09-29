@@ -14,7 +14,6 @@ knitr:
     dpi: 200
 execute:
   freeze: auto
-  cache: true
   echo: true
   fig-width: 5
   fig-height: 6
@@ -448,31 +447,6 @@ ggplot() +
 
 
 
-
-## What does this mean in practice? 
-
-- **Data** you are going to visualize
-
-- **Geom**etric objects that appear on your plot
-
-- **Aes**ethic mappings from data to visual component
-
-- **Stat**istics transform data on the way to visualization
-
-- **Coord**inates organize location of the geometric objects
-
-- **Scale**s define the range of the values for aesthics
-
-- **Facet**s groups into subplots
-
-:::{.notes}
-Once we see the structure we can start to be able to build our "sentences" to make our plots In a second we will see how to work with stuff and how to start doing things. 
-
-:::
-
-
-
-
 # Making Plots {background-color="`r clrs[3]`" .white}
 
 
@@ -486,7 +460,8 @@ Once we see the structure we can start to be able to build our "sentences" to ma
 
 
 ```{r dataset-gapminder-show, echo = FALSE }
-DT::datatable(gapminder)
+head(gapminder, 5)
+
 
 ```
 
@@ -784,9 +759,9 @@ take the graph on the left and change it to the plot on the right. use the ggplo
 #| output-location: column
 
 ggplot() +
-  geom_boxplot(gapminder,
-   mapping = aes(x = continent, # ggplot got map so I had to add mapping
-          y = lifeExp))
+  geom_boxplot(data = gapminder,
+  aes(x = continent, 
+  y = lifeExp))
 ```
 
 
@@ -826,8 +801,8 @@ Lets make a histogram of lifeExp. In this case we only need to supply one variab
 ```{r, echo = TRUE}
 #| output-location: column
 ggplot() +
-  geom_histogram(gapminder, 
-    mapping = aes(x = lifeExp))
+  geom_histogram( data = gapminder, 
+    aes(x = lifeExp))
 
 ```
 
@@ -863,10 +838,10 @@ Again do not supply a Y column
 #| output-location: column
 
 ggplot() +
-  geom_density(gapminder,
-  mapping =  aes(x = lifeExp,
-                fill = continent),
-                alpha = 0.75)
+  geom_density( data = gapminder,
+  aes(x = lifeExp,
+     fill = continent),
+     alpha = 0.75)
 
 ```
 
@@ -878,7 +853,7 @@ ggplot() +
 ## Complex graph!
 
 
-```{r reference-plot, echo=FALSE, fig.width = 7, }
+```{r reference-plot, echo=FALSE, fig.width = 10 }
 
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, group = continent)) +
   geom_point() +
@@ -894,16 +869,18 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, group = con
 ## Local 
  
 ```{r local, echo = TRUE}
-#| code-line-numbers: "|1|2|5"
+#| code-line-numbers: "|2|6|3|7|4|8"
 #| output-location: column
-ggplot(gapminder) +
-  geom_point(aes(x = gdpPercap,
-                 y = lifeExp, 
-                 color = continent)) + 
-  geom_smooth(aes(x = gdpPercap, 
-                  y = lifeExp, 
-                  color = continent, 
-                  group = continent)) 
+ggplot() +
+  geom_point(data = gapminder,
+   aes(x = gdpPercap,
+       y = lifeExp, 
+       color = continent)) + 
+  geom_smooth(data = gapminder,
+   aes(x = gdpPercap, 
+       y = lifeExp, 
+      color = continent, 
+      group = continent)) 
 ```
 
 
@@ -914,7 +891,7 @@ ggplot(gapminder) +
 ## Global 
 
 ```{r gapminder-global, echo = TRUE}
-#| code-line-numbers: "|1|2|3|4"
+#| code-line-numbers: "|1|2|3|4|5"
 #| output-location: column
 ggplot(gapminder,
        aes(x = gdpPercap,
@@ -932,7 +909,7 @@ ggplot(gapminder,
 :::{.notes}
 So we have mostly been working inside the individual geoms. However most people do not do this because it can start to get inconvenient quickly. If we work inside each individual geom than the other geom will not know what is going on and ggplot will get confused. 
 
-Instead if you pass off our argument to the first layer
+Instead if you pass off our argument to the first layer that the aes argument will inheret the appropriate stuff
 
 :::
 
@@ -971,6 +948,7 @@ So far we have only walked through geoms and aesthics but we need other layers t
 
 ```{r complex-plot-add-geom-point-show,  echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "|5"
 ggplot(gapminder,
     aes(x = gdpPercap,
         y = lifeExp,
@@ -990,6 +968,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-add-geom-smooth-show,  echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "|6"
 ggplot(gapminder,
     aes(x = gdpPercap,
        y = lifeExp,
@@ -1004,6 +983,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-change-alpha,  echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "|5"
 ggplot(gapminder,
     aes(x = gdpPercap,
        y = lifeExp,
@@ -1021,6 +1001,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-add-log-show, echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "|7"
 ggplot(gapminder,
      aes(x = gdpPercap,
          y = lifeExp,
@@ -1042,6 +1023,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-add-labs-out,  echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "|8|9|10"
 ggplot(gapminder,
       aes(x = gdpPercap,
           y = lifeExp,
@@ -1050,20 +1032,23 @@ ggplot(gapminder,
   geom_smooth() +
   scale_x_log10() +
   labs(x = "GDP per cap",
-       y = "Life Expectanty",
+       y = "Life Expectancy",
        title = "The Effect of GDP per cap on Life Expectancy")
 ```
 
 
 
+:::{.notes}
+Labs can handle a lot of arguments. there are individual functuions for the x label and y label and title. But make your like easier by just using labs. You can also modify the legend in labs but I have various success with that. I tend to modify the legend using guides or theme
 
-
+:::
 
 ## Add viridis color scale
 
 
 ```{r complex-plot-add-viridis-show,  echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "|11"
 ggplot(gapminder,
       aes(x = gdpPercap,
           y = lifeExp,
@@ -1092,6 +1077,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-add-theme-show,  echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "|12"
 ggplot(gapminder,
       aes(x = gdpPercap,
          y = lifeExp,
@@ -1119,16 +1105,17 @@ ggplot(gapminder,
 
 ```{r complex-plot-facet-show,  echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "|13"
 ggplot(gapminder,
-      aes(x = gdpPercap,
-          y = lifeExp,
-          color = continent)) +
+    aes(x = gdpPercap,
+        y = lifeExp,
+        color = continent)) +
   geom_point(alpha = 0.5) +
   geom_smooth() +
   scale_x_log10() +
   labs(x = "GDP per cap",
-       y = "Life Expectanty",
-       title = "The Effect of GDP per cap on Life Expectancy") +
+      y = "Life Expectanty",
+      title = "The Effect of GDP per cap on Life Expectancy") +
   scale_color_viridis_d() +
   theme_bw() +
   facet_wrap(vars(continent))
@@ -1142,6 +1129,7 @@ ggplot(gapminder,
 
 ```{r change-default-theme-option-complex-plot-show, echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "|14"
 ggplot(gapminder,
   aes(x = gdpPercap,
       y = lifeExp,
@@ -1150,8 +1138,8 @@ ggplot(gapminder,
   geom_smooth() +
   scale_x_log10() +
   labs(x = "GDP per cap",
-       y = "Life Expectanty",
-       title = "The Effect of GDP per cap on Life Expectancy") +
+      y = "Life Expectanty",
+      title = "The Effect of GDP per cap on Life Expectancy") +
   scale_color_viridis_d() +
   theme_bw() +
   facet_wrap(vars(continent)) +
@@ -1171,25 +1159,24 @@ Map wealth to the x-axis, health to the y-axis, add points, color by continent, 
 ```{r grammar-ggplot-example-show, echo = TRUE }
 #| output-location: column
 ggplot(gapminder,
-    aes(x = gdpPercap,
-        y = lifeExp,
-        size = pop,
-        color = continent)) +
+  aes(x = gdpPercap,
+      y = lifeExp,
+      size = pop,
+      color = continent)) +
   geom_point(alpha = 0.5) +
   labs(x = "Income",
        y = "Life Expectancy") +
   scale_x_log10(labels = scales::dollar) +
   theme_allen_bw() +
   guides(size = guide_legend(reverse = TRUE,
-                title = "Population"),
-         color = guide_legend(title = "Continent"))
+      title = "Population"),
+      color = guide_legend(title = "Continent"))
 ```
 
+:::{.notes}
+This is roughly the prompt that I was working with. The nice part about ggplot is you can start thinking about the plot in real words and then translate that over into code. Since we have a template of where to put things we can then focus on how best to visualize our data rather than  fighting with thousands of dropdown menus 
 
-
-
-
-
+:::
 
 ## Scales
 
@@ -1243,33 +1230,47 @@ ggplot(gapminder,
   labs(x = "Income",
      y = "Life Expectancy") +
   scale_x_log10(labels = scales::dollar) +
-  theme_bw()
-
+  theme_bw() 
 
 
 
 ```
+
+:::{.callout-tip}
+If you type `scale_x` or `scale_y` into your r script you can see a whole host of things transformations you can do
+:::
+
+:::{.notes}
+Instead of directly transforming your data ggplot allows you to do this through the scale_x function which is pretty neat. I will not go through each of them but that is pretty handy. If you want nicer looking labels you can use the scales package to make nicer looking labels. I.e adding commas to values on the x or y axis adding the dollar sign or percentage sign etc
+
+:::
 
 # Scales in Action 
 
 ```{r}
 #| output-location: column
+#| fig-height: 12
 ggplot(gapminder,
   aes(x = gdpPercap,
-      y = lifeExp,
-      size = pop,
-      color = continent)) +
+     y = lifeExp,
+     size = pop,
+    color = continent)) +
   geom_point(alpha = 0.5) +
   labs(x = "Income", y = "Life Expectancy") +
   scale_x_log10(labels = scales::dollar) +
-  scale_color_viridis_d() +
-  theme_bw()
+  scale_color_manual(values = c("#04a3bd",
+     "#f0be3d",
+     "#931e18",
+     "#da7901")) +
+  theme_bw() 
 ```
 
+:::{.notes}
+If you want to use  a different set of colors you choose those manull
+:::
 
 
-
-## Coordinates 
+## Scales in Action 
 
 
 ```{r scale-x-continous-example, echo=TRUE}
@@ -1283,7 +1284,7 @@ ggplot(gapminder,
   geom_point(alpha = 0.5) +
   scale_x_continuous(limits = c(0, 30000)) +
   theme_bw()
-  
+ 
 
 ```
 
@@ -1317,7 +1318,7 @@ ggplot(gapminder,
 
 
 ## Your Turn 
-### Make this density plot of bill_length_mm filled by species. Use the viridis fill scale.
+### Make this density plot of bill_length_mm filled by species. But change the default colors
 
 
 ```{r fill-your-turn-option-example, echo = FALSE, out.width= "80%"}
@@ -1326,7 +1327,7 @@ ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
   geom_density( alpha = 0.75) +
   theme_bw() +
   scale_fill_viridis_d(option = "magma")
-
+ # scale_fill_manual(values = c(colors))
 ```
 
 ```{r fill-bill-length-options-timer, echo = FALSE}
@@ -1392,7 +1393,7 @@ ggplot(penguins,
 
 
 
-## Facets
+## facet_wrap
 
 
 ```{r facet-wrap-one-col, echo=TRUE}
@@ -1404,15 +1405,23 @@ ggplot(gapminder,
   geom_point(alpha = 0.5) +
   theme_bw() +
   scale_x_log10() +
-  facet_wrap(vars(continent)) # you can add more combos of vars here
+  facet_wrap(vars(continent)) 
   
-
 
 ```
 
+:::{.notes}
+If we want to get individual plots for each value of the variable we can feed this to facet wrap and is a really useful way of displaying information and saves you from creating subsets for each continent than plotting them individuall than combining them. You also have lots of 
 
 
-# Facets 
+:::
+
+
+
+
+
+
+# facet_grid
 
 
 ```{r}
@@ -1425,8 +1434,12 @@ ggplot(data = filter(gapminder,
   geom_point(alpha = 0.5) +
   theme_bw() +
   scale_x_log10() +
-  facet_grid(vars(year))
+  facet_grid(vars(year), vars(continent))
 ```
+
+
+
+
 
 
 ## Labels
@@ -1469,9 +1482,9 @@ ggplot(data = filter(gapminder,
 ggplot(gapminder, 
        aes(x = gdpPercap,
         y = lifeExp, 
-           color = continent,
-            size = pop)) +
-  geom_point(alpha = 0.5) +
+        color = continent,
+        size = pop)) +
+ geom_point(alpha = 0.5) +
   scale_x_log10() +
   labs(title = "Health and wealth grow together",
        subtitle = "Data from 2007",
@@ -1635,7 +1648,7 @@ library(sf)
 
 - If you are on a Mac please go to the [r-spatial-website](https://r-spatial.github.io/sf/) if you run into problems
 
-- The workhorse for this particlar section will be `sf`
+- The workhorse for this particular section will be `sf`
 
 :::aside
 
