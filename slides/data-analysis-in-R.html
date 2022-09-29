@@ -419,6 +419,7 @@
 <aside class="notes">
 <p>Note this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximumlikelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not.</p>
 <p>I also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis</p>
+<p>This workshop is going to sort of through building the results section of a paper. This will generally be geared toward a social science audience. But the fundamentals are virtually the same.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -685,6 +686,19 @@ mean in group FALSE  mean in group TRUE
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>In this case we have our first example of using of the formula. To do statsy stuff in R we generally have to use the tilde. This is just a function of how R does statistical analysis. Would and equal sign make sense here sure but like we have to use equal for lots of other stuff.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="correlations" class="slide level2">
 <h2>Correlations</h2>
@@ -1607,7 +1621,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <aside class="notes">
-<p>Using sandwhich we can adjust our standard errors like this</p>
+<p>Using sandwich we can adjust our standard errors like this</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1883,7 +1897,8 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <aside class="notes">
-<p>We may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco and cme are essentially looking at when the factor is on or off. So in this case this is just showing the effect when penguins take on the value of male</p>
+<p>We may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco. CCO is This function plots contrasts (y-axis) against values of predictor(s) variable(s) (x-axis and colors).</p>
+<p>So in this case this is just showing the effect when penguins take on the value of male</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

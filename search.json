@@ -329,18 +329,11 @@
     "text": "Where do they go?\n\n\nggplot() +\n  geom_point(data = penguins,\n  mapping =  aes(\n  x = bill_length_mm, \n  y = body_mass_g,\n  shape = species, \n  color = island),\n  size = 3)"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#what-does-this-mean-in-practice",
-    "href": "slides/ggplot-presentation.html#what-does-this-mean-in-practice",
-    "title": "Getting Started in ggplot",
-    "section": "What does this mean in practice?",
-    "text": "What does this mean in practice?\n\nData you are going to visualize\nGeometric objects that appear on your plot\nAesethic mappings from data to visual component\nStatistics transform data on the way to visualization\nCoordinates organize location of the geometric objects\nScales define the range of the values for aesthics\nFacets groups into subplots\n\n\nOnce we see the structure we can start to be able to build our “sentences” to make our plots In a second we will see how to work with stuff and how to start doing things."
-  },
-  {
     "objectID": "slides/ggplot-presentation.html#the-data",
     "href": "slides/ggplot-presentation.html#the-data",
     "title": "Getting Started in ggplot",
     "section": "The data",
-    "text": "The data\n\n\n\n\n\n\n\n\ntoday we will be using the gapminder dataset. It contains historical (1952-2007) data on various indicators, such as life expectancy and GDP, for countries worldwide."
+    "text": "The data\n\n\n# A tibble: 5 × 6\n  country     continent  year lifeExp      pop gdpPercap\n  <fct>       <fct>     <int>   <dbl>    <int>     <dbl>\n1 Afghanistan Asia       1952    28.8  8425333      779.\n2 Afghanistan Asia       1957    30.3  9240934      821.\n3 Afghanistan Asia       1962    32.0 10267083      853.\n4 Afghanistan Asia       1967    34.0 11537966      836.\n5 Afghanistan Asia       1972    36.1 13079460      740.\n\n\n\ntoday we will be using the gapminder dataset. It contains historical (1952-2007) data on various indicators, such as life expectancy and GDP, for countries worldwide."
   },
   {
     "objectID": "slides/ggplot-presentation.html#here-is-your-shell-script",
@@ -424,7 +417,7 @@
     "href": "slides/ggplot-presentation.html#answer",
     "title": "Getting Started in ggplot",
     "section": "Answer",
-    "text": "Answer\n\n\nggplot() +\n  geom_boxplot(gapminder,\n   mapping = aes(x = continent, # ggplot got map so I had to add mapping\n          y = lifeExp))"
+    "text": "Answer\n\n\nggplot() +\n  geom_boxplot(data = gapminder,\n  aes(x = continent, \n  y = lifeExp))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#your-turn-again",
@@ -438,7 +431,7 @@
     "href": "slides/ggplot-presentation.html#section-4",
     "title": "Getting Started in ggplot",
     "section": "",
-    "text": "ggplot() +\n  geom_histogram(gapminder, \n    mapping = aes(x = lifeExp))"
+    "text": "ggplot() +\n  geom_histogram( data = gapminder, \n    aes(x = lifeExp))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#your-turn-1",
@@ -452,7 +445,7 @@
     "href": "slides/ggplot-presentation.html#section-5",
     "title": "Getting Started in ggplot",
     "section": "",
-    "text": "ggplot() +\n  geom_density(gapminder,\n  mapping =  aes(x = lifeExp,\n                fill = continent),\n                alpha = 0.75)"
+    "text": "ggplot() +\n  geom_density( data = gapminder,\n  aes(x = lifeExp,\n     fill = continent),\n     alpha = 0.75)"
   },
   {
     "objectID": "slides/ggplot-presentation.html#complex-graph",
@@ -466,14 +459,14 @@
     "href": "slides/ggplot-presentation.html#local",
     "title": "Getting Started in ggplot",
     "section": "Local",
-    "text": "Local\n\n\nggplot(gapminder) +\n  geom_point(aes(x = gdpPercap,\n                 y = lifeExp, \n                 color = continent)) + \n  geom_smooth(aes(x = gdpPercap, \n                  y = lifeExp, \n                  color = continent, \n                  group = continent))"
+    "text": "Local\n\n\nggplot() +\n  geom_point(data = gapminder,\n   aes(x = gdpPercap,\n       y = lifeExp, \n       color = continent)) + \n  geom_smooth(data = gapminder,\n   aes(x = gdpPercap, \n       y = lifeExp, \n      color = continent, \n      group = continent))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#global",
     "href": "slides/ggplot-presentation.html#global",
     "title": "Getting Started in ggplot",
     "section": "Global",
-    "text": "Global\n\n\nggplot(gapminder,\n       aes(x = gdpPercap,\n          y = lifeExp, \n          color = continent, \n          group = continent))  + \n  geom_point() +\n  geom_smooth() \n\n\n\n\n\n\n\n\n\n\n\nSo we have mostly been working inside the individual geoms. However most people do not do this because it can start to get inconvenient quickly. If we work inside each individual geom than the other geom will not know what is going on and ggplot will get confused.\nInstead if you pass off our argument to the first layer"
+    "text": "Global\n\n\nggplot(gapminder,\n       aes(x = gdpPercap,\n          y = lifeExp, \n          color = continent, \n          group = continent))  + \n  geom_point() +\n  geom_smooth() \n\n\n\n\n\n\n\n\n\n\n\nSo we have mostly been working inside the individual geoms. However most people do not do this because it can start to get inconvenient quickly. If we work inside each individual geom than the other geom will not know what is going on and ggplot will get confused.\nInstead if you pass off our argument to the first layer that the aes argument will inheret the appropriate stuff"
   },
   {
     "objectID": "slides/ggplot-presentation.html#building-plots",
@@ -515,7 +508,7 @@
     "href": "slides/ggplot-presentation.html#add-axis-labels-and-title-with-labs",
     "title": "Getting Started in ggplot",
     "section": "Add axis labels and title with labs",
-    "text": "Add axis labels and title with labs\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\")"
+    "text": "Add axis labels and title with labs\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectancy\",\n       title = \"The Effect of GDP per cap on Life Expectancy\")\n\n\n\n\n\n\n\n\n\n\n\nLabs can handle a lot of arguments. there are individual functuions for the x label and y label and title. But make your like easier by just using labs. You can also modify the legend in labs but I have various success with that. I tend to modify the legend using guides or theme"
   },
   {
     "objectID": "slides/ggplot-presentation.html#add-viridis-color-scale",
@@ -536,21 +529,21 @@
     "href": "slides/ggplot-presentation.html#facet-by-continent",
     "title": "Getting Started in ggplot",
     "section": "Facet by Continent",
-    "text": "Facet by Continent\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent))"
+    "text": "Facet by Continent\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n        y = lifeExp,\n        color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n      y = \"Life Expectanty\",\n      title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#change-theme-options",
     "href": "slides/ggplot-presentation.html#change-theme-options",
     "title": "Getting Started in ggplot",
     "section": "Change Theme Options",
-    "text": "Change Theme Options\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n      y = lifeExp,\n      color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent)) +\n  theme(legend.position = \"none\")"
+    "text": "Change Theme Options\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n      y = lifeExp,\n      color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n      y = \"Life Expectanty\",\n      title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d() +\n  theme_bw() +\n  facet_wrap(vars(continent)) +\n  theme(legend.position = \"none\")"
   },
   {
     "objectID": "slides/ggplot-presentation.html#a-grammar-we-can-use",
     "href": "slides/ggplot-presentation.html#a-grammar-we-can-use",
     "title": "Getting Started in ggplot",
     "section": "A Grammar We Can Use",
-    "text": "A Grammar We Can Use\nMap wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n        y = lifeExp,\n        size = pop,\n        color = continent)) +\n  geom_point(alpha = 0.5) +\n  labs(x = \"Income\",\n       y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_allen_bw() +\n  guides(size = guide_legend(reverse = TRUE,\n                title = \"Population\"),\n         color = guide_legend(title = \"Continent\"))"
+    "text": "A Grammar We Can Use\nMap wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n      y = lifeExp,\n      size = pop,\n      color = continent)) +\n  geom_point(alpha = 0.5) +\n  labs(x = \"Income\",\n       y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_allen_bw() +\n  guides(size = guide_legend(reverse = TRUE,\n      title = \"Population\"),\n      color = guide_legend(title = \"Continent\"))\n\n\n\n\n\n\n\n\n\n\n\nThis is roughly the prompt that I was working with. The nice part about ggplot is you can start thinking about the plot in real words and then translate that over into code. Since we have a template of where to put things we can then focus on how best to visualize our data rather than fighting with thousands of dropdown menus"
   },
   {
     "objectID": "slides/ggplot-presentation.html#scales",
@@ -564,18 +557,18 @@
     "href": "slides/ggplot-presentation.html#scales-in-action",
     "title": "Getting Started in ggplot",
     "section": "Scales in Action",
-    "text": "Scales in Action\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n      y = lifeExp,\n      size = pop,\n      color = continent)) +\n  geom_point(alpha = 0.5) +\n  labs(x = \"Income\",\n     y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw()"
+    "text": "Scales in Action\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n      y = lifeExp,\n      size = pop,\n      color = continent)) +\n  geom_point(alpha = 0.5) +\n  labs(x = \"Income\",\n     y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw() \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nIf you type scale_x or scale_y into your r script you can see a whole host of things transformations you can do\n\n\n\n\nInstead of directly transforming your data ggplot allows you to do this through the scale_x function which is pretty neat. I will not go through each of them but that is pretty handy. If you want nicer looking labels you can use the scales package to make nicer looking labels. I.e adding commas to values on the x or y axis adding the dollar sign or percentage sign etc"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#scales-in-action-2",
+    "href": "slides/ggplot-presentation.html#scales-in-action-2",
+    "title": "Getting Started in ggplot",
+    "section": "Scales in Action",
+    "text": "Scales in Action\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          size = pop,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  scale_x_continuous(limits = c(0, 30000)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\nIn some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don’t want to go back and redo it"
   },
   {
     "objectID": "slides/ggplot-presentation.html#coordinates",
     "href": "slides/ggplot-presentation.html#coordinates",
-    "title": "Getting Started in ggplot",
-    "section": "Coordinates",
-    "text": "Coordinates\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          size = pop,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  scale_x_continuous(limits = c(0, 30000)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\nIn some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don’t want to go back and redo it"
-  },
-  {
-    "objectID": "slides/ggplot-presentation.html#coordinates-1",
-    "href": "slides/ggplot-presentation.html#coordinates-1",
     "title": "Getting Started in ggplot",
     "section": "Coordinates",
     "text": "Coordinates\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n     y = lifeExp)) +\n  geom_point(alpha = 0.5) +\n  scale_x_continuous(limits = c(0, 30000)) +\n  coord_flip() +\n  theme_bw()"
@@ -585,7 +578,7 @@
     "href": "slides/ggplot-presentation.html#your-turn-2",
     "title": "Getting Started in ggplot",
     "section": "Your Turn",
-    "text": "Your Turn\nMake this density plot of bill_length_mm filled by species. Use the viridis fill scale.\n\n\n\n\n−+\n04:00\n\n\n\n\nlook at the help file for scale_fill_viridis and play around with the options"
+    "text": "Your Turn\nMake this density plot of bill_length_mm filled by species. But change the default colors\n\n\n\n\n−+\n04:00\n\n\n\n\nlook at the help file for scale_fill_viridis and play around with the options"
   },
   {
     "objectID": "slides/ggplot-presentation.html#change-viridis-optioons",
@@ -602,11 +595,11 @@
     "text": "Facets\n\n\n\n\nExample layer\n\n\nWhat it does\n\n\n\n\nfacet_wrap(vars(continent))\n\n\nPlot for each continent\n\n\n\n\nfacet_wrap(vars(continent, year)) \n\n\nPlot for each continent/year\n\n\n\n\nfacet_wrap(…, ncol = 1)\n\n\nPut all facets in one column\n\n\n\n\nfacet_wrap(…, nrow = 1)\n\n\nPut all facets in one row"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#facets-1",
-    "href": "slides/ggplot-presentation.html#facets-1",
+    "objectID": "slides/ggplot-presentation.html#facet_wrap",
+    "href": "slides/ggplot-presentation.html#facet_wrap",
     "title": "Getting Started in ggplot",
-    "section": "Facets",
-    "text": "Facets\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n     y = lifeExp,\n     size = pop)) +\n  geom_point(alpha = 0.5) +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent)) # you can add more combos of vars here"
+    "section": "facet_wrap",
+    "text": "facet_wrap\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n     y = lifeExp,\n     size = pop)) +\n  geom_point(alpha = 0.5) +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent)) \n\n\n\n\n\n\n\n\n\n\n\nIf we want to get individual plots for each value of the variable we can feed this to facet wrap and is a really useful way of displaying information and saves you from creating subsets for each continent than plotting them individuall than combining them. You also have lots of"
   },
   {
     "objectID": "slides/ggplot-presentation.html#labels",
@@ -620,7 +613,7 @@
     "href": "slides/ggplot-presentation.html#labels-with-labs",
     "title": "Getting Started in ggplot",
     "section": "Labels with labs",
-    "text": "Labels with labs\n\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n           color = continent,\n            size = pop)) +\n  geom_point(alpha = 0.5) +\n  scale_x_log10() +\n  labs(title = \"Health and wealth grow together\",\n       subtitle = \"Data from 2007\",\n       x = \"Wealth (GDP per capita)\",\n       y = \"Health (life expectancy)\",\n       color = \"Continent\",\n       size = \"Population\",\n       caption = \"Source: The Gapminder Project\")"
+    "text": "Labels with labs\n\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n        color = continent,\n        size = pop)) +\n geom_point(alpha = 0.5) +\n  scale_x_log10() +\n  labs(title = \"Health and wealth grow together\",\n       subtitle = \"Data from 2007\",\n       x = \"Wealth (GDP per capita)\",\n       y = \"Health (life expectancy)\",\n       color = \"Continent\",\n       size = \"Population\",\n       caption = \"Source: The Gapminder Project\")"
   },
   {
     "objectID": "slides/ggplot-presentation.html#changing-the-default-theme",
@@ -655,7 +648,7 @@
     "href": "slides/ggplot-presentation.html#new-packages",
     "title": "Getting Started in ggplot",
     "section": "New Packages",
-    "text": "New Packages\n\ninstall.packages(c(\"sf\", \"tidygeocoder\"))\ndevtools::install_github(\"ropenscilabs/rnaturalearth\")\nlibrary(rnaturalearth)\nlibrary(sf)\n\n\nIf you are on a Mac please go to the r-spatial-website if you run into problems\nThe workhorse for this particlar section will be sf\n\n\n\nThere are some other packages like geom_map and ggmap. They still work but sf(simple features) is really great and has a ton of support and resources. See this book"
+    "text": "New Packages\n\ninstall.packages(c(\"sf\", \"tidygeocoder\"))\ndevtools::install_github(\"ropenscilabs/rnaturalearth\")\nlibrary(rnaturalearth)\nlibrary(sf)\n\n\nIf you are on a Mac please go to the r-spatial-website if you run into problems\nThe workhorse for this particular section will be sf\n\n\n\nThere are some other packages like geom_map and ggmap. They still work but sf(simple features) is really great and has a ton of support and resources. See this book"
   },
   {
     "objectID": "slides/ggplot-presentation.html#mapping-in-r",
@@ -760,7 +753,7 @@
     "href": "slides/data-analysis-in-R.html#packages-you-will-need",
     "title": "Data Analysis in R",
     "section": "Packages You Will Need",
-    "text": "Packages You Will Need\n\ninstall.packages(\"pacman\")\n\npacman::p_load(\"sandwich\", \"lmtest\", \"marginaleffects\", \"emmeans\", \"modelsummary\", \"broom\",\n               \"caret\", \"tidyverse\", \"fixest\", \"kableExtra\", \"nullabor\", \"plm\", \"ggfortify\", install = TRUE)\nset.seed(1994)\n\npenguins = palmerpenguins::penguins \n\n\nNote you will see some version of theme_allen used\n\nThis is just set a set of modifications based on Kyle Butt’s personal theme, mainly the fonts\nIf you really like it I can include the underlying file in an email.\n\n\n\nNote this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximumlikelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not.\nI also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis"
+    "text": "Packages You Will Need\n\ninstall.packages(\"pacman\")\n\npacman::p_load(\"sandwich\", \"lmtest\", \"marginaleffects\", \"emmeans\", \"modelsummary\", \"broom\",\n               \"caret\", \"tidyverse\", \"fixest\", \"kableExtra\", \"nullabor\", \"plm\", \"ggfortify\", install = TRUE)\nset.seed(1994)\n\npenguins = palmerpenguins::penguins \n\n\nNote you will see some version of theme_allen used\n\nThis is just set a set of modifications based on Kyle Butt’s personal theme, mainly the fonts\nIf you really like it I can include the underlying file in an email.\n\n\n\nNote this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximumlikelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not.\nI also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis\nThis workshop is going to sort of through building the results section of a paper. This will generally be geared toward a social science audience. But the fundamentals are virtually the same."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#describing-variables",
@@ -802,7 +795,7 @@
     "href": "slides/data-analysis-in-R.html#t-tests",
     "title": "Data Analysis in R",
     "section": "T-tests",
-    "text": "T-tests\n\n\nBase R\n\npenguins_t_test = na.omit(penguins) \n\npenguins_t_test$gentoo = ifelse(penguins_t_test$species == \"Gentoo\", TRUE, FALSE)\n\nt.test(flipper_length_mm ~ gentoo, data = penguins_t_test) \n\n\n\n\n    Welch Two Sample t-test\n\ndata:  flipper_length_mm by gentoo\nt = -32.47, df = 263.2, p-value < 2.2e-16\nalternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0\n95 percent confidence interval:\n -26.84983 -23.77964\nsample estimates:\nmean in group FALSE  mean in group TRUE \n           191.9206            217.2353 \n\n\n\nTidyverse\n\npenguins_t_test = penguins |> \n  drop_na() |> \n  mutate(gentoo = ifelse(species == \"Gentoo\",\n                         TRUE,\n                         FALSE))\n\n\n\nt.test(flipper_length_mm ~ gentoo, data = penguins_t_test) \n\n\n\n\n    Welch Two Sample t-test\n\ndata:  flipper_length_mm by gentoo\nt = -32.47, df = 263.2, p-value < 2.2e-16\nalternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0\n95 percent confidence interval:\n -26.84983 -23.77964\nsample estimates:\nmean in group FALSE  mean in group TRUE \n           191.9206            217.2353"
+    "text": "T-tests\n\n\nBase R\n\npenguins_t_test = na.omit(penguins) \n\npenguins_t_test$gentoo = ifelse(penguins_t_test$species == \"Gentoo\", TRUE, FALSE)\n\nt.test(flipper_length_mm ~ gentoo, data = penguins_t_test) \n\n\n\n\n    Welch Two Sample t-test\n\ndata:  flipper_length_mm by gentoo\nt = -32.47, df = 263.2, p-value < 2.2e-16\nalternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0\n95 percent confidence interval:\n -26.84983 -23.77964\nsample estimates:\nmean in group FALSE  mean in group TRUE \n           191.9206            217.2353 \n\n\n\nTidyverse\n\npenguins_t_test = penguins |> \n  drop_na() |> \n  mutate(gentoo = ifelse(species == \"Gentoo\",\n                         TRUE,\n                         FALSE))\n\n\n\nt.test(flipper_length_mm ~ gentoo, data = penguins_t_test) \n\n\n\n\n    Welch Two Sample t-test\n\ndata:  flipper_length_mm by gentoo\nt = -32.47, df = 263.2, p-value < 2.2e-16\nalternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0\n95 percent confidence interval:\n -26.84983 -23.77964\nsample estimates:\nmean in group FALSE  mean in group TRUE \n           191.9206            217.2353 \n\n\n\n\n\nIn this case we have our first example of using of the formula. To do statsy stuff in R we generally have to use the tilde. This is just a function of how R does statistical analysis. Would and equal sign make sense here sure but like we have to use equal for lots of other stuff."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#correlations",
@@ -956,7 +949,7 @@
     "href": "slides/data-analysis-in-R.html#adjusting-our-standard-errors-for-real-this-time",
     "title": "Data Analysis in R",
     "section": "Adjusting Our Standard Errors for Real This time",
-    "text": "Adjusting Our Standard Errors for Real This time\n\ncoeftest(peng_adjust, vcov= vcovHC)\n\n\nt test of coefficients:\n\n                    Estimate Std. Error t value  Pr(>|t|)    \n(Intercept)       -3864.0732   507.3100 -7.6168 2.807e-13 ***\nbill_length_mm       60.1173     6.5195  9.2212 < 2.2e-16 ***\nflipper_length_mm    27.5443     3.0951  8.8993 < 2.2e-16 ***\nspeciesChinstrap   -732.4167    76.3112 -9.5978 < 2.2e-16 ***\nspeciesGentoo       113.2542    89.2584  1.2688    0.2054    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nUsing sandwhich we can adjust our standard errors like this"
+    "text": "Adjusting Our Standard Errors for Real This time\n\ncoeftest(peng_adjust, vcov= vcovHC)\n\n\nt test of coefficients:\n\n                    Estimate Std. Error t value  Pr(>|t|)    \n(Intercept)       -3864.0732   507.3100 -7.6168 2.807e-13 ***\nbill_length_mm       60.1173     6.5195  9.2212 < 2.2e-16 ***\nflipper_length_mm    27.5443     3.0951  8.8993 < 2.2e-16 ***\nspeciesChinstrap   -732.4167    76.3112 -9.5978 < 2.2e-16 ***\nspeciesGentoo       113.2542    89.2584  1.2688    0.2054    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nUsing sandwich we can adjust our standard errors like this"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#a-whole-host-of-standard-errors",
@@ -1005,7 +998,7 @@
     "href": "slides/data-analysis-in-R.html#getting-marginal-effects-for-interactions",
     "title": "Data Analysis in R",
     "section": "Getting Marginal Effects for Interactions",
-    "text": "Getting Marginal Effects for Interactions\n\n\npengs_interact_effect = lm(body_mass_g ~ bill_length_mm  + flipper_length_mm * sex + species, data = peng_sans_miss_tidy)\n\nplot_cco(\n  pengs_interact_effect,\n  effect =  \"sex\", \n  condition = \"flipper_length_mm\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\ninterflex is also good a package and implements diagnostics for violations of the assumptions underlying interaction terms and a way to interpret the effects. inters also has an interesting implementation where they use LASSO\n\n\n\n\nWe may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco and cme are essentially looking at when the factor is on or off. So in this case this is just showing the effect when penguins take on the value of male"
+    "text": "Getting Marginal Effects for Interactions\n\n\npengs_interact_effect = lm(body_mass_g ~ bill_length_mm  + flipper_length_mm * sex + species, data = peng_sans_miss_tidy)\n\nplot_cco(\n  pengs_interact_effect,\n  effect =  \"sex\", \n  condition = \"flipper_length_mm\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\ninterflex is also good a package and implements diagnostics for violations of the assumptions underlying interaction terms and a way to interpret the effects. inters also has an interesting implementation where they use LASSO\n\n\n\n\nWe may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco. CCO is This function plots contrasts (y-axis) against values of predictor(s) variable(s) (x-axis and colors).\nSo in this case this is just showing the effect when penguins take on the value of male"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#tables-with-multiple-models",
