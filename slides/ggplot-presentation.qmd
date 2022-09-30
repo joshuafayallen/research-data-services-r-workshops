@@ -44,7 +44,7 @@ clrs <- met.brewer(name = "Demuth")
 clrs_lt <- lighten(clrs, 0.9)
 
 
-df = datasauRus::datasaurus_dozen
+graph_dat = datasauRus::datasaurus_dozen
 
 gapminder = gapminder::gapminder |> 
   filter(continent != "Oceania")
@@ -78,14 +78,13 @@ options(scipen=10000)
 
 install.packages(c("gapminder", "palmerpenguins"))
 
+
 library(gapminder)
 library(palmerpenguins)
 library(tidyverse) # ggplot will automatically be loaded in. 
 # library(ggplot2) also works 
 
-gapminder = gapminder
 
-penguins = penguins
 
 ```
 
@@ -95,28 +94,28 @@ penguins = penguins
 
 ```{r mean-x, eco = TRUE}
 
-mean(df$x)
+mean(graph_dat$x)
 
 
 ```
 
 ```{r sd-x, echo = TRUE}
-sd(df$x)
+sd(graph_dat$x)
 ```
 
 ```{r mean-y, echo = TRUE}
-mean(df$y)
+mean(graph_dat$y)
 ```
 
 
 
 ```{r sd-y, echo = TRUE}
-sd(df$y)
+sd(graph_dat$y)
 ```
 
 
 ```{r corr-these-vars, echo = TRUE}
-cor(df$x, df$y)
+cor(graph_dat$x, graph_dat$y)
 ```
 
 
@@ -135,7 +134,7 @@ Lets take a quick look at the data that I have loaded in. They look pretty simil
 
 ```{r dino-plot, echo = FALSE}
 #| fig-alt: "This plot shows the importance of visualizing data. Each dataset visualized have relatively the same mean and standard deviations. However they have very different visual patterns. The first figure is a circle, the second figure is a dinosaur, the second figure is 6 lines decreasing on the Y axis, the next figure is 6 lines increasing on the y axis, the next figure creates a star, and the last figure creates an X. These figures were all made from data that appear to have the same mean and standard deviation both measures just vary at the margins"
-ggplot(data = filter(df,!dataset %in% c("bullseye", "dots", "v_lines", "high_lines", "wide_lines", "h_lines", "away")), aes(x = x, y = y)) +
+ggplot(data = filter(graph_dat,!dataset %in% c("bullseye", "dots", "v_lines", "high_lines", "wide_lines", "h_lines", "away")), aes(x = x, y = y)) +
   geom_point() +
   theme_allen_minimal() +
   facet_wrap(vars(dataset))
@@ -151,7 +150,7 @@ I filtered out some of the data sets just for display purposes but critically if
 :::{.callout-note appearance="minimal"}
 The transferable skills from ggplot2 are not the idiosyncrasies of plotting syntax, but a powerful way of thinking about visualization, as a way of mapping between variables and the visual properties of geometric objects that you can perceive.
 
-- Hadley Wickham
+-- Hadley Wickham
 :::
 
 
@@ -175,10 +174,11 @@ The transferable skills from ggplot2 are not the idiosyncrasies of plotting synt
 - Flexibility
   - Tons ways to customize appearance
   - Lots of functions
+  - Lots of extensions 
 
 
 
-- Makes you lazier
+- Reproducibility 
   - Doesn't require you to remember each input from a drop down menu
   - Defaults to universally usable formats
   - Replaces itself automatically in your directory 
@@ -287,7 +287,7 @@ I apologize for some weird plotting stuff. I am still working out some kinks wit
 
 ```{r penguin-add-labs, echo = FALSE}
 #| fig-alt: "On the right hand side is the legend that denotes what each color and shape represent. Red represents the island Biscoe, Green Represents the island Dream. Light Blue represents the Torgersen Island. The circles represent the Adelie penguins, the triangles represent the Chinstrap penguins, and the squares represent the Gentoo penguins. The x axis represents bill length in milimeters and the y axis represents body mass in grams "
-ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) + theme_void() + geom_point(size = 3) + labs(x = "Bill Length(mm)", y = "Body Mass(g)")
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island))  + geom_point(size = 3) + labs(x = "Bill Length(mm)", y = "Body Mass(g)")
 ```
 
 :::
@@ -437,7 +437,7 @@ This is what it looks like when we start to think of the plot. Each of these are
 
 ggplot() +
   geom_point(data = penguins,
-  mapping =  aes(
+   aes(
   x = bill_length_mm, 
   y = body_mass_g,
   shape = species, 
@@ -445,7 +445,11 @@ ggplot() +
   size = 3)
 ```
 
+:::{.notes}
+To actually make the plot you need to specify the columns you want to "map" onto the plot. Map is kind of just the way that it is said in ggplot world. This is just us saying we want these columns in our 
 
+
+:::
 
 
 
@@ -464,7 +468,9 @@ ggplot() +
 
 
 ```{r dataset-gapminder-show, echo = FALSE }
-head(gapminder, 5)
+gapminder |>
+head(15) |>
+knitr::kable(format = "html")
 
 
 ```
@@ -489,7 +495,7 @@ today we will be using the gapminder dataset.  It contains historical (1952-2007
 ## be sure you have done 
 ## install.packages("gapminder")
 ## library(gapminder)
-gapminder = gapminder
+
 
 ggplot() +
   geom_point(data = gapminder,mapping = aes(x = gdpPercap, y = lifeExp))
@@ -503,7 +509,7 @@ To help you get your hands dirty I will give y'all a shell script to work with. 
 
 
 
-## Activity 
+## Activity {background-color="`r clrs_lt[3]`"}
 
 
 - Add color, size, alpha, and shape aesthetics to your graph.
@@ -549,12 +555,42 @@ all we are doing is making each point blue. Should be simple enough. If you are 
 
 
 
+
+
+
+
+## 
+
+
+
+```{r gapminder-blue-wrong-example, echo = TRUE}
+#| code-line-numbers: "5"
+#| output-location: column
+ggplot() + 
+  geom_point(data = gapminder,
+   aes(x = gdpPercap,
+    y = lifeExp,
+    color = "blue"))
+
+
+```
+
+
+
+
+:::{.notes}
+Remember when we do things in aes R will look for a column in our dataset. Importantly R will just looks for things it can do given the scope of the function. So if we put blue into the aes portion of it will plot it. But it will get confused because blue is not a column in our data set. 
+
+:::
+
+
 ##  
 
 
 
 ```{r use-color-aes-example, echo = TRUE}
 #| output-location: column
+#|code-line-numbers: "5"
 
 ggplot() +
   geom_point(data = gapminder,
@@ -575,50 +611,6 @@ ggplot will take the color argument inside aes and outside aes. If we specify co
 :::
 
 
-
-## 
-
-
-```{r gapminder-blue-correct, echo = TRUE}
-#| code-line-numbers: "|5"
-#| output-location: column
-ggplot() + 
-  geom_point(data = gapminder,
-   aes(x = gdpPercap,
-    y = lifeExp),
-    color = "blue")
-
-
-```
-
-
-
-
-
-
-## 
-
-
-
-```{r gapminder-blue-wrong-example, echo = TRUE}
-#| code-line-numbers: "|5"
-#| output-location: column
-ggplot() + 
-  geom_point(data = gapminder,
-   aes(x = gdpPercap,
-    y = lifeExp,
-    color = "blue"))
-
-
-```
-
-
-
-
-:::{.notes}
-Remember when we do things in aes R will look for a column in our dataset. Importantly R will just looks for things it can do given the scope of the function. So if we put blue into the aes portion of it will plot it. But it will get confused because blue is not a column in our data set. 
-
-:::
 
 ## Same options different stuff
 
@@ -649,7 +641,7 @@ ggplot(gapminder) +
 :::
 
 :::{.notes}
-there we can show the same relationship between two variables in a ton of different ways. there are a ton of geoms that we can use to visualize our data. 
+there we can show the same relationship between two variables in a ton of different ways. there are a ton of geoms that we can use to visualize our data. In this case I am just fitting a loess line through it. 
 
 :::
 
@@ -663,7 +655,7 @@ lsf.str("package:ggplot2") %>% grep("^geom_", ., value = TRUE)
 options(width = old_width$width)
 ```
 :::{.notes}
-There are many more that we can use too. There are tons of different kinds of plots that we can find for our specific plotting needs that people have written for R I have like an unhealthy obsession with ggridges
+There are many more that we can use too. There are tons of different kinds of plots that we can find for our specific plotting needs that people have written for R I have like an unhealthy obsession with ggridges. I will say geom_sf only gets added when you have the sf package loaded and then 
 :::
 
 
@@ -866,7 +858,10 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, group = con
 ```
 
 
+:::{.notes}
+Map wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.
 
+:::
 
 
 
@@ -1223,7 +1218,7 @@ Often time we need to or want to adjust the scales that one or more of the axis 
 ## Scales in Action
 
 
-```{r show-options-for-scales,  echo = TRUE}
+```{r show-options-for-scales,  echo = TRUE, fig.height = 10}
 #| output-location: column
 #| code-line-numbers: "9"
 ggplot(gapminder,
@@ -1241,9 +1236,7 @@ ggplot(gapminder,
 
 ```
 
-:::{.callout-tip}
-If you type `scale_x` or `scale_y` into your r script you can see a whole host of things transformations you can do
-:::
+
 
 :::{.notes}
 Instead of directly transforming your data ggplot allows you to do this through the scale_x function which is pretty neat. I will not go through each of them but that is pretty handy. If you want nicer looking labels you can use the scales package to make nicer looking labels. I.e adding commas to values on the x or y axis adding the dollar sign or percentage sign etc
@@ -1252,7 +1245,7 @@ Instead of directly transforming your data ggplot allows you to do this through 
 
 # Scales in Action 
 
-```{r}
+```{r fig.heigt = 15 }
 #| output-location: column
 #| codee-line-numbers: "9,10,11,12"
 ggplot(gapminder,
@@ -1441,7 +1434,10 @@ ggplot(data = filter(gapminder,
   facet_grid(vars(year))
 ```
 
+:::{.notes}
+forms a matrix of panels defined by row and column faceting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data.
 
+:::
 
 
 ## facet_grid
