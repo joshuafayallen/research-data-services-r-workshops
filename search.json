@@ -245,6 +245,27 @@
     "text": "Resources Used\nGraphic Design with ggplot2 by Cédric Scherer\nData Visualization PMAP 8921 by Andrew Heiss\nPretty street maps in R with the osmdata package and ggplot by Josh McCrain\nA ggplot2 Tutorial For Beautiful Plotting in R by Cédric Scherer\nA Gentle Guide to the Grammar of Graphics with ggplot2 by Garrick Aden-Buie"
   },
   {
+    "objectID": "slides/ggplot-presentation.html#our-team",
+    "href": "slides/ggplot-presentation.html#our-team",
+    "title": "Getting Started in ggplot",
+    "section": "Our Team",
+    "text": "Our Team\n\nknitr::include_graphics(\"figs/rds-team-members.png\")\n\n\n\nAlso, we do not have the capacity to provide pre-scheduled frequent software tutoring that is divorced from a specific assignment or software troubleshooting task at hand – in other words, we are also not generalized software tutors.\nOur one-on-one software assistance is available to help you troubleshoot specific tasks or assignments. If you are seeking generalized software help, we direct you to our live workshops and our recorded workshops to gain the foundational skills for using various analytical software. Then, when or if the time comes that you have targeted software questions or specific issues to tackle related to a course assignment or research project, please feel free to contact us for one-on-one support."
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#get-ready-badges",
+    "href": "slides/ggplot-presentation.html#get-ready-badges",
+    "title": "Getting Started in ggplot",
+    "section": "Get Ready Badges",
+    "text": "Get Ready Badges\n\nknitr::include_graphics(\"figs/get-ready-badges.png\")\n\n\n\nhttps://research.library.gsu.edu/dataservices/data-ready\nThese are awesome to share on social media i.e. linkedin which is a good signal to potential employers that you know this stuff"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#how-to-get-the-badges",
+    "href": "slides/ggplot-presentation.html#how-to-get-the-badges",
+    "title": "Getting Started in ggplot",
+    "section": "How To Get the Badges",
+    "text": "How To Get the Badges\n\nknitr::include_graphics(\"figs/how-to-badge.png\")"
+  },
+  {
     "objectID": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
     "href": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
     "title": "Getting Started in ggplot",
@@ -634,7 +655,7 @@
     "href": "slides/ggplot-presentation.html#ggplot-in-the-wild",
     "title": "Getting Started in ggplot",
     "section": "ggplot in the wild",
-    "text": "ggplot in the wild\n\nOften organizations will write their own theme\n\nCheck out the BBC’s\n\n\n\n\n##devtools::install_github('bbc/bbplot')\nlibrary(bbplot)\n ggplot(gapminder,\n  aes(x = gdpPercap,\n   y = lifeExp,\n    color = continent)) +\n  geom_point(alpha = 0.6) +\n  scale_color_manual(values = \n  c(\"#FAAB18\",\n    \"#1380A1\",\n    \"#990000\",\n    \"#588300\")) +\n  scale_x_log10() +\n  bbc_style()\n\n\n\n\n\n\n\n\n\n\n\nLots of organizations use ggplot. What this means for you is that you can find themes that"
+    "text": "ggplot in the wild\n\nOften organizations will write their own theme\n\nCheck out the BBC’s\n\n\n\n\n##devtools::install_github('bbc/bbplot')\nlibrary(bbplot)\n ggplot(gapminder,\n  aes(x = gdpPercap,\n   y = lifeExp,\n    color = continent)) +\n  geom_point(alpha = 0.6) +\n  scale_color_manual(values = \n  c(\"#FAAB18\",\n    \"#1380A1\",\n    \"#990000\",\n    \"#588300\")) +\n  scale_x_log10() +\n  bbc_style()\n\n\n\n\n\n\n\n\n\n\n\nLots of organizations use ggplot. What this means for you is that you can find themes that lots of organizations use. I know for a fact that the economist makes all their code fully available for you. So if you see a cool graph from the economist you can just go to their github and figure out how they found it."
   },
   {
     "objectID": "slides/ggplot-presentation.html#the-theme-argument",
@@ -648,14 +669,14 @@
     "href": "slides/ggplot-presentation.html#saving-your-work",
     "title": "Getting Started in ggplot",
     "section": "Saving your work",
-    "text": "Saving your work\n\nyour_plot_here = ggplot(data, aes(x = blah, y = blah))\n\n\nggsave(\"name-of-your-file.pdf\",your_plot_here)\n\n\nggsave(\"name-of-your-file.pngs\",your_plot_here)"
+    "text": "Saving your work\n\nyour_plot_here = ggplot(data, aes(x = blah, y = blah))\n\n\nggsave(\"name-of-your-file.pdf\",your_plot_here) \n\n\nggsave(\"name-of-your-file.pngs\",your_plot_here)"
   },
   {
     "objectID": "slides/ggplot-presentation.html#new-packages",
     "href": "slides/ggplot-presentation.html#new-packages",
     "title": "Getting Started in ggplot",
     "section": "New Packages",
-    "text": "New Packages\n\ninstall.packages(c(\"sf\", \"tidygeocoder\"))\ndevtools::install_github(\"ropenscilabs/rnaturalearth\")\nlibrary(rnaturalearth)\nlibrary(sf)\n\n\nIf you are on a Mac please go to the r-spatial-website if you run into problems\nThe workhorse for this particular section will be sf\n\n\n\nThere are some other packages like geom_map and ggmap. They still work but sf(simple features) is really great and has a ton of support and resources. See this book"
+    "text": "New Packages\n\ninstall.packages(c(\"sf\", \"tidygeocoder\"))\ndevtools::install_github(\"ropenscilabs/rnaturalearth\")\nlibrary(rnaturalearth)\nlibrary(sf)\n\n\nIf you are on a Mac please go to the r-spatial-website if you run into problems\nThe workhorse for this particular section will be sf\n\n\n\nThere are lots of mapping packages in R. I will only show you how to map in ggplot. You can get a really passable map in ggplot. I have included the code the Emre wrote that uses tmap. tmap is good and I have used it but once you get the hand of ggplot I think it is just easier to use ggplot than to learn how to use a new package\n\n\nThere are some other packages like geom_map and ggmap. They still work but sf(simple features) is really great and has a ton of support and resources. See this book"
   },
   {
     "objectID": "slides/ggplot-presentation.html#mapping-in-r",
@@ -704,7 +725,7 @@
     "href": "slides/ggplot-presentation.html#mapping-middle-earth",
     "title": "Getting Started in ggplot",
     "section": "Mapping Middle Earth",
-    "text": "Mapping Middle Earth\n\n\ncoastline = read_sf(\"data/ME-GIS/Coastline2.shp\")\ncontours = read_sf(\"data/ME-GIS/Contours_18.shp\")\nrivers = read_sf(\"data/ME-GIS/Rivers.shp\")\nlakes = read_sf(\"data/ME-GIS/Lakes.shp\")\nforests = read_sf(\"data/ME-GIS/Forests.shp\")\nmountains = read_sf(\"data/ME-GIS/Mountains_Anno.shp\")\nplacenames = read_sf(\"data/ME-GIS/Combined_Placenames.shp\")\ncities = read_sf(\"data/ME-GIS/Cities.shp\")\nroads = read_sf(\"data/ME-GIS/Roads.shp\")\ntowers_keeps =  read_sf(\"data/ME-GIS/Towers_and_Keeps.shp\")\nplaces <- placenames %>% \n  filter(NAME %in% c(\"Hobbiton\",\n                     \"Rivendell\",\n                     \"Edoras\",\n                     \"Minas Tirith\"))\n\nmordor = placenames[placenames$NAME == \"Mordor\",]\n\nmountains_to_label = mountains[mountains$name == \"Erebor The Lonely Mountain\",]\n\nggplot() +\n  geom_sf(data = contours,\n          size = 0.15,\n          color = \"grey90\") +\n  geom_sf(data = coastline,\n          size = 0.25,\n          color = \"grey50\") +\n  geom_sf(data = rivers,\n          size = 0.2,\n          color = \"#0776e0\",\n          alpha = 0.5) +\n  geom_sf(data = lakes,\n          size = 0.2,\n          color = \"#0776e0\",\n          fill = \"#0776e0\") +\n  geom_sf(data = forests,\n          size = 0,\n          fill = \"#035711\",\n          alpha = 0.5) +\n  geom_sf(data = mountains, size = 0.25) +\n  geom_sf(data = places) +\n  geom_sf_label(data = places,\n                aes(label = NAME),\n                nudge_y = 80000) +\n  geom_sf_label(data = mountains_to_label,\n                aes(label = name),\n                nudge_y = 80000) +\n  geom_sf_label(data = mordor,\n                aes(label = NAME),\n                nudge_y = 9000) +\n  theme_void() +\n  theme(plot.background = element_rect(fill = \"#fffce3\"))\n\n\n\n\n\n\n\n\n\n\n\nAs you can see this does not look fundamentally all that different from the rest of our ggplot code. We are just coloring and sizing ssutff depening on what we want. We can add annotations"
+    "text": "Mapping Middle Earth\n\n\ncoastline = read_sf(\"data/ME-GIS/Coastline2.shp\")\ncontours = read_sf(\"data/ME-GIS/Contours_18.shp\")\nrivers = read_sf(\"data/ME-GIS/Rivers.shp\")\nlakes = read_sf(\"data/ME-GIS/Lakes.shp\")\nforests = read_sf(\"data/ME-GIS/Forests.shp\")\nmountains = read_sf(\"data/ME-GIS/Mountains_Anno.shp\")\nplacenames = read_sf(\"data/ME-GIS/Combined_Placenames.shp\")\ncities = read_sf(\"data/ME-GIS/Cities.shp\")\nroads = read_sf(\"data/ME-GIS/Roads.shp\")\ntowers_keeps =  read_sf(\"data/ME-GIS/Towers_and_Keeps.shp\")\nplaces = placenames |>\n  filter(NAME %in% c(\"Hobbiton\",\n                     \"Rivendell\",\n                     \"Edoras\",\n                     \"Minas Tirith\"))\n\nmordor = placenames[placenames$NAME == \"Mordor\",]\n\nmountains_to_label = mountains[mountains$name == \"Erebor The Lonely Mountain\",]\n\nggplot() +\n  geom_sf(data = contours,\n          size = 0.15,\n          color = \"grey90\") +\n  geom_sf(data = coastline,\n          size = 0.25,\n          color = \"grey50\") +\n  geom_sf(data = rivers,\n          size = 0.2,\n          color = \"#0776e0\",\n          alpha = 0.5) +\n  geom_sf(data = lakes,\n          size = 0.2,\n          color = \"#0776e0\",\n          fill = \"#0776e0\") +\n  geom_sf(data = forests,\n          size = 0,\n          fill = \"#035711\",\n          alpha = 0.5) +\n  geom_sf(data = mountains, size = 0.25) +\n  geom_sf(data = places) +\n  geom_sf_label(data = places,\n                aes(label = NAME),\n                nudge_y = 80000) +\n  geom_sf_label(data = mountains_to_label,\n                aes(label = name),\n                nudge_y = 80000) +\n  geom_sf_label(data = mordor,\n                aes(label = NAME),\n                nudge_y = 9000) +\n  theme_void() +\n  theme(plot.background = element_rect(fill = \"#fffce3\"))\n\n\n\n\n\n\n\n\n\n\n\nAs you can see this does not look fundamentally all that different from the rest of our ggplot code. We are just coloring and sizing ssutff depening on what we want. We can add annotations"
   },
   {
     "objectID": "slides/ggplot-presentation.html#working-without-shape-fileskind-of",
@@ -718,7 +739,7 @@
     "href": "slides/ggplot-presentation.html#making-a-bespoke-shapefile",
     "title": "Getting Started in ggplot",
     "section": "Making a Bespoke Shapefile",
-    "text": "Making a Bespoke Shapefile\n\nYou can either feed it latitude and longitudes\nOr you can feed it addresses\nYou will need to geocode them\nMost free ones have rate limits\n\nSo be mindful of the size of your data"
+    "text": "Making a Bespoke Shapefile\n\nYou can either feed it latitude and longitudes\nOr you can feed it addresses\nMost free ones have rate limits\n\nSo be mindful of the size of your data\n\n\n\nIn this case if we do not have the geometry column but we have some addresses we can just geocode them to produce the column."
   },
   {
     "objectID": "slides/ggplot-presentation.html#making-a-bespoke-shapefilecont",
@@ -732,7 +753,7 @@
     "href": "slides/ggplot-presentation.html#making-a-bespoke-shapefilecont-1",
     "title": "Getting Started in ggplot",
     "section": "Making a Bespoke Shapefile(cont)",
-    "text": "Making a Bespoke Shapefile(cont)\n\nlibrary(tidygeocoder)\n\nbreweries_I_visit = tribble(\n  ~name, ~address,\n  \"Russian River Brewing\", \"725 4th St, Santa Rosa, CA 95404\",\n  \"Orpheus Brewing\", \"1440 Dutch Valley Pl NE, Atlanta, GA 30324\",\n  \"Three Tavens\", \"121 New St, Decatur, GA 30030\",\n  \"HenHouse Brewing Company\", \"322 Bellevue Ave, Santa Rosa, CA 95407\"\n)\n\nbreweries_geocode = breweries_I_visit |> \n  geocode(address, geocode_combine = c(\"osm\", \"arcgis\")) ## backup if one service fails \n\nadd_geom = breweries_geocode |> \n  st_as_sf(coords = c(\"long\", \"lat\"), crs = st_crs(\"EPSG:4326\"))\n\n\n\n\n\n \n  \n    name \n    address \n    geometry \n  \n \n\n  \n    Russian River Brewing \n    725 4th St, Santa Rosa, CA 95404 \n    POINT (-122.7117 38.4418) \n  \n  \n    Orpheus Brewing \n    1440 Dutch Valley Pl NE, Atlanta, GA 30324 \n    POINT (-84.36874 33.79355) \n  \n  \n    Three Tavens \n    121 New St, Decatur, GA 30030 \n    POINT (-84.28488 33.77306) \n  \n  \n    HenHouse Brewing Company \n    322 Bellevue Ave, Santa Rosa, CA 95407 \n    POINT (-122.7255 38.40122)"
+    "text": "Making a Bespoke Shapefile(cont)\n\nlibrary(tidygeocoder)\n\nbreweries_I_visit = tribble(\n  ~name, ~address,\n  \"Russian River Brewing\", \"725 4th St, Santa Rosa, CA 95404\",\n  \"Orpheus Brewing\", \"1440 Dutch Valley Pl NE, Atlanta, GA 30324\",\n  \"Three Tavens\", \"121 New St, Decatur, GA 30030\",\n  \"HenHouse Brewing Company\", \"322 Bellevue Ave, Santa Rosa, CA 95407\"\n)\n\nbreweries_geocode = breweries_I_visit |> \n  geocode(address, method = \"osm\") ## backup if one service fails \n\nadd_geom = breweries_geocode |> \n  st_as_sf(coords = c(\"long\", \"lat\"), crs = st_crs(\"EPSG:4326\"))\n\n\n\n\n\n \n  \n    name \n    address \n    geometry \n  \n \n\n  \n    Russian River Brewing \n    725 4th St, Santa Rosa, CA 95404 \n    POINT (-122.7117 38.4418) \n  \n  \n    Orpheus Brewing \n    1440 Dutch Valley Pl NE, Atlanta, GA 30324 \n    POINT (-84.36874 33.79355) \n  \n  \n    Three Tavens \n    121 New St, Decatur, GA 30030 \n    POINT (-84.28488 33.77306) \n  \n  \n    HenHouse Brewing Company \n    322 Bellevue Ave, Santa Rosa, CA 95407 \n    POINT (-122.7255 38.40122) \n  \n\n\n\n\n\n\nin the geocode argument you can cascade the services just in case it fails. The neat thing is that you can feed it a dataframe of addresses. What is also pretty cool is that it plays really well with other R tidyverse packages so if you scrape a website to grab a ton of addresses than you can just feed it into tidygeocoder\nfrom there you can use ggplot or even create interactive leaflet maps"
   },
   {
     "objectID": "slides/ggplot-presentation.html#mapping-atlanta",
