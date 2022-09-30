@@ -632,8 +632,9 @@ Remember when we do things in aes R will look for a column in our dataset. Impor
 
 
 ```{r use-color-aes-example, echo = TRUE}
-#| output-location: column
 #| code-line-numbers: "5"
+#| output-location: column
+
 
 ggplot() +
   geom_point(data = gapminder,
