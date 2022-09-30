@@ -291,7 +291,7 @@
     "href": "slides/ggplot-presentation.html#building-the-plot",
     "title": "Getting Started in ggplot",
     "section": "Building the Plot",
-    "text": "Building the Plot\n\n\nBody Weight of Penguins and Bill Length\n\nPenguins\nSpecies\nIsland"
+    "text": "Building the Plot\n\n\nBody Weight of Penguins and Bill Length\n\nPenguins\nSpecies\nIsland\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nI apologize for some weird plotting stuff. I am still working out some kinks with how the presentation is styled. I wanted to try to give the plots and the code the same size on the slides. However that resulted in some weird decisions from quarto"
   },
   {
     "objectID": "slides/ggplot-presentation.html#building-the-plot-1",
@@ -581,11 +581,11 @@
     "text": "Your Turn\nMake this density plot of bill_length_mm filled by species. But change the default colors\n\n\n\n\n−+\n04:00\n\n\n\n\nlook at the help file for scale_fill_viridis and play around with the options"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#change-viridis-optioons",
-    "href": "slides/ggplot-presentation.html#change-viridis-optioons",
+    "objectID": "slides/ggplot-presentation.html#how-i-did-it",
+    "href": "slides/ggplot-presentation.html#how-i-did-it",
     "title": "Getting Started in ggplot",
-    "section": "Change Viridis Optioons",
-    "text": "Change Viridis Optioons\n\n\nggplot(penguins,\n aes(x = bill_length_mm,\n    fill = species)) +\n  geom_density( alpha = 0.75) +\n  theme_bw() +\n  scale_fill_viridis_d(option = \"magma\")"
+    "section": "How I Did It",
+    "text": "How I Did It\n\n\nggplot(penguins,\n aes(x = bill_length_mm,\n    fill = species)) +\n  geom_density( alpha = 0.75) +\n  theme_bw() +\n  scale_fill_viridis_d(option = \"magma\")"
   },
   {
     "objectID": "slides/ggplot-presentation.html#facets",
@@ -602,6 +602,20 @@
     "text": "facet_wrap\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n     y = lifeExp,\n     size = pop)) +\n  geom_point(alpha = 0.5) +\n  theme_bw() +\n  scale_x_log10() +\n  facet_wrap(vars(continent)) \n\n\n\n\n\n\n\n\n\n\n\nIf we want to get individual plots for each value of the variable we can feed this to facet wrap and is a really useful way of displaying information and saves you from creating subsets for each continent than plotting them individuall than combining them. You also have lots of"
   },
   {
+    "objectID": "slides/ggplot-presentation.html#facet_grid",
+    "href": "slides/ggplot-presentation.html#facet_grid",
+    "title": "Getting Started in ggplot",
+    "section": "facet_grid",
+    "text": "facet_grid\n\n\nggplot(data = filter(gapminder,\n year %in% c(1987,1997,2002, 2007)),\n    aes(x = gdpPercap,\n     y = lifeExp,\n     size = pop)) +\n  geom_point(alpha = 0.5) +\n  theme_bw() +\n  scale_x_log10() +\n  facet_grid(vars(year))"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#facet_grid-1",
+    "href": "slides/ggplot-presentation.html#facet_grid-1",
+    "title": "Getting Started in ggplot",
+    "section": "facet_grid",
+    "text": "facet_grid\n\n\nggplot(data = filter(gapminder,\n year %in% c(1987,1997,2002, 2007)),\n    aes(x = gdpPercap,\n     y = lifeExp,\n     size = pop)) +\n  geom_point(alpha = 0.5) +\n  theme_bw() +\n  scale_x_log10() +\n  facet_grid(vars(year), vars(continent))"
+  },
+  {
     "objectID": "slides/ggplot-presentation.html#labels",
     "href": "slides/ggplot-presentation.html#labels",
     "title": "Getting Started in ggplot",
@@ -613,7 +627,7 @@
     "href": "slides/ggplot-presentation.html#labels-with-labs",
     "title": "Getting Started in ggplot",
     "section": "Labels with labs",
-    "text": "Labels with labs\n\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n        color = continent,\n        size = pop)) +\n geom_point(alpha = 0.5) +\n  scale_x_log10() +\n  labs(title = \"Health and wealth grow together\",\n       subtitle = \"Data from 2007\",\n       x = \"Wealth (GDP per capita)\",\n       y = \"Health (life expectancy)\",\n       color = \"Continent\",\n       size = \"Population\",\n       caption = \"Source: The Gapminder Project\")"
+    "text": "Labels with labs\n\n\nggplot(gapminder, \n       aes(x = gdpPercap,\n        y = lifeExp, \n        color = continent,\n        size = pop)) +\n geom_point(alpha = 0.5) +\n  scale_x_log10() +\n  labs(title = \"Health and wealth grow together\",\n       subtitle = \"Data from 2007\",\n       x = \"Wealth (GDP per capita)\",\n       y = \"Health (life expectancy)\",\n       color = \"Continent\",\n       size = \"Population\",\n       caption = \"Source: The Gapminder Project\")\n\n\n\n\n\n\n\n\n\n\n\nThe labs argument has a ton of flexibility. Basically if you feed something into aes you can change it in labs. I Tend to change legend labels in guides. That is just a personal preference but labs is superflexible. You will sometimes see other solutions for changing your legend."
   },
   {
     "objectID": "slides/ggplot-presentation.html#changing-the-default-theme",
@@ -742,11 +756,11 @@
     "text": "Mapping Atlanta\n\n\nCode\nlibrary(osmdata)\n\nbig_streets = getbb(\"Atlanta United States\") %>% \n  opq() %>% \n  add_osm_feature(key = \"highway\", \n                  value = c(\"motorway\", \"primary\", \"motorway_link\", \"primary_link\")) %>%\n  osmdata_sf()\n\nmed_streets = getbb(\"Atlanta United States\") %>%\n  opq() %>%\n  add_osm_feature(key = \"highway\", \n                  value = c(\"secondary\", \"tertiary\", \"secondary_link\", \"tertiary_link\")) %>%\n  osmdata_sf()\n\n\nsmall_streets = getbb(\"Atlanta United States\") %>%\n  opq()%>%\n  add_osm_feature(key = \"highway\", \n                  value = c(\"residential\", \"living_street\",\n                            \"unclassified\",\n                            \"service\", \"footway\"\n                  )) %>%\n  osmdata_sf()\n\n\n  railway = getbb(\"Atlanta United States\")%>%\n  opq()%>%\n  add_osm_feature(key = \"railway\", value= \"rail\") %>%\n  osmdata_sf()\n\nbars = tribble(\n  ~name, ~address,\n  \"Hattie B's\", \"299 Moreland Ave NE, Atlanta, GA 30307\",\n  \"Side Bar\", \"79 Poplar St NW, Atlanta, GA 30303\",\n  \"Manny's\", \"602 North Highland Avenue Northeast, Atlanta, GA 30307\",\n  \"The Porter\", \"1156 Euclid Ave NE, Atlanta, GA 30307\",\n  \"Anatolia's\", \"Peachtree St, Atlanta, GA 30303\",\n  \"Agave\", \"242 Boulevard SE, Atlanta, GA 30312\",\n  \"Fetch\", \"520 Daniel St SE, Atlanta, GA 30312\",\n  \"Recess\", \"99-V, Krog St NE, Atlanta, GA 30307\",\n  \"Der Biergarten\", \"300 Marietta St NW, Atlanta, GA 30313\",\n  \"The Highlander\", \"931 Monroe Dr NE, Atlanta, GA 30308\" ,\n  \"Wrecking Bar\", \"292 Moreland Ave NE, Atlanta, GA 30307\"\n)\n\nbars_geocode = bars %>% \n  geocode(address, method = \"osm\")\n\nadd_geom = bars_geocode %>% \n  st_as_sf(coords = c(\"long\", \"lat\"), crs = st_crs(\"EPSG:4326\"))"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#which-produces",
-    "href": "slides/ggplot-presentation.html#which-produces",
+    "objectID": "slides/ggplot-presentation.html#plotting-the-results",
+    "href": "slides/ggplot-presentation.html#plotting-the-results",
     "title": "Getting Started in ggplot",
-    "section": "Which Produces",
-    "text": "Which Produces\n\n\nggplot() +\n  geom_sf(data = railway$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .2,\n          linetype=\"dotdash\",\n          alpha = .5) +\n  geom_sf(data = med_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .3,\n          alpha = .5) +\n  geom_sf(data = small_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"#666666\",\n          size = .2,\n          alpha = .3) +\n  geom_sf(data = big_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .5,\n          alpha = .6) +\n  geom_sf(data = add_geom, aes(color = name),\n          color = \"#0039A6\") +\n  coord_sf(ylim = c(33.64, 33.89), \n           xlim = c (-84.56, -84.30), expand = FALSE) +\n  theme_void(base_family = \"Roboto Condensed\", base_size = 20) +\n  theme(plot.subtitle = element_text(size = 10, hjust = 0.5, \n                                     margin = margin(2, 0, 5, 0)),\n        plot.title = element_text(face=\"bold\", hjust=.5),\n        plot.caption = element_text(size = 8, face = \"bold\")) + \n   labs(title = \"Atlanta\", subtitle = \"33.7490°N/84.3880°W\")"
+    "section": "Plotting the results",
+    "text": "Plotting the results\n\n\nggplot() +\n  geom_sf(data = railway$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .2,\n          linetype=\"dotdash\",\n          alpha = .5) +\n  geom_sf(data = med_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .3,\n          alpha = .5) +\n  geom_sf(data = small_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"#666666\",\n          size = .2,\n          alpha = .3) +\n  geom_sf(data = big_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .5,\n          alpha = .6) +\n  geom_sf(data = add_geom, aes(color = name),\n          color = \"#0039A6\") +\n  coord_sf(ylim = c(33.64, 33.89), \n           xlim = c (-84.56, -84.30), expand = FALSE) +\n  theme_void(base_family = \"Roboto Condensed\",\n   base_size = 20) +\n  theme(plot.subtitle = element_text(size = 10, hjust = 0.5, \n    margin = margin(2, 0, 5, 0)),\n    plot.title = element_text(face=\"bold\", hjust=.5),\n    plot.caption = element_text(size = 8, face = \"bold\")) + \n   labs(title = \"Atlanta\",\n   subtitle = \"33.7490°N/84.3880°W\")"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#packages-you-will-need",

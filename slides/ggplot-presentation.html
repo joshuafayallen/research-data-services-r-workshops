@@ -576,6 +576,19 @@
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>I apologize for some weird plotting stuff. I am still working out some kinks with how the presentation is styled. I wanted to try to give the plots and the code the same size on the slides. However that resulted in some weird decisions from quarto</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="building-the-plot-1" class="slide level2">
 <h2>Building the Plot</h2>
@@ -873,7 +886,7 @@ Explanation
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_b147d117" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_4c69b747" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1149,7 +1162,7 @@ Explanation
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_0c539e6b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_2083c598" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1194,7 +1207,7 @@ Explanation
 
 <img data-src="figs/unnamed-chunk-4-1.png" style="width:80.0%" class="r-stretch quarto-figure-center"><div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_f36f8266" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_ac2f009e" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1238,7 +1251,7 @@ Explanation
 
 <img data-src="figs/unnamed-chunk-7-1.png" style="width:80.0%" class="r-stretch quarto-figure-center"><div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_36c3fb9b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_b30bbc71" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1286,7 +1299,7 @@ Explanation
 <h2>Local</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="|2|6|3|7|4|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="2,6,3,7,4,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> gapminder,</span>
 <span id="cb22-3"><a href="#cb22-3"></a>   <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb22-4"><a href="#cb22-4"></a>       <span class="at">y =</span> lifeExp, </span>
@@ -1311,7 +1324,7 @@ Explanation
 <h2>Global</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="|1|2|3|4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="1,2,3,4,5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb23-2"><a href="#cb23-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb23-3"><a href="#cb23-3"></a>          <span class="at">y =</span> lifeExp, </span>
 <span id="cb23-4"><a href="#cb23-4"></a>          <span class="at">color =</span> continent, </span>
@@ -1379,7 +1392,7 @@ Explanation
 <h2>Add <code>geom_point</code></h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb25-2"><a href="#cb25-2"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb25-3"><a href="#cb25-3"></a>        <span class="at">y =</span> lifeExp,</span>
 <span id="cb25-4"><a href="#cb25-4"></a>        <span class="at">color =</span> continent)) <span class="sc">+</span></span>
@@ -1399,7 +1412,7 @@ Explanation
 <h2>Add <code>geom_smooth</code></h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb26-2"><a href="#cb26-2"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb26-3"><a href="#cb26-3"></a>       <span class="at">y =</span> lifeExp,</span>
 <span id="cb26-4"><a href="#cb26-4"></a>       <span class="at">color =</span> continent)) <span class="sc">+</span></span>
@@ -1420,7 +1433,7 @@ Explanation
 <h2>Add Change Transparency</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb27-2"><a href="#cb27-2"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb27-3"><a href="#cb27-3"></a>       <span class="at">y =</span> lifeExp,</span>
 <span id="cb27-4"><a href="#cb27-4"></a>       <span class="at">color =</span> continent)) <span class="sc">+</span></span>
@@ -1441,7 +1454,7 @@ Explanation
 <h2>Adjust scales with <code>scale_x_log10</code></h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb28-2"><a href="#cb28-2"></a>     <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb28-3"><a href="#cb28-3"></a>         <span class="at">y =</span> lifeExp,</span>
 <span id="cb28-4"><a href="#cb28-4"></a>         <span class="at">color =</span> continent)) <span class="sc">+</span></span>
@@ -1463,7 +1476,7 @@ Explanation
 <h2>Add axis labels and title with <code>labs</code></h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="|8|9|10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="8,9,10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb29-2"><a href="#cb29-2"></a>      <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb29-3"><a href="#cb29-3"></a>          <span class="at">y =</span> lifeExp,</span>
 <span id="cb29-4"><a href="#cb29-4"></a>          <span class="at">color =</span> continent)) <span class="sc">+</span></span>
@@ -1501,7 +1514,7 @@ Explanation
 <h2>Add viridis color scale</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb30-2"><a href="#cb30-2"></a>      <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb30-3"><a href="#cb30-3"></a>          <span class="at">y =</span> lifeExp,</span>
 <span id="cb30-4"><a href="#cb30-4"></a>          <span class="at">color =</span> continent)) <span class="sc">+</span></span>
@@ -1527,7 +1540,7 @@ Explanation
 <h2>Add theme</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="|12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb31-2"><a href="#cb31-2"></a>      <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb31-3"><a href="#cb31-3"></a>         <span class="at">y =</span> lifeExp,</span>
 <span id="cb31-4"><a href="#cb31-4"></a>         <span class="at">color =</span> continent)) <span class="sc">+</span></span>
@@ -1554,7 +1567,7 @@ Explanation
 <h2>Facet by Continent</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb32-2"><a href="#cb32-2"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb32-3"><a href="#cb32-3"></a>        <span class="at">y =</span> lifeExp,</span>
 <span id="cb32-4"><a href="#cb32-4"></a>        <span class="at">color =</span> continent)) <span class="sc">+</span></span>
@@ -1582,7 +1595,7 @@ Explanation
 <h2>Change Theme Options</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="|14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb33-3"><a href="#cb33-3"></a>      <span class="at">y =</span> lifeExp,</span>
 <span id="cb33-4"><a href="#cb33-4"></a>      <span class="at">color =</span> continent)) <span class="sc">+</span></span>
@@ -1721,7 +1734,7 @@ Fill with discrete viridis colors
 <h2>Scales in Action</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb35" data-code-line-numbers="9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb35-3"><a href="#cb35-3"></a>      <span class="at">y =</span> lifeExp,</span>
 <span id="cb35-4"><a href="#cb35-4"></a>      <span class="at">size =</span> pop,</span>
@@ -1771,7 +1784,7 @@ Fill with discrete viridis colors
 <section>
 <section id="scales-in-action-1" class="title-slide slide level1 center">
 <h1>Scales in Action</h1>
-<div class="cell columns column-output-location" data-layout-align="center">
+<div class="cell columns column-output-location" data-layout-align="center" data-codee-line-numbers="9,10,11,12">
 <div class="column">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
@@ -1814,7 +1827,7 @@ Fill with discrete viridis colors
 <h2>Scales in Action</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb37" data-code-line-numbers="|3|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb37" data-code-line-numbers="7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb37-2"><a href="#cb37-2"></a>      <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb37-3"><a href="#cb37-3"></a>          <span class="at">y =</span> lifeExp,</span>
 <span id="cb37-4"><a href="#cb37-4"></a>          <span class="at">size =</span> pop,</span>
@@ -1850,7 +1863,7 @@ Fill with discrete viridis colors
 <h2>Coordinates</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb38" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb38-2"><a href="#cb38-2"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb38-3"><a href="#cb38-3"></a>     <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
 <span id="cb38-4"><a href="#cb38-4"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -1874,7 +1887,7 @@ Fill with discrete viridis colors
 
 <img data-src="figs/fill-your-turn-option-example-1.png" style="width:80.0%" class="r-stretch quarto-figure-center"><div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_ffb9b342" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_644c33bc" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1894,8 +1907,8 @@ Fill with discrete viridis colors
           display:block!important;
       }</style></aside>
 </section>
-<section id="change-viridis-optioons" class="slide level2">
-<h2>Change Viridis Optioons</h2>
+<section id="how-i-did-it" class="slide level2">
+<h2>How I Did It</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">ggplot</span>(penguins,</span>
@@ -1966,7 +1979,7 @@ Put all facets in one row
 <h2>facet_wrap</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">ggplot</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb40" data-code-line-numbers="8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">ggplot</span>(gapminder,</span>
 <span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb40-3"><a href="#cb40-3"></a>     <span class="at">y =</span> lifeExp,</span>
 <span id="cb40-4"><a href="#cb40-4"></a>     <span class="at">size =</span> pop)) <span class="sc">+</span></span>
@@ -1997,13 +2010,12 @@ Put all facets in one row
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section></section>
-<section>
-<section id="facet_grid" class="title-slide slide level1 center">
-<h1>facet_grid</h1>
+</section>
+<section id="facet_grid" class="slide level2">
+<h2>facet_grid</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filter</span>(gapminder,</span>
+<div class="sourceCode cell-code" id="cb41" data-code-line-numbers="9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filter</span>(gapminder,</span>
 <span id="cb41-2"><a href="#cb41-2"></a> year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1987</span>,<span class="dv">1997</span>,<span class="dv">2002</span>, <span class="dv">2007</span>)),</span>
 <span id="cb41-3"><a href="#cb41-3"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
 <span id="cb41-4"><a href="#cb41-4"></a>     <span class="at">y =</span> lifeExp,</span>
@@ -2011,12 +2023,36 @@ Put all facets in one row
 <span id="cb41-6"><a href="#cb41-6"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb41-7"><a href="#cb41-7"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb41-8"><a href="#cb41-8"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb41-9"><a href="#cb41-9"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(year), <span class="fu">vars</span>(continent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-9"><a href="#cb41-9"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/unnamed-chunk-12-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="facet_grid-1" class="slide level2">
+<h2>facet_grid</h2>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb42" data-code-line-numbers="9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filter</span>(gapminder,</span>
+<span id="cb42-2"><a href="#cb42-2"></a> year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1987</span>,<span class="dv">1997</span>,<span class="dv">2002</span>, <span class="dv">2007</span>)),</span>
+<span id="cb42-3"><a href="#cb42-3"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb42-4"><a href="#cb42-4"></a>     <span class="at">y =</span> lifeExp,</span>
+<span id="cb42-5"><a href="#cb42-5"></a>     <span class="at">size =</span> pop)) <span class="sc">+</span></span>
+<span id="cb42-6"><a href="#cb42-6"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb42-8"><a href="#cb42-8"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(year), <span class="fu">vars</span>(continent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/unnamed-chunk-13-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2074,20 +2110,20 @@ Title of size legend
 <h2>Labels with labs</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">ggplot</span>(gapminder, </span>
-<span id="cb42-2"><a href="#cb42-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
-<span id="cb42-3"><a href="#cb42-3"></a>        <span class="at">y =</span> lifeExp, </span>
-<span id="cb42-4"><a href="#cb42-4"></a>        <span class="at">color =</span> continent,</span>
-<span id="cb42-5"><a href="#cb42-5"></a>        <span class="at">size =</span> pop)) <span class="sc">+</span></span>
-<span id="cb42-6"><a href="#cb42-6"></a> <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb42-7"><a href="#cb42-7"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb42-8"><a href="#cb42-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Health and wealth grow together"</span>,</span>
-<span id="cb42-9"><a href="#cb42-9"></a>       <span class="at">subtitle =</span> <span class="st">"Data from 2007"</span>,</span>
-<span id="cb42-10"><a href="#cb42-10"></a>       <span class="at">x =</span> <span class="st">"Wealth (GDP per capita)"</span>,</span>
-<span id="cb42-11"><a href="#cb42-11"></a>       <span class="at">y =</span> <span class="st">"Health (life expectancy)"</span>,</span>
-<span id="cb42-12"><a href="#cb42-12"></a>       <span class="at">color =</span> <span class="st">"Continent"</span>,</span>
-<span id="cb42-13"><a href="#cb42-13"></a>       <span class="at">size =</span> <span class="st">"Population"</span>,</span>
-<span id="cb42-14"><a href="#cb42-14"></a>       <span class="at">caption =</span> <span class="st">"Source: The Gapminder Project"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43" data-code-line-numbers="8,9,10,11,12,13,14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">ggplot</span>(gapminder, </span>
+<span id="cb43-2"><a href="#cb43-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb43-3"><a href="#cb43-3"></a>        <span class="at">y =</span> lifeExp, </span>
+<span id="cb43-4"><a href="#cb43-4"></a>        <span class="at">color =</span> continent,</span>
+<span id="cb43-5"><a href="#cb43-5"></a>        <span class="at">size =</span> pop)) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a> <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Health and wealth grow together"</span>,</span>
+<span id="cb43-9"><a href="#cb43-9"></a>       <span class="at">subtitle =</span> <span class="st">"Data from 2007"</span>,</span>
+<span id="cb43-10"><a href="#cb43-10"></a>       <span class="at">x =</span> <span class="st">"Wealth (GDP per capita)"</span>,</span>
+<span id="cb43-11"><a href="#cb43-11"></a>       <span class="at">y =</span> <span class="st">"Health (life expectancy)"</span>,</span>
+<span id="cb43-12"><a href="#cb43-12"></a>       <span class="at">color =</span> <span class="st">"Continent"</span>,</span>
+<span id="cb43-13"><a href="#cb43-13"></a>       <span class="at">size =</span> <span class="st">"Population"</span>,</span>
+<span id="cb43-14"><a href="#cb43-14"></a>       <span class="at">caption =</span> <span class="st">"Source: The Gapminder Project"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2098,6 +2134,19 @@ Title of size legend
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>The labs argument has a ton of flexibility. Basically if you feed something into aes you can change it in labs. I Tend to change legend labels in guides. That is just a personal preference but labs is superflexible. You will sometimes see other solutions for changing your legend.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="changing-the-default-theme" class="slide level2">
 <h2>Changing the Default Theme</h2>
@@ -2137,20 +2186,20 @@ Title of size legend
 </ul>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="do">##devtools::install_github('bbc/bbplot')</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="fu">library</span>(bbplot)</span>
-<span id="cb43-3"><a href="#cb43-3"></a> <span class="fu">ggplot</span>(gapminder,</span>
-<span id="cb43-4"><a href="#cb43-4"></a>  <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
-<span id="cb43-5"><a href="#cb43-5"></a>   <span class="at">y =</span> lifeExp,</span>
-<span id="cb43-6"><a href="#cb43-6"></a>    <span class="at">color =</span> continent)) <span class="sc">+</span></span>
-<span id="cb43-7"><a href="#cb43-7"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb43-8"><a href="#cb43-8"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> </span>
-<span id="cb43-9"><a href="#cb43-9"></a>  <span class="fu">c</span>(<span class="st">"#FAAB18"</span>,</span>
-<span id="cb43-10"><a href="#cb43-10"></a>    <span class="st">"#1380A1"</span>,</span>
-<span id="cb43-11"><a href="#cb43-11"></a>    <span class="st">"#990000"</span>,</span>
-<span id="cb43-12"><a href="#cb43-12"></a>    <span class="st">"#588300"</span>)) <span class="sc">+</span></span>
-<span id="cb43-13"><a href="#cb43-13"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb43-14"><a href="#cb43-14"></a>  <span class="fu">bbc_style</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="do">##devtools::install_github('bbc/bbplot')</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">library</span>(bbplot)</span>
+<span id="cb44-3"><a href="#cb44-3"></a> <span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb44-4"><a href="#cb44-4"></a>  <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap,</span>
+<span id="cb44-5"><a href="#cb44-5"></a>   <span class="at">y =</span> lifeExp,</span>
+<span id="cb44-6"><a href="#cb44-6"></a>    <span class="at">color =</span> continent)) <span class="sc">+</span></span>
+<span id="cb44-7"><a href="#cb44-7"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb44-8"><a href="#cb44-8"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> </span>
+<span id="cb44-9"><a href="#cb44-9"></a>  <span class="fu">c</span>(<span class="st">"#FAAB18"</span>,</span>
+<span id="cb44-10"><a href="#cb44-10"></a>    <span class="st">"#1380A1"</span>,</span>
+<span id="cb44-11"><a href="#cb44-11"></a>    <span class="st">"#990000"</span>,</span>
+<span id="cb44-12"><a href="#cb44-12"></a>    <span class="st">"#588300"</span>)) <span class="sc">+</span></span>
+<span id="cb44-13"><a href="#cb44-13"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb44-14"><a href="#cb44-14"></a>  <span class="fu">bbc_style</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2185,22 +2234,22 @@ Title of size legend
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb44-3"><a href="#cb44-3"></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb44-4"><a href="#cb44-4"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb45-2"><a href="#cb45-2"></a><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb45-3"><a href="#cb45-3"></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb45-4"><a href="#cb45-4"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="saving-your-work" class="slide level2">
 <h2>Saving your work</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>your_plot_here <span class="ot">=</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> blah, <span class="at">y =</span> blah))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>your_plot_here <span class="ot">=</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> blah, <span class="at">y =</span> blah))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">ggsave</span>(<span class="st">"name-of-your-file.pdf"</span>,your_plot_here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">ggsave</span>(<span class="st">"name-of-your-file.pdf"</span>,your_plot_here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">ggsave</span>(<span class="st">"name-of-your-file.pngs"</span>,your_plot_here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">ggsave</span>(<span class="st">"name-of-your-file.pngs"</span>,your_plot_here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -2211,10 +2260,10 @@ Title of size legend
 <section id="new-packages" class="slide level2">
 <h2>New Packages</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"sf"</span>, <span class="st">"tidygeocoder"</span>))</span>
-<span id="cb48-2"><a href="#cb48-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ropenscilabs/rnaturalearth"</span>)</span>
-<span id="cb48-3"><a href="#cb48-3"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb48-4"><a href="#cb48-4"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"sf"</span>, <span class="st">"tidygeocoder"</span>))</span>
+<span id="cb49-2"><a href="#cb49-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ropenscilabs/rnaturalearth"</span>)</span>
+<span id="cb49-3"><a href="#cb49-3"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb49-4"><a href="#cb49-4"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>If you are on a Mac please go to the <a href="https://r-spatial.github.io/sf/">r-spatial-website</a> if you run into problems</p></li>
@@ -2289,61 +2338,61 @@ Geodetic CRS:  WGS 84
 </ul>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>vdem_raw <span class="ot">=</span> vdemdata<span class="sc">::</span>vdem </span>
-<span id="cb50-2"><a href="#cb50-2"></a></span>
-<span id="cb50-3"><a href="#cb50-3"></a>vdem_cleanish <span class="ot">=</span> vdem_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb50-4"><a href="#cb50-4"></a>  <span class="fu">select</span>(v2x_regime, country_name, country_text_id, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-5"><a href="#cb50-5"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="st">"2018"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-6"><a href="#cb50-6"></a>  <span class="fu">mutate</span>(<span class="at">ISO_A3 =</span> <span class="fu">countrycode</span>(country_name, <span class="at">origin =</span> <span class="st">"country.name"</span>,</span>
-<span id="cb50-7"><a href="#cb50-7"></a>                              <span class="at">destination =</span> <span class="st">"iso3c"</span>),</span>
-<span id="cb50-8"><a href="#cb50-8"></a>         <span class="at">regime_type =</span> <span class="fu">case_when</span>(v2x_regime <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Full Autocracy"</span>,</span>
-<span id="cb50-9"><a href="#cb50-9"></a>                                 v2x_regime <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Electoral Autocracy"</span>,</span>
-<span id="cb50-10"><a href="#cb50-10"></a>                                 v2x_regime <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Electoral Democracy"</span>,</span>
-<span id="cb50-11"><a href="#cb50-11"></a>                                 v2x_regime <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Liberal Democracy"</span>),</span>
-<span id="cb50-12"><a href="#cb50-12"></a>         <span class="at">regime_type =</span> <span class="fu">as.factor</span>(regime_type)) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-13"><a href="#cb50-13"></a>  <span class="fu">arrange</span>(ISO_A3)</span>
-<span id="cb50-14"><a href="#cb50-14"></a></span>
-<span id="cb50-15"><a href="#cb50-15"></a></span>
-<span id="cb50-16"><a href="#cb50-16"></a>world_map_fixed <span class="ot">=</span> world_map <span class="sc">%&gt;%</span> </span>
-<span id="cb50-17"><a href="#cb50-17"></a>  <span class="fu">mutate</span>(<span class="at">ISO_A3 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb50-18"><a href="#cb50-18"></a>    <span class="do">## If the country name is Norway or France, redo the ISO3 code</span></span>
-<span id="cb50-19"><a href="#cb50-19"></a>    ADMIN <span class="sc">==</span> <span class="st">"Norway"</span> <span class="sc">~</span> <span class="st">"NOR"</span>,</span>
-<span id="cb50-20"><a href="#cb50-20"></a>    ADMIN <span class="sc">==</span> <span class="st">"France"</span> <span class="sc">~</span> <span class="st">"FRA"</span>,</span>
-<span id="cb50-21"><a href="#cb50-21"></a>    <span class="do">## Otherwise use the existing ISO3 code</span></span>
-<span id="cb50-22"><a href="#cb50-22"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> ISO_A3)) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-23"><a href="#cb50-23"></a>    <span class="fu">filter</span>(ISO_A3 <span class="sc">!=</span> <span class="st">"ATA"</span>) </span>
-<span id="cb50-24"><a href="#cb50-24"></a></span>
-<span id="cb50-25"><a href="#cb50-25"></a></span>
-<span id="cb50-26"><a href="#cb50-26"></a></span>
-<span id="cb50-27"><a href="#cb50-27"></a>plot_data_world <span class="ot">=</span> <span class="fu">left_join</span>(world_map_fixed, vdem_cleanish, <span class="at">by =</span> <span class="st">"ISO_A3"</span>)  <span class="sc">|&gt;</span> </span>
-<span id="cb50-28"><a href="#cb50-28"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(regime_type))</span>
-<span id="cb50-29"><a href="#cb50-29"></a></span>
-<span id="cb50-30"><a href="#cb50-30"></a></span>
-<span id="cb50-31"><a href="#cb50-31"></a></span>
-<span id="cb50-32"><a href="#cb50-32"></a>plot_data_world<span class="sc">$</span>regime_type <span class="ot">=</span> <span class="fu">factor</span>(plot_data_world<span class="sc">$</span>regime_type,</span>
-<span id="cb50-33"><a href="#cb50-33"></a>                                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Full Autocracy"</span>,</span>
-<span id="cb50-34"><a href="#cb50-34"></a>                                                <span class="st">"Electoral Autocracy"</span>,</span>
-<span id="cb50-35"><a href="#cb50-35"></a>                                                <span class="st">"Electoral Democracy"</span>,</span>
-<span id="cb50-36"><a href="#cb50-36"></a>                                                 <span class="st">"Liberal Democracy"</span>))</span>
-<span id="cb50-37"><a href="#cb50-37"></a></span>
-<span id="cb50-38"><a href="#cb50-38"></a></span>
-<span id="cb50-39"><a href="#cb50-39"></a></span>
-<span id="cb50-40"><a href="#cb50-40"></a> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb50-41"><a href="#cb50-41"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> plot_data_world, <span class="fu">aes</span>(<span class="at">fill =</span> regime_type),</span>
-<span id="cb50-42"><a href="#cb50-42"></a>          <span class="at">color =</span> <span class="st">"#CDCDCD"</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb50-43"><a href="#cb50-43"></a>   <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">"ESRI:54030"</span>)) <span class="sc">+</span></span>
-<span id="cb50-44"><a href="#cb50-44"></a>    <span class="fu">scale_fill_scico_d</span>(<span class="at">palette =</span> <span class="st">"vik"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">na.value =</span> <span class="st">"grey80"</span>) <span class="sc">+</span></span>
-<span id="cb50-45"><a href="#cb50-45"></a>   <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Regime Types"</span>,</span>
-<span id="cb50-46"><a href="#cb50-46"></a>        <span class="at">caption =</span> <span class="st">"Data are derived from the Varities of Democracy Project"</span>) <span class="sc">+</span></span>
-<span id="cb50-47"><a href="#cb50-47"></a>   <span class="fu">theme_void</span>(<span class="at">base_family =</span> <span class="st">"Roboto Condensed"</span>) <span class="sc">+</span></span>
-<span id="cb50-48"><a href="#cb50-48"></a>   <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb50-49"><a href="#cb50-49"></a>         <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
-<span id="cb50-50"><a href="#cb50-50"></a>         <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>vdem_raw <span class="ot">=</span> vdemdata<span class="sc">::</span>vdem </span>
+<span id="cb51-2"><a href="#cb51-2"></a></span>
+<span id="cb51-3"><a href="#cb51-3"></a>vdem_cleanish <span class="ot">=</span> vdem_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb51-4"><a href="#cb51-4"></a>  <span class="fu">select</span>(v2x_regime, country_name, country_text_id, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-5"><a href="#cb51-5"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="st">"2018"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-6"><a href="#cb51-6"></a>  <span class="fu">mutate</span>(<span class="at">ISO_A3 =</span> <span class="fu">countrycode</span>(country_name, <span class="at">origin =</span> <span class="st">"country.name"</span>,</span>
+<span id="cb51-7"><a href="#cb51-7"></a>                              <span class="at">destination =</span> <span class="st">"iso3c"</span>),</span>
+<span id="cb51-8"><a href="#cb51-8"></a>         <span class="at">regime_type =</span> <span class="fu">case_when</span>(v2x_regime <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Full Autocracy"</span>,</span>
+<span id="cb51-9"><a href="#cb51-9"></a>                                 v2x_regime <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Electoral Autocracy"</span>,</span>
+<span id="cb51-10"><a href="#cb51-10"></a>                                 v2x_regime <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Electoral Democracy"</span>,</span>
+<span id="cb51-11"><a href="#cb51-11"></a>                                 v2x_regime <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Liberal Democracy"</span>),</span>
+<span id="cb51-12"><a href="#cb51-12"></a>         <span class="at">regime_type =</span> <span class="fu">as.factor</span>(regime_type)) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-13"><a href="#cb51-13"></a>  <span class="fu">arrange</span>(ISO_A3)</span>
+<span id="cb51-14"><a href="#cb51-14"></a></span>
+<span id="cb51-15"><a href="#cb51-15"></a></span>
+<span id="cb51-16"><a href="#cb51-16"></a>world_map_fixed <span class="ot">=</span> world_map <span class="sc">%&gt;%</span> </span>
+<span id="cb51-17"><a href="#cb51-17"></a>  <span class="fu">mutate</span>(<span class="at">ISO_A3 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb51-18"><a href="#cb51-18"></a>    <span class="do">## If the country name is Norway or France, redo the ISO3 code</span></span>
+<span id="cb51-19"><a href="#cb51-19"></a>    ADMIN <span class="sc">==</span> <span class="st">"Norway"</span> <span class="sc">~</span> <span class="st">"NOR"</span>,</span>
+<span id="cb51-20"><a href="#cb51-20"></a>    ADMIN <span class="sc">==</span> <span class="st">"France"</span> <span class="sc">~</span> <span class="st">"FRA"</span>,</span>
+<span id="cb51-21"><a href="#cb51-21"></a>    <span class="do">## Otherwise use the existing ISO3 code</span></span>
+<span id="cb51-22"><a href="#cb51-22"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> ISO_A3)) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-23"><a href="#cb51-23"></a>    <span class="fu">filter</span>(ISO_A3 <span class="sc">!=</span> <span class="st">"ATA"</span>) </span>
+<span id="cb51-24"><a href="#cb51-24"></a></span>
+<span id="cb51-25"><a href="#cb51-25"></a></span>
+<span id="cb51-26"><a href="#cb51-26"></a></span>
+<span id="cb51-27"><a href="#cb51-27"></a>plot_data_world <span class="ot">=</span> <span class="fu">left_join</span>(world_map_fixed, vdem_cleanish, <span class="at">by =</span> <span class="st">"ISO_A3"</span>)  <span class="sc">|&gt;</span> </span>
+<span id="cb51-28"><a href="#cb51-28"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(regime_type))</span>
+<span id="cb51-29"><a href="#cb51-29"></a></span>
+<span id="cb51-30"><a href="#cb51-30"></a></span>
+<span id="cb51-31"><a href="#cb51-31"></a></span>
+<span id="cb51-32"><a href="#cb51-32"></a>plot_data_world<span class="sc">$</span>regime_type <span class="ot">=</span> <span class="fu">factor</span>(plot_data_world<span class="sc">$</span>regime_type,</span>
+<span id="cb51-33"><a href="#cb51-33"></a>                                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Full Autocracy"</span>,</span>
+<span id="cb51-34"><a href="#cb51-34"></a>                                                <span class="st">"Electoral Autocracy"</span>,</span>
+<span id="cb51-35"><a href="#cb51-35"></a>                                                <span class="st">"Electoral Democracy"</span>,</span>
+<span id="cb51-36"><a href="#cb51-36"></a>                                                 <span class="st">"Liberal Democracy"</span>))</span>
+<span id="cb51-37"><a href="#cb51-37"></a></span>
+<span id="cb51-38"><a href="#cb51-38"></a></span>
+<span id="cb51-39"><a href="#cb51-39"></a></span>
+<span id="cb51-40"><a href="#cb51-40"></a> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb51-41"><a href="#cb51-41"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> plot_data_world, <span class="fu">aes</span>(<span class="at">fill =</span> regime_type),</span>
+<span id="cb51-42"><a href="#cb51-42"></a>          <span class="at">color =</span> <span class="st">"#CDCDCD"</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb51-43"><a href="#cb51-43"></a>   <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">"ESRI:54030"</span>)) <span class="sc">+</span></span>
+<span id="cb51-44"><a href="#cb51-44"></a>    <span class="fu">scale_fill_scico_d</span>(<span class="at">palette =</span> <span class="st">"vik"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">na.value =</span> <span class="st">"grey80"</span>) <span class="sc">+</span></span>
+<span id="cb51-45"><a href="#cb51-45"></a>   <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Regime Types"</span>,</span>
+<span id="cb51-46"><a href="#cb51-46"></a>        <span class="at">caption =</span> <span class="st">"Data are derived from the Varities of Democracy Project"</span>) <span class="sc">+</span></span>
+<span id="cb51-47"><a href="#cb51-47"></a>   <span class="fu">theme_void</span>(<span class="at">base_family =</span> <span class="st">"Roboto Condensed"</span>) <span class="sc">+</span></span>
+<span id="cb51-48"><a href="#cb51-48"></a>   <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb51-49"><a href="#cb51-49"></a>         <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
+<span id="cb51-50"><a href="#cb51-50"></a>         <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-13-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-14-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2354,13 +2403,13 @@ Geodetic CRS:  WGS 84
 <h2>Making Maps in ggplot</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="do">## devtools::install_github("ropenscilabs/rnaturalearth")</span></span>
-<span id="cb51-2"><a href="#cb51-2"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb51-3"><a href="#cb51-3"></a></span>
-<span id="cb51-4"><a href="#cb51-4"></a>world_map_ne <span class="ot">=</span> <span class="fu">ne_states</span>(<span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
-<span id="cb51-5"><a href="#cb51-5"></a></span>
-<span id="cb51-6"><a href="#cb51-6"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb51-7"><a href="#cb51-7"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> world_map_ne)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="do">## devtools::install_github("ropenscilabs/rnaturalearth")</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb52-3"><a href="#cb52-3"></a></span>
+<span id="cb52-4"><a href="#cb52-4"></a>world_map_ne <span class="ot">=</span> <span class="fu">ne_states</span>(<span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
+<span id="cb52-5"><a href="#cb52-5"></a></span>
+<span id="cb52-6"><a href="#cb52-6"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb52-7"><a href="#cb52-7"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> world_map_ne)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2389,11 +2438,11 @@ Geodetic CRS:  WGS 84
 <h2>Changing the Projections</h2>
 <div class="cell columns column-output-location" data-layout-align="center" data-hash="ggplot-presentation_cache/revealjs/gall-peters-projection_ee52021515ffa856fc81068aceed6fdc">
 <div class="column">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> world_map_ne) <span class="sc">+</span> </span>
-<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">"+proj=cea +lon_0=0 +lat_ts=45"</span>) <span class="sc">+</span></span>
-<span id="cb52-4"><a href="#cb52-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gall-Peters Projection"</span>) <span class="sc">+</span></span>
-<span id="cb52-5"><a href="#cb52-5"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> world_map_ne) <span class="sc">+</span> </span>
+<span id="cb53-3"><a href="#cb53-3"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">"+proj=cea +lon_0=0 +lat_ts=45"</span>) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="#cb53-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gall-Peters Projection"</span>) <span class="sc">+</span></span>
+<span id="cb53-5"><a href="#cb53-5"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2422,63 +2471,63 @@ Geodetic CRS:  WGS 84
 <h2>Mapping Middle Earth</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>coastline <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Coastline2.shp"</span>)</span>
-<span id="cb53-2"><a href="#cb53-2"></a>contours <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Contours_18.shp"</span>)</span>
-<span id="cb53-3"><a href="#cb53-3"></a>rivers <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Rivers.shp"</span>)</span>
-<span id="cb53-4"><a href="#cb53-4"></a>lakes <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Lakes.shp"</span>)</span>
-<span id="cb53-5"><a href="#cb53-5"></a>forests <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Forests.shp"</span>)</span>
-<span id="cb53-6"><a href="#cb53-6"></a>mountains <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Mountains_Anno.shp"</span>)</span>
-<span id="cb53-7"><a href="#cb53-7"></a>placenames <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Combined_Placenames.shp"</span>)</span>
-<span id="cb53-8"><a href="#cb53-8"></a>cities <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Cities.shp"</span>)</span>
-<span id="cb53-9"><a href="#cb53-9"></a>roads <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Roads.shp"</span>)</span>
-<span id="cb53-10"><a href="#cb53-10"></a>towers_keeps <span class="ot">=</span>  <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Towers_and_Keeps.shp"</span>)</span>
-<span id="cb53-11"><a href="#cb53-11"></a>places <span class="ot">&lt;-</span> placenames <span class="sc">%&gt;%</span> </span>
-<span id="cb53-12"><a href="#cb53-12"></a>  <span class="fu">filter</span>(NAME <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Hobbiton"</span>,</span>
-<span id="cb53-13"><a href="#cb53-13"></a>                     <span class="st">"Rivendell"</span>,</span>
-<span id="cb53-14"><a href="#cb53-14"></a>                     <span class="st">"Edoras"</span>,</span>
-<span id="cb53-15"><a href="#cb53-15"></a>                     <span class="st">"Minas Tirith"</span>))</span>
-<span id="cb53-16"><a href="#cb53-16"></a></span>
-<span id="cb53-17"><a href="#cb53-17"></a>mordor <span class="ot">=</span> placenames[placenames<span class="sc">$</span>NAME <span class="sc">==</span> <span class="st">"Mordor"</span>,]</span>
-<span id="cb53-18"><a href="#cb53-18"></a></span>
-<span id="cb53-19"><a href="#cb53-19"></a>mountains_to_label <span class="ot">=</span> mountains[mountains<span class="sc">$</span>name <span class="sc">==</span> <span class="st">"Erebor The Lonely Mountain"</span>,]</span>
-<span id="cb53-20"><a href="#cb53-20"></a></span>
-<span id="cb53-21"><a href="#cb53-21"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb53-22"><a href="#cb53-22"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> contours,</span>
-<span id="cb53-23"><a href="#cb53-23"></a>          <span class="at">size =</span> <span class="fl">0.15</span>,</span>
-<span id="cb53-24"><a href="#cb53-24"></a>          <span class="at">color =</span> <span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb53-25"><a href="#cb53-25"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coastline,</span>
-<span id="cb53-26"><a href="#cb53-26"></a>          <span class="at">size =</span> <span class="fl">0.25</span>,</span>
-<span id="cb53-27"><a href="#cb53-27"></a>          <span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
-<span id="cb53-28"><a href="#cb53-28"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rivers,</span>
-<span id="cb53-29"><a href="#cb53-29"></a>          <span class="at">size =</span> <span class="fl">0.2</span>,</span>
-<span id="cb53-30"><a href="#cb53-30"></a>          <span class="at">color =</span> <span class="st">"#0776e0"</span>,</span>
-<span id="cb53-31"><a href="#cb53-31"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb53-32"><a href="#cb53-32"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> lakes,</span>
-<span id="cb53-33"><a href="#cb53-33"></a>          <span class="at">size =</span> <span class="fl">0.2</span>,</span>
-<span id="cb53-34"><a href="#cb53-34"></a>          <span class="at">color =</span> <span class="st">"#0776e0"</span>,</span>
-<span id="cb53-35"><a href="#cb53-35"></a>          <span class="at">fill =</span> <span class="st">"#0776e0"</span>) <span class="sc">+</span></span>
-<span id="cb53-36"><a href="#cb53-36"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> forests,</span>
-<span id="cb53-37"><a href="#cb53-37"></a>          <span class="at">size =</span> <span class="dv">0</span>,</span>
-<span id="cb53-38"><a href="#cb53-38"></a>          <span class="at">fill =</span> <span class="st">"#035711"</span>,</span>
-<span id="cb53-39"><a href="#cb53-39"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb53-40"><a href="#cb53-40"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mountains, <span class="at">size =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb53-41"><a href="#cb53-41"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> places) <span class="sc">+</span></span>
-<span id="cb53-42"><a href="#cb53-42"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> places,</span>
-<span id="cb53-43"><a href="#cb53-43"></a>                <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
-<span id="cb53-44"><a href="#cb53-44"></a>                <span class="at">nudge_y =</span> <span class="dv">80000</span>) <span class="sc">+</span></span>
-<span id="cb53-45"><a href="#cb53-45"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> mountains_to_label,</span>
-<span id="cb53-46"><a href="#cb53-46"></a>                <span class="fu">aes</span>(<span class="at">label =</span> name),</span>
-<span id="cb53-47"><a href="#cb53-47"></a>                <span class="at">nudge_y =</span> <span class="dv">80000</span>) <span class="sc">+</span></span>
-<span id="cb53-48"><a href="#cb53-48"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> mordor,</span>
-<span id="cb53-49"><a href="#cb53-49"></a>                <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
-<span id="cb53-50"><a href="#cb53-50"></a>                <span class="at">nudge_y =</span> <span class="dv">9000</span>) <span class="sc">+</span></span>
-<span id="cb53-51"><a href="#cb53-51"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb53-52"><a href="#cb53-52"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#fffce3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>coastline <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Coastline2.shp"</span>)</span>
+<span id="cb54-2"><a href="#cb54-2"></a>contours <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Contours_18.shp"</span>)</span>
+<span id="cb54-3"><a href="#cb54-3"></a>rivers <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Rivers.shp"</span>)</span>
+<span id="cb54-4"><a href="#cb54-4"></a>lakes <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Lakes.shp"</span>)</span>
+<span id="cb54-5"><a href="#cb54-5"></a>forests <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Forests.shp"</span>)</span>
+<span id="cb54-6"><a href="#cb54-6"></a>mountains <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Mountains_Anno.shp"</span>)</span>
+<span id="cb54-7"><a href="#cb54-7"></a>placenames <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Combined_Placenames.shp"</span>)</span>
+<span id="cb54-8"><a href="#cb54-8"></a>cities <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Cities.shp"</span>)</span>
+<span id="cb54-9"><a href="#cb54-9"></a>roads <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Roads.shp"</span>)</span>
+<span id="cb54-10"><a href="#cb54-10"></a>towers_keeps <span class="ot">=</span>  <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Towers_and_Keeps.shp"</span>)</span>
+<span id="cb54-11"><a href="#cb54-11"></a>places <span class="ot">&lt;-</span> placenames <span class="sc">%&gt;%</span> </span>
+<span id="cb54-12"><a href="#cb54-12"></a>  <span class="fu">filter</span>(NAME <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Hobbiton"</span>,</span>
+<span id="cb54-13"><a href="#cb54-13"></a>                     <span class="st">"Rivendell"</span>,</span>
+<span id="cb54-14"><a href="#cb54-14"></a>                     <span class="st">"Edoras"</span>,</span>
+<span id="cb54-15"><a href="#cb54-15"></a>                     <span class="st">"Minas Tirith"</span>))</span>
+<span id="cb54-16"><a href="#cb54-16"></a></span>
+<span id="cb54-17"><a href="#cb54-17"></a>mordor <span class="ot">=</span> placenames[placenames<span class="sc">$</span>NAME <span class="sc">==</span> <span class="st">"Mordor"</span>,]</span>
+<span id="cb54-18"><a href="#cb54-18"></a></span>
+<span id="cb54-19"><a href="#cb54-19"></a>mountains_to_label <span class="ot">=</span> mountains[mountains<span class="sc">$</span>name <span class="sc">==</span> <span class="st">"Erebor The Lonely Mountain"</span>,]</span>
+<span id="cb54-20"><a href="#cb54-20"></a></span>
+<span id="cb54-21"><a href="#cb54-21"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb54-22"><a href="#cb54-22"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> contours,</span>
+<span id="cb54-23"><a href="#cb54-23"></a>          <span class="at">size =</span> <span class="fl">0.15</span>,</span>
+<span id="cb54-24"><a href="#cb54-24"></a>          <span class="at">color =</span> <span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb54-25"><a href="#cb54-25"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coastline,</span>
+<span id="cb54-26"><a href="#cb54-26"></a>          <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb54-27"><a href="#cb54-27"></a>          <span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb54-28"><a href="#cb54-28"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rivers,</span>
+<span id="cb54-29"><a href="#cb54-29"></a>          <span class="at">size =</span> <span class="fl">0.2</span>,</span>
+<span id="cb54-30"><a href="#cb54-30"></a>          <span class="at">color =</span> <span class="st">"#0776e0"</span>,</span>
+<span id="cb54-31"><a href="#cb54-31"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb54-32"><a href="#cb54-32"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> lakes,</span>
+<span id="cb54-33"><a href="#cb54-33"></a>          <span class="at">size =</span> <span class="fl">0.2</span>,</span>
+<span id="cb54-34"><a href="#cb54-34"></a>          <span class="at">color =</span> <span class="st">"#0776e0"</span>,</span>
+<span id="cb54-35"><a href="#cb54-35"></a>          <span class="at">fill =</span> <span class="st">"#0776e0"</span>) <span class="sc">+</span></span>
+<span id="cb54-36"><a href="#cb54-36"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> forests,</span>
+<span id="cb54-37"><a href="#cb54-37"></a>          <span class="at">size =</span> <span class="dv">0</span>,</span>
+<span id="cb54-38"><a href="#cb54-38"></a>          <span class="at">fill =</span> <span class="st">"#035711"</span>,</span>
+<span id="cb54-39"><a href="#cb54-39"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb54-40"><a href="#cb54-40"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mountains, <span class="at">size =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb54-41"><a href="#cb54-41"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> places) <span class="sc">+</span></span>
+<span id="cb54-42"><a href="#cb54-42"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> places,</span>
+<span id="cb54-43"><a href="#cb54-43"></a>                <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
+<span id="cb54-44"><a href="#cb54-44"></a>                <span class="at">nudge_y =</span> <span class="dv">80000</span>) <span class="sc">+</span></span>
+<span id="cb54-45"><a href="#cb54-45"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> mountains_to_label,</span>
+<span id="cb54-46"><a href="#cb54-46"></a>                <span class="fu">aes</span>(<span class="at">label =</span> name),</span>
+<span id="cb54-47"><a href="#cb54-47"></a>                <span class="at">nudge_y =</span> <span class="dv">80000</span>) <span class="sc">+</span></span>
+<span id="cb54-48"><a href="#cb54-48"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> mordor,</span>
+<span id="cb54-49"><a href="#cb54-49"></a>                <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
+<span id="cb54-50"><a href="#cb54-50"></a>                <span class="at">nudge_y =</span> <span class="dv">9000</span>) <span class="sc">+</span></span>
+<span id="cb54-51"><a href="#cb54-51"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb54-52"><a href="#cb54-52"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#fffce3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-14-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-15-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2521,17 +2570,17 @@ Geodetic CRS:  WGS 84
 <section id="making-a-bespoke-shapefilecont" class="slide level2">
 <h2>Making a Bespoke Shapefile(cont)</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>ga_cities <span class="ot">=</span> <span class="fu">tribble</span>( </span>
-<span id="cb54-2"><a href="#cb54-2"></a>  <span class="sc">~</span>city, <span class="sc">~</span>lat, <span class="sc">~</span>long,</span>
-<span id="cb54-3"><a href="#cb54-3"></a>  <span class="st">"Atlanta"</span>, <span class="fl">33.748955</span>, <span class="sc">-</span><span class="fl">84.388099</span>,</span>
-<span id="cb54-4"><a href="#cb54-4"></a>  <span class="st">"Athens"</span>, <span class="fl">33.950794</span>, <span class="sc">-</span><span class="fl">83.358884</span>,</span>
-<span id="cb54-5"><a href="#cb54-5"></a>  <span class="st">"Savannah"</span>, <span class="fl">32.113192</span>, <span class="sc">-</span><span class="fl">81.089350</span></span>
-<span id="cb54-6"><a href="#cb54-6"></a>)</span>
-<span id="cb54-7"><a href="#cb54-7"></a></span>
-<span id="cb54-8"><a href="#cb54-8"></a></span>
-<span id="cb54-9"><a href="#cb54-9"></a>ga_cities_geometry <span class="ot">=</span> ga_cities <span class="sc">|&gt;</span>  </span>
-<span id="cb54-10"><a href="#cb54-10"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">"EPSG:4326"</span>))</span>
-<span id="cb54-11"><a href="#cb54-11"></a>ga_cities_geometry</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>ga_cities <span class="ot">=</span> <span class="fu">tribble</span>( </span>
+<span id="cb55-2"><a href="#cb55-2"></a>  <span class="sc">~</span>city, <span class="sc">~</span>lat, <span class="sc">~</span>long,</span>
+<span id="cb55-3"><a href="#cb55-3"></a>  <span class="st">"Atlanta"</span>, <span class="fl">33.748955</span>, <span class="sc">-</span><span class="fl">84.388099</span>,</span>
+<span id="cb55-4"><a href="#cb55-4"></a>  <span class="st">"Athens"</span>, <span class="fl">33.950794</span>, <span class="sc">-</span><span class="fl">83.358884</span>,</span>
+<span id="cb55-5"><a href="#cb55-5"></a>  <span class="st">"Savannah"</span>, <span class="fl">32.113192</span>, <span class="sc">-</span><span class="fl">81.089350</span></span>
+<span id="cb55-6"><a href="#cb55-6"></a>)</span>
+<span id="cb55-7"><a href="#cb55-7"></a></span>
+<span id="cb55-8"><a href="#cb55-8"></a></span>
+<span id="cb55-9"><a href="#cb55-9"></a>ga_cities_geometry <span class="ot">=</span> ga_cities <span class="sc">|&gt;</span>  </span>
+<span id="cb55-10"><a href="#cb55-10"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">"EPSG:4326"</span>))</span>
+<span id="cb55-11"><a href="#cb55-11"></a>ga_cities_geometry</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -2568,23 +2617,23 @@ Geodetic CRS:  WGS 84
 <section id="making-a-bespoke-shapefilecont-1" class="slide level2">
 <h2>Making a Bespoke Shapefile(cont)</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">library</span>(tidygeocoder)</span>
-<span id="cb55-2"><a href="#cb55-2"></a></span>
-<span id="cb55-3"><a href="#cb55-3"></a>breweries_I_visit <span class="ot">=</span> <span class="fu">tribble</span>(</span>
-<span id="cb55-4"><a href="#cb55-4"></a>  <span class="sc">~</span>name, <span class="sc">~</span>address,</span>
-<span id="cb55-5"><a href="#cb55-5"></a>  <span class="st">"Russian River Brewing"</span>, <span class="st">"725 4th St, Santa Rosa, CA 95404"</span>,</span>
-<span id="cb55-6"><a href="#cb55-6"></a>  <span class="st">"Orpheus Brewing"</span>, <span class="st">"1440 Dutch Valley Pl NE, Atlanta, GA 30324"</span>,</span>
-<span id="cb55-7"><a href="#cb55-7"></a>  <span class="st">"Three Tavens"</span>, <span class="st">"121 New St, Decatur, GA 30030"</span>,</span>
-<span id="cb55-8"><a href="#cb55-8"></a>  <span class="st">"HenHouse Brewing Company"</span>, <span class="st">"322 Bellevue Ave, Santa Rosa, CA 95407"</span></span>
-<span id="cb55-9"><a href="#cb55-9"></a>)</span>
-<span id="cb55-10"><a href="#cb55-10"></a></span>
-<span id="cb55-11"><a href="#cb55-11"></a>breweries_geocode <span class="ot">=</span> breweries_I_visit <span class="sc">|&gt;</span> </span>
-<span id="cb55-12"><a href="#cb55-12"></a>  <span class="fu">geocode</span>(address, <span class="at">geocode_combine =</span> <span class="fu">c</span>(<span class="st">"osm"</span>, <span class="st">"arcgis"</span>)) <span class="do">## backup if one service fails </span></span>
-<span id="cb55-13"><a href="#cb55-13"></a></span>
-<span id="cb55-14"><a href="#cb55-14"></a>add_geom <span class="ot">=</span> breweries_geocode <span class="sc">|&gt;</span> </span>
-<span id="cb55-15"><a href="#cb55-15"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">"EPSG:4326"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">library</span>(tidygeocoder)</span>
+<span id="cb56-2"><a href="#cb56-2"></a></span>
+<span id="cb56-3"><a href="#cb56-3"></a>breweries_I_visit <span class="ot">=</span> <span class="fu">tribble</span>(</span>
+<span id="cb56-4"><a href="#cb56-4"></a>  <span class="sc">~</span>name, <span class="sc">~</span>address,</span>
+<span id="cb56-5"><a href="#cb56-5"></a>  <span class="st">"Russian River Brewing"</span>, <span class="st">"725 4th St, Santa Rosa, CA 95404"</span>,</span>
+<span id="cb56-6"><a href="#cb56-6"></a>  <span class="st">"Orpheus Brewing"</span>, <span class="st">"1440 Dutch Valley Pl NE, Atlanta, GA 30324"</span>,</span>
+<span id="cb56-7"><a href="#cb56-7"></a>  <span class="st">"Three Tavens"</span>, <span class="st">"121 New St, Decatur, GA 30030"</span>,</span>
+<span id="cb56-8"><a href="#cb56-8"></a>  <span class="st">"HenHouse Brewing Company"</span>, <span class="st">"322 Bellevue Ave, Santa Rosa, CA 95407"</span></span>
+<span id="cb56-9"><a href="#cb56-9"></a>)</span>
+<span id="cb56-10"><a href="#cb56-10"></a></span>
+<span id="cb56-11"><a href="#cb56-11"></a>breweries_geocode <span class="ot">=</span> breweries_I_visit <span class="sc">|&gt;</span> </span>
+<span id="cb56-12"><a href="#cb56-12"></a>  <span class="fu">geocode</span>(address, <span class="at">geocode_combine =</span> <span class="fu">c</span>(<span class="st">"osm"</span>, <span class="st">"arcgis"</span>)) <span class="do">## backup if one service fails </span></span>
+<span id="cb56-13"><a href="#cb56-13"></a></span>
+<span id="cb56-14"><a href="#cb56-14"></a>add_geom <span class="ot">=</span> breweries_geocode <span class="sc">|&gt;</span> </span>
+<span id="cb56-15"><a href="#cb56-15"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">"EPSG:4326"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="ggplot-presentation_cache/revealjs/unnamed-chunk-18_c450525f42de224986b34b5b40e48c25">
+<div class="cell" data-layout-align="center" data-hash="ggplot-presentation_cache/revealjs/unnamed-chunk-19_3e0a6801aa83ee9f8cdd2f3cc2e99789">
 <div class="cell-output-display">
 
 <table>
@@ -2637,98 +2686,100 @@ Geodetic CRS:  WGS 84
 </section>
 <section id="mapping-atlanta-1" class="slide level2">
 <h2>Mapping Atlanta</h2>
-<div class="cell" data-layout-align="center" data-hash="ggplot-presentation_cache/revealjs/unnamed-chunk-19_d182c14d3e8089d4b4c91a272a2a53be">
+<div class="cell" data-layout-align="center" data-hash="ggplot-presentation_cache/revealjs/unnamed-chunk-20_64a4de0794f38b8d62b48f7f4bed61ce">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">library</span>(osmdata)</span>
-<span id="cb56-2"><a href="#cb56-2"></a></span>
-<span id="cb56-3"><a href="#cb56-3"></a>big_streets <span class="ot">=</span> <span class="fu">getbb</span>(<span class="st">"Atlanta United States"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-4"><a href="#cb56-4"></a>  <span class="fu">opq</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb56-5"><a href="#cb56-5"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"highway"</span>, </span>
-<span id="cb56-6"><a href="#cb56-6"></a>                  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"primary"</span>, <span class="st">"motorway_link"</span>, <span class="st">"primary_link"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb56-7"><a href="#cb56-7"></a>  <span class="fu">osmdata_sf</span>()</span>
-<span id="cb56-8"><a href="#cb56-8"></a></span>
-<span id="cb56-9"><a href="#cb56-9"></a>med_streets <span class="ot">=</span> <span class="fu">getbb</span>(<span class="st">"Atlanta United States"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-10"><a href="#cb56-10"></a>  <span class="fu">opq</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb56-11"><a href="#cb56-11"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"highway"</span>, </span>
-<span id="cb56-12"><a href="#cb56-12"></a>                  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"secondary"</span>, <span class="st">"tertiary"</span>, <span class="st">"secondary_link"</span>, <span class="st">"tertiary_link"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb56-13"><a href="#cb56-13"></a>  <span class="fu">osmdata_sf</span>()</span>
-<span id="cb56-14"><a href="#cb56-14"></a></span>
-<span id="cb56-15"><a href="#cb56-15"></a></span>
-<span id="cb56-16"><a href="#cb56-16"></a>small_streets <span class="ot">=</span> <span class="fu">getbb</span>(<span class="st">"Atlanta United States"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-17"><a href="#cb56-17"></a>  <span class="fu">opq</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb56-18"><a href="#cb56-18"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"highway"</span>, </span>
-<span id="cb56-19"><a href="#cb56-19"></a>                  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"residential"</span>, <span class="st">"living_street"</span>,</span>
-<span id="cb56-20"><a href="#cb56-20"></a>                            <span class="st">"unclassified"</span>,</span>
-<span id="cb56-21"><a href="#cb56-21"></a>                            <span class="st">"service"</span>, <span class="st">"footway"</span></span>
-<span id="cb56-22"><a href="#cb56-22"></a>                  )) <span class="sc">%&gt;%</span></span>
-<span id="cb56-23"><a href="#cb56-23"></a>  <span class="fu">osmdata_sf</span>()</span>
-<span id="cb56-24"><a href="#cb56-24"></a></span>
-<span id="cb56-25"><a href="#cb56-25"></a></span>
-<span id="cb56-26"><a href="#cb56-26"></a>  railway <span class="ot">=</span> <span class="fu">getbb</span>(<span class="st">"Atlanta United States"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb56-27"><a href="#cb56-27"></a>  <span class="fu">opq</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb56-28"><a href="#cb56-28"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"railway"</span>, <span class="at">value=</span> <span class="st">"rail"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-29"><a href="#cb56-29"></a>  <span class="fu">osmdata_sf</span>()</span>
-<span id="cb56-30"><a href="#cb56-30"></a></span>
-<span id="cb56-31"><a href="#cb56-31"></a>bars <span class="ot">=</span> <span class="fu">tribble</span>(</span>
-<span id="cb56-32"><a href="#cb56-32"></a>  <span class="sc">~</span>name, <span class="sc">~</span>address,</span>
-<span id="cb56-33"><a href="#cb56-33"></a>  <span class="st">"Hattie B's"</span>, <span class="st">"299 Moreland Ave NE, Atlanta, GA 30307"</span>,</span>
-<span id="cb56-34"><a href="#cb56-34"></a>  <span class="st">"Side Bar"</span>, <span class="st">"79 Poplar St NW, Atlanta, GA 30303"</span>,</span>
-<span id="cb56-35"><a href="#cb56-35"></a>  <span class="st">"Manny's"</span>, <span class="st">"602 North Highland Avenue Northeast, Atlanta, GA 30307"</span>,</span>
-<span id="cb56-36"><a href="#cb56-36"></a>  <span class="st">"The Porter"</span>, <span class="st">"1156 Euclid Ave NE, Atlanta, GA 30307"</span>,</span>
-<span id="cb56-37"><a href="#cb56-37"></a>  <span class="st">"Anatolia's"</span>, <span class="st">"Peachtree St, Atlanta, GA 30303"</span>,</span>
-<span id="cb56-38"><a href="#cb56-38"></a>  <span class="st">"Agave"</span>, <span class="st">"242 Boulevard SE, Atlanta, GA 30312"</span>,</span>
-<span id="cb56-39"><a href="#cb56-39"></a>  <span class="st">"Fetch"</span>, <span class="st">"520 Daniel St SE, Atlanta, GA 30312"</span>,</span>
-<span id="cb56-40"><a href="#cb56-40"></a>  <span class="st">"Recess"</span>, <span class="st">"99-V, Krog St NE, Atlanta, GA 30307"</span>,</span>
-<span id="cb56-41"><a href="#cb56-41"></a>  <span class="st">"Der Biergarten"</span>, <span class="st">"300 Marietta St NW, Atlanta, GA 30313"</span>,</span>
-<span id="cb56-42"><a href="#cb56-42"></a>  <span class="st">"The Highlander"</span>, <span class="st">"931 Monroe Dr NE, Atlanta, GA 30308"</span> ,</span>
-<span id="cb56-43"><a href="#cb56-43"></a>  <span class="st">"Wrecking Bar"</span>, <span class="st">"292 Moreland Ave NE, Atlanta, GA 30307"</span></span>
-<span id="cb56-44"><a href="#cb56-44"></a>)</span>
-<span id="cb56-45"><a href="#cb56-45"></a></span>
-<span id="cb56-46"><a href="#cb56-46"></a>bars_geocode <span class="ot">=</span> bars <span class="sc">%&gt;%</span> </span>
-<span id="cb56-47"><a href="#cb56-47"></a>  <span class="fu">geocode</span>(address, <span class="at">method =</span> <span class="st">"osm"</span>)</span>
-<span id="cb56-48"><a href="#cb56-48"></a></span>
-<span id="cb56-49"><a href="#cb56-49"></a>add_geom <span class="ot">=</span> bars_geocode <span class="sc">%&gt;%</span> </span>
-<span id="cb56-50"><a href="#cb56-50"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">"EPSG:4326"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">library</span>(osmdata)</span>
+<span id="cb57-2"><a href="#cb57-2"></a></span>
+<span id="cb57-3"><a href="#cb57-3"></a>big_streets <span class="ot">=</span> <span class="fu">getbb</span>(<span class="st">"Atlanta United States"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-4"><a href="#cb57-4"></a>  <span class="fu">opq</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb57-5"><a href="#cb57-5"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"highway"</span>, </span>
+<span id="cb57-6"><a href="#cb57-6"></a>                  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"primary"</span>, <span class="st">"motorway_link"</span>, <span class="st">"primary_link"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb57-7"><a href="#cb57-7"></a>  <span class="fu">osmdata_sf</span>()</span>
+<span id="cb57-8"><a href="#cb57-8"></a></span>
+<span id="cb57-9"><a href="#cb57-9"></a>med_streets <span class="ot">=</span> <span class="fu">getbb</span>(<span class="st">"Atlanta United States"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-10"><a href="#cb57-10"></a>  <span class="fu">opq</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb57-11"><a href="#cb57-11"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"highway"</span>, </span>
+<span id="cb57-12"><a href="#cb57-12"></a>                  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"secondary"</span>, <span class="st">"tertiary"</span>, <span class="st">"secondary_link"</span>, <span class="st">"tertiary_link"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb57-13"><a href="#cb57-13"></a>  <span class="fu">osmdata_sf</span>()</span>
+<span id="cb57-14"><a href="#cb57-14"></a></span>
+<span id="cb57-15"><a href="#cb57-15"></a></span>
+<span id="cb57-16"><a href="#cb57-16"></a>small_streets <span class="ot">=</span> <span class="fu">getbb</span>(<span class="st">"Atlanta United States"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-17"><a href="#cb57-17"></a>  <span class="fu">opq</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb57-18"><a href="#cb57-18"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"highway"</span>, </span>
+<span id="cb57-19"><a href="#cb57-19"></a>                  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"residential"</span>, <span class="st">"living_street"</span>,</span>
+<span id="cb57-20"><a href="#cb57-20"></a>                            <span class="st">"unclassified"</span>,</span>
+<span id="cb57-21"><a href="#cb57-21"></a>                            <span class="st">"service"</span>, <span class="st">"footway"</span></span>
+<span id="cb57-22"><a href="#cb57-22"></a>                  )) <span class="sc">%&gt;%</span></span>
+<span id="cb57-23"><a href="#cb57-23"></a>  <span class="fu">osmdata_sf</span>()</span>
+<span id="cb57-24"><a href="#cb57-24"></a></span>
+<span id="cb57-25"><a href="#cb57-25"></a></span>
+<span id="cb57-26"><a href="#cb57-26"></a>  railway <span class="ot">=</span> <span class="fu">getbb</span>(<span class="st">"Atlanta United States"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb57-27"><a href="#cb57-27"></a>  <span class="fu">opq</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb57-28"><a href="#cb57-28"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"railway"</span>, <span class="at">value=</span> <span class="st">"rail"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-29"><a href="#cb57-29"></a>  <span class="fu">osmdata_sf</span>()</span>
+<span id="cb57-30"><a href="#cb57-30"></a></span>
+<span id="cb57-31"><a href="#cb57-31"></a>bars <span class="ot">=</span> <span class="fu">tribble</span>(</span>
+<span id="cb57-32"><a href="#cb57-32"></a>  <span class="sc">~</span>name, <span class="sc">~</span>address,</span>
+<span id="cb57-33"><a href="#cb57-33"></a>  <span class="st">"Hattie B's"</span>, <span class="st">"299 Moreland Ave NE, Atlanta, GA 30307"</span>,</span>
+<span id="cb57-34"><a href="#cb57-34"></a>  <span class="st">"Side Bar"</span>, <span class="st">"79 Poplar St NW, Atlanta, GA 30303"</span>,</span>
+<span id="cb57-35"><a href="#cb57-35"></a>  <span class="st">"Manny's"</span>, <span class="st">"602 North Highland Avenue Northeast, Atlanta, GA 30307"</span>,</span>
+<span id="cb57-36"><a href="#cb57-36"></a>  <span class="st">"The Porter"</span>, <span class="st">"1156 Euclid Ave NE, Atlanta, GA 30307"</span>,</span>
+<span id="cb57-37"><a href="#cb57-37"></a>  <span class="st">"Anatolia's"</span>, <span class="st">"Peachtree St, Atlanta, GA 30303"</span>,</span>
+<span id="cb57-38"><a href="#cb57-38"></a>  <span class="st">"Agave"</span>, <span class="st">"242 Boulevard SE, Atlanta, GA 30312"</span>,</span>
+<span id="cb57-39"><a href="#cb57-39"></a>  <span class="st">"Fetch"</span>, <span class="st">"520 Daniel St SE, Atlanta, GA 30312"</span>,</span>
+<span id="cb57-40"><a href="#cb57-40"></a>  <span class="st">"Recess"</span>, <span class="st">"99-V, Krog St NE, Atlanta, GA 30307"</span>,</span>
+<span id="cb57-41"><a href="#cb57-41"></a>  <span class="st">"Der Biergarten"</span>, <span class="st">"300 Marietta St NW, Atlanta, GA 30313"</span>,</span>
+<span id="cb57-42"><a href="#cb57-42"></a>  <span class="st">"The Highlander"</span>, <span class="st">"931 Monroe Dr NE, Atlanta, GA 30308"</span> ,</span>
+<span id="cb57-43"><a href="#cb57-43"></a>  <span class="st">"Wrecking Bar"</span>, <span class="st">"292 Moreland Ave NE, Atlanta, GA 30307"</span></span>
+<span id="cb57-44"><a href="#cb57-44"></a>)</span>
+<span id="cb57-45"><a href="#cb57-45"></a></span>
+<span id="cb57-46"><a href="#cb57-46"></a>bars_geocode <span class="ot">=</span> bars <span class="sc">%&gt;%</span> </span>
+<span id="cb57-47"><a href="#cb57-47"></a>  <span class="fu">geocode</span>(address, <span class="at">method =</span> <span class="st">"osm"</span>)</span>
+<span id="cb57-48"><a href="#cb57-48"></a></span>
+<span id="cb57-49"><a href="#cb57-49"></a>add_geom <span class="ot">=</span> bars_geocode <span class="sc">%&gt;%</span> </span>
+<span id="cb57-50"><a href="#cb57-50"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="st">"EPSG:4326"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="which-produces" class="slide level2">
-<h2>Which Produces</h2>
+<section id="plotting-the-results" class="slide level2">
+<h2>Plotting the results</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb57-2"><a href="#cb57-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> railway<span class="sc">$</span>osm_lines,</span>
-<span id="cb57-3"><a href="#cb57-3"></a>          <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb57-4"><a href="#cb57-4"></a>          <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb57-5"><a href="#cb57-5"></a>          <span class="at">size =</span> .<span class="dv">2</span>,</span>
-<span id="cb57-6"><a href="#cb57-6"></a>          <span class="at">linetype=</span><span class="st">"dotdash"</span>,</span>
-<span id="cb57-7"><a href="#cb57-7"></a>          <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb57-8"><a href="#cb57-8"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> med_streets<span class="sc">$</span>osm_lines,</span>
-<span id="cb57-9"><a href="#cb57-9"></a>          <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb57-10"><a href="#cb57-10"></a>          <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb57-11"><a href="#cb57-11"></a>          <span class="at">size =</span> .<span class="dv">3</span>,</span>
-<span id="cb57-12"><a href="#cb57-12"></a>          <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb57-13"><a href="#cb57-13"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> small_streets<span class="sc">$</span>osm_lines,</span>
-<span id="cb57-14"><a href="#cb57-14"></a>          <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb57-15"><a href="#cb57-15"></a>          <span class="at">color =</span> <span class="st">"#666666"</span>,</span>
-<span id="cb57-16"><a href="#cb57-16"></a>          <span class="at">size =</span> .<span class="dv">2</span>,</span>
-<span id="cb57-17"><a href="#cb57-17"></a>          <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb57-18"><a href="#cb57-18"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> big_streets<span class="sc">$</span>osm_lines,</span>
-<span id="cb57-19"><a href="#cb57-19"></a>          <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb57-20"><a href="#cb57-20"></a>          <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb57-21"><a href="#cb57-21"></a>          <span class="at">size =</span> .<span class="dv">5</span>,</span>
-<span id="cb57-22"><a href="#cb57-22"></a>          <span class="at">alpha =</span> .<span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb57-23"><a href="#cb57-23"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> add_geom, <span class="fu">aes</span>(<span class="at">color =</span> name),</span>
-<span id="cb57-24"><a href="#cb57-24"></a>          <span class="at">color =</span> <span class="st">"#0039A6"</span>) <span class="sc">+</span></span>
-<span id="cb57-25"><a href="#cb57-25"></a>  <span class="fu">coord_sf</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">33.64</span>, <span class="fl">33.89</span>), </span>
-<span id="cb57-26"><a href="#cb57-26"></a>           <span class="at">xlim =</span> <span class="fu">c</span> (<span class="sc">-</span><span class="fl">84.56</span>, <span class="sc">-</span><span class="fl">84.30</span>), <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb57-27"><a href="#cb57-27"></a>  <span class="fu">theme_void</span>(<span class="at">base_family =</span> <span class="st">"Roboto Condensed"</span>, <span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb57-28"><a href="#cb57-28"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
-<span id="cb57-29"><a href="#cb57-29"></a>                                     <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>)),</span>
-<span id="cb57-30"><a href="#cb57-30"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">hjust=</span>.<span class="dv">5</span>),</span>
-<span id="cb57-31"><a href="#cb57-31"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span> </span>
-<span id="cb57-32"><a href="#cb57-32"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Atlanta"</span>, <span class="at">subtitle =</span> <span class="st">"33.7490°N/84.3880°W"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> railway<span class="sc">$</span>osm_lines,</span>
+<span id="cb58-3"><a href="#cb58-3"></a>          <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb58-4"><a href="#cb58-4"></a>          <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb58-5"><a href="#cb58-5"></a>          <span class="at">size =</span> .<span class="dv">2</span>,</span>
+<span id="cb58-6"><a href="#cb58-6"></a>          <span class="at">linetype=</span><span class="st">"dotdash"</span>,</span>
+<span id="cb58-7"><a href="#cb58-7"></a>          <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb58-8"><a href="#cb58-8"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> med_streets<span class="sc">$</span>osm_lines,</span>
+<span id="cb58-9"><a href="#cb58-9"></a>          <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb58-10"><a href="#cb58-10"></a>          <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb58-11"><a href="#cb58-11"></a>          <span class="at">size =</span> .<span class="dv">3</span>,</span>
+<span id="cb58-12"><a href="#cb58-12"></a>          <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb58-13"><a href="#cb58-13"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> small_streets<span class="sc">$</span>osm_lines,</span>
+<span id="cb58-14"><a href="#cb58-14"></a>          <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb58-15"><a href="#cb58-15"></a>          <span class="at">color =</span> <span class="st">"#666666"</span>,</span>
+<span id="cb58-16"><a href="#cb58-16"></a>          <span class="at">size =</span> .<span class="dv">2</span>,</span>
+<span id="cb58-17"><a href="#cb58-17"></a>          <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb58-18"><a href="#cb58-18"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> big_streets<span class="sc">$</span>osm_lines,</span>
+<span id="cb58-19"><a href="#cb58-19"></a>          <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb58-20"><a href="#cb58-20"></a>          <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb58-21"><a href="#cb58-21"></a>          <span class="at">size =</span> .<span class="dv">5</span>,</span>
+<span id="cb58-22"><a href="#cb58-22"></a>          <span class="at">alpha =</span> .<span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb58-23"><a href="#cb58-23"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> add_geom, <span class="fu">aes</span>(<span class="at">color =</span> name),</span>
+<span id="cb58-24"><a href="#cb58-24"></a>          <span class="at">color =</span> <span class="st">"#0039A6"</span>) <span class="sc">+</span></span>
+<span id="cb58-25"><a href="#cb58-25"></a>  <span class="fu">coord_sf</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">33.64</span>, <span class="fl">33.89</span>), </span>
+<span id="cb58-26"><a href="#cb58-26"></a>           <span class="at">xlim =</span> <span class="fu">c</span> (<span class="sc">-</span><span class="fl">84.56</span>, <span class="sc">-</span><span class="fl">84.30</span>), <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb58-27"><a href="#cb58-27"></a>  <span class="fu">theme_void</span>(<span class="at">base_family =</span> <span class="st">"Roboto Condensed"</span>,</span>
+<span id="cb58-28"><a href="#cb58-28"></a>   <span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb58-29"><a href="#cb58-29"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb58-30"><a href="#cb58-30"></a>    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>)),</span>
+<span id="cb58-31"><a href="#cb58-31"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">hjust=</span>.<span class="dv">5</span>),</span>
+<span id="cb58-32"><a href="#cb58-32"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span> </span>
+<span id="cb58-33"><a href="#cb58-33"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Atlanta"</span>,</span>
+<span id="cb58-34"><a href="#cb58-34"></a>   <span class="at">subtitle =</span> <span class="st">"33.7490°N/84.3880°W"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
