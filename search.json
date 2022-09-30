@@ -284,7 +284,7 @@
     "href": "slides/ggplot-presentation.html#the-dino-strikes",
     "title": "Getting Started in ggplot",
     "section": "The Dino Strikes",
-    "text": "The Dino Strikes\n\n\nI filtered out some of the data sets just for display purposes but critically if we don’t plot our data we may miss patterns that are not recognizable to us when we are taking descriptive statistics. They are also great tools for model diagnostics. A quick look at our residuals and fitted values is a great indicator whether something is up we use distance plots to look at whether our results are being driven by outliers."
+    "text": "The Dino Strikes\n\n\n\nThe Datasaurus Dozen"
   },
   {
     "objectID": "slides/ggplot-presentation.html#why-ggplot2",
