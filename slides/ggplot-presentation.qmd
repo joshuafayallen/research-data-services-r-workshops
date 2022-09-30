@@ -190,7 +190,8 @@ ggplot2 is probably one of the most well known and event among many of the staun
 
 ggplot2 predates most of the tidyverse and the gg part refers to the grammar of graphics, more on that later. Much like writing a sentence there is a proper grammar to it. Once we understand the rules we can construct lots of different "sentences".
 
-I think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things or working with propietary formats. If you need to you 
+I think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things or working with propietary formats. If you need to you
+
 
 :::
 
@@ -258,7 +259,10 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 :::
 :::
 
+:::{.notes}
 
+I apologize for some weird plotting stuff. I am still working out some kinks with how the presentation is styled. I wanted to try to give the plots and the code the same size on the slides. However that resulted in some weird decisions from quarto
+:::
 
 
 
@@ -869,7 +873,7 @@ ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, group = con
 ## Local 
  
 ```{r local, echo = TRUE}
-#| code-line-numbers: "|2|6|3|7|4|8"
+#| code-line-numbers: "2,6,3,7,4,8"
 #| output-location: column
 ggplot() +
   geom_point(data = gapminder,
@@ -891,7 +895,7 @@ ggplot() +
 ## Global 
 
 ```{r gapminder-global, echo = TRUE}
-#| code-line-numbers: "|1|2|3|4|5"
+#| code-line-numbers: "1,2,3,4,5"
 #| output-location: column
 ggplot(gapminder,
        aes(x = gdpPercap,
@@ -948,7 +952,7 @@ So far we have only walked through geoms and aesthics but we need other layers t
 
 ```{r complex-plot-add-geom-point-show,  echo = TRUE}
 #| output-location: column
-#| code-line-numbers: "|5"
+#| code-line-numbers: "5"
 ggplot(gapminder,
     aes(x = gdpPercap,
         y = lifeExp,
@@ -968,7 +972,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-add-geom-smooth-show,  echo = TRUE}
 #| output-location: column
-#| code-line-numbers: "|6"
+#| code-line-numbers: "6"
 ggplot(gapminder,
     aes(x = gdpPercap,
        y = lifeExp,
@@ -983,7 +987,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-change-alpha,  echo = TRUE}
 #| output-location: column
-#| code-line-numbers: "|5"
+#| code-line-numbers: "5"
 ggplot(gapminder,
     aes(x = gdpPercap,
        y = lifeExp,
@@ -1001,7 +1005,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-add-log-show, echo = TRUE}
 #| output-location: column
-#| code-line-numbers: "|7"
+#| code-line-numbers: "7"
 ggplot(gapminder,
      aes(x = gdpPercap,
          y = lifeExp,
@@ -1023,7 +1027,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-add-labs-out,  echo = TRUE}
 #| output-location: column
-#| code-line-numbers: "|8|9|10"
+#| code-line-numbers: "8,9,10"
 ggplot(gapminder,
       aes(x = gdpPercap,
           y = lifeExp,
@@ -1048,7 +1052,7 @@ Labs can handle a lot of arguments. there are individual functuions for the x la
 
 ```{r complex-plot-add-viridis-show,  echo = TRUE}
 #| output-location: column
-#| code-line-numbers: "|11"
+#| code-line-numbers: "11"
 ggplot(gapminder,
       aes(x = gdpPercap,
           y = lifeExp,
@@ -1077,7 +1081,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-add-theme-show,  echo = TRUE}
 #| output-location: column
-#| code-line-numbers: "|12"
+#| code-line-numbers: "12"
 ggplot(gapminder,
       aes(x = gdpPercap,
          y = lifeExp,
@@ -1105,7 +1109,7 @@ ggplot(gapminder,
 
 ```{r complex-plot-facet-show,  echo = TRUE}
 #| output-location: column
-#| code-line-numbers: "|13"
+#| code-line-numbers: "13"
 ggplot(gapminder,
     aes(x = gdpPercap,
         y = lifeExp,
@@ -1129,7 +1133,7 @@ ggplot(gapminder,
 
 ```{r change-default-theme-option-complex-plot-show, echo = TRUE}
 #| output-location: column
-#| code-line-numbers: "|14"
+#| code-line-numbers: "14"
 ggplot(gapminder,
   aes(x = gdpPercap,
       y = lifeExp,
@@ -1221,6 +1225,7 @@ Often time we need to or want to adjust the scales that one or more of the axis 
 
 ```{r show-options-for-scales,  echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "9"
 ggplot(gapminder,
   aes(x = gdpPercap,
       y = lifeExp,
@@ -1249,7 +1254,7 @@ Instead of directly transforming your data ggplot allows you to do this through 
 
 ```{r}
 #| output-location: column
-#| fig-height: 12
+#| codee-line-numbers: "9,10,11,12"
 ggplot(gapminder,
   aes(x = gdpPercap,
      y = lifeExp,
@@ -1274,7 +1279,7 @@ If you want to use  a different set of colors you choose those manull
 
 
 ```{r scale-x-continous-example, echo=TRUE}
-#| code-line-numbers: "|3|9"
+#| code-line-numbers: "7"
 #| output-location: column
 ggplot(gapminder,
       aes(x = gdpPercap,
@@ -1303,6 +1308,7 @@ In some cases you may want to change the coordinates of the plot to expand or co
 
 ```{r}
 #| output-location: column
+#| code-line-numbers: "6"
 ggplot(gapminder,
     aes(x = gdpPercap,
      y = lifeExp)) +
@@ -1341,7 +1347,7 @@ look at the help file for scale_fill_viridis and play around with the options
 :::
 
 
-## Change Viridis Optioons
+## How I Did It
 
 
 
@@ -1398,6 +1404,7 @@ ggplot(penguins,
 
 ```{r facet-wrap-one-col, echo=TRUE}
 #| output-location: column
+#| code-line-numbers: "8"
 ggplot(gapminder,
   aes(x = gdpPercap,
      y = lifeExp,
@@ -1418,14 +1425,31 @@ If we want to get individual plots for each value of the variable we can feed th
 
 
 
+## facet_grid 
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "9"
+ggplot(data = filter(gapminder,
+ year %in% c(1987,1997,2002, 2007)),
+    aes(x = gdpPercap,
+     y = lifeExp,
+     size = pop)) +
+  geom_point(alpha = 0.5) +
+  theme_bw() +
+  scale_x_log10() +
+  facet_grid(vars(year))
+```
 
 
 
-# facet_grid
+
+## facet_grid
 
 
 ```{r}
 #| output-location: column
+#| code-line-numbers: "9"
 ggplot(data = filter(gapminder,
  year %in% c(1987,1997,2002, 2007)),
     aes(x = gdpPercap,
@@ -1479,6 +1503,7 @@ ggplot(data = filter(gapminder,
 
 ```{r labels-example-show,  echo = TRUE}
 #| output-location: column
+#| code-line-numbers: "8,9,10,11,12,13,14"
 ggplot(gapminder, 
        aes(x = gdpPercap,
         y = lifeExp, 
@@ -1496,7 +1521,10 @@ ggplot(gapminder,
 ```
 
 
+:::{.notes}
+The labs argument has a ton of flexibility. Basically if you feed something into aes you can change it in labs. I Tend to change legend labels in guides. That is just a personal preference but labs is superflexible. You will sometimes see other solutions for changing your legend.
 
+:::
 
 
 ## Changing the Default Theme 
@@ -2082,10 +2110,14 @@ add_geom = bars_geocode %>%
 
 
 
-## Which Produces
+## Plotting the results
 
-```{r atlanta-map, echo=TRUE, message=FALSE, warning=FALSE}
+```{r atlanta-map, message=FALSE, warning=FALSE}
+#| fig-align: center
 #| output-location: column
+
+
+
 ggplot() +
   geom_sf(data = railway$osm_lines,
           inherit.aes = FALSE,
@@ -2112,12 +2144,14 @@ ggplot() +
           color = "#0039A6") +
   coord_sf(ylim = c(33.64, 33.89), 
            xlim = c (-84.56, -84.30), expand = FALSE) +
-  theme_void(base_family = "Roboto Condensed", base_size = 20) +
+  theme_void(base_family = "Roboto Condensed",
+   base_size = 20) +
   theme(plot.subtitle = element_text(size = 10, hjust = 0.5, 
-                                     margin = margin(2, 0, 5, 0)),
-        plot.title = element_text(face="bold", hjust=.5),
-        plot.caption = element_text(size = 8, face = "bold")) + 
-   labs(title = "Atlanta", subtitle = "33.7490°N/84.3880°W")
+    margin = margin(2, 0, 5, 0)),
+    plot.title = element_text(face="bold", hjust=.5),
+    plot.caption = element_text(size = 8, face = "bold")) + 
+   labs(title = "Atlanta",
+   subtitle = "33.7490°N/84.3880°W")
 ```
 
 
