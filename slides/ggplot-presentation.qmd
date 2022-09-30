@@ -76,7 +76,7 @@ options(scipen=10000)
 
 ## Our Team 
 
-```{r}
+```{r echo = FALSE}
 knitr::include_graphics("figs/rds-team-members.png")
 ```
 
@@ -91,7 +91,7 @@ knitr::include_graphics("figs/rds-team-members.png")
 ## Get Ready Badges
 
 
-```{r}
+```{r echo = FALSE}
 knitr::include_graphics("figs/get-ready-badges.png")
 ```
 
@@ -108,7 +108,7 @@ to potential employers that you know this stuff
 
 ## How To Get the Badges
 
-```{r}
+```{r echo = FALSE}
 knitr::include_graphics("figs/how-to-badge.png")
 ```
 
@@ -633,7 +633,7 @@ Remember when we do things in aes R will look for a column in our dataset. Impor
 
 ```{r use-color-aes-example, echo = TRUE}
 #| output-location: column
-#|code-line-numbers: "5"
+#| code-line-numbers: "5"
 
 ggplot() +
   geom_point(data = gapminder,
