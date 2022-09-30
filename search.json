@@ -389,7 +389,7 @@
     "href": "slides/ggplot-presentation.html#section-1",
     "title": "Getting Started in ggplot",
     "section": "",
-    "text": "#|code-line-numbers: \"5\"\n\nggplot() +\n  geom_point(data = gapminder,\n    aes(x = gdpPercap,\n        y = lifeExp),\n        color = \"blue\") \n\n\n\n\n\n\n\n\n\n\n\nggplot will take the color argument inside aes and outside aes. If we specify color inside aes than it will color things by a column in the dataset. If you specify color outside of aes ggplot will make everything that color"
+    "text": "ggplot() +\n  geom_point(data = gapminder,\n    aes(x = gdpPercap,\n        y = lifeExp),\n        color = \"blue\") \n\n\n\n\n\n\n\n\n\n\n\nggplot will take the color argument inside aes and outside aes. If we specify color inside aes than it will color things by a column in the dataset. If you specify color outside of aes ggplot will make everything that color"
   },
   {
     "objectID": "slides/ggplot-presentation.html#same-options-different-stuff",
