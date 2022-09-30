@@ -174,18 +174,10 @@ Lets take a quick look at the data that I have loaded in. They look pretty simil
 
 ## The Dino Strikes
 
-
-```{r dino-plot, echo = FALSE}
-#| fig-alt: "This plot shows the importance of visualizing data. Each dataset visualized have relatively the same mean and standard deviations. However they have very different visual patterns. The first figure is a circle, the second figure is a dinosaur, the second figure is 6 lines decreasing on the Y axis, the next figure is 6 lines increasing on the y axis, the next figure creates a star, and the last figure creates an X. These figures were all made from data that appear to have the same mean and standard deviation both measures just vary at the margins"
-ggplot(data = filter(graph_dat,!dataset %in% c("bullseye", "dots", "v_lines", "high_lines", "wide_lines", "h_lines", "away")), aes(x = x, y = y)) +
-  geom_point() +
-  theme_allen_minimal() +
-  facet_wrap(vars(dataset))
-```
-:::{.notes}
-I filtered out some of the data sets just for display purposes but critically if we don't plot our data we may miss patterns that are not recognizable to us when we are taking descriptive statistics. They are also great tools for model diagnostics. A quick  look at our residuals and fitted values is a great indicator whether something is up we use distance plots to look at whether our results are being driven by outliers. 
-:::
-
+<figure>
+  <img src="https://raw.githubusercontent.com/andrewheiss/datavizs21.classes.andrewheiss.com/main/static/slides/img/01/DinoSequentialSmaller.gif" alt="Datasaurus Dozen" title="Datasaurus Dozen" width="100%">
+  <figcaption><a href="https://www.autodeskresearch.com/publications/samestats" target="_blank">The Datasaurus Dozen</a></figcaption>
+</figure>
 
 
 ## Why `ggplot2`?
