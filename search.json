@@ -249,14 +249,14 @@
     "href": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
     "title": "Getting Started in ggplot",
     "section": "Packages We Will Need For Today",
-    "text": "Packages We Will Need For Today\n\ninstall.packages(c(\"gapminder\", \"palmerpenguins\"))\n\nlibrary(gapminder)\nlibrary(palmerpenguins)\nlibrary(tidyverse) # ggplot will automatically be loaded in. \n# library(ggplot2) also works \n\ngapminder = gapminder\n\npenguins = penguins"
+    "text": "Packages We Will Need For Today\n\ninstall.packages(c(\"gapminder\", \"palmerpenguins\"))\n\n\nlibrary(gapminder)\nlibrary(palmerpenguins)\nlibrary(tidyverse) # ggplot will automatically be loaded in. \n# library(ggplot2) also works"
   },
   {
     "objectID": "slides/ggplot-presentation.html#why-visualize-your-data",
     "href": "slides/ggplot-presentation.html#why-visualize-your-data",
     "title": "Getting Started in ggplot",
     "section": "Why visualize your data?",
-    "text": "Why visualize your data?\n\nmean(df$x)\n\n[1] 54.2657\n\n\n\nsd(df$x)\n\n[1] 16.713\n\n\n\nmean(df$y)\n\n[1] 47.8351\n\n\n\nsd(df$y)\n\n[1] 26.84777\n\n\n\ncor(df$x, df$y)\n\n[1] -0.06601891\n\n\n\nLets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren’t correlated."
+    "text": "Why visualize your data?\n\nmean(graph_dat$x)\n\n[1] 54.2657\n\n\n\nsd(graph_dat$x)\n\n[1] 16.713\n\n\n\nmean(graph_dat$y)\n\n[1] 47.8351\n\n\n\nsd(graph_dat$y)\n\n[1] 26.84777\n\n\n\ncor(graph_dat$x, graph_dat$y)\n\n[1] -0.06601891\n\n\n\nLets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren’t correlated."
   },
   {
     "objectID": "slides/ggplot-presentation.html#the-dino-strikes",
@@ -270,14 +270,14 @@
     "href": "slides/ggplot-presentation.html#why-ggplot2",
     "title": "Getting Started in ggplot",
     "section": "Why ggplot2?",
-    "text": "Why ggplot2?\n\n\n\nThe transferable skills from ggplot2 are not the idiosyncrasies of plotting syntax, but a powerful way of thinking about visualization, as a way of mapping between variables and the visual properties of geometric objects that you can perceive.\n\nHadley Wickham"
+    "text": "Why ggplot2?\n\n\n\nThe transferable skills from ggplot2 are not the idiosyncrasies of plotting syntax, but a powerful way of thinking about visualization, as a way of mapping between variables and the visual properties of geometric objects that you can perceive.\n– Hadley Wickham"
   },
   {
     "objectID": "slides/ggplot-presentation.html#why-ggplot2-1",
     "href": "slides/ggplot-presentation.html#why-ggplot2-1",
     "title": "Getting Started in ggplot",
     "section": "Why ggplot2?",
-    "text": "Why ggplot2?\n\n\nYou have probably heard of it but why use it?\nOnce we understand the “grammar” making figures becomes a lot easier\n\nConveying information becomes easier\nLets you show off your clean, or not so clean, data\nA coherent structure of doing things\n\nFlexibility\n\nTons ways to customize appearance\nLots of functions\n\nMakes you lazier\n\nDoesn’t require you to remember each input from a drop down menu\nDefaults to universally usable formats\nReplaces itself automatically in your directory\n\n\n\n\nggplot2 is probably one of the most well known and event among many of the staunchest base r users well loved an well used libraries in the R ecosystem.\nggplot2 predates most of the tidyverse and the gg part refers to the grammar of graphics, more on that later. Much like writing a sentence there is a proper grammar to it. Once we understand the rules we can construct lots of different “sentences”.\nI think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things or working with propietary formats. If you need to you"
+    "text": "Why ggplot2?\n\n\nYou have probably heard of it but why use it?\nOnce we understand the “grammar” making figures becomes a lot easier\n\nConveying information becomes easier\nLets you show off your clean, or not so clean, data\nA coherent structure of doing things\n\nFlexibility\n\nTons ways to customize appearance\nLots of functions\nLots of extensions\n\nReproducibility\n\nDoesn’t require you to remember each input from a drop down menu\nDefaults to universally usable formats\nReplaces itself automatically in your directory\n\n\n\n\nggplot2 is probably one of the most well known and event among many of the staunchest base r users well loved an well used libraries in the R ecosystem.\nggplot2 predates most of the tidyverse and the gg part refers to the grammar of graphics, more on that later. Much like writing a sentence there is a proper grammar to it. Once we understand the rules we can construct lots of different “sentences”.\nI think an important theme so to say is that once we start to understand R it benefits your workflow because we can simply tweak a few things and then BAM it will just update. If you are a Latex user then bam the same plot just updates. If you are a word user then those benefits are limited but ggplots play nicely with Word. No having to put replace everywhere or screenshot things or working with propietary formats. If you need to you"
   },
   {
     "objectID": "slides/ggplot-presentation.html#grammar",
@@ -326,21 +326,21 @@
     "href": "slides/ggplot-presentation.html#where-do-they-go",
     "title": "Getting Started in ggplot",
     "section": "Where do they go?",
-    "text": "Where do they go?\n\n\nggplot() +\n  geom_point(data = penguins,\n  mapping =  aes(\n  x = bill_length_mm, \n  y = body_mass_g,\n  shape = species, \n  color = island),\n  size = 3)"
+    "text": "Where do they go?\n\n\nggplot() +\n  geom_point(data = penguins,\n   aes(\n  x = bill_length_mm, \n  y = body_mass_g,\n  shape = species, \n  color = island),\n  size = 3)\n\n\n\n\n\n\n\n\n\n\n\nTo actually make the plot you need to specify the columns you want to “map” onto the plot. Map is kind of just the way that it is said in ggplot world. This is just us saying we want these columns in our"
   },
   {
     "objectID": "slides/ggplot-presentation.html#the-data",
     "href": "slides/ggplot-presentation.html#the-data",
     "title": "Getting Started in ggplot",
     "section": "The data",
-    "text": "The data\n\n\n# A tibble: 5 × 6\n  country     continent  year lifeExp      pop gdpPercap\n  <fct>       <fct>     <int>   <dbl>    <int>     <dbl>\n1 Afghanistan Asia       1952    28.8  8425333      779.\n2 Afghanistan Asia       1957    30.3  9240934      821.\n3 Afghanistan Asia       1962    32.0 10267083      853.\n4 Afghanistan Asia       1967    34.0 11537966      836.\n5 Afghanistan Asia       1972    36.1 13079460      740.\n\n\n\ntoday we will be using the gapminder dataset. It contains historical (1952-2007) data on various indicators, such as life expectancy and GDP, for countries worldwide."
+    "text": "The data\n\n\n\n\n \n  \n    country \n    continent \n    year \n    lifeExp \n    pop \n    gdpPercap \n  \n \n\n  \n    Afghanistan \n    Asia \n    1952 \n    28.801 \n    8425333 \n    779.4453 \n  \n  \n    Afghanistan \n    Asia \n    1957 \n    30.332 \n    9240934 \n    820.8530 \n  \n  \n    Afghanistan \n    Asia \n    1962 \n    31.997 \n    10267083 \n    853.1007 \n  \n  \n    Afghanistan \n    Asia \n    1967 \n    34.020 \n    11537966 \n    836.1971 \n  \n  \n    Afghanistan \n    Asia \n    1972 \n    36.088 \n    13079460 \n    739.9811 \n  \n  \n    Afghanistan \n    Asia \n    1977 \n    38.438 \n    14880372 \n    786.1134 \n  \n  \n    Afghanistan \n    Asia \n    1982 \n    39.854 \n    12881816 \n    978.0114 \n  \n  \n    Afghanistan \n    Asia \n    1987 \n    40.822 \n    13867957 \n    852.3959 \n  \n  \n    Afghanistan \n    Asia \n    1992 \n    41.674 \n    16317921 \n    649.3414 \n  \n  \n    Afghanistan \n    Asia \n    1997 \n    41.763 \n    22227415 \n    635.3414 \n  \n  \n    Afghanistan \n    Asia \n    2002 \n    42.129 \n    25268405 \n    726.7341 \n  \n  \n    Afghanistan \n    Asia \n    2007 \n    43.828 \n    31889923 \n    974.5803 \n  \n  \n    Albania \n    Europe \n    1952 \n    55.230 \n    1282697 \n    1601.0561 \n  \n  \n    Albania \n    Europe \n    1957 \n    59.280 \n    1476505 \n    1942.2842 \n  \n  \n    Albania \n    Europe \n    1962 \n    64.820 \n    1728137 \n    2312.8890 \n  \n\n\n\n\n\n\ntoday we will be using the gapminder dataset. It contains historical (1952-2007) data on various indicators, such as life expectancy and GDP, for countries worldwide."
   },
   {
     "objectID": "slides/ggplot-presentation.html#here-is-your-shell-script",
     "href": "slides/ggplot-presentation.html#here-is-your-shell-script",
     "title": "Getting Started in ggplot",
     "section": "Here is your shell script",
-    "text": "Here is your shell script\n\n## be sure you have done \n## install.packages(\"gapminder\")\n## library(gapminder)\ngapminder = gapminder\n\nggplot() +\n  geom_point(data = gapminder,mapping = aes(x = gdpPercap, y = lifeExp))\n\n\nTo help you get your hands dirty I will give y’all a shell script to work with. Press o on your keyboard to navigate to the past slides to help yourself out if you get lost"
+    "text": "Here is your shell script\n\n## be sure you have done \n## install.packages(\"gapminder\")\n## library(gapminder)\n\n\nggplot() +\n  geom_point(data = gapminder,mapping = aes(x = gdpPercap, y = lifeExp))\n\n\nTo help you get your hands dirty I will give y’all a shell script to work with. Press o on your keyboard to navigate to the past slides to help yourself out if you get lost"
   },
   {
     "objectID": "slides/ggplot-presentation.html#activity",
@@ -361,39 +361,32 @@
     "href": "slides/ggplot-presentation.html#section",
     "title": "Getting Started in ggplot",
     "section": "",
-    "text": "ggplot() +\n  geom_point(data = gapminder,\n    aes(x = gdpPercap,\n        y = lifeExp),\n        color = \"blue\") \n\n\n\n\n\n\n\n\n\n\n\nggplot will take the color argument inside aes and outside aes. If we specify color inside aes than it will color things by a column in the dataset. If you specify color outside of aes ggplot will make everything that color"
+    "text": "ggplot() + \n  geom_point(data = gapminder,\n   aes(x = gdpPercap,\n    y = lifeExp,\n    color = \"blue\"))\n\n\n\n\n\n\n\n\n\n\n\nRemember when we do things in aes R will look for a column in our dataset. Importantly R will just looks for things it can do given the scope of the function. So if we put blue into the aes portion of it will plot it. But it will get confused because blue is not a column in our data set."
   },
   {
     "objectID": "slides/ggplot-presentation.html#section-1",
     "href": "slides/ggplot-presentation.html#section-1",
     "title": "Getting Started in ggplot",
     "section": "",
-    "text": "ggplot() + \n  geom_point(data = gapminder,\n   aes(x = gdpPercap,\n    y = lifeExp),\n    color = \"blue\")"
-  },
-  {
-    "objectID": "slides/ggplot-presentation.html#section-2",
-    "href": "slides/ggplot-presentation.html#section-2",
-    "title": "Getting Started in ggplot",
-    "section": "",
-    "text": "ggplot() + \n  geom_point(data = gapminder,\n   aes(x = gdpPercap,\n    y = lifeExp,\n    color = \"blue\"))\n\n\n\n\n\n\n\n\n\n\n\nRemember when we do things in aes R will look for a column in our dataset. Importantly R will just looks for things it can do given the scope of the function. So if we put blue into the aes portion of it will plot it. But it will get confused because blue is not a column in our data set."
+    "text": "#|code-line-numbers: \"5\"\n\nggplot() +\n  geom_point(data = gapminder,\n    aes(x = gdpPercap,\n        y = lifeExp),\n        color = \"blue\") \n\n\n\n\n\n\n\n\n\n\n\nggplot will take the color argument inside aes and outside aes. If we specify color inside aes than it will color things by a column in the dataset. If you specify color outside of aes ggplot will make everything that color"
   },
   {
     "objectID": "slides/ggplot-presentation.html#same-options-different-stuff",
     "href": "slides/ggplot-presentation.html#same-options-different-stuff",
     "title": "Getting Started in ggplot",
     "section": "Same options different stuff",
-    "text": "Same options different stuff\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nthere we can show the same relationship between two variables in a ton of different ways. there are a ton of geoms that we can use to visualize our data."
+    "text": "Same options different stuff\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nthere we can show the same relationship between two variables in a ton of different ways. there are a ton of geoms that we can use to visualize our data. In this case I am just fitting a loess line through it."
   },
   {
     "objectID": "slides/ggplot-presentation.html#what-comes-with-ggplot",
     "href": "slides/ggplot-presentation.html#what-comes-with-ggplot",
     "title": "Getting Started in ggplot",
     "section": "What Comes With ggplot",
-    "text": "What Comes With ggplot\n\n\n [1] \"geom_abline\"            \"geom_area\"              \"geom_bar\"              \n [4] \"geom_bin_2d\"            \"geom_bin2d\"             \"geom_blank\"            \n [7] \"geom_boxplot\"           \"geom_col\"               \"geom_contour\"          \n[10] \"geom_contour_filled\"    \"geom_count\"             \"geom_crossbar\"         \n[13] \"geom_curve\"             \"geom_density\"           \"geom_density_2d\"       \n[16] \"geom_density_2d_filled\" \"geom_density2d\"         \"geom_density2d_filled\" \n[19] \"geom_dotplot\"           \"geom_errorbar\"          \"geom_errorbarh\"        \n[22] \"geom_freqpoly\"          \"geom_function\"          \"geom_hex\"              \n[25] \"geom_histogram\"         \"geom_hline\"             \"geom_jitter\"           \n[28] \"geom_label\"             \"geom_line\"              \"geom_linerange\"        \n[31] \"geom_map\"               \"geom_path\"              \"geom_point\"            \n[34] \"geom_pointrange\"        \"geom_polygon\"           \"geom_qq\"               \n[37] \"geom_qq_line\"           \"geom_quantile\"          \"geom_raster\"           \n[40] \"geom_rect\"              \"geom_ribbon\"            \"geom_rug\"              \n[43] \"geom_segment\"           \"geom_sf\"                \"geom_sf_label\"         \n[46] \"geom_sf_text\"           \"geom_smooth\"            \"geom_spoke\"            \n[49] \"geom_step\"              \"geom_text\"              \"geom_tile\"             \n[52] \"geom_violin\"            \"geom_vline\"            \n\n\n\nThere are many more that we can use too. There are tons of different kinds of plots that we can find for our specific plotting needs that people have written for R I have like an unhealthy obsession with ggridges"
+    "text": "What Comes With ggplot\n\n\n [1] \"geom_abline\"            \"geom_area\"              \"geom_bar\"              \n [4] \"geom_bin_2d\"            \"geom_bin2d\"             \"geom_blank\"            \n [7] \"geom_boxplot\"           \"geom_col\"               \"geom_contour\"          \n[10] \"geom_contour_filled\"    \"geom_count\"             \"geom_crossbar\"         \n[13] \"geom_curve\"             \"geom_density\"           \"geom_density_2d\"       \n[16] \"geom_density_2d_filled\" \"geom_density2d\"         \"geom_density2d_filled\" \n[19] \"geom_dotplot\"           \"geom_errorbar\"          \"geom_errorbarh\"        \n[22] \"geom_freqpoly\"          \"geom_function\"          \"geom_hex\"              \n[25] \"geom_histogram\"         \"geom_hline\"             \"geom_jitter\"           \n[28] \"geom_label\"             \"geom_line\"              \"geom_linerange\"        \n[31] \"geom_map\"               \"geom_path\"              \"geom_point\"            \n[34] \"geom_pointrange\"        \"geom_polygon\"           \"geom_qq\"               \n[37] \"geom_qq_line\"           \"geom_quantile\"          \"geom_raster\"           \n[40] \"geom_rect\"              \"geom_ribbon\"            \"geom_rug\"              \n[43] \"geom_segment\"           \"geom_sf\"                \"geom_sf_label\"         \n[46] \"geom_sf_text\"           \"geom_smooth\"            \"geom_spoke\"            \n[49] \"geom_step\"              \"geom_text\"              \"geom_tile\"             \n[52] \"geom_violin\"            \"geom_vline\"            \n\n\n\nThere are many more that we can use too. There are tons of different kinds of plots that we can find for our specific plotting needs that people have written for R I have like an unhealthy obsession with ggridges. I will say geom_sf only gets added when you have the sf package loaded and then"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#section-3",
-    "href": "slides/ggplot-presentation.html#section-3",
+    "objectID": "slides/ggplot-presentation.html#section-2",
+    "href": "slides/ggplot-presentation.html#section-2",
     "title": "Getting Started in ggplot",
     "section": "",
     "text": "via GIPHY\n\n\nIt’s not that certain geoms should never be used with certain kinds its that sometimes it doesnt make a whole lot of sense or we aren’t getting the most out of our data visualizations. If it takes the arguments it will plot it."
@@ -427,8 +420,8 @@
     "text": "Your Turn Again\nHint do not supply a Y value\n\n\n\n\n−+\n02:00\n\n\n\n\nLets make a histogram of lifeExp. In this case we only need to supply one variable to aes. Take exp and look at the distribution through a histogram"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#section-4",
-    "href": "slides/ggplot-presentation.html#section-4",
+    "objectID": "slides/ggplot-presentation.html#section-3",
+    "href": "slides/ggplot-presentation.html#section-3",
     "title": "Getting Started in ggplot",
     "section": "",
     "text": "ggplot() +\n  geom_histogram( data = gapminder, \n    aes(x = lifeExp))"
@@ -441,8 +434,8 @@
     "text": "Your Turn\nMake This Density Plot filled by continent\n\n\n\n\n−+\n02:00\n\n\n\n\nAgain do not supply a Y column"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#section-5",
-    "href": "slides/ggplot-presentation.html#section-5",
+    "objectID": "slides/ggplot-presentation.html#section-4",
+    "href": "slides/ggplot-presentation.html#section-4",
     "title": "Getting Started in ggplot",
     "section": "",
     "text": "ggplot() +\n  geom_density( data = gapminder,\n  aes(x = lifeExp,\n     fill = continent),\n     alpha = 0.75)"
@@ -452,7 +445,7 @@
     "href": "slides/ggplot-presentation.html#complex-graph",
     "title": "Getting Started in ggplot",
     "section": "Complex graph!",
-    "text": "Complex graph!"
+    "text": "Complex graph!\n\n\nMap wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme."
   },
   {
     "objectID": "slides/ggplot-presentation.html#local",
@@ -557,7 +550,7 @@
     "href": "slides/ggplot-presentation.html#scales-in-action",
     "title": "Getting Started in ggplot",
     "section": "Scales in Action",
-    "text": "Scales in Action\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n      y = lifeExp,\n      size = pop,\n      color = continent)) +\n  geom_point(alpha = 0.5) +\n  labs(x = \"Income\",\n     y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw() \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nIf you type scale_x or scale_y into your r script you can see a whole host of things transformations you can do\n\n\n\n\nInstead of directly transforming your data ggplot allows you to do this through the scale_x function which is pretty neat. I will not go through each of them but that is pretty handy. If you want nicer looking labels you can use the scales package to make nicer looking labels. I.e adding commas to values on the x or y axis adding the dollar sign or percentage sign etc"
+    "text": "Scales in Action\n\n\nggplot(gapminder,\n  aes(x = gdpPercap,\n      y = lifeExp,\n      size = pop,\n      color = continent)) +\n  geom_point(alpha = 0.5) +\n  labs(x = \"Income\",\n     y = \"Life Expectancy\") +\n  scale_x_log10(labels = scales::dollar) +\n  theme_bw() \n\n\n\n\n\n\n\n\n\n\n\nInstead of directly transforming your data ggplot allows you to do this through the scale_x function which is pretty neat. I will not go through each of them but that is pretty handy. If you want nicer looking labels you can use the scales package to make nicer looking labels. I.e adding commas to values on the x or y axis adding the dollar sign or percentage sign etc"
   },
   {
     "objectID": "slides/ggplot-presentation.html#scales-in-action-2",
@@ -606,7 +599,7 @@
     "href": "slides/ggplot-presentation.html#facet_grid",
     "title": "Getting Started in ggplot",
     "section": "facet_grid",
-    "text": "facet_grid\n\n\nggplot(data = filter(gapminder,\n year %in% c(1987,1997,2002, 2007)),\n    aes(x = gdpPercap,\n     y = lifeExp,\n     size = pop)) +\n  geom_point(alpha = 0.5) +\n  theme_bw() +\n  scale_x_log10() +\n  facet_grid(vars(year))"
+    "text": "facet_grid\n\n\nggplot(data = filter(gapminder,\n year %in% c(1987,1997,2002, 2007)),\n    aes(x = gdpPercap,\n     y = lifeExp,\n     size = pop)) +\n  geom_point(alpha = 0.5) +\n  theme_bw() +\n  scale_x_log10() +\n  facet_grid(vars(year))\n\n\n\n\n\n\n\n\n\n\n\nforms a matrix of panels defined by row and column faceting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data."
   },
   {
     "objectID": "slides/ggplot-presentation.html#facet_grid-1",
