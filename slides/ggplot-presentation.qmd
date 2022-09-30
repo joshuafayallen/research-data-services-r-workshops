@@ -71,6 +71,49 @@ towers_keeps = read_sf("data/ME-GIS/Towers_and_Keeps.shp")
 options(scipen=10000)
 ```
 
+# Research Data Services 
+
+
+## Our Team 
+
+```{r}
+knitr::include_graphics("figs/rds-team-members.png")
+```
+
+:::{.notes}
+
+ Also, we do not have the capacity to provide pre-scheduled frequent software tutoring that is divorced from a specific assignment or software troubleshooting task at hand -- in other words, we are also not generalized software tutors. 
+ 
+ Our one-on-one software assistance is available to help you troubleshoot specific tasks or assignments. If you are seeking generalized software help, we direct you to our live workshops and our recorded workshops to gain the foundational skills for using various analytical software. Then, when or if the time comes that you have targeted software questions or specific issues to tackle related to a course assignment or research project, please feel free to contact us for one-on-one support. 
+:::
+
+
+## Get Ready Badges
+
+
+```{r}
+knitr::include_graphics("figs/get-ready-badges.png")
+```
+
+
+:::{.notes}
+
+
+https://research.library.gsu.edu/dataservices/data-ready
+
+These are awesome to share on social media i.e. linkedin which is a good signal
+to potential employers that you know this stuff
+
+:::
+
+## How To Get the Badges
+
+```{r}
+knitr::include_graphics("figs/how-to-badge.png")
+```
+
+
+# The Importance of Graphing {background-color="`r clrs[3]`" .white}
 
 ## Packages We Will Need For Today 
 
@@ -758,6 +801,7 @@ ggplot() +
   geom_boxplot(data = gapminder,
   aes(x = continent, 
   y = lifeExp))
+
 ```
 
 
@@ -1608,7 +1652,7 @@ library(bbplot)
 ```
 
 :::{.notes}
-Lots of organizations use ggplot. What this means for you is that you can find themes that 
+Lots of organizations use ggplot. What this means for you is that you can find themes that lots of organizations use. I know for a fact that the economist makes all their code fully available for you. So if you see a cool graph from the economist you can just go to their github and figure out how they found it.
 
 
 :::
@@ -1638,8 +1682,7 @@ your_plot_here = ggplot(data, aes(x = blah, y = blah))
 ```
 ```{r ggsave-pdf, eval=FALSE, echo = TRUE}
 
-ggsave("name-of-your-file.pdf",your_plot_here)
-
+ggsave("name-of-your-file.pdf",your_plot_here) 
 ```
 
 
@@ -1680,6 +1723,11 @@ There are some other packages like geom_map and ggmap. They still work but sf(si
 See [this book](https://geocompr.robinlovelace.net/)
 :::
 
+
+:::{.notes}
+There are lots of mapping packages in R. I will only show you how to map in ggplot. You can get a really passable map in ggplot. I have included the code the Emre wrote that uses tmap. tmap is good and I have used it but once you get the hand of ggplot I think it is just easier to use ggplot than to learn how to use a new package
+
+:::
 
 ## Mapping in R 
 
@@ -1848,7 +1896,7 @@ placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
 cities = read_sf("data/ME-GIS/Cities.shp")
 roads = read_sf("data/ME-GIS/Roads.shp")
 towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
-places <- placenames %>% 
+places = placenames |>
   filter(NAME %in% c("Hobbiton",
                      "Rivendell",
                      "Edoras",
@@ -1916,16 +1964,14 @@ As you can see this does not look fundamentally all that different from the rest
 
 - Or you can feed it addresses
 
-- You will need to geocode them
-
 - Most free ones have rate limits
   - So be mindful of the size of your data
 
 
+:::{.notes}
+In this case if we do not have the geometry column but we have some addresses we can just geocode them to produce the column.
 
-
-
-
+:::
 
 
 ## Making a Bespoke Shapefile(cont)
@@ -1991,7 +2037,7 @@ breweries_I_visit = tribble(
 )
 
 breweries_geocode = breweries_I_visit |> 
-  geocode(address, geocode_combine = c("osm", "arcgis")) ## backup if one service fails 
+  geocode(address, method = "osm") ## backup if one service fails 
 
 add_geom = breweries_geocode |> 
   st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326"))
@@ -2019,7 +2065,13 @@ breweries_geocode |>
 ```
 
 
+:::{.notes}
+in the geocode argument you can cascade the services just in case it fails. The neat thing is that you can feed it a dataframe of addresses. What is also pretty cool is that it plays really well with other R tidyverse packages so if you scrape a website to grab a ton of addresses than you can just feed it into tidygeocoder 
 
+
+from there you can use ggplot or even create interactive leaflet maps 
+
+:::
 
 
 
@@ -2154,3 +2206,6 @@ ggplot() +
 
 
 
+# Tell Us How We Did {background-color="`r clrs[3]`" .white}
+
+[https://gsu.qualtrics.com/jfe/form/SV_9nucJR3soZ9lkqO](https://gsu.qualtrics.com/jfe/form/SV_9nucJR3soZ9lkqO)
