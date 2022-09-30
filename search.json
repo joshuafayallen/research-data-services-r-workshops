@@ -249,21 +249,21 @@
     "href": "slides/ggplot-presentation.html#our-team",
     "title": "Getting Started in ggplot",
     "section": "Our Team",
-    "text": "Our Team\n\nknitr::include_graphics(\"figs/rds-team-members.png\")\n\n\n\nAlso, we do not have the capacity to provide pre-scheduled frequent software tutoring that is divorced from a specific assignment or software troubleshooting task at hand – in other words, we are also not generalized software tutors.\nOur one-on-one software assistance is available to help you troubleshoot specific tasks or assignments. If you are seeking generalized software help, we direct you to our live workshops and our recorded workshops to gain the foundational skills for using various analytical software. Then, when or if the time comes that you have targeted software questions or specific issues to tackle related to a course assignment or research project, please feel free to contact us for one-on-one support."
+    "text": "Our Team\n\n\nAlso, we do not have the capacity to provide pre-scheduled frequent software tutoring that is divorced from a specific assignment or software troubleshooting task at hand – in other words, we are also not generalized software tutors.\nOur one-on-one software assistance is available to help you troubleshoot specific tasks or assignments. If you are seeking generalized software help, we direct you to our live workshops and our recorded workshops to gain the foundational skills for using various analytical software. Then, when or if the time comes that you have targeted software questions or specific issues to tackle related to a course assignment or research project, please feel free to contact us for one-on-one support."
   },
   {
     "objectID": "slides/ggplot-presentation.html#get-ready-badges",
     "href": "slides/ggplot-presentation.html#get-ready-badges",
     "title": "Getting Started in ggplot",
     "section": "Get Ready Badges",
-    "text": "Get Ready Badges\n\nknitr::include_graphics(\"figs/get-ready-badges.png\")\n\n\n\nhttps://research.library.gsu.edu/dataservices/data-ready\nThese are awesome to share on social media i.e. linkedin which is a good signal to potential employers that you know this stuff"
+    "text": "Get Ready Badges\n\n\nhttps://research.library.gsu.edu/dataservices/data-ready\nThese are awesome to share on social media i.e. linkedin which is a good signal to potential employers that you know this stuff"
   },
   {
     "objectID": "slides/ggplot-presentation.html#how-to-get-the-badges",
     "href": "slides/ggplot-presentation.html#how-to-get-the-badges",
     "title": "Getting Started in ggplot",
     "section": "How To Get the Badges",
-    "text": "How To Get the Badges\n\nknitr::include_graphics(\"figs/how-to-badge.png\")"
+    "text": "How To Get the Badges"
   },
   {
     "objectID": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
