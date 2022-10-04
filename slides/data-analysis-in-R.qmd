@@ -151,9 +151,8 @@ mean(penguins$bill_depth_mm, na.rm = TRUE)
 ### Tidyverse(overkill in this application)
 
 ```{r}
-summarise(penguins,
-          avg_body_mass = mean(body_mass_g,
-                                 na.rm = TRUE))
+summarise(penguins, mean(body_mass_g,
+                      na.rm = TRUE))
 ```
 
 :::
@@ -230,8 +229,6 @@ penguins_t_test = penguins |>
                          TRUE,
                          FALSE))
 
-
-
 t.test(flipper_length_mm ~ gentoo, data = penguins_t_test) 
 ```
 
@@ -242,8 +239,6 @@ penguins_t_test = penguins |>
   mutate(gentoo = ifelse(species == "Gentoo",
                          TRUE,
                          FALSE))
-
-
 
 t.test(flipper_length_mm ~ gentoo, data = penguins_t_test) 
 ```
@@ -322,12 +317,10 @@ cor(penguins_df) |>
 ## It is Also Important to plot your data! 
 
 
-```{r dino-plot-include, echo=FALSE}
-
-
-knitr::include_graphics("figs/dino-plot-1.png")
-
-```
+<figure>
+  <img src="https://raw.githubusercontent.com/andrewheiss/datavizs21.classes.andrewheiss.com/main/static/slides/img/01/DinoSequentialSmaller.gif" alt="Datasaurus Dozen" title="Datasaurus Dozen" width="100%">
+  <figcaption><a href="https://www.autodeskresearch.com/publications/samestats" target="_blank">The Datasaurus Dozen</a></figcaption>
+</figure>
 
 
 :::{.notes}
@@ -338,13 +331,13 @@ Remember numbers hide lots of things from our ggplot workshop I showed this figu
 
 ## Some Basic Graphs 
 
-:::columns
-::: column
-```{r penguins-bill-length-scatter, eval=FALSE}
-ggplot(penguins, aes(x = bill_length_mm ,
-                     y = body_mass_g,
-                     color = species,
-                     group = species)) +
+
+```{r penguins-bill-length-scatter}
+#| output-location: column
+ggplot(penguins,
+       aes(x = bill_length_mm ,
+           y = body_mass_g,
+           color = species)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(x = "Bill Length(milimeters)",
@@ -353,63 +346,30 @@ ggplot(penguins, aes(x = bill_length_mm ,
                               override.aes = list(fill = NA))) +
   theme_allen_bw()
 ```
-:::
 
-
-:::column 
-```{r  echo=FALSE}
-ggplot(penguins, aes(x = bill_length_mm ,
-                     y = body_mass_g,
-                     color = species,
-                     group = species)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
-  labs(x = "Bill Length(milimeters)",
-       y = "Body mass(grams)") +
-  guides(color = guide_legend(title = "Species",
-                              override.aes = list(fill = NA))) +
-  theme_allen_bw()
-```
-:::
-:::
 
 
 
 ## Some Basic Graphs Cont
 
-:::columns
-::: column
-```{r bill-depth-scatter, eval=FALSE}
 
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+```{r bill-depth-scatter}
+#| output-location: column
+ggplot(penguins,
+   aes(x = bill_depth_mm,
+       y = body_mass_g)) +
   geom_point(aes(color = species)) +
-  geom_smooth(aes(color = species), method = "lm") +
+  geom_smooth(aes(color = species),
+              method = "lm") +
   geom_smooth(method = "lm") + 
-  labs(x = "Bill Length(milimeters)", y = "Body mass(grams)") +
+  labs(x = "Bill Length(milimeters)",
+        y = "Body mass(grams)") +
   guides(color = guide_legend(title = "Species",
-                              override.aes = list(fill = NA))) +
+        override.aes = list(fill = NA))) +
   theme_allen_bw()
 
 ```
-:::
 
-:::column
-
-
-```{r bill-depth-out, echo=FALSE}
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point(aes(color = species)) +
-  geom_smooth(aes(color = species), method = "lm") +
-  geom_smooth(method = "lm") + 
-  labs(x = "Bill Length(milimeters)", y = "Body mass(grams)") +
-  guides(color = guide_legend(title = "Species",
-                              override.aes = list(fill = NA))) +
-  theme_allen_bw()
-```
-
-
-:::
-:::
 
 :::{.notes}
 Notice that when we plot by subgroup we see evidence of simpson's pardox 
@@ -418,30 +378,18 @@ Notice that when we plot by subgroup we see evidence of simpson's pardox
 
 ## Distributions 
 
-:::columns 
-:::column 
-```{r flipper-hist, eval=FALSE}
-ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
-  geom_histogram(alpha = 0.6) +
-  labs(x = "Flipper Length(milimeters)") +
-  guides(fill = guide_legend(title = "Species")) +
-  theme_allen_minimal()
-```
-:::
 
-:::column
-
-
-```{r flipper-hist-out, echo=FALSE}
-ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
+```{r flipper-hist}
+#| output-location: column
+ggplot(penguins,
+  aes(x = flipper_length_mm,
+      fill = species)) +
   geom_histogram(alpha = 0.6) +
   labs(x = "Flipper Length(milimeters)") +
   guides(fill = guide_legend(title = "Species")) +
   theme_allen_minimal()
 ```
 
-:::
-:::
 
 
 
@@ -470,32 +418,40 @@ ggplot(penguins, aes(x = body_mass_g, fill = species)) +
 ## User Written Extensions
 
 
-```{r gg-halves-example, echo = TRUE}
+```{r ggdist-out}
 #| output-location: column
 
 library(gghalves)
+library(MetBrewer)
+library(ggdist)
 
-ggplot(penguins, aes(x = species, y = bill_depth_mm, fill = species)) +
+ggplot(penguins,
+  aes(x = species,
+      y = bill_depth_mm,
+     fill = species)) +
   geom_boxplot(
     width = .2, fill = "white",
     size = 1.5, outlier.shape = NA
   ) +
-  ggdist::stat_halfeye(
+  stat_halfeye(
     adjust = .33,
     width = .67, 
     color = NA,
     position = position_nudge(x = .15)
   ) +
-  gghalves::geom_half_point(
+  geom_half_point(
     side = "l", 
     range_scale = .3, 
     alpha = .25, size = 1
   ) +
-  MetBrewer::scale_fill_met_d(name = "Veronese") +
-  labs(x = NULL, fill = "Species", y = "Bill Depth(milimeters)") +
+  scale_fill_met_d(name = "Veronese") +
+  labs(x = NULL,
+      fill = "Species",
+      y = "Bill Depth(millimeters)") +
   coord_flip() +
   theme_allen_bw()
 ```
+
 
 
 
@@ -508,7 +464,6 @@ Code and example are from Cédric Scherer's [Beyond the Bar plot talk](https://t
 
 ```{r}
 penguins = as.data.frame(penguins)
-
 
 datasummary(All(penguins) ~ Mean + SD + Max + Min + Median + Histogram,
             data = penguins, output = "html",
@@ -544,23 +499,17 @@ datasummary_balance(~gentoo,
 
 
 
-
-
 ## Some Basics
 
 - For `lm` and other models we use this general form
+  
+```{r eval = FALSE}
+estimator(Outcome ~ IV1 + IV2, data = your_data)
 
 ```
-model_one = estimator(outcome ~ iv1 + iv2 + ..., data = df)
-
-```
+ 
 
 - If you want to include all the variables in your data set than you can do that with `.`
-
-```
-model_one = estimator(outcome ~ ., data = df)
-
-```
 
 - Remember R can hold lots of datasets so we have to be explicit with where the data is coming from
   - note that we have several different datasets named `penguins_blah`
@@ -612,9 +561,6 @@ peng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species, da
 
 summary(peng_adjust)
 
-
-
-
 ```
 
 
@@ -661,7 +607,7 @@ peng_sans_miss_base$.cooks_distance = cooks.distance(peng_adjust)
 
 ```{r }
 peng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species,
-                 data = peng_sans_miss_tidy) 
+   data = peng_sans_miss_tidy) 
 peng_diag_tidy = augment(peng_adjust,
                          data = peng_sans_miss_tidy)
 ```
@@ -1040,15 +986,16 @@ modelsummary(list(peng_naive, peng_adjust, pengs_interact_marg),
 library(plm)
 
 
-penguins_feols = feols(body_mass_g ~  bill_length_mm + flipper_length_mm | species + island, data =  peng_sans_miss_tidy)
+penguins_feols = feols(body_mass_g ~  bill_length_mm + flipper_length_mm | species + island,
+  data =  peng_sans_miss_tidy)
 
-peng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + factor(island) , data = peng_sans_miss_tidy)
+peng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + factor(island),
+  data = peng_sans_miss_tidy)
 
-
-peng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm  + island
- , data = peng_sans_miss_tidy,
+peng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm  + island,
+  data = peng_sans_miss_tidy,
   index = c("species"),
-   model = "within")
+  model = "within")
 ```
 
 
@@ -1095,7 +1042,8 @@ peng_predict_train = augment(penguins_training_model,
                            newdata = peng_test) |> 
   select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)
 
-
+all_together = rbind(penguins_train_plot,
+                    peng_predict_train)
 
 ```
 
@@ -1107,8 +1055,6 @@ peng_predict_train = augment(penguins_training_model,
 ```{r }
 #| output-location: column
 
-all_together = rbind(penguins_train_plot,
-                    peng_predict_train)
 
 ggplot(all_together,
   aes(x = bill_length_mm,
@@ -1121,9 +1067,9 @@ ggplot(all_together,
              ymax = .upper),
                alpha = 0.3,
                col = NA) +
-   scale_color_discrete(name = "Training sample?",
+  scale_color_discrete(name = "Training sample?",
                        aesthetics = c("color",
-                                     "fill")) +
+                                      "fill")) +
   theme_allen_bw()
 ```
 
@@ -1262,6 +1208,8 @@ ggplot(data = filter(avg_marginal_effect,
 
 :::columns
 :::column
+
+### emmeans
 ```{r eval=FALSE}
 
 predictions_emmeans = base_model |> 
@@ -1287,6 +1235,9 @@ ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) 
 :::
 
 :::column
+
+###  Marginal Effects
+
 ```{r eval=FALSE}
 p  = plot_cap(base_model, condition = c("bill_length_mm", "species"), conf_level = 0.01) ## can be saved and changed with ggplot options 
 
@@ -1316,6 +1267,7 @@ predictions_emmeans = base_model |>
                    at = list(bill_length_mm = seq(0, 60)),
                    regrid = "response") |> 
   as_tibble()
+
 colors_plot = c("#f0be3d", "#931e18", "#247d3f")
 
 ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) +
@@ -1335,10 +1287,15 @@ ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) 
 
 :::{.column width="45%"}
 ```{r echo=FALSE}
-p  = plot_cap(base_model, condition = c("bill_length_mm", "species"), conf_level = 0.01) ## can be saved and changed with ggplot options 
+colors_plot = c("#f0be3d", "#931e18", "#247d3f")
+
+p  = plot_cap(base_model,
+   condition = c("bill_length_mm", "species"),
+    conf_level = 0.01) ## can be saved and changed with ggplot options 
 
 p + 
-  labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
+  labs(x = "Bill Length(millimeters)",
+       y = "Predicted Probablity of Being a Big Penguin",
        color = NULL, fill = NULL,
        caption = "By Default plot_cap plots confidence intervals \nso you have you make them really small") +
   theme(legend.position = "bottom") +
@@ -1354,29 +1311,39 @@ p +
 
 
 
-#  Machine Learning
+#  Machine Learning(basics)
 
 
 ## Packages You Will Need 
 
 
 ```{r}
-library(tidymodels)
+set.seed(1994) # make things reproducible
+library(ISLR2)
 library(caret)
-library(MASS)
+library(leaps)
 library(mlbench)
-library(e1071)
-library(parallel) # Allows for parallel processing 
-library(doParallel) # extremely useful for models that take a longtime
-
+library(tidymodels)
 
 ```
 
 
 
 - Note caret and tidymodels have some namespace conflicts. 
-    - I personally would prefer to load one or the other 
-    - This is just a commitment to show you how to do things two ways
+    - I personally would prefer to load one or the other
+
+
+:::{.callout-important}
+The Elements of Statistical Learning has all the R and Python code [located at this website](https://www.statlearning.com/resources-second-edition). 
+
+:::
+
+:::{.notes}
+I generally am not a machine learning person. So I am just going to show you the basics of a machine learning workflow in R.
+
+:::
+
+
 
 ## Creating Training and Test Sets 
 
@@ -1391,8 +1358,7 @@ peng =  penguins |> drop_na()
 
 peng_caret = as.data.frame(peng)  
 
-
-train_index_caret = caret::createDataPartition(peng_caret$species, p = 0.7, list = FALSE, times = 1)
+train_index_caret = caret::createDataPartition(peng_caret$body_mass_g, p = 0.7, list = FALSE, times = 1)
 
 train_caret = peng_caret[train_index_caret,]
 
@@ -1424,7 +1390,7 @@ peng_tidy_test = rsample::testing(peng_models)
 
 
 
-## Create Bootstraps 
+## Create Cross Validations
 
 
 :::columns
@@ -1432,12 +1398,13 @@ peng_tidy_test = rsample::testing(peng_models)
 
 ### Caret 
 
-- I just choose bootstrap. Do what makes sense for your goals 
+
 
 ```{r}
 
 
-peng_caret_boots = trainControl(method = "boot", number = 25, classProbs = TRUE)
+peng_caret_cv = trainControl(method = "cv",
+      number = 10)
 
 ```
 
@@ -1445,77 +1412,47 @@ peng_caret_boots = trainControl(method = "boot", number = 25, classProbs = TRUE)
 :::
 :::column 
 
+### Tidymodels
+
 ```{r}
-peng_boots = bootstraps(peng_tidy_train)
+peng_cv_tidy = vfold_cv(peng_tidy_train, v = 10, strata = body_mass_g)
 ```
 
 :::
 :::
 
 
-##  Fit a Random Forest and Plot ROC 
+##  Fit a lasso regression
 
 
-:::columns 
-:::column 
-###  Caret 
 
 ```{r}
-library(pROC)
-rf_caret = train(sex ~ .,
+
+lasso_caret = train(body_mass_g ~ .,
                  data = train_caret,
-                 method = "ranger",
-                 trControl = peng_caret_boots,
-                 metric = "ROC",
-                 verbose = FALSE)
-
-# confusionMatrix(predict(rf_caret, train)) this is how you extract predictions with caret
+                 method = "lasso",
+                 trControl = peng_caret_cv)
 
 
 
-# confusionMatrix(predict(rf_caret, train)) 
+tuning_grid_caret = data.frame(.fraction = 10^seq(-2, -1, length.out = 10))
 
 
-# roc(test$species)
+
+lasso_caret_tune = train(body_mass_g ~ .,
+                 data = train_caret,
+                 method = "lasso",
+                 trControl = peng_caret_cv,
+                 tuneGrid = tuning_grid_caret)
+
+predictions_caret = predict(lasso_caret_tune, newdata = test_caret)
+
 
 ```
 
-:::
-
-::: column
-
-### Tidymodels 
+:::{.notes}
+All in all machine learning in R works. I just have not done it all that much. I have mostly done strucutural topic mo
 
 
-```{r}
-#| code-fold: true
-rf_spec = rand_forest() |> 
-  set_mode("classification") |> 
-  set_engine("ranger")
-
-penguin_wf = workflow() |> 
-  add_formula(sex ~ .)
-
-
-rf_peng = penguin_wf |> 
-  add_model(rf_spec) |> 
-  fit_resamples(resample = peng_boots,
-                control = control_resamples(save_pred = TRUE))
-
-
-
-
-rf_peng |> 
-  collect_predictions()  |> 
-  group_by(id) |> 
-  roc_curve(sex, .pred_female) |> 
-  ggplot(aes(1 - specificity, sensitivity, color = id)) +
-  geom_abline(lty = 2, color = "gray80", size = 1.5) +
-  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +
-  coord_equal()
-```
-
-
-:::
 :::
 
