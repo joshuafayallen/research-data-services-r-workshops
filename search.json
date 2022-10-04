@@ -340,7 +340,7 @@
     "href": "slides/ggplot-presentation.html#the-grammar",
     "title": "Getting Started in ggplot",
     "section": "The Grammar",
-    "text": "The Grammar\n\n\n\n\n\nComponent\n\n\nFunction\n\n\nExplanation\n\n\n\n\nData\n\n\nggplot(data)         \n\n\nThe raw data that you want to visualise.\n\n\n\n\nAesthetics          \n\n\naes()\n\n\nAesthetic mappings between variables and visual properties.\n\n\n\nGeometries\n\n\ngeom_*()\n\n\nThe geometric shapes representing the data.\n\n\n\n\nStatistics\n\n\nstat_*()\n\n\nThe statistical transformations applied to the data.\n\n\n\n\nScales\n\n\nscale_*()\n\n\nMaps between the data and the aesthetic dimensions.\n\n\n\n\nCoordinate System\n\n\ncoord_*()\n\n\nMaps data into the plane of the data rectangle.\n\n\n\n\nFacets\n\n\nfacet_*()\n\n\nThe arrangement of the data into a grid of plots.\n\n\n\n\nVisual Themes\n\n\ntheme() and theme_*()\n\n\nThe overall visual defaults of a plot.\n\n\n\n\n\nThis is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do"
+    "text": "The Grammar\n\n\n\n\n\nComponent\n\n\nFunction\n\n\nExplanation\n\n\n\n\nData\n\n\nggplot(data)         \n\n\nThe raw data that you want to visualise.\n\n\n\n\nAesthetics          \n\n\naes()\n\n\nAesthetic mappings between variables and visual properties.\n\n\n\nGeometries\n\n\ngeom_*()\n\n\nThe geometric shapes representing the data.\n\n\n\n\nStatistics\n\n\nstat_*()\n\n\nThe statistical transformations applied to the data.\n\n\n\n\nScales\n\n\nscale_*()\n\n\nMaps between the data and the aesthetic dimensions.\n\n\n\n\nCoordinate System\n\n\ncoord_*()\n\n\nMaps data into the plane of the data rectangle.\n\n\n\n\nFacets\n\n\nfacet_*()\n\n\nThe arrangement of the data into a grid of plots.\n\n\n\n\nVisual Themes\n\n\ntheme() and theme_*()\n\n\nThe overall visual defaults of a plot.\n\n\n\n\n\nThis is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do\nhey take your data and turn it into something that you can see, like size, colour, position or shape. They also provide the tools that let you interpret the plot: the axes and legends. You can generate plots with ggplot2 without knowing how scales work"
   },
   {
     "objectID": "slides/ggplot-presentation.html#where-do-they-go",
@@ -473,14 +473,14 @@
     "href": "slides/ggplot-presentation.html#local",
     "title": "Getting Started in ggplot",
     "section": "Local",
-    "text": "Local\n\n\nggplot() +\n  geom_point(data = gapminder,\n   aes(x = gdpPercap,\n       y = lifeExp, \n       color = continent)) + \n  geom_smooth(data = gapminder,\n   aes(x = gdpPercap, \n       y = lifeExp, \n      color = continent, \n      group = continent))"
+    "text": "Local\n\n\nggplot() +\n  geom_point(data = gapminder,\n   aes(x = gdpPercap,\n       y = lifeExp, \n       color = continent)) + \n  geom_smooth(data = gapminder,\n   aes(x = gdpPercap, \n       y = lifeExp, \n      color = continent))"
   },
   {
     "objectID": "slides/ggplot-presentation.html#global",
     "href": "slides/ggplot-presentation.html#global",
     "title": "Getting Started in ggplot",
     "section": "Global",
-    "text": "Global\n\n\nggplot(gapminder,\n       aes(x = gdpPercap,\n          y = lifeExp, \n          color = continent, \n          group = continent))  + \n  geom_point() +\n  geom_smooth() \n\n\n\n\n\n\n\n\n\n\n\nSo we have mostly been working inside the individual geoms. However most people do not do this because it can start to get inconvenient quickly. If we work inside each individual geom than the other geom will not know what is going on and ggplot will get confused.\nInstead if you pass off our argument to the first layer that the aes argument will inheret the appropriate stuff"
+    "text": "Global\n\n\nggplot(gapminder,\n       aes(x = gdpPercap,\n          y = lifeExp, \n          color = continent))  + \n  geom_point() +\n  geom_smooth() \n\n\n\n\n\n\n\n\n\n\n\nSo we have mostly been working inside the individual geoms. However most people do not do this because it can start to get inconvenient quickly. If we work inside each individual geom than the other geom will not know what is going on and ggplot will get confused.\nInstead if you pass off our argument to the first layer that the aes argument will inheret the appropriate stuff"
   },
   {
     "objectID": "slides/ggplot-presentation.html#building-plots",
@@ -809,7 +809,7 @@
     "href": "slides/data-analysis-in-R.html#getting-some-descriptive-statistics",
     "title": "Data Analysis in R",
     "section": "Getting Some Descriptive Statistics",
-    "text": "Getting Some Descriptive Statistics\nThe Mean\n\n\nBase\n\nmean(penguins$bill_depth_mm, na.rm = TRUE)\n\n[1] 17.15117\n\n\n\nTidyverse(overkill in this application)\n\nsummarise(penguins,\n          avg_body_mass = mean(body_mass_g,\n                                 na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_body_mass\n          <dbl>\n1         4202."
+    "text": "Getting Some Descriptive Statistics\nThe Mean\n\n\nBase\n\nmean(penguins$bill_depth_mm, na.rm = TRUE)\n\n[1] 17.15117\n\n\n\nTidyverse(overkill in this application)\n\nsummarise(penguins, mean(body_mass_g,\n                      na.rm = TRUE))\n\n# A tibble: 1 × 1\n  `mean(body_mass_g, na.rm = TRUE)`\n                              <dbl>\n1                             4202."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#quartiles",
@@ -823,7 +823,7 @@
     "href": "slides/data-analysis-in-R.html#t-tests",
     "title": "Data Analysis in R",
     "section": "T-tests",
-    "text": "T-tests\n\n\nBase R\n\npenguins_t_test = na.omit(penguins) \n\npenguins_t_test$gentoo = ifelse(penguins_t_test$species == \"Gentoo\", TRUE, FALSE)\n\nt.test(flipper_length_mm ~ gentoo, data = penguins_t_test) \n\n\n\n\n    Welch Two Sample t-test\n\ndata:  flipper_length_mm by gentoo\nt = -32.47, df = 263.2, p-value < 2.2e-16\nalternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0\n95 percent confidence interval:\n -26.84983 -23.77964\nsample estimates:\nmean in group FALSE  mean in group TRUE \n           191.9206            217.2353 \n\n\n\nTidyverse\n\npenguins_t_test = penguins |> \n  drop_na() |> \n  mutate(gentoo = ifelse(species == \"Gentoo\",\n                         TRUE,\n                         FALSE))\n\n\n\nt.test(flipper_length_mm ~ gentoo, data = penguins_t_test) \n\n\n\n\n    Welch Two Sample t-test\n\ndata:  flipper_length_mm by gentoo\nt = -32.47, df = 263.2, p-value < 2.2e-16\nalternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0\n95 percent confidence interval:\n -26.84983 -23.77964\nsample estimates:\nmean in group FALSE  mean in group TRUE \n           191.9206            217.2353 \n\n\n\n\n\nIn this case we have our first example of using of the formula. To do statsy stuff in R we generally have to use the tilde. This is just a function of how R does statistical analysis. Would and equal sign make sense here sure but like we have to use equal for lots of other stuff."
+    "text": "T-tests\n\n\nBase R\n\npenguins_t_test = na.omit(penguins) \n\npenguins_t_test$gentoo = ifelse(penguins_t_test$species == \"Gentoo\", TRUE, FALSE)\n\nt.test(flipper_length_mm ~ gentoo, data = penguins_t_test) \n\n\n\n\n    Welch Two Sample t-test\n\ndata:  flipper_length_mm by gentoo\nt = -32.47, df = 263.2, p-value < 2.2e-16\nalternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0\n95 percent confidence interval:\n -26.84983 -23.77964\nsample estimates:\nmean in group FALSE  mean in group TRUE \n           191.9206            217.2353 \n\n\n\nTidyverse\n\npenguins_t_test = penguins |> \n  drop_na() |> \n  mutate(gentoo = ifelse(species == \"Gentoo\",\n                         TRUE,\n                         FALSE))\n\nt.test(flipper_length_mm ~ gentoo, data = penguins_t_test) \n\n\n\n\n    Welch Two Sample t-test\n\ndata:  flipper_length_mm by gentoo\nt = -32.47, df = 263.2, p-value < 2.2e-16\nalternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0\n95 percent confidence interval:\n -26.84983 -23.77964\nsample estimates:\nmean in group FALSE  mean in group TRUE \n           191.9206            217.2353 \n\n\n\n\n\nIn this case we have our first example of using of the formula. To do statsy stuff in R we generally have to use the tilde. This is just a function of how R does statistical analysis. Would and equal sign make sense here sure but like we have to use equal for lots of other stuff."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#correlations",
@@ -837,28 +837,28 @@
     "href": "slides/data-analysis-in-R.html#it-is-also-important-to-plot-your-data",
     "title": "Data Analysis in R",
     "section": "It is Also Important to plot your data!",
-    "text": "It is Also Important to plot your data!\n\n\nRemember numbers hide lots of things from our ggplot workshop I showed this figure. These all have roughly the same mean and standard deviation"
+    "text": "It is Also Important to plot your data!\n\n\n\nThe Datasaurus Dozen\n\n\n\nRemember numbers hide lots of things from our ggplot workshop I showed this figure. These all have roughly the same mean and standard deviation"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#some-basic-graphs",
     "href": "slides/data-analysis-in-R.html#some-basic-graphs",
     "title": "Data Analysis in R",
     "section": "Some Basic Graphs",
-    "text": "Some Basic Graphs\n\n\n\nggplot(penguins, aes(x = bill_length_mm ,\n                     y = body_mass_g,\n                     color = species,\n                     group = species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Bill Length(milimeters)\",\n       y = \"Body mass(grams)\") +\n  guides(color = guide_legend(title = \"Species\",\n                              override.aes = list(fill = NA))) +\n  theme_allen_bw()"
+    "text": "Some Basic Graphs\n\n\nggplot(penguins,\n       aes(x = bill_length_mm ,\n           y = body_mass_g,\n           color = species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Bill Length(milimeters)\",\n       y = \"Body mass(grams)\") +\n  guides(color = guide_legend(title = \"Species\",\n                              override.aes = list(fill = NA))) +\n  theme_allen_bw()"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#some-basic-graphs-cont",
     "href": "slides/data-analysis-in-R.html#some-basic-graphs-cont",
     "title": "Data Analysis in R",
     "section": "Some Basic Graphs Cont",
-    "text": "Some Basic Graphs Cont\n\n\n\nggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +\n  geom_point(aes(color = species)) +\n  geom_smooth(aes(color = species), method = \"lm\") +\n  geom_smooth(method = \"lm\") + \n  labs(x = \"Bill Length(milimeters)\", y = \"Body mass(grams)\") +\n  guides(color = guide_legend(title = \"Species\",\n                              override.aes = list(fill = NA))) +\n  theme_allen_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotice that when we plot by subgroup we see evidence of simpson’s pardox"
+    "text": "Some Basic Graphs Cont\n\n\nggplot(penguins,\n   aes(x = bill_depth_mm,\n       y = body_mass_g)) +\n  geom_point(aes(color = species)) +\n  geom_smooth(aes(color = species),\n              method = \"lm\") +\n  geom_smooth(method = \"lm\") + \n  labs(x = \"Bill Length(milimeters)\",\n        y = \"Body mass(grams)\") +\n  guides(color = guide_legend(title = \"Species\",\n        override.aes = list(fill = NA))) +\n  theme_allen_bw()\n\n\n\n\n\n\n\n\n\n\n\nNotice that when we plot by subgroup we see evidence of simpson’s pardox"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#distributions",
     "href": "slides/data-analysis-in-R.html#distributions",
     "title": "Data Analysis in R",
     "section": "Distributions",
-    "text": "Distributions\n\n\n\nggplot(penguins, aes(x = flipper_length_mm, fill = species)) +\n  geom_histogram(alpha = 0.6) +\n  labs(x = \"Flipper Length(milimeters)\") +\n  guides(fill = guide_legend(title = \"Species\")) +\n  theme_allen_minimal()"
+    "text": "Distributions\n\n\nggplot(penguins,\n  aes(x = flipper_length_mm,\n      fill = species)) +\n  geom_histogram(alpha = 0.6) +\n  labs(x = \"Flipper Length(milimeters)\") +\n  guides(fill = guide_legend(title = \"Species\")) +\n  theme_allen_minimal()"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#distributionscont",
@@ -872,14 +872,14 @@
     "href": "slides/data-analysis-in-R.html#user-written-extensions",
     "title": "Data Analysis in R",
     "section": "User Written Extensions",
-    "text": "User Written Extensions\n\n\nlibrary(gghalves)\n\nggplot(penguins, aes(x = species, y = bill_depth_mm, fill = species)) +\n  geom_boxplot(\n    width = .2, fill = \"white\",\n    size = 1.5, outlier.shape = NA\n  ) +\n  ggdist::stat_halfeye(\n    adjust = .33,\n    width = .67, \n    color = NA,\n    position = position_nudge(x = .15)\n  ) +\n  gghalves::geom_half_point(\n    side = \"l\", \n    range_scale = .3, \n    alpha = .25, size = 1\n  ) +\n  MetBrewer::scale_fill_met_d(name = \"Veronese\") +\n  labs(x = NULL, fill = \"Species\", y = \"Bill Depth(milimeters)\") +\n  coord_flip() +\n  theme_allen_bw()\n\n\n\n\n\n\n\n\n\n\n\n\nCode and example are from Cédric Scherer’s Beyond the Bar plot talk"
+    "text": "User Written Extensions\n\n\nlibrary(gghalves)\nlibrary(MetBrewer)\nlibrary(ggdist)\n\nggplot(penguins,\n  aes(x = species,\n      y = bill_depth_mm,\n     fill = species)) +\n  geom_boxplot(\n    width = .2, fill = \"white\",\n    size = 1.5, outlier.shape = NA\n  ) +\n  stat_halfeye(\n    adjust = .33,\n    width = .67, \n    color = NA,\n    position = position_nudge(x = .15)\n  ) +\n  geom_half_point(\n    side = \"l\", \n    range_scale = .3, \n    alpha = .25, size = 1\n  ) +\n  scale_fill_met_d(name = \"Veronese\") +\n  labs(x = NULL,\n      fill = \"Species\",\n      y = \"Bill Depth(millimeters)\") +\n  coord_flip() +\n  theme_allen_bw()\n\n\n\n\n\n\n\n\n\n\n\n\nCode and example are from Cédric Scherer’s Beyond the Bar plot talk"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-table-1",
     "href": "slides/data-analysis-in-R.html#generating-table-1",
     "title": "Data Analysis in R",
     "section": "Generating Table 1",
-    "text": "Generating Table 1\n\npenguins = as.data.frame(penguins)\n\n\ndatasummary(All(penguins) ~ Mean + SD + Max + Min + Median + Histogram,\n            data = penguins, output = \"html\",\n            title = \"Descriptive Statistics\") \n\n\n\nDescriptive Statistics\n \n  \n      \n    Mean \n    SD \n    Max \n    Min \n    Median \n    Histogram \n  \n \n\n  \n    bill_length_mm \n    43.92 \n    5.46 \n    59.60 \n    32.10 \n    44.45 \n    ▁▅▆▆▆▇▇▂▁ \n  \n  \n    bill_depth_mm \n    17.15 \n    1.97 \n    21.50 \n    13.10 \n    17.30 \n    ▃▄▄▄▇▆▇▅▂▁ \n  \n  \n    flipper_length_mm \n    200.92 \n    14.06 \n    231 \n    172 \n    197.00 \n    ▂▅▇▄▁▄▄▂▁ \n  \n  \n    body_mass_g \n    4201.75 \n    801.95 \n    6300 \n    2700 \n    4050.00 \n    ▁▄▇▅▄▄▃▃▂▁ \n  \n  \n    year \n    2008.03 \n    0.82 \n    2009 \n    2007 \n    2008.00 \n    ▆▇▇"
+    "text": "Generating Table 1\n\npenguins = as.data.frame(penguins)\n\ndatasummary(All(penguins) ~ Mean + SD + Max + Min + Median + Histogram,\n            data = penguins, output = \"html\",\n            title = \"Descriptive Statistics\") \n\n\n\nDescriptive Statistics\n \n  \n      \n    Mean \n    SD \n    Max \n    Min \n    Median \n    Histogram \n  \n \n\n  \n    bill_length_mm \n    43.92 \n    5.46 \n    59.60 \n    32.10 \n    44.45 \n    ▁▅▆▆▆▇▇▂▁ \n  \n  \n    bill_depth_mm \n    17.15 \n    1.97 \n    21.50 \n    13.10 \n    17.30 \n    ▃▄▄▄▇▆▇▅▂▁ \n  \n  \n    flipper_length_mm \n    200.92 \n    14.06 \n    231 \n    172 \n    197.00 \n    ▂▅▇▄▁▄▄▂▁ \n  \n  \n    body_mass_g \n    4201.75 \n    801.95 \n    6300 \n    2700 \n    4050.00 \n    ▁▄▇▅▄▄▃▃▂▁ \n  \n  \n    year \n    2008.03 \n    0.82 \n    2009 \n    2007 \n    2008.00 \n    ▆▇▇"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-a-balance-table",
@@ -893,7 +893,7 @@
     "href": "slides/data-analysis-in-R.html#some-basics",
     "title": "Data Analysis in R",
     "section": "Some Basics",
-    "text": "Some Basics\n\nFor lm and other models we use this general form\n\nmodel_one = estimator(outcome ~ iv1 + iv2 + ..., data = df)\n\n\nIf you want to include all the variables in your data set than you can do that with .\n\nmodel_one = estimator(outcome ~ ., data = df)\n\n\nRemember R can hold lots of datasets so we have to be explicit with where the data is coming from\n\nnote that we have several different datasets named penguins_blah\nmaking sure you have kept track of the using dataset is important"
+    "text": "Some Basics\n\nFor lm and other models we use this general form\n\n\nestimator(Outcome ~ IV1 + IV2, data = your_data)\n\n\nIf you want to include all the variables in your data set than you can do that with .\nRemember R can hold lots of datasets so we have to be explicit with where the data is coming from\n\nnote that we have several different datasets named penguins_blah\nmaking sure you have kept track of the using dataset is important"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#univariate-regression",
@@ -921,7 +921,7 @@
     "href": "slides/data-analysis-in-R.html#getting-diagnostic-statistics",
     "title": "Data Analysis in R",
     "section": "Getting Diagnostic Statistics",
-    "text": "Getting Diagnostic Statistics\n\n\n\n\n\nBase R\n\npeng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species,\n                 data = peng_sans_miss_base)\n## remember you need to open the train car door or it will return a listy thing\npeng_sans_miss_base$.fitted_vals_brack = peng_adjust[[5]] \n\npeng_sans_miss_base$.fitted_vals_dollar = peng_adjust$fitted.values\n\npeng_sans_miss_base$.predicted_vals = predict(peng_adjust, interval = \"prediction\")\n\npeng_sans_miss_base$.residuals_vals = peng_adjust$residuals\n\npeng_sans_miss_base$.studentized_resids = rstudent(peng_adjust)\n\npeng_sans_miss_base$.cooks_distance = cooks.distance(peng_adjust)\n\n\nTidyverse\n\npeng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species,\n                 data = peng_sans_miss_tidy) \npeng_diag_tidy = augment(peng_adjust,\n                         data = peng_sans_miss_tidy)\n\n\n\n\n\nAs good data analysts we should always check that our assumptions are met. One really good test is to just plot our fitted values against our residuals. So lets go ahead and grab them. In base you just index them via the dollar sign or brackets. In the tidyverse can get them via broom augment. They will be returned with the name of the thing you want starting with a dot.\nThe reason is that the team behind broom did not want to override existing stuff\n\n\nI just dropped the missing values to make my life easier"
+    "text": "Getting Diagnostic Statistics\n\n\n\n\n\nBase R\n\npeng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species,\n                 data = peng_sans_miss_base)\n## remember you need to open the train car door or it will return a listy thing\npeng_sans_miss_base$.fitted_vals_brack = peng_adjust[[5]] \n\npeng_sans_miss_base$.fitted_vals_dollar = peng_adjust$fitted.values\n\npeng_sans_miss_base$.predicted_vals = predict(peng_adjust, interval = \"prediction\")\n\npeng_sans_miss_base$.residuals_vals = peng_adjust$residuals\n\npeng_sans_miss_base$.studentized_resids = rstudent(peng_adjust)\n\npeng_sans_miss_base$.cooks_distance = cooks.distance(peng_adjust)\n\n\nTidyverse\n\npeng_adjust = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + species,\n   data = peng_sans_miss_tidy) \npeng_diag_tidy = augment(peng_adjust,\n                         data = peng_sans_miss_tidy)\n\n\n\n\n\nAs good data analysts we should always check that our assumptions are met. One really good test is to just plot our fitted values against our residuals. So lets go ahead and grab them. In base you just index them via the dollar sign or brackets. In the tidyverse can get them via broom augment. They will be returned with the name of the thing you want starting with a dot.\nThe reason is that the team behind broom did not want to override existing stuff\n\n\nI just dropped the missing values to make my life easier"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#plotting",
@@ -1040,21 +1040,21 @@
     "href": "slides/data-analysis-in-R.html#fixed-effects",
     "title": "Data Analysis in R",
     "section": "Fixed Effects",
-    "text": "Fixed Effects\n\nlibrary(plm)\n\n\npenguins_feols = feols(body_mass_g ~  bill_length_mm + flipper_length_mm | species + island, data =  peng_sans_miss_tidy)\n\npeng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + factor(island) , data = peng_sans_miss_tidy)\n\n\npeng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm  + island\n , data = peng_sans_miss_tidy,\n  index = c(\"species\"),\n   model = \"within\")\n\n\nThere are more than a few ways to get a fixed effects regression in R my prefered way is using fixest. Because a species and island fixed effect would be a bit ridicoulous we can use star wars to demonstrate our point a bit\nTo sort of get on with the rest of the workshop I will not spend to much time on this. But it is stupid fast and lets you do a whole lot. It does not have random effects tho. PLM is really useful for lots of other common panel estimators. But fixest is still the winner when it comes to] fixed effects models."
+    "text": "Fixed Effects\n\nlibrary(plm)\n\n\npenguins_feols = feols(body_mass_g ~  bill_length_mm + flipper_length_mm | species + island,\n  data =  peng_sans_miss_tidy)\n\npeng_stand = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + factor(species) + factor(island),\n  data = peng_sans_miss_tidy)\n\npeng_plm = plm(body_mass_g ~  bill_length_mm + flipper_length_mm  + island,\n  data = peng_sans_miss_tidy,\n  index = c(\"species\"),\n  model = \"within\")\n\n\nThere are more than a few ways to get a fixed effects regression in R my prefered way is using fixest. Because a species and island fixed effect would be a bit ridicoulous we can use star wars to demonstrate our point a bit\nTo sort of get on with the rest of the workshop I will not spend to much time on this. But it is stupid fast and lets you do a whole lot. It does not have random effects tho. PLM is really useful for lots of other common panel estimators. But fixest is still the winner when it comes to] fixed effects models."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-predictions",
     "href": "slides/data-analysis-in-R.html#generating-predictions",
     "title": "Data Analysis in R",
     "section": "Generating Predictions",
-    "text": "Generating Predictions\n\nset.seed(1994)\n\npenguins_prediction = mutate(penguins, id = row_number()) |> \ndrop_na()\n\npeng_train = penguins_prediction |> \n  sample_frac(0.7)\n\npeng_test = anti_join(penguins_prediction, peng_train, by = \"id\")\n\n\npeng_test$data_set = \"Test\"\n\n\npenguins_training_model = lm(body_mass_g ~ bill_length_mm, data = peng_train)\n\npenguins_train_plot = augment(penguins_training_model, \n                      interval = \"prediction\") |>\n                      select(.fitted, .lower, .upper, body_mass_g, bill_length_mm) |>\n                      mutate(data_set = \"train\")\n\npeng_predict_train = augment(penguins_training_model,\n                           interval = \"prediction\",\n                           newdata = peng_test) |> \n  select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)"
+    "text": "Generating Predictions\n\nset.seed(1994)\n\npenguins_prediction = mutate(penguins, id = row_number()) |> \ndrop_na()\n\npeng_train = penguins_prediction |> \n  sample_frac(0.7)\n\npeng_test = anti_join(penguins_prediction, peng_train, by = \"id\")\n\n\npeng_test$data_set = \"Test\"\n\n\npenguins_training_model = lm(body_mass_g ~ bill_length_mm, data = peng_train)\n\npenguins_train_plot = augment(penguins_training_model, \n                      interval = \"prediction\") |>\n                      select(.fitted, .lower, .upper, body_mass_g, bill_length_mm) |>\n                      mutate(data_set = \"train\")\n\npeng_predict_train = augment(penguins_training_model,\n                           interval = \"prediction\",\n                           newdata = peng_test) |> \n  select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)\n\nall_together = rbind(penguins_train_plot,\n                    peng_predict_train)"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#visual-inspection",
     "href": "slides/data-analysis-in-R.html#visual-inspection",
     "title": "Data Analysis in R",
     "section": "Visual Inspection",
-    "text": "Visual Inspection\n\n\nall_together = rbind(penguins_train_plot,\n                    peng_predict_train)\n\nggplot(all_together,\n  aes(x = bill_length_mm,\n    y = body_mass_g,\n   color = data_set,\n    fill = data_set)) +\n  geom_point(alpha = 0.7) +\n  geom_line(aes(y = .fitted)) +\n  geom_ribbon(aes(ymin = .lower,\n             ymax = .upper),\n               alpha = 0.3,\n               col = NA) +\n   scale_color_discrete(name = \"Training sample?\",\n                       aesthetics = c(\"color\",\n                                     \"fill\")) +\n  theme_allen_bw()"
+    "text": "Visual Inspection\n\n\nggplot(all_together,\n  aes(x = bill_length_mm,\n    y = body_mass_g,\n   color = data_set,\n    fill = data_set)) +\n  geom_point(alpha = 0.7) +\n  geom_line(aes(y = .fitted)) +\n  geom_ribbon(aes(ymin = .lower,\n             ymax = .upper),\n               alpha = 0.3,\n               col = NA) +\n  scale_color_discrete(name = \"Training sample?\",\n                       aesthetics = c(\"color\",\n                                      \"fill\")) +\n  theme_allen_bw()"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#maximum-likelihood-estimation-machine-learning",
@@ -1096,7 +1096,7 @@
     "href": "slides/data-analysis-in-R.html#user-specified-values",
     "title": "Data Analysis in R",
     "section": "User Specified Values",
-    "text": "User Specified Values\n\n\n\npredictions_emmeans = base_model |> \n emmeans(~ bill_length_mm + species, var = \"bill_length_mm\",\n                   at = list(bill_length_mm = seq(0, 60,1)),\n                   regrid = \"response\") |> \n  as_tibble()\ncolors_plot = c(\"##f0be3d\", \"##931e18\", \"##247d3f\")\n\nggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) +\n  geom_line() + \n  labs(x = \"Bill Length(millimeters)\", y = \"Predicted Probablity of Being a Big Penguin\",\n       color = NULL) +\n  theme(legend.position = \"bottom\") +\n  theme_allen_minimal() +\n  scale_color_manual(values = colors_plot)\n\n\n\np  = plot_cap(base_model, condition = c(\"bill_length_mm\", \"species\"), conf_level = 0.01) ## can be saved and changed with ggplot options \n\np + \n  labs(x = \"Bill Length(millimeters)\", y = \"Predicted Probablity of Being a Big Penguin\",\n       color = NULL, fill = NULL,\n       caption = \"By Default plot_cap plots confidence intervals \\nso you have you make them really small\") +\n  theme(legend.position = \"bottom\") +\n  theme_allen_minimal() +\n  scale_color_manual(values = colors_plot)"
+    "text": "User Specified Values\n\n\nemmeans\n\npredictions_emmeans = base_model |> \n emmeans(~ bill_length_mm + species, var = \"bill_length_mm\",\n                   at = list(bill_length_mm = seq(0, 60,1)),\n                   regrid = \"response\") |> \n  as_tibble()\ncolors_plot = c(\"##f0be3d\", \"##931e18\", \"##247d3f\")\n\nggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) +\n  geom_line() + \n  labs(x = \"Bill Length(millimeters)\", y = \"Predicted Probablity of Being a Big Penguin\",\n       color = NULL) +\n  theme(legend.position = \"bottom\") +\n  theme_allen_minimal() +\n  scale_color_manual(values = colors_plot)\n\n\nMarginal Effects\n\np  = plot_cap(base_model, condition = c(\"bill_length_mm\", \"species\"), conf_level = 0.01) ## can be saved and changed with ggplot options \n\np + \n  labs(x = \"Bill Length(millimeters)\", y = \"Predicted Probablity of Being a Big Penguin\",\n       color = NULL, fill = NULL,\n       caption = \"By Default plot_cap plots confidence intervals \\nso you have you make them really small\") +\n  theme(legend.position = \"bottom\") +\n  theme_allen_minimal() +\n  scale_color_manual(values = colors_plot)"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#results",
@@ -1110,28 +1110,28 @@
     "href": "slides/data-analysis-in-R.html#packages-you-will-need-1",
     "title": "Data Analysis in R",
     "section": "Packages You Will Need",
-    "text": "Packages You Will Need\n\nlibrary(tidymodels)\nlibrary(caret)\nlibrary(MASS)\nlibrary(mlbench)\nlibrary(e1071)\nlibrary(parallel) # Allows for parallel processing \nlibrary(doParallel) # extremely useful for models that take a longtime\n\n\nNote caret and tidymodels have some namespace conflicts.\n\nI personally would prefer to load one or the other\nThis is just a commitment to show you how to do things two ways"
+    "text": "Packages You Will Need\n\nset.seed(1994) # make things reproducible\nlibrary(ISLR2)\nlibrary(caret)\nlibrary(leaps)\nlibrary(mlbench)\nlibrary(tidymodels)\n\n\nNote caret and tidymodels have some namespace conflicts.\n\nI personally would prefer to load one or the other\n\n\n\n\n\n\n\n\nImportant\n\n\nThe Elements of Statistical Learning has all the R and Python code located at this website.\n\n\n\n\nI generally am not a machine learning person. So I am just going to show you the basics of a machine learning workflow in R."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#creating-training-and-test-sets",
     "href": "slides/data-analysis-in-R.html#creating-training-and-test-sets",
     "title": "Data Analysis in R",
     "section": "Creating Training and Test Sets",
-    "text": "Creating Training and Test Sets\n\n\nCaret\n\n# Preprocess data  \npeng =  penguins |> drop_na()\n\npeng_caret = as.data.frame(peng)  \n\n\ntrain_index_caret = caret::createDataPartition(peng_caret$species, p = 0.7, list = FALSE, times = 1)\n\ntrain_caret = peng_caret[train_index_caret,]\n\ntest_caret = peng_caret[-train_index_caret,]\n\n\nTidymodels\n\npeng_models =  rsample::initial_split(peng, prop = 0.7)\n\npeng_tidy_train = rsample::training(peng_models)\n\npeng_tidy_test = rsample::testing(peng_models)"
+    "text": "Creating Training and Test Sets\n\n\nCaret\n\n# Preprocess data  \npeng =  penguins |> drop_na()\n\npeng_caret = as.data.frame(peng)  \n\ntrain_index_caret = caret::createDataPartition(peng_caret$body_mass_g, p = 0.7, list = FALSE, times = 1)\n\ntrain_caret = peng_caret[train_index_caret,]\n\ntest_caret = peng_caret[-train_index_caret,]\n\n\nTidymodels\n\npeng_models =  rsample::initial_split(peng, prop = 0.7)\n\npeng_tidy_train = rsample::training(peng_models)\n\npeng_tidy_test = rsample::testing(peng_models)"
   },
   {
-    "objectID": "slides/data-analysis-in-R.html#create-bootstraps",
-    "href": "slides/data-analysis-in-R.html#create-bootstraps",
+    "objectID": "slides/data-analysis-in-R.html#create-cross-validations",
+    "href": "slides/data-analysis-in-R.html#create-cross-validations",
     "title": "Data Analysis in R",
-    "section": "Create Bootstraps",
-    "text": "Create Bootstraps\n\n\nCaret\n\nI just choose bootstrap. Do what makes sense for your goals\n\n\npeng_caret_boots = trainControl(method = \"boot\", number = 25, classProbs = TRUE)\n\n\n\npeng_boots = bootstraps(peng_tidy_train)"
+    "section": "Create Cross Validations",
+    "text": "Create Cross Validations\n\n\nCaret\n\npeng_caret_cv = trainControl(method = \"cv\",\n      number = 10)\n\n\nTidymodels\n\npeng_cv_tidy = vfold_cv(peng_tidy_train, v = 10, strata = body_mass_g)"
   },
   {
-    "objectID": "slides/data-analysis-in-R.html#fit-a-random-forest-and-plot-roc",
-    "href": "slides/data-analysis-in-R.html#fit-a-random-forest-and-plot-roc",
+    "objectID": "slides/data-analysis-in-R.html#fit-a-lasso-regression",
+    "href": "slides/data-analysis-in-R.html#fit-a-lasso-regression",
     "title": "Data Analysis in R",
-    "section": "Fit a Random Forest and Plot ROC",
-    "text": "Fit a Random Forest and Plot ROC\n\n\nCaret\n\nlibrary(pROC)\nrf_caret = train(sex ~ .,\n                 data = train_caret,\n                 method = \"ranger\",\n                 trControl = peng_caret_boots,\n                 metric = \"ROC\",\n                 verbose = FALSE)\n\n# confusionMatrix(predict(rf_caret, train)) this is how you extract predictions with caret\n\n\n\n# confusionMatrix(predict(rf_caret, train)) \n\n\n# roc(test$species)\n\n\nTidymodels\n\n\nCode\nrf_spec = rand_forest() |> \n  set_mode(\"classification\") |> \n  set_engine(\"ranger\")\n\npenguin_wf = workflow() |> \n  add_formula(sex ~ .)\n\n\nrf_peng = penguin_wf |> \n  add_model(rf_spec) |> \n  fit_resamples(resample = peng_boots,\n                control = control_resamples(save_pred = TRUE))\n\n\n\n\nrf_peng |> \n  collect_predictions()  |> \n  group_by(id) |> \n  roc_curve(sex, .pred_female) |> \n  ggplot(aes(1 - specificity, sensitivity, color = id)) +\n  geom_abline(lty = 2, color = \"gray80\", size = 1.5) +\n  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +\n  coord_equal()"
+    "section": "Fit a lasso regression",
+    "text": "Fit a lasso regression\n\nlasso_caret = train(body_mass_g ~ .,\n                 data = train_caret,\n                 method = \"lasso\",\n                 trControl = peng_caret_cv)\n\n\n\ntuning_grid_caret = data.frame(.fraction = 10^seq(-2, -1, length.out = 10))\n\n\n\nlasso_caret_tune = train(body_mass_g ~ .,\n                 data = train_caret,\n                 method = \"lasso\",\n                 trControl = peng_caret_cv,\n                 tuneGrid = tuning_grid_caret)\n\npredictions_caret = predict(lasso_caret_tune, newdata = test_caret)\n\n\nAll in all machine learning in R works. I just have not done it all that much. I have mostly done strucutural topic mo"
   },
   {
     "objectID": "slides/data-cleaning-data-table.html#packages-you-will-need",
