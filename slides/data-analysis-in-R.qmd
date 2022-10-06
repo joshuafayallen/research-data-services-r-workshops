@@ -433,7 +433,6 @@ ggplot(penguins, aes(x = body_mass_g, fill = species)) +
 
 
 
-
 ## User Written Extensions
 
 
@@ -478,20 +477,73 @@ ggplot(penguins,
 Code and example are from Cédric Scherer's [Beyond the Bar plot talk](https://twitter.com/CedScherer/status/1438836874630545412)
 :::
 
+## Correlation Plots 
+
+
+```{r}
+#| output-location: column
+cor_plot_dat = penguins |>
+drop_na() |>
+select(where(is.numeric), -year) |>
+cor()
+
+cor_plot_dat[lower.tri(cor_plot_dat)] <- NA
+
+
+
+long_cor_dat = cor_plot_dat |>
+as.data.frame() |>
+rownames_to_column("measure2") |>
+pivot_longer(cols = -measure2,
+             names_to = "measure1",
+            values_to = "cor") |>
+mutate(nice_cor = round(cor,2)) |>
+filter(measure2 != measure1) |>
+filter(!is.na(cor)) |>
+mutate(measure1 = fct_inorder(measure1),
+       measure2 = fct_inorder(measure2))
+
+
+ggplot(long_cor_dat, 
+       aes(x = measure2, y = measure1, fill = cor)) +
+  geom_tile() +
+  geom_text(aes(label = nice_cor)) +
+  scale_fill_gradient2(low = "#e76254", mid = "white", high = "#1e466e",
+                       limits = c(-1, 1)) +
+  labs(x = NULL, y = NULL) +
+  coord_equal() +
+  theme_minimal() +
+  theme(panel.grid = element_blank())
+
+
+
+
+```
+
+
+
 
 ## Generating Table 1
 
 ```{r}
-penguins = as.data.frame(penguins) |> select(-year)
+penguins_df = as.data.frame(penguins) |>
+  select(-year)
 
-datasummary(All(penguins) ~ Mean + SD + Max + Min + Median + Histogram,
+datasummary(All(penguins_df) ~ Mean + SD + Max + Min + Median + Histogram,
             data = penguins, output = "html",
             title = "Descriptive Statistics") 
   
 
 ```
 
+## Getting Just A Few Stats
 
+```{r}
+
+datasummary(body_mass_g + bill_length_mm ~ Mean + SD, data = penguins_df, output = "html")
+
+
+```
 
 
 
@@ -514,13 +566,11 @@ datasummary_balance(~gentoo,
 
 
 
-# Linear Regression in R 
+# Data Analysis in R 
 
 
 
 ## Some Basics
-
-- For `lm` and other models we use this general form
   
 ```{r eval = FALSE}
 estimator(Outcome ~ IV1 + IV2, data = your_data)
@@ -533,7 +583,6 @@ estimator(Outcome ~ IV1 + IV2, data = your_data)
 - Remember R can hold lots of datasets so we have to be explicit with where the data is coming from
   - note that we have several different datasets named `penguins_blah`
   - making sure you have kept track of the using dataset is important
-
 
 
 
@@ -570,6 +619,25 @@ This is probably what you are used to seeing if you are coming over from another
 :::
 
 
+
+## Anova 
+
+
+```{r}
+
+anova_example = aov(body_mass_g ~ species, data = penguins)
+
+summary(anova_example)
+
+
+TukeyHSD(anova_example)
+
+```
+
+:::{.notes}
+Here we can see that at least one group is different. 
+
+::::
 
 
 ## Multiple Regression 
@@ -946,7 +1014,7 @@ summary(pengs_interact_stand)
 ## Full Marginal Effects way 
 
 ```{r}
-pengs_interact_marg = lm(body_mass_g ~ bill_length_mm / sex + flipper_length_mm + species, data = peng_sans_miss_tidy)
+pengs_interact_marg = lm(body_mass_g ~ bill_length_mm / factor(sex) + flipper_length_mm + species, data = peng_sans_miss_tidy)
 
 summary(pengs_interact_marg)
 ```
@@ -974,8 +1042,7 @@ plot_cco(
 
 
 :::{.callout-tip}
-[interflex](https://yiqingxu.org/packages/interflex/) is also good a package
-and implements diagnostics for violations of the assumptions underlying interaction terms and a way to interpret the effects. [inters](https://github.com/mattblackwell/inters) also has an interesting implementation where they use LASSO
+ [inters](https://github.com/mattblackwell/inters) also has an interesting implementation where they use LASSO
 :::
 :::{.notes}
 We may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco.  CCO is This function plots contrasts (y-axis) against values of predictor(s) variable(s) (x-axis and colors).
@@ -986,7 +1053,32 @@ We may be interested in what happens when we shift the values of our continous v
 
 :::
 
+## Interflex 
 
+```{r results = "hide", warning = FALSE}
+#| output-location: column
+
+library(interflex)
+
+peng_interflex = as.data.frame(peng_sans_miss_tidy)
+
+
+interflex(Y = "body_mass_g",
+          D = "sex",
+          X = "flipper_length_mm",
+          Z = c("bill_length_mm", "species"),
+         estimator = "kernel",
+         data = peng_interflex,
+         theme.bw = TRUE,
+         parallel = FALSE) 
+
+
+```
+
+:::{.notes}
+Interflex is also a package that I would be remiss not to bring attention to. It is by a group of political scientists. This implements some tests to ensure that there is a linear interaction effects and whether there is common support. Basically if you start to plug in values your self across the full range of flipper lenghh you may be calculating effects where there is not a ton of data making those estimates super fragile. I would probably opt for interflex in this case but I think that is just a discipline specific thing 
+
+:::
 
 ## Tables with multiple models 
 
@@ -1070,11 +1162,10 @@ penguins_train_plot = augment(penguins_training_model,
 peng_predict_train = augment(penguins_training_model,
                            interval = "prediction",
                            newdata = peng_test) |> 
-  select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)
+ select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)
 
 all_together = rbind(penguins_train_plot,
                     peng_predict_train)
-
 ```
 
 
@@ -1464,6 +1555,8 @@ peng_cv_tidy = vfold_cv(peng_tidy_train, v = 10, strata = body_mass_g)
 
 
 
+
+
 ```{r}
 
 lasso_caret = train(body_mass_g ~ .,
@@ -1569,3 +1662,8 @@ labs(y = NULL) +
 theme_allen_bw()
 
 ```
+
+
+
+
+
