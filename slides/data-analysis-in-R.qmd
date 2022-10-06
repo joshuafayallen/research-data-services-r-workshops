@@ -214,7 +214,7 @@ penguins_t_test = na.omit(penguins) # can also use na.action in t.test
 
 penguins_t_test$gentoo = ifelse(penguins_t_test$species == "Gentoo", TRUE, FALSE)
 
-t.test(penguins_t_test$flipper_length_mm, penguins_t_test$bill_length_mm, var.equal = TRUE) # this is just to show you some of the options
+t.test(penguins_t_test$body_mass_g, penguins_t_test$bill_length_mm, var.equal = TRUE) # this is just to show you some of the options
 ```
 
 ```{r echo = FALSE}
@@ -222,7 +222,7 @@ penguins_t_test = na.omit(penguins)
 
 penguins_t_test$gentoo = ifelse(penguins_t_test$species == "Gentoo", TRUE, FALSE)
 
-t.test(penguins_t_test$flipper_length_mm, penguins_t_test$bill_length_mm, var.equal = TRUE)  # 
+t.test(penguins_t_test$body_mass_g, penguins_t_test$bill_length_mm, var.equal = TRUE)  
 ```
 
 :::
@@ -258,6 +258,9 @@ t.test(flipper_length_mm ~ gentoo, data = penguins_t_test)
 
 :::{.notes}
 In this case we have our first example of using of the formula. To do statsy stuff in R we generally have to use the tilde. This is just a function of how R does statistical analysis. Would and equal sign make sense here sure but like we have to use equal for lots of other stuff.
+
+In the case of the one on the right we are doing a 
+
 
 :::
 
@@ -382,6 +385,11 @@ ggplot(penguins,
 
 :::{.notes}
 Notice that when we plot by subgroup we see evidence of simpson's pardox 
+
+
+Simpson’s Paradox is a statistical phenomenon where an association between two variables in a population emerges, disappears or reverses when the population is divided into subpopulations. For instance, two variables may be positively associated in a population, but be independent or even negatively associated in all subpopulations
+
+In this case the subgroup differences tell a much different story than the overall population. So that is something that we need to be aware of 
 
 :::
 
@@ -574,9 +582,20 @@ summary(peng_adjust)
 
 
 
+## Adding Things in The Formula
 
+```{r}
+peng_adjust_sq = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + I(bill_depth_mm^2) + species, data = penguins)
 
+summary(peng_adjust_sq)
 
+```
+
+:::{.notes}
+The I is the isolates or inhibit function. R will parse forumulas differently than regualr R code. so ^ has a special meaning in forumla. Which can lead to things that you don't anticipate. Normally if you wanted to get the sum of two terms you would use the addition symbol to achieve this. But in the formula syntax you are now adding them as terms to the model
+
+ from the gaze of R's formula parsing code. It allows the standard R operators to work as they would if you used them outside of a formula, rather than being treated as special formula operators.
+:::
 
 ## Getting Diagnostic Statistics 
 
