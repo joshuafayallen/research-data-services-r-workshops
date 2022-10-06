@@ -873,9 +873,11 @@ bgtest(peng_adjust) |> ## Breusch-Godfrey test for autocorrelation
 :::{.notes}
 null for Breusch Pagan there is no hetrosckedasticity 
 
-fail to reject 
+fail to reject the null hypothesis. This means that there is no heterosckedasticity. Thats awesome
 
 Null for Breusch Godfrey is there is no serial correlation of order up to 1
+
+We can reject the null hypothesis meaning that there is some autocorrelation in our data. 
 
 Okay it looks like something we have violated some of our assumptions 
 :::
