@@ -612,10 +612,10 @@
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">summarise</span>(<span class="at">quartile_length =</span> <span class="fu">quantile</span>(bill_length_mm,</span>
-<span id="cb12-3"><a href="#cb12-3"></a>                                    <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>                                    <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">25</span>,</span>
-<span id="cb12-5"><a href="#cb12-5"></a>                                              .<span class="dv">50</span>,</span>
-<span id="cb12-6"><a href="#cb12-6"></a>                                              .<span class="dv">75</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3"></a>                          <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                          <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">25</span>,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>                                    .<span class="dv">50</span>,</span>
+<span id="cb12-6"><a href="#cb12-6"></a>                                    .<span class="dv">75</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 1
   quartile_length
@@ -686,6 +686,7 @@ mean in group FALSE  mean in group TRUE
 <aside class="notes">
 <p>In this case we have our first example of using of the formula. To do statsy stuff in R we generally have to use the tilde. This is just a function of how R does statistical analysis. Would and equal sign make sense here sure but like we have to use equal for lots of other stuff.</p>
 <p>In the case of the one on the right we are doing a</p>
+<p>his version of the test is actually the Welch Student’s test, used when the variances of the populations are unknown and unequal</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -839,7 +840,7 @@ mean in group FALSE  mean in group TRUE
 <span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> species),</span>
 <span id="cb21-6"><a href="#cb21-6"></a>              <span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
 <span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
-<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length(milimeters)"</span>,</span>
+<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Depth(milimeters)"</span>,</span>
 <span id="cb21-9"><a href="#cb21-9"></a>        <span class="at">y =</span> <span class="st">"Body mass(grams)"</span>) <span class="sc">+</span></span>
 <span id="cb21-10"><a href="#cb21-10"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Species"</span>,</span>
 <span id="cb21-11"><a href="#cb21-11"></a>        <span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="cn">NA</span>))) <span class="sc">+</span></span>
@@ -896,13 +897,14 @@ mean in group FALSE  mean in group TRUE
 <h2>Distributions(cont)</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="do">## you can turn off scientific notion using option(scipen = 999)</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body Mass(grams)"</span>) <span class="sc">+</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Species"</span>)) <span class="sc">+</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">theme_allen_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="do">## you can turn off scientific notion </span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="co"># using option(scipen = 999)</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body Mass(grams)"</span>) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Species"</span>)) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>  <span class="fu">theme_allen_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
