@@ -6,6 +6,14 @@ date: "2022-08-29"
 format: 
  revealjs:
    theme: ["allen.scss"]
+knitr:
+  opts_chunk:
+    dev: "ragg_png"
+    retina: 1
+    dpi: 200
+execute:
+  freeze: auto
+  echo: true
 ---
 
 
@@ -27,6 +35,8 @@ library(nullabor)
 library(ggfortify)
 library(plm)
 library(tidyverse)
+
+
 
 knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
                       message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
@@ -59,11 +69,11 @@ penguins = palmerpenguins::penguins
 
 
 :::{.notes}
-Note this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximumlikelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not. 
+Note this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximum likelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not. 
 
 I also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis 
 
-This workshop is going to sort of through building the results section of a paper. This will generally be geared toward a social science audience. But the fundamentals are virtually the same. 
+This workshop is going to sort of through building the results section of a paper. This will generally be geared toward a social science audience. But the fundamentals are virtually the same if you are not. 
 
 
 :::
@@ -201,11 +211,11 @@ penguins |>
 :::{.column width="45%"}
 ### Base R 
 ```{r eval=FALSE}
-penguins_t_test = na.omit(penguins) 
+penguins_t_test = na.omit(penguins) # can also use na.action in t.test
 
 penguins_t_test$gentoo = ifelse(penguins_t_test$species == "Gentoo", TRUE, FALSE)
 
-t.test(flipper_length_mm ~ gentoo, data = penguins_t_test) 
+t.test(penguins_t_test$flipper_length_mm, penguins_t_test$bill_length_mm, var.equal = TRUE) # this is just to show you some of the options
 ```
 
 ```{r echo = FALSE}
@@ -213,7 +223,7 @@ penguins_t_test = na.omit(penguins)
 
 penguins_t_test$gentoo = ifelse(penguins_t_test$species == "Gentoo", TRUE, FALSE)
 
-t.test(flipper_length_mm ~ gentoo, data = penguins_t_test) 
+t.test(penguins_t_test$flipper_length_mm, penguins_t_test$bill_length_mm, var.equal = TRUE)  # 
 ```
 
 :::
@@ -1082,6 +1092,7 @@ ggplot(all_together,
   - As well as user written packages 
   
 - You will also probably want to load `marginaleffects` to get marginal effects of your model
+  - Remember the coeficients of a MLE model are not directly interpretable
 
 - `emmeans` is also a solid package for getting marginal effects
 
@@ -1215,9 +1226,10 @@ ggplot(data = filter(avg_marginal_effect,
 predictions_emmeans = base_model |> 
  emmeans(~ bill_length_mm + species, var = "bill_length_mm",
                    at = list(bill_length_mm = seq(0, 60,1)),
-                   regrid = "response") |> 
+                   regrid = "response", delta = 0.001) |> 
   as_tibble()
-colors_plot = c("##f0be3d", "##931e18", "##247d3f")
+
+colors_plot = c("#f0be3d", "#931e18", "#247d3f")
 
 ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) +
   geom_line() + 
@@ -1239,12 +1251,18 @@ ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) 
 ###  Marginal Effects
 
 ```{r eval=FALSE}
-p  = plot_cap(base_model, condition = c("bill_length_mm", "species"), conf_level = 0.01) ## can be saved and changed with ggplot options 
+
+base_model_use = base_model |>
+predictions(newdata = datagrid(bill_length_mm = c(0,60)))
+
+
+p  = plot_cap(base_model, condition = c("bill_length_mm", "species"))## can be saved and changed with ggplot options 
 
 p + 
   labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
        color = NULL, fill = NULL,
        caption = "By Default plot_cap plots confidence intervals \nso you have you make them really small") +
+  scale_x_continuous(breaks = seq(0,60, 20)) +
   theme(legend.position = "bottom") +
   theme_allen_minimal() +
   scale_color_manual(values = colors_plot)
@@ -1264,8 +1282,8 @@ p +
 
 predictions_emmeans = base_model |> 
   emmeans(~ bill_length_mm + species, var = "bill_length_mm",
-                   at = list(bill_length_mm = seq(0, 60)),
-                   regrid = "response") |> 
+                   at = list(bill_length_mm = seq(0, 60,1)),
+                   regrid = "response", delta = 0.001) |> 
   as_tibble()
 
 colors_plot = c("#f0be3d", "#931e18", "#247d3f")
@@ -1295,10 +1313,9 @@ p  = plot_cap(base_model,
 
 p + 
   labs(x = "Bill Length(millimeters)",
-       y = "Predicted Probablity of Being a Big Penguin",
+       y = "Predicted Probability of Being a Big Penguin",
        color = NULL, fill = NULL,
        caption = "By Default plot_cap plots confidence intervals \nso you have you make them really small") +
-  theme(legend.position = "bottom") +
   theme_allen_minimal() +
   scale_color_manual(values = colors_plot)
 ```
@@ -1324,6 +1341,7 @@ library(caret)
 library(leaps)
 library(mlbench)
 library(tidymodels)
+library(vip)
 
 ```
 
@@ -1450,9 +1468,84 @@ predictions_caret = predict(lasso_caret_tune, newdata = test_caret)
 
 ```
 
+
+
+
+
+
+
+
 :::{.notes}
 All in all machine learning in R works. I just have not done it all that much. I have mostly done strucutural topic mo
 
 
 :::
 
+## Lasso Regression in Tidymodels 
+
+
+```{r}
+
+
+penguins_rec = recipe(body_mass_g ~ ., data = peng_tidy_test)  |>
+step_center(all_predictors(), -all_nominal()) |>
+step_dummy(all_nominal())
+
+lasso_mod = linear_reg(mode = "regression",
+                       penalty = tune(),
+                       mixture = 1) |>
+            set_engine("glmnet") # other package that fits lasso
+
+wf = workflow() |>
+add_model(lasso_mod) |>
+add_recipe(penguins_rec)
+
+
+my_grid = tibble(penalty = 10^seq(-2, -1, length.out = 10))
+
+
+my_res = wf |>
+tune_grid(resamples = peng_cv_tidy,
+          grid = my_grid,
+          control = control_grid(verbose = FALSE, save_pred = TRUE),
+          metrics = metric_set(rmse))
+
+
+
+good_mod = my_res |> select_best("rmse", maximize = FALSE)
+
+
+final_fit = finalize_workflow(wf, good_mod) |>
+fit(data = peng_tidy_train)
+
+
+predict(final_fit, peng_tidy_test)
+
+```
+
+
+
+
+## Variable Importance Plot 
+
+
+
+```{r}
+#| output-location: column
+final_fit |>
+fit(peng_tidy_train) |>
+extract_fit_parsnip() |>
+vi(lambda = good_mod$penalty) |>
+mutate(
+    Importance = abs(Importance),
+    Variable = fct_reorder(Variable, Importance)
+  ) |>
+ggplot(aes(x = Importance,
+          y = Variable,
+         fill = Sign)) +
+geom_col() +
+scale_x_continuous(expand = c(0,0)) + 
+labs(y = NULL) +
+theme_allen_bw()
+
+```
