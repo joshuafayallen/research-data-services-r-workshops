@@ -12,7 +12,6 @@ knitr:
     retina: 1
     dpi: 200
 execute:
-  freeze: auto
   echo: true
 ---
 
