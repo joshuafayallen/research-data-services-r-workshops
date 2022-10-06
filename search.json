@@ -875,11 +875,25 @@
     "text": "User Written Extensions\n\n\nlibrary(gghalves)\nlibrary(MetBrewer)\nlibrary(ggdist)\n\nggplot(penguins,\n  aes(x = species,\n      y = bill_depth_mm,\n     fill = species)) +\n  geom_boxplot(\n    width = .2, fill = \"white\",\n    size = 1.5, outlier.shape = NA\n  ) +\n  stat_halfeye(\n    adjust = .33,\n    width = .67, \n    color = NA,\n    position = position_nudge(x = .15)\n  ) +\n  geom_half_point(\n    side = \"l\", \n    range_scale = .3, \n    alpha = .25, size = 1\n  ) +\n  scale_fill_met_d(name = \"Veronese\") +\n  labs(x = NULL,\n      fill = \"Species\",\n      y = \"Bill Depth(millimeters)\") +\n  coord_flip() +\n  theme_allen_bw()\n\n\n\n\n\n\n\n\n\n\n\n\nCode and example are from Cédric Scherer’s Beyond the Bar plot talk"
   },
   {
+    "objectID": "slides/data-analysis-in-R.html#correlation-plots",
+    "href": "slides/data-analysis-in-R.html#correlation-plots",
+    "title": "Data Analysis in R",
+    "section": "Correlation Plots",
+    "text": "Correlation Plots\n\n\ncor_plot_dat = penguins |>\ndrop_na() |>\nselect(where(is.numeric), -year) |>\ncor()\n\ncor_plot_dat[lower.tri(cor_plot_dat)] <- NA\n\n\n\nlong_cor_dat = cor_plot_dat |>\nas.data.frame() |>\nrownames_to_column(\"measure2\") |>\npivot_longer(cols = -measure2,\n             names_to = \"measure1\",\n            values_to = \"cor\") |>\nmutate(nice_cor = round(cor,2)) |>\nfilter(measure2 != measure1) |>\nfilter(!is.na(cor)) |>\nmutate(measure1 = fct_inorder(measure1),\n       measure2 = fct_inorder(measure2))\n\n\nggplot(long_cor_dat, \n       aes(x = measure2, y = measure1, fill = cor)) +\n  geom_tile() +\n  geom_text(aes(label = nice_cor)) +\n  scale_fill_gradient2(low = \"#e76254\", mid = \"white\", high = \"#1e466e\",\n                       limits = c(-1, 1)) +\n  labs(x = NULL, y = NULL) +\n  coord_equal() +\n  theme_minimal() +\n  theme(panel.grid = element_blank())"
+  },
+  {
     "objectID": "slides/data-analysis-in-R.html#generating-table-1",
     "href": "slides/data-analysis-in-R.html#generating-table-1",
     "title": "Data Analysis in R",
     "section": "Generating Table 1",
-    "text": "Generating Table 1\n\npenguins = as.data.frame(penguins)\n\ndatasummary(All(penguins) ~ Mean + SD + Max + Min + Median + Histogram,\n            data = penguins, output = \"html\",\n            title = \"Descriptive Statistics\") \n\n\n\nDescriptive Statistics\n \n  \n      \n    Mean \n    SD \n    Max \n    Min \n    Median \n    Histogram \n  \n \n\n  \n    bill_length_mm \n    43.92 \n    5.46 \n    59.60 \n    32.10 \n    44.45 \n    ▁▅▆▆▆▇▇▂▁ \n  \n  \n    bill_depth_mm \n    17.15 \n    1.97 \n    21.50 \n    13.10 \n    17.30 \n    ▃▄▄▄▇▆▇▅▂▁ \n  \n  \n    flipper_length_mm \n    200.92 \n    14.06 \n    231 \n    172 \n    197.00 \n    ▂▅▇▄▁▄▄▂▁ \n  \n  \n    body_mass_g \n    4201.75 \n    801.95 \n    6300 \n    2700 \n    4050.00 \n    ▁▄▇▅▄▄▃▃▂▁ \n  \n  \n    year \n    2008.03 \n    0.82 \n    2009 \n    2007 \n    2008.00 \n    ▆▇▇"
+    "text": "Generating Table 1\n\npenguins_df = as.data.frame(penguins) |>\n  select(-year)\n\ndatasummary(All(penguins_df) ~ Mean + SD + Max + Min + Median + Histogram,\n            data = penguins, output = \"html\",\n            title = \"Descriptive Statistics\") \n\n\n\nDescriptive Statistics\n \n  \n      \n    Mean \n    SD \n    Max \n    Min \n    Median \n    Histogram \n  \n \n\n  \n    bill_length_mm \n    43.92 \n    5.46 \n    59.60 \n    32.10 \n    44.45 \n    ▁▅▆▆▆▇▇▂▁ \n  \n  \n    bill_depth_mm \n    17.15 \n    1.97 \n    21.50 \n    13.10 \n    17.30 \n    ▃▄▄▄▇▆▇▅▂▁ \n  \n  \n    flipper_length_mm \n    200.92 \n    14.06 \n    231 \n    172 \n    197.00 \n    ▂▅▇▄▁▄▄▂▁ \n  \n  \n    body_mass_g \n    4201.75 \n    801.95 \n    6300 \n    2700 \n    4050.00 \n    ▁▄▇▅▄▄▃▃▂▁"
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#getting-just-a-few-stats",
+    "href": "slides/data-analysis-in-R.html#getting-just-a-few-stats",
+    "title": "Data Analysis in R",
+    "section": "Getting Just A Few Stats",
+    "text": "Getting Just A Few Stats\n\ndatasummary(body_mass_g + bill_length_mm ~ Mean + SD, data = penguins_df, output = \"html\")\n\n\n\n \n  \n      \n    Mean \n    SD \n  \n \n\n  \n    body_mass_g \n    4201.75 \n    801.95 \n  \n  \n    bill_length_mm \n    43.92 \n    5.46"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-a-balance-table",
@@ -893,7 +907,7 @@
     "href": "slides/data-analysis-in-R.html#some-basics",
     "title": "Data Analysis in R",
     "section": "Some Basics",
-    "text": "Some Basics\n\nFor lm and other models we use this general form\n\n\nestimator(Outcome ~ IV1 + IV2, data = your_data)\n\n\nIf you want to include all the variables in your data set than you can do that with .\nRemember R can hold lots of datasets so we have to be explicit with where the data is coming from\n\nnote that we have several different datasets named penguins_blah\nmaking sure you have kept track of the using dataset is important"
+    "text": "Some Basics\n\nestimator(Outcome ~ IV1 + IV2, data = your_data)\n\n\nIf you want to include all the variables in your data set than you can do that with .\nRemember R can hold lots of datasets so we have to be explicit with where the data is coming from\n\nnote that we have several different datasets named penguins_blah\nmaking sure you have kept track of the using dataset is important"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#univariate-regression",
@@ -908,6 +922,13 @@
     "title": "Data Analysis in R",
     "section": "",
     "text": "peng_naive = lm(body_mass_g ~ bill_length_mm, data = penguins)\n\nsummary(peng_naive)\n\n\nCall:\nlm(formula = body_mass_g ~ bill_length_mm, data = penguins)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1762.08  -446.98    32.59   462.31  1636.86 \n\nCoefficients:\n               Estimate Std. Error t value Pr(>|t|)    \n(Intercept)     362.307    283.345   1.279    0.202    \nbill_length_mm   87.415      6.402  13.654   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 645.4 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: < 2.2e-16\n\n\n\nThis is probably what you are used to seeing if you are coming over from another language"
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#anova",
+    "href": "slides/data-analysis-in-R.html#anova",
+    "title": "Data Analysis in R",
+    "section": "Anova",
+    "text": "Anova\n\nanova_example = aov(body_mass_g ~ species, data = penguins)\n\nsummary(anova_example)\n\n             Df    Sum Sq  Mean Sq F value Pr(>F)    \nspecies       2 146864214 73432107   343.6 <2e-16 ***\nResiduals   339  72443483   213698                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\nTukeyHSD(anova_example)\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = body_mass_g ~ species, data = penguins)\n\n$species\n                       diff       lwr       upr     p adj\nChinstrap-Adelie   32.42598 -126.5002  191.3522 0.8806666\nGentoo-Adelie    1375.35401 1243.1786 1507.5294 0.0000000\nGentoo-Chinstrap 1342.92802 1178.4810 1507.3750 0.0000000\n\n\n\nHere we can see that at least one group is different."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#multiple-regression",
@@ -1026,14 +1047,21 @@
     "href": "slides/data-analysis-in-R.html#full-marginal-effects-way",
     "title": "Data Analysis in R",
     "section": "Full Marginal Effects way",
-    "text": "Full Marginal Effects way\n\npengs_interact_marg = lm(body_mass_g ~ bill_length_mm / sex + flipper_length_mm + species, data = peng_sans_miss_tidy)\n\nsummary(pengs_interact_marg)\n\n\nCall:\nlm(formula = body_mass_g ~ bill_length_mm/sex + flipper_length_mm + \n    species, data = peng_sans_miss_tidy)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-733.40 -188.22  -11.83  187.92  868.75 \n\nCoefficients:\n                       Estimate Std. Error t value Pr(>|t|)    \n(Intercept)            -491.606    569.987  -0.862 0.389052    \nbill_length_mm           17.813      7.520   2.369 0.018421 *  \nflipper_length_mm        17.354      2.969   5.845 1.23e-08 ***\nspeciesChinstrap       -305.537     82.800  -3.690 0.000263 ***\nspeciesGentoo           706.682     96.992   7.286 2.41e-12 ***\nbill_length_mm:sexmale   10.252      1.002  10.235  < 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 296 on 327 degrees of freedom\nMultiple R-squared:  0.8669,    Adjusted R-squared:  0.8649 \nF-statistic: 426.1 on 5 and 327 DF,  p-value: < 2.2e-16\n\n\n\nSo this will give you the correct marginal effects but if you want the full range of values we need our marginal effects package"
+    "text": "Full Marginal Effects way\n\npengs_interact_marg = lm(body_mass_g ~ bill_length_mm / factor(sex) + flipper_length_mm + species, data = peng_sans_miss_tidy)\n\nsummary(pengs_interact_marg)\n\n\nCall:\nlm(formula = body_mass_g ~ bill_length_mm/factor(sex) + flipper_length_mm + \n    species, data = peng_sans_miss_tidy)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-733.40 -188.22  -11.83  187.92  868.75 \n\nCoefficients:\n                               Estimate Std. Error t value Pr(>|t|)    \n(Intercept)                    -491.606    569.987  -0.862 0.389052    \nbill_length_mm                   17.813      7.520   2.369 0.018421 *  \nflipper_length_mm                17.354      2.969   5.845 1.23e-08 ***\nspeciesChinstrap               -305.537     82.800  -3.690 0.000263 ***\nspeciesGentoo                   706.682     96.992   7.286 2.41e-12 ***\nbill_length_mm:factor(sex)male   10.252      1.002  10.235  < 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 296 on 327 degrees of freedom\nMultiple R-squared:  0.8669,    Adjusted R-squared:  0.8649 \nF-statistic: 426.1 on 5 and 327 DF,  p-value: < 2.2e-16\n\n\n\nSo this will give you the correct marginal effects but if you want the full range of values we need our marginal effects package"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#getting-marginal-effects-for-interactions",
     "href": "slides/data-analysis-in-R.html#getting-marginal-effects-for-interactions",
     "title": "Data Analysis in R",
     "section": "Getting Marginal Effects for Interactions",
-    "text": "Getting Marginal Effects for Interactions\n\n\npengs_interact_effect = lm(body_mass_g ~ bill_length_mm  + flipper_length_mm * sex + species, data = peng_sans_miss_tidy)\n\nplot_cco(\n  pengs_interact_effect,\n  effect =  \"sex\", \n  condition = \"flipper_length_mm\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\ninterflex is also good a package and implements diagnostics for violations of the assumptions underlying interaction terms and a way to interpret the effects. inters also has an interesting implementation where they use LASSO\n\n\n\n\nWe may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco. CCO is This function plots contrasts (y-axis) against values of predictor(s) variable(s) (x-axis and colors).\nSo in this case this is just showing the effect when penguins take on the value of male"
+    "text": "Getting Marginal Effects for Interactions\n\n\npengs_interact_effect = lm(body_mass_g ~ bill_length_mm  + flipper_length_mm * sex + species, data = peng_sans_miss_tidy)\n\nplot_cco(\n  pengs_interact_effect,\n  effect =  \"sex\", \n  condition = \"flipper_length_mm\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\ninters also has an interesting implementation where they use LASSO\n\n\n\n\nWe may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco. CCO is This function plots contrasts (y-axis) against values of predictor(s) variable(s) (x-axis and colors).\nSo in this case this is just showing the effect when penguins take on the value of male"
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#interflex",
+    "href": "slides/data-analysis-in-R.html#interflex",
+    "title": "Data Analysis in R",
+    "section": "Interflex",
+    "text": "Interflex\n\n\nlibrary(interflex)\n\npeng_interflex = as.data.frame(peng_sans_miss_tidy)\n\n\ninterflex(Y = \"body_mass_g\",\n          D = \"sex\",\n          X = \"flipper_length_mm\",\n          Z = c(\"bill_length_mm\", \"species\"),\n         estimator = \"kernel\",\n         data = peng_interflex,\n         theme.bw = TRUE,\n         parallel = FALSE) \n\n\n\n\n\n\n\n\n\n\n\nInterflex is also a package that I would be remiss not to bring attention to. It is by a group of political scientists. This implements some tests to ensure that there is a linear interaction effects and whether there is common support. Basically if you start to plug in values your self across the full range of flipper lenghh you may be calculating effects where there is not a ton of data making those estimates super fragile. I would probably opt for interflex in this case but I think that is just a discipline specific thing"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#tables-with-multiple-models",
@@ -1054,7 +1082,7 @@
     "href": "slides/data-analysis-in-R.html#generating-predictions",
     "title": "Data Analysis in R",
     "section": "Generating Predictions",
-    "text": "Generating Predictions\n\nset.seed(1994)\n\npenguins_prediction = mutate(penguins, id = row_number()) |> \ndrop_na()\n\npeng_train = penguins_prediction |> \n  sample_frac(0.7)\n\npeng_test = anti_join(penguins_prediction, peng_train, by = \"id\")\n\n\npeng_test$data_set = \"Test\"\n\n\npenguins_training_model = lm(body_mass_g ~ bill_length_mm, data = peng_train)\n\npenguins_train_plot = augment(penguins_training_model, \n                      interval = \"prediction\") |>\n                      select(.fitted, .lower, .upper, body_mass_g, bill_length_mm) |>\n                      mutate(data_set = \"train\")\n\npeng_predict_train = augment(penguins_training_model,\n                           interval = \"prediction\",\n                           newdata = peng_test) |> \n  select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)\n\nall_together = rbind(penguins_train_plot,\n                    peng_predict_train)"
+    "text": "Generating Predictions\n\nset.seed(1994)\n\npenguins_prediction = mutate(penguins, id = row_number()) |> \ndrop_na()\n\npeng_train = penguins_prediction |> \n  sample_frac(0.7)\n\npeng_test = anti_join(penguins_prediction, peng_train, by = \"id\")\n\n\npeng_test$data_set = \"Test\"\n\n\npenguins_training_model = lm(body_mass_g ~ bill_length_mm, data = peng_train)\n\npenguins_train_plot = augment(penguins_training_model, \n                      interval = \"prediction\") |>\n                      select(.fitted, .lower, .upper, body_mass_g, bill_length_mm) |>\n                      mutate(data_set = \"train\")\n\npeng_predict_train = augment(penguins_training_model,\n                           interval = \"prediction\",\n                           newdata = peng_test) |> \n select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)\n\nall_together = rbind(penguins_train_plot,\n                    peng_predict_train)"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#visual-inspection",
