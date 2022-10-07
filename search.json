@@ -886,7 +886,7 @@
     "href": "slides/data-analysis-in-R.html#distributionscont",
     "title": "Data Analysis in R",
     "section": "Distributions(cont)",
-    "text": "Distributions(cont)\n\n\n## you can turn off scientific notion \n# using option(scipen = 999)\n\nggplot(penguins, aes(x = body_mass_g, fill = species)) +\n  geom_density(alpha = 0.7) +\n  labs(x = \"Body Mass(grams)\") +\n  guides(fill = guide_legend(title = \"Species\")) +\n  theme_allen_minimal()"
+    "text": "Distributions(cont)\n\n\n## you can turn off scientific notion \n# using option(scipen = 999)\n\nggplot(penguins,\n  aes(x = body_mass_g,\n     fill = species)) +\n  geom_density(alpha = 0.7) +\n  labs(x = \"Body Mass(grams)\") +\n  guides(fill = guide_legend(title = \"Species\")) +\n  theme_allen_minimal()"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#user-written-extensions",
@@ -900,7 +900,7 @@
     "href": "slides/data-analysis-in-R.html#correlation-plots",
     "title": "Data Analysis in R",
     "section": "Correlation Plots",
-    "text": "Correlation Plots\n\n\ncor_plot_dat = penguins |>\ndrop_na() |>\nselect(where(is.numeric), -year) |>\ncor()\n\ncor_plot_dat[lower.tri(cor_plot_dat)] <- NA\n\n\n\nlong_cor_dat = cor_plot_dat |>\nas.data.frame() |>\nrownames_to_column(\"measure2\") |>\npivot_longer(cols = -measure2,\n             names_to = \"measure1\",\n            values_to = \"cor\") |>\nmutate(nice_cor = round(cor,2)) |>\nfilter(measure2 != measure1) |>\nfilter(!is.na(cor)) |>\nmutate(measure1 = fct_inorder(measure1),\n       measure2 = fct_inorder(measure2))\n\n\nggplot(long_cor_dat, \n       aes(x = measure2, y = measure1, fill = cor)) +\n  geom_tile() +\n  geom_text(aes(label = nice_cor)) +\n  scale_fill_gradient2(low = \"#e76254\", mid = \"white\", high = \"#1e466e\",\n                       limits = c(-1, 1)) +\n  labs(x = NULL, y = NULL) +\n  coord_equal() +\n  theme_minimal() +\n  theme(panel.grid = element_blank())"
+    "text": "Correlation Plots\n\n\ncor_plot_dat = penguins |>\ndrop_na() |>\nselect(where(is.numeric), -year) |>\ncor()\n\ncor_plot_dat[lower.tri(cor_plot_dat)] <- NA\n\n\n\nlong_cor_dat = cor_plot_dat |>\nas.data.frame() |>\nrownames_to_column(\"measure2\") |>\npivot_longer(cols = -measure2,\n             names_to = \"measure1\",\n            values_to = \"cor\") |>\nmutate(nice_cor = round(cor,2)) |>\nfilter(measure2 != measure1) |>\nfilter(!is.na(cor)) |>\nmutate(measure1 = fct_inorder(measure1),\n       measure2 = fct_inorder(measure2))\n\n\nggplot(long_cor_dat, \n     aes(x = measure2,\n     y = measure1,\n     fill = cor)) +\n  geom_tile() +\n  geom_text(aes(label = nice_cor)) +\n  scale_fill_gradient2(low = \"#e76254\",\n       mid = \"white\",\n       high = \"#1e466e\",\n       limits = c(-1, 1)) +\n  labs(x = NULL, y = NULL) +\n  coord_equal() +\n  theme_minimal() +\n  theme(panel.grid = element_blank())"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-table-1",
