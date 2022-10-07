@@ -258,7 +258,11 @@ penguins_t_test = na.omit(penguins) # can also use na.action in t.test
 
 penguins_t_test$gentoo = ifelse(penguins_t_test$species == "Gentoo", TRUE, FALSE)
 
-t.test(penguins_t_test$body_mass_g, penguins_t_test$bill_length_mm, var.equal = TRUE) # this is just to show you some of the options
+t.test(penguins_t_test$body_mass_g,
+       penguins_t_test$bill_length_mm,
+        var.equal = TRUE)
+# this is just to show you 
+# some of the options
 ```
 
 ```{r echo = FALSE}
@@ -282,7 +286,8 @@ penguins_t_test = penguins |>
                          TRUE,
                          FALSE))
 
-t.test(flipper_length_mm ~ gentoo, data = penguins_t_test) 
+t.test(flipper_length_mm ~ gentoo,
+     data = penguins_t_test) 
 ```
 
 
