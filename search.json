@@ -1145,7 +1145,7 @@
     "href": "slides/data-analysis-in-R.html#lets-see-what-this-looks-like",
     "title": "Data Analysis in R",
     "section": "Lets See What this looks like",
-    "text": "Lets See What this looks like\n\n\nlibrary(ggdist)\nggplot(penguins_glm,\n    aes(x = bill_length_mm,\n       y = big_penguin)) +\n  stat_dots(aes(side = ifelse(big_penguin == 0, \"top\", \"bottom\")), scale = 1/3) +\n  geom_smooth(method = \"glm\",\n  method.args = list(family = binomial(link = \"logit\"))) +\n  theme_allen_bw()"
+    "text": "Lets See What this looks like\n\n\nggplot(penguins_glm,\n    aes(x = bill_length_mm,\n       y = big_penguin)) +\n  stat_dots(aes(side = ifelse(big_penguin == 0,\n       \"top\",\n       \"bottom\")),\n       scale = 1/3) +\n  geom_smooth(method = \"glm\",\n  method.args = list(family = binomial(link = \"logit\"))) +\n  theme_allen_bw()"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#our-model",
