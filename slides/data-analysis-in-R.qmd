@@ -1255,8 +1255,7 @@ penguins_train_plot = augment(penguins_training_model,
                       select(.fitted, .lower, .upper, body_mass_g, bill_length_mm) |>
                       mutate(data_set = "train")
 
-# alterntively this works
-# predict(penguins_train_plot, newdata = peng_test)
+
 
 peng_predict_train = augment(penguins_training_model,
                            interval = "prediction",
