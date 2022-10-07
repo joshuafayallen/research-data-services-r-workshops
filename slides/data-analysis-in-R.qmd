@@ -464,7 +464,9 @@ ggplot(penguins,
 ## you can turn off scientific notion 
 # using option(scipen = 999)
 
-ggplot(penguins, aes(x = body_mass_g, fill = species)) +
+ggplot(penguins,
+  aes(x = body_mass_g,
+     fill = species)) +
   geom_density(alpha = 0.7) +
   labs(x = "Body Mass(grams)") +
   guides(fill = guide_legend(title = "Species")) +
@@ -549,11 +551,15 @@ mutate(measure1 = fct_inorder(measure1),
 
 
 ggplot(long_cor_dat, 
-       aes(x = measure2, y = measure1, fill = cor)) +
+     aes(x = measure2,
+     y = measure1,
+     fill = cor)) +
   geom_tile() +
   geom_text(aes(label = nice_cor)) +
-  scale_fill_gradient2(low = "#e76254", mid = "white", high = "#1e466e",
-                       limits = c(-1, 1)) +
+  scale_fill_gradient2(low = "#e76254",
+       mid = "white",
+       high = "#1e466e",
+       limits = c(-1, 1)) +
   labs(x = NULL, y = NULL) +
   coord_equal() +
   theme_minimal() +
