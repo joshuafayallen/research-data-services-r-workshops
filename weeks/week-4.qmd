@@ -14,9 +14,9 @@ The recording for this workshop is posted on the [RDS website just click on the 
 
 ## Resources Used 
 
-[This blog post](https://juliasilge.com/blog/palmer-penguins/) by Julia Silge on tidymodels was extremely helpful
+[This blog post](https://juliasilge.com/blog/lasso-the-office/) by Julia Silge on tidymodels was extremely helpful
 
-[Adjusting your standard errors on the fly](https://grantmcdermott.com/better-way-adjust-SEs/), [this blog post](https://grantmcdermott.com/interaction-effects/) and the [prediction portion](https://raw.githack.com/uo-ec607/lectures/master/08-regression/08-regression.html) of this lecture by Grant McDermott was invaluble.
+[Adjusting your standard errors on the fly](https://grantmcdermott.com/better-way-adjust-SEs/), [this blog post](https://grantmcdermott.com/interaction-effects/) and the [prediction portion](https://raw.githack.com/uo-ec607/lectures/master/08-regression/08-regression.html) of this lecture by Grant McDermott was invaluable.
 
 
 For the marginal effects portion of the workshop much of the code is based on [this blog post](https://www.andrewheiss.com/blog/2022/05/20/marginalia/) by Andrew Heiss.
