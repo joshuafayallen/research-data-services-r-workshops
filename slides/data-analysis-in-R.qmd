@@ -252,7 +252,7 @@ penguins |>
 
 ::::{.columns}
 :::{.column width="45%"}
-### Base R 
+### Index
 ```{r eval=FALSE}
 penguins_t_test = na.omit(penguins) # can also use na.action in t.test
 
@@ -273,7 +273,7 @@ t.test(penguins_t_test$body_mass_g, penguins_t_test$bill_length_mm, var.equal = 
 
 :::{.column width="45%"}
 
-### Tidyverse 
+### Formula
 
 ```{r eval=FALSE}
 penguins_t_test = penguins |> 
@@ -303,7 +303,7 @@ t.test(flipper_length_mm ~ gentoo, data = penguins_t_test)
 :::{.notes}
 In this case we have our first example of using of the formula. To do statsy stuff in R we generally have to use the tilde. This is just a function of how R does statistical analysis. Would and equal sign make sense here sure but like we have to use equal for lots of other stuff.
 
-In the case of the one on the right we are doing a 
+On the left we are just using the default t.test in with two vectors. R assumes that the variances are unequal and that the it is a two sided test. 
 
 
 his version of the test is actually the Welch Student’s test, used when the variances of the populations are unknown and unequal
