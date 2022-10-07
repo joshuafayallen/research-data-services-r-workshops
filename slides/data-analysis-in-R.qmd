@@ -1246,9 +1246,7 @@ peng_train = penguins_prediction |>
 
 peng_test = anti_join(penguins_prediction, peng_train, by = "id")
 
-
 peng_test$data_set = "Test"
-
 
 penguins_training_model = lm(body_mass_g ~ bill_length_mm, data = peng_train)
 
@@ -1256,6 +1254,9 @@ penguins_train_plot = augment(penguins_training_model,
                       interval = "prediction") |>
                       select(.fitted, .lower, .upper, body_mass_g, bill_length_mm) |>
                       mutate(data_set = "train")
+
+# alterntively this works
+# predict(penguins_train_plot, newdata = peng_test)
 
 peng_predict_train = augment(penguins_training_model,
                            interval = "prediction",
