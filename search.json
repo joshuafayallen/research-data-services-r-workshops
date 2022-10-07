@@ -777,6 +777,27 @@
     "text": "Plotting the results\n\n\nggplot() +\n  geom_sf(data = railway$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .2,\n          linetype=\"dotdash\",\n          alpha = .5) +\n  geom_sf(data = med_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .3,\n          alpha = .5) +\n  geom_sf(data = small_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"#666666\",\n          size = .2,\n          alpha = .3) +\n  geom_sf(data = big_streets$osm_lines,\n          inherit.aes = FALSE,\n          color = \"black\",\n          size = .5,\n          alpha = .6) +\n  geom_sf(data = add_geom, aes(color = name),\n          color = \"#0039A6\") +\n  coord_sf(ylim = c(33.64, 33.89), \n           xlim = c (-84.56, -84.30), expand = FALSE) +\n  theme_void(base_family = \"Roboto Condensed\",\n   base_size = 20) +\n  theme(plot.subtitle = element_text(size = 10, hjust = 0.5, \n    margin = margin(2, 0, 5, 0)),\n    plot.title = element_text(face=\"bold\", hjust=.5),\n    plot.caption = element_text(size = 8, face = \"bold\")) + \n   labs(title = \"Atlanta\",\n   subtitle = \"33.7490°N/84.3880°W\")"
   },
   {
+    "objectID": "slides/data-analysis-in-R.html#our-team",
+    "href": "slides/data-analysis-in-R.html#our-team",
+    "title": "Data Analysis in R",
+    "section": "Our Team",
+    "text": "Our Team\n\n\nAlso, we do not have the capacity to provide pre-scheduled frequent software tutoring that is divorced from a specific assignment or software troubleshooting task at hand – in other words, we are also not generalized software tutors.\nOur one-on-one software assistance is available to help you troubleshoot specific tasks or assignments. If you are seeking generalized software help, we direct you to our live workshops and our recorded workshops to gain the foundational skills for using various analytical software. Then, when or if the time comes that you have targeted software questions or specific issues to tackle related to a course assignment or research project, please feel free to contact us for one-on-one support."
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#get-ready-badges",
+    "href": "slides/data-analysis-in-R.html#get-ready-badges",
+    "title": "Data Analysis in R",
+    "section": "Get Ready Badges",
+    "text": "Get Ready Badges\n\n\nhttps://research.library.gsu.edu/dataservices/data-ready\nThese are awesome to share on social media i.e. linkedin which is a good signal to potential employers that you know this stuff"
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#how-to-get-the-badges",
+    "href": "slides/data-analysis-in-R.html#how-to-get-the-badges",
+    "title": "Data Analysis in R",
+    "section": "How To Get the Badges",
+    "text": "How To Get the Badges"
+  },
+  {
     "objectID": "slides/data-analysis-in-R.html#packages-you-will-need",
     "href": "slides/data-analysis-in-R.html#packages-you-will-need",
     "title": "Data Analysis in R",
@@ -928,7 +949,7 @@
     "href": "slides/data-analysis-in-R.html#anova",
     "title": "Data Analysis in R",
     "section": "Anova",
-    "text": "Anova\n\nanova_example = aov(body_mass_g ~ species, data = penguins)\n\nsummary(anova_example)\n\n             Df    Sum Sq  Mean Sq F value Pr(>F)    \nspecies       2 146864214 73432107   343.6 <2e-16 ***\nResiduals   339  72443483   213698                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\nTukeyHSD(anova_example)\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = body_mass_g ~ species, data = penguins)\n\n$species\n                       diff       lwr       upr     p adj\nChinstrap-Adelie   32.42598 -126.5002  191.3522 0.8806666\nGentoo-Adelie    1375.35401 1243.1786 1507.5294 0.0000000\nGentoo-Chinstrap 1342.92802 1178.4810 1507.3750 0.0000000\n\n\n\nHere we can see that at least one group is different."
+    "text": "Anova\n\nanova_example = aov(body_mass_g ~ species, data = penguins)\n\n#aov(peng_naive) also works\n\nsummary(anova_example)\n\n             Df    Sum Sq  Mean Sq F value Pr(>F)    \nspecies       2 146864214 73432107   343.6 <2e-16 ***\nResiduals   339  72443483   213698                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\nTukeyHSD(anova_example)\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = body_mass_g ~ species, data = penguins)\n\n$species\n                       diff       lwr       upr     p adj\nChinstrap-Adelie   32.42598 -126.5002  191.3522 0.8806666\nGentoo-Adelie    1375.35401 1243.1786 1507.5294 0.0000000\nGentoo-Chinstrap 1342.92802 1178.4810 1507.3750 0.0000000\n\n\n\nHere we can see that at least one group is different."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#multiple-regression",
@@ -943,6 +964,13 @@
     "title": "Data Analysis in R",
     "section": "Adding Things in The Formula",
     "text": "Adding Things in The Formula\n\npeng_adjust_sq = lm(body_mass_g ~  bill_length_mm + flipper_length_mm + I(bill_depth_mm^2) + species, data = penguins)\n\nsummary(peng_adjust_sq)\n\n\nCall:\nlm(formula = body_mass_g ~ bill_length_mm + flipper_length_mm + \n    I(bill_depth_mm^2) + species, data = penguins)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-830.17 -200.27  -20.66  213.11 1049.73 \n\nCoefficients:\n                     Estimate Std. Error t value Pr(>|t|)    \n(Intercept)        -3215.8543   504.6759  -6.372 6.14e-10 ***\nbill_length_mm        43.3825     7.1601   6.059 3.67e-09 ***\nflipper_length_mm     20.9168     3.1119   6.721 7.73e-11 ***\nI(bill_depth_mm^2)     3.7284     0.5316   7.014 1.28e-11 ***\nspeciesChinstrap    -535.4478    82.0922  -6.523 2.54e-10 ***\nspeciesGentoo        847.6827   136.1247   6.227 1.42e-09 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 318.1 on 336 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.8449,    Adjusted R-squared:  0.8426 \nF-statistic: 366.2 on 5 and 336 DF,  p-value: < 2.2e-16\n\n\n\nThe I is the isolates or inhibit function. R will parse forumulas differently than regualr R code. so ^ has a special meaning in forumla. Which can lead to things that you don’t anticipate. Normally if you wanted to get the sum of two terms you would use the addition symbol to achieve this. But in the formula syntax you are now adding them as terms to the model\nfrom the gaze of R’s formula parsing code. It allows the standard R operators to work as they would if you used them outside of a formula, rather than being treated as special formula operators."
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#your-turn",
+    "href": "slides/data-analysis-in-R.html#your-turn",
+    "title": "Data Analysis in R",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nEstimate a model that looks something like this\n\n\nlm(flipper_length_mm ~ body_mass_g + other_vars)\n\n\nAdd any other variables\nwhat happens if you do this in the equation\n\n\nlm(flipper_length_mm ~ body_mass_g + log(somevar))\n\n\nBonus: change the factor levels of species so Gentoo is the reference group\n\nhint: use fct_relevel or relevel\n\n\n\n\n\n−+\n05:00\n\n\n\n\npenguins = penguins |> mutate(species = fct_relevel(species, “Gentoo”, “Chinstrap”, “Adelie”))"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#getting-diagnostic-statistics",
@@ -992,6 +1020,13 @@
     "title": "Data Analysis in R",
     "section": "Tests",
     "text": "Tests\n\ndecrypt(\"CLg7 X161 sO bJws6sJO vv\")\n\n[1] \"True data in position  1\"\n\n\n\nbptest(peng_adjust)\n\n\n\n\n\n \n  \n    statistic \n    p.value \n    parameter \n    method \n  \n \n\n  \n    3.678191 \n    0.4513059 \n    4 \n    studentized Breusch-Pagan test \n  \n\n\n\n\n\n\nbgtest(peng_adjust)\n\n\n\n\n\n \n  \n    statistic \n    p.value \n    parameter \n    method \n  \n \n\n  \n    8.776406 \n    0.0030515 \n    1 \n    Breusch-Godfrey test for serial correlation of order up to 1 \n  \n\n\n\n\n\n\nnull for Breusch Pagan there is no hetrosckedasticity\nfail to reject the null hypothesis. This means that there is no heterosckedasticity. Thats awesome\nNull for Breusch Godfrey is there is no serial correlation of order up to 1\nWe can reject the null hypothesis meaning that there is some autocorrelation in our data.\nOkay it looks like something we have violated some of our assumptions"
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#your-turnoptional",
+    "href": "slides/data-analysis-in-R.html#your-turnoptional",
+    "title": "Data Analysis in R",
+    "section": "Your Turn(optional)",
+    "text": "Your Turn(optional)\n\nCheck the assumptions of your model\nAre the regression assumptions met?\nLook through the lmtest documentation to see what other tests are available."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#fixing-our-standard-errors",
