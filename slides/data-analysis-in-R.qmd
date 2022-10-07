@@ -1726,8 +1726,22 @@ predict(final_fit, peng_tidy_test)
 
 ```
 
+:::{.notes }
+recipes, which is designed to help you preprocess your data before training your model. Recipes are built as a series of preprocessing steps, such as:
+
+defines a model that can predict numeric values from predictors using a linear function. This function can fit regression models
+
+ is used to specify which package or system will be used to fit the model, along with any arguments specific to that software.
 
 
+ A workflow is a container object that aggregates information required to fit and predict from a model. 
+
+
+ specifies the terms of the model and any preprocessing that is required through the usage of a recipe.
+
+
+ 
+:::
 
 ## Variable Importance Plot 
 
