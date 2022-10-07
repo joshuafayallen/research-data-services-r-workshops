@@ -34,8 +34,11 @@ library(nullabor)
 library(ggfortify)
 library(plm)
 library(tidyverse)
+library(MetBrewer)
+library(colorspace)
 
-
+clrs <- met.brewer(name = "Demuth")
+clrs_lt <- lighten(clrs, 0.9)
 
 knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
                       message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
@@ -47,6 +50,47 @@ penguins = palmerpenguins::penguins
 
 ```
 
+
+# Research Data Services {background-color="`r clrs[3]`" .white}
+
+
+## Our Team 
+
+```{r echo = FALSE}
+knitr::include_graphics("figs/rds-team-members.png")
+```
+
+:::{.notes}
+
+ Also, we do not have the capacity to provide pre-scheduled frequent software tutoring that is divorced from a specific assignment or software troubleshooting task at hand -- in other words, we are also not generalized software tutors. 
+ 
+ Our one-on-one software assistance is available to help you troubleshoot specific tasks or assignments. If you are seeking generalized software help, we direct you to our live workshops and our recorded workshops to gain the foundational skills for using various analytical software. Then, when or if the time comes that you have targeted software questions or specific issues to tackle related to a course assignment or research project, please feel free to contact us for one-on-one support. 
+:::
+
+
+## Get Ready Badges
+
+
+```{r echo = FALSE}
+knitr::include_graphics("figs/get-ready-badges.png")
+```
+
+
+:::{.notes}
+
+
+https://research.library.gsu.edu/dataservices/data-ready
+
+These are awesome to share on social media i.e. linkedin which is a good signal
+to potential employers that you know this stuff
+
+:::
+
+## How To Get the Badges
+
+```{r echo = FALSE}
+knitr::include_graphics("figs/how-to-badge.png")
+```
 
 ## Packages You Will Need 
 
@@ -83,7 +127,7 @@ This workshop is going to sort of through building the results section of a pape
 
 
 
-# Exploratory Data Analysis in R 
+# Exploratory Data Analysis in R {background-color="`r clrs[3]`" .white}
 
 
 
@@ -566,7 +610,7 @@ datasummary_balance(~gentoo,
 
 
 
-# Data Analysis in R 
+# Data Analysis in R {background-color="`r clrs[3]`" .white}
 
 
 
@@ -627,8 +671,9 @@ This is probably what you are used to seeing if you are coming over from another
 
 anova_example = aov(body_mass_g ~ species, data = penguins)
 
-summary(anova_example)
+#aov(peng_naive) also works
 
+summary(anova_example)
 
 TukeyHSD(anova_example)
 
@@ -665,6 +710,48 @@ summary(peng_adjust_sq)
 The I is the isolates or inhibit function. R will parse forumulas differently than regualr R code. so ^ has a special meaning in forumla. Which can lead to things that you don't anticipate. Normally if you wanted to get the sum of two terms you would use the addition symbol to achieve this. But in the formula syntax you are now adding them as terms to the model
 
  from the gaze of R's formula parsing code. It allows the standard R operators to work as they would if you used them outside of a formula, rather than being treated as special formula operators.
+:::
+
+
+
+## Your Turn {background-color="`r clrs_lt[3]`"}
+
+
+- Estimate a model that looks something like this
+
+```{r eval = FALSE}
+
+lm(flipper_length_mm ~ body_mass_g + other_vars)
+
+```
+
+
+- Add any other variables
+
+- what happens if you do this in the equation 
+
+```{r eval = FALSE}
+
+lm(flipper_length_mm ~ body_mass_g + log(somevar))
+
+```
+
+- *Bonus*: change the factor levels of species so Gentoo is the reference group
+  - hint: use fct_relevel or relevel
+
+
+```{r echo = FALSE}
+
+countdown::countdown(minutes = 5)
+
+```
+
+
+
+:::{.notes}
+penguins = penguins |>
+mutate(species = fct_relevel(species, "Gentoo", "Chinstrap", "Adelie"))
+
 :::
 
 ## Getting Diagnostic Statistics 
@@ -881,6 +968,15 @@ We can reject the null hypothesis meaning that there is some autocorrelation in 
 
 Okay it looks like something we have violated some of our assumptions 
 :::
+
+## Your Turn(optional) {background-color="`r clrs_lt[3]`"}
+
+- Check the assumptions of your model
+
+- Are the regression assumptions met? 
+
+- Look through the `lmtest` documentation to see what other tests are available.
+
 
 
 ## Fixing Our Standard Errors
@@ -1441,7 +1537,7 @@ p +
 
 
 
-#  Machine Learning(basics)
+#  Machine Learning(basics) {background-color="`r clrs[3]`" .white}
 
 
 ## Packages You Will Need 
