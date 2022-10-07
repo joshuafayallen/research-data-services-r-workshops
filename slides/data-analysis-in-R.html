@@ -679,7 +679,7 @@
 <h2>T-tests</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
-<h3 id="base-r">Base R</h3>
+<h3 id="index">Index</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>penguins_t_test <span class="ot">=</span> <span class="fu">na.omit</span>(penguins) <span class="co"># can also use na.action in t.test</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
@@ -703,7 +703,7 @@ sample estimates:
 </div>
 </div>
 </div><div class="column" style="width:45%;">
-<h3 id="tidyverse">Tidyverse</h3>
+<h3 id="formula">Formula</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>penguins_t_test <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
 <span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
@@ -732,7 +732,7 @@ mean in group FALSE  mean in group TRUE
 </div>
 <aside class="notes">
 <p>In this case we have our first example of using of the formula. To do statsy stuff in R we generally have to use the tilde. This is just a function of how R does statistical analysis. Would and equal sign make sense here sure but like we have to use equal for lots of other stuff.</p>
-<p>In the case of the one on the right we are doing a</p>
+<p>On the left we are just using the default t.test in with two vectors. R assumes that the variances are unequal and that the it is a two sided test.</p>
 <p>his version of the test is actually the Welch Student’s test, used when the variances of the populations are unknown and unequal</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -790,7 +790,7 @@ mean in group FALSE  mean in group TRUE
 </div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse-1">Tidyverse</h3>
+<h3 id="tidyverse">Tidyverse</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>penguins_df <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
 <span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
@@ -1567,7 +1567,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_6eb8dfb9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_157563a9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1594,7 +1594,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell" data-layout-align="center">
 
 </div>
-<h3 id="base-r-1">Base R</h3>
+<h3 id="base-r">Base R</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>peng_adjust <span class="ot">=</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span>  bill_length_mm <span class="sc">+</span> flipper_length_mm <span class="sc">+</span> species,</span>
 <span id="cb44-2"><a href="#cb44-2"></a>                 <span class="at">data =</span> peng_sans_miss_base)</span>
@@ -1612,7 +1612,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb44-14"><a href="#cb44-14"></a>peng_sans_miss_base<span class="sc">$</span>.cooks_distance <span class="ot">=</span> <span class="fu">cooks.distance</span>(peng_adjust)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse-2">Tidyverse</h3>
+<h3 id="tidyverse-1">Tidyverse</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>peng_adjust <span class="ot">=</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span>  bill_length_mm <span class="sc">+</span> flipper_length_mm <span class="sc">+</span> species,</span>
 <span id="cb45-2"><a href="#cb45-2"></a>   <span class="at">data =</span> peng_sans_miss_tidy) </span>
@@ -1658,7 +1658,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse-3">Tidyverse</h3>
+<h3 id="tidyverse-2">Tidyverse</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">ggplot</span>(peng_diag_tidy, <span class="fu">aes</span>(<span class="at">x =</span> .fitted,</span>
 <span id="cb47-2"><a href="#cb47-2"></a>                           <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
@@ -1692,7 +1692,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div><div class="column">
-<h3 id="tidyverse-4">Tidyverse</h3>
+<h3 id="tidyverse-3">Tidyverse</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">ggplot</span>(peng_diag_tidy, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
 <span id="cb49-2"><a href="#cb49-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
