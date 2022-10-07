@@ -1187,12 +1187,12 @@ Interflex is also a package that I would be remiss not to bring attention to. It
 ## Tables with multiple models 
 
 ```{r}
-modelsummary(list(peng_naive, peng_adjust, pengs_interact_marg),
+modelsummary(list(peng_naive, peng_adjust, pengs_interact_stand),
              stars = TRUE,
              gof_omit = ".*", ## omitting all goodness of fit for space
              coef_map = c("bill_length_mm" = "Bill Lenth(mm)",
                           "flipper_length_mm" = "Flipper Lenth(mm)",
-                          "bill_length_mm x sexmale" = "Bill Length(mm) x Male Penguin"),
+                          "bill_length_mm:sexmale" = "Bill Length(mm) x Male Penguin"),
              vcov = "robust",
              note = "Robust Standard errors in Parenthsis")
 
