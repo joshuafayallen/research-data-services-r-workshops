@@ -715,7 +715,8 @@ sample estimates:
 <span id="cb16-4"><a href="#cb16-4"></a>                         <span class="cn">TRUE</span>,</span>
 <span id="cb16-5"><a href="#cb16-5"></a>                         <span class="cn">FALSE</span>))</span>
 <span id="cb16-6"><a href="#cb16-6"></a></span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="fu">t.test</span>(flipper_length_mm <span class="sc">~</span> gentoo, <span class="at">data =</span> penguins_t_test) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="fu">t.test</span>(flipper_length_mm <span class="sc">~</span> gentoo,</span>
+<span id="cb16-8"><a href="#cb16-8"></a>     <span class="at">data =</span> penguins_t_test) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
@@ -1577,7 +1578,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_b2fe407b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_d11120e2" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -2782,6 +2783,23 @@ Number of Fisher Scoring iterations: 8</code></pre>
 # … with 90 more rows</code></pre>
 </div>
 </div>
+<aside class="notes">
+<p>recipes, which is designed to help you preprocess your data before training your model. Recipes are built as a series of preprocessing steps, such as:</p>
+<p>defines a model that can predict numeric values from predictors using a linear function. This function can fit regression models</p>
+<p>is used to specify which package or system will be used to fit the model, along with any arguments specific to that software.</p>
+<p>A workflow is a container object that aggregates information required to fit and predict from a model.</p>
+<p>specifies the terms of the model and any preprocessing that is required through the usage of a recipe.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="variable-importance-plot" class="slide level2">
 <h2>Variable Importance Plot</h2>
