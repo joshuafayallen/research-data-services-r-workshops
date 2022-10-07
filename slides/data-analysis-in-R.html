@@ -1567,7 +1567,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_371f1335" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_6eb8dfb9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -2397,24 +2397,22 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="lets-see-what-this-looks-like" class="slide level2">
 <h2>Lets See What this looks like</h2>
-<div class="columns">
+<div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">ggplot</span>(penguins_glm, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
-<span id="cb72-2"><a href="#cb72-2"></a>                         <span class="at">y =</span> big_penguin)) <span class="sc">+</span></span>
-<span id="cb72-3"><a href="#cb72-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb72-4"><a href="#cb72-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>,</span>
-<span id="cb72-5"><a href="#cb72-5"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))) <span class="sc">+</span></span>
-<span id="cb72-6"><a href="#cb72-6"></a>  <span class="fu">theme_allen_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb72-2"><a href="#cb72-2"></a><span class="fu">ggplot</span>(penguins_glm,</span>
+<span id="cb72-3"><a href="#cb72-3"></a>    <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<span id="cb72-4"><a href="#cb72-4"></a>       <span class="at">y =</span> big_penguin)) <span class="sc">+</span></span>
+<span id="cb72-5"><a href="#cb72-5"></a>  <span class="fu">stat_dots</span>(<span class="fu">aes</span>(<span class="at">side =</span> <span class="fu">ifelse</span>(big_penguin <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"top"</span>, <span class="st">"bottom"</span>)), <span class="at">scale =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb72-6"><a href="#cb72-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>,</span>
+<span id="cb72-7"><a href="#cb72-7"></a>  <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))) <span class="sc">+</span></span>
+<span id="cb72-8"><a href="#cb72-8"></a>  <span class="fu">theme_allen_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-62-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-61-1.png" style="width:100.0%"></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -2459,35 +2457,53 @@ Number of Fisher Scoring iterations: 8</code></pre>
 </div>
 </div>
 </section>
-<section id="average-marginal-effects" class="slide level2">
-<h2>Average Marginal Effects</h2>
-<div class="columns">
-<div class="column" style="width:35%;">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a>avg_marginal_effect <span class="ot">=</span> base_model <span class="sc">|&gt;</span> </span>
-<span id="cb75-2"><a href="#cb75-2"></a>  <span class="fu">marginaleffects</span>()  <span class="sc">|&gt;</span> </span>
-<span id="cb75-3"><a href="#cb75-3"></a>  <span class="fu">tidy</span>()</span>
+<section id="getting-interpretable-quantities" class="slide level2">
+<h2>Getting Interpretable Quantities</h2>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="co"># get odds ratio</span></span>
+<span id="cb75-2"><a href="#cb75-2"></a></span>
+<span id="cb75-3"><a href="#cb75-3"></a>odds_ration <span class="ot">=</span> <span class="fu">exp</span>(<span class="fu">coef</span>(base_model))</span>
 <span id="cb75-4"><a href="#cb75-4"></a></span>
-<span id="cb75-5"><a href="#cb75-5"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filter</span>(avg_marginal_effect, <span class="sc">!</span>term <span class="sc">==</span> <span class="st">"species"</span>),</span>
-<span id="cb75-6"><a href="#cb75-6"></a>       <span class="fu">aes</span>(<span class="at">x =</span> estimate,</span>
-<span id="cb75-7"><a href="#cb75-7"></a>           <span class="at">y =</span> term)) <span class="sc">+</span></span>
-<span id="cb75-8"><a href="#cb75-8"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> conf.low,</span>
-<span id="cb75-9"><a href="#cb75-9"></a>                      <span class="at">xmax =</span> conf.high)) <span class="sc">+</span></span>
-<span id="cb75-10"><a href="#cb75-10"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb75-11"><a href="#cb75-11"></a>  <span class="fu">theme_allen_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column" style="width:65;">
-<div class="cell" data-layout-align="center">
+<span id="cb75-5"><a href="#cb75-5"></a>avg_marginal_effect <span class="ot">=</span> base_model <span class="sc">|&gt;</span> </span>
+<span id="cb75-6"><a href="#cb75-6"></a>  <span class="fu">marginaleffects</span>()  <span class="sc">|&gt;</span> </span>
+<span id="cb75-7"><a href="#cb75-7"></a>  <span class="fu">tidy</span>()</span>
+<span id="cb75-8"><a href="#cb75-8"></a></span>
+<span id="cb75-9"><a href="#cb75-9"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">filter</span>(avg_marginal_effect,</span>
+<span id="cb75-10"><a href="#cb75-10"></a>       <span class="sc">!</span>term <span class="sc">==</span> <span class="st">"species"</span>),</span>
+<span id="cb75-11"><a href="#cb75-11"></a>       <span class="fu">aes</span>(<span class="at">x =</span> estimate,</span>
+<span id="cb75-12"><a href="#cb75-12"></a>           <span class="at">y =</span> <span class="fu">str_to_title</span>(term))) <span class="sc">+</span></span>
+<span id="cb75-13"><a href="#cb75-13"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> conf.low,</span>
+<span id="cb75-14"><a href="#cb75-14"></a>                     <span class="at">xmax =</span> conf.high)) <span class="sc">+</span></span>
+<span id="cb75-15"><a href="#cb75-15"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb75-16"><a href="#cb75-16"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb75-17"><a href="#cb75-17"></a>       <span class="at">x =</span> <span class="st">"Average Marginal Effect"</span>) <span class="sc">+</span></span>
+<span id="cb75-18"><a href="#cb75-18"></a>  <span class="fu">theme_allen_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-65-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-63-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-</div>
+<aside class="notes">
+<p>Since our coefficients in our logit model are uninterpretable we need to get some interpretable quantities. We can either use odds ratios by just doing exponeniate.</p>
+<p>This is fine if your discipline does this. Political scientists especially prefer using average marginal effects.</p>
+<p>Under the hood what is going on is that marginal effects is going to plug in the each row into the model and generate predictions and calculates the slope. Then will basically average across them. So the effect is basically just the average across the fitted results.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="user-specified-values" class="slide level2">
 <h2>User Specified Values</h2>
@@ -2540,7 +2556,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-68-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-66-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2550,7 +2566,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-69-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-67-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -2766,7 +2782,7 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/unnamed-chunk-77-1.png" style="width:100.0%"></p>
+<p><img data-src="figs/unnamed-chunk-75-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
