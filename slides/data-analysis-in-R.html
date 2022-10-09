@@ -757,15 +757,16 @@ mean in group FALSE  mean in group TRUE
 <div class="column">
 <h3 id="base-2">Base</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>penguins_df <span class="ot">=</span> penguins[,<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)]  <span class="sc">|&gt;</span> <span class="do">## lets you do it by column position</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>penguins_df <span class="ot">=</span> penguins[,<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)]  <span class="sc">|&gt;</span> <span class="do">## lets you do it by column position</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">na.omit</span>() </span>
 <span id="cb18-3"><a href="#cb18-3"></a></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="fu">cor</span>(penguins_df)</span>
-<span id="cb18-5"><a href="#cb18-5"></a></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="do">## this lets you do it by class</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a> penguins[, <span class="fu">sapply</span>(penguins, is.numeric)]  <span class="sc">|&gt;</span> </span>
-<span id="cb18-8"><a href="#cb18-8"></a>  <span class="fu">na.omit</span>() <span class="sc">|&gt;</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a>   <span class="fu">cor</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="fu">cor</span>(penguins_df) <span class="sc">|&gt;</span> </span>
+<span id="cb18-5"><a href="#cb18-5"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6"></a></span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="do">## this lets you do it by class</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a> penguins[, <span class="fu">sapply</span>(penguins, is.numeric)]  <span class="sc">|&gt;</span> </span>
+<span id="cb18-9"><a href="#cb18-9"></a>  <span class="fu">na.omit</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a>   <span class="fu">cor</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1578,7 +1579,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_33c9bff6" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_d61c9feb" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
