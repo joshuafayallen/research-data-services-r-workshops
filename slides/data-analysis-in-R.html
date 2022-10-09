@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.1.251">
 
   <meta name="author" content="Josh Allen">
-  <meta name="dcterms.date" content="2022-08-29">
+  <meta name="dcterms.date" content="2022-10-07">
   <title>Research Data Services R Workshops at Georgia State University - Data Analysis in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -397,7 +397,7 @@
   <h1 class="title">Data Analysis in R</h1>
   <p class="author">Josh Allen</p>
   <p class="institute">Department of Political Science at Georgia State University</p>
-  <p class="date">2022-08-29</p>
+  <p class="date">2022-10-07</p>
 </section>
 
 <section>
@@ -1578,7 +1578,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_d11120e2" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_33c9bff6" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1765,6 +1765,7 @@ F-statistic: 366.2 on 5 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <aside class="notes">
 <p>This is kind of a cool way to see if you can find your residuals in the plot. If one sticks out that is a bad sign that you havent dealt with some issues</p>
+<p>If none of them stick out that is a better sign</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2041,7 +2042,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><p>The constitutive terms will appear automatically with <code>*</code> and <code>/</code></p></li>
 <li><p>In the case of <code>/</code> it returns the marginal effect</p>
 <ul>
-<li>As well as the correct standard errors and pvalues</li>
+<li>As well as the correct standard errors and p-values</li>
 </ul></li>
 </ul>
 <aside class="notes">
@@ -2170,8 +2171,9 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <aside class="notes">
-<p>We may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the cco. CCO is This function plots contrasts (y-axis) against values of predictor(s) variable(s) (x-axis and colors).</p>
-<p>So in this case this is just showing the effect when penguins take on the value of male</p>
+<p>We may be interested in what happens when we shift the values of our continous variable. One awesome way to do this is through our marginal effects package. In this case we can look at the effect as bill_length_mm and the conditonal contrasts. plot cco plots the contrasts (y-axis) against values of predictor(s) variable(s) (x-axis and colors).</p>
+<p>essentially what happens when we have an increase of some value</p>
+<p>So in this case this is just showing the effect when penguins take on the value of male and flipper length in increases by x amount mm</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2213,6 +2215,7 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <aside class="notes">
 <p>Interflex is also a package that I would be remiss not to bring attention to. It is by a group of political scientists. This implements some tests to ensure that there is a linear interaction effects and whether there is common support. Basically if you start to plug in values your self across the full range of flipper lenghh you may be calculating effects where there is not a ton of data making those estimates super fragile. I would probably opt for interflex in this case but I think that is just a discipline specific thing</p>
+<p>The kernal estimator is what they reccommend. It is more flexible because we are not imposing a strong parametric form of the relationship. It is also nice because we include any confounders. So it looks like when we increase our flipper length in mm to about 190 mm the body mass of the penguins increase to about 400 g</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2231,8 +2234,8 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="fu">modelsummary</span>(<span class="fu">list</span>(peng_naive, peng_adjust, pengs_interact_stand),</span>
 <span id="cb67-2"><a href="#cb67-2"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb67-3"><a href="#cb67-3"></a>             <span class="at">gof_omit =</span> <span class="st">".*"</span>, <span class="do">## omitting all goodness of fit for space</span></span>
-<span id="cb67-4"><a href="#cb67-4"></a>             <span class="at">coef_map =</span> <span class="fu">c</span>(<span class="st">"bill_length_mm"</span> <span class="ot">=</span> <span class="st">"Bill Lenth(mm)"</span>,</span>
-<span id="cb67-5"><a href="#cb67-5"></a>                          <span class="st">"flipper_length_mm"</span> <span class="ot">=</span> <span class="st">"Flipper Lenth(mm)"</span>,</span>
+<span id="cb67-4"><a href="#cb67-4"></a>             <span class="at">coef_map =</span> <span class="fu">c</span>(<span class="st">"bill_length_mm"</span> <span class="ot">=</span> <span class="st">"Bill Length(mm)"</span>,</span>
+<span id="cb67-5"><a href="#cb67-5"></a>                          <span class="st">"flipper_length_mm"</span> <span class="ot">=</span> <span class="st">"Flipper Length(mm)"</span>,</span>
 <span id="cb67-6"><a href="#cb67-6"></a>                          <span class="st">"bill_length_mm:sexmale"</span> <span class="ot">=</span> <span class="st">"Bill Length(mm) x Male Penguin"</span>),</span>
 <span id="cb67-7"><a href="#cb67-7"></a>             <span class="at">vcov =</span> <span class="st">"robust"</span>,</span>
 <span id="cb67-8"><a href="#cb67-8"></a>             <span class="at">note =</span> <span class="st">"Robust Standard errors in Parenthsis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2249,7 +2252,7 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Bill Lenth(mm) </td>
+   <td style="text-align:left;"> Bill Length(mm) </td>
    <td style="text-align:center;"> 87.415*** </td>
    <td style="text-align:center;"> 60.117*** </td>
    <td style="text-align:center;"> 28.695*** </td>
@@ -2261,7 +2264,7 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
    <td style="text-align:center;"> (6.817) </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Flipper Lenth(mm) </td>
+   <td style="text-align:left;"> Flipper Length(mm) </td>
    <td style="text-align:center;">  </td>
    <td style="text-align:center;"> 27.544*** </td>
    <td style="text-align:center;"> 19.052*** </td>
@@ -2399,7 +2402,7 @@ F-statistic: 426.1 on 5 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul></li>
 <li><p>You will also probably want to load <code>marginaleffects</code> to get marginal effects of your model</p>
 <ul>
-<li>Remember the coeficients of a MLE model are not directly interpretable</li>
+<li>Remember the coefficients of a MLE model are not directly interpretable</li>
 </ul></li>
 <li><p><code>emmeans</code> is also a solid package for getting marginal effects</p></li>
 <li><p>Note: They do differ on what they can do and how they generate marginal effects</p>
