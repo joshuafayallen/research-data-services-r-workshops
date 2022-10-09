@@ -323,10 +323,11 @@ his version of the test is actually the Welch Student’s test, used when the va
 
 ```{r eval=FALSE}
 
-penguins_df = penguins[,c(3:6)]  |> ## lets you do it by column position
+penguins_df = penguins[,c(3:4)]  |> ## lets you do it by column position
   na.omit() 
 
-cor(penguins_df)
+cor(penguins_df) |> 
+  knitr::kable(format = "html")
 
 ## this lets you do it by class
  penguins[, sapply(penguins, is.numeric)]  |> 
