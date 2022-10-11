@@ -184,14 +184,39 @@ Rstudio has lots of handy features that help you. Much like a car. If we didnt h
 
 
 
-## I Have Downloaded Rstudio Now What? 
+## Navigating RStudio 
 
 
-```{r script-new, echo=FALSE, out.width="60%", fig.alt="Opening an R script through drop down on the top left or command shift n on mac"}
+::: {.absolute top="0" left="100%"}
+:::
 
-knitr::include_graphics("figs/script-new.png")
+::: {.absolute top="10%" left="0" width="1031" height="529"}
+::: {style="text-align: center"}
+![](figs/annotate-one.png)
+:::
+:::
 
-```
+::: {.absolute top="66%" left="70%"}
+::: {style="color: #cc0000"}
+project files are here
+:::
+:::
+
+. . .
+
+::: {.absolute top="28%" left="70%"}
+::: {style="color: #cc0000"}
+<br>imported data</br> shows up here
+:::
+:::
+
+. . .
+
+::: {.absolute top="50%" left="10%"}
+::: {style="color: #cc0000"}
+code *can* go here
+:::
+:::
 
 
 
@@ -209,8 +234,39 @@ these let you comment your code. That way you can let yourself or a reader know 
 :::
 
 
+## Navigating RStudio
 
 
+::: {.absolute top="0" left="100%"}
+:::
+
+::: {.absolute top="10%" left="0" width="1031" height="529"}
+::: {style="text-align: center"}
+![](figs/annotate-two.png)
+:::
+:::
+
+::: {.absolute top="66%" left="70%"}
+::: {style="color: #cc0000"}
+project files are here
+:::
+:::
+
+. . .
+
+::: {.absolute top="28%" left="70%"}
+::: {style="color: #cc0000"}
+<br>imported data</br> shows up here
+:::
+:::
+
+. . .
+
+::: {.absolute top="50%" left="10%"}
+::: {style="color: #cc0000"}
+code *can* go here
+:::
+:::
 
 ## Setting Your Working Directory
 
