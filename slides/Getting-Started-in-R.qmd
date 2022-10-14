@@ -14,7 +14,14 @@ format:
 ```{r setup, include = F, warnings = FALSE}
 
 ## install.packages("pacman")
-pacman::p_load("ggplot2", "AllenMisc", "magrittr","dplyr", "flair", install = FALSE)
+pacman::p_load("ggplot2", "AllenMisc", "magrittr","dplyr", "flair", "MetBrewer", "colorspace",  install = FALSE)
+
+
+
+clrs <- met.brewer(name = "Demuth")
+clrs_lt <- lighten(clrs, 0.9)
+
+
 
 penguins = palmerpenguins::penguins
 
@@ -71,7 +78,7 @@ knitr::include_graphics("figs/how-to-badge.png")
 ```
 
 
-# The Workshop
+# The Workshop {background-color="`r clrs[3]`" .white}
 
 ## Why Use R?
 
@@ -480,7 +487,7 @@ Reason: R now recognises these packages as defined objects with given names. ("E
 
 
 
-## `R` Some Basics
+# `R` Some Basics {background-color="`r clrs[3]`" .white}
 
 
 
@@ -774,7 +781,7 @@ To be honest R purists are one of the last hold outs of using the gets operator 
 :::
 
 
-# Working with Objects 
+## Working with Objects 
 
 
 ```{r echo = TRUE}
@@ -970,7 +977,7 @@ Example and Discussion provided in [R for Data Sciency](https://r4ds.had.co.nz/w
 
 
 
-# Working with Objects in R 
+# Navigating Objects in R {background-color="`r clrs[3]`" .white}
 
 
 
@@ -1026,7 +1033,7 @@ Remember to work and reuse stuff in R we need to assign it to an object. So firs
 :::
 
 
-## Your Turn
+## Your Turn {background-color="`r clrs_lt[3]`"}
 
 - Create an object with what ever you want in it
 
@@ -1369,7 +1376,7 @@ knitr::include_graphics("pics/stackoverflow.png")
 
 
 
-## Your Turn
+## Your Turn {background-color="`r clrs_lt[3]`"}
 
 - Find the minimum value of `bill_length_mm`
 
@@ -1430,7 +1437,7 @@ table is handy but in some cases it does not give us all the information we need
 ## tapply and calculating descriptive statistics by groups  
 
 ```{r echo = TRUE}
-tapply(penguins$species,penguins$island, table)
+tapply(penguins$species,penguins$sex, table, useNA = "ifany")
 
 ```
 
@@ -1447,27 +1454,15 @@ We may want to see where our penguin friends live so we can use tapply which is 
 
 
 ## Plotting
-:::columns
-:::column
-```{r base-r-scatter, eval=FALSE, echo = TRUE}
+
+```{r base-r-scatter,  echo = TRUE}
+#| output-location: column
 plot(penguins$bill_length_mm,
-     penguins$body_mass_g,
-     xlab = "Bill Length(mm)",
-     ylab = "Body Mass(g)")
+   penguins$body_mass_g,
+   xlab = "Bill Length(mm)",
+   ylab = "Body Mass(g)")
 
 ```
-:::
-
-:::column
-
-```{r base-r-scatter-out, echo=FALSE}
-plot(penguins$bill_length_mm, penguins$body_mass_g,
-     xlab = "Bill Length(mm)",
-     ylab = "Body Mass(g)")
-```
-
-:::
-:::
 
 
 
@@ -1475,26 +1470,17 @@ plot(penguins$bill_length_mm, penguins$body_mass_g,
 
 
 ## Plotting(cont)
-:::columns
-:::column
-```{r base-r-hist, eval=FALSE, echo = TRUE}
+
+
+
+```{r base-r-hist, echo = TRUE}
+#| output-location: column
+
 hist(penguins$bill_length_mm,
  xlim = c(30, 60))
 
 ```
-:::
 
-
-:::column
-
-```{r base-r-hist-out, echo=FALSE}
-hist(penguins$bill_length_mm,
- xlim = c(30, 60))
-```
-
-
-:::
-:::
 
 
 ## Making New Things {.scrollable}
