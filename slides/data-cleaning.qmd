@@ -573,7 +573,7 @@ countdown::countdown(minutes = 3, sound = TRUE)
 
 # Mutate {background-color="`r clrs[3]`" .white}
 
-## Mutate
+## Mutate 
 
 
 
