@@ -1498,13 +1498,6 @@
     "text": "Install and load(cont.)\nOnce the packages are installed we need load them into our R session with the library() function\n\n# We talk to ourselves using #\nlibrary(Package) \nlibrary(I)\nlibrary(JustInstalled)\n\nNotice too that you don’t need quotes around the package names any more.\n\nReason: R now recognises these packages as defined objects with given names. (“Everything in R is an object and everything has a name.”)"
   },
   {
-    "objectID": "slides/Getting-Started-in-R.html#r-some-basics",
-    "href": "slides/Getting-Started-in-R.html#r-some-basics",
-    "title": "Getting Started in R",
-    "section": "R Some Basics",
-    "text": "R Some Basics"
-  },
-  {
     "objectID": "slides/Getting-Started-in-R.html#basic-maths",
     "href": "slides/Getting-Started-in-R.html#basic-maths",
     "title": "Getting Started in R",
@@ -1566,6 +1559,13 @@
     "title": "Getting Started in R",
     "section": "Assignment(cont)",
     "text": "Assignment(cont)\n\n\nUsing = as an assignment operator also works and is the one I tend to use\n\nNote: = is also used to evaluate arguments within functions\n\n\n\n\n\nb = b * 2\n\nd = b/3\n\n\n\nTbh this is a matter of taste really.\n\nR added = in the 2000’s to make it easier for people coming from other object oriented programming languages\n\nJust keep it consistent..\nJust keep it consistent..or become ungovernable and use all three in one script.\n\nI am not responsible for you getting yelled at on Stackoverflow if you do this.\n\n\n\n\n\nTo be honest R purists are one of the last hold outs of using the gets operator essentially back in the main frame computer days there was a physical key that would do this for you. R is actually really really old so there are some quirks to it that bug lots of people. We are not going to get into it any further in this workshop but if you have prior experience in an object oriented language R will be a bit peculiar at times. Like in somne cases position of the argument does not matter indentation does not matter which will really throw you off if you are coming from python or vice versa\n\n\n\nMore discussion here and here"
+  },
+  {
+    "objectID": "slides/Getting-Started-in-R.html#working-with-objects",
+    "href": "slides/Getting-Started-in-R.html#working-with-objects",
+    "title": "Getting Started in R",
+    "section": "Working with Objects",
+    "text": "Working with Objects\n\ne = c(1,3,5,6,67,7) # creates a vector\n\nlength(e) ## How many things are in there? \n\n[1] 6\n\nsum(e)/length(e) # Hand calculate mean\n\n[1] 14.83333\n\nmean(e) # Why make our life hard when there is a built in function?\n\n[1] 14.83333\n\ne = data.frame(x = 1:22,\n               y = 20:41)\n\n\nmean(y)\n\nError in mean(y): object 'y' not found"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#global-environmentcont",
@@ -1754,21 +1754,21 @@
     "href": "slides/Getting-Started-in-R.html#tapply-and-calculating-descriptive-statistics-by-groups",
     "title": "Getting Started in R",
     "section": "tapply and calculating descriptive statistics by groups",
-    "text": "tapply and calculating descriptive statistics by groups\n\ntapply(penguins$species,penguins$island, table)\n\n$Biscoe\n\nAdelie Gentoo \n    44    124 \n\n$Dream\n\n   Adelie Chinstrap \n       56        68 \n\n$Torgersen\n\nAdelie \n    52 \n\n\n\ntapply(penguins$bill_depth_mm, penguins$species, mean, na.rm = TRUE)\n\n   Adelie Chinstrap    Gentoo \n 18.34636  18.42059  14.98211 \n\n\n\nWe may want to see where our penguin friends live so we can use tapply which is a handy trick. There will be some convincing you need to do with to make drop the missing values in tapply. I fought with it on the plane so trust me."
+    "text": "tapply and calculating descriptive statistics by groups\n\ntapply(penguins$species,penguins$sex, table, useNA = \"ifany\")\n\n$female\n\n   Adelie Chinstrap    Gentoo \n       73        34        58 \n\n$male\n\n   Adelie Chinstrap    Gentoo \n       73        34        61 \n\n\n\ntapply(penguins$bill_depth_mm, penguins$species, mean, na.rm = TRUE)\n\n   Adelie Chinstrap    Gentoo \n 18.34636  18.42059  14.98211 \n\n\n\nWe may want to see where our penguin friends live so we can use tapply which is a handy trick. There will be some convincing you need to do with to make drop the missing values in tapply. I fought with it on the plane so trust me."
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#plotting",
     "href": "slides/Getting-Started-in-R.html#plotting",
     "title": "Getting Started in R",
     "section": "Plotting",
-    "text": "Plotting\n\n\n\nplot(penguins$bill_length_mm,\n     penguins$body_mass_g,\n     xlab = \"Bill Length(mm)\",\n     ylab = \"Body Mass(g)\")"
+    "text": "Plotting\n\n\nplot(penguins$bill_length_mm,\n   penguins$body_mass_g,\n   xlab = \"Bill Length(mm)\",\n   ylab = \"Body Mass(g)\")"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#plottingcont",
     "href": "slides/Getting-Started-in-R.html#plottingcont",
     "title": "Getting Started in R",
     "section": "Plotting(cont)",
-    "text": "Plotting(cont)\n\n\n\nhist(penguins$bill_length_mm,\n xlim = c(30, 60))"
+    "text": "Plotting(cont)\n\n\nhist(penguins$bill_length_mm,\n xlim = c(30, 60))"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#making-new-things",
