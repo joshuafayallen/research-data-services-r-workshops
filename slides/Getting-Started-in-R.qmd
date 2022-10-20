@@ -765,10 +765,7 @@ d = b/3
 - Tbh this is a matter of taste really. 
   - R added `=` in the 2000's to make it easier for people coming from other object oriented programming languages
 
-- Just keep it consistent..
-
-
-- Just keep it consistent..or become ungovernable and use all three in one script.
+- Just keep it consistent..[or become ungovernable and use all three in one script.]{.fragment}
   - I am not responsible for you getting yelled at on Stackoverflow if you do this.
 :::
 ::: aside
