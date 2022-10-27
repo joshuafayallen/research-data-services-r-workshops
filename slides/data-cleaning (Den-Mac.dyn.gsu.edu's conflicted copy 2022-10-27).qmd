@@ -1286,7 +1286,6 @@ Each value must have its own cell.
 data("relig_income")
 
 relig_income |>
- head(10) |>
  knitr::kable(format = "html")
 
 ```
