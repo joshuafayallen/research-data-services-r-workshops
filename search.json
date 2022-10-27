@@ -711,7 +711,7 @@
     "href": "slides/data-cleaning.html#these-do-the-same-thing",
     "title": "Data Cleaning in R",
     "section": "These Do The Same Thing",
-    "text": "These Do The Same Thing\n\n\n\nfilter(starwars, homeworld == \"Naboo\",\n                 mass < 84.5)\n\n\nfilter(starwars, homeworld == \"Naboo\" &\n                 mass < 84.5)\n\n\n\n\n\n\n \n  \n    name \n    mass \n    homeworld \n  \n \n\n  \n    R2-D2 \n    32 \n    Naboo \n  \n  \n    Palpatine \n    75 \n    Naboo \n  \n  \n    Jar Jar Binks \n    66 \n    Naboo \n  \n  \n    Roos Tarpals \n    82 \n    Naboo \n  \n  \n    Padmé Amidala \n    45 \n    Naboo"
+    "text": "These Do The Same Thing\n\n\n\nfilter(starwars, homeworld == \"Naboo\",\n                 mass < 84.5)\n\n\nfilter(starwars, homeworld == \"Naboo\" &\n                 mass < 84.5)\n\n\n\n\n\n\n \n  \n    name \n    mass \n    homeworld \n  \n \n\n  \n    R2-D2 \n    32 \n    Naboo \n  \n  \n    Palpatine \n    75 \n    Naboo \n  \n\n\n\n\n\n\n\n \n  \n    name \n    mass \n    homeworld \n  \n \n\n  \n    R2-D2 \n    32 \n    Naboo \n  \n  \n    Palpatine \n    75 \n    Naboo"
   },
   {
     "objectID": "slides/data-cleaning.html#getting-multiple-things-from-the-same-column",
