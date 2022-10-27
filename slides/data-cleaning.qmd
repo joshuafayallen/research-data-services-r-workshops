@@ -456,7 +456,7 @@ filter(starwars, homeworld == "Naboo" |
                  homeworld == "Coruscant" |
                  homeworld == "Tatooine") |>
                  select(name, homeworld) |>
-                  head(8) |>
+                  head(7) |>
                  bind_rows(tibble(name = "...", homeworld =  "...")) |> 
     knitr::kable(format = "html")
 ```
