@@ -426,7 +426,16 @@ filter(starwars, homeworld == "Naboo" &
 filter(starwars, homeworld == "Naboo" &
                  mass < 84.5) |>
                  select(name, mass, homeworld)|>
+                 head(2) |>
                  knitr::kable(format = "html")
+
+
+filter(starwars, homeworld == "Naboo",
+                 mass < 84.5) |>
+                 select(name, mass, homeworld)|>
+                 head(2) |>
+                 knitr::kable(format = "html")
+
 ```
 
 :::
