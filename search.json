@@ -739,7 +739,7 @@
     "href": "slides/data-cleaning.html#your-turn",
     "title": "Data Cleaning in R",
     "section": "Your Turn",
-    "text": "Your Turn\n\nTry removing the missing values from bill_length_mm hint: use ! and is.na.\nReturn a data dataset that only has data for the Dream island\nUsing either the starwars or penguins data use %in% to get a set of homeworlds or islands\nSubset the penguin data where body mass is less than 4202 and not on the Dream Island.\n\n\n\n\n−+\n03:00"
+    "text": "Your Turn\n\nTry removing the missing values from bill_length_mm hint: use ! and is.na.\nReturn a data dataset that only has data for the Dream island\nUsing either the starwars or penguins data use %in% to get a set of homeworlds or islands\nBonus: return a set of islands or homeworlds not in that set\nSubset the penguin data where body mass is less than 4202 and not on the Dream Island.\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "slides/data-cleaning.html#mutate-1",
