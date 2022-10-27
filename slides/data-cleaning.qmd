@@ -114,8 +114,8 @@ I have a also included another set of slides that cover data.table. Which is a r
 
 install.packages("tidyverse")
 library(tidyverse)
-starwars = read_csv("starwars.csv")
-penguins = read_csv("penguins.csv")
+starwars <- read_csv("starwars.csv")
+penguins <- read_csv("penguins.csv")
 
 ```
 
@@ -456,7 +456,7 @@ filter(starwars, homeworld == "Naboo" |
                  homeworld == "Coruscant" |
                  homeworld == "Tatooine") |>
                  select(name, homeworld) |>
-                  head(11) |>
+                  head(8) |>
                  bind_rows(tibble(name = "...", homeworld =  "...")) |> 
     knitr::kable(format = "html")
 ```
