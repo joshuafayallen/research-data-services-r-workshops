@@ -570,6 +570,8 @@ In this case nothing in our data is named Nabo with one o so it is just returnin
 - Return a data dataset that only has data for the `Dream` island 
 
 -   Using either the `starwars` or `penguins` data use `%in%` to get a set of homeworlds or islands
+  - Bonus: return a set of islands or homeworlds not in that set
+
 
 -   Subset the penguin data where body mass is less than `4202` and not on the Dream Island.
 
