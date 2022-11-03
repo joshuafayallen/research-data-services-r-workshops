@@ -152,7 +152,12 @@ abline(lm(body_mass_g~bill_length_mm, data = penguins))
 ```
 
 
+:::{.notes}
+you have to add something like jpeg("name_of_plot.jpg")
 
+and then add dev.off() at the end
+
+:::
 
 
 # Research Data Services 
