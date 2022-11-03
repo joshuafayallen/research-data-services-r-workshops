@@ -1603,6 +1603,27 @@
     "text": "Variable Importance Plot\n\n\nfinal_fit |>\nfit(peng_tidy_train) |>\nextract_fit_parsnip() |>\nvi(lambda = good_mod$penalty) |>\nmutate(\n    Importance = abs(Importance),\n    Variable = fct_reorder(Variable, Importance)\n  ) |>\nggplot(aes(x = Importance,\n          y = Variable,\n         fill = Sign)) +\ngeom_col() +\nscale_x_continuous(expand = c(0,0)) + \nlabs(y = NULL) +\ntheme_allen_bw()"
   },
   {
+    "objectID": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
+    "href": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
+    "title": "Getting Started in ggplot",
+    "section": "Packages We Will Need For Today",
+    "text": "Packages We Will Need For Today\n\ninstall.packages(c(\"gapminder\", \"palmerpenguins\"))\n\n\nlibrary(gapminder)\nlibrary(palmerpenguins)\nlibrary(tidyverse) # ggplot will automatically be loaded in. \n# library(ggplot2) also works"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#where-we-have-been",
+    "href": "slides/ggplot-presentation.html#where-we-have-been",
+    "title": "Getting Started in ggplot",
+    "section": "Where We Have Been",
+    "text": "Where We Have Been\n\n\nplot(penguins$bill_length_mm,\n   penguins$body_mass_g,\n   xlab = \"Bill Length(mm)\",\n   ylab = \"Body Mass(g)\")\n   abline(lm(body_mass_g~bill_length_mm, data = penguins))\n\n\n\n\n\n\n\n\n\n\n\nWe have seen how to make plots in base R they take this general form"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#expanding-what-we-know",
+    "href": "slides/ggplot-presentation.html#expanding-what-we-know",
+    "title": "Getting Started in ggplot",
+    "section": "Expanding What We Know",
+    "text": "Expanding What We Know\n\npar(mfrow = c(2,2))\nplot(penguins$bill_length_mm,\n        penguins$body_mass_g,\n    xlab = \"Bill Length(mm)\",\n   ylab = \"Body Mass(g)\")\nhist(penguins$bill_length_mm,\n  xlim = c(30, 60))\nplot(density(penguins$bill_length_mm))\nplot(penguins$bill_length_mm,\n    penguins$body_mass_g,\n    xlab = \"Bill Length(mm)\",\n    ylab = \"Body Mass(g)\")\nabline(lm(body_mass_g~bill_length_mm, data = penguins))"
+  },
+  {
     "objectID": "slides/ggplot-presentation.html#our-team",
     "href": "slides/ggplot-presentation.html#our-team",
     "title": "Getting Started in ggplot",
@@ -1622,13 +1643,6 @@
     "title": "Getting Started in ggplot",
     "section": "How To Get the Badges",
     "text": "How To Get the Badges"
-  },
-  {
-    "objectID": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
-    "href": "slides/ggplot-presentation.html#packages-we-will-need-for-today",
-    "title": "Getting Started in ggplot",
-    "section": "Packages We Will Need For Today",
-    "text": "Packages We Will Need For Today\n\ninstall.packages(c(\"gapminder\", \"palmerpenguins\"))\n\n\nlibrary(gapminder)\nlibrary(palmerpenguins)\nlibrary(tidyverse) # ggplot will automatically be loaded in. \n# library(ggplot2) also works"
   },
   {
     "objectID": "slides/ggplot-presentation.html#why-visualize-your-data",
