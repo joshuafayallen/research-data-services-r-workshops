@@ -71,6 +71,90 @@ towers_keeps = read_sf("data/ME-GIS/Towers_and_Keeps.shp")
 options(scipen=999)
 ```
 
+
+## Packages We Will Need For Today 
+
+```{r show-data, eval=FALSE, echo = TRUE }
+
+install.packages(c("gapminder", "palmerpenguins"))
+
+
+library(gapminder)
+library(palmerpenguins)
+library(tidyverse) # ggplot will automatically be loaded in. 
+# library(ggplot2) also works 
+
+
+
+```
+
+
+
+
+
+## Where We Have Been
+
+
+```{r out.width = "60%" }
+#| output-location: column
+plot(penguins$bill_length_mm,
+   penguins$body_mass_g,
+   xlab = "Bill Length(mm)",
+   ylab = "Body Mass(g)")
+   abline(lm(body_mass_g~bill_length_mm, data = penguins))
+
+
+
+
+```
+
+:::{.notes}
+We have seen how to make plots in base R they take this general form 
+
+:::
+
+
+## Expanding What We Know{.scrollable}
+
+
+```{r echo = TRUE, eval = FALSE}
+
+par(mfrow = c(2,2))
+plot(penguins$bill_length_mm,
+        penguins$body_mass_g,
+    xlab = "Bill Length(mm)",
+   ylab = "Body Mass(g)")
+hist(penguins$bill_length_mm,
+  xlim = c(30, 60))
+plot(density(penguins$bill_length_mm))
+plot(penguins$bill_length_mm,
+    penguins$body_mass_g,
+    xlab = "Bill Length(mm)",
+    ylab = "Body Mass(g)")
+abline(lm(body_mass_g~bill_length_mm, data = penguins))
+```
+
+
+```{r echo = FALSE}
+#| layout-ncol: 2
+plot(penguins$bill_length_mm,
+        penguins$body_mass_g,
+    xlab = "Bill Length(mm)",
+   ylab = "Body Mass(g)")
+hist(penguins$bill_length_mm,
+  xlim = c(30, 60))
+plot(density(penguins$bill_length_mm))
+plot(penguins$bill_length_mm,
+    penguins$body_mass_g,
+    xlab = "Bill Length(mm)",
+    ylab = "Body Mass(g)")
+abline(lm(body_mass_g~bill_length_mm, data = penguins))
+```
+
+
+
+
+
 # Research Data Services 
 
 
@@ -115,21 +199,6 @@ knitr::include_graphics("figs/how-to-badge.png")
 
 # The Importance of Graphing {background-color="`r clrs[3]`" .white}
 
-## Packages We Will Need For Today 
-
-```{r show-data, eval=FALSE, echo = TRUE }
-
-install.packages(c("gapminder", "palmerpenguins"))
-
-
-library(gapminder)
-library(palmerpenguins)
-library(tidyverse) # ggplot will automatically be loaded in. 
-# library(ggplot2) also works 
-
-
-
-```
 
 
 
