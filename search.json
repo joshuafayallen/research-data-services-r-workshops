@@ -1621,7 +1621,7 @@
     "href": "slides/ggplot-presentation.html#expanding-what-we-know",
     "title": "Getting Started in ggplot",
     "section": "Expanding What We Know",
-    "text": "Expanding What We Know\n\npar(mfrow = c(2,2))\nplot(penguins$bill_length_mm,\n        penguins$body_mass_g,\n    xlab = \"Bill Length(mm)\",\n   ylab = \"Body Mass(g)\")\nhist(penguins$bill_length_mm,\n  xlim = c(30, 60))\nplot(density(penguins$bill_length_mm))\nplot(penguins$bill_length_mm,\n    penguins$body_mass_g,\n    xlab = \"Bill Length(mm)\",\n    ylab = \"Body Mass(g)\")\nabline(lm(body_mass_g~bill_length_mm, data = penguins))"
+    "text": "Expanding What We Know\n\npar(mfrow = c(2,2))\nplot(penguins$bill_length_mm,\n        penguins$body_mass_g,\n    xlab = \"Bill Length(mm)\",\n   ylab = \"Body Mass(g)\")\nhist(penguins$bill_length_mm,\n  xlim = c(30, 60))\nplot(density(penguins$bill_length_mm))\nplot(penguins$bill_length_mm,\n    penguins$body_mass_g,\n    xlab = \"Bill Length(mm)\",\n    ylab = \"Body Mass(g)\")\nabline(lm(body_mass_g~bill_length_mm, data = penguins))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nyou have to add something like jpeg(“name_of_plot.jpg”)\nand then add dev.off() at the end"
   },
   {
     "objectID": "slides/ggplot-presentation.html#our-team",
