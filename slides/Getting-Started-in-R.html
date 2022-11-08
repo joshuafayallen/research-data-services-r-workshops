@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.1.251">
 
   <meta name="author" content="Josh Allen">
-  <meta name="dcterms.date" content="2022-11-03">
+  <meta name="dcterms.date" content="2022-11-08">
   <title>Research Data Services R Workshops at Georgia State University - Getting Started in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -394,7 +394,7 @@
   <h1 class="title">Getting Started in R</h1>
   <p class="author">Josh Allen</p>
   <p class="institute">Department of Political Science at Georgia State University</p>
-  <p class="date">2022-11-03</p>
+  <p class="date">2022-11-08</p>
 </section>
 
 <section>
@@ -1580,7 +1580,7 @@ NA </code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_629a713c" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_bcc7f6d6" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1688,7 +1688,7 @@ NA </code></pre>
 <section id="indexing" class="slide level2">
 <h2>Indexing <code>[]</code></h2>
 <ul>
-<li><p>We can use <code>[]</code> to index objects.</p></li>
+<li><p>We can use column position to index objects.</p></li>
 <li><p>There are two slots we can use <em>rows</em> and <em>columns</em> in the brackets if we are using a dataframe like this.</p></li>
 <li><p><code>object_name[rows, columns]</code></p></li>
 <li><p>We can also subset our data by column position using <code>:</code> or <code>c(column 1, column 2)</code></p></li>
@@ -2353,13 +2353,13 @@ NA </code></pre>
 <ul>
 <li><p>Find the minimum value of <code>bill_length_mm</code></p></li>
 <li><p>Find the maximum value of <code>body_mass_g</code></p></li>
-<li><p>Subset the penguins data any way you want using <code>[]</code> or <code>$</code></p></li>
+<li><p>Subset the penguins data any way you want using column position or <code>$</code></p></li>
 <li><p>Assign each of them to an object</p></li>
 <li><p>Create a vector from 1:10 index that vector using <code>[]</code> to return 2 and 4</p></li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_af9b2276" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_cfa58747" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -2855,8 +2855,8 @@ $male
 </div>
 </div>
 </section>
-<section id="cleaning-up-after-yourslef" class="slide level2">
-<h2>Cleaning up after yourslef</h2>
+<section id="cleaning-up-after-yourself" class="slide level2">
+<h2>Cleaning up after yourself</h2>
 <ul>
 <li><p><code>rm(objectname)</code> will remove the objects you created</p></li>
 <li><p><code>rm(list=ls())</code> will remove all the objects your created</p></li>
