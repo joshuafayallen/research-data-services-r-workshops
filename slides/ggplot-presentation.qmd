@@ -6,7 +6,7 @@ date: "2022-08-29"
 format:
   revealjs:
    theme: ["allen.scss"]
-editor: source
+   preview-links: auto
 knitr:
   opts_chunk:
     dev: "ragg_png"
