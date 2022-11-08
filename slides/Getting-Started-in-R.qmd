@@ -1072,7 +1072,7 @@ Using the magical penguin data we will leave you here with some sort of actionab
 
 ## Indexing  `[]`
 
-- We can use `[]` to index objects. 
+- We can use column position to index objects. 
 
 - There are two slots we can use *rows* and *columns* in the brackets if we are using a dataframe like this. 
  - `object_name[rows, columns]`
@@ -1379,7 +1379,7 @@ knitr::include_graphics("pics/stackoverflow.png")
 
 - Find the maximum value of `body_mass_g`
 
-- Subset the penguins data any way you want using `[]` or `$`
+- Subset the penguins data any way you want using column position or `$`
 
 - Assign each of them to an object
 
@@ -1505,7 +1505,7 @@ penguins[,c(1,9:10)]
 
 
 
-## Cleaning up after yourslef
+## Cleaning up after yourself
 
 - `rm(objectname)` will remove the objects you created 
 

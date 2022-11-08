@@ -13,6 +13,8 @@ knitr:
     dpi: 200
 execute:
   echo: true
+  fig-width: 5
+  fig-height: 6
 ---
 
 
@@ -880,11 +882,15 @@ ggplot(peng_diag_tidy, aes(x = .resid)) +
 
 ## Base R diagnostic plots 
 
-```{r}
+```{r eval = FALSE}
 par(mfrow = c(2, 2))
 plot(peng_adjust)
 ```
 
+```{r echo = FALSE}
+#| layout-ncol: 2
+ plot(peng_adjust)
+```
 
 
 ## ggplot2 extension for same thing 
