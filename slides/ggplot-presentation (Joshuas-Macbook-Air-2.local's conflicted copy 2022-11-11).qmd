@@ -28,20 +28,42 @@ execute:
   fig-width: 5
   fig-height: 6
 ---
+
 ```{r setup, include = F, warnings = FALSE}
 
-## install.packages("pacman")
-pacman::p_load("tidyverse", "AllenMisc", "countrycode", "MetBrewer", "scico", "colorspace", "gapminder", "sf",  install = FALSE)
 
-gapminder = filter(gapminder, !continent == "Oceania")
+library(tidyverse)
+library(palmerpenguins)
+library(datasauRus)
+library(gapminder)
+library(AllenMisc)
+library(sf)
+library(ggridges)
+library(scico)
+library(MetBrewer)
+library(WDI)
+library(vdemdata)
+library(countrycode)
+library(colorspace)
+
 
 
 clrs <- met.brewer(name = "Demuth")
 clrs_lt <- lighten(clrs, 0.9)
 
+
 graph_dat = datasauRus::datasaurus_dozen
 
-penguins = palmerpenguins::penguins |> tidyr::drop_na()
+gapminder = gapminder::gapminder |> 
+  filter(continent != "Oceania")
+
+penguins = palmerpenguins::penguins |> drop_na()
+
+sysfonts::font_add_google("Homemade Apple", "Homemade Apple")
+showtext::showtext_auto()
+
+sysfonts::font_add_google("Roboto Condensed", "Roboto Condensed")
+showtext::showtext_auto()
 
 coastline = read_sf("data/ME-GIS/Coastline2.shp")
 contours = read_sf("data/ME-GIS/Contours_18.shp")
@@ -52,10 +74,29 @@ mountains = read_sf("data/ME-GIS/Mountains_Anno.shp")
 placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
 cities = read_sf("data/ME-GIS/Cities.shp")
 roads = read_sf("data/ME-GIS/Roads.shp")
-towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
+towers_keeps = read_sf("data/ME-GIS/Towers_and_Keeps.shp")
+
+options(scipen=999)
+```
+
+
+## Packages We Will Need For Today 
+
+```{r show-data, eval=FALSE, echo = TRUE }
+
+install.packages(c("gapminder", "palmerpenguins"))
+
+
+library(gapminder)
+library(palmerpenguins)
+library(tidyverse) # ggplot will automatically be loaded in. 
+# library(ggplot2) also works 
+
 
 
 ```
+
+
 
 
 
@@ -68,7 +109,12 @@ plot(penguins$bill_length_mm,
    penguins$body_mass_g,
    xlab = "Bill Length(mm)",
    ylab = "Body Mass(g)")
-   abline(lm(body_mass_g~bill_length_mm, data = penguins))
+   abline(lm(body_mass_g~bill_length_mm,
+     data = penguins))
+
+
+
+
 ```
 
 :::{.notes}
@@ -81,6 +127,7 @@ We have seen how to make plots in base R they take this general form
 
 
 ```{r echo = TRUE, eval = FALSE}
+
 par(mfrow = c(2,2))
 plot(penguins$bill_length_mm,
         penguins$body_mass_g,
@@ -172,7 +219,10 @@ knitr::include_graphics("figs/how-to-badge.png")
 ## Why visualize your data?
 
 ```{r mean-x, eco = TRUE}
+
 mean(graph_dat$x)
+
+
 ```
 
 ```{r sd-x, echo = TRUE}
@@ -285,6 +335,7 @@ I think an important theme so to say is that once we start to understand R it be
 #| fig-alt: "Here is just a scatter plot with various shapes and sizes. We will fill in the rest as the slides go on"
 ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) + geom_point(size = 3) + 
   theme_void() + theme(legend.position = "none")
+
 ```
 
 
@@ -381,7 +432,7 @@ There is a grammar to what is going on
 :::column
 
 ```{r penguin-full, echo=FALSE}
-
+#| fig-alt: "On the right hand side is the legend that denotes what each color and shape represent. Red represents the island Biscoe, Green Represents the island Dream. Light Blue represents the Torgersen Island. The circles represent the Adelie penguins, the triangles represent the Chinstrap penguins, and the squares represent the Gentoo penguins. The x axis represents bill length in milimeters and the y axis represents body mass in grams. Here I just added a title that says the 'The relationshiop between bill length and body weight' with a subtitle that says 'by isalnd and penguin species' "
 ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) +
   geom_point(size = 3) +
   labs(x = "Bill Length(mm)", y = "Body Mass(g)", title = "The Relationship Between Bill Length and Body Weight",
@@ -398,12 +449,12 @@ theme_minimal() +
 
 ## So How Did We go From?  
 
-::::{.columns}
+::::{.columns }
 
 
 :::{.column width="50%" .fragment fragment-index=1}
 
-### This
+This
 
 ```{r blank-plot-example-this, echo = FALSE }
 #| fig-alt: "This is the template that I started with with just points and colors"
@@ -417,9 +468,10 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 
 :::{.column width="50%" .fragment fragment-index=2}
 
-### To This
+To this
 
 ```{r full-plot-example-this, echo=FALSE}
+
 ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) +
   geom_point(size = 3) +
   labs(x = "Bill Length(mm)", y = "Body Mass(g)", title = "The Relationship Between Bill Length and Body Weight",
@@ -430,19 +482,128 @@ theme_minimal() +
 
 :::
 ::::
+
+## The Grammar 
+
+<br>
+<table style='width:100%;font-size:14pt;'>
+  <tr>
+    <th>Component</th>
+    <th>Function</th>
+    <th>Explanation</th>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Data</b></td>
+    <td><code>ggplot(data)</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td>*The raw data that you want to visualise.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Aesthetics&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+    <td><code>aes()</code></td>
+    <td>*Aesthetic mappings between variables and visual properties.*</td>
+  <tr>
+    <td><b style='color:#67676;'>Geometries</b></td>
+    <td><code>geom_*()</code></td>
+    <td>*The geometric shapes representing the data.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Statistics</b></td>
+    <td><code>stat_*()</code></td>
+    <td>*The statistical transformations applied to the data.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Scales</b></td>
+    <td><code>scale_*()</code></td>
+    <td>*Maps between the data and the aesthetic dimensions.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Coordinate System</b></td>
+    <td><code>coord_*()</code></td>
+    <td>*Maps data into the plane of the data rectangle.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Facets</b></td>
+    <td><code>facet_*()</code></td>
+    <td>*The arrangement of the data into a grid of plots.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Visual Themes</b></td>
+    <td><code>theme()</code> and <code>theme_*()</code></td>
+    <td>*The overall visual defaults of a plot.*</td>
+  </tr>
+</table>
+:::{.notes}
+This is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do 
+
+
+coordinates Combine the two position aesthetics to produce a 2d position on the plot. The position aesthetics are called x and y, but they might be better called position 1 and 2 because their meaning depends on the coordinate system used. For example, with the polar coordinate system they become angle and radius (or radius and angle), and with maps they become latitude and longitude.
+
+
+scales  take your data and turn it into something that you can see, like size, colour, position or shape. They also provide the tools that let you interpret the plot: the axes and legends. You can generate plots with ggplot2 without knowing how scales work
+
+:::
+
+
+
+
+## Where do they go?
+
+
+```{r your-penguin-code, echo = TRUE}
+#| code-line-numbers: "2,3,4,5,6,7"
+#| output-location: column
+
+ggplot() +
+  geom_point(data = penguins,
+   aes(
+  x = bill_length_mm, 
+  y = body_mass_g,
+  shape = species, 
+  color = island),
+  size = 3)
+```
+
+:::{.notes}
+To actually make the plot you need to specify the columns you want to "map" onto the plot. Map is kind of just the way that it is said in ggplot world. This is just us saying we want these columns in our 
+
+
+:::
+
+
+
+
+
 # Making Plots {background-color="`r clrs[3]`" .white}
 
 
-## Plotting Data 
 
 
-```{r echo = FALSE}
+
+
+
+
+## The data 
+
+
+```{r dataset-gapminder-show, echo = FALSE }
 gapminder |>
 head(10) |>
 knitr::kable(format = "html")
 
 
 ```
+
+
+:::{.notes}
+today we will be using the gapminder dataset.  It contains historical (1952-2007) data on various indicators, such as life expectancy and GDP, for countries worldwide.
+:::
+
+
+
+
+
+
+
 
 
 
@@ -453,8 +614,9 @@ knitr::kable(format = "html")
 ## install.packages("gapminder")
 ## library(gapminder)
 
+
 ggplot() +
-  geom_point(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+  geom_point(data = gapminder,mapping = aes(x = gdpPercap, y = lifeExp))
 
 ```
 
@@ -495,7 +657,6 @@ countdown::countdown(minutes = 5)
 ## How would you make this plot?
 
 ```{r gapminder-blue, echo = FALSE}
-#| fig-align: center
 
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) + 
   geom_point(color = "blue")
@@ -730,7 +891,6 @@ ggplot() +
 #### Hint do not supply a Y value
 
 ```{r echo=FALSE, out.width= "80%"}
-#| fig-align: center
 
 ggplot(gapminder, aes(x = lifeExp)) +
   geom_histogram()
@@ -935,7 +1095,7 @@ ggplot(gapminder,
 ```
 
 
-##  Change Transparency 
+##  Add Change Transparency 
 
 
 ```{r complex-plot-change-alpha,  echo = TRUE}
@@ -1022,8 +1182,6 @@ ggplot(gapminder,
 
 
 
-## Differences in Color Scales 
-
 
 
 
@@ -1108,6 +1266,34 @@ ggplot(gapminder,
 
 
 
+## A Grammar We Can Use
+
+
+Map wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.
+
+
+
+```{r grammar-ggplot-example-show, echo = TRUE }
+#| output-location: column
+ggplot(gapminder,
+  aes(x = gdpPercap,
+      y = lifeExp,
+      size = pop,
+      color = continent)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Income",
+       y = "Life Expectancy") +
+  scale_x_log10(labels = scales::dollar) +
+  theme_allen_bw() +
+  guides(size = guide_legend(reverse = TRUE,
+      title = "Population"),
+      color = guide_legend(title = "Continent"))
+```
+
+:::{.notes}
+This is roughly the prompt that I was working with. The nice part about ggplot is you can start thinking about the plot in real words and then translate that over into code. Since we have a template of where to put things we can then focus on how best to visualize our data rather than  fighting with thousands of dropdown menus 
+
+:::
 
 ## Scales
 
@@ -1179,7 +1365,7 @@ Instead of directly transforming your data ggplot allows you to do this through 
 
 ```{r }
 #| output-location: column
-#| code-line-numbers: "9,10,11,12"
+#| codee-line-numbers: "9,10,11,12"
 ggplot(gapminder,
   aes(x = gdpPercap,
      y = lifeExp,
@@ -1197,83 +1383,6 @@ ggplot(gapminder,
 
 :::{.notes}
 If you want to use  a different set of colors you choose those manull
-:::
-
-## Scales in Action 
-
-
-```{r}
-#| output-location: column
-#| code-line-numbers: "9,10,11,12"
-ggplot(gapminder,
-  aes(x = gdpPercap,
-     y = lifeExp,
-     size = pop,
-    color = continent)) +
-  geom_point(alpha = 0.5) +
-  labs(x = "Income", y = "Life Expectancy") +
-  scale_x_log10(labels = scales::dollar) +
-  scale_color_met_d(name = "Veronese") +
-  theme_bw() 
-
-
-```
-
-
-## Scales
-
-The `scale_*()` components control the properties of all the<br><b class='simple-highlight-ylw'>aesthetic dimensions mapped to the data.</b>
-
-<br>The extensions (`*`) can be filled by e.g.:
-
--   `continuous()`, `discrete()`, `reverse()`, `log10()`, `sqrt()`, `date()` for positions
-
--   `continuous()`, `discrete()`, `manual()`, `gradient()`, `gradient2()`, `brewer()` for colors
-
--   `continuous()`, `discrete()`, `manual()`, `ordinal()`, `area()`, `date()` for sizes
-
--   `continuous()`, `discrete()`, `manual()`, `ordinal()` for shapes
-
--   `continuous()`, `discrete()`, `manual()`, `ordinal()`, `date()` for transparency
-
-------------------------------------------------------------------------
-
-![Illustration by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)](pics/continuous_discrete.png){fig-size="120%" fig-align="center" fig-alt="Allison Horsts illustration ofthe correct use of continuous versus discrete; however, in {ggplot2} these are interpeted in a different way: as quantitative and qualitative."}
-
-## Continuous vs. Discrete in {ggplot2}
-
-::: {layout-ncol="2"}
-## Continuous:<br>quantitative or numerical data
-
--   height
--   weight
--   age
--   counts
-
-## Discrete:<br>qualitative or categorical data
-
--   species
--   sex
--   study sites
--   age group
-:::
-
-## Continuous vs. Discrete in {ggplot2}
-
-::: {layout-ncol="2"}
-## Continuous:<br>quantitative or numerical data
-
--   height (continuous)
--   weight (continuous)
--   age (continuous or discrete)
--   counts (discrete)
-
-## Discrete:<br>qualitative or categorical data
-
--   species (nominal)
--   sex (nominal)
--   study site (nominal or ordinal)
--   age group (ordinal)
 :::
 
 
@@ -1326,12 +1435,11 @@ ggplot(gapminder,
 
 
 ## Your Turn 
-### Change the colors of this density plot
+### Make this density plot of bill_length_mm filled by species. But change the default colors
 
 
 ```{r fill-your-turn-option-example, echo = FALSE}
-#| fig-align: center
-#| fig-width: 8
+
 ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
   geom_density( alpha = 0.75) +
   theme_bw() +
@@ -1590,6 +1698,38 @@ ggplot(gapminder,
 
 
 
+## ggplot in the wild 
+
+- Often organizations will write their own theme
+  - Check out the [BBC's](https://bbc.github.io/rcookbook/)
+
+
+```{r bbc-plots-example, echo = TRUE}
+#| output-location: column
+##devtools::install_github('bbc/bbplot')
+library(bbplot)
+ ggplot(gapminder,
+  aes(x = gdpPercap,
+   y = lifeExp,
+    color = continent)) +
+  geom_point(alpha = 0.6) +
+  scale_color_manual(values = 
+  c("#FAAB18",
+    "#1380A1",
+    "#990000",
+    "#588300")) +
+  scale_x_log10() +
+  bbc_style()
+
+```
+
+:::{.notes}
+Lots of organizations use ggplot. What this means for you is that you can find themes that lots of organizations use. I know for a fact that the economist makes all their code fully available for you. So if you see a cool graph from the economist you can just go to their github and figure out how they found it.
+
+
+:::
+
+
 ## The theme argument 
 
 - Has lots and lots of options(94 to be exact)
@@ -1604,9 +1744,6 @@ theme(legend.position = "bottom",
       plot.title = element_text(face = "bold"),
       axis.title.y = element_text(face = "italic"))
 ```
-
-
-
 
 
 
@@ -1625,6 +1762,8 @@ ggsave("name-of-your-file.pdf",your_plot_here)
 ```{r ggsave-examp-png, eval=FALSE, echo = TRUE}
 ggsave("name-of-your-file.pngs",your_plot_here)
 ```
+
+
 
 
 
@@ -1693,21 +1832,81 @@ knitr::include_graphics("https://raw.githubusercontent.com/andrewheiss/datavizs2
 
 
 ```{r show-geometry,echo=FALSE}
+world_map  = read_sf("data/ne_110m_admin_0_countries.shp")
+world_map |> 
+  select(4,geometry) 
 
-
-placenames |>
-select(NAME, geometry) |>
-filter(NAME %in% c("Hobbiton",
-                     "Rivendell",
-                     "Edoras",
-                     "Minas Tirith", "Mordor")) |>
-knitr::kable(format = "html")
 
 ```
 
 :::{.notes}
 When you download a shapefile you will get lots and lots of stuff. Lots of the shapefiles that you encounter in the wild are maintained by governments so keep those in the working directory. I will get to how to read in shape files in a minute. But when you read them into R the only thing that changes from your usual dataframe, tibble, data.table etc is that you will get a column in your dataset called geometry. This is just a list of things that delineate boundaries. for smaller countries like Fiji the number of boundaries are going to be smaller than say larger countries by area. It doesnt make sense to us but it makes sense to R 
 :::
+
+
+## Working with Data
+
+- You can use dplyr to manipulate data still. 
+  
+```{r  echo = TRUE}
+#| output-location: column
+
+
+vdem_raw = vdemdata::vdem 
+
+vdem_cleanish = vdem_raw %>% 
+  select(v2x_regime, country_name, country_text_id, year) %>% 
+  filter(year == "2018") %>% 
+  mutate(ISO_A3 = countrycode(country_name, origin = "country.name",
+                              destination = "iso3c"),
+         regime_type = case_when(v2x_regime == 0 ~ "Full Autocracy",
+                                 v2x_regime == 1 ~ "Electoral Autocracy",
+                                 v2x_regime == 2 ~ "Electoral Democracy",
+                                 v2x_regime == 3 ~ "Liberal Democracy"),
+         regime_type = as.factor(regime_type)) %>% 
+  arrange(ISO_A3)
+
+
+world_map_fixed = world_map %>% 
+  mutate(ISO_A3 = case_when(
+    ## If the country name is Norway or France, redo the ISO3 code
+    ADMIN == "Norway" ~ "NOR",
+    ADMIN == "France" ~ "FRA",
+    ## Otherwise use the existing ISO3 code
+    TRUE ~ ISO_A3)) %>% 
+    filter(ISO_A3 != "ATA") 
+
+
+
+plot_data_world = left_join(world_map_fixed, vdem_cleanish, by = "ISO_A3")  |> 
+  filter(!is.na(regime_type))
+
+
+
+plot_data_world$regime_type = factor(plot_data_world$regime_type,
+                                     levels = c("Full Autocracy",
+                                                "Electoral Autocracy",
+                                                "Electoral Democracy",
+                                                 "Liberal Democracy"))
+
+
+
+ ggplot() + 
+  geom_sf(data = plot_data_world, aes(fill = regime_type),
+          color = "#CDCDCD", size = 0.1) +
+   coord_sf(crs = st_crs("ESRI:54030")) +
+    scale_fill_scico_d(palette = "vik", direction = -1, na.value = "grey80") +
+   labs(fill = "Regime Types",
+        caption = "Data are derived from the Varities of Democracy Project") +
+   theme_void(base_family = "Roboto Condensed") +
+   theme(legend.position = "top",
+         legend.text = element_text(size = 8),
+         plot.caption = element_text(hjust = 0.8))
+```
+
+
+
+
 
 
 
@@ -1743,6 +1942,7 @@ as you can see nothing really fundamentally changes when you are making maps in 
 ggplot() +
   geom_sf(data = world_map_ne) + 
   coord_sf(crs = "+proj=cea +lon_0=0 +lat_ts=45") +
+  labs(title = "Gall-Peters Projection") +
   theme_void()
 ```
 
@@ -1754,6 +1954,68 @@ You can really easily change the projections you want. Here we are just feeding 
 
 :::
 
+## Mapping Middle Earth
+
+```{r echo = TRUE }
+#| output-location: column
+coastline = read_sf("data/ME-GIS/Coastline2.shp")
+contours = read_sf("data/ME-GIS/Contours_18.shp")
+rivers = read_sf("data/ME-GIS/Rivers.shp")
+lakes = read_sf("data/ME-GIS/Lakes.shp")
+forests = read_sf("data/ME-GIS/Forests.shp")
+mountains = read_sf("data/ME-GIS/Mountains_Anno.shp")
+placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
+cities = read_sf("data/ME-GIS/Cities.shp")
+roads = read_sf("data/ME-GIS/Roads.shp")
+towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
+places = placenames |>
+  filter(NAME %in% c("Hobbiton",
+                     "Rivendell",
+                     "Edoras",
+                     "Minas Tirith"))
+
+mordor = placenames[placenames$NAME == "Mordor",]
+
+mountains_to_label = mountains[mountains$name == "Erebor The Lonely Mountain",]
+
+ggplot() +
+  geom_sf(data = contours,
+          size = 0.15,
+          color = "grey90") +
+  geom_sf(data = coastline,
+          size = 0.25,
+          color = "grey50") +
+  geom_sf(data = rivers,
+          size = 0.2,
+          color = "#0776e0",
+          alpha = 0.5) +
+  geom_sf(data = lakes,
+          size = 0.2,
+          color = "#0776e0",
+          fill = "#0776e0") +
+  geom_sf(data = forests,
+          size = 0,
+          fill = "#035711",
+          alpha = 0.5) +
+  geom_sf(data = mountains, size = 0.25) +
+  geom_sf(data = places) +
+  geom_sf_label(data = places,
+                aes(label = NAME),
+                nudge_y = 80000) +
+  geom_sf_label(data = mountains_to_label,
+                aes(label = name),
+                nudge_y = 80000) +
+  geom_sf_label(data = mordor,
+                aes(label = NAME),
+                nudge_y = 9000) +
+  theme_void() +
+  theme(plot.background = element_rect(fill = "#fffce3"))
+```
+
+
+:::{.notes}
+As you can see this does not look fundamentally all that different from the rest of our ggplot code. We are just coloring and sizing ssutff depening on what we want. We can add annotations 
+:::
 
 
 ## Working Without Shape Files(kind of)
@@ -1886,65 +2148,136 @@ from there you can use ggplot or even create interactive leaflet maps
 
 
 
-## Mapping Middle Earth
+## Mapping Atlanta
 
-```{r echo = TRUE }
-#| output-location: column
-coastline = read_sf("data/ME-GIS/Coastline2.shp")
-contours = read_sf("data/ME-GIS/Contours_18.shp")
-rivers = read_sf("data/ME-GIS/Rivers.shp")
-lakes = read_sf("data/ME-GIS/Lakes.shp")
-forests = read_sf("data/ME-GIS/Forests.shp")
-mountains = read_sf("data/ME-GIS/Mountains_Anno.shp")
-placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
-cities = read_sf("data/ME-GIS/Cities.shp")
-roads = read_sf("data/ME-GIS/Roads.shp")
-towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
-places = placenames |>
-  filter(NAME %in% c("Hobbiton",
-                     "Rivendell",
-                     "Edoras",
-                     "Minas Tirith"))
+:::incremental
 
-mordor = placenames[placenames$NAME == "Mordor",]
+- Combining what we have learned we can easily map Atlanta 
 
-mountains_to_label = mountains[mountains$name == "Erebor The Lonely Mountain",]
+- Using the osmdata package by Open Street Maps we can do lots of things
 
-ggplot() +
-  geom_sf(data = contours,
-          size = 0.15,
-          color = "grey90") +
-  geom_sf(data = coastline,
-          size = 0.25,
-          color = "grey50") +
-  geom_sf(data = rivers,
-          size = 0.2,
-          color = "#0776e0",
-          alpha = 0.5) +
-  geom_sf(data = lakes,
-          size = 0.2,
-          color = "#0776e0",
-          fill = "#0776e0") +
-  geom_sf(data = forests,
-          size = 0,
-          fill = "#035711",
-          alpha = 0.5) +
-  geom_sf(data = mountains, size = 0.25) +
-  geom_sf(data = places) +
-  geom_sf_label(data = places,
-                aes(label = NAME),
-                nudge_y = 80000, size = 24) +
-  geom_sf_label(data = mountains_to_label,
-                aes(label = name),
-                nudge_y = 80000, size = 24) +
-  geom_sf_label(data = mordor,
-                aes(label = NAME),
-                nudge_y = 9000, size = 24) +
-  theme_void() +
-  theme(plot.background = element_rect(fill = "#fffce3"))
+- You can also save lots of money on gifts [trust me]{.fragment}
+
+- We can grab a host of various things we would want for a good map
+
+- And add points of interest 
+
+- I will just geocode some bars that pols grad students have drank at or have had to host events at.
+
+:::
+
+## Mapping Atlanta 
+
+
+```{r cache=TRUE, echo = TRUE}
+#| code-fold: true
+library(osmdata)
+
+big_streets = getbb("Atlanta United States") %>% 
+  opq() %>% 
+  add_osm_feature(key = "highway", 
+                  value = c("motorway", "primary", "motorway_link", "primary_link")) %>%
+  osmdata_sf()
+
+med_streets = getbb("Atlanta United States") %>%
+  opq() %>%
+  add_osm_feature(key = "highway", 
+                  value = c("secondary", "tertiary", "secondary_link", "tertiary_link")) %>%
+  osmdata_sf()
+
+
+small_streets = getbb("Atlanta United States") %>%
+  opq()%>%
+  add_osm_feature(key = "highway", 
+                  value = c("residential", "living_street",
+                            "unclassified",
+                            "service", "footway"
+                  )) %>%
+  osmdata_sf()
+
+
+  railway = getbb("Atlanta United States")%>%
+  opq()%>%
+  add_osm_feature(key = "railway", value= "rail") %>%
+  osmdata_sf()
+
+bars = tribble(
+  ~name, ~address,
+  "Hattie B's", "299 Moreland Ave NE, Atlanta, GA 30307",
+  "Side Bar", "79 Poplar St NW, Atlanta, GA 30303",
+  "Manny's", "602 North Highland Avenue Northeast, Atlanta, GA 30307",
+  "The Porter", "1156 Euclid Ave NE, Atlanta, GA 30307",
+  "Anatolia's", "Peachtree St, Atlanta, GA 30303",
+  "Agave", "242 Boulevard SE, Atlanta, GA 30312",
+  "Fetch", "520 Daniel St SE, Atlanta, GA 30312",
+  "Recess", "99-V, Krog St NE, Atlanta, GA 30307",
+  "Der Biergarten", "300 Marietta St NW, Atlanta, GA 30313",
+  "The Highlander", "931 Monroe Dr NE, Atlanta, GA 30308" ,
+  "Wrecking Bar", "292 Moreland Ave NE, Atlanta, GA 30307"
+)
+
+bars_geocode = bars %>% 
+  geocode(address, method = "osm")
+
+add_geom = bars_geocode %>% 
+  st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326"))
+
+  
 ```
 
 
-:::{.notes}
-As you can see this does not look fundamentally all that different from the rest of our ggplot code. We are just coloring and sizing ssutff depening on what we want. We can add annotations 
-:::
+
+
+
+
+## Plotting the results
+
+```{r atlanta-map, message=FALSE, warning=FALSE}
+#| fig-align: center
+#| output-location: column
+
+
+
+ggplot() +
+  geom_sf(data = railway$osm_lines,
+          inherit.aes = FALSE,
+          color = "black",
+          size = .2,
+          linetype="dotdash",
+          alpha = .5) +
+  geom_sf(data = med_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "black",
+          size = .3,
+          alpha = .5) +
+  geom_sf(data = small_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "#666666",
+          size = .2,
+          alpha = .3) +
+  geom_sf(data = big_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "black",
+          size = .5,
+          alpha = .6) +
+  geom_sf(data = add_geom, aes(color = name),
+          color = "#0039A6") +
+  coord_sf(ylim = c(33.64, 33.89), 
+           xlim = c (-84.56, -84.30), expand = FALSE) +
+  theme_void(base_family = "Roboto Condensed",
+   base_size = 20) +
+  theme(plot.subtitle = element_text(size = 10, hjust = 0.5, 
+    margin = margin(2, 0, 5, 0)),
+    plot.title = element_text(face="bold", hjust=.5),
+    plot.caption = element_text(size = 8, face = "bold")) + 
+   labs(title = "Atlanta",
+   subtitle = "33.7490°N/84.3880°W")
+```
+
+
+
+
+
+# Tell Us How We Did {background-color="`r clrs[3]`" .white}
+
+[https://gsu.qualtrics.com/jfe/form/SV_9nucJR3soZ9lkqO](https://gsu.qualtrics.com/jfe/form/SV_9nucJR3soZ9lkqO)
