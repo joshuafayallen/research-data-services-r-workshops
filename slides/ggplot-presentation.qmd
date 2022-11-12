@@ -30,7 +30,6 @@ execute:
 ---
 ```{r setup, include = F, warnings = FALSE}
 
-## install.packages("pacman")
 pacman::p_load("tidyverse", "AllenMisc", "countrycode", "MetBrewer", "scico", "colorspace", "gapminder", "sf",  install = FALSE)
 
 gapminder = filter(gapminder, !continent == "Oceania")
