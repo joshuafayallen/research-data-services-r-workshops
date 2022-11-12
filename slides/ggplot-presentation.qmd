@@ -769,6 +769,7 @@ ggplot() +
 
 ```{r echo=FALSE}
 #| fig-align: center
+#| fig-width: 8
 
 ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
   geom_density()
