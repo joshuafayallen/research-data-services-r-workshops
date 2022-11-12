@@ -42,9 +42,7 @@ library(colorspace)
 clrs <- met.brewer(name = "Demuth")
 clrs_lt <- lighten(clrs, 0.9)
 
-knitr::opts_chunk$set(fig.path="figs/", warning=FALSE, 
-                      message=FALSE, fig.retina=3, fig.asp=.5, out.width='100%', fig.showtext = TRUE, comment = NULL,
-                      fig.align = "center", echo = TRUE)
+
 
 
 penguins = palmerpenguins::penguins 
@@ -108,9 +106,7 @@ penguins = palmerpenguins::penguins
 
 ```
 
-- Note you will see some version of `theme_allen` used 
-  - This is just set a set of modifications based on [Kyle Butt's](https://github.com/kylebutts/templates/tree/master/ggplot_theme) personal theme, mainly the fonts
-  - If you really like it I can include the underlying file in an email.
+
 
 
 :::{.notes}
@@ -409,7 +405,7 @@ ggplot(penguins,
        y = "Body mass(grams)") +
   guides(color = guide_legend(title = "Species",
                               override.aes = list(fill = NA))) +
-  theme_allen_bw()
+  theme_minimal()
 ```
 
 
@@ -431,7 +427,7 @@ ggplot(penguins,
         y = "Body mass(grams)") +
   guides(color = guide_legend(title = "Species",
         override.aes = list(fill = NA))) +
-  theme_allen_bw()
+  theme_minimal()
 
 ```
 
@@ -457,7 +453,7 @@ ggplot(penguins,
   geom_histogram(alpha = 0.6) +
   labs(x = "Flipper Length(milimeters)") +
   guides(fill = guide_legend(title = "Species")) +
-  theme_allen_minimal()
+  theme_minimal()
 ```
 
 
@@ -478,7 +474,7 @@ ggplot(penguins,
   geom_density(alpha = 0.7) +
   labs(x = "Body Mass(grams)") +
   guides(fill = guide_legend(title = "Species")) +
-  theme_allen_minimal()
+  theme_minimal()
 
 
 ```
@@ -521,7 +517,7 @@ ggplot(penguins,
       fill = "Species",
       y = "Bill Depth(millimeters)") +
   coord_flip() +
-  theme_allen_bw()
+  theme_minimal()
 ```
 
 
@@ -827,7 +823,7 @@ The reason is that the team behind broom did not want to override existing stuff
 :::
 
 
-## Plotting 
+## Plotting {.scrollable}
 
 :::columns 
 :::column
@@ -848,7 +844,7 @@ ggplot(peng_diag_tidy, aes(x = .fitted,
                            y = .resid)) +
   geom_point(aes(color = species)) +
   geom_smooth(method = "lm") +
-  theme_allen_bw()
+  theme_minimal()
 ```
 
 :::
@@ -859,28 +855,18 @@ ggplot(peng_diag_tidy, aes(x = .fitted,
 
 ## Checking for Normality 
 
-:::columns
-:::column
-### Base
+
 
 ```{r}
+#| layout-ncol: 2
 hist(peng_sans_miss_base$.residuals_vals)
-```
-:::
 
-
-:::column
-### Tidyverse 
-```{r}
 ggplot(peng_diag_tidy, aes(x = .resid)) +
   geom_histogram(binwidth = 100) +
-  theme_allen_bw()
+  theme_minimal()
 ```
 
-:::
-:::
-
-## Base R diagnostic plots 
+## Base R diagnostic plots {.scrollable}
 
 ```{r eval = FALSE}
 par(mfrow = c(2, 2))
@@ -896,68 +882,17 @@ plot(peng_adjust)
 ## ggplot2 extension for same thing 
 
 ```{r}
+#| fig-align: center
 
 autoplot(peng_adjust)
 
 ```
 
 
-## User Extensions 
-
-:::columns
-:::column
-```{r eval=FALSE}
-set.seed(1994)  ## Shuffle these the same way every time
-
-shuffled_residuals = lineup(null_lm(body_mass_g ~ bill_length_mm + flipper_length_mm + species,
-                                     method = "rotate"),
-                             true = peng_diag_tidy,
-                             n = 9)
-#### decrypt("CLg7 X161 sO bJws6sJO vv")
-
-ggplot(shuffled_residuals, aes(x = .fitted, y = .resid)) +
-  geom_point() +
-  facet_wrap(vars(.sample))
-```
-:::
-
-:::column
-
-
-```{r echo=FALSE}
-set.seed(1994)  ## Shuffle these the same way every time
-
-shuffled_residuals = lineup(null_lm(body_mass_g ~ bill_length_mm + flipper_length_mm + species,
-                                     method = "rotate"),
-                             true = peng_diag_tidy,
-                             n = 9)
-#### decrypt("CLg7 X161 sO bJws6sJO vZ")
-
-ggplot(shuffled_residuals, aes(x = .fitted,
- y = .resid)) +
-  geom_point() +
-  facet_wrap(vars(.sample))
-
-```
-
-:::
-:::
-
-:::{.notes}
-This is kind of a cool way to see if you can find your residuals in the plot. If one sticks out that is a bad sign that you havent dealt with some issues 
-
-
-If none of them stick out that is a better sign 
-
-:::
 
 
 
 ## Tests 
-
-```{r}
-decrypt("CLg7 X161 sO bJws6sJO vv")
-```
 ```{r eval= FALSE}
 bptest(peng_adjust)
 ```
@@ -1050,10 +985,10 @@ We can feed a huge list of standard errors fairly quickly it this took virtually
 
 :::
 
-## What does it look like
+## What does it look like?
 
 ```{r echo=FALSE}
-
+#| fig-align: center
 modelplot(adjusted_models, coef_omit = c("flipper_length_mm|species|Interc")) +
   coord_flip()
 ```
@@ -1192,7 +1127,7 @@ interflex(Y = "body_mass_g",
          estimator = "kernel",
          data = peng_interflex,
          theme.bw = TRUE,
-         parallel = FALSE) 
+         parallel = FALSE) # recommend that you set this to true
 
 
 ```
@@ -1294,7 +1229,11 @@ all_together = rbind(penguins_train_plot,
                     peng_predict_train)
 ```
 
+:::{.notes}
 
+ It involves randomly dividing the available set of observations into two parts, a training set and a validation set or hold-out set. The model is fit on the training set, and the fitted model is used to predict the responses for the observations in the validation set. The resulting validation set error rate — typically assessed using MSE in the case of a quantitative response—provides an estimate of the test error rate
+
+:::
 
 ##  Visual Inspection
 
@@ -1317,7 +1256,7 @@ ggplot(all_together,
   scale_color_discrete(name = "Training sample?",
                        aesthetics = c("color",
                                       "fill")) +
-  theme_allen_bw()
+  theme_minimal()
 ```
 
 
@@ -1373,7 +1312,7 @@ ggplot(penguins_glm,
        scale = 1/3) +
   geom_smooth(method = "glm",
   method.args = list(family = binomial(link = "logit"))) +
-  theme_allen_bw()
+  theme_minimal()
 ```
 
 
@@ -1418,7 +1357,7 @@ ggplot(data = filter(avg_marginal_effect,
   geom_vline(xintercept = 0) +
   labs(y = NULL,
        x = "Average Marginal Effect") +
-  theme_allen_minimal()
+  theme_minimal()
 
 
 ```
@@ -1453,7 +1392,7 @@ ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) 
   labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
        color = NULL) +
   theme(legend.position = "bottom") +
-  theme_allen_minimal() +
+  theme_minimal() +
   scale_color_manual(values = colors_plot)
   
 
@@ -1481,7 +1420,7 @@ p +
        caption = "By Default plot_cap plots confidence intervals \nso you have you make them really small") +
   scale_x_continuous(breaks = seq(0,60, 20)) +
   theme(legend.position = "bottom") +
-  theme_allen_minimal() +
+  theme_minimal() +
   scale_color_manual(values = colors_plot)
 ```
 :::
@@ -1510,7 +1449,7 @@ ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) 
   labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
        color = NULL) +
   theme(legend.position = "bottom") +
-  theme_allen_minimal() +
+  theme_minimal() +
   scale_color_manual(values = colors_plot)
   
 
@@ -1533,7 +1472,7 @@ p +
        y = "Predicted Probability of Being a Big Penguin",
        color = NULL, fill = NULL,
        caption = "By Default plot_cap plots confidence intervals \nso you have you make them really small") +
-  theme_allen_minimal() +
+  theme_minimal() +
   scale_color_manual(values = colors_plot)
 ```
 :::
@@ -1779,7 +1718,7 @@ ggplot(aes(x = Importance,
 geom_col() +
 scale_x_continuous(expand = c(0,0)) + 
 labs(y = NULL) +
-theme_allen_bw()
+theme_minimal()
 
 ```
 

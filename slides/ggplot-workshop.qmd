@@ -1,0 +1,2305 @@
+---
+title: "Getting Started in ggplot"
+institute: "Department of Political Science at Georgia State University"
+author: "Josh Allen"
+date: "2022-08-29"
+format:
+  revealjs:
+   theme: "allen.scss"
+   transition: fade
+   progress: true
+   multiplex: false
+   preview-links: true
+   scrollable: false
+   hide-inactive-cursor: true
+   highlight-style: printing
+   chalkboard:
+     theme: whiteboard
+     boardmarker-width: 4
+     buttons: true
+   pause: true
+   mainfont: Cabinet Grotesk
+editor: source
+knitr:
+  opts_chunk:
+    dev: "ragg_png"
+    retina: 1
+    dpi: 200
+execute:
+  freeze: auto
+  echo: true
+  fig-width: 5
+  fig-height: 6
+---
+
+```{r setup, include = F, warnings = FALSE}
+
+## install.packages("pacman")
+pacman::p_load("ggplot2", "AllenMisc", "magrittr","dplyr", "flair", "MetBrewer", "colorspace", "gapminder",  install = FALSE)
+
+gapminder = filter(gapminder, !continent == "Oceania")
+
+
+clrs <- met.brewer(name = "Demuth")
+clrs_lt <- lighten(clrs, 0.9)
+
+graph_dat = datasauRus::datasaurus_dozen
+
+penguins = palmerpenguins::penguins
+
+
+
+```
+
+
+
+## Why Use R?
+
+```{r grants-plot, echo = FALSE}
+knitr::include_graphics("figs/grants-plot-1.png")
+```
+
+
+:::{.notes}
+
+Part of this first portion is just a sales pitch. 
+
+R is a vastly popular language in the datascience industry. While it is less popular than sequel or Python it is still one of the most heavily demanded language from private industry. 
+
+This sort of makes sense once we dig into what they are used for and who uses them. Sequel stands for structured query language. You have probably heard of big data before. Think of the amount of data you generate from what ever apps you use. Think about your use every minute. Now think about the N of people in this workshop. Now think about all the people at Georgia State. The amount of data being generated in a few minutes. The max storage of excel file 1,048,576 rows by 16,384 columns. We could all pretty quickly overwhelm a single excel file. Enter SQL you can store large data bases in SQL and just as importanly that is how you get that data. 
+
+
+Python is a general purpose programming language it is used for data analysis as well but it has applications in everything from web development to game development. Dropbox is basically just a ton of python code. Lots of people who grow up to be data scientists come from a CS background where you are introduced to python pretty early. 
+
+However, if you simply add up the propietary softwares there are fewer industry available jobs for you or you students compartively. 
+
+
+:::
+
+
+
+## Navigating RStudio 
+
+
+::: {.absolute top="0" left="100%"}
+:::
+
+::: {.absolute top="10%" left="0" width="1031" height="529"}
+::: {style="text-align: center"}
+![](figs/annotate-one.png)
+:::
+:::
+
+::: {.absolute top="66%" left="70%"}
+::: {style="color: #cc0000"}
+project files are here
+:::
+:::
+
+. . .
+
+::: {.absolute top="28%" left="70%"}
+::: {style="color: #cc0000"}
+<br>imported data</br> shows up here
+:::
+:::
+
+. . .
+
+::: {.absolute top="50%" left="10%"}
+::: {style="color: #cc0000"}
+code *can* go here
+:::
+:::
+
+
+
+:::{.notes}
+
+
+
+Hopefully You Have downloaded the Approriate Version of R and Rstudio for your Operating system. Now we need to know where we can start putting stuff. And it should look something like you can just start typing code into the console window if you want. But for the most part that is a bad idea. Because you will not be able to remember what you have done and more importantly you are going to have to redo it all each time. 
+
+
+Best Practices are for you to work in an R script file. Later on in the semster we will hopefully have a workshop on getting started in Rmarkdown but for now just click on r script file if you are following along.
+
+If you download the script for you will see lots of lots of # 
+these let you comment your code. That way you can let yourself or a reader know what you did.
+:::
+
+
+## Navigating RStudio
+
+
+::: {.absolute top="0" left="100%"}
+:::
+
+::: {.absolute top="10%" left="0" width="1031" height="529"}
+::: {style="text-align: center"}
+![](figs/annotate-two.png)
+:::
+:::
+
+::: {.absolute top="66%" left="70%"}
+::: {style="color: #cc0000"}
+project files are here
+:::
+:::
+
+. . .
+
+::: {.absolute top="28%" left="70%"}
+::: {style="color: #cc0000"}
+<br>imported data</br> shows up here
+:::
+:::
+
+. . .
+
+::: {.absolute top="50%" left="10%"}
+::: {style="color: #cc0000"}
+code *can* go here
+:::
+:::
+
+## Setting Your Working Directory
+
+:::incremental
+
+- Your working directory is where all your files live
+
+- You may know where your files are... 
+
+- But R does not
+
+- If you want to use any data that does not come with a package you are going to need to tell R where it lives
+
+:::
+
+
+
+## Cats and Boxes
+
+
+
+```{r echo = FALSE, out.width= "30%"}
+
+knitr::include_graphics("figs/cats-boxes.png")
+
+```
+
+- You can put a box inside a box
+
+- You can put a cat inside a box
+
+- You can put a cat inside a box inside of a box
+
+- You cannot put a box inside a cat
+
+- You cannot put cat in a cat
+
+
+
+:::{.notes}
+How working directories work is that they are comprised of files and folders. You need to let R know what file is in what folder.  You can also put a cat in a box, but you must never try to put a box in a cat. Boxes are like folders/directories, cats are like files. This sort of represents the hierarchy of this all. Folders come first than the last thing is the file itself 
+
+
+We are basically just telling R where things live. Kind of like how we put a strange address into the gps. We are telling it exactly where things live and what house number they are.
+
+When we organize our files into HW 1 or manuscript whatever name what we are doing is creating a new neighborhood on our computer. R will default to places it knows. Most commonly where it lives. In order to do something as simple as loading our dataset in R needs directions to this neighborhood
+
+
+:::
+
+
+
+## Setting Your Working Directory(cont)
+:::columns
+:::column
+### Seeing What Working Directory You are Using 
+```{r echo=TRUE}
+
+getwd()## The working directory where all the materials for the workshops live
+
+```
+:::
+
+:::column
+
+### Setting Your Working Directory
+
+```{r, eval=FALSE, echo = TRUE }
+setwd("your/working/directory/here/") ## sets the working directory on mac
+setwd("your\working\directory\here") ## sets the working directory on windows
+```
+
+:::
+:::
+
+:::{.notes}
+
+So this is where the files for the workshop are living. The address is this file path right here. Once we set our working directory R will start trying to figure out where stuff is relative to this location. So if your data is in a folder named data in this working directoy you tell it that there is one additional turn to take and that is to the data folder. If the data is living in your downloads folder and your working directory is the one on the left. R is not going to know where the data is living and then return an error. This is kind of like when you give your friends directions and then tell them to call you if you get lost. That error message is R telling you that it is lost.
+
+
+:::
+
+## How To Make Your Life Easier 
+
+
+:::columns
+:::column 
+
+This is the working directory on my personal computer
+```{r, echo = FALSE}
+getwd()
+
+```
+
+::::
+
+:::column
+
+working directory of my office computer
+```
+"/Volumes/6TB Raid 10/Dropbox/Research-Data-Services-Workshops/research-data-services-r-workshops/3800-Guest-Lecture"
+
+```
+:::
+:::
+
+
+:::{.notes}
+
+Often times collaborating with our selves is the first step. So these are two different working dirrectories I have. I could likely hack my way around it. However many of your colleagues that you work with do not have a similar set up. It is best to work in R projects.
+
+
+R projects are great because they will just set the working directory to wherever the project is living. The additional benefit is that it will restart R. Which is good because R will just keep lots of packages loaded in the background. This can cause what are called namespace conflicts. This used to be really bad with plyr and dplyr but plyr has since been retired. Truly problematic namespace conflicts are not something that I have experienced but they do happen. Fresh R sessions are the easiest way to avoid them
+:::
+
+
+## R Projects 
+
+```{r echo = FALSE}
+knitr::include_graphics("figs/r-projects-menu.png")
+```
+
+
+## Objects
+
+- Everything is an object
+
+- Everything has a name 
+
+- You do stuff with functions 
+
+- Packages(i.e. libraries) are homes to pre-written functions.
+  - You can also write your own functions and in some cases should.
+
+
+
+
+:::{.notes}
+
+ Everything that exists in R is an object in the sense that it is a kind of data structure that can be manipulated. I think this is better understood with functions and expression
+
+
+Before we start R is an object oriented programming(sort of)  What this means is just how we are defining what things we have and how they relate to each other. A dog has various things associated with it. They are four legged have a good sense of smell, a member of the canine family, they eat a certain set of food. 
+
+Once we define what those things are and how they relate to each other R will figure out what class it is.
+
+ What is this object to it. Once it figures this out this sets out strict limitations on what R can do with those objects but just as importantly it tells R what it can't do with those objects. Think of like a set of tricks or in CS speak methods to do things. There are things we can do with dogs or to dogs that are acceptable. This differs from cats. Cats and dogs have similar attributes but they are different classes. 
+
+ While sometimes it is frustrating because sometimes you just want to do a thing it helps you protect you from yourself. 
+
+ Returning back to our pet metaphor. Each pet has a name and the thing we want it to do has names. Sit, stay, come here, hey you what are you doing in there. These are sort of like functions. We are manipulating the object. 
+
+
+:::
+
+
+## Install and loading packages
+
+- **Console or Script**  `install.packages("package-i-need-to-install")`
+  - In the case of multiple packages you can do `install.packages(c("Packages", "I", "don't","have"))`
+
+- **RStudio** Click the "Packages" tab in the bottom-right window pane. Then click "Install" and search for these two packages.
+
+<center>
+![](pics/install.gif)
+
+</center>
+
+:::{.notes}
+Credit for the Gif goes to Grant Mcdermott. As we will learn there are lots of ways to do one thing in R and the packages that are loaded when you open up R have lots of important things that you will use to just do some simple analysis or if you want to build your own functions.
+:::
+
+
+## Install and load(cont.)
+
+ Once the packages are installed we need load them into our `R` session with the  `library()` function 
+ 
+ 
+```{r eval= FALSE, echo = TRUE}
+# We talk to ourselves using #
+library(Package) 
+library(I)
+library(JustInstalled)
+```
+ 
+Notice too that you don't need quotes around the package names any more. 
+
+:::{.notes}
+Reason: R now recognises these packages as defined objects with given names. ("Everything in R is an object and everything has a name.")
+:::
+
+
+
+# `R` Some Basics {background-color="`r clrs[3]`" .white}
+
+
+
+
+
+## Basic Maths
+
+- R is equipped with lots of mathematical operations 
+
+```{r basic-math, echo = TRUE}
+2+2 ## addition
+4-2 ## subtaction
+600*100 ##multiplication
+100/10 ##division
+10*10/(3^4*2)-2 ## Pemdas 
+log(100)
+sqrt(100)
+
+```
+
+
+
+:::{.notes}
+The most common hazing ritual when learning R and object oriented programming is using R as calculator. Since we most often use it for advanced statistical analysis it should be able to handle lots things we can throw at it 
+
+:::
+
+
+
+## Logical Statements & Booleans
+
+
+<table>
+  <tr>
+    <th class="cell-center">Test</th>
+    <th class="cell-left">Meaning</th>
+    <th class="cell-center">Test</th>
+    <th class="cell-left">Meaning</th>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x < y</code></td>
+    <td class="cell-left">Less than</td>
+    <td class="cell-center"><code class="remark-inline-code">x %in% y</code></td>
+    <td class="cell-left">In set </td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x > y</code></td>
+    <td class="cell-left">Greater than</td>
+    <td class="cell-center"><code class="remark-inline-code">is.na(x)</code></td>
+    <td class="cell-left">Is missing</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">==</code></td>
+    <td class="cell-left">Equal to</td>
+    <td class="cell-center"><code class="remark-inline-code">!is.na(x)</code></td>
+    <td class="cell-left">Is not missing</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x <= y</code></td>
+    <td class="cell-left">Less than or equal to</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x >= y</code></td>
+    <td class="cell-left">Greater than or equal to</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x != y</code></td>
+    <td class="cell-left">Not equal to</td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x | y</code></td>
+    <td class="cell-left">Or </td>
+  </tr>
+  <tr>
+    <td class="cell-center"><code class="remark-inline-code">x & y</code></td>
+    <td class="cell-left">And</td>
+  </tr>
+</table>
+
+
+
+
+:::{.notes}
+R comes with  standard set of boolean operators these are the common ones that you will use or run into in the wild. Note that to say something equals something because in R = is used in 2 different ways either as passing arguments off to a function or for assignment.
+
+Logical expressions, like comparison expressions, return a true (1) or false (0) value when processed
+
+
+Booleans are basically just paired comparisions. 
+
+:::
+
+
+
+## Booleans and Logicals in Action
+
+
+```{r echo = TRUE}
+1>2 
+1<2
+1 == 2
+1 < 2 | 3 > 4 ## only one test needs to true to return true
+1 < 2 & 3>4 ## both tests must be true to return true
+
+```
+
+
+
+
+
+
+
+## Logicals, Booleans, and Precedence
+:::{.incremental}
+- `R` like most other programming languages will evaluate our logical operators(`==`, `>`, etc) before our booleans(`|`, `&`, etc).
+
+:::
+
+. . .
+```{r unexpected-results, echo = TRUE}
+1 > 0.5 & 2
+```
+
+. . .
+
+:::{.incremental}
+
+- What's happening here is that R is evaluating two separate "logical" statements: 
+ - `1 > 0.5`, which is is obviously TRUE.
+ - `2`, which is TRUE(!) because R is "helpfully" converting it to `as.logical(2)`.
+ 
+
+- It is way safer to make explicit what you are doing.
+- If your code is doing something weird it might just be because of precedence issues 
+  - See [R Cookbook 2.11](https://rc2e.com/somebasics)
+:::
+. . . 
+```{r echo = TRUE}
+1 > 0.5 & 1 > 2
+```
+
+
+:::{.notes}
+Computer operations have a pemdas of their own so when you are milling about in R it is important to remember how you set up your tests 
+:::
+
+
+
+
+## Other Useful Tricks
+ Value matching using `%in%`
+
+
+To see whether an object is contained within (i.e. matches one of) a list of items, use `%in%`.
+```{r echo = TRUE}
+4 %in% 1:10
+4 %in% 5:10
+```
+
+
+
+
+## Cool Now What?
+
+:::incremental
+
+- While this is boring it opens up lots 
+
+
+- We may need to set up a group of tests to do something to data.
+
+
+- We may need all this math stuff to create new variables
+
+- However we need to ***Assign them*** to reuse them later in functions.
+  - Including datasets 
+:::
+
+
+:::{.notes}
+R as a calculator and evaluating whether 1 is greater than 2 gets very tiring like as soon as you start doing it and is hardly ever that practical. 
+:::
+
+
+# Everything is an Object
+<center>
+
+<div class="tenor-gif-embed" data-postid="14066494" data-share-method="host" data-aspect-ratio="1.83908" data-width="100%"><a href="https://tenor.com/view/thanos-infinity-war-everything-avengers-gif-14066494">Thanos Infinity War GIF</a>from <a href="https://tenor.com/search/thanos-gifs">Thanos GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+</center>
+
+
+## Assignment 
+
+- The most popular assigment operator in R is `<-` which is just `<` followed by `-`
+  - read aloud as "gets"
+
+```{r echo = TRUE}
+a <- 2 + 2
+
+a * 2
+
+h <- "harry potter" # note that text needs to be wrapped in quotes 
+
+```
+
+- You can also use `->` but this is far less common and makes me uncomfortable 
+
+```{r echo = TRUE}
+ a^2 -> b
+ b 
+```
+
+- `=` is also a valid assignment operator and works just like `<-`
+
+```{r}
+e = sqrt(b)
+
+e
+```
+
+
+:::{.notes}
+
+Assignment might be a foregin concept to you if you have no coding experience or making the transition from excel or stata. Basically if you go through and copy and paste all this stuff into an R script it will run but we will not be able to use this. 
+
+Gets is just less than followed by a dash
+
+
+
+So using our friend gets we can assign 2 + 2 to a or in the parlance of R a gets 2 + 2 this lets us reuse it later whether we want to perform additional maths or use it for later
+:::
+
+# Navigating Objects in R {background-color="`r clrs[3]`" .white}
+
+
+
+
+## Importing Data
+- You have the option of pointing and clicking via import dataset
+
+- This is a common error you will get  
+
+```{r echo = TRUE, error = TRUE}
+
+penguins <- read.csv("peguins.csv")
+penguins <- read.csv("penguins.csv")
+```
+
+- This happens most often when 
+  - the file name is spelled wrong 
+  - the file is in a subdirectory or your working directory is not set correctly
+
+### Fixing the error
+
+```{r echo = TRUE, eval = FALSE}
+penguins <- read.csv("data/penguins.csv")
+```
+
+:::{.notes}
+
+
+
+Remember to work and reuse stuff in R we need to assign it to an object. So first we need to make sure our working directory is set to the correct one. In my case I am keeping the penguins in a data folder
+
+
+
+
+
+:::
+
+
+## Your Turn {background-color="`r clrs_lt[3]`"}
+
+- Create an object with what ever you want in it
+
+- read in the data included to the website using `read.csv`
+  - What happens when you do not assign the dataset?
+  
+- assign the `penguins` dataset to an object named penguins
+
+- use `View`, `head`, and `tail` to inspect the dataset
+
+- using `install.packages()` install ggplot2
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 4, play_sound = TRUE)
+```
+
+
+
+
+
+
+
+## Our Data
+
+```{r echo= FALSE}
+
+
+head(penguins) |> 
+  knitr::kable(format = "html")
+
+```
+
+
+:::{.notes}
+Using the magical penguin data we will leave you here with some sort of actionable stuff
+
+:::
+
+
+
+
+
+
+## `$` Indexing 
+
+A really useful way of indexing in `R` is referencing stuff by name rather than position. 
+  - The way we do this is through the `$`
+  
+```{r echo = TRUE}
+my_list <- list(a = 1:4, b = "Hello World", c = data.frame(x = 1:3, y = 4:6))
+my_list$a
+
+my_list$b
+
+my_list$c
+
+my_list$c$x
+
+```
+
+
+
+
+:::{.notes}
+The dollar sign is really helpful if you just want to pick out one thing. Brackets are flexible because you are bascially just returning a smaller list. Double brackets or the dollar sign return a list of length one so it is not as flexible 
+
+:::
+
+
+
+## `$` in action
+
+This will just subset things
+
+- `[]` has two slots
+    - `[row,column]`
+
+```{r eval = FALSE, echo = TRUE}
+penguins[penguins$species == "Gentoo", c("species", "island", "bill_length_mm")] 
+```
+
+```{r echo= FALSE}
+penguins[penguins$species == "Gentoo", c("species", "island", "bill_length_mm")] |> 
+  head(6) |> 
+  knitr::kable(format = "html")
+```
+
+
+:::{.notes}
+
+In this case I am returning a much smaller dataset. where we will only have rows that are equal to adelie and returning only the species, island and bill length columns 
+
+:::
+
+
+# Exploratory Data Analysis in R {background-color="`r clrs[3]`" .white}
+
+
+
+
+
+## Describing Variables 
+
+- This depends on what kind of variable it is i.e. continuous, categorical etc
+
+- It also depends on what story you need to tell
+  - Is this confounder a big deal?
+  - Do we see anticipation of treatment?
+  - Are there any outliers?
+  - etc?
+  
+- Remember R is just a toolbox. 
+
+
+
+:::{.notes}
+Exploratory data analysis is the first step of any data analysis pipeline. You need to understand your data in order to understand how to handle things. What does the distribution look like of your outcome variable. If you are like me and ended up taking a lot of causal inference classes and or read a lot of causal inference papers lots of the first parts of papers are just presenting EDA results to convince the reader that the assumptions are met. 
+
+Today we will be asking what is the relationship between bill length and body mass
+
+hopefully that seems like a sensible research question. If not well the goal is just to show you how to generate descriptive statistics in R 
+:::
+
+
+## First Cut
+
+
+```{r base-summary}
+summary(penguins) 
+
+```
+
+
+
+
+:::{.notes}
+If we just want like the quickest and dirtiest look at all the variables in our data we can use summary. Functionally this works because palmerpenguins is a small toy dataset. Thankfully for me we can access the raw data that the penguins dataset is based on. This is just the penguins raw function in the palmer penguins packagte. 
+:::
+
+
+
+## Summary with a bigger data frame 
+
+```{r}
+penguins_bigger = palmerpenguins::penguins_raw
+
+summary(penguins_bigger)
+
+```
+
+:::{.notes}
+As you can see you can that if you like a somewhat big data frame it can get a little unruly quickly because it is going to spit out a description for every column in your data set. If you want a single variable than you can just the dollar sign to index by name. We can also get each measure we want individually  
+:::
+
+
+
+## Getting Some Descriptive Statistics 
+
+To grab individual summary statistics we have to use `$`
+
+:::{ .fragment fragment-index=1}
+
+```{r}
+
+mean(penguins$bill_depth_mm)
+```
+
+:::
+
+. . . 
+
+- Notice that R is conservative
+
+:::{.fragment fragment-index=2}
+
+```{r}
+sum(is.na(penguins$bill_depth_mm)) ## adding up all the missing values
+```
+
+:::
+
+
+. . .
+
+:::{.fragment fragment-index=3}
+
+```{r}
+mean(penguins$bill_depth_mm, na.rm = TRUE )
+```
+
+
+:::
+
+. . . 
+
+- Being explicit about how you treat things in R is very important
+  - To see what arguments a function takes `?functionname`
+
+
+
+
+## Your Turn {background-color="`r clrs_lt[3]`"}
+
+
+- Find the minimum value of `bill_length_mm`
+
+- Find the maximum value of `body_mass_g`
+
+- Find the median value of `flipper_length_mm`
+
+- Find the how many of each penguin species there are 
+  - use table
+
+- Bonus: how correlated are `bill_length_mm` and `body_mass_g`?
+    - hint: use `cor()`
+
+
+:::{.notes}
+```
+cor(penguins$bill_length_mm, penguins$body_mass_g, use = "complete")
+```
+
+:::
+
+
+
+# Graphing your data {background-color="`r clrs[3]`" .white}
+
+
+
+## Why visualize your data?
+
+```{r mean-x, eco = TRUE}
+
+mean(graph_dat$x)
+
+
+```
+
+```{r sd-x, echo = TRUE}
+sd(graph_dat$x)
+```
+
+```{r mean-y, echo = TRUE}
+mean(graph_dat$y)
+```
+
+
+
+```{r sd-y, echo = TRUE}
+sd(graph_dat$y)
+```
+
+
+```{r corr-these-vars, echo = TRUE}
+cor(graph_dat$x, graph_dat$y)
+```
+
+
+
+:::{.notes}
+
+
+
+Lets take a quick look at the data that I have loaded in. They look pretty similar for the most part and aren't correlated. 
+
+:::
+
+
+## The Dino Strikes
+
+<figure>
+  <img src="https://raw.githubusercontent.com/andrewheiss/datavizs21.classes.andrewheiss.com/main/static/slides/img/01/DinoSequentialSmaller.gif" alt="Datasaurus Dozen" title="Datasaurus Dozen" width="100%">
+  <figcaption><a href="https://www.autodeskresearch.com/publications/samestats" target="_blank">The Datasaurus Dozen</a></figcaption>
+</figure>
+
+:::{.notes}
+If we dont plot our data than we are likely to miss really important stuff in our dataset in this case while there are only slight tweaks at the end of each of these these result in really interesting patterns. 
+
+
+:::
+
+
+## The Tool We Are Going to Use 
+
+
+- Today we are going to be learning `ggplot`
+
+- This is something you have no doubt encountered in the wild
+
+- Lots of Organizations Use it
+    - BBC
+    - The Economist 
+    - The Athletic 
+    - And so Many More 
+
+- It is insanely flexible
+
+- Moves away from idiosyncracies of plotting syntaxes
+
+
+## How Do We go From?  
+
+::::{.columns }
+
+
+:::{.column width="50%" .fragment fragment-index=1}
+
+### This
+
+```{r blank-plot-example-this, echo = FALSE }
+#| fig-alt: "This is the template that I started with with just points and colors"
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) + geom_point(size = 3) + 
+  theme_void() + theme(legend.position = "none")
+```
+
+:::
+
+
+
+:::{.column width="50%" .fragment fragment-index=2}
+
+### To This
+
+```{r full-plot-example-this, echo=FALSE}
+
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) +
+  geom_point(size = 3) +
+  labs(x = "Bill Length(mm)", y = "Body Mass(g)", title = "The Relationship Between Bill Length and Body Weight",
+       subtitle = "By Island and Penguin Species") +
+theme_minimal() +
+  guides(color = guide_legend(title = "Island"), shape = guide_legend("Species")) 
+```
+
+:::
+::::
+
+
+
+## The Grammar of Graphics
+
+"Good grammar is just the first step of creating a good sentence"
+
+<br>
+<table style='width:100%;font-size:14pt;'>
+  <tr>
+    <th>Component</th>
+    <th>Function</th>
+    <th>Explanation</th>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Data</b></td>
+    <td><code>ggplot(data)</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td>*The raw data that you want to visualise.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Aesthetics&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+    <td><code>aes()</code></td>
+    <td>*Aesthetic mappings between variables and visual properties.*</td>
+  <tr>
+    <td><b style='color:#67676;'>Geometries</b></td>
+    <td><code>geom_*()</code></td>
+    <td>*The geometric shapes representing the data.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Statistics</b></td>
+    <td><code>stat_*()</code></td>
+    <td>*The statistical transformations applied to the data.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Scales</b></td>
+    <td><code>scale_*()</code></td>
+    <td>*Maps between the data and the aesthetic dimensions.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Coordinate System</b></td>
+    <td><code>coord_*()</code></td>
+    <td>*Maps data into the plane of the data rectangle.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Facets</b></td>
+    <td><code>facet_*()</code></td>
+    <td>*The arrangement of the data into a grid of plots.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Visual Themes</b></td>
+    <td><code>theme()</code> and <code>theme_*()</code></td>
+    <td>*The overall visual defaults of a plot.*</td>
+  </tr>
+</table>
+:::{.notes}
+
+
+This is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do 
+
+
+coordinates Combine the two position aesthetics to produce a 2d position on the plot. The position aesthetics are called x and y, but they might be better called position 1 and 2 because their meaning depends on the coordinate system used. For example, with the polar coordinate system they become angle and radius (or radius and angle), and with maps they become latitude and longitude.
+
+
+scales  take your data and turn it into something that you can see, like size, colour, position or shape. They also provide the tools that let you interpret the plot: the axes and legends. You can generate plots with ggplot2 without knowing how scales work
+
+:::
+
+
+## Where do they go?
+
+
+```{r your-penguin-code, echo = TRUE}
+#| code-line-numbers: "2,3,4,5,6,7"
+#| output-location: column
+
+ggplot() +
+  geom_point(data = penguins,
+   aes(
+  x = bill_length_mm, 
+  y = body_mass_g,
+  shape = species, 
+  color = island),
+  size = 3)
+```
+
+:::{.notes}
+To actually make the plot you need to specify the columns you want to "map" onto the plot. Map is kind of just the way that it is said in ggplot world. This is just us saying we want these columns in our 
+
+
+:::
+
+
+# Making Plots {background-color="`r clrs[3]`" .white}
+
+
+## Plotting Data 
+
+
+```{r echo = FALSE}
+gapminder |>
+head(10) |>
+knitr::kable(format = "html")
+
+
+```
+
+
+
+## Here is your shell script
+
+```{r skeleton-participants, eval = FALSE, echo = TRUE}
+## be sure you have done 
+## install.packages("gapminder")
+## library(gapminder)
+
+ggplot() +
+  geom_point(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+
+```
+
+:::{.notes}
+To help you get your hands dirty I will give y'all a shell script to work with. Press o on your keyboard to navigate to the past slides to help yourself out if you get lost 
+:::
+
+
+
+
+## Activity {background-color="`r clrs_lt[3]`"}
+
+
+- Add color, size, alpha, and shape aesthetics to your graph.
+
+
+- Be bold be brave! Experiment!
+
+
+- What happens when you add more than one aesthetic? 
+
+
+
+```{r timer-for-them, echo = FALSE}
+
+countdown::countdown(minutes = 5)
+```
+
+
+
+
+
+
+
+
+
+
+## How would you make this plot?
+
+```{r gapminder-blue, echo = FALSE}
+#| fig-align: center
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(color = "blue")
+
+
+```
+
+:::{.notes}
+all we are doing is making each point blue. Should be simple enough. If you are following along please add color = blue where you think it should go!
+
+:::
+
+
+
+
+
+
+
+
+
+## 
+
+
+
+```{r gapminder-blue-wrong-example, echo = TRUE}
+#| code-line-numbers: "5"
+#| output-location: column
+ggplot() + 
+  geom_point(data = gapminder,
+   aes(x = gdpPercap,
+    y = lifeExp,
+    color = "blue"))
+
+
+```
+
+
+
+
+:::{.notes}
+Remember when we do things in aes R will look for a column in our dataset. Importantly R will just looks for things it can do given the scope of the function. So if we put blue into the aes portion of it will plot it. But it will get confused because blue is not a column in our data set. 
+
+:::
+
+
+##  
+
+
+
+```{r use-color-aes-example, echo = TRUE}
+#| code-line-numbers: "5"
+#| output-location: column
+
+
+ggplot() +
+  geom_point(data = gapminder,
+    aes(x = gdpPercap,
+        y = lifeExp),
+        color = "blue") 
+
+
+
+```
+
+
+
+
+:::{.notes}
+ggplot will take the color argument inside aes and outside aes. If we specify color inside aes than it will color things by a column in the dataset. If you specify color outside of aes ggplot will make everything that color 
+
+:::
+
+
+
+## Same options different stuff
+
+:::columns
+:::column
+
+
+```{r geom-point-gap, echo=FALSE}
+ggplot(gapminder ) + 
+  geom_point(aes(x = gdpPercap, y = lifeExp),
+             color = "blue")
+
+```
+
+
+:::
+
+:::column
+
+```{r geom-smooth-gap, echo=FALSE}
+ggplot(gapminder) + 
+  geom_smooth(aes(x = gdpPercap, y = lifeExp),
+             color = "blue")
+
+```
+
+:::
+:::
+
+:::{.notes}
+there we can show the same relationship between two variables in a ton of different ways. there are a ton of geoms that we can use to visualize our data. In this case I am just fitting a loess line through it. 
+
+:::
+
+
+## What Comes With ggplot
+
+```{r ggplot2-geom-names, echo=FALSE}
+## geom_
+old_width = options(width = 80)
+lsf.str("package:ggplot2") %>% grep("^geom_", ., value = TRUE)
+options(width = old_width$width)
+```
+:::{.notes}
+There are many more that we can use too. There are tons of different kinds of plots that we can find for our specific plotting needs that people have written for R I have like an unhealthy obsession with ggridges. I will say geom_sf only gets added when you have the sf package loaded and then 
+:::
+
+
+##
+
+<center>
+
+<iframe src="https://giphy.com/embed/mCClSS6xbi8us" width="480" height="298" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/jeff-goldblum-jurassic-park-jurassicparkedit-mCClSS6xbi8us">via GIPHY</a></p>
+
+:::{.notes}
+It's not that certain geoms should never be used with certain kinds its that sometimes it doesnt make a whole lot of sense or we aren't getting the most out of our data visualizations. If it takes the arguments it will plot it.
+:::
+
+
+</center>
+
+## Example(sort of)
+
+:::columns
+:::column
+
+```{r dotplot-gapminder, echo=FALSE}
+
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_point()
+
+
+```
+:::
+
+:::column
+
+
+```{r dotplot-penguings, echo = FALSE}
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_point()
+
+```
+
+
+
+:::
+:::
+
+
+
+
+
+:::{.notes}
+Both times we see that we that ggplot will take the arguments and plot them but we arent really getting a lot of useful information. Boxplots would provide a much provide more info
+
+
+:::
+
+
+## Your Turn
+
+:::columns 
+:::column
+
+```{r dotplot-gapminder-ref-excercise, echo=FALSE}
+
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_point()
+
+
+```
+:::
+
+:::column
+
+
+```{r echo = FALSE}
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_boxplot()
+```
+
+:::
+:::
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 2)
+```
+
+
+:::{.notes}
+take the graph on the left and change it to the plot on the right. use the ggplot cheatsheet.
+
+:::
+
+
+## Answer
+ 
+
+
+```{r  echo = TRUE}
+#| output-location: column
+
+ggplot() +
+  geom_boxplot(data = gapminder,
+  aes(x = continent, 
+  y = lifeExp))
+
+```
+
+
+
+
+
+
+
+
+## Your Turn Again
+#### Hint do not supply a Y value
+
+```{r echo=FALSE, out.width= "80%"}
+#| fig-align: center
+
+ggplot(gapminder, aes(x = lifeExp)) +
+  geom_histogram()
+
+```
+
+```{r echo = FALSE}
+
+
+countdown::countdown(minutes = 2)
+
+```
+
+:::{.notes}
+Lets make a histogram of lifeExp. In this case we only need to supply one variable to aes. Take exp and look at the distribution through a histogram 
+:::
+
+
+
+
+##  
+
+
+```{r, echo = TRUE}
+#| output-location: column
+ggplot() +
+  geom_histogram( data = gapminder, 
+    aes(x = lifeExp))
+
+```
+
+
+
+
+## Your Turn
+#### Make This Density Plot filled by continent
+
+```{r echo=FALSE}
+#| fig-align: center
+
+ggplot(gapminder, aes(x = lifeExp, fill = continent)) +
+  geom_density()
+```
+
+```{r echo=FALSE}
+
+countdown::countdown(minutes = 2)
+
+```
+
+:::{.notes}
+Again do not supply a Y column
+:::
+
+
+## 
+
+
+
+```{r echo = TRUE}
+#| output-location: column
+
+ggplot() +
+  geom_density( data = gapminder,
+  aes(x = lifeExp,
+     fill = continent),
+     alpha = 0.75)
+
+```
+
+
+
+
+
+
+## Complex graph!
+
+
+```{r reference-plot, echo=FALSE, fig.width = 10 }
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
+  geom_point() +
+  geom_smooth() 
+
+```
+
+
+:::{.notes}
+Map wealth to the x-axis, health to the y-axis, add points, color by continent, size by population, scale the x-axis with a log. Please get rid of the default theme.
+
+:::
+
+
+
+## Local 
+ 
+```{r local, echo = TRUE}
+#| code-line-numbers: "2,6,3,7,4,8,5,9"
+#| output-location: column
+ggplot() +
+  geom_point(data = gapminder,
+   aes(x = gdpPercap,
+       y = lifeExp, 
+       color = continent)) + 
+  geom_smooth(data = gapminder,
+   aes(x = gdpPercap, 
+       y = lifeExp, 
+      color = continent)) 
+```
+
+
+
+
+
+
+## Global 
+
+```{r gapminder-global, echo = TRUE}
+#| code-line-numbers: "1,2,3,4,5"
+#| output-location: column
+ggplot(gapminder,
+       aes(x = gdpPercap,
+          y = lifeExp, 
+          color = continent))  + 
+  geom_point() +
+  geom_smooth() 
+
+```
+
+
+
+
+:::{.notes}
+So we have mostly been working inside the individual geoms. However most people do not do this because it can start to get inconvenient quickly. If we work inside each individual geom than the other geom will not know what is going on and ggplot will get confused. 
+
+Instead if you pass off our argument to the first layer that the aes argument will inheret the appropriate stuff
+
+:::
+
+
+
+
+
+
+
+
+## Building Plots
+#### Starting with Data and aesthics 
+
+
+
+```{r complex-plot-no-geoms-show,  echo = TRUE}
+#| output-location: column
+ggplot(gapminder,
+ aes(x = gdpPercap,
+    y = lifeExp))
+```
+
+
+
+
+:::{.notes}
+So far we have only walked through geoms and aesthics but we need other layers to make graphs that make sense. And are presentable to professional audiences 
+
+:::
+
+
+
+
+
+##  Add `geom_point`
+
+```{r complex-plot-add-geom-point-show,  echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "5"
+ggplot(gapminder,
+    aes(x = gdpPercap,
+        y = lifeExp,
+        color = continent)) +
+  geom_point()
+  
+```
+
+
+
+
+
+
+
+##  Add `geom_smooth`
+
+
+```{r complex-plot-add-geom-smooth-show,  echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "6"
+ggplot(gapminder,
+    aes(x = gdpPercap,
+       y = lifeExp,
+       color = continent)) +
+  geom_point() +
+  geom_smooth()
+```
+
+
+##  Change Transparency 
+
+
+```{r complex-plot-change-alpha,  echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "5"
+ggplot(gapminder,
+    aes(x = gdpPercap,
+       y = lifeExp,
+       color = continent)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth()
+```
+
+
+
+
+
+## Adjust scales with `scale_x_log10`
+
+
+```{r complex-plot-add-log-show, echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "7"
+ggplot(gapminder,
+     aes(x = gdpPercap,
+         y = lifeExp,
+         color = continent)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth() +
+  scale_x_log10()
+```
+
+
+
+
+
+
+
+
+## Add axis labels and title with `labs`
+
+
+```{r complex-plot-add-labs-out,  echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "8,9,10"
+ggplot(gapminder,
+      aes(x = gdpPercap,
+          y = lifeExp,
+          color = continent)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectancy",
+       title = "The Effect of GDP per cap on Life Expectancy")
+```
+
+
+
+:::{.notes}
+Labs can handle a lot of arguments. there are individual functuions for the x label and y label and title. But make your like easier by just using labs. You can also modify the legend in labs but I have various success with that. I tend to modify the legend using guides or theme
+
+:::
+
+## Add viridis color scale
+
+
+```{r complex-plot-add-viridis-show,  echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "11"
+ggplot(gapminder,
+      aes(x = gdpPercap,
+          y = lifeExp,
+          color = continent)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d()
+```
+
+
+
+
+## Differences in Color Scales 
+
+
+
+
+
+
+
+## Add theme
+
+
+
+```{r complex-plot-add-theme-show,  echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "12"
+ggplot(gapminder,
+      aes(x = gdpPercap,
+         y = lifeExp,
+         color = continent)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+       y = "Life Expectanty",
+       title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d() +
+  theme_bw()
+```
+
+
+
+
+
+
+
+
+
+## Facet by Continent
+
+
+```{r complex-plot-facet-show,  echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "13"
+ggplot(gapminder,
+    aes(x = gdpPercap,
+        y = lifeExp,
+        color = continent)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+      y = "Life Expectanty",
+      title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d() +
+  theme_bw() +
+  facet_wrap(vars(continent))
+```
+
+
+
+
+## Change Theme Options
+
+
+```{r change-default-theme-option-complex-plot-show, echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "14"
+ggplot(gapminder,
+  aes(x = gdpPercap,
+      y = lifeExp,
+      color = continent)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth() +
+  scale_x_log10() +
+  labs(x = "GDP per cap",
+      y = "Life Expectanty",
+      title = "The Effect of GDP per cap on Life Expectancy") +
+  scale_color_viridis_d() +
+  theme_bw() +
+  facet_wrap(vars(continent)) +
+  theme(legend.position = "none")
+```
+
+
+
+
+
+## Scales
+
+<table>
+  <tr>
+    <th class="cell-left">Example layer</th>
+    <th class="cell-left">What it does</th>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_x_continuous()</code></td>
+    <td class="cell-left">Make the x-axis continuous</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_x_continuous(breaks = 1:5)&ensp;</code></td>
+    <td class="cell-left">Manually specify axis ticks</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_x_log10()</code></td>
+    <td class="cell-left">Log the x-axis</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_color_gradient()</code></td>
+    <td class="cell-left">Use a gradient</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">scale_fill_viridis_d()</code></td>
+    <td class="cell-left">Fill with discrete viridis colors</td>
+  </tr>
+</table>
+
+
+:::{.notes}
+Often time we need to or want to adjust the scales that one or more of the axis are on or we pass off color arguments to 
+:::
+
+
+
+
+
+## Scales in Action
+
+
+```{r show-options-for-scales,  echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "9"
+ggplot(gapminder,
+  aes(x = gdpPercap,
+      y = lifeExp,
+      size = pop,
+      color = continent)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Income",
+     y = "Life Expectancy") +
+  scale_x_log10(labels = scales::dollar) +
+  theme_bw() 
+
+
+
+```
+
+
+
+:::{.notes}
+Instead of directly transforming your data ggplot allows you to do this through the scale_x function which is pretty neat. I will not go through each of them but that is pretty handy. If you want nicer looking labels you can use the scales package to make nicer looking labels. I.e adding commas to values on the x or y axis adding the dollar sign or percentage sign etc
+
+:::
+
+# Scales in Action 
+
+```{r }
+#| output-location: column
+#| code-line-numbers: "9,10,11,12"
+ggplot(gapminder,
+  aes(x = gdpPercap,
+     y = lifeExp,
+     size = pop,
+    color = continent)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Income", y = "Life Expectancy") +
+  scale_x_log10(labels = scales::dollar) +
+  scale_color_manual(values = c("#04a3bd",
+     "#f0be3d",
+     "#931e18",
+     "#da7901")) +
+  theme_bw() 
+```
+
+:::{.notes}
+If you want to use  a different set of colors you choose those manull
+:::
+
+## Scales in Action 
+
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "9,10,11,12"
+ggplot(gapminder,
+  aes(x = gdpPercap,
+     y = lifeExp,
+     size = pop,
+    color = continent)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Income", y = "Life Expectancy") +
+  scale_x_log10(labels = scales::dollar) +
+  scale_color_met_d(name = "Veronese") +
+  theme_bw() 
+
+
+```
+
+
+## Scales
+
+The `scale_*()` components control the properties of all the<br><b class='simple-highlight-ylw'>aesthetic dimensions mapped to the data.</b>
+
+<br>The extensions (`*`) can be filled by e.g.:
+
+-   `continuous()`, `discrete()`, `reverse()`, `log10()`, `sqrt()`, `date()` for positions
+
+-   `continuous()`, `discrete()`, `manual()`, `gradient()`, `gradient2()`, `brewer()` for colors
+
+-   `continuous()`, `discrete()`, `manual()`, `ordinal()`, `area()`, `date()` for sizes
+
+-   `continuous()`, `discrete()`, `manual()`, `ordinal()` for shapes
+
+-   `continuous()`, `discrete()`, `manual()`, `ordinal()`, `date()` for transparency
+
+------------------------------------------------------------------------
+
+![Illustration by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)](pics/continuous_discrete.png){fig-size="120%" fig-align="center" fig-alt="Allison Horsts illustration ofthe correct use of continuous versus discrete; however, in {ggplot2} these are interpeted in a different way: as quantitative and qualitative."}
+
+## Continuous vs. Discrete in {ggplot2}
+
+::: {layout-ncol="2"}
+## Continuous:<br>quantitative or numerical data
+
+-   height
+-   weight
+-   age
+-   counts
+
+## Discrete:<br>qualitative or categorical data
+
+-   species
+-   sex
+-   study sites
+-   age group
+:::
+
+## Continuous vs. Discrete in {ggplot2}
+
+::: {layout-ncol="2"}
+## Continuous:<br>quantitative or numerical data
+
+-   height (continuous)
+-   weight (continuous)
+-   age (continuous or discrete)
+-   counts (discrete)
+
+## Discrete:<br>qualitative or categorical data
+
+-   species (nominal)
+-   sex (nominal)
+-   study site (nominal or ordinal)
+-   age group (ordinal)
+:::
+
+
+## Scales in Action 
+
+
+```{r scale-x-continous-example, echo=TRUE}
+#| code-line-numbers: "7"
+#| output-location: column
+ggplot(gapminder,
+      aes(x = gdpPercap,
+          y = lifeExp,
+          size = pop,
+          color = continent)) +
+  geom_point(alpha = 0.5) +
+  scale_x_continuous(limits = c(0, 30000)) +
+  theme_bw()
+ 
+
+```
+
+
+
+
+
+
+
+:::{.notes}
+In some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don't want to go back and redo it
+
+:::
+
+## Coordinates
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "6"
+ggplot(gapminder,
+    aes(x = gdpPercap,
+     y = lifeExp)) +
+  geom_point(alpha = 0.5) +
+  scale_x_continuous(limits = c(0, 30000)) +
+  coord_flip() +
+  theme_bw()
+
+```
+
+
+
+
+
+## Your Turn 
+### Change the colors of this density plot
+
+
+```{r fill-your-turn-option-example, echo = FALSE}
+#| fig-align: center
+#| fig-width: 8
+ggplot(penguins, aes(x = bill_length_mm, fill = species)) +
+  geom_density( alpha = 0.75) +
+  theme_bw() +
+  scale_fill_viridis_d(option = "magma")
+ # scale_fill_manual(values = c(colors))
+```
+
+```{r fill-bill-length-options-timer, echo = FALSE}
+countdown::countdown(minutes = 4)
+```
+
+
+:::{.notes}
+look at the help file for scale_fill_viridis and play around with the options 
+
+:::
+
+
+## How I Did It
+
+
+
+```{r changing-viridis-options-show,  echo = TRUE}
+#| output-location: column
+
+ggplot(penguins,
+ aes(x = bill_length_mm,
+    fill = species)) +
+  geom_density( alpha = 0.75) +
+  theme_bw() +
+  scale_fill_viridis_d(option = "magma")
+
+```
+
+
+
+
+
+
+
+## Facets
+
+<table>
+  <tr>
+    <th class="cell-left">Example layer</th>
+    <th class="cell-left">What it does</th>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">facet_wrap(vars(continent))</code></td>
+    <td class="cell-left">Plot for each continent</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">facet_wrap(vars(continent, year))</code>&emsp;</td>
+    <td class="cell-left">Plot for each continent/year</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">facet_wrap(..., ncol = 1)</code></td>
+    <td class="cell-left">Put all facets in one column</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">facet_wrap(..., nrow = 1)</code></td>
+    <td class="cell-left">Put all facets in one row</td>
+  </tr>
+</table>
+
+
+
+
+
+
+## facet_wrap
+
+
+```{r facet-wrap-one-col, echo=TRUE}
+#| output-location: column
+#| code-line-numbers: "8"
+ggplot(gapminder,
+  aes(x = gdpPercap,
+     y = lifeExp,
+     size = pop)) +
+  geom_point(alpha = 0.5) +
+  theme_bw() +
+  scale_x_log10() +
+  facet_wrap(vars(continent)) 
+  
+
+```
+
+:::{.notes}
+If we want to get individual plots for each value of the variable we can feed this to facet wrap and is a really useful way of displaying information and saves you from creating subsets for each continent than plotting them individuall than combining them. You also have lots of 
+
+
+:::
+
+
+
+## facet_grid 
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "9"
+ggplot(data = filter(gapminder,
+ year %in% c(1987,1997,2002, 2007)),
+    aes(x = gdpPercap,
+     y = lifeExp,
+     size = pop)) +
+  geom_point(alpha = 0.5) +
+  theme_bw() +
+  scale_x_log10() +
+  facet_grid(vars(year))
+```
+
+:::{.notes}
+forms a matrix of panels defined by row and column faceting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data.
+
+:::
+
+
+## facet_grid
+
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "9"
+ggplot(data = filter(gapminder,
+ year %in% c(1987,1997,2002, 2007)),
+    aes(x = gdpPercap,
+     y = lifeExp,
+     size = pop)) +
+  geom_point(alpha = 0.5) +
+  theme_bw() +
+  scale_x_log10() +
+  facet_grid(vars(year), vars(continent))
+```
+
+
+
+
+
+
+## Labels
+
+<table>
+  <tr>
+    <th class="cell-left">Example layer</th>
+    <th class="cell-left">What it does</th>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">labs(title = "Neat title")</code></td>
+    <td class="cell-left">Title</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">labs(caption = "Something")</td>
+    <td class="cell-left">Caption</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">labs(y = "Something")</td>
+    <td class="cell-left">y-axis</td>
+  </tr>
+  <tr>
+    <td class="cell-left"><code class="remark-inline-code">labs(size = "Population")</code></td>
+    <td class="cell-left">Title of size legend</td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+## Labels with labs 
+
+
+
+```{r labels-example-show,  echo = TRUE}
+#| output-location: column
+#| code-line-numbers: "8,9,10,11,12,13,14"
+ggplot(gapminder, 
+       aes(x = gdpPercap,
+        y = lifeExp, 
+        color = continent,
+        size = pop)) +
+ geom_point(alpha = 0.5) +
+  scale_x_log10() +
+  labs(title = "Health and wealth grow together",
+       subtitle = "Data from 2007",
+       x = "Wealth (GDP per capita)",
+       y = "Health (life expectancy)",
+       color = "Continent",
+       size = "Population",
+       caption = "Source: The Gapminder Project")
+```
+
+
+:::{.notes}
+The labs argument has a ton of flexibility. Basically if you feed something into aes you can change it in labs. I Tend to change legend labels in guides. That is just a personal preference but labs is superflexible. You will sometimes see other solutions for changing your legend.
+
+:::
+
+
+## Changing the Default Theme 
+
+::::{.columns}
+::: {.column width="45%"}
+
+### theme_minimal
+
+```{r theme-minimal-theme-out, echo = FALSE}
+
+ggplot(gapminder, 
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
+  geom_point(alpha = 0.5) +
+  scale_x_log10() +
+  labs(title = "Health and wealth grow together",
+       subtitle = "Data from 1952 to 2007",
+       x = "Wealth (GDP per capita)",
+       y = "Health (life expectancy)",
+       color = "Continent",
+       size = "Population",
+       caption = "Source: The Gapminder Project") +
+       theme_minimal()
+```
+
+
+:::
+
+
+::: {.column width="45%"}
+
+### theme_dark
+```{r theme-dark-theme-out, echo = FALSE}
+
+ggplot(gapminder, 
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
+  geom_point(alpha = 0.5) +
+  scale_x_log10() +
+  labs(title = "Health and wealth grow together",
+       subtitle = "Data from 1952 to 2007",
+       x = "Wealth (GDP per capita)",
+       y = "Health (life expectancy)",
+       color = "Continent",
+       size = "Population",
+       caption = "Source: The Gapminder Project") +
+       theme_dark()
+```
+
+:::
+::::
+
+
+
+## The theme argument 
+
+- Has lots and lots of options(94 to be exact)
+
+- You can change basically anything you could think of in a plot
+  - My ggplot theme is basically just a some tweaks to theme arguments
+
+
+```{r show-theme-options, eval = FALSE, echo = TRUE}
+theme_bw() + 
+theme(legend.position = "bottom",
+      plot.title = element_text(face = "bold"),
+      axis.title.y = element_text(face = "italic"))
+```
+
+
+
+## An Example 
+
+:::columns
+:::column
+
+
+```{r eval = FALSE}
+ggplot(gapminder, 
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
+  geom_point(alpha = 0.5) +
+  scale_x_log10() +
+  labs(title = "Health and wealth grow together",
+       subtitle = "Data from 1952 to 2007",
+       x = "Wealth (GDP per capita)",
+       y = "Health (life expectancy)",
+       color = "Continent",
+       size = "Population",
+       caption = "Source: The Gapminder Project") +
+       theme_allen_minimal()
+```
+
+
+:::
+
+
+:::column
+
+```{r echo = FALSE}
+
+ggplot(gapminder, 
+       aes(x = gdpPercap,
+        y = lifeExp, 
+           color = continent,
+            size = pop)) +
+  geom_point(alpha = 0.5) +
+  scale_x_log10() +
+  labs(title = "Health and wealth grow together",
+       subtitle = "Data from 1952 to 2007",
+       x = "Wealth (GDP per capita)",
+       y = "Health (life expectancy)",
+       color = "Continent",
+       size = "Population",
+       caption = "Source: The Gapminder Project") +
+       theme_allen_minimal(base_size = 45, has_subtitle = TRUE)
+```
+
+:::
+:::
+
+
+
+## Saving your work 
+
+```{r fake-plot, eval = FALSE, echo = TRUE}
+your_plot_here = ggplot(data, aes(x = blah, y = blah))
+```
+```{r ggsave-pdf, eval=FALSE, echo = TRUE}
+
+ggsave("name-of-your-file.pdf",your_plot_here) 
+```
+
+
+
+```{r ggsave-examp-png, eval=FALSE, echo = TRUE}
+ggsave("name-of-your-file.pngs",your_plot_here)
+```
+
