@@ -2279,7 +2279,7 @@
     "href": "slides/ggplot-presentation.html#so-how-did-we-go-from",
     "title": "Getting Started in ggplot",
     "section": "So How Did We go From?",
-    "text": "So How Did We go From?\n\n\n\nThis\n\n\n\n\n\n\n\nTo This"
+    "text": "So How Did We go From?\n\n\nThis\n\n\n\n\n\n\nTo This"
   },
   {
     "objectID": "slides/ggplot-presentation.html#plotting-data",
@@ -2462,13 +2462,6 @@
     "title": "Getting Started in ggplot",
     "section": "Add viridis color scale",
     "text": "Add viridis color scale\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth() +\n  scale_x_log10() +\n  labs(x = \"GDP per cap\",\n       y = \"Life Expectanty\",\n       title = \"The Effect of GDP per cap on Life Expectancy\") +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "slides/ggplot-presentation.html#differences-in-color-scales",
-    "href": "slides/ggplot-presentation.html#differences-in-color-scales",
-    "title": "Getting Started in ggplot",
-    "section": "Differences in Color Scales",
-    "text": "Differences in Color Scales"
   },
   {
     "objectID": "slides/ggplot-presentation.html#add-theme",
