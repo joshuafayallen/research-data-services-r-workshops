@@ -1280,7 +1280,7 @@ The `scale_*()` components control the properties of all the<br><b class='simple
 
 
 ```{r scale-x-continous-example, echo=TRUE}
-#| code-line-numbers: "7"
+#| code-line-numbers: "5"
 #| output-location: column
 ggplot(gapminder,
       aes(x = gdpPercap,
@@ -1305,7 +1305,25 @@ In some cases you may want to change the coordinates of the plot to expand or co
 
 :::
 
-## Coordinates
+## Coordinate Systems
+
+<br>
+
+<b class='simple-highlight-grn' style='font-size:2.6rem;'>= interpret the position aesthetics</b><br><br>
+
+::: incremental
+-   **linear coordinate systems:** preserve the geometrical shapes
+    -   `coord_cartesian()`
+    -   `coord_fixed()`
+    -   `coord_flip()`
+-   **non-linear coordinate systems:** likely change the geometrical shapes
+    -   `coord_polar()`
+    -   `coord_map()` and `coord_sf()`
+    -   `coord_trans()`
+:::
+
+
+## Change the Limits of the plot
 
 ```{r}
 #| output-location: column
@@ -1315,14 +1333,41 @@ ggplot(gapminder,
      y = lifeExp)) +
   geom_point(alpha = 0.5) +
   scale_x_continuous(limits = c(0, 30000)) +
-  coord_flip() +
   theme_bw()
 
 ```
 
 
 
+## Circular Coordinate Systems 
 
+::: {layout-ncol="2"}
+```{r}
+#| fig-height: 3.9
+#| code-line-numbers: "5"
+ggplot(penguins,
+ aes(x = species,
+ fill = species)) +
+geom_bar() + 
+coord_polar()
+
+
+```
+
+
+::: fragment
+```{r}
+#| label: coord-cartesian-comp-polar
+#| fig-height: 3.9
+#| code-line-numbers: "5"
+ggplot(penguins,
+ aes(x = species,
+  fill = species)) +
+geom_bar() + 
+coord_cartesian()
+```
+:::
+:::
 
 ## Your Turn 
 ### Change the colors of this density plot
