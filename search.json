@@ -2534,11 +2534,25 @@
     "text": "Scales in Action\n\n\nggplot(gapminder,\n      aes(x = gdpPercap,\n          y = lifeExp,\n          size = pop,\n          color = continent)) +\n  geom_point(alpha = 0.5) +\n  scale_x_continuous(limits = c(0, 30000)) +\n  theme_bw()\n\n\n\n\n\n\n\nIn some cases you may want to change the coordinates of the plot to expand or contract the coordinates or in some cases just flip them without hassle. ggplot defaults to using coord_cartesian on its own but coord_cartesian can be used to zoom in on part of the plot. The coor_flip here is a bit silly but it is insanely useful for barcharts and other charts where you may have added things into aes and don’t want to go back and redo it"
   },
   {
-    "objectID": "slides/ggplot-presentation.html#coordinates",
-    "href": "slides/ggplot-presentation.html#coordinates",
+    "objectID": "slides/ggplot-presentation.html#coordinate-systems",
+    "href": "slides/ggplot-presentation.html#coordinate-systems",
     "title": "Getting Started in ggplot",
-    "section": "Coordinates",
-    "text": "Coordinates\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n     y = lifeExp)) +\n  geom_point(alpha = 0.5) +\n  scale_x_continuous(limits = c(0, 30000)) +\n  coord_flip() +\n  theme_bw()"
+    "section": "Coordinate Systems",
+    "text": "Coordinate Systems\n\n= interpret the position aesthetics\n\n\nlinear coordinate systems: preserve the geometrical shapes\n\ncoord_cartesian()\ncoord_fixed()\ncoord_flip()\n\nnon-linear coordinate systems: likely change the geometrical shapes\n\ncoord_polar()\ncoord_map() and coord_sf()\ncoord_trans()"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#change-the-limits-of-the-plot",
+    "href": "slides/ggplot-presentation.html#change-the-limits-of-the-plot",
+    "title": "Getting Started in ggplot",
+    "section": "Change the Limits of the plot",
+    "text": "Change the Limits of the plot\n\n\nggplot(gapminder,\n    aes(x = gdpPercap,\n     y = lifeExp)) +\n  geom_point(alpha = 0.5) +\n  scale_x_continuous(limits = c(0, 30000)) +\n  theme_bw()"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#circular-coordinate-systems",
+    "href": "slides/ggplot-presentation.html#circular-coordinate-systems",
+    "title": "Getting Started in ggplot",
+    "section": "Circular Coordinate Systems",
+    "text": "Circular Coordinate Systems\n\n\n\nggplot(penguins,\n aes(x = species,\n fill = species)) +\ngeom_bar() + \ncoord_polar()\n\n\n\n\n\n\nggplot(penguins,\n aes(x = species,\n  fill = species)) +\ngeom_bar() + \ncoord_cartesian()"
   },
   {
     "objectID": "slides/ggplot-presentation.html#your-turn-2",
