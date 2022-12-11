@@ -1,111 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/computing-access.html</loc>
-    <lastmod>2022-12-04T01:11:57.161Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/computing-troubleshooting.html</loc>
-    <lastmod>2022-12-04T01:12:00.289Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/project-description.html</loc>
-    <lastmod>2022-12-04T01:12:01.433Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/supplemental/slr-derivations.html</loc>
-    <lastmod>2022-12-04T01:12:01.945Z</lastmod>
-  </url>
-  <url>
     <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/supplemental/log-transformations.html</loc>
-    <lastmod>2022-12-04T01:12:02.645Z</lastmod>
+    <lastmod>2022-12-11T01:21:27.741Z</lastmod>
   </url>
   <url>
     <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/supplemental/mlr-matrix.html</loc>
-    <lastmod>2022-12-04T01:12:03.249Z</lastmod>
+    <lastmod>2022-12-11T01:21:28.837Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/supplemental/slr-derivations.html</loc>
+    <lastmod>2022-12-11T01:21:29.209Z</lastmod>
   </url>
   <url>
     <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/supplemental/model-diagnostics-matrix.html</loc>
-    <lastmod>2022-12-04T01:12:03.849Z</lastmod>
+    <lastmod>2022-12-11T01:21:29.633Z</lastmod>
   </url>
   <url>
     <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/supplemental/model-selection-criteria.html</loc>
-    <lastmod>2022-12-04T01:12:04.409Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/index.html</loc>
-    <lastmod>2022-12-04T01:12:04.909Z</lastmod>
+    <lastmod>2022-12-11T01:21:30.037Z</lastmod>
   </url>
   <url>
     <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/project-tips-resources.html</loc>
-    <lastmod>2022-12-04T01:12:05.813Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/data-cleaning-data-table.html</loc>
-    <lastmod>2022-12-04T01:12:07.193Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/Getting-Started-in-R.html</loc>
-    <lastmod>2022-12-04T01:12:10.137Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/ggplot-presentation.html</loc>
-    <lastmod>2022-12-04T01:12:13.385Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/ggplot-workshop.html</loc>
-    <lastmod>2022-12-04T01:12:17.489Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/data-analysis-in-R.html</loc>
-    <lastmod>2022-12-04T01:12:20.061Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/data-cleaning.html</loc>
-    <lastmod>2022-12-04T01:12:28.033Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/weeks/week-4.html</loc>
-    <lastmod>2022-12-04T01:12:29.537Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/weeks/week-3.html</loc>
-    <lastmod>2022-12-04T01:12:30.033Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/weeks/week-1.html</loc>
-    <lastmod>2022-12-04T01:12:30.537Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/weeks/week-2.html</loc>
-    <lastmod>2022-12-04T01:12:31.049Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-1.html</loc>
-    <lastmod>2022-12-04T01:12:32.097Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-4.html</loc>
-    <lastmod>2022-12-04T01:12:32.973Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-3.html</loc>
-    <lastmod>2022-12-04T01:12:33.949Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-2.html</loc>
-    <lastmod>2022-12-04T01:12:35.025Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-5.html</loc>
-    <lastmod>2022-12-04T01:12:35.581Z</lastmod>
-  </url>
-  <url>
-    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/LICENSE.html</loc>
-    <lastmod>2022-12-04T01:12:36.357Z</lastmod>
+    <lastmod>2022-12-11T01:21:30.697Z</lastmod>
   </url>
   <url>
     <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/course-overview.html</loc>
-    <lastmod>2022-12-04T01:12:36.829Z</lastmod>
+    <lastmod>2022-12-11T01:21:31.037Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/project-description.html</loc>
+    <lastmod>2022-12-11T01:21:31.817Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/computing-access.html</loc>
+    <lastmod>2022-12-11T01:21:32.185Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/computing-troubleshooting.html</loc>
+    <lastmod>2022-12-11T01:21:32.621Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/index.html</loc>
+    <lastmod>2022-12-11T01:21:33.301Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/LICENSE.html</loc>
+    <lastmod>2022-12-11T01:21:33.845Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/weeks/week-1.html</loc>
+    <lastmod>2022-12-11T01:21:34.213Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/weeks/week-4.html</loc>
+    <lastmod>2022-12-11T01:21:34.549Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/weeks/week-2.html</loc>
+    <lastmod>2022-12-11T01:21:34.901Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/weeks/week-3.html</loc>
+    <lastmod>2022-12-11T01:21:35.277Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/data-analysis-in-R.html</loc>
+    <lastmod>2022-12-11T01:21:36.989Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/ggplot-workshop.html</loc>
+    <lastmod>2022-12-11T01:21:40.005Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/data-cleaning-data-table.html</loc>
+    <lastmod>2022-12-11T01:21:40.925Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/Getting-Started-in-R.html</loc>
+    <lastmod>2022-12-11T01:21:42.889Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/ggplot-presentation.html</loc>
+    <lastmod>2022-12-11T01:21:45.413Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/slides/data-cleaning.html</loc>
+    <lastmod>2022-12-11T01:21:52.233Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-1.html</loc>
+    <lastmod>2022-12-11T01:21:53.661Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-2.html</loc>
+    <lastmod>2022-12-11T01:21:54.389Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-5.html</loc>
+    <lastmod>2022-12-11T01:21:54.825Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-3.html</loc>
+    <lastmod>2022-12-11T01:21:55.485Z</lastmod>
+  </url>
+  <url>
+    <loc>https://joshuafayallen.github.io/ research-data-services-r-workshops/hw/hw-4.html</loc>
+    <lastmod>2022-12-11T01:21:56.117Z</lastmod>
   </url>
 </urlset>
