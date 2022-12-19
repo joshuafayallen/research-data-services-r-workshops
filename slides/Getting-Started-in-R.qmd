@@ -132,14 +132,12 @@ However, if you simply add up the propietary softwares there are fewer industry 
 
 ## Why R and RStudio?(cont)
 
-### Data science reasons 
 
 - Alongside Python, R has become the *de facto* language for data science.
   - See: [*The Impressive Growth of R*](https://stackoverflow.blog/2017/10/10/impressive-growth-r/), [*The Popularity of Data Science Software*](http://r4stats.com/articles/popularity/)
 
 - Open-source (free!) with a global user-base spanning academia and industry.
 
-### Personal Benefits
 - The community is insanely nice
   - Especially compared to Python and Stata
   
@@ -530,12 +528,8 @@ R is also equipped with modulo operations (integer division and remainders), mat
 ```{r echo = TRUE}
 m <- matrix(1:8, nrow=2) # Don't worry about the <- for now 
 n <- matrix(8:15, nrow=4) # this is just me creating matrices 
-
 mat <- matrix(1:15, ncol = 5)
-
 m %*% n # Matrix multiplication
-
-mat 
 t(mat) # transpose a matrix
 
 ```
@@ -763,14 +757,12 @@ d = b/3
 
 :::incremental
 - Tbh this is a matter of taste really. 
-  - R added `=` in the 2000's to make it easier for people coming from other object oriented programming languages
+  - R added `=` in the 2000's to make it easier for people coming from other object oriented programming languages^[More discussion [here](https://github.com/Robinlovelace/geocompr/issues/319##issuecomment-427376764) and [here](https://www.separatinghyperplanes.com/2018/02/why-you-should-use-and-never.html)]
 
 - Just keep it consistent..[or become ungovernable and use all three in one script.]{.fragment}
-  - I am not responsible for you getting yelled at on Stackoverflow if you do this.
+
 :::
-::: aside
-More discussion [here](https://github.com/Robinlovelace/geocompr/issues/319##issuecomment-427376764) and [here](https://www.separatinghyperplanes.com/2018/02/why-you-should-use-and-never.html)
-:::
+
 :::{.notes}
 
 To be honest R purists are one of the last hold outs of using the gets operator essentially back in the main frame computer days there was a physical key that would do this for you. R is actually really really old so there are some quirks to it that bug lots of people. We are not going to get into it any further in this workshop but if you have prior experience in an object oriented language R will be a bit peculiar at times. Like in somne cases position of the argument does not matter indentation does not matter which will really throw you off if you are coming from python or vice versa 
@@ -841,8 +833,11 @@ mean(e$y)
 ```
 
 
+- R will look for named objects in the environment
 
+- If the interpreter can't find `y` or any other object it will give up because it does not think it exists
 
+- You need to tell the interpreter what to look for inside of the object
 
 :::{.notes}
 In R one of the biggest things is that being explicit about what name to use is how we do things. If you are not you are gonna get error messages at best.There are lots of ways 
@@ -893,6 +888,8 @@ typeof(g) ## shows how r is storing the object object
 
 These are the ones that tend to come up most regularly used. You can also coerce once class to another. Using as will just force something to be a different class.
 
+different classes of objects have different attributes that make them that class of object. A data.frame is kind of list where element in it has an equal length. Whereas a list can consist of elements of different lenghts. 
+
 Why type of returns list: data.frame and data.table are both collections (lists) of items (vectors, if you will), each item of the same length (ie each column is an item in the list, internally to R anyway). This is why unlike in a matrix, columns can have different classes.
 :::
 
@@ -918,7 +915,6 @@ NA
 
 ::: aside
 [There are more see this website for a more complete list](http://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
-
 :::
 
 :::{.notes}
@@ -1011,7 +1007,6 @@ penguins = read.csv("penguins.csv")
   - the file name is spelled wrong 
   - the file is in a subdirectory or your working directory is not set correctly
 
-### Fixing the error
 
 ```{r echo = TRUE}
 penguins = read.csv("data/penguins.csv")
