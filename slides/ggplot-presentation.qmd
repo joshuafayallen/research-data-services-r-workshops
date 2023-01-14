@@ -1879,27 +1879,11 @@ examples derived from Andrew Heiss
 
 ## Making a Bespoke Shapefile(cont)
 
-```{r, eval=FALSE, echo = TRUE}
-library(tidygeocoder)
-
-breweries_I_visit = tribble(
-  ~name, ~address,
-  "Russian River Brewing", "725 4th St, Santa Rosa, CA 95404",
-  "Orpheus Brewing", "1440 Dutch Valley Pl NE, Atlanta, GA 30324",
-  "Three Tavens", "121 New St, Decatur, GA 30030",
-  "HenHouse Brewing Company", "322 Bellevue Ave, Santa Rosa, CA 95407"
-)
-
-breweries_geocode = breweries_I_visit |> 
-  geocode(address, method = "osm") ## backup if one service fails 
-
-add_geom = breweries_geocode |> 
-  st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326"))
-```
 
 
 
-```{r echo=FALSE, cache=TRUE}
+```{r  cache=TRUE}
+#| output-location: column
 library(tidygeocoder)
 breweries_I_visit = tribble(
   ~name, ~address,
@@ -1934,6 +1918,7 @@ from there you can use ggplot or even create interactive leaflet maps
 
 ```{r echo = TRUE }
 #| output-location: column
+#| fig-height: 8 
 coastline = read_sf("data/ME-GIS/Coastline2.shp")
 contours = read_sf("data/ME-GIS/Contours_18.shp")
 rivers = read_sf("data/ME-GIS/Rivers.shp")
@@ -1975,15 +1960,18 @@ ggplot() +
           alpha = 0.5) +
   geom_sf(data = mountains, size = 0.25) +
   geom_sf(data = places) +
-  geom_sf_label(data = places,
+  geom_sf_label(data = filter(places, NAME !="Rivendell"),
                 aes(label = NAME),
-                nudge_y = 80000, size = 24) +
+                nudge_y = 80000, size = 6) +
+  geom_sf_label(data = filter(places, NAME == "Rivendell"),
+                aes(label = NAME),
+                nudge_x = 88000, size = 6) +
   geom_sf_label(data = mountains_to_label,
                 aes(label = name),
-                nudge_y = 80000, size = 24) +
+                nudge_y = 80000, size = 6) +
   geom_sf_label(data = mordor,
                 aes(label = NAME),
-                nudge_y = 9000, size = 24) +
+                nudge_y = -10000, size = 6) +
   theme_void() +
   theme(plot.background = element_rect(fill = "#fffce3"))
 ```
