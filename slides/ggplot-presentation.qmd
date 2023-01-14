@@ -42,6 +42,7 @@ graph_dat = datasauRus::datasaurus_dozen
 
 penguins = palmerpenguins::penguins |> tidyr::drop_na()
 
+
 coastline = read_sf("data/ME-GIS/Coastline2.shp")
 contours = read_sf("data/ME-GIS/Contours_18.shp")
 rivers = read_sf("data/ME-GIS/Rivers.shp")
@@ -52,7 +53,6 @@ placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
 cities = read_sf("data/ME-GIS/Cities.shp")
 roads = read_sf("data/ME-GIS/Roads.shp")
 towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
-
 
 ```
 
@@ -1737,7 +1737,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/andrewheiss/datavizs2
 
 
 ```{r show-geometry,echo=FALSE}
-
+placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
 
 placenames |>
 select(NAME, geometry) |>
@@ -1914,21 +1914,12 @@ from there you can use ggplot or even create interactive leaflet maps
 
 
 
-## Mapping Middle Earth
+## Mapping Middle Earth {.scrollable}
 
 ```{r echo = TRUE }
 #| output-location: column
 #| fig-height: 8 
-coastline = read_sf("data/ME-GIS/Coastline2.shp")
-contours = read_sf("data/ME-GIS/Contours_18.shp")
-rivers = read_sf("data/ME-GIS/Rivers.shp")
-lakes = read_sf("data/ME-GIS/Lakes.shp")
-forests = read_sf("data/ME-GIS/Forests.shp")
-mountains = read_sf("data/ME-GIS/Mountains_Anno.shp")
-placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
-cities = read_sf("data/ME-GIS/Cities.shp")
-roads = read_sf("data/ME-GIS/Roads.shp")
-towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
+
 places = placenames |>
   filter(NAME %in% c("Hobbiton",
                      "Rivendell",
@@ -1938,6 +1929,7 @@ places = placenames |>
 mordor = placenames[placenames$NAME == "Mordor",]
 
 mountains_to_label = mountains[mountains$name == "Erebor The Lonely Mountain",]
+
 
 ggplot() +
   geom_sf(data = contours,
