@@ -43,16 +43,16 @@ graph_dat = datasauRus::datasaurus_dozen
 penguins = palmerpenguins::penguins |> tidyr::drop_na()
 
 
-coastline = read_sf("data/ME-GIS/Coastline2.shp")
-contours = read_sf("data/ME-GIS/Contours_18.shp")
-rivers = read_sf("data/ME-GIS/Rivers.shp")
-lakes = read_sf("data/ME-GIS/Lakes.shp")
-forests = read_sf("data/ME-GIS/Forests.shp")
-mountains = read_sf("data/ME-GIS/Mountains_Anno.shp")
-placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
-cities = read_sf("data/ME-GIS/Cities.shp")
-roads = read_sf("data/ME-GIS/Roads.shp")
-towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
+#coastline = read_sf("data/ME-GIS/Coastline2.shp")
+#contours = read_sf("data/ME-GIS/Contours_18.shp")
+#rivers = read_sf("data/ME-GIS/Rivers.shp")
+#lakes = read_sf("data/ME-GIS/Lakes.shp")
+#forests = read_sf("data/ME-GIS/Forests.shp")
+#mountains = read_sf("data/ME-GIS/Mountains_Anno.shp")
+#placenames = read_sf("data/ME-GIS/Combined_Placenames.shp")
+#cities = read_sf("data/ME-GIS/Cities.shp")
+#roads = read_sf("data/ME-GIS/Roads.shp")
+#towers_keeps =  read_sf("data/ME-GIS/Towers_and_Keeps.shp")
 
 ```
 
@@ -1916,9 +1916,24 @@ from there you can use ggplot or even create interactive leaflet maps
 
 ## Mapping Middle Earth {.scrollable}
 
-```{r echo = TRUE }
+```{r echo = TRUE, warning = FALSE, message = FALSE, results = "hide" }
 #| output-location: column
 #| fig-height: 8 
+# using some programming read in everything iteratively
+# there is probably a simpler solution but this worked for me 
+shapes <-  list.files(path = "data/ME-GIS/", pattern = "*.shp", full.names = TRUE)
+
+shapes_read = map(shapes, read_sf)
+
+remove <- c("data/ME-GIS//", ".shp", "2", "02", "_18", "")
+
+shapes_names = shapes |> 
+  str_remove_all(paste(remove, collapse = "|")) |> 
+  str_to_lower()
+
+names(shapes_read) = shapes_names
+
+map(names(shapes_read), ~assign(.x, shapes_read[[.x]], envir = .GlobalEnv))
 
 places = placenames |>
   filter(NAME %in% c("Hobbiton",
@@ -1928,7 +1943,7 @@ places = placenames |>
 
 mordor = placenames[placenames$NAME == "Mordor",]
 
-mountains_to_label = mountains[mountains$name == "Erebor The Lonely Mountain",]
+mountains_to_label = mountains_anno[mountains_anno$name == "Erebor The Lonely Mountain",]
 
 
 ggplot() +
@@ -1950,7 +1965,7 @@ ggplot() +
           size = 0,
           fill = "#035711",
           alpha = 0.5) +
-  geom_sf(data = mountains, size = 0.25) +
+  geom_sf(data = mountains_anno, size = 0.25) +
   geom_sf(data = places) +
   geom_sf_label(data = filter(places, NAME !="Rivendell"),
                 aes(label = NAME),
