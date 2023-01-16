@@ -10,7 +10,6 @@
   <meta name="generator" content="quarto-1.2.313">
 
   <meta name="author" content="Josh Allen">
-  <meta name="dcterms.date" content="2022-12-19">
   <title>Research Data Services R Workshops at Georgia State University - Getting Started in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -404,7 +403,7 @@ Josh Allen
     </div>
 </div>
 
-  <p class="date">12/19/22</p>
+  <p class="date">1/15/23</p>
 </section>
 <section>
 <section id="research-data-services" class="title-slide slide level1 center">
@@ -1326,9 +1325,10 @@ And
           display:block!important;
       }</style></aside>
 </div>
-</section>
-<section id="what-are-objects" class="slide level2">
-<h2>What are Objects?</h2>
+</section></section>
+<section>
+<section id="what-are-objects" class="title-slide slide level1 center">
+<h1>What are Objects?</h1>
 <ul>
 <li>Objects are what we work with in <code>R</code></li>
 </ul>
@@ -1383,38 +1383,104 @@ And
           display:block!important;
       }</style></aside>
 </section>
-<section id="the-usual-suspects" class="slide level2">
-<h2>The Usual Suspects</h2>
+<section id="vectors" class="slide level2">
+<h2>Vectors</h2>
 <ul>
-<li>vectors</li>
-<li>matrices</li>
-<li>data frames</li>
-<li>dates</li>
-<li>lists</li>
-<li>functions</li>
+<li><p>Come in <strong>two flavors</strong></p></li>
+<li><p><font style="color: #591d06"><strong>Atomic</strong></font>: all the stuff must be the same type</p></li>
+<li><p><font style="color: #591d06"><strong>Lists</strong></font>: stuff can be different types</p></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>f <span class="ot">=</span> <span class="fu">cbind</span>(a,b) <span class="do">## this will just create a matrix </span></span>
-<span id="cb65-2"><a href="#cb65-2"></a><span class="fu">class</span>(f)<span class="do">## lets us check the class of something </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>my_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb65-2"><a href="#cb65-2"></a><span class="fu">is.vector</span>(my_vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "matrix" "array" </code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>g <span class="ot">=</span> <span class="fu">as.data.frame</span>(f) <span class="do">## converts to a different class</span></span>
-<span id="cb67-2"><a href="#cb67-2"></a><span class="fu">str</span>(g) <span class="do">## shows some info about the structure of the object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   1 obs. of  2 variables:
- $ a: num 4
- $ b: num 32</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">typeof</span>(g) <span class="do">## shows how r is storing the object object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="at">b =</span> <span class="st">"Hello World"</span>, <span class="at">c =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>))</span>
+<span id="cb67-2"><a href="#cb67-2"></a><span class="fu">is.vector</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "list"</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <aside class="notes">
-<p>These are the ones that tend to come up most regularly used. You can also coerce once class to another. Using as will just force something to be a different class.</p>
-<p>different classes of objects have different attributes that make them that class of object. A data.frame is kind of list where element in it has an equal length. Whereas a list can consist of elements of different lenghts.</p>
-<p>Why type of returns list: data.frame and data.table are both collections (lists) of items (vectors, if you will), each item of the same length (ie each column is an item in the list, internally to R anyway). This is why unlike in a matrix, columns can have different classes.</p>
+<p>Vectors are functionally the workhorse in lots of the stuff you do. Data.frames are basically just a bunch of vectors mashed together. Matrices which are responsible for all the math behind the scenes are just a vectors with two dimensions rows x columns. Arrays are just built on top of vectors but they can be defined by more than three dimensions. Many of the other types of objects in R are basically just built ontop of vectors. Most notably data.frames and tibbles. Notice that we have lots of different stuff in my list. a is an atomic vector, b is just a character string and c is a whole ass data frame. You will be working with lists a lot this semester</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="atomic-vectors" class="slide level2">
+<h2>Atomic Vectors</h2>
+<ul>
+<li><p>Come in a variety of flavors</p></li>
+<li><p>Numeric: Can contain whole numbers or decimals</p></li>
+<li><p>Logicals: Can only take two values TRUE or FALSE</p></li>
+<li><p>Factors: Can only contain predefined values. Used to store categorical data</p>
+<ul>
+<li>Ordered factors are special kind of factor where the order of the level matters.</li>
+</ul></li>
+<li><p>Characters: Holds character strings</p>
+<ul>
+<li>Base R will often convert characters to factors. That is bad because it will choose the levels for you</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>These are generally the workhorses that you will see in your applied work. Dates are somewhat special because they are built on top of a specific kind of numeric vector.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="lists" class="slide level2">
+<h2>Lists</h2>
+<ul>
+<li>Lists are everywhere in R</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="fu">rnorm</span>(<span class="dv">3</span>),</span>
+<span id="cb69-2"><a href="#cb69-2"></a>                         <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">3</span>))</span>
+<span id="cb69-3"><a href="#cb69-3"></a><span class="fu">typeof</span>(data_frame)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a>dats_wrong <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb71-2"><a href="#cb71-2"></a>                         <span class="at">b =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in data.frame(a = 1:3, b = 1:4): arguments imply differing number of rows: 3, 4</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a>example_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> bill_depth_mm, <span class="at">data =</span> penguins)</span>
+<span id="cb73-2"><a href="#cb73-2"></a><span class="fu">typeof</span>(example_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="fu">length</span>(example_mod<span class="sc">$</span>residuals);<span class="fu">length</span>(example_mod<span class="sc">$</span>coefficients)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 342</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<aside class="notes">
+<p>Lots of the stuff you have encountered in R are special kinds of lists. Data.frames are just lists where each element has to have an equal length. This is just one of the attributes of the data.frame object class. While data.frames as lists is somewhat of a fun fact this can be important in data wrangling like when you are trying to add rows or columns. You are going to do various things in this semester that require you to manipulate lists. Your best first cut of seeing if something funky is going on with your model is just grabbing your fitted and residual values from your model and plotting them. Being able to navigate an object is important</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1431,20 +1497,22 @@ And
 <h2>A Quick Aside on Naming Stuff</h2>
 <p>Things we can never name stuff</p>
 <p>The reason we can’t use any of these are because they are reserved for R</p>
-<pre><code>if 
-else 
-while 
-function 
-for
-TRUE 
-FALSE 
-NULL 
-Inf 
-NaN 
-NA </code></pre>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="cf">if</span> </span>
+<span id="cb78-2"><a href="#cb78-2"></a><span class="cf">else</span> </span>
+<span id="cb78-3"><a href="#cb78-3"></a><span class="cf">while</span> </span>
+<span id="cb78-4"><a href="#cb78-4"></a><span class="cf">function</span> </span>
+<span id="cb78-5"><a href="#cb78-5"></a><span class="cf">for</span></span>
+<span id="cb78-6"><a href="#cb78-6"></a><span class="cn">TRUE</span> </span>
+<span id="cb78-7"><a href="#cb78-7"></a><span class="cn">FALSE</span> </span>
+<span id="cb78-8"><a href="#cb78-8"></a><span class="cn">NULL</span> </span>
+<span id="cb78-9"><a href="#cb78-9"></a><span class="cn">Inf</span> </span>
+<span id="cb78-10"><a href="#cb78-10"></a><span class="cn">NaN</span> </span>
+<span id="cb78-11"><a href="#cb78-11"></a><span class="cn">NA</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 <aside class="notes">
-<p>If you have noticed every object in our little session has a name. But we should be careful about what we name our stuff. We can technically name our objects just about anything except these because they are reserved for R</p>
+<p>If you have noticed every object in our little session has a name. But we should be careful about what we name our stuff. We can technically name our objects just about anything except these because they are reserved for R. 1-8 are all things that are vital for R programming. 9-11 are all different ways that R represent missing values or warnings that you have done something that is mathematically impossiple</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1464,6 +1532,23 @@ NA </code></pre>
 <p>Semi-reserved words</p>
 <p>For simple things like assigning <code>c = 4</code> and then doing <code>d = c(1,2,3,4)</code> R will be able to distinguish between assign c the value of 4 and the <code>c</code> that calls <code>concatenate</code> which is way more important in R.</p>
 <p>However it is generally a good idea, <em>unless you know what you are doing</em>, to avoid naming things that are functions in <code>R</code> because <code>R</code> will get confused.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>my_cool_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb79-2"><a href="#cb79-2"></a> x <span class="ot">&lt;-</span> x<span class="sc">*</span><span class="dv">5</span></span>
+<span id="cb79-3"><a href="#cb79-3"></a><span class="fu">return</span>(x)</span>
+<span id="cb79-4"><a href="#cb79-4"></a>}</span>
+<span id="cb79-5"><a href="#cb79-5"></a></span>
+<span id="cb79-6"><a href="#cb79-6"></a>datas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb79-7"><a href="#cb79-7"></a></span>
+<span id="cb79-8"><a href="#cb79-8"></a><span class="fu">my_cool_fun</span>(datas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  5 10 15 20 25 30 35 40 45 50</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a>my_cool_fun[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in my_cool_fun[1]: object of type 'closure' is not subsettable</code></pre>
+</div>
+</div>
 <aside class="notes">
 <p>You will get an error usually that says that Object of type ‘closure’ is not subsettable. This is just R saying wow I am like super confused. Like I have these two things named the same thing R will in the best case give up. It got super stressed and just quit. Other times it will just use the one that was set last. So just avoid doing this for now.</p>
 <style type="text/css">
@@ -1528,11 +1613,11 @@ NA </code></pre>
 <li><p>This is a common error you will get</p></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>penguins <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"peguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a>penguins <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"peguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in file(file, "rt"): cannot open the connection</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>penguins <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a>penguins <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in file(file, "rt"): cannot open the connection</code></pre>
 </div>
@@ -1544,9 +1629,6 @@ NA </code></pre>
 <li>the file is in a subdirectory or your working directory is not set correctly</li>
 </ul></li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>penguins <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data/penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <aside class="notes">
 <p>Remember to work and reuse stuff in R we need to assign it to an object. So first we need to make sure our working directory is set to the correct one. In my case I am keeping the penguins in a data folder</p>
 <style type="text/css">
@@ -1575,7 +1657,7 @@ NA </code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_5362a2f6" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_c7d8dc2a" data-update-every="1" data-play-sound="true" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1691,7 +1773,7 @@ NA </code></pre>
 <div class="columns">
 <div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a>penguins[<span class="dv">1</span>,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a>penguins[<span class="dv">1</span>,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1699,7 +1781,7 @@ NA </code></pre>
 <table>
  <thead>
   <tr>
-   <th style="text-align:left;"> x </th>
+   <th style="text-align:left;"> species </th>
   </tr>
  </thead>
 <tbody>
@@ -1713,9 +1795,9 @@ NA </code></pre>
 </div>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a>penguins[<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb78-2"><a href="#cb78-2"></a></span>
-<span id="cb78-3"><a href="#cb78-3"></a>penguins[<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1"></a>penguins[<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb88-2"><a href="#cb88-2"></a></span>
+<span id="cb88-3"><a href="#cb88-3"></a>penguins[<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1783,19 +1865,19 @@ NA </code></pre>
 <li>We can tell R what element of a list using a combo of <code>[]</code> and <code>[[]]</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>my_list <span class="ot">=</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">b =</span> <span class="st">"Hello World"</span>, <span class="at">c =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a>my_list <span class="ot">=</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">b =</span> <span class="st">"Hello World"</span>, <span class="at">c =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>my_list[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="do">## get the first item in the list and the second element of that item</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1"></a>my_list[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="do">## get the first item in the list and the second element of that item</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>my_list[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>my_list[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$b
 [1] "Hello World"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a>my_list[[<span class="dv">3</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a>my_list[[<span class="dv">3</span>]][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3</code></pre>
 </div>
@@ -1824,7 +1906,7 @@ NA </code></pre>
 <li>We can also exclude various elements using <code>-</code> and/or tests that I showed you earlier</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a>penguins[,<span class="sc">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a>penguins[,<span class="sc">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1910,7 +1992,7 @@ NA </code></pre>
 <div class="columns">
 <div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a>penguins[,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a>penguins[,<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1968,7 +2050,7 @@ NA </code></pre>
 </div>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1"></a>penguins[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1"></a>penguins[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -2030,7 +2112,7 @@ NA </code></pre>
 <section id="subsetting-by-tests" class="slide level2">
 <h2>Subsetting By Tests</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a>penguins[penguins[<span class="st">"sex"</span>] <span class="sc">==</span> <span class="st">"female"</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"sex"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a>penguins[penguins[<span class="st">"sex"</span>] <span class="sc">==</span> <span class="st">"female"</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"sex"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -2038,59 +2120,48 @@ NA </code></pre>
 <table>
  <thead>
   <tr>
-   <th style="text-align:left;">   </th>
    <th style="text-align:left;"> species </th>
    <th style="text-align:left;"> sex </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 2 </td>
    <td style="text-align:left;"> Adelie </td>
    <td style="text-align:left;"> female </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 3 </td>
    <td style="text-align:left;"> Adelie </td>
    <td style="text-align:left;"> female </td>
   </tr>
   <tr>
    <td style="text-align:left;"> NA </td>
    <td style="text-align:left;"> NA </td>
-   <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 5 </td>
    <td style="text-align:left;"> Adelie </td>
    <td style="text-align:left;"> female </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 7 </td>
    <td style="text-align:left;"> Adelie </td>
    <td style="text-align:left;"> female </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> NA.1 </td>
    <td style="text-align:left;"> NA </td>
    <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> NA.2 </td>
    <td style="text-align:left;"> NA </td>
    <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> NA.3 </td>
    <td style="text-align:left;"> NA </td>
    <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> NA.4 </td>
    <td style="text-align:left;"> NA </td>
    <td style="text-align:left;"> NA </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 13 </td>
    <td style="text-align:left;"> Adelie </td>
    <td style="text-align:left;"> female </td>
   </tr>
@@ -2104,15 +2175,15 @@ NA </code></pre>
 <h2><code>$</code> Indexing</h2>
 <p>A really useful way of indexing in <code>R</code> is referencing stuff by name rather than position. - The way we do this is throught the <code>$</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1"></a>my_list<span class="sc">$</span>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a>my_list<span class="sc">$</span>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>my_list<span class="sc">$</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1"></a>my_list<span class="sc">$</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Hello World"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a>my_list<span class="sc">$</span>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1"></a>my_list<span class="sc">$</span>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  x y
 1 1 4
@@ -2137,11 +2208,11 @@ NA </code></pre>
 <section id="indexingcont" class="slide level2">
 <h2>Indexing(cont)</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a>my_list[[<span class="dv">3</span>]][[<span class="dv">2</span>]] <span class="do">## these are just returning the same thing </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1"></a>my_list[[<span class="dv">3</span>]][[<span class="dv">2</span>]] <span class="do">## these are just returning the same thing </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4 5 6</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1"></a>my_list<span class="sc">$</span>c<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1"></a>my_list<span class="sc">$</span>c<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4 5 6</code></pre>
 </div>
@@ -2164,7 +2235,7 @@ NA </code></pre>
 <h2><code>$</code> in action</h2>
 <p>This will just subset things</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a>penguins[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Gentoo"</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"bill_length_mm"</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a>penguins[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Gentoo"</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"bill_length_mm"</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -2172,7 +2243,6 @@ NA </code></pre>
 <table>
  <thead>
   <tr>
-   <th style="text-align:left;">   </th>
    <th style="text-align:left;"> species </th>
    <th style="text-align:left;"> island </th>
    <th style="text-align:right;"> bill_length_mm </th>
@@ -2180,61 +2250,51 @@ NA </code></pre>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> 153 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 46.1 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 154 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 50.0 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 155 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 48.7 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 156 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 50.0 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 157 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 47.6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 158 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 46.5 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 159 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 45.4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 160 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 46.7 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 161 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 43.3 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 162 </td>
    <td style="text-align:left;"> Gentoo </td>
    <td style="text-align:left;"> Biscoe </td>
    <td style="text-align:right;"> 46.8 </td>
@@ -2248,28 +2308,28 @@ NA </code></pre>
 <section id="in-actioncont" class="slide level2">
 <h2><code>$</code> in action(cont)</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a><span class="fu">summary</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1"></a><span class="fu">summary</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   species             island          bill_length_mm  bill_depth_mm  
- Length:344         Length:344         Min.   :32.10   Min.   :13.10  
- Class :character   Class :character   1st Qu.:39.23   1st Qu.:15.60  
- Mode  :character   Mode  :character   Median :44.45   Median :17.30  
-                                       Mean   :43.92   Mean   :17.15  
-                                       3rd Qu.:48.50   3rd Qu.:18.70  
-                                       Max.   :59.60   Max.   :21.50  
-                                       NA's   :2       NA's   :2      
- flipper_length_mm  body_mass_g       sex                 year     
- Min.   :172.0     Min.   :2700   Length:344         Min.   :2007  
- 1st Qu.:190.0     1st Qu.:3550   Class :character   1st Qu.:2007  
- Median :197.0     Median :4050   Mode  :character   Median :2008  
- Mean   :200.9     Mean   :4202                      Mean   :2008  
- 3rd Qu.:213.0     3rd Qu.:4750                      3rd Qu.:2009  
- Max.   :231.0     Max.   :6300                      Max.   :2009  
- NA's   :2         NA's   :2                                       </code></pre>
+<pre><code>      species          island    bill_length_mm  bill_depth_mm  
+ Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  
+ Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60  
+ Gentoo   :124   Torgersen: 52   Median :44.45   Median :17.30  
+                                 Mean   :43.92   Mean   :17.15  
+                                 3rd Qu.:48.50   3rd Qu.:18.70  
+                                 Max.   :59.60   Max.   :21.50  
+                                 NA's   :2       NA's   :2      
+ flipper_length_mm  body_mass_g       sex           year     
+ Min.   :172.0     Min.   :2700   female:165   Min.   :2007  
+ 1st Qu.:190.0     1st Qu.:3550   male  :168   1st Qu.:2007  
+ Median :197.0     Median :4050   NA's  : 11   Median :2008  
+ Mean   :200.9     Mean   :4202                Mean   :2008  
+ 3rd Qu.:213.0     3rd Qu.:4750                3rd Qu.:2009  
+ Max.   :231.0     Max.   :6300                Max.   :2009  
+ NA's   :2         NA's   :2                                 </code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="fu">mean</span>(penguins<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1"></a><span class="fu">mean</span>(penguins<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
@@ -2295,7 +2355,7 @@ NA </code></pre>
 <li>Asking for help in R is easy the most common ways are <code>help(thingineedhelpwith)</code> and <code>?thingineedhelpwith</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1"></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1"></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>?thingineedhelpwith</code> is probably the most common because it requires less typing.</li>
@@ -2318,7 +2378,7 @@ NA </code></pre>
 <h2>Fixing our issue</h2>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1"></a><span class="fu">mean</span>(penguins<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm =</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1"></a><span class="fu">mean</span>(penguins<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm =</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 17.15117</code></pre>
 </div>
@@ -2354,7 +2414,7 @@ NA </code></pre>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="countdown" id="timer_9f9c27ed" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_14001194" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -2377,7 +2437,7 @@ NA </code></pre>
 <section id="table" class="slide level2">
 <h2>Table</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 female   male 
@@ -2385,7 +2445,7 @@ female   male
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>sex, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>sex, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 female   male   &lt;NA&gt; 
@@ -2409,7 +2469,7 @@ female   male   &lt;NA&gt;
 <section id="tapply-and-calculating-descriptive-statistics-by-groups" class="slide level2">
 <h2>tapply and calculating descriptive statistics by groups</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a><span class="fu">tapply</span>(penguins<span class="sc">$</span>species,penguins<span class="sc">$</span>sex, table, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1"></a><span class="fu">tapply</span>(penguins<span class="sc">$</span>species,penguins<span class="sc">$</span>sex, table, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$female
 
@@ -2423,7 +2483,7 @@ $male
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1"></a><span class="fu">tapply</span>(penguins<span class="sc">$</span>bill_depth_mm, penguins<span class="sc">$</span>species, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1"></a><span class="fu">tapply</span>(penguins<span class="sc">$</span>bill_depth_mm, penguins<span class="sc">$</span>species, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Adelie Chinstrap    Gentoo 
  18.34636  18.42059  14.98211 </code></pre>
@@ -2447,10 +2507,10 @@ $male
 <h2>Plotting</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1"></a><span class="fu">plot</span>(penguins<span class="sc">$</span>bill_length_mm,</span>
-<span id="cb116-2"><a href="#cb116-2"></a>   penguins<span class="sc">$</span>body_mass_g,</span>
-<span id="cb116-3"><a href="#cb116-3"></a>   <span class="at">xlab =</span> <span class="st">"Bill Length(mm)"</span>,</span>
-<span id="cb116-4"><a href="#cb116-4"></a>   <span class="at">ylab =</span> <span class="st">"Body Mass(g)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1"></a><span class="fu">plot</span>(penguins<span class="sc">$</span>bill_length_mm,</span>
+<span id="cb126-2"><a href="#cb126-2"></a>   penguins<span class="sc">$</span>body_mass_g,</span>
+<span id="cb126-3"><a href="#cb126-3"></a>   <span class="at">xlab =</span> <span class="st">"Bill Length(mm)"</span>,</span>
+<span id="cb126-4"><a href="#cb126-4"></a>   <span class="at">ylab =</span> <span class="st">"Body Mass(g)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2466,8 +2526,8 @@ $male
 <h2>Plotting(cont)</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1"></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm,</span>
-<span id="cb117-2"><a href="#cb117-2"></a> <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">60</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1"></a><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_length_mm,</span>
+<span id="cb127-2"><a href="#cb127-2"></a> <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">60</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2492,361 +2552,28 @@ $male
 <li>To add new variables we can use what we know</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1"></a>penguins<span class="sc">$</span>range_body_mass <span class="ot">=</span> <span class="fu">max</span>(penguins<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(penguins<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb118-2"><a href="#cb118-2"></a></span>
-<span id="cb118-3"><a href="#cb118-3"></a>penguins<span class="sc">$</span>chinstrap[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Adelie"</span> <span class="sc">|</span> penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Gentoo"</span>] <span class="ot">&lt;-</span> <span class="st">"Not Chinstrap"</span></span>
-<span id="cb118-4"><a href="#cb118-4"></a></span>
-<span id="cb118-5"><a href="#cb118-5"></a>penguins[<span class="fu">is.na</span>(penguins)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb118-6"><a href="#cb118-6"></a></span>
-<span id="cb118-7"><a href="#cb118-7"></a>penguins<span class="sc">$</span>chinstrap[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Chinstrap"</span>] <span class="ot">&lt;-</span> <span class="st">"Chinstrap"</span></span>
-<span id="cb118-8"><a href="#cb118-8"></a></span>
-<span id="cb118-9"><a href="#cb118-9"></a>penguins[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">9</span><span class="sc">:</span><span class="dv">10</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1"></a>penguins<span class="sc">$</span>range_body_mass <span class="ot">=</span> <span class="fu">max</span>(penguins<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(penguins<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb128-2"><a href="#cb128-2"></a></span>
+<span id="cb128-3"><a href="#cb128-3"></a>penguins<span class="sc">$</span>chinstrap[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Adelie"</span> <span class="sc">|</span> penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Gentoo"</span>] <span class="ot">&lt;-</span> <span class="st">"Not Chinstrap"</span></span>
+<span id="cb128-4"><a href="#cb128-4"></a></span>
+<span id="cb128-5"><a href="#cb128-5"></a>penguins<span class="sc">$</span>chinstrap[penguins<span class="sc">$</span>species <span class="sc">==</span> <span class="st">"Chinstrap"</span>] <span class="ot">&lt;-</span> <span class="st">"Chinstrap"</span></span>
+<span id="cb128-6"><a href="#cb128-6"></a></span>
+<span id="cb128-7"><a href="#cb128-7"></a>penguins[,<span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"range_body_mass"</span>, <span class="st">"chinstrap"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      species range_body_mass     chinstrap
-1      Adelie            3600 Not Chinstrap
-2      Adelie            3600 Not Chinstrap
-3      Adelie            3600 Not Chinstrap
-4      Adelie            3600 Not Chinstrap
-5      Adelie            3600 Not Chinstrap
-6      Adelie            3600 Not Chinstrap
-7      Adelie            3600 Not Chinstrap
-8      Adelie            3600 Not Chinstrap
-9      Adelie            3600 Not Chinstrap
-10     Adelie            3600 Not Chinstrap
-11     Adelie            3600 Not Chinstrap
-12     Adelie            3600 Not Chinstrap
-13     Adelie            3600 Not Chinstrap
-14     Adelie            3600 Not Chinstrap
-15     Adelie            3600 Not Chinstrap
-16     Adelie            3600 Not Chinstrap
-17     Adelie            3600 Not Chinstrap
-18     Adelie            3600 Not Chinstrap
-19     Adelie            3600 Not Chinstrap
-20     Adelie            3600 Not Chinstrap
-21     Adelie            3600 Not Chinstrap
-22     Adelie            3600 Not Chinstrap
-23     Adelie            3600 Not Chinstrap
-24     Adelie            3600 Not Chinstrap
-25     Adelie            3600 Not Chinstrap
-26     Adelie            3600 Not Chinstrap
-27     Adelie            3600 Not Chinstrap
-28     Adelie            3600 Not Chinstrap
-29     Adelie            3600 Not Chinstrap
-30     Adelie            3600 Not Chinstrap
-31     Adelie            3600 Not Chinstrap
-32     Adelie            3600 Not Chinstrap
-33     Adelie            3600 Not Chinstrap
-34     Adelie            3600 Not Chinstrap
-35     Adelie            3600 Not Chinstrap
-36     Adelie            3600 Not Chinstrap
-37     Adelie            3600 Not Chinstrap
-38     Adelie            3600 Not Chinstrap
-39     Adelie            3600 Not Chinstrap
-40     Adelie            3600 Not Chinstrap
-41     Adelie            3600 Not Chinstrap
-42     Adelie            3600 Not Chinstrap
-43     Adelie            3600 Not Chinstrap
-44     Adelie            3600 Not Chinstrap
-45     Adelie            3600 Not Chinstrap
-46     Adelie            3600 Not Chinstrap
-47     Adelie            3600 Not Chinstrap
-48     Adelie            3600 Not Chinstrap
-49     Adelie            3600 Not Chinstrap
-50     Adelie            3600 Not Chinstrap
-51     Adelie            3600 Not Chinstrap
-52     Adelie            3600 Not Chinstrap
-53     Adelie            3600 Not Chinstrap
-54     Adelie            3600 Not Chinstrap
-55     Adelie            3600 Not Chinstrap
-56     Adelie            3600 Not Chinstrap
-57     Adelie            3600 Not Chinstrap
-58     Adelie            3600 Not Chinstrap
-59     Adelie            3600 Not Chinstrap
-60     Adelie            3600 Not Chinstrap
-61     Adelie            3600 Not Chinstrap
-62     Adelie            3600 Not Chinstrap
-63     Adelie            3600 Not Chinstrap
-64     Adelie            3600 Not Chinstrap
-65     Adelie            3600 Not Chinstrap
-66     Adelie            3600 Not Chinstrap
-67     Adelie            3600 Not Chinstrap
-68     Adelie            3600 Not Chinstrap
-69     Adelie            3600 Not Chinstrap
-70     Adelie            3600 Not Chinstrap
-71     Adelie            3600 Not Chinstrap
-72     Adelie            3600 Not Chinstrap
-73     Adelie            3600 Not Chinstrap
-74     Adelie            3600 Not Chinstrap
-75     Adelie            3600 Not Chinstrap
-76     Adelie            3600 Not Chinstrap
-77     Adelie            3600 Not Chinstrap
-78     Adelie            3600 Not Chinstrap
-79     Adelie            3600 Not Chinstrap
-80     Adelie            3600 Not Chinstrap
-81     Adelie            3600 Not Chinstrap
-82     Adelie            3600 Not Chinstrap
-83     Adelie            3600 Not Chinstrap
-84     Adelie            3600 Not Chinstrap
-85     Adelie            3600 Not Chinstrap
-86     Adelie            3600 Not Chinstrap
-87     Adelie            3600 Not Chinstrap
-88     Adelie            3600 Not Chinstrap
-89     Adelie            3600 Not Chinstrap
-90     Adelie            3600 Not Chinstrap
-91     Adelie            3600 Not Chinstrap
-92     Adelie            3600 Not Chinstrap
-93     Adelie            3600 Not Chinstrap
-94     Adelie            3600 Not Chinstrap
-95     Adelie            3600 Not Chinstrap
-96     Adelie            3600 Not Chinstrap
-97     Adelie            3600 Not Chinstrap
-98     Adelie            3600 Not Chinstrap
-99     Adelie            3600 Not Chinstrap
-100    Adelie            3600 Not Chinstrap
-101    Adelie            3600 Not Chinstrap
-102    Adelie            3600 Not Chinstrap
-103    Adelie            3600 Not Chinstrap
-104    Adelie            3600 Not Chinstrap
-105    Adelie            3600 Not Chinstrap
-106    Adelie            3600 Not Chinstrap
-107    Adelie            3600 Not Chinstrap
-108    Adelie            3600 Not Chinstrap
-109    Adelie            3600 Not Chinstrap
-110    Adelie            3600 Not Chinstrap
-111    Adelie            3600 Not Chinstrap
-112    Adelie            3600 Not Chinstrap
-113    Adelie            3600 Not Chinstrap
-114    Adelie            3600 Not Chinstrap
-115    Adelie            3600 Not Chinstrap
-116    Adelie            3600 Not Chinstrap
-117    Adelie            3600 Not Chinstrap
-118    Adelie            3600 Not Chinstrap
-119    Adelie            3600 Not Chinstrap
-120    Adelie            3600 Not Chinstrap
-121    Adelie            3600 Not Chinstrap
-122    Adelie            3600 Not Chinstrap
-123    Adelie            3600 Not Chinstrap
-124    Adelie            3600 Not Chinstrap
-125    Adelie            3600 Not Chinstrap
-126    Adelie            3600 Not Chinstrap
-127    Adelie            3600 Not Chinstrap
-128    Adelie            3600 Not Chinstrap
-129    Adelie            3600 Not Chinstrap
-130    Adelie            3600 Not Chinstrap
-131    Adelie            3600 Not Chinstrap
-132    Adelie            3600 Not Chinstrap
-133    Adelie            3600 Not Chinstrap
-134    Adelie            3600 Not Chinstrap
-135    Adelie            3600 Not Chinstrap
-136    Adelie            3600 Not Chinstrap
-137    Adelie            3600 Not Chinstrap
-138    Adelie            3600 Not Chinstrap
-139    Adelie            3600 Not Chinstrap
-140    Adelie            3600 Not Chinstrap
-141    Adelie            3600 Not Chinstrap
-142    Adelie            3600 Not Chinstrap
-143    Adelie            3600 Not Chinstrap
-144    Adelie            3600 Not Chinstrap
-145    Adelie            3600 Not Chinstrap
-146    Adelie            3600 Not Chinstrap
-147    Adelie            3600 Not Chinstrap
-148    Adelie            3600 Not Chinstrap
-149    Adelie            3600 Not Chinstrap
-150    Adelie            3600 Not Chinstrap
-151    Adelie            3600 Not Chinstrap
-152    Adelie            3600 Not Chinstrap
-153    Gentoo            3600 Not Chinstrap
-154    Gentoo            3600 Not Chinstrap
-155    Gentoo            3600 Not Chinstrap
-156    Gentoo            3600 Not Chinstrap
-157    Gentoo            3600 Not Chinstrap
-158    Gentoo            3600 Not Chinstrap
-159    Gentoo            3600 Not Chinstrap
-160    Gentoo            3600 Not Chinstrap
-161    Gentoo            3600 Not Chinstrap
-162    Gentoo            3600 Not Chinstrap
-163    Gentoo            3600 Not Chinstrap
-164    Gentoo            3600 Not Chinstrap
-165    Gentoo            3600 Not Chinstrap
-166    Gentoo            3600 Not Chinstrap
-167    Gentoo            3600 Not Chinstrap
-168    Gentoo            3600 Not Chinstrap
-169    Gentoo            3600 Not Chinstrap
-170    Gentoo            3600 Not Chinstrap
-171    Gentoo            3600 Not Chinstrap
-172    Gentoo            3600 Not Chinstrap
-173    Gentoo            3600 Not Chinstrap
-174    Gentoo            3600 Not Chinstrap
-175    Gentoo            3600 Not Chinstrap
-176    Gentoo            3600 Not Chinstrap
-177    Gentoo            3600 Not Chinstrap
-178    Gentoo            3600 Not Chinstrap
-179    Gentoo            3600 Not Chinstrap
-180    Gentoo            3600 Not Chinstrap
-181    Gentoo            3600 Not Chinstrap
-182    Gentoo            3600 Not Chinstrap
-183    Gentoo            3600 Not Chinstrap
-184    Gentoo            3600 Not Chinstrap
-185    Gentoo            3600 Not Chinstrap
-186    Gentoo            3600 Not Chinstrap
-187    Gentoo            3600 Not Chinstrap
-188    Gentoo            3600 Not Chinstrap
-189    Gentoo            3600 Not Chinstrap
-190    Gentoo            3600 Not Chinstrap
-191    Gentoo            3600 Not Chinstrap
-192    Gentoo            3600 Not Chinstrap
-193    Gentoo            3600 Not Chinstrap
-194    Gentoo            3600 Not Chinstrap
-195    Gentoo            3600 Not Chinstrap
-196    Gentoo            3600 Not Chinstrap
-197    Gentoo            3600 Not Chinstrap
-198    Gentoo            3600 Not Chinstrap
-199    Gentoo            3600 Not Chinstrap
-200    Gentoo            3600 Not Chinstrap
-201    Gentoo            3600 Not Chinstrap
-202    Gentoo            3600 Not Chinstrap
-203    Gentoo            3600 Not Chinstrap
-204    Gentoo            3600 Not Chinstrap
-205    Gentoo            3600 Not Chinstrap
-206    Gentoo            3600 Not Chinstrap
-207    Gentoo            3600 Not Chinstrap
-208    Gentoo            3600 Not Chinstrap
-209    Gentoo            3600 Not Chinstrap
-210    Gentoo            3600 Not Chinstrap
-211    Gentoo            3600 Not Chinstrap
-212    Gentoo            3600 Not Chinstrap
-213    Gentoo            3600 Not Chinstrap
-214    Gentoo            3600 Not Chinstrap
-215    Gentoo            3600 Not Chinstrap
-216    Gentoo            3600 Not Chinstrap
-217    Gentoo            3600 Not Chinstrap
-218    Gentoo            3600 Not Chinstrap
-219    Gentoo            3600 Not Chinstrap
-220    Gentoo            3600 Not Chinstrap
-221    Gentoo            3600 Not Chinstrap
-222    Gentoo            3600 Not Chinstrap
-223    Gentoo            3600 Not Chinstrap
-224    Gentoo            3600 Not Chinstrap
-225    Gentoo            3600 Not Chinstrap
-226    Gentoo            3600 Not Chinstrap
-227    Gentoo            3600 Not Chinstrap
-228    Gentoo            3600 Not Chinstrap
-229    Gentoo            3600 Not Chinstrap
-230    Gentoo            3600 Not Chinstrap
-231    Gentoo            3600 Not Chinstrap
-232    Gentoo            3600 Not Chinstrap
-233    Gentoo            3600 Not Chinstrap
-234    Gentoo            3600 Not Chinstrap
-235    Gentoo            3600 Not Chinstrap
-236    Gentoo            3600 Not Chinstrap
-237    Gentoo            3600 Not Chinstrap
-238    Gentoo            3600 Not Chinstrap
-239    Gentoo            3600 Not Chinstrap
-240    Gentoo            3600 Not Chinstrap
-241    Gentoo            3600 Not Chinstrap
-242    Gentoo            3600 Not Chinstrap
-243    Gentoo            3600 Not Chinstrap
-244    Gentoo            3600 Not Chinstrap
-245    Gentoo            3600 Not Chinstrap
-246    Gentoo            3600 Not Chinstrap
-247    Gentoo            3600 Not Chinstrap
-248    Gentoo            3600 Not Chinstrap
-249    Gentoo            3600 Not Chinstrap
-250    Gentoo            3600 Not Chinstrap
-251    Gentoo            3600 Not Chinstrap
-252    Gentoo            3600 Not Chinstrap
-253    Gentoo            3600 Not Chinstrap
-254    Gentoo            3600 Not Chinstrap
-255    Gentoo            3600 Not Chinstrap
-256    Gentoo            3600 Not Chinstrap
-257    Gentoo            3600 Not Chinstrap
-258    Gentoo            3600 Not Chinstrap
-259    Gentoo            3600 Not Chinstrap
-260    Gentoo            3600 Not Chinstrap
-261    Gentoo            3600 Not Chinstrap
-262    Gentoo            3600 Not Chinstrap
-263    Gentoo            3600 Not Chinstrap
-264    Gentoo            3600 Not Chinstrap
-265    Gentoo            3600 Not Chinstrap
-266    Gentoo            3600 Not Chinstrap
-267    Gentoo            3600 Not Chinstrap
-268    Gentoo            3600 Not Chinstrap
-269    Gentoo            3600 Not Chinstrap
-270    Gentoo            3600 Not Chinstrap
-271    Gentoo            3600 Not Chinstrap
-272    Gentoo            3600 Not Chinstrap
-273    Gentoo            3600 Not Chinstrap
-274    Gentoo            3600 Not Chinstrap
-275    Gentoo            3600 Not Chinstrap
-276    Gentoo            3600 Not Chinstrap
-277 Chinstrap            3600     Chinstrap
-278 Chinstrap            3600     Chinstrap
-279 Chinstrap            3600     Chinstrap
-280 Chinstrap            3600     Chinstrap
-281 Chinstrap            3600     Chinstrap
-282 Chinstrap            3600     Chinstrap
-283 Chinstrap            3600     Chinstrap
-284 Chinstrap            3600     Chinstrap
-285 Chinstrap            3600     Chinstrap
-286 Chinstrap            3600     Chinstrap
-287 Chinstrap            3600     Chinstrap
-288 Chinstrap            3600     Chinstrap
-289 Chinstrap            3600     Chinstrap
-290 Chinstrap            3600     Chinstrap
-291 Chinstrap            3600     Chinstrap
-292 Chinstrap            3600     Chinstrap
-293 Chinstrap            3600     Chinstrap
-294 Chinstrap            3600     Chinstrap
-295 Chinstrap            3600     Chinstrap
-296 Chinstrap            3600     Chinstrap
-297 Chinstrap            3600     Chinstrap
-298 Chinstrap            3600     Chinstrap
-299 Chinstrap            3600     Chinstrap
-300 Chinstrap            3600     Chinstrap
-301 Chinstrap            3600     Chinstrap
-302 Chinstrap            3600     Chinstrap
-303 Chinstrap            3600     Chinstrap
-304 Chinstrap            3600     Chinstrap
-305 Chinstrap            3600     Chinstrap
-306 Chinstrap            3600     Chinstrap
-307 Chinstrap            3600     Chinstrap
-308 Chinstrap            3600     Chinstrap
-309 Chinstrap            3600     Chinstrap
-310 Chinstrap            3600     Chinstrap
-311 Chinstrap            3600     Chinstrap
-312 Chinstrap            3600     Chinstrap
-313 Chinstrap            3600     Chinstrap
-314 Chinstrap            3600     Chinstrap
-315 Chinstrap            3600     Chinstrap
-316 Chinstrap            3600     Chinstrap
-317 Chinstrap            3600     Chinstrap
-318 Chinstrap            3600     Chinstrap
-319 Chinstrap            3600     Chinstrap
-320 Chinstrap            3600     Chinstrap
-321 Chinstrap            3600     Chinstrap
-322 Chinstrap            3600     Chinstrap
-323 Chinstrap            3600     Chinstrap
-324 Chinstrap            3600     Chinstrap
-325 Chinstrap            3600     Chinstrap
-326 Chinstrap            3600     Chinstrap
-327 Chinstrap            3600     Chinstrap
-328 Chinstrap            3600     Chinstrap
-329 Chinstrap            3600     Chinstrap
-330 Chinstrap            3600     Chinstrap
-331 Chinstrap            3600     Chinstrap
-332 Chinstrap            3600     Chinstrap
-333 Chinstrap            3600     Chinstrap
-334 Chinstrap            3600     Chinstrap
-335 Chinstrap            3600     Chinstrap
-336 Chinstrap            3600     Chinstrap
-337 Chinstrap            3600     Chinstrap
-338 Chinstrap            3600     Chinstrap
-339 Chinstrap            3600     Chinstrap
-340 Chinstrap            3600     Chinstrap
-341 Chinstrap            3600     Chinstrap
-342 Chinstrap            3600     Chinstrap
-343 Chinstrap            3600     Chinstrap
-344 Chinstrap            3600     Chinstrap</code></pre>
+<pre><code># A tibble: 344 × 3
+   species range_body_mass chinstrap    
+   &lt;fct&gt;             &lt;int&gt; &lt;chr&gt;        
+ 1 Adelie             3600 Not Chinstrap
+ 2 Adelie             3600 Not Chinstrap
+ 3 Adelie             3600 Not Chinstrap
+ 4 Adelie             3600 Not Chinstrap
+ 5 Adelie             3600 Not Chinstrap
+ 6 Adelie             3600 Not Chinstrap
+ 7 Adelie             3600 Not Chinstrap
+ 8 Adelie             3600 Not Chinstrap
+ 9 Adelie             3600 Not Chinstrap
+10 Adelie             3600 Not Chinstrap
+# … with 334 more rows</code></pre>
 </div>
 </div>
 </section>

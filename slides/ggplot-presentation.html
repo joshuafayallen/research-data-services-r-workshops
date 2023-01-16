@@ -905,7 +905,7 @@ Josh Allen
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_0788bf81" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_42c02989" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1129,7 +1129,7 @@ Josh Allen
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_43471ce4" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_753e74b5" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1170,7 +1170,7 @@ Josh Allen
 
 <img data-src="ggplot-presentation_files/figure-revealjs/unnamed-chunk-11-1.png" style="width:80.0%" class="r-stretch quarto-figure-center"><div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_a03dfd2e" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_4a7ff33e" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1210,7 +1210,7 @@ Josh Allen
 
 <img data-src="ggplot-presentation_files/figure-revealjs/unnamed-chunk-14-1.png" width="1600" class="r-stretch quarto-figure-center"><div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_84392ec1" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_c7e2edd1" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1870,7 +1870,7 @@ Fill with discrete viridis colors
 
 <img data-src="ggplot-presentation_files/figure-revealjs/fill-your-turn-option-example-1.png" width="1600" class="r-stretch quarto-figure-center"><div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_f928c028" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_a98ac1ff" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -2488,65 +2488,56 @@ Title of size legend
           display:block!important;
       }</style></aside>
 </section>
-<section id="mapping-middle-earth" class="slide level2">
+<section id="mapping-middle-earth" class="slide level2 scrollable">
 <h2>Mapping Middle Earth</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>coastline <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Coastline2.shp"</span>)</span>
-<span id="cb53-2"><a href="#cb53-2"></a>contours <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Contours_18.shp"</span>)</span>
-<span id="cb53-3"><a href="#cb53-3"></a>rivers <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Rivers.shp"</span>)</span>
-<span id="cb53-4"><a href="#cb53-4"></a>lakes <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Lakes.shp"</span>)</span>
-<span id="cb53-5"><a href="#cb53-5"></a>forests <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Forests.shp"</span>)</span>
-<span id="cb53-6"><a href="#cb53-6"></a>mountains <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Mountains_Anno.shp"</span>)</span>
-<span id="cb53-7"><a href="#cb53-7"></a>placenames <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Combined_Placenames.shp"</span>)</span>
-<span id="cb53-8"><a href="#cb53-8"></a>cities <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Cities.shp"</span>)</span>
-<span id="cb53-9"><a href="#cb53-9"></a>roads <span class="ot">=</span> <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Roads.shp"</span>)</span>
-<span id="cb53-10"><a href="#cb53-10"></a>towers_keeps <span class="ot">=</span>  <span class="fu">read_sf</span>(<span class="st">"data/ME-GIS/Towers_and_Keeps.shp"</span>)</span>
-<span id="cb53-11"><a href="#cb53-11"></a>places <span class="ot">=</span> placenames <span class="sc">|&gt;</span></span>
-<span id="cb53-12"><a href="#cb53-12"></a>  <span class="fu">filter</span>(NAME <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Hobbiton"</span>,</span>
-<span id="cb53-13"><a href="#cb53-13"></a>                     <span class="st">"Rivendell"</span>,</span>
-<span id="cb53-14"><a href="#cb53-14"></a>                     <span class="st">"Edoras"</span>,</span>
-<span id="cb53-15"><a href="#cb53-15"></a>                     <span class="st">"Minas Tirith"</span>))</span>
-<span id="cb53-16"><a href="#cb53-16"></a></span>
-<span id="cb53-17"><a href="#cb53-17"></a>mordor <span class="ot">=</span> placenames[placenames<span class="sc">$</span>NAME <span class="sc">==</span> <span class="st">"Mordor"</span>,]</span>
-<span id="cb53-18"><a href="#cb53-18"></a></span>
-<span id="cb53-19"><a href="#cb53-19"></a>mountains_to_label <span class="ot">=</span> mountains[mountains<span class="sc">$</span>name <span class="sc">==</span> <span class="st">"Erebor The Lonely Mountain"</span>,]</span>
-<span id="cb53-20"><a href="#cb53-20"></a></span>
-<span id="cb53-21"><a href="#cb53-21"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb53-22"><a href="#cb53-22"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> contours,</span>
-<span id="cb53-23"><a href="#cb53-23"></a>          <span class="at">size =</span> <span class="fl">0.15</span>,</span>
-<span id="cb53-24"><a href="#cb53-24"></a>          <span class="at">color =</span> <span class="st">"grey90"</span>) <span class="sc">+</span></span>
-<span id="cb53-25"><a href="#cb53-25"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coastline,</span>
-<span id="cb53-26"><a href="#cb53-26"></a>          <span class="at">size =</span> <span class="fl">0.25</span>,</span>
-<span id="cb53-27"><a href="#cb53-27"></a>          <span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
-<span id="cb53-28"><a href="#cb53-28"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rivers,</span>
-<span id="cb53-29"><a href="#cb53-29"></a>          <span class="at">size =</span> <span class="fl">0.2</span>,</span>
-<span id="cb53-30"><a href="#cb53-30"></a>          <span class="at">color =</span> <span class="st">"#0776e0"</span>,</span>
-<span id="cb53-31"><a href="#cb53-31"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb53-32"><a href="#cb53-32"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> lakes,</span>
-<span id="cb53-33"><a href="#cb53-33"></a>          <span class="at">size =</span> <span class="fl">0.2</span>,</span>
-<span id="cb53-34"><a href="#cb53-34"></a>          <span class="at">color =</span> <span class="st">"#0776e0"</span>,</span>
-<span id="cb53-35"><a href="#cb53-35"></a>          <span class="at">fill =</span> <span class="st">"#0776e0"</span>) <span class="sc">+</span></span>
-<span id="cb53-36"><a href="#cb53-36"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> forests,</span>
-<span id="cb53-37"><a href="#cb53-37"></a>          <span class="at">size =</span> <span class="dv">0</span>,</span>
-<span id="cb53-38"><a href="#cb53-38"></a>          <span class="at">fill =</span> <span class="st">"#035711"</span>,</span>
-<span id="cb53-39"><a href="#cb53-39"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb53-40"><a href="#cb53-40"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mountains, <span class="at">size =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb53-41"><a href="#cb53-41"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> places) <span class="sc">+</span></span>
-<span id="cb53-42"><a href="#cb53-42"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> <span class="fu">filter</span>(places, NAME <span class="sc">!=</span><span class="st">"Rivendell"</span>),</span>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>places <span class="ot">=</span> placenames <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a>  <span class="fu">filter</span>(NAME <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Hobbiton"</span>,</span>
+<span id="cb53-3"><a href="#cb53-3"></a>                     <span class="st">"Rivendell"</span>,</span>
+<span id="cb53-4"><a href="#cb53-4"></a>                     <span class="st">"Edoras"</span>,</span>
+<span id="cb53-5"><a href="#cb53-5"></a>                     <span class="st">"Minas Tirith"</span>))</span>
+<span id="cb53-6"><a href="#cb53-6"></a></span>
+<span id="cb53-7"><a href="#cb53-7"></a>mordor <span class="ot">=</span> placenames[placenames<span class="sc">$</span>NAME <span class="sc">==</span> <span class="st">"Mordor"</span>,]</span>
+<span id="cb53-8"><a href="#cb53-8"></a></span>
+<span id="cb53-9"><a href="#cb53-9"></a>mountains_to_label <span class="ot">=</span> mountains[mountains<span class="sc">$</span>name <span class="sc">==</span> <span class="st">"Erebor The Lonely Mountain"</span>,]</span>
+<span id="cb53-10"><a href="#cb53-10"></a></span>
+<span id="cb53-11"><a href="#cb53-11"></a></span>
+<span id="cb53-12"><a href="#cb53-12"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb53-13"><a href="#cb53-13"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> contours,</span>
+<span id="cb53-14"><a href="#cb53-14"></a>          <span class="at">size =</span> <span class="fl">0.15</span>,</span>
+<span id="cb53-15"><a href="#cb53-15"></a>          <span class="at">color =</span> <span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb53-16"><a href="#cb53-16"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coastline,</span>
+<span id="cb53-17"><a href="#cb53-17"></a>          <span class="at">size =</span> <span class="fl">0.25</span>,</span>
+<span id="cb53-18"><a href="#cb53-18"></a>          <span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb53-19"><a href="#cb53-19"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rivers,</span>
+<span id="cb53-20"><a href="#cb53-20"></a>          <span class="at">size =</span> <span class="fl">0.2</span>,</span>
+<span id="cb53-21"><a href="#cb53-21"></a>          <span class="at">color =</span> <span class="st">"#0776e0"</span>,</span>
+<span id="cb53-22"><a href="#cb53-22"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb53-23"><a href="#cb53-23"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> lakes,</span>
+<span id="cb53-24"><a href="#cb53-24"></a>          <span class="at">size =</span> <span class="fl">0.2</span>,</span>
+<span id="cb53-25"><a href="#cb53-25"></a>          <span class="at">color =</span> <span class="st">"#0776e0"</span>,</span>
+<span id="cb53-26"><a href="#cb53-26"></a>          <span class="at">fill =</span> <span class="st">"#0776e0"</span>) <span class="sc">+</span></span>
+<span id="cb53-27"><a href="#cb53-27"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> forests,</span>
+<span id="cb53-28"><a href="#cb53-28"></a>          <span class="at">size =</span> <span class="dv">0</span>,</span>
+<span id="cb53-29"><a href="#cb53-29"></a>          <span class="at">fill =</span> <span class="st">"#035711"</span>,</span>
+<span id="cb53-30"><a href="#cb53-30"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb53-31"><a href="#cb53-31"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mountains, <span class="at">size =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb53-32"><a href="#cb53-32"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> places) <span class="sc">+</span></span>
+<span id="cb53-33"><a href="#cb53-33"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> <span class="fu">filter</span>(places, NAME <span class="sc">!=</span><span class="st">"Rivendell"</span>),</span>
+<span id="cb53-34"><a href="#cb53-34"></a>                <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
+<span id="cb53-35"><a href="#cb53-35"></a>                <span class="at">nudge_y =</span> <span class="dv">80000</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb53-36"><a href="#cb53-36"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> <span class="fu">filter</span>(places, NAME <span class="sc">==</span> <span class="st">"Rivendell"</span>),</span>
+<span id="cb53-37"><a href="#cb53-37"></a>                <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
+<span id="cb53-38"><a href="#cb53-38"></a>                <span class="at">nudge_x =</span> <span class="dv">88000</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb53-39"><a href="#cb53-39"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> mountains_to_label,</span>
+<span id="cb53-40"><a href="#cb53-40"></a>                <span class="fu">aes</span>(<span class="at">label =</span> name),</span>
+<span id="cb53-41"><a href="#cb53-41"></a>                <span class="at">nudge_y =</span> <span class="dv">80000</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb53-42"><a href="#cb53-42"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> mordor,</span>
 <span id="cb53-43"><a href="#cb53-43"></a>                <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
-<span id="cb53-44"><a href="#cb53-44"></a>                <span class="at">nudge_y =</span> <span class="dv">80000</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb53-45"><a href="#cb53-45"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> <span class="fu">filter</span>(places, NAME <span class="sc">==</span> <span class="st">"Rivendell"</span>),</span>
-<span id="cb53-46"><a href="#cb53-46"></a>                <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
-<span id="cb53-47"><a href="#cb53-47"></a>                <span class="at">nudge_x =</span> <span class="dv">88000</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb53-48"><a href="#cb53-48"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> mountains_to_label,</span>
-<span id="cb53-49"><a href="#cb53-49"></a>                <span class="fu">aes</span>(<span class="at">label =</span> name),</span>
-<span id="cb53-50"><a href="#cb53-50"></a>                <span class="at">nudge_y =</span> <span class="dv">80000</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb53-51"><a href="#cb53-51"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> mordor,</span>
-<span id="cb53-52"><a href="#cb53-52"></a>                <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
-<span id="cb53-53"><a href="#cb53-53"></a>                <span class="at">nudge_y =</span> <span class="sc">-</span><span class="dv">10000</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb53-54"><a href="#cb53-54"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb53-55"><a href="#cb53-55"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#fffce3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb53-44"><a href="#cb53-44"></a>                <span class="at">nudge_y =</span> <span class="sc">-</span><span class="dv">10000</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb53-45"><a href="#cb53-45"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb53-46"><a href="#cb53-46"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#fffce3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <p><img data-src="ggplot-presentation_files/figure-revealjs/unnamed-chunk-27-1.png" width="1000"></p>
