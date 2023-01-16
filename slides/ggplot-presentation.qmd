@@ -32,6 +32,7 @@ execute:
 
 pacman::p_load("tidyverse", "AllenMisc", "countrycode", "MetBrewer", "scico", "colorspace", "gapminder", "sf",  install = FALSE)
 
+
 gapminder = filter(gapminder, !continent == "Oceania")
 
 
@@ -1926,7 +1927,7 @@ shapes <-  list.files(path = "data/ME-GIS/", pattern = "*.shp", full.names = TRU
 shapes_read = map(shapes, read_sf)
 
 remove <- c("data/ME-GIS//", ".shp", "2", "02", "_18", "")
-
+#https://stackoverflow.com/questions/29036960/remove-multiple-patterns-from-text-vector-r
 shapes_names = shapes |> 
   str_remove_all(paste(remove, collapse = "|")) |> 
   str_to_lower()
