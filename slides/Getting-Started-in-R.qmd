@@ -14,7 +14,7 @@ format:
 ```{r setup, include = F, warnings = FALSE}
 
 ## install.packages("pacman")
-pacman::p_load("ggplot2", "AllenMisc", "magrittr","dplyr", "flair", "MetBrewer", "colorspace",  install = FALSE)
+pacman::p_load("ggplot2", "AllenMisc", "magrittr","dplyr", "flair", "MetBrewer", "colorspace",  "palmerpenguins", install = FALSE)
 
 
 
@@ -846,14 +846,13 @@ In R one of the biggest things is that being explicit about what name to use is 
 :::
 
 
-## What are Objects?
+# What are Objects?
 
 - Objects are what we work with in `R`
 
 
 ```{r echo = FALSE}
 old_width = options(width = 80)
-
 lsf.str("package:base") %>%  grep("^is.", ., value = TRUE)
 ```
 
@@ -865,32 +864,82 @@ Using a bit of R we can see all the different logical tests that tests the class
 :::
 
 
+## Vectors 
 
-## The Usual Suspects
+- Come in **two flavors**
 
-- vectors
-- matrices
-- data frames
-- dates
-- lists
-- functions
+- <font style="color: #591d06">**Atomic**</font>: all the stuff must be the same type
+
+- <font style="color: #591d06">**Lists**</font>: stuff can be different types
+```{r echo = TRUE}
+my_vec <- c(1:10)
+is.vector(my_vec)
+```
+
+
+
+
 
 ```{r echo = TRUE}
-f = cbind(a,b) ## this will just create a matrix 
-class(f)## lets us check the class of something 
-g = as.data.frame(f) ## converts to a different class
-str(g) ## shows some info about the structure of the object
-typeof(g) ## shows how r is storing the object object
+my_list <- list(a = c(1:4), b = "Hello World", c = data.frame(x = 1:10, y = 1:10))
+is.vector(my_list)
+```
+
+:::{.notes}
+Vectors are functionally the workhorse in lots of the stuff you do. Data.frames are basically just a bunch of vectors mashed together. Matrices which are responsible for all the math behind the scenes are just a vectors with two dimensions rows x columns. Arrays are just built on top of vectors but they can be defined by more than three dimensions.  Many of the other types of objects in R are basically just built ontop of vectors. Most notably data.frames and tibbles. Notice that we have lots of different stuff in my list. a is an atomic vector, b is just a character string and c is a whole ass data frame. You will be working with lists a lot this semester
+
+
+:::
+
+
+## Atomic Vectors 
+
+- Come in a variety of flavors 
+
+- Numeric: Can contain whole numbers or decimals 
+
+- Logicals: Can only take two values TRUE or FALSE
+
+- Factors: Can only contain predefined values. Used to store categorical data
+  - Ordered factors are special kind of factor where the order of the level matters.
+- Characters: Holds character strings
+  - Base R will often convert characters to factors. That is bad because it will choose the levels for you
+
+
+:::{.notes}
+These are generally the workhorses that you will see in your applied work. Dates are somewhat special because they are built on top of a specific kind of numeric vector. 
+
+:::
+
+
+## Lists 
+
+- Lists are everywhere in R 
+
+
+```{r echo = TRUE, error = TRUE}
+
+data_frame <- data.frame(a = rnorm(3),
+                         b = rnorm(3))
+typeof(data_frame)
+dats_wrong <- data.frame(a = 1:3,
+                         b = 1:4)
+```
+
+```{r echo = TRUE }
+example_mod <- lm(body_mass_g ~ bill_depth_mm, data = penguins)
+typeof(example_mod)
+length(example_mod$residuals);length(example_mod$coefficients)
+
+
+
 ```
 
 
 :::{.notes}
+Lots of the stuff you have encountered in R are special kinds of lists. Data.frames are just lists where each element has to have an equal length. This is just one of the attributes of the data.frame object class. While data.frames as lists is somewhat of a fun fact this can be important in data wrangling like when you are trying to add rows or columns. You are going to do various things in this semester that require you to manipulate lists. Your best first cut of seeing if something funky is going on with your model is just grabbing your fitted and residual values from your model and plotting them. Being able to navigate an object is important  
 
-These are the ones that tend to come up most regularly used. You can also coerce once class to another. Using as will just force something to be a different class.
 
-different classes of objects have different attributes that make them that class of object. A data.frame is kind of list where element in it has an equal length. Whereas a list can consist of elements of different lenghts. 
-
-Why type of returns list: data.frame and data.table are both collections (lists) of items (vectors, if you will), each item of the same length (ie each column is an item in the list, internally to R anyway). This is why unlike in a matrix, columns can have different classes.
 :::
 
 
@@ -899,7 +948,7 @@ Why type of returns list: data.frame and data.table are both collections (lists)
 
 The reason we can't use any of these are because they are reserved for R
 
-```
+```{r, eval = FALSE, echo = TRUE}
 if 
 else 
 while 
@@ -918,7 +967,7 @@ NA
 :::
 
 :::{.notes}
-If you have noticed every object in our little session has a name. But we should be careful about what we name our stuff. We can technically name our objects just about anything except these because they are reserved for R 
+If you have noticed every object in our little session has a name. But we should be careful about what we name our stuff. We can technically name our objects just about anything except these because they are reserved for R. 1-8 are all things that are vital for R programming. 9-11 are all different ways that R represent missing values or warnings that you have done something that is mathematically impossiple  
 
 :::
 
@@ -932,7 +981,19 @@ For simple things like assigning `c = 4 ` and then doing `d = c(1,2,3,4)` R will
 However it is generally a good idea, *unless you know what you are doing*, to avoid naming things that are functions in `R` because `R` will get confused.
 
 
+```{r error = TRUE, echo = TRUE }
+my_cool_fun <- function(x){
+ x <- x*5
+return(x)
+}
 
+datas <- c(1:10)
+
+my_cool_fun(datas)
+
+my_cool_fun[1]
+
+```
 
 :::{.notes}
 You will get an error usually that says that Object of type ‘closure’ is not subsettable. This is just R saying wow I am like super confused. Like I have these two things named the same thing R will in the best case give up. It got super stressed and just quit. Other times it will just use the one that was set last. So just avoid doing this for now.
@@ -1007,10 +1068,6 @@ penguins = read.csv("penguins.csv")
   - the file name is spelled wrong 
   - the file is in a subdirectory or your working directory is not set correctly
 
-
-```{r echo = TRUE}
-penguins = read.csv("data/penguins.csv")
-```
 
 :::{.notes}
 
@@ -1491,11 +1548,9 @@ penguins$range_body_mass = max(penguins$body_mass_g, na.rm = TRUE) - min(penguin
 
 penguins$chinstrap[penguins$species == "Adelie" | penguins$species == "Gentoo"] <- "Not Chinstrap"
 
-penguins[is.na(penguins)] <- 0
-
 penguins$chinstrap[penguins$species == "Chinstrap"] <- "Chinstrap"
 
-penguins[,c(1,9:10)]
+penguins[,c("species", "range_body_mass", "chinstrap")]
 ```
 
 
