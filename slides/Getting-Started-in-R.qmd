@@ -300,15 +300,21 @@ knitr::include_graphics("figs/cats-boxes.png")
 
 ```
 
-- You can put a box inside a box
+- You <font style="color: #556219">**can**</font> put a box inside a box. 
+  - This means folders can contain other folders.
+  - When you put a folder inside another folder this is called creating a subdirectory
 
-- You can put a cat inside a box
+- You <font style="color: #556219">**can**</font> put a cat inside a box
+  - This means you can put a file inside a folder.
 
-- You can put a cat inside a box inside of a box
+- You <font style="color: #556219">**can**</font> put a cat inside a box inside of a box
+  - This means you can put a file inside a folder inside another folder
 
-- You cannot put a box inside a cat
+- You <font style="color: #591d06">**cannot**</font> put a box inside a cat
+  - You cannot put a folder inside a document(thats not how computers work)
 
-- You cannot put cat in a cat
+- You <font style="color: #591d06">**cannot**</font> put cat in a cat
+  - This means you cannot put files inside other files. Admittedly this is where the metaphor breaks down.
 
 
 
