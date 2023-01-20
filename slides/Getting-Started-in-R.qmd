@@ -39,8 +39,15 @@ knitr::opts_chunk$set(
 
 ```
 
-# Research Data Services 
+# Research Data Services {background-color="`r clrs[5]`" .white }
 
+
+## 
+
+<center>
+<iframe src="https://giphy.com/embed/xTiIzJSKB4l7xTouE8" width="800" height="400" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/starwars-star-wars-episode-3-xTiIzJSKB4l7xTouE8">via GIPHY</a></p>
+
+</center>
 
 ## Our Team 
 
@@ -301,20 +308,19 @@ knitr::include_graphics("figs/cats-boxes.png")
 ```
 
 - You <font style="color: #556219">**can**</font> put a box inside a box. 
-  - This means folders can contain other folders.
-  - When you put a folder inside another folder this is called creating a subdirectory
+  
 
 - You <font style="color: #556219">**can**</font> put a cat inside a box
-  - This means you can put a file inside a folder.
+
 
 - You <font style="color: #556219">**can**</font> put a cat inside a box inside of a box
-  - This means you can put a file inside a folder inside another folder
+
 
 - You <font style="color: #591d06">**cannot**</font> put a box inside a cat
-  - You cannot put a folder inside a document(thats not how computers work)
+  
 
 - You <font style="color: #591d06">**cannot**</font> put cat in a cat
-  - This means you cannot put files inside other files. Admittedly this is where the metaphor breaks down.
+
 
 
 
@@ -482,7 +488,15 @@ library(I)
 library(JustInstalled)
 ```
  
-Notice too that you don't need quotes around the package names any more. 
+Notice too that you don't need quotes around the package names any more.
+
+:::incremental 
+
+- R now recognises these packages as defined objects with given names 
+
+- Everything in R is an and everything has a name 
+
+:::
 
 :::{.notes}
 Reason: R now recognises these packages as defined objects with given names. ("Everything in R is an object and everything has a name.")
@@ -504,7 +518,7 @@ Reason: R now recognises these packages as defined objects with given names. ("E
 
 ```{r basic-math, echo = TRUE}
 2+2 ## addition
-4-2 ## subtaction
+4-2 ## subtraction
 600*100 ##multiplication
 100/10 ##division
 10*10/(3^4*2)-2 ## Pemdas 
@@ -987,6 +1001,7 @@ For simple things like assigning `c = 4 ` and then doing `d = c(1,2,3,4)` R will
 
 However it is generally a good idea, *unless you know what you are doing*, to avoid naming things that are functions in `R` because `R` will get confused.
 
+. . . 
 
 ```{r error = TRUE, echo = TRUE }
 my_cool_fun <- function(x){
@@ -1093,14 +1108,15 @@ Remember to work and reuse stuff in R we need to assign it to an object. So firs
 
 - Create an object with what ever you want in it
 
-- read in the data included to the website using `read.csv`
+- Read in the data included to the website using `read.csv`
   - What happens when you do not assign the dataset?
+  - If you are on a Windows machine right click on the zip file and then click `extract all`
   
-- assign the `penguins` dataset to an object named penguins
+- Assign the `penguins` dataset to an object named penguins
 
-- use `View`, `head`, and `tail` to inspect the dataset
+- Use `View`, `head`, and `tail` to inspect the dataset
 
-- using `install.packages()` install ggplot2
+- Using `install.packages()` install ggplot2
 
 ```{r echo=FALSE}
 countdown::countdown(minutes = 4, play_sound = TRUE)
@@ -1134,7 +1150,7 @@ Using the magical penguin data we will leave you here with some sort of actionab
 - We can use column position to index objects. 
 
 - There are two slots we can use *rows* and *columns* in the brackets if we are using a dataframe like this. 
- - `object_name[rows, columns]`
+ - `object_name[row number, column number]`
  - We can also subset our data by column position using `:` or `c(column 1, column 2)`
 
 :::columns
@@ -1177,6 +1193,8 @@ penguins[1,c(1,4)]  |>
 :::{.notes}
 knowing how to index stuff is important because often times we neeed to tell R what to get. Which is pretty critical especially if we want to use all the flexibility of R. You will need to be able to work with values of your dataset and you need to be able to navigate the software. The drop down menus for R kind of stop here so now you are in more coding territory.
 
+R is a bit of an odd duck compared to other languages. There are three different ways to index an object. These all have a place in your workflow. Some of it will be a little unclear where this will apply but once you start using R more it is super helpful. 
+
 One thing to keep in mind is that in R indexing starts at 1. So if you want to get the first element of a vector you use 1. Whereas in other languages indexing starts at zero. What does that mean substantivly. Well to get the first element of a vector in another language you would use zero. 
 
 I use lists a lot to report coefficients from a regression or to automatically update my syllabus when things change.
@@ -1185,44 +1203,6 @@ I use lists a lot to report coefficients from a regression or to automatically u
 
 :::
 
-
-
-## Indexing  `[]` (cont)
-
-
-- Lists are super flexible because they can hold lots of different kinds of stuff
-  - When you estimate an OLS model it returns a list.
-
-- We can tell R what element of a list using a combo of `[]` and `[[]]`
-
-
-```{r echo = TRUE}
-my_list = list(a = 1:4, b = "Hello World", c = data.frame(x = 1:3, y = 4:6))
-
-```
-
-```{r echo = TRUE}
-my_list[[1]][2] ## get the first item in the list and the second element of that item
-my_list[2]
-my_list[[3]][[1]]
-
-```
-
-
-
-
-## `[]` vs `[[]]`
-
-
-
-```{r echo=FALSE, out.width="90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/rstudio-education/hopr/master/images/hopr_0403.png")
-```
-
-:::{.notes}
-the difference still trips me up so  I think of this picture. The single set of the brackets simply selects one train car while double brackets opens the train car 
-
-:::
 
 ## Negative Indexing
 
@@ -1282,6 +1262,48 @@ penguins[,-c(2,3,5,8)] |>
 
 :::
 :::
+
+
+## Indexing  `[]` (cont)
+
+
+- We can also do the same thing with lists.
+
+- We can tell R what element of a list using a combo of `[]` and `[[]]`
+
+
+```{r echo = TRUE}
+my_list = list(a = 100:110, b = "Learning R was the best of times and the worst of times",
+               c = data.frame(x = 1:3, y = 4:6))
+
+```
+
+```{r echo = TRUE}
+my_list[[1]][2] ## get the first item in the list and the second element of that item
+my_list[2]
+my_list[[3]][[1]]
+
+```
+
+
+
+
+## `[]` vs `[[]]`
+
+
+
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("https://raw.githubusercontent.com/rstudio-education/hopr/master/images/hopr_0403.png")
+```
+
+:::{.notes}
+the difference still trips me up so  I think of this picture. The single set of the brackets simply selects one train car while double brackets opens the train car 
+
+:::
+
+
+
+
 
 
 
