@@ -1106,7 +1106,8 @@ Remember to work and reuse stuff in R we need to assign it to an object. So firs
 
 ## Your Turn {background-color="`r clrs_lt[3]`"}
 
-- Create an object with what ever you want in it
+- Create a vector in R named `my_vec` with "Game of Thrones" in it.
+- Create a vector in R named my_second_vec with `1:100` in it  
 
 - Read in the data included to the website using `read.csv`
   - What happens when you do not assign the dataset?
