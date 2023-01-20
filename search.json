@@ -2902,7 +2902,7 @@
     "href": "slides/Getting-Started-in-R.html#your-turn",
     "title": "Getting Started in R",
     "section": "Your Turn",
-    "text": "Your Turn\n\nCreate an object with what ever you want in it\nRead in the data included to the website using read.csv\n\nWhat happens when you do not assign the dataset?\nIf you are on a Windows machine right click on the zip file and then click extract all\n\nAssign the penguins dataset to an object named penguins\nUse View, head, and tail to inspect the dataset\nUsing install.packages() install ggplot2\n\n\n\n\n−+\n04:00"
+    "text": "Your Turn\n\nCreate a vector in R named my_vec with “Game of Thrones” in it.\nCreate a vector in R named my_second_vec with 1:100 in it\nRead in the data included to the website using read.csv\n\nWhat happens when you do not assign the dataset?\nIf you are on a Windows machine right click on the zip file and then click extract all\n\nAssign the penguins dataset to an object named penguins\nUse View, head, and tail to inspect the dataset\nUsing install.packages() install ggplot2\n\n\n\n\n−+\n04:00"
   },
   {
     "objectID": "slides/Getting-Started-in-R.html#our-data",
