@@ -433,6 +433,80 @@ theme_minimal() +
 # Making Plots {background-color="`r clrs[3]`" .white}
 
 
+## The Grammar 
+<br>
+<table style='width:100%;font-size:14pt;'>
+  <tr>
+    <th>Component</th>
+    <th>Function</th>
+    <th>Explanation</th>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Data</b></td>
+    <td><code>ggplot(data)</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td>*The raw data that you want to visualise.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Aesthetics&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
+    <td><code>aes()</code></td>
+    <td>*Aesthetic mappings between variables and visual properties.*</td>
+  <tr>
+    <td><b style='color:#67676;'>Geometries</b></td>
+    <td><code>geom_*()</code></td>
+    <td>*The geometric shapes representing the data.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Statistics</b></td>
+    <td><code>stat_*()</code></td>
+    <td>*The statistical transformations applied to the data.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Scales</b></td>
+    <td><code>scale_*()</code></td>
+    <td>*Maps between the data and the aesthetic dimensions.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Coordinate System</b></td>
+    <td><code>coord_*()</code></td>
+    <td>*Maps data into the plane of the data rectangle.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Facets</b></td>
+    <td><code>facet_*()</code></td>
+    <td>*The arrangement of the data into a grid of plots.*</td>
+  </tr>
+  <tr>
+    <td><b style='color:#67676;'>Visual Themes</b></td>
+    <td><code>theme()</code> and <code>theme_*()</code></td>
+    <td>*The overall visual defaults of a plot.*</td>
+  </tr>
+</table>
+:::{.notes}
+This is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do 
+coordinates Combine the two position aesthetics to produce a 2d position on the plot. The position aesthetics are called x and y, but they might be better called position 1 and 2 because their meaning depends on the coordinate system used. For example, with the polar coordinate system they become angle and radius (or radius and angle), and with maps they become latitude and longitude.
+scales  take your data and turn it into something that you can see, like size, colour, position or shape. They also provide the tools that let you interpret the plot: the axes and legends. You can generate plots with ggplot2 without knowing how scales work
+:::
+
+
+
+## Where do they go?
+```{r your-penguin-code, echo = TRUE}
+#| code-line-numbers: "2,3,4,5,6,7"
+#| output-location: column
+ggplot() +
+  geom_point(data = penguins,
+   aes(
+  x = bill_length_mm, 
+  y = body_mass_g,
+  shape = species, 
+  color = island),
+  size = 3)
+```
+:::{.notes}
+To actually make the plot you need to specify the columns you want to "map" onto the plot. Map is kind of just the way that it is said in ggplot world. This is just us saying we want these columns in our 
+:::
+
+
 ## Plotting Data 
 
 
