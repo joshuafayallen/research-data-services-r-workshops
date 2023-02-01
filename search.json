@@ -1813,6 +1813,20 @@
     "text": "So How Did We go From?\n\n\nThis\n\n\n\n\n\n\nTo This"
   },
   {
+    "objectID": "slides/ggplot-presentation.html#the-grammar",
+    "href": "slides/ggplot-presentation.html#the-grammar",
+    "title": "Getting Started in ggplot",
+    "section": "The Grammar",
+    "text": "The Grammar\n\n\n\n\n\nComponent\n\n\nFunction\n\n\nExplanation\n\n\n\n\nData\n\n\nggplot(data)         \n\n\nThe raw data that you want to visualise.\n\n\n\n\nAesthetics          \n\n\naes()\n\n\nAesthetic mappings between variables and visual properties.\n\n\n\nGeometries\n\n\ngeom_*()\n\n\nThe geometric shapes representing the data.\n\n\n\n\nStatistics\n\n\nstat_*()\n\n\nThe statistical transformations applied to the data.\n\n\n\n\nScales\n\n\nscale_*()\n\n\nMaps between the data and the aesthetic dimensions.\n\n\n\n\nCoordinate System\n\n\ncoord_*()\n\n\nMaps data into the plane of the data rectangle.\n\n\n\n\nFacets\n\n\nfacet_*()\n\n\nThe arrangement of the data into a grid of plots.\n\n\n\n\nVisual Themes\n\n\ntheme() and theme_*()\n\n\nThe overall visual defaults of a plot.\n\n\n\n\n\nThis is what it looks like when we start to think of the plot. Each of these are columns in our dataset that we plop into aes. Our x goes in the first slot of aes and the second slot is our y. I typically specify this myself just cuz I like to do that but that is a personal decision. The rest you need to tell ggplot to do coordinates Combine the two position aesthetics to produce a 2d position on the plot. The position aesthetics are called x and y, but they might be better called position 1 and 2 because their meaning depends on the coordinate system used. For example, with the polar coordinate system they become angle and radius (or radius and angle), and with maps they become latitude and longitude. scales take your data and turn it into something that you can see, like size, colour, position or shape. They also provide the tools that let you interpret the plot: the axes and legends. You can generate plots with ggplot2 without knowing how scales work"
+  },
+  {
+    "objectID": "slides/ggplot-presentation.html#where-do-they-go",
+    "href": "slides/ggplot-presentation.html#where-do-they-go",
+    "title": "Getting Started in ggplot",
+    "section": "Where do they go?",
+    "text": "Where do they go?\n\n\nggplot() +\n  geom_point(data = penguins,\n   aes(\n  x = bill_length_mm, \n  y = body_mass_g,\n  shape = species, \n  color = island),\n  size = 3)\n\n\n\n\n\n\n\nTo actually make the plot you need to specify the columns you want to “map” onto the plot. Map is kind of just the way that it is said in ggplot world. This is just us saying we want these columns in our"
+  },
+  {
     "objectID": "slides/ggplot-presentation.html#plotting-data",
     "href": "slides/ggplot-presentation.html#plotting-data",
     "title": "Getting Started in ggplot",
