@@ -269,8 +269,10 @@ verb(.data, ...)
 :::
 
 
+::: callout-important
+There have been some significant additions to `dplyr 1.1.0.` This workshop was written under `dplyr 1.0.10`
 
-
+:::
 
 ## Select()
 
@@ -957,30 +959,31 @@ If you are on a mac the keyboard shortcut is command shift m
 
 ## group_by()
 
-::: incremental
+::: columns
+:::column
 -   `group_by()` simply puts rows into groups based on values of a column
+  - The grouped data frames will continue until you do `ungroup`
 
 -   Not necessarily the most useful function because nothing really happens when called by itself
 
+- Unless you combine it with `summarize()`
+  - Note: you will see summarise as well in people's code because the creator and maintainer is from New Zealand
 :::
 
-. . . 
+:::column
 
-
-```{r  echo = TRUE}
+```{r echo = TRUE}
 penguins |> 
   group_by(species) |>
+  select(bill_length_mm, island) |> 
   head(5)
 ```
 
-:::incremental
-
--   Unless you combine it with `summarize()`
-  - Note: you will see summarise as well in people's code because the creator and maintainer is from New Zealand
 
 :::
+:::
 
-## 
+## Find the Number of Each Species 
 
 ```{r eval = FALSE, echo = TRUE}
 
@@ -1000,7 +1003,7 @@ penguins |>
 
 ```
 
-## 
+## Multiple Summary Statistics 
 
 ::: columns
 ::: column
@@ -1009,7 +1012,7 @@ penguins |>
   group_by(species) |> 
   summarise(n(),
         mean_bill_length = mean(bill_length_mm,
-                             na.rm = TRUE))
+                                na.rm = TRUE))
 ```
 :::
 
@@ -1026,6 +1029,36 @@ penguins |>
 ```
 :::
 :::
+
+## Recent Features
+
+- You can now add temporary groupings
+
+::: columns
+::: column
+```{r eval= FALSE, echo = TRUE}
+penguins |> 
+  summarise(n(),
+            mean(bill_length_mm, na.rm = TRUE),
+         .by = species)
+```
+:::
+
+::: column
+```{r echo = FALSE}
+penguins |> 
+  summarise(mean_bill_length = round(mean(bill_length_mm, na.rm = TRUE), digits = 2),
+            n(), .by = species) |> 
+  mutate(mean_bill_length = as.character(mean_bill_length),
+         `n()` = as.character(`n()`)) |> 
+  knitr::kable(format = "html")
+
+```
+
+:::
+:::
+
+
 
 :::{.notes}
 
@@ -1113,11 +1146,11 @@ data2 |> knitr::kable(format = "html")
 
 ```{r eval=FALSE, echo = TRUE}
 #| code-line-numbers: true
-left_join(data1, data2, by = "ID")
+left_join(data1, data2, join_by(ID))
 ```
 
 ```{r echo=FALSE}
-left_join(data1, data2, by = "ID") |> knitr::kable(format = "html")
+left_join(data1, data2, join_by(ID)) |> knitr::kable(format = "html")
 ```
 
 ## Using "Real" Data
@@ -1194,7 +1227,7 @@ national_libraries |>
 ```{r eval=FALSE, echo = TRUE}
 #| code-line-numbers: "|2"
 national_combined = left_join(national_data, national_libraries, 
-                                    by = c("state", "year")) 
+                                    join_by(state, year)) 
 
 national_combined
 ```
@@ -1202,7 +1235,7 @@ national_combined
 ```{r echo=FALSE}
 
 national_data |> 
-  left_join(national_libraries, by = c("state", "year")) |> 
+  left_join(national_libraries,join_by(state, year)) |> 
   knitr::kable(format = "html")
 
 
@@ -1213,14 +1246,14 @@ national_data |>
 ```{r eval=FALSE, echo = TRUE}
 #| code-line-numbers: "|1|2"
 national_combined = national_data |> 
-  left_join(national_libraries, by = c("state", "year"))
+  left_join(national_libraries, join_by(state, year))
 
 national_combined
 ```
 
 ```{r echo=FALSE}
 national_data |> 
-  left_join(national_libraries, by = c("state", "year")) |> 
+  left_join(national_libraries, join_by(state, year)) |> 
   knitr::kable(format = "html")
 ```
 
@@ -1258,12 +1291,12 @@ national_libraries |> knitr::kable(format = "html")
 ```{r eval=FALSE, echo = TRUE}
 #| code-line-numbers: "|2"
 national_data |> 
-  left_join(national_libraries, by = c("state" = "statename", "year"))
+  left_join(national_libraries, join_by(state == statename, year))
 ```
 
 ```{r echo=FALSE}
 national_data |> 
-  left_join(national_libraries, by = c("state" = "statename", "year")) |> 
+  left_join(national_libraries, join_by(state == statename, year)) |> 
   head(5) |>
   knitr::kable(format = "html") 
 ```
