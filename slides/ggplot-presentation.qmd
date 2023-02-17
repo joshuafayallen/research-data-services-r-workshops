@@ -405,7 +405,7 @@ theme_minimal() +
 
  This
 
-```{r blank-plot-example-this, echo = FALSE }
+```{r blank-plot-example-this, echo = FALSE, out.width = "90%" }
 #| fig-alt: "This is the template that I started with with just points and colors"
 ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island, size = species)) + geom_point(size = 3) + 
   theme_void() + theme(legend.position = "none")
@@ -419,7 +419,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color
 
  To This
 
-```{r full-plot-example-this, echo=FALSE}
+```{r full-plot-example-this, echo=FALSE, out.width = "90%"}
 ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, shape = species, color = island)) +
   geom_point(size = 3) +
   labs(x = "Bill Length(mm)", y = "Body Mass(g)", title = "The Relationship Between Bill Length and Body Weight",
