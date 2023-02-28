@@ -320,13 +320,6 @@ his version of the test is actually the Welch Student’s test, used when the va
 ### Base 
 
 ```{r eval=FALSE}
-
-penguins_df = penguins[,c(3:4)]  |> ## lets you do it by column position
-  na.omit() 
-
-cor(penguins_df) |> 
-  knitr::kable(format = "html")
-
 ## this lets you do it by class
  penguins[, sapply(penguins, is.numeric)]  |> 
   na.omit() |> 
@@ -336,11 +329,10 @@ cor(penguins_df) |>
 
 
 ```{r echo=FALSE}
-penguins_df = penguins[, c(3:4)] |> 
-  na.omit()
-  
-
-cor(penguins_df) |> 
+ penguins[, sapply(penguins, is.numeric)]  |> 
+  na.omit() |>
+  select(-year, -body_mass_g) |> 
+   cor() |> 
   knitr::kable(format = "html")
 
 ```
@@ -354,19 +346,17 @@ cor(penguins_df) |>
 
 penguins_df = penguins |> 
   drop_na() |> 
-  select(where(is.numeric), -year, - body_mass_g) #### Just cutting out year for presentation 
-
-cor(penguins_df)
+  select(where(is.numeric), -year, - body_mass_g) |>
+  cor()
 
 ```
 
 
 ```{r echo=FALSE}
-penguins_df = penguins |> 
+ penguins |> 
   drop_na() |> 
-  select(contains("bill")) 
-
-cor(penguins_df) |> 
+  select(where(is.numeric), -year, -body_mass_g) |>
+  cor() |> 
   knitr::kable(format = "html")
 ```
 
