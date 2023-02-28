@@ -1509,7 +1509,7 @@
     "href": "slides/data-analysis-in-R.html#correlations",
     "title": "Data Analysis in R",
     "section": "Correlations",
-    "text": "Correlations\n\n\nBase\n\npenguins_df = penguins[,c(3:4)]  |> ## lets you do it by column position\n  na.omit() \n\ncor(penguins_df) |> \n  knitr::kable(format = \"html\")\n\n## this lets you do it by class\n penguins[, sapply(penguins, is.numeric)]  |> \n  na.omit() |> \n   cor() # alternatively you could just specify various corr options \n\n\n\n\n\n \n  \n      \n    bill_length_mm \n    bill_depth_mm \n  \n \n\n  \n    bill_length_mm \n    1.0000000 \n    -0.2350529 \n  \n  \n    bill_depth_mm \n    -0.2350529 \n    1.0000000 \n  \n\n\n\n\n\n\nTidyverse\n\npenguins_df = penguins |> \n  drop_na() |> \n  select(where(is.numeric), -year, - body_mass_g) #### Just cutting out year for presentation \n\ncor(penguins_df)\n\n\n\n\n\n \n  \n      \n    bill_length_mm \n    bill_depth_mm \n  \n \n\n  \n    bill_length_mm \n    1.0000000 \n    -0.2286256 \n  \n  \n    bill_depth_mm \n    -0.2286256 \n    1.0000000"
+    "text": "Correlations\n\n\nBase\n\n## this lets you do it by class\n penguins[, sapply(penguins, is.numeric)]  |> \n  na.omit() |> \n   cor() # alternatively you could just specify various corr options \n\n\n\n\n\n \n  \n      \n    bill_length_mm \n    bill_depth_mm \n    flipper_length_mm \n  \n \n\n  \n    bill_length_mm \n    1.0000000 \n    -0.2350529 \n    0.6561813 \n  \n  \n    bill_depth_mm \n    -0.2350529 \n    1.0000000 \n    -0.5838512 \n  \n  \n    flipper_length_mm \n    0.6561813 \n    -0.5838512 \n    1.0000000 \n  \n\n\n\n\n\n\nTidyverse\n\npenguins_df = penguins |> \n  drop_na() |> \n  select(where(is.numeric), -year, - body_mass_g) |>\n  cor()\n\n\n\n\n\n \n  \n      \n    bill_length_mm \n    bill_depth_mm \n    flipper_length_mm \n  \n \n\n  \n    bill_length_mm \n    1.0000000 \n    -0.2286256 \n    0.6530956 \n  \n  \n    bill_depth_mm \n    -0.2286256 \n    1.0000000 \n    -0.5777917 \n  \n  \n    flipper_length_mm \n    0.6530956 \n    -0.5777917 \n    1.0000000"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#it-is-also-important-to-plot-your-data",
@@ -1719,7 +1719,7 @@
     "href": "slides/data-analysis-in-R.html#the-results",
     "title": "Data Analysis in R",
     "section": "The Results",
-    "text": "The Results\n\n\n\n\n \n  \n      \n     (1) \n      (2) \n      (3) \n      (4) \n      (5) \n  \n \n\n  \n    bill_length_mm \n    60.117*** \n    60.117*** \n    60.117*** \n    60.117*** \n    60.117*** \n  \n  \n     \n    (7.207) \n    (6.519) \n    (6.497) \n    (6.429) \n    (1.591) \n  \n  \n    Num.Obs. \n    333 \n    333 \n    333 \n    333 \n    333 \n  \n  \n    R2 \n    0.824 \n    0.824 \n    0.824 \n    0.824 \n    0.824 \n  \n  \n    Standard errors \n    iid \n    robust \n    bootstrap \n    stata \n    clustered by sex \n  \n\n\n + p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"
+    "text": "The Results\n\n\n\n\n \n  \n      \n     (1) \n      (2) \n      (3) \n      (4) \n      (5) \n  \n \n\n  \n    bill_length_mm \n    60.117*** \n    60.117*** \n    60.117*** \n    60.117*** \n    60.117*** \n  \n  \n     \n    (7.207) \n    (6.519) \n    (6.369) \n    (6.429) \n    (1.591) \n  \n  \n    Num.Obs. \n    333 \n    333 \n    333 \n    333 \n    333 \n  \n  \n    R2 \n    0.824 \n    0.824 \n    0.824 \n    0.824 \n    0.824 \n  \n  \n    Standard errors \n    iid \n    robust \n    bootstrap \n    stata \n    clustered by sex \n  \n\n\n + p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#handling-missing-data",
@@ -1733,7 +1733,7 @@
     "href": "slides/data-analysis-in-R.html#lets-see-it-in-a-table",
     "title": "Data Analysis in R",
     "section": "Lets see it in a table",
-    "text": "Lets see it in a table\n\n\n\n\n \n  \n      \n    List Wise Deletion \n    Mice \n    Amelia \n  \n \n\n  \n    (Intercept) \n    −3904.387 \n    −3916.570 \n    −3889.289 \n  \n  \n     \n    (529.257) \n    (527.939) \n    (533.936) \n  \n  \n    bill_length_mm \n    61.736 \n    61.293 \n    61.087 \n  \n  \n     \n    (7.126) \n    (7.129) \n    (7.223) \n  \n  \n    flipper_length_mm \n    27.429 \n    27.575 \n    27.479 \n  \n  \n     \n    (3.176) \n    (3.170) \n    (3.169) \n  \n  \n    speciesChinstrap \n    −748.562 \n    −743.341 \n    −741.828 \n  \n  \n     \n    (81.534) \n    (81.491) \n    (82.915) \n  \n  \n    speciesGentoo \n    90.435 \n    90.426 \n    93.937 \n  \n  \n     \n    (88.647) \n    (88.475) \n    (90.613) \n  \n  \n    R2 \n    0.822 \n    0.822 \n    0.822 \n  \n  \n    Num.Obs. \n    342 \n    344 \n    344 \n  \n  \n    RMSE \n    337.62"
+    "text": "Lets see it in a table\n\n\n\n\n \n  \n      \n    List Wise Deletion \n    Mice \n    Amelia \n  \n \n\n  \n    (Intercept) \n    −3904.387 \n    −3927.197 \n    −3914.317 \n  \n  \n     \n    (529.257) \n    (529.950) \n    (531.518) \n  \n  \n    bill_length_mm \n    61.736 \n    61.714 \n    60.843 \n  \n  \n     \n    (7.126) \n    (7.120) \n    (7.122) \n  \n  \n    flipper_length_mm \n    27.429 \n    27.554 \n    27.669 \n  \n  \n     \n    (3.176) \n    (3.173) \n    (3.198) \n  \n  \n    speciesChinstrap \n    −748.562 \n    −749.247 \n    −742.129 \n  \n  \n     \n    (81.534) \n    (81.444) \n    (81.566) \n  \n  \n    speciesGentoo \n    90.435 \n    85.117 \n    89.396 \n  \n  \n     \n    (88.647) \n    (88.795) \n    (89.076) \n  \n  \n    R2 \n    0.822 \n    0.822 \n    0.821 \n  \n  \n    Num.Obs. \n    342 \n    344 \n    344 \n  \n  \n    RMSE \n    337.62"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#interactions",
@@ -1796,7 +1796,7 @@
     "href": "slides/data-analysis-in-R.html#performance",
     "title": "Data Analysis in R",
     "section": "Performance",
-    "text": "Performance\n\nVdem has 202 country ids and 233 years\n\nLets time them to see\n\n\n\n\n\n\n\n# A tibble: 3 × 2\n  expr       `Mean Time in Seconds`\n  <fct>                       <dbl>\n1 vdem_feols                0.00185\n2 vdem_stand                0.476  \n3 vdem_plm                  0.363"
+    "text": "Performance\n\nVdem has 202 country ids and 233 years\n\nLets time them to see\n\n\n\n\n\n\n\n# A tibble: 3 × 2\n  expr       `Mean Time in Seconds`\n  <fct>                       <dbl>\n1 vdem_feols                0.00174\n2 vdem_stand                0.477  \n3 vdem_plm                  0.367"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-predictions",
