@@ -246,7 +246,7 @@ penguins |>
 
 
 
-## T-tests
+## T-tests {.scrollable}
 
 ::::{.columns}
 :::{.column width="45%"}
@@ -1013,9 +1013,7 @@ modelplot(map_version, coef_omit = c("flipper_length_mm|species|Interc")) +
 
 - Model Summary is my favorite table making package
   - if you run `modelsummary::supported_models()` you will see it fits most needs
-  - alternatively if you don't want to read the list and fit your model than do `modelsummary::get_estimates(model_I_fitted)` it will tell if the output is supported
-
-- Supports a variety of formats including word
+  - Once awesome feature is adjusting your standard errors while making the table!
   
 
 ```{r eval= FALSE}
@@ -1028,9 +1026,6 @@ modelsummary(peng_adjust,
              gof_map = c("nobs", "r.squared"))
 ```
 
-- As you can see it also lets you adjust your standard errors 
-  - You can supply it one kind of standard error
-  - Or a List like I did
 
 
 ## The Results 
@@ -1045,6 +1040,22 @@ modelsummary(peng_adjust,
              gof_map = c("nobs", "r.squared"))
 ```
 
+## Saving Tables 
+
+- If you do not work in Quarto like me this is how you save tables to include in a manuscript
+  - One tip for word users. Save it as an html and open the html file in word and copy and paste
+
+```{r}
+#| eval: false
+modelsummary(models, output = "table.docx")
+modelsummary(models, output = "table.html")
+modelsummary(models, output = "table.tex")
+modelsummary(models, output = "table.md")
+modelsummary(models, output = "table.txt")
+modelsummary(models, output = "table.png")
+```
+
+
 
 
 ## Handling Missing Data 
@@ -1055,8 +1066,7 @@ modelsummary(peng_adjust,
 - This requires some assumptions about why the data is missing
 
 - Sometimes we may need to impute data for missing observations
-  - Multiple imputation takes guesses about what would be there using the data
-  - Two of the most popular in my home discipline are MICE and AMELIA 
+
 
 ```{r}
 
@@ -1100,53 +1110,47 @@ modelsummary(mods,
 
 ## Interactions 
 
-- To include a multiplicative term we can use `*`, `:` or `/` 
+- To include a multiplicative term we can use `*`, `:` 
+  - These differ slightly
 
-- The constitutive terms will appear automatically with `*` and `/`
+- The constitutive terms will appear automatically with `*` 
 
-- In the case of `/` it returns the marginal effect 
-  - As well as the correct standard errors and p-values 
 
-:::{.notes}
-The nice part about R is that you can include interactions in a few different ways. One thing is that R will include the constuitive terms for you. The slash will sort of trick R into including the full marginal effects for you. 
-:::
 
 
 ```{r}
 pengs_interact_stand = lm(body_mass_g ~ bill_length_mm * sex + species + flipper_length_mm,
                            data = peng_sans_miss_tidy)
 
+pengs_interact_col = lm(body_mass_g ~ bill_length_mm * sex + sex + species + bill_length_mm + flipper_length_mm ,
+                           data = peng_sans_miss_tidy)
+
 summary(pengs_interact_stand)
 ```
 
 
-
-
-
-## Full Marginal Effects way 
-
-```{r}
-pengs_interact_marg = lm(body_mass_g ~ bill_length_mm / factor(sex) + flipper_length_mm + species, data = peng_sans_miss_tidy)
-
-summary(pengs_interact_marg)
-```
-
 :::{.notes}
-So this will give you the correct marginal effects but if you want the full range of values we need our marginal effects package 
-
+The nice part about R is that you can include interactions in a few different ways. One thing is that R will include the constuitive terms for you. The slash will sort of trick R into including the full marginal effects for you. 
 :::
+
+
+
+
 
 ## Getting Marginal Effects for Interactions 
 
 
 ```{r}
 #| output-location: column
+library(marginaleffects)
 pengs_interact_effect = lm(body_mass_g ~ bill_length_mm  + flipper_length_mm * sex + species, data = peng_sans_miss_tidy)
 
-plot_cco(
+plot_comparisons(
   pengs_interact_effect,
-  effect =  "sex", 
-  condition = "flipper_length_mm")
+  condition =  "flipper_length_mm",
+  variables = "sex") +
+  labs(x = "Bill Length(mm)", y = "Unit Level Conditional Estimates") +
+  theme_minimal()
 
 
 
@@ -1360,10 +1364,8 @@ penguins_train_plot = augment(penguins_training_model,
 peng_predict_test = augment(penguins_training_model,
                            interval = "prediction",
                            newdata = peng_test) |> 
- select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set)
-
-all_together = rbind(penguins_train_plot,
-                    peng_predict_test)
+ select(.fitted, .lower, .upper,  body_mass_g, bill_length_mm, data_set) |>
+ bind_rows(penguins_train_plot)
 ```
 
 :::{.notes}
@@ -1379,7 +1381,7 @@ all_together = rbind(penguins_train_plot,
 #| output-location: column
 
 
-ggplot(all_together,
+ggplot(peng_predict_test,
   aes(x = bill_length_mm,
     y = body_mass_g,
    color = data_set,
@@ -1481,11 +1483,11 @@ summary(base_model)
 
 odds_ration = exp(coef(base_model))
 
-avg_marginal_effect = base_model |> 
-  marginaleffects()  |> 
+ marginal_effect = base_model |> 
+  slopes()  |> 
   tidy()
 
-ggplot(data = filter(avg_marginal_effect,
+ggplot(data = filter(marginal_effect,
        !term == "species"),
        aes(x = estimate,
            y = str_to_title(term))) +
@@ -1520,7 +1522,7 @@ predictions_emmeans = base_model |>
  emmeans(~ bill_length_mm + species, var = "bill_length_mm",
                    at = list(bill_length_mm = seq(0, 60,1)),
                    regrid = "response", delta = 0.001) |> 
-  as_tibble()
+  as_tibble() 
 
 colors_plot = c("#f0be3d", "#931e18", "#247d3f")
 
@@ -1531,10 +1533,6 @@ ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) 
   theme(legend.position = "bottom") +
   theme_minimal() +
   scale_color_manual(values = colors_plot)
-  
-
-
-
 
 ```
 :::
@@ -1546,19 +1544,23 @@ ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) 
 ```{r eval=FALSE}
 
 base_model_use = base_model |>
-predictions(newdata = datagrid(bill_length_mm = c(0,60)))
+predictions(newdata = datagrid(bill_length_mm = c(0,61), 
+                              species = unique))
 
 
-p  = plot_cap(base_model, condition = c("bill_length_mm", "species"))## can be saved and changed with ggplot options 
-
-p + 
+plot_predictions(base_model,
+                 condition = list("bill_length_mm" = 0:60,
+                                   "species" = unique))  + 
   labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
-       color = NULL, fill = NULL,
-       caption = "By Default plot_cap plots confidence intervals \nso you have you make them really small") +
-  scale_x_continuous(breaks = seq(0,60, 20)) +
+       color = NULL) +
   theme(legend.position = "bottom") +
   theme_minimal() +
-  scale_color_manual(values = colors_plot)
+  scale_color_manual(values = colors_plot) +
+  guides(fill = guide_legend(title = "Species", override.aes = list(fill = NA)),
+         color = guide_legend(title = "Species",override.aes = list(fill = NA)))
+
+
+
 ```
 :::
 :::
@@ -1587,7 +1589,7 @@ ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) 
        color = NULL) +
   theme(legend.position = "bottom") +
   theme_minimal() +
-  scale_color_manual(values = colors_plot)
+  scale_color_manual(values = colors_plot) 
   
 
 
@@ -1600,17 +1602,17 @@ ggplot(predictions_emmeans, aes(x = bill_length_mm, y = prob, color = species)) 
 ```{r echo=FALSE}
 colors_plot = c("#f0be3d", "#931e18", "#247d3f")
 
-p  = plot_cap(base_model,
-   condition = c("bill_length_mm", "species"),
-    conf_level = 0.01) ## can be saved and changed with ggplot options 
-
-p + 
-  labs(x = "Bill Length(millimeters)",
-       y = "Predicted Probability of Being a Big Penguin",
-       color = NULL, fill = NULL,
-       caption = "By Default plot_cap plots confidence intervals \nso you have you make them really small") +
+plot_predictions(base_model,
+                 condition = list("bill_length_mm" = 0:60,
+                                   "species" = unique)) + 
+  labs(x = "Bill Length(millimeters)", y = "Predicted Probablity of Being a Big Penguin",
+       color = NULL) +
+  theme(legend.position = "bottom") +
   theme_minimal() +
-  scale_color_manual(values = colors_plot)
+  scale_color_manual(values = colors_plot) +
+  guides(fill = guide_legend(title = "Species", override.aes = list(fill = NA)),
+         color = guide_legend(title = "Species",override.aes = list(fill = NA)))
+
 ```
 :::
 ::::
