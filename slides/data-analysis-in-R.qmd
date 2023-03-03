@@ -1352,7 +1352,10 @@ peng_predict_test = augment(penguins_training_model,
 
 :::{.notes}
 
- It involves randomly dividing the available set of observations into two parts, a training set and a validation set or hold-out set. The model is fit on the training set, and the fitted model is used to predict the responses for the observations in the validation set. The resulting validation set error rate — typically assessed using MSE in the case of a quantitative response—provides an estimate of the test error rate
+ It involves randomly dividing the available set of observations into two parts, a training set and a validation set or hold-out set. The model is fit on the training set, and the fitted model is used to predict the responses for the observations in the validation set. The resulting validation set error rate — typically assessed using MSE in the case of a quantitative response—provides an estimate of the test error rate.
+
+generating predictions from a model is really useful for lots of places. So being able to do it from a very simple model is important. The general principles apply in a variety of cases. You may need the predicted probabiilities for propensity score matching or inverse probability weighting 
+
 
 :::
 
@@ -1451,7 +1454,11 @@ summary(base_model)
 ```
 
 
+:::{.notes}
+For fitting glm's in R you use the glm fucntion. The built in function supports like a handful of glm's. So you have probit, logit, poisson, binomial and quasi poisson. There are various package to get like a negative binomial  model. I know the bayesians love themselves an ordered betareg.
 
+
+:::
 
 
 
