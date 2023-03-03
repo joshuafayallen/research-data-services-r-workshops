@@ -1460,7 +1460,7 @@
     "href": "slides/data-analysis-in-R.html#packages-you-will-need",
     "title": "Data Analysis in R",
     "section": "Packages You Will Need",
-    "text": "Packages You Will Need\n\ninstall.packages(\"pacman\")\n\npacman::p_load(\"sandwich\", \"lmtest\", \"marginaleffects\", \"emmeans\", \"modelsummary\", \"broom\",\n               \"caret\", \"tidyverse\", \"fixest\", \"kableExtra\", \"nullabor\", \"plm\", \"ggfortify\", install = TRUE)\nset.seed(1994)\n\npenguins = palmerpenguins::penguins \n\n\nNote this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximum likelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not.\nI also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis\nThis workshop is going to sort of through building the results section of a paper. This will generally be geared toward a social science audience. But the fundamentals are virtually the same if you are not."
+    "text": "Packages You Will Need\n\ninstall.packages(\"pacman\")\n\npacman::p_load(\"sandwich\", # standard error fixes\n               \"lmtest\", # diagnostic tests\n               \"marginaleffects\", # getting marginal effects\n                \"emmeans\", # getting marginal effect\n                 \"modelsummary\", # making tables \n                 \"broom\", # pull diagnostic statistics\n               \"caret\", # lots of machine learning  models\n                \"tidyverse\", # ggplot and friends \n                 \"fixest\", # fixed effects \n                 \"kableExtra\", # extenstions for making latex tables\n                  \"plm\",  # panel data models \n                  \"ggfortify\", install = TRUE)\n\nset.seed(1994) # some of the models we will \n\n# data we are using\npenguins = palmerpenguins::penguins \n\n\nNote this workshop is not a workshop that will teach you how these methods work. I presume that most of you will be familiar with linear regression and maximum likelihood estimation. If any of you are here with more of a machine learning background this includes logit and what not.\nI also assume you know the basics of indexing I will go through a bit of it but you should probably know that before doing data analysis\nThis workshop is going to sort of through building the results section of a paper. This will generally be geared toward a social science audience. But the fundamentals are virtually the same if you are not."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#describing-variables",
@@ -1552,13 +1552,6 @@
     "title": "Data Analysis in R",
     "section": "User Written Extensions",
     "text": "User Written Extensions\n\n\nlibrary(gghalves)\nlibrary(MetBrewer)\nlibrary(ggdist)\n\nggplot(penguins,\n  aes(x = species,\n      y = bill_depth_mm,\n     fill = species)) +\n  geom_boxplot(\n    width = .2, fill = \"white\",\n    size = 1.5, outlier.shape = NA\n  ) +\n  stat_halfeye(\n    adjust = .33,\n    width = .67, \n    color = NA,\n    position = position_nudge(x = .15)\n  ) +\n  geom_half_point(\n    side = \"l\", \n    range_scale = .3, \n    alpha = .25, size = 1\n  ) +\n  scale_fill_met_d(name = \"Veronese\") +\n  labs(x = NULL,\n      fill = \"Species\",\n      y = \"Bill Depth(millimeters)\") +\n  coord_flip() +\n  theme_minimal()\n\n\n\n\n\n\n\n\nCode and example are from Cédric Scherer’s Beyond the Bar plot talk"
-  },
-  {
-    "objectID": "slides/data-analysis-in-R.html#correlation-plots",
-    "href": "slides/data-analysis-in-R.html#correlation-plots",
-    "title": "Data Analysis in R",
-    "section": "Correlation Plots",
-    "text": "Correlation Plots\n\n\ncor_plot_dat = penguins |>\ndrop_na() |>\nselect(where(is.numeric), -year) |>\ncor()\n\ncor_plot_dat[lower.tri(cor_plot_dat)] <- NA\n\n\n\nlong_cor_dat = cor_plot_dat |>\nas.data.frame() |>\nrownames_to_column(\"measure2\") |>\npivot_longer(cols = -measure2,\n             names_to = \"measure1\",\n            values_to = \"cor\") |>\nmutate(nice_cor = round(cor,2)) |>\nfilter(measure2 != measure1) |>\nfilter(!is.na(cor)) |>\nmutate(measure1 = fct_inorder(measure1),\n       measure2 = fct_inorder(measure2))\n\n\nggplot(long_cor_dat, \n     aes(x = measure2,\n     y = measure1,\n     fill = cor)) +\n  geom_tile() +\n  geom_text(aes(label = nice_cor)) +\n  scale_fill_gradient2(low = \"#e76254\",\n       mid = \"white\",\n       high = \"#1e466e\",\n       limits = c(-1, 1)) +\n  labs(x = NULL, y = NULL) +\n  coord_equal() +\n  theme_minimal() +\n  theme(panel.grid = element_blank())"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-table-1",
@@ -1677,7 +1670,7 @@
     "href": "slides/data-analysis-in-R.html#your-turnoptional",
     "title": "Data Analysis in R",
     "section": "Your Turn(optional)",
-    "text": "Your Turn(optional)\n\nCheck the assumptions of your model\nAre the regression assumptions met?\nLook through the lmtest documentation to see what other tests are available."
+    "text": "Your Turn(optional)\n\nGet the fitted and and residuals from your multiple regression\nAre the regression assumptions met?\nLook through the lmtest documentation to see what other tests are available."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#fixing-our-standard-errors",
@@ -1719,7 +1712,7 @@
     "href": "slides/data-analysis-in-R.html#the-results",
     "title": "Data Analysis in R",
     "section": "The Results",
-    "text": "The Results\n\n\n\n\n \n  \n      \n     (1) \n      (2) \n      (3) \n      (4) \n      (5) \n  \n \n\n  \n    bill_length_mm \n    60.117*** \n    60.117*** \n    60.117*** \n    60.117*** \n    60.117*** \n  \n  \n     \n    (7.207) \n    (6.519) \n    (5.921) \n    (6.429) \n    (1.591) \n  \n  \n    Num.Obs. \n    333 \n    333 \n    333 \n    333 \n    333 \n  \n  \n    R2 \n    0.824 \n    0.824 \n    0.824 \n    0.824 \n    0.824 \n  \n  \n    Standard errors \n    iid \n    robust \n    bootstrap \n    stata \n    clustered by sex \n  \n\n\n + p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"
+    "text": "The Results\n\n\n\n\n \n  \n      \n     (1) \n      (2) \n      (3) \n      (4) \n      (5) \n  \n \n\n  \n    bill_length_mm \n    60.117*** \n    60.117*** \n    60.117*** \n    60.117*** \n    60.117*** \n  \n  \n     \n    (7.207) \n    (6.519) \n    (6.610) \n    (6.429) \n    (1.591) \n  \n  \n    Num.Obs. \n    333 \n    333 \n    333 \n    333 \n    333 \n  \n  \n    R2 \n    0.824 \n    0.824 \n    0.824 \n    0.824 \n    0.824 \n  \n  \n    Standard errors \n    iid \n    robust \n    bootstrap \n    stata \n    clustered by sex \n  \n\n\n + p < 0.1, * p < 0.05, ** p < 0.01, *** p < 0.001"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#saving-tables",
@@ -1740,7 +1733,7 @@
     "href": "slides/data-analysis-in-R.html#lets-see-it-in-a-table",
     "title": "Data Analysis in R",
     "section": "Lets see it in a table",
-    "text": "Lets see it in a table\n\n\n\n\n \n  \n      \n    List Wise Deletion \n    Mice \n    Amelia \n  \n \n\n  \n    (Intercept) \n    −3904.387 \n    −3902.885 \n    −4049.900 \n  \n  \n     \n    (529.257) \n    (529.210) \n    (559.015) \n  \n  \n    bill_length_mm \n    61.736 \n    61.556 \n    61.259 \n  \n  \n     \n    (7.126) \n    (7.218) \n    (7.183) \n  \n  \n    flipper_length_mm \n    27.429 \n    27.459 \n    28.306 \n  \n  \n     \n    (3.176) \n    (3.163) \n    (3.357) \n  \n  \n    speciesChinstrap \n    −748.562 \n    −747.190 \n    −751.425 \n  \n  \n     \n    (81.534) \n    (82.564) \n    (81.873) \n  \n  \n    speciesGentoo \n    90.435 \n    88.247 \n    65.843 \n  \n  \n     \n    (88.647) \n    (89.034) \n    (92.356) \n  \n  \n    R2 \n    0.822 \n    0.822 \n    0.822 \n  \n  \n    Num.Obs. \n    342 \n    344 \n    344 \n  \n  \n    RMSE \n    337.62"
+    "text": "Lets see it in a table\n\n\n\n\n \n  \n      \n    List Wise Deletion \n    Mice \n    Amelia \n  \n \n\n  \n    (Intercept) \n    −3904.387 \n    −3893.090 \n    −3873.100 \n  \n  \n     \n    (529.257) \n    (528.886) \n    (525.065) \n  \n  \n    bill_length_mm \n    61.736 \n    61.350 \n    61.111 \n  \n  \n     \n    (7.126) \n    (7.105) \n    (7.166) \n  \n  \n    flipper_length_mm \n    27.429 \n    27.452 \n    27.387 \n  \n  \n     \n    (3.176) \n    (3.175) \n    (3.157) \n  \n  \n    speciesChinstrap \n    −748.562 \n    −745.480 \n    −741.119 \n  \n  \n     \n    (81.534) \n    (81.434) \n    (81.817) \n  \n  \n    speciesGentoo \n    90.435 \n    92.774 \n    98.855 \n  \n  \n     \n    (88.647) \n    (88.440) \n    (88.025) \n  \n  \n    R2 \n    0.822 \n    0.823 \n    0.822 \n  \n  \n    Num.Obs. \n    342 \n    344 \n    344 \n  \n  \n    RMSE \n    337.62"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#interactions",
@@ -1796,7 +1789,14 @@
     "href": "slides/data-analysis-in-R.html#performance",
     "title": "Data Analysis in R",
     "section": "Performance",
-    "text": "Performance\n\nVdem has 202 country ids and 233 years\n\nLets time them to see\n\n\n\n\n\n\n\n# A tibble: 3 × 2\n  expr       `Mean Time in Seconds`\n  <fct>                       <dbl>\n1 vdem_feols                0.00179\n2 vdem_stand                0.475  \n3 vdem_plm                  0.363"
+    "text": "Performance\n\nVdem has 202 country ids and 233 years\n\nLets time them to see\n\n\n\n\n\n\n\n# A tibble: 3 × 2\n  expr       `Mean Time in Seconds`\n  <fct>                       <dbl>\n1 vdem_feols                0.00187\n2 vdem_stand                0.483  \n3 vdem_plm                  0.371"
+  },
+  {
+    "objectID": "slides/data-analysis-in-R.html#your-turn-1",
+    "href": "slides/data-analysis-in-R.html#your-turn-1",
+    "title": "Data Analysis in R",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nCreate and indicator variable for the chinstrap penguin species\nAdd an interaction term with bill depth in a regression\ncreate a table with modelsummary with all your models\n\n\n\n\n−+\n05:00"
   },
   {
     "objectID": "slides/data-analysis-in-R.html#generating-predictions",
@@ -1866,7 +1866,7 @@
     "href": "slides/data-analysis-in-R.html#packages-you-will-need-1",
     "title": "Data Analysis in R",
     "section": "Packages You Will Need",
-    "text": "Packages You Will Need\n\nset.seed(1994) # make things reproducible\nlibrary(ISLR2)\nlibrary(caret)\nlibrary(leaps)\nlibrary(mlbench)\nlibrary(tidymodels)\nlibrary(vip)\n\n\nNote caret and tidymodels have some namespace conflicts.\n\nI personally would prefer to load one or the other\n\n\n\n\n\n\n\n\nImportant\n\n\nThe Elements of Statistical Learning has all the R and Python code located at this website.\n\n\n\n\nI generally am not a machine learning person. So I am just going to show you the basics of a machine learning workflow in R."
+    "text": "Packages You Will Need\n\nset.seed(1994) # make things reproducible\nlibrary(ISLR2)\nlibrary(caret)\nlibrary(leaps)\nlibrary(mlbench)\nlibrary(tidymodels) \nlibrary(vip)\n\n\nNote caret and tidymodels have some namespace conflicts.\n\nI personally would prefer to load one or the other\n\n\n\n\n\n\n\n\nTip\n\n\nThe Elements of Statistical Learning has all the R and Python code located at this website.\n\n\n\n\nI generally am not a machine learning person. So I am just going to show you the basics of a machine learning workflow in R."
   },
   {
     "objectID": "slides/data-analysis-in-R.html#creating-training-and-test-sets",
