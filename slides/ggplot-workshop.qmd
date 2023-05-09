@@ -40,8 +40,8 @@ pacman::p_load("ggplot2", "AllenMisc", "magrittr","dplyr", "flair", "MetBrewer",
 gapminder = filter(gapminder, !continent == "Oceania")
 
 
-clrs <- met.brewer(name = "Demuth")
-clrs_lt <- lighten(clrs, 0.9)
+clrs = met.brewer(name = "Demuth")
+clrs_lt = lighten(clrs, 0.9)
 
 graph_dat = datasauRus::datasaurus_dozen
 
