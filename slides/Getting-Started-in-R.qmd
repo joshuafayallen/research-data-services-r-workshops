@@ -15,8 +15,8 @@ format:
 
 
 ## install.packages("pacman")
-pacman::p_load("ggplot2", "AllenMisc", "magrittr","dplyr", "flair", "MetBrewer", "colorspace",  "palmerpenguins", install = FALSE)
-
+pacman::p_load("ggplot2", "AllenMisc", "magrittr","dplyr",
+               "MetBrewer", "colorspace",  "palmerpenguins", install = FALSE)
 
 
 clrs <- met.brewer(name = "Demuth")
